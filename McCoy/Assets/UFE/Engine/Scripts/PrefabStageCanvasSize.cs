@@ -7,7 +7,7 @@
 
 using System;
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
+
 using UnityEngine;
 using Resizer = PrefabStageCanvasSize.Resizer;
 
@@ -24,7 +24,7 @@ static class PrefabStageCanvasSize
         if (EditorApplication.isPlaying)
             return;
 
-        PrefabStage.prefabStageOpened += stage =>
+        UnityEditor.SceneManagement.PrefabStage.prefabStageOpened += stage =>
         {
             // get RectTranform of prefab environment
             var envRT = stage.prefabContentsRoot.transform.parent as RectTransform;
@@ -42,7 +42,7 @@ static class PrefabStageCanvasSize
             resizer.Init(envRT, envRT.GetComponent<Canvas>());
         };
 
-        PrefabStage.prefabStageClosing += stage =>
+        UnityEditor.SceneManagement.PrefabStage.prefabStageClosing += stage =>
         {
             // destroy component to avoid memory leaks when using DontSave flags
             var resizer = stage.prefabContentsRoot.GetComponent<Resizer>();
