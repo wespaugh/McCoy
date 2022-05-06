@@ -334,7 +334,7 @@ public class ControlsScript : MonoBehaviour
 
   private void validateRotation(bool byPass = false)
   {
-    if (!myPhysicsScript.IsGrounded() || myPhysicsScript.freeze || currentMove != null) fixCharacterRotation();
+    if (!IsGrounded() || myPhysicsScript.freeze || currentMove != null) fixCharacterRotation();
 
     if (!byPass)
     {
@@ -363,7 +363,8 @@ public class ControlsScript : MonoBehaviour
 
   private bool IsSideSwitchEnabled()
   {
-    if (UFE.config.characterRotationOptions.allowAirBorneSideSwitch && (Physics.IsGrounded() || opControlsScript.Physics.IsGrounded())) return true;
+    // todo: opPhysicsScript
+    if (UFE.config.characterRotationOptions.allowAirBorneSideSwitch && (IsGrounded() || opControlsScript.Physics.IsGrounded())) return true;
     return false;
   }
 
@@ -382,10 +383,20 @@ public class ControlsScript : MonoBehaviour
     worldTransform.LookAt(lookPos);
   }
 
-  public void DoFixedUpdate(
+  public void DoControlScriptFixedUpdate(
     IDictionary<InputReferences, InputEvents> previousInputs,
     IDictionary<InputReferences, InputEvents> currentInputs
   )
+  {
+    worldTransform.position += new FPVector(0, -worldTransform.position.z, 0);
+    DoFixedUpdate(previousInputs, currentInputs);
+    worldTransform.position -= new FPVector(0, worldTransform.position.z, 0);
+  }
+
+  public void DoFixedUpdate(
+  IDictionary<InputReferences, InputEvents> previousInputs,
+  IDictionary<InputReferences, InputEvents> currentInputs
+)
   {
     // Update opControlsScript Reference if Needed
     if (!opControlsScript.gameObject.activeInHierarchy) opControlsScript = UFE.GetControlsScript(playerNum == 1 ? 2 : 1);
@@ -504,13 +515,12 @@ public class ControlsScript : MonoBehaviour
       localTransform.position = new FPVector(0, 0, 0);
     }
 
-
     // Force stand state
     if (!myPhysicsScript.freeze
   && !isDead
         && currentSubState != SubStates.Stunned
   && introPlayed
-  && myPhysicsScript.IsGrounded()
+  && IsGrounded()
   && !myPhysicsScript.IsMoving()
     && currentMove == null
         && !myMoveSetScript.IsBasicMovePlaying(myMoveSetScript.basicMoves.idle)
@@ -742,6 +752,11 @@ public class ControlsScript : MonoBehaviour
     return true;
   }
 
+  public bool IsGrounded()
+  {
+      return worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y;
+  }
+
   private void runDebugger(string inputDebugger)
   {
     // Run Debugger
@@ -763,6 +778,7 @@ public class ControlsScript : MonoBehaviour
         if (debugInfo.currentState) debugger.text += "Is Blocking: " + isBlocking + "\n";
         if (debugInfo.currentState) debugger.text += "Is Crouching: " + isCrouching + "\n";
         if (debugInfo.stunTime && stunTime > 0) debugger.text += "Stun Time: " + stunTime + "\n";
+        debugger.text += "IsGrounded? " + IsGrounded();
         if (opControlsScript != null && opControlsScript.comboHits > 0)
         {
           debugger.text += "Current Combo\n";
@@ -969,7 +985,7 @@ public class ControlsScript : MonoBehaviour
   currentState = PossibleStates.Stand;
 }*/
 
-      if (myPhysicsScript.IsGrounded()
+      if (IsGrounded()
           && (myInfo.customControls.disableCrouch || inputHeldDown[myInfo.customControls.crouchButton] == 0)
           && !myHitBoxesScript.isHit
           && currentSubState != SubStates.Stunned)
@@ -1138,6 +1154,11 @@ public class ControlsScript : MonoBehaviour
 
             if (inputHeldDown[inputRef.engineRelatedButton] == UFE.fixedDeltaTime && testMoveExecution(inputRef.engineRelatedButton)) return;
 
+            if (CanWalk())
+            {
+              myPhysicsScript.MoveZ(mirror, ev.axisRaw);
+            }
+
 #if !UFE_LITE && !UFE_BASIC
             if (UFE.config.gameplayType == GameplayType._3DFighter && myInfo.customControls.zAxisMovement && CanWalk())
               if (inputRef.engineRelatedButton != myInfo.customControls.jumpButton || !myPhysicsScript.IsMoving())
@@ -1151,6 +1172,11 @@ public class ControlsScript : MonoBehaviour
             inputHeldDown[inputRef.engineRelatedButton] += UFE.fixedDeltaTime;
 
             if (inputHeldDown[inputRef.engineRelatedButton] == UFE.fixedDeltaTime && testMoveExecution(inputRef.engineRelatedButton)) return;
+
+            if (CanWalk())
+            {
+              myPhysicsScript.MoveZ(mirror, ev.axisRaw);
+            }
 
 #if !UFE_LITE && !UFE_BASIC
             if (UFE.config.gameplayType == GameplayType._3DFighter && myInfo.customControls.zAxisMovement && CanWalk())
@@ -1248,12 +1274,12 @@ public class ControlsScript : MonoBehaviour
         // Test regular jump if axis is the same as jump button
         if (!myInfo.customControls.disableJump && inputRef.engineRelatedButton == myInfo.customControls.jumpButton)
         {
-          ExecuteJump(inputRef.engineRelatedButton, false);
+          // ExecuteJump(inputRef.engineRelatedButton, false);
         }
         // Test crouch if axis is the same as crouch button
         else if (!myInfo.customControls.disableCrouch && inputRef.engineRelatedButton == myInfo.customControls.crouchButton)
         {
-          ExecuteCrouch();
+          // ExecuteCrouch();
         }
       }
 
@@ -1419,7 +1445,7 @@ public class ControlsScript : MonoBehaviour
   public void ExecuteCrouch()
   {
     if (!myPhysicsScript.freeze
-        && myPhysicsScript.IsGrounded()
+        && IsGrounded()
         && currentMove == null
         && currentSubState != SubStates.Stunned
         && !myPhysicsScript.isTakingOff
@@ -1464,7 +1490,7 @@ public class ControlsScript : MonoBehaviour
     if (pressureSensitive)
     {
       // Pressure Sensitive Jump
-      if (myPhysicsScript.IsGrounded()
+      if (IsGrounded()
           && myPhysicsScript.isTakingOff
           && !myPhysicsScript.IsJumping())
       {
@@ -1491,7 +1517,7 @@ public class ControlsScript : MonoBehaviour
       if (!myPhysicsScript.isTakingOff && !myPhysicsScript.isLanding)
       {
         // Double/Multi Jumps
-        if (inputHeldDown[engineRelatedButton] == UFE.fixedDeltaTime && !myPhysicsScript.IsGrounded() && myInfo.physics.canJump && myInfo.physics.multiJumps > 1)
+        if (inputHeldDown[engineRelatedButton] == UFE.fixedDeltaTime && !IsGrounded() && myInfo.physics.canJump && myInfo.physics.multiJumps > 1)
           myPhysicsScript.Jump();
 
         // Standard Jump
@@ -1557,7 +1583,7 @@ public class ControlsScript : MonoBehaviour
   {
 
     if (airRecoveryType == AirRecoveryType.DontRecover
-        && !myPhysicsScript.IsGrounded()
+        && !IsGrounded()
         && currentSubState == SubStates.Stunned
         && currentState != PossibleStates.Down)
     {
@@ -1571,7 +1597,7 @@ public class ControlsScript : MonoBehaviour
     BasicMoveInfo newBasicMove = null;
     Fix64 standUpTime = UFE.config.knockDownOptions.air._standUpTime;
     SubKnockdownOptions knockdownOption = null;
-    if (!isDead && currentMove == null && myPhysicsScript.IsGrounded())
+    if (!isDead && currentMove == null && IsGrounded())
     {
       // Knocked Down
       if (currentState == PossibleStates.Down)
@@ -1777,7 +1803,7 @@ public class ControlsScript : MonoBehaviour
 
       if (move.disableHeadLook) ToggleHeadLook(false);
 
-      if (myPhysicsScript.IsGrounded())
+      if (IsGrounded())
       {
         myPhysicsScript.isTakingOff = false;
         myPhysicsScript.isLanding = false;
@@ -2756,7 +2782,7 @@ public class ControlsScript : MonoBehaviour
             {
               if ((opControlsScript.worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 2
                   || opControlsScript.worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 2)
-                  && myPhysicsScript.IsGrounded() && !UFE.config.comboOptions.neverCornerPush && hit.cornerPush)
+                  && IsGrounded() && !UFE.config.comboOptions.neverCornerPush && hit.cornerPush)
               {
                 myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, false);
                 myPhysicsScript.AddForce(
@@ -2864,16 +2890,18 @@ public class ControlsScript : MonoBehaviour
     myPhysicsScript.overrideStunAnimation = null;
     myPhysicsScript.overrideAirAnimation = false;
 
-    if (!myPhysicsScript.IsGrounded()) isAirRecovering = true;
+    if (!IsGrounded()) isAirRecovering = true;
 
     if (!isDead) ToggleHeadLook(true);
 
-    if (myPhysicsScript.IsGrounded())
+    if (IsGrounded())
     {
       if (isCrouching)
         currentState = PossibleStates.Crouch;
       else
+      {
         currentState = PossibleStates.Stand;
+      }
     }
     if (!isAssist && (UFE.p1ControlsScript == this || UFE.p2ControlsScript == this)) translateInputs(previousInputs, currentInputs);
   }
@@ -2920,20 +2948,20 @@ public class ControlsScript : MonoBehaviour
   public bool TestBlockStances(HitType hitType)
   {
     if (UFE.config.blockOptions.blockType == BlockType.None) return false;
-    if ((hitType == HitType.Mid || hitType == HitType.MidKnockdown || hitType == HitType.Launcher) && myPhysicsScript.IsGrounded()) return true;
+    if ((hitType == HitType.Mid || hitType == HitType.MidKnockdown || hitType == HitType.Launcher) && IsGrounded()) return true;
     if ((hitType == HitType.Overhead || hitType == HitType.HighKnockdown) && currentState == PossibleStates.Crouch) return false;
     if ((hitType == HitType.Sweep || hitType == HitType.Low) && currentState != PossibleStates.Crouch) return false;
-    if (!UFE.config.blockOptions.allowAirBlock && !myPhysicsScript.IsGrounded()) return false;
+    if (!UFE.config.blockOptions.allowAirBlock && !IsGrounded()) return false;
     return true;
   }
 
   public bool TestParryStances(HitType hitType)
   {
     if (UFE.config.blockOptions.parryType == ParryType.None) return false;
-    if ((hitType == HitType.Mid || hitType == HitType.MidKnockdown || hitType == HitType.Launcher) && myPhysicsScript.IsGrounded()) return true;
+    if ((hitType == HitType.Mid || hitType == HitType.MidKnockdown || hitType == HitType.Launcher) && IsGrounded()) return true;
     if ((hitType == HitType.Overhead || hitType == HitType.HighKnockdown) && currentState == PossibleStates.Crouch) return false;
     if ((hitType == HitType.Sweep || hitType == HitType.Low) && currentState != PossibleStates.Crouch) return false;
-    if (!UFE.config.blockOptions.allowAirParry && !myPhysicsScript.IsGrounded()) return false;
+    if (!UFE.config.blockOptions.allowAirParry && !IsGrounded()) return false;
     return true;
   }
 
@@ -2964,7 +2992,7 @@ public class ControlsScript : MonoBehaviour
           myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingHighPose, false);
           isBlocking = true;
         }
-        else if (!myPhysicsScript.IsGrounded() && UFE.config.blockOptions.allowAirBlock)
+        else if (!IsGrounded() && UFE.config.blockOptions.allowAirBlock)
         {
           if (myMoveSetScript.basicMoves.blockingAirPose.animMap[0].clip == null)
             Debug.LogError("Blocking Air Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Air Pose");
@@ -3010,9 +3038,9 @@ public class ControlsScript : MonoBehaviour
   public bool ValidateHit(Hit hit)
   {
     if (comboHits >= UFE.config.comboOptions.maxCombo) return false;
-    if (!hit.groundHit && myPhysicsScript.IsGrounded()) return false;
+    if (!hit.groundHit && IsGrounded()) return false;
     if (!hit.crouchingHit && currentState == PossibleStates.Crouch) return false;
-    if (!hit.airHit && currentState != PossibleStates.Stand && currentState != PossibleStates.Crouch && !myPhysicsScript.IsGrounded()) return false;
+    if (!hit.airHit && currentState != PossibleStates.Stand && currentState != PossibleStates.Crouch && !IsGrounded()) return false;
     if (!hit.stunHit && currentSubState == SubStates.Stunned) return false;
     if (!hit.downHit && currentState == PossibleStates.Down) return false;
     if (myMoveSetScript != null && !myMoveSetScript.ValidadeBasicMove(hit.opponentConditions, this)) return false;
@@ -3127,7 +3155,7 @@ public class ControlsScript : MonoBehaviour
 
       }
     }
-    else if (!myPhysicsScript.IsGrounded())
+    else if (!IsGrounded())
     {
       currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryAir, hit);
       currentHitInfo = myMoveSetScript.basicMoves.parryAir;
@@ -3302,7 +3330,7 @@ public class ControlsScript : MonoBehaviour
       }
 
     }
-    else if (!myPhysicsScript.IsGrounded())
+    else if (!IsGrounded())
     {
       currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingAirHit, hit);
       currentHitInfo = myMoveSetScript.basicMoves.blockingAirHit;
@@ -3463,7 +3491,7 @@ public class ControlsScript : MonoBehaviour
     if (hit.resetCrumples) consecutiveCrumple = 0;
 
     // Obtain animation depending on HitType
-    if (myPhysicsScript.IsGrounded())
+    if (IsGrounded())
     {
       if (hit.hitStrength == HitStrengh.Crumple && hit.hitType != HitType.Launcher)
       {
@@ -3824,7 +3852,7 @@ public class ControlsScript : MonoBehaviour
       stunTime *= hitStunModifier;
 
       FPVector pushForce = new FPVector();
-      if (!myPhysicsScript.IsGrounded() && hit.applyDifferentAirForce)
+      if (!IsGrounded() && hit.applyDifferentAirForce)
       {
         pushForce.x = hit._pushForceAir.x;
         pushForce.y = hit._pushForceAir.y;
@@ -3912,7 +3940,7 @@ public class ControlsScript : MonoBehaviour
 
       if (isDead) stunTime = 99999;
 
-      if ((airHit || (!myPhysicsScript.IsGrounded() && airRecoveryType == AirRecoveryType.DontRecover)) && pushForce.y > 0)
+      if ((airHit || (!IsGrounded() && airRecoveryType == AirRecoveryType.DontRecover)) && pushForce.y > 0)
       {
         if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
           Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
@@ -4226,7 +4254,7 @@ public class ControlsScript : MonoBehaviour
       currentSubState = SubStates.Resting;
       stunTime = 0;
     }
-    else if (currentState == PossibleStates.Down && myPhysicsScript.IsGrounded())
+    else if (currentState == PossibleStates.Down && IsGrounded())
     {
       stunTime = 1;
     }

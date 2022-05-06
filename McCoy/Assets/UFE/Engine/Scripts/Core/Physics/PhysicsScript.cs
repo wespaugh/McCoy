@@ -24,6 +24,11 @@ public class PhysicsScript : MonoBehaviour
   public BasicMoveInfo overrideStunAnimation;
   public Fix64 verticalTotalForce;
   public int wallBounceTimes;
+  /// <summary>
+  /// when applying forces in brawler space, we uniformly shift the character 'down' by the z-offset, bringing them back to the starting plane
+  /// z-offset represents how far into/out of the stage the player has moved
+  /// </summary>
+  private bool brawlerZShifted;
   #endregion
 
   public ControlsScript controlScript;
@@ -73,6 +78,7 @@ public class PhysicsScript : MonoBehaviour
     }
   }
 
+  /*
   /// <summary>
   /// (3D Fighter) Makes the character move sideways.
   /// </summary>
@@ -91,6 +97,33 @@ public class PhysicsScript : MonoBehaviour
     if (UFE.config.inputOptions.forceDigitalInput) axisValue = axisValue < 0 ? -1 : 1;
 
     controlScript.currentSubState = SubStates.MovingSideways;
+
+    if (UFE.config.inputOptions.forceDigitalInput) axisValue = axisValue < 0 ? -1 : 1;
+    moveDirection = axisValue;
+
+    activeForces.y = controlScript.myInfo.physics._moveSidewaysSpeed * axisValue * -direction;
+  }
+  */
+
+  /// <summary>
+  /// (3D Fighter) Makes the character move sideways.
+  /// </summary>
+  /// <param name="direction">The direction the character is facing.</param>
+  /// <param name="axisValue">The Move Sideways Speed force percentage being applied (-1 to 1).</param>
+  public void MoveZ(int direction, Fix64 axisValue)
+  {
+    if (!IsGrounded()) return;
+    if (freeze) return;
+    if (isTakingOff) return;
+    if (isLanding) return;
+    //if (!controlScript.myInfo.customControls.disableJump && moveDirection != 0) return;
+
+    angularDirection = transform.rotation.eulerAngles.y;
+
+    if (UFE.config.inputOptions.forceDigitalInput) axisValue = axisValue < 0 ? -1 : 1;
+
+    controlScript.currentSubState = SubStates.MovingSideways;
+    controlScript.currentSubState = SubStates.MovingForward;
 
     activeForces.z = controlScript.myInfo.physics._moveSidewaysSpeed * axisValue * -direction;
     moveDirection = 1;
@@ -298,8 +331,16 @@ public class PhysicsScript : MonoBehaviour
   {
     ApplyForces(null);
   }
-
   public void ApplyForces(MoveInfo move)
+  {
+    //FPVector p = new FPVector(worldTransform.position.x, worldTransform.position.y, worldTransform.position.z);
+    worldTransform.Translate(0, -worldTransform.position.z, 0);
+    brawlerZShifted = true;
+    ApplyAllForces(move);
+    worldTransform.Translate(0, worldTransform.position.z, 0);
+    brawlerZShifted = false;
+  }
+  public void ApplyAllForces(MoveInfo move)
   {
     if (freeze) return;
 
@@ -509,6 +550,10 @@ public class PhysicsScript : MonoBehaviour
         if (UFE.config.gameplayType == GameplayType._2DFighter)
         {
           worldTransform.Translate(activeForces.x * UFE.fixedDeltaTime, 0, 0);
+
+          // for brawler physics, our 'z' translates to a y-offset
+          worldTransform.Translate(0, 0, activeForces.z * UFE.fixedDeltaTime);
+
         }
 #if !UFE_LITE && !UFE_BASIC
         else if (UFE.config.gameplayType == GameplayType._3DFighter)
@@ -696,7 +741,6 @@ public class PhysicsScript : MonoBehaviour
         if (controlScript.currentMove != null && controlScript.currentMove.hitAnimationOverride) return;
         if (controlScript.currentSubState == SubStates.Stunned)
         {
-
           if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airRecovery.name))
           {
             controlScript.stunTime = 0;
@@ -822,7 +866,10 @@ public class PhysicsScript : MonoBehaviour
             }
           }
 
-          if (controlScript.currentState != PossibleStates.Crouch) controlScript.currentState = PossibleStates.Stand;
+          if (controlScript.currentState != PossibleStates.Crouch)
+          {
+            controlScript.currentState = PossibleStates.Stand;
+          }
 
         }
 
@@ -883,7 +930,9 @@ public class PhysicsScript : MonoBehaviour
     else if (activeForces.y > 0 || !IsGrounded())
     {
       if (move != null && controlScript.currentState == PossibleStates.Stand)
+      {
         controlScript.currentState = PossibleStates.NeutralJump;
+      }
       if (move == null && activeForces.y / verticalTotalForce > 0 && activeForces.y / verticalTotalForce <= 1)
       {
         if (isGroundBouncing) return;
@@ -1052,7 +1101,10 @@ public class PhysicsScript : MonoBehaviour
 
   public bool IsGrounded()
   {
-    if (worldTransform.position.y <= UFE.config.selectedStage.position.y) return true;
-    return false;
+    if (!brawlerZShifted)
+    {
+      return worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y; ;
+    }
+    return worldTransform.position.y <= UFE.config.selectedStage.position.y;
   }
 }
