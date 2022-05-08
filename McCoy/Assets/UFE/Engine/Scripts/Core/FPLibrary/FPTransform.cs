@@ -68,8 +68,30 @@ namespace FPLibrary
         
         public void Translate(FPVector translation, FPTransform relativeTo) {
             this.position += FPVector.Transform(translation, FPMatrix.CreateFromQuaternion(relativeTo.rotation));
+      updateSpriteZDepth();
         }
-        
+
+    private void FixedUpdate()
+    {
+      updateSpriteZDepth();
+    }
+
+    SpriteRenderer _spriteRenderer = null;
+    bool checkedForSpriteRenderer = false;
+    public void updateSpriteZDepth()
+    {
+      if(!checkedForSpriteRenderer)
+      {
+        checkedForSpriteRenderer = true;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+      }
+      if(_spriteRenderer == null)
+      {
+        return;
+      }
+      _spriteRenderer.sortingOrder = (int)(this.position.z*100.0f);
+    }
+
         public void RotateAround(FPVector point, FPVector axis, Fix64 angle) {
             FPVector vector = this.position;
             FPVector vector2 = vector - point;
@@ -152,6 +174,7 @@ namespace FPLibrary
 
         public void UpdateTransform(Transform transform) {
             transform.position = new Vector3((float)position.x, (float)position.y, (float)position.z);
+      updateSpriteZDepth();
             //transform.rotation = new Quaternion((float)rotation.x, (float)rotation.y, (float)rotation.z, (float)rotation.w);
             //transform.localScale = new Vector3((float)scale.x, (float)scale.y, (float)scale.z);
         }

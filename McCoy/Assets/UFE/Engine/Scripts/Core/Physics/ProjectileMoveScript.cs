@@ -388,7 +388,11 @@ namespace UFE3D
         Gizmos.color = Color.cyan;
 
         Vector3 hurtBoxPosition = transform.position;
-        if (UFE.config == null || !UFE.config.detect3D_Hits) hurtBoxPosition.z = -1;
+        if (UFE.config == null || !UFE.config.detect3D_Hits)
+        {
+          // remove for brawler, keep hurtboxes where they are in z
+          // hurtBoxPosition.z = -1;
+        }
 
         if (hurtBox.shape == HitBoxShape.circle)
         {
@@ -432,7 +436,11 @@ namespace UFE3D
         {
           Vector3 blockableAreaPosition;
           blockableAreaPosition = transform.position;
-          if (UFE.config == null || !UFE.config.detect3D_Hits) blockableAreaPosition.z = -1;
+          if (UFE.config == null || !UFE.config.detect3D_Hits)
+          {
+            // remove for brawler, keep hurtboxes where they are in z
+            // blockableAreaPosition.z = -1;
+          }
           if (blockableArea.shape == HitBoxShape.circle)
           {
             blockableAreaPosition += new Vector3((float)blockableArea._offSet.x * -mirror, (float)blockableArea._offSet.y, 0);

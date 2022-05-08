@@ -655,7 +655,7 @@ public class CharacterEditorWindow : EditorWindow {
 						characterInfo.physics._moveForwardSpeed = EditorGUILayout.FloatField("Move Forward Speed:", (float)characterInfo.physics._moveForwardSpeed);
 						characterInfo.physics._moveBackSpeed = EditorGUILayout.FloatField("Move Back Speed:", (float)characterInfo.physics._moveBackSpeed);
 #if !UFE_LITE && !UFE_BASIC
-                        if (characterInfo.gameplayType == GameplayType._3DFighter)
+                        // if (characterInfo.gameplayType == GameplayType._3DFighter)
                             characterInfo.physics._moveSidewaysSpeed = EditorGUILayout.FloatField("Move Sideways Speed:", (float)characterInfo.physics._moveSidewaysSpeed);
 #endif
 

@@ -812,6 +812,8 @@ public class ControlsScript : MonoBehaviour
 
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
+    return;
+    /*
     if (opControlsScript == null
         || !opControlsScript.GetActive()
         || opControlsScript.HitBoxes == null
@@ -881,6 +883,7 @@ public class ControlsScript : MonoBehaviour
         worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, .5 * pushForce);
       }
     }
+    */
   }
 
   private bool testMoveExecution(ButtonPress buttonPress)
@@ -1145,7 +1148,6 @@ public class ControlsScript : MonoBehaviour
         {
           // Vertical Movements
           lookDirection.z = ev.axisRaw;
-
           if (ev.axisRaw > 0) // Up
           {
             inputRef.engineRelatedButton = ButtonPress.Up;
@@ -1156,7 +1158,7 @@ public class ControlsScript : MonoBehaviour
 
             if (CanWalk())
             {
-              myPhysicsScript.MoveZ(mirror, ev.axisRaw);
+              myPhysicsScript.MoveZ(-1, ev.axisRaw);
             }
 
 #if !UFE_LITE && !UFE_BASIC
@@ -1175,7 +1177,7 @@ public class ControlsScript : MonoBehaviour
 
             if (CanWalk())
             {
-              myPhysicsScript.MoveZ(mirror, ev.axisRaw);
+              myPhysicsScript.MoveZ(-1, ev.axisRaw);
             }
 
 #if !UFE_LITE && !UFE_BASIC

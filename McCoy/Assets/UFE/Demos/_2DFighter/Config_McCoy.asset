@@ -30,7 +30,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
     prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
       type: 3}
-    music: {fileID: 8300000, guid: f677a794af65dfe46917f53cc9810eec, type: 3}
+    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -984,7 +984,7 @@ MonoBehaviour:
   player2_Inputs:
   - inputType: 0
     inputButtonName: P2KeyboardHorizontal
-    engineRelatedButton: 1
+    engineRelatedButton: 0
     joystickAxisName: P2JoystickHorizontal
     cInputPositiveKeyName: P2Right
     cInputPositiveDefaultKey: RightArrow
@@ -1145,7 +1145,7 @@ MonoBehaviour:
     stagePath: 
     screenshot: {fileID: 2800000, guid: 08a565ac17d3e904d8d5f53e183b64d2, type: 3}
     prefab: {fileID: 100000, guid: 064338a39a43ad647989c96c321658a2, type: 3}
-    music: {fileID: 8300000, guid: 23d573990eb71984db6595c0ac5ac4c1, type: 3}
+    music: {fileID: 8300000, guid: 67fe00d1c5d44014fb8b79577686f7db, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -1164,7 +1164,7 @@ MonoBehaviour:
     stagePath: Assets/UFE/Demos/Shared_Assets/Stages/TrainingRoom2D/TrainingRoom.unity
     screenshot: {fileID: 2800000, guid: 08a565ac17d3e904d8d5f53e183b64d2, type: 3}
     prefab: {fileID: 0}
-    music: {fileID: 8300000, guid: 23d573990eb71984db6595c0ac5ac4c1, type: 3}
+    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -1184,7 +1184,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
     prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
       type: 3}
-    music: {fileID: 8300000, guid: f677a794af65dfe46917f53cc9810eec, type: 3}
+    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
