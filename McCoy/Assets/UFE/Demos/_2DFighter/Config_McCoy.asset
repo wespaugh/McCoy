@@ -437,7 +437,7 @@ MonoBehaviour:
     _juggleWeight:
       _serializedValue: 1288490188800
   blockOptions:
-    blockType: 1
+    blockType: 0
     allowAirBlock: 0
     ignoreAppliedForceBlock: 0
     allowMoveCancel: 0
@@ -855,7 +855,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W

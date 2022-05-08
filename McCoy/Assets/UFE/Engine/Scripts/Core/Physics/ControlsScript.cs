@@ -288,7 +288,8 @@ public class ControlsScript : MonoBehaviour
     }
 #endif
 
-    if ((mirror == -1 || forceMirror) && myX > opX)
+    if (mirror == -1 && forceMirror )
+    //if ((mirror == -1 || forceMirror) && myX > opX)
     {
       potentialBlock = false;
       InvertRotation(1);
@@ -297,7 +298,8 @@ public class ControlsScript : MonoBehaviour
       UFE.FireSideSwitch(mirror, this);
 
     }
-    else if ((mirror == 1 || forceMirror) && myX < opX)
+    else if (mirror == 1 && forceMirror)
+    // else if ((mirror == 1 || forceMirror) && myX < opX)
     {
       potentialBlock = false;
       InvertRotation(-1);
@@ -1079,6 +1081,8 @@ public class ControlsScript : MonoBehaviour
             {
               inputHeldDown[ButtonPress.Forward] = 0;
               inputRef.engineRelatedButton = ButtonPress.Back;
+              // brawler: moving right and mirrored, so we're turning around
+              testCharacterRotation(0, true);
             }
             else
             {
@@ -1107,6 +1111,8 @@ public class ControlsScript : MonoBehaviour
             {
               inputHeldDown[ButtonPress.Forward] = 0;
               inputRef.engineRelatedButton = ButtonPress.Back;
+              // brawler, moving left but not mirrored, so turning around
+              testCharacterRotation(0, true);
             }
 
             inputHeldDown[inputRef.engineRelatedButton] += UFE.fixedDeltaTime;
