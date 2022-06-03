@@ -191,6 +191,7 @@ public class ControlsScript : MonoBehaviour
         standardYRotation = -standardYRotation;
         if (UFE.config.characterRotationOptions.autoMirror)
         {
+          Debug.Log("Automirror?");
           ForceMirror(true);
           myHitBoxesScript.inverted = true;
         }
@@ -207,6 +208,7 @@ public class ControlsScript : MonoBehaviour
     }*/
     else if (playerNum == 2)
     {
+      Debug.Log("initting player 2, mirror: " + mirror);
       testCharacterRotation(0, true);
     }
 #else
@@ -1075,6 +1077,7 @@ public class ControlsScript : MonoBehaviour
           // Horizontal Movements
           lookDirection.x = ev.axisRaw;
 
+          Debug.Log("AXIS HELD: " + ev.axisRaw + ". Mirror: " + mirror);
           if (ev.axisRaw > 0) // Right
           {
             if (mirror == 1)
