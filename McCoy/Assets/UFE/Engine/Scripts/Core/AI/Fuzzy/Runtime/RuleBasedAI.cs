@@ -97,6 +97,16 @@ public class RuleBasedAI : RandomAI{
 	protected ButtonPress[][] jumpForwardSimulatedInput = null;
 	protected ButtonPress[][] jumpStraightSimulatedInput = null;
 	protected ButtonPress[][] standBlockSimulatedInput = null;
+
+	// brawler. 8-directional movements to be selected contextually as a moveForwardSimulatedInput
+	protected ButtonPress[][] moveNegX = null; 
+	protected ButtonPress[][] moveNegXPosZ = null;
+	protected ButtonPress[][] movePosZ = null;
+	protected ButtonPress[][] movePosXPosZ = null;
+	protected ButtonPress[][] movePosX = null;
+	protected ButtonPress[][] movePosXNegZ = null;
+	protected ButtonPress[][] moveNegZ = null;
+	protected ButtonPress[][] moveNegXNegZ = null;
 	#endregion
 
 
@@ -133,6 +143,7 @@ public class RuleBasedAI : RandomAI{
 	}
 
 	public override void DoFixedUpdate(){
+
 		// Store initial AI
 		if (initialAI == null && ai != null) initialAI = ai;
 
@@ -205,12 +216,18 @@ public class RuleBasedAI : RandomAI{
 							RenderTexture.active = null;
 							GameObject.Destroy(tempObject);
 							 */
-							
+
 							//UFE.CastInput(InputType.Button, 0f, renderTexture, this.player);
 							//---------------------------------------------------------------------------------//
-							
-							//float sign = Mathf.Sign(opponent.transform.position.x - self.transform.position.x);
-							float sign = -self.mirror;
+
+							/*ORIGINAL							
+														//float sign = Mathf.Sign(opponent.transform.position.x - self.transform.position.x);
+														float sign = -self.mirror;
+							*/
+							/*brawler. targeting opponent position rather than just assuming mirror state is correct*/
+							float sign = Mathf.Sign(opponent.transform.position.x - self.transform.position.x);
+							/* /brawler*/
+
 							foreach (ButtonPress[] buttonPresses in chosenMovement.simulatedInput){
 								Dictionary<InputReferences,InputEvents> frame = new Dictionary<InputReferences,InputEvents>();
 								foreach (InputReferences input in this.inputReferences){
@@ -374,6 +391,68 @@ public class RuleBasedAI : RandomAI{
 		if (!UFE.config.aiOptions.persistentBehavior && round > 1 && initialAI != null) SetAIInformation(initialAI);
 	}
 
+	protected virtual ButtonPress[][] GetMoveForwardInput(ControlsScript self, ControlsScript opponent)
+  {
+		float dx = ((float)opponent.worldTransform.position.x) - ((float)self.worldTransform.position.x) * self.mirror;
+		float dz = ((float)opponent.worldTransform.position.z) - ((float)self.worldTransform.position.z);
+		float closenessThresholdX = 1f;
+		float closenessThresholdZ = .5f;
+		if (Mathf.Abs(dx) < closenessThresholdX)
+    {
+			// we're right on top of opponent, uhhhhh.... just move forward?
+			if(Mathf.Abs(dz) < closenessThresholdZ)
+      {
+				return movePosX;
+      }
+			// they're above us, move up
+			else if (dz > 0)
+      {
+				return movePosZ;
+      }
+			// they're below us, move down
+			else
+      {
+				return moveNegZ;
+      }
+    }
+		else if( dx > 0)
+    {
+			// straight right of us
+			if(Mathf.Abs(dz) < closenessThresholdZ)
+      {
+				return movePosX;
+      }
+			// in front and above us
+			else if( dz > 0)
+      {
+				return movePosXPosZ;
+      }
+			// in front and below us
+			else
+      {
+				return movePosXNegZ;
+      }
+    }
+		else
+    {
+			// straight left of us
+			if (Mathf.Abs(dz) < closenessThresholdZ)
+			{
+				return movePosX;
+			}
+			// left of us and above us
+			else if(dz > 0)
+      {
+				return movePosXPosZ;
+      }
+			// left of us and below us
+			else
+      {
+				return movePosXNegZ;
+      }
+    }
+  }
+
 	protected virtual MovementInfo ChooseMovement(ControlsScript self, ControlsScript opponent, float deltaTime){
 		// Find out if this AI is controlling the first or the second player.
 		if (self != null && opponent != null){
@@ -468,7 +547,7 @@ public class RuleBasedAI : RandomAI{
 					this.movements.Add(new MovementInfo(AIReaction.MoveBackward, this.moveBackwardSimulatedInput, weight * basicMoveWeight));
 				}
 				if (this.aiOutput.TryGetValue(AIReaction.MoveForward, out weight) && this.ValidateReaction(AIReactionType.MoveForward, self, opponent)){
-					this.movements.Add(new MovementInfo(AIReaction.MoveForward, this.moveForwardSimulatedInput, weight * basicMoveWeight));
+					this.movements.Add(new MovementInfo(AIReaction.MoveForward, this.GetMoveForwardInput(self,opponent), weight * basicMoveWeight));
 				}
 				
 				// Including blocks...
@@ -1239,7 +1318,16 @@ public class RuleBasedAI : RandomAI{
 			this.jumpStraightSimulatedInput = jumpStraight.ToArray();
 			this.moveForwardSimulatedInput = this.Repeat(new ButtonPress[]{ButtonPress.Forward}, frames);
 			this.moveBackwardSimulatedInput = this.Repeat(new ButtonPress[]{ButtonPress.Back}, frames);
-			
+
+			this.moveNegX = this.Repeat(new ButtonPress[] { ButtonPress.Back }, frames);
+			this.moveNegXPosZ = this.Repeat(new ButtonPress[] { ButtonPress.Up, ButtonPress.Back }, frames);
+			this.movePosZ = this.Repeat(new ButtonPress[] { ButtonPress.Up }, frames);
+			this.movePosXPosZ = this.Repeat(new ButtonPress[] { ButtonPress.Forward, ButtonPress.Up}, frames);
+			this.movePosX = this.Repeat(new ButtonPress[] { ButtonPress.Forward }, frames);
+			this.movePosXNegZ = this.Repeat(new ButtonPress[] { ButtonPress.Forward, ButtonPress.Down }, frames);
+			this.moveNegZ = this.Repeat(new ButtonPress[] { ButtonPress.Down }, frames);
+			this.moveNegXNegZ = this.Repeat(new ButtonPress[] { ButtonPress.Back, ButtonPress.Down }, frames);
+
 			// Including blocks...
 			if (blockButton != null){
 				// If we need to press a button to block the attack, we press that button...

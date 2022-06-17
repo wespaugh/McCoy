@@ -91,7 +91,7 @@ MonoBehaviour:
     overrideControlFreak: 0
     controlFreak2Prefab: {fileID: 0}
     zAxisMovement: 0
-    disableJump: 0
+    disableJump: 1
     disableCrouch: 0
     jumpButton: 2
     crouchButton: 3
@@ -5480,7 +5480,7 @@ MonoBehaviour:
     basicMovesToggle: 1
     attackMovesToggle: 0
   aiInstructionsSet:
-  - aiInfo: {fileID: 11400000, guid: e6af8c16e0d3e7e44a8ae1a2aeb21adb, type: 2}
+  - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
     behavior: 1
-  - aiInfo: {fileID: 11400000, guid: 8e93b771324a57f438c29baf9557a2c8, type: 2}
+  - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
     behavior: 5

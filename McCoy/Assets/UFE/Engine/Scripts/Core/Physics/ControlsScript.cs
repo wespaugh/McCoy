@@ -209,6 +209,7 @@ public class ControlsScript : MonoBehaviour
     else if (playerNum == 2)
     {
       Debug.Log("initting player 2, mirror: " + mirror);
+      // brawler: player2 doesn't start flipped
       testCharacterRotation(0, true);
     }
 #else
@@ -766,6 +767,7 @@ public class ControlsScript : MonoBehaviour
     // Run Debugger
     if (!isAssist && debugger != null && UFE.config.debugOptions.debugMode)
     {
+      debugger.color = Color.cyan;
       debugger.text = "";
       if (UFE.config.debugOptions.debugMode &&
           (!UFE.config.debugOptions.trainingModeDebugger || UFE.gameMode == GameMode.TrainingRoom))
@@ -1077,7 +1079,6 @@ public class ControlsScript : MonoBehaviour
           // Horizontal Movements
           lookDirection.x = ev.axisRaw;
 
-          Debug.Log("AXIS HELD: " + ev.axisRaw + ". Mirror: " + mirror);
           if (ev.axisRaw > 0) // Right
           {
             if (mirror == 1)
