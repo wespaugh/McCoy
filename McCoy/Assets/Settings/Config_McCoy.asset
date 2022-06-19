@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Config_McCoy
   m_EditorClassIdentifier: 
   version: 2
-  player1Character: {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
-  player2Character: {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  player1Character: {fileID: 0}
+  player2Character: {fileID: 0}
   player1Team:
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
@@ -24,12 +24,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: 
+    stageName: Bathroom
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 0}
-    prefab: {fileID: 0}
-    music: {fileID: 0}
+    screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
+    prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
+      type: 3}
+    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -1417,7 +1418,7 @@ MonoBehaviour:
     emulateNetwork: 0
     trainingModeDebugger: 0
     preloadedObjects: 0
-    inputsToggle: 0
+    inputsToggle: 1
     networkToggle: 0
     recordToggle: 0
     hitboxColorsToggle: 1
@@ -1431,12 +1432,12 @@ MonoBehaviour:
     recordMatchTools: 0
     playbackPhysics: 0
     displayInputsNetwork: 1
-    displayInputsVersus: 0
+    displayInputsVersus: 1
     displayInputsTraining: 1
     displayInputsStoryMode: 0
     displayInputsChallengeMode: 1
     p1DebugInfo:
-      toggle: 0
+      toggle: 1
       currentMove: 1
       position: 1
       lifePoints: 1
@@ -1448,9 +1449,9 @@ MonoBehaviour:
       comboDamage: 1
       inputs: 0
       buttonSequence: 0
-      aiWeightList: 0
+      aiWeightList: 1
     p2DebugInfo:
-      toggle: 0
+      toggle: 1
       currentMove: 1
       position: 1
       lifePoints: 1
@@ -1462,7 +1463,7 @@ MonoBehaviour:
       comboDamage: 1
       inputs: 0
       buttonSequence: 0
-      aiWeightList: 0
+      aiWeightList: 1
   trainingModeOptions:
     freezeTime: 1
     p1StartingLife: 100

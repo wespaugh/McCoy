@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e87d7c439487834c82e9d4aa521a1ed, type: 3}
   m_Name: DemoPuncher
   m_EditorClassIdentifier: 
-  instructionsName: Grappler (Defensive)
+  instructionsName: Demo Puncher
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
@@ -34,7 +34,7 @@ MonoBehaviour:
       inputWhenBlocking: 1
       inputWhenStunned: 1
       enableAttackTypeFilter: 1
-      enableGaugeFilter: 1
+      enableGaugeFilter: 0
       enableDistanceFilter: 1
       enableDamageFilter: 1
       enableHitConfirmTypeFilter: 1
@@ -46,11 +46,11 @@ MonoBehaviour:
     autoMove: 1
     restOnLocation: 1
     moveFrequency: 3
-    autoJump: 1
+    autoJump: 0
     jumpBackFrequency: 1
     jumpStraightFrequency: 2
     jumpForwardFrequency: 2
-    autoBlock: 1
+    autoBlock: 0
     obeyHitType: 1
     standBlockAccuracy: 6
     crouchBlockAccuracy: 6
@@ -58,9 +58,9 @@ MonoBehaviour:
     autoAttack: 1
     obeyPreferableDistances: 1
     attackFrequency: 5
-    debugToggle: 0
+    debugToggle: 1
   aiRules:
-  - ruleName: Grapple Defensive Opponents
+  - ruleName: PUNCH
     events:
     - enabled: 1
       boolean: 0
@@ -90,219 +90,7 @@ MonoBehaviour:
           anyHitConfirmType: 1
         moveFrameData: 0
         moveDamage: 0
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 1
-        horizontalMovement: 2
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 5
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 1
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 6
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 1
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    reactions:
-    - reactionType: 10
-      moveClassification:
-        attackType: 0
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 1
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 1
-        anyHitType: 1
-        anyHitConfirmType: 0
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 6
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Dash Forward, Stay Close
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 5
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 5
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 4
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    reactions:
-    - reactionType: 10
-      moveClassification:
-        attackType: 2
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 0
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 6
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Grapple Priority
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 5
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 1
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
+      conditionsToggle: 1
     reactions:
     - reactionType: 10
       moveClassification:
@@ -310,166 +98,20 @@ MonoBehaviour:
         hitType: 0
         startupSpeed: 0
         recoverySpeed: 0
-        hitConfirmType: 1
+        hitConfirmType: 0
         preferableDistance: 0
         gaugeUsage: 0
         anyAttackType: 1
         anyHitType: 1
-        anyHitConfirmType: 0
+        anyHitConfirmType: 1
       moveDamage: 0
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
       desirability: 5
     debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Enforce Defensive Maneuvers
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 6
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 1
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 1
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 1
-        conditionType: 5
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 1
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    reactions:
-    - reactionType: 6
-      moveClassification:
-        attackType: 0
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 1
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 4
-    - reactionType: 10
-      moveClassification:
-        attackType: 3
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 0
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 3
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Change Behavior - Balanced
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 0
-        conditionType: 3
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 3
-        gaugeStatus: 0
-        playerDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 0
-    reactions:
-    - reactionType: 11
-      moveClassification:
-        attackType: 0
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 1
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 3
-      desirability: 4
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
+    eventsToggle: 1
+    reactionsToggle: 1
   aiDefinitions:
     damage:
       veryWeak: 0.05
@@ -480,9 +122,9 @@ MonoBehaviour:
     distance:
       veryClose: 0.1
       close: 0.2
-      mid: 0.5
-      far: 0.85
-      veryFar: 0.95
+      mid: 0.2349
+      far: 0.2726
+      veryFar: 0.3104
     desirability:
       theWorstOption: 0
       veryUndesirable: 0.15

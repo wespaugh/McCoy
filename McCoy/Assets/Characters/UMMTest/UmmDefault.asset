@@ -218,7 +218,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -323,7 +323,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveBack:
         animMap:
@@ -428,7 +428,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveSideways:
         animMap:
@@ -5475,10 +5475,11 @@ MonoBehaviour:
       crouchEnabled: 0
       blockEnabled: 0
       parryEnabled: 0
-    attackMoves: []
+    attackMoves:
+    - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   aiInstructionsSet:
   - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
     behavior: 1
