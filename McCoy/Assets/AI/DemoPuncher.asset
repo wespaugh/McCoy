@@ -55,12 +55,12 @@ MonoBehaviour:
     standBlockAccuracy: 6
     crouchBlockAccuracy: 6
     jumpBlockAccuracy: 0
-    autoAttack: 1
+    autoAttack: 0
     obeyPreferableDistances: 1
-    attackFrequency: 5
+    attackFrequency: 3
     debugToggle: 1
   aiRules:
-  - ruleName: PUNCH
+  - ruleName: Manual Attack
     events:
     - enabled: 1
       boolean: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     reactions:
     - reactionType: 10
       moveClassification:
-        attackType: 1
+        attackType: 0
         hitType: 0
         startupSpeed: 0
         recoverySpeed: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
       veryStrong: 0.25
     distance:
       veryClose: 0.1
-      close: 0.2
-      mid: 0.2349
-      far: 0.2726
-      veryFar: 0.3104
+      close: 0.15
+      mid: 0.4
+      far: 0.6
+      veryFar: 0.8
     desirability:
       theWorstOption: 0
       veryUndesirable: 0.15
