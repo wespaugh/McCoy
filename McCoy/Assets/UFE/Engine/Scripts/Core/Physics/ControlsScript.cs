@@ -404,7 +404,7 @@ public class ControlsScript : MonoBehaviour
 )
   {
     // Update opControlsScript Reference if Needed
-    if (!opControlsScript.gameObject.activeInHierarchy) opControlsScript = UFE.GetControlsScript(playerNum == 1 ? 2 : 1);
+    if (!opControlsScript.gameObject.activeInHierarchy) opControlsScript = UFE.GetControlsScript(playerNum);
 
     // Apply Training / Challenge Mode Options
     if (!isAssist)
@@ -446,7 +446,7 @@ public class ControlsScript : MonoBehaviour
 
 
     // Check inputs
-    if (!isAssist && (UFE.p1ControlsScript == this || UFE.p2ControlsScript == this)) translateInputs(previousInputs, currentInputs);
+    if (!isAssist /*&& (UFE.p1ControlsScript == this || UFE.p2ControlsScript == this)*/) translateInputs(previousInputs, currentInputs);
 
 
     // Gauge Drain

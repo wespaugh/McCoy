@@ -7,13 +7,13 @@ namespace UFE3D
 {
 	public class FluxPlayerManager
 	{
-		#region constant definitions
-		public const int NumberOfPlayers = 2;
-		#endregion
 
-		#region public instance fields
+	#region public instance fields
+	public int NumberOfPlayers => actorDictionary.Values.Count;
 		public FluxPlayer player1 = new FluxPlayer(1);
 		public FluxPlayer player2 = new FluxPlayer(2);
+	// brawler
+	public Dictionary<int, FluxPlayer> actorDictionary = new Dictionary<int, FluxPlayer>();
 		#endregion
 
 		#region public instance methods
@@ -30,7 +30,11 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public virtual bool AreThereRemoteCharacters()
 		{
-			return this.player1.isRemotePlayer || this.player2.isRemotePlayer;
+	  foreach(var actor in actorDictionary.Values)
+      {
+		if (actor.isRemotePlayer) return true;
+      }
+	  return false;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,9 +46,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public FluxPlayer GetPlayer(int player)
 		{
-			if (player == 1) return this.player1;
-			else if (player == 2) return this.player2;
-			else return null;
+			return actorDictionary[player];
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +60,7 @@ namespace UFE3D
 		{
 			long firstFrameWhereRollbackIsRequired = -1;
 
-			for (int i = 1; i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
 				long temp = this.GetPlayer(i).inputBuffer.GetFirstFrameWhereRollbackIsRequired();
 				if (temp >= 0)
@@ -87,7 +89,7 @@ namespace UFE3D
 		{
 			long lastFrameWithConfirmedInput = -1L;
 
-			for (int i = 1; i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
 				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithConfirmedInput();
 				if (temp >= 0)
@@ -117,7 +119,7 @@ namespace UFE3D
 		{
 			long lastFrameWithPredictedInput = -1;
 
-			for (int i = 1; i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
 				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithPredictedInput();
 				if (temp >= 0)
@@ -146,7 +148,7 @@ namespace UFE3D
 		{
 			long lastFrameWithReadyInput = -1;
 
-			for (int i = 1; i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
 				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithReadyInput();
 				if (temp >= 0)
@@ -218,10 +220,18 @@ namespace UFE3D
 			this.Initialize(currentFrame, -1);
 		}
 
+	public virtual int AddPlayer(long currentFrame)
+    {
+	  int playerId = actorDictionary.Keys.Count + 1;
+	  actorDictionary.Add(playerId, new FluxPlayer(actorDictionary.Keys.Count));
+	  actorDictionary[playerId].Initialize(currentFrame, -1, playerId);
+	  return playerId;
+    }
+
 		public virtual void Initialize(long currentFrame, int maxBufferSize)
 		{
-			this.player1.Initialize(currentFrame, maxBufferSize);
-			this.player2.Initialize(currentFrame, maxBufferSize);
+			this.player1.Initialize(currentFrame, maxBufferSize, 1);
+			this.player2.Initialize(currentFrame, maxBufferSize, 2);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,7 +273,7 @@ namespace UFE3D
 		)
 		{
 			// Iterate over all the characters...
-			for (int i = 1; i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
 
 			}
@@ -329,7 +339,12 @@ namespace UFE3D
 
 		public bool RemoveNextInput()
 		{
-			return this.player1.RemoveNextInput() || this.player2.RemoveNextInput();
+	  foreach(var actor in actorDictionary.Values)
+      {
+		if (actor.RemoveNextInput()) return true;
+      }
+	  return false;
+			// return this.player1.RemoveNextInput() || this.player2.RemoveNextInput();
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -344,7 +359,7 @@ namespace UFE3D
 			isConfirmed = true;
 
 			// Iterate over all characters trying to find out if the input is confirmed for the specified frame...
-			for (int i = 1; isConfirmed && i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; isConfirmed && i <= NumberOfPlayers; ++i)
 			{
 				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isConfirmed) || !isConfirmed)
 				{
@@ -366,7 +381,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsConfirmed(int player, long frame, out bool isReady)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isReady);
 			}
@@ -387,7 +402,7 @@ namespace UFE3D
 			isPredicted = true;
 
 			// Iterate over all characters trying to find out if the input is predicted for the specified frame...
-			for (int i = 1; isPredicted && i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; isPredicted && i <= NumberOfPlayers; ++i)
 			{
 				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsPredicted(frame, out isPredicted) || !isPredicted)
 				{
@@ -409,7 +424,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsPredicted(int player, long frame, out bool isPredicted)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsPredicted(frame, out isPredicted);
 			}
@@ -431,7 +446,7 @@ namespace UFE3D
 			isReady = true;
 
 			// Iterate over all characters trying to find out if the input is ready for the specified frame...
-			for (int i = 1; isReady && i <= FluxPlayerManager.NumberOfPlayers; ++i)
+			for (int i = 1; isReady && i <= NumberOfPlayers; ++i)
 			{
 				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsReady(frame, out isReady) || !isReady)
 				{
@@ -453,7 +468,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsReady(int player, long frame, out bool isReady)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsReady(frame, out isReady);
 			}
@@ -472,7 +487,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryConfirmPredictedInput(int player, long frame)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryConfirmPredictedInput(frame);
 			}
@@ -491,7 +506,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryGetInput(int player, long frame, out FrameInput? input)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryGetInput(frame, out input);
 			}
@@ -510,7 +525,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryOverridePredictionWithConfirmedInput(int player, long frame)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TryOverridePredictionWithConfirmedInput(frame);
 			}
@@ -534,7 +549,7 @@ namespace UFE3D
 
 		public bool TrySetConfirmedInput(int player, long frame, FrameInput characterInput, bool overridePrediction)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				FluxPlayerInputBuffer buffer = this.GetPlayer(player).inputBuffer;
 				bool isPredicted = false;
@@ -588,7 +603,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TrySetPredictedInput(int player, long frame, FrameInput characterInput)
 		{
-			if (player >= 1 && player <= FluxPlayerManager.NumberOfPlayers)
+			if (player >= 1 && player <= NumberOfPlayers)
 			{
 				return this.GetPlayer(player).inputBuffer.TrySetPredictedInput(frame, characterInput);
 			}

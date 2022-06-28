@@ -150,19 +150,7 @@ MonoBehaviour:
             type: 3}
           conversationAfterBattle: {fileID: 11400004, guid: d9ebcacaabc5e44bba98188d32b0a703,
             type: 3}
-          opponentCharacterIndex: 2
-          possibleStagesIndexes: 00000000
-        - conversationBeforeBattle: {fileID: 11400004, guid: 9994f2f4c6d0c4bbaadbe0fd864bec81,
-            type: 3}
-          conversationAfterBattle: {fileID: 11400004, guid: d9ebcacaabc5e44bba98188d32b0a703,
-            type: 3}
           opponentCharacterIndex: 1
-          possibleStagesIndexes: 00000000
-        - conversationBeforeBattle: {fileID: 11400004, guid: 9994f2f4c6d0c4bbaadbe0fd864bec81,
-            type: 3}
-          conversationAfterBattle: {fileID: 11400004, guid: d9ebcacaabc5e44bba98188d32b0a703,
-            type: 3}
-          opponentCharacterIndex: 3
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       - maxFights: 4
@@ -177,31 +165,11 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 0
-    selectableCharactersInStoryMode: 0100000000000000020000000300000004000000050000000600000007000000
-    selectableCharactersInVersusMode: 0000000001000000020000000300000004000000050000000600000007000000
+    selectableCharactersInStoryMode: 010000000000000002000000
+    selectableCharactersInVersusMode: 000000000100000002000000
     characterStories:
-      _keys: 0000000001000000020000000300000004000000050000000600000007000000
+      _keys: 000000000100000002000000
       _values:
-      - opening: {fileID: 0}
-        ending: {fileID: 0}
-        fightsGroups: []
-        showStoryInEditor: 0
-      - opening: {fileID: 0}
-        ending: {fileID: 0}
-        fightsGroups: []
-        showStoryInEditor: 0
-      - opening: {fileID: 0}
-        ending: {fileID: 0}
-        fightsGroups: []
-        showStoryInEditor: 0
-      - opening: {fileID: 0}
-        ending: {fileID: 0}
-        fightsGroups: []
-        showStoryInEditor: 0
-      - opening: {fileID: 0}
-        ending: {fileID: 0}
-        fightsGroups: []
-        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -863,7 +831,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -1008,7 +976,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow
@@ -1207,14 +1175,9 @@ MonoBehaviour:
       z:
         _serializedValue: 0
   characters:
-  - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
-  - {fileID: 11400000, guid: f0ed0d0ea0c86e24e8af99019d695928, type: 2}
-  - {fileID: 11400000, guid: d6338f103bbb0da46ba6acf3b027f17a, type: 2}
-  - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
-  - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
-  - {fileID: 11400000, guid: ac6ffbd93fffdbb47a2a75f1f84ecd37, type: 2}
   - {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  - {fileID: 11400000, guid: c423bac83678ce343b37470e76fc2dfb, type: 2}
   teamModes:
   - modeName: Tag Battle (DBZF\Marvel) - 2D 3v3 Tag Team
     teams:

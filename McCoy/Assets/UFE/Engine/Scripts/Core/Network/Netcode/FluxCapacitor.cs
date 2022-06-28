@@ -7,9 +7,20 @@ using UFENetcode;
 using FPLibrary;
 using UFE3D;
 
-public class FluxCapacitor {
-	#region public class properties
-	public static string PlayerIndexOutOfRangeMessage = 
+public class FluxCapacitor
+{
+
+  protected class AppliedInputs
+  {
+	public FrameInput? previousFrameInput;
+	public FrameInput? currentFrameInput;
+	public int? selectedOptions;
+	public IDictionary<InputReferences, InputEvents> previousInputLookup;
+	public IDictionary<InputReferences, InputEvents> currentInputLookup;
+  }
+
+  #region public class properties
+  public static string PlayerIndexOutOfRangeMessage = 
 	"The Player Index is {0}, but it should be in the [{1}, {2}] range.";
 
 	public static string NetworkMessageFromUnexpectedPlayerMessage = 
@@ -105,6 +116,9 @@ public class FluxCapacitor {
 	protected long _timeToNetworkMessage;
 	protected long _lastSyncFrameSent;
 	protected bool initializing;
+
+  // cleared each frame, each actor's inputs are indexed by ID
+  protected Dictionary<int, AppliedInputs> inputCache = new Dictionary<int, AppliedInputs>(); 
     #endregion
 
     #region public instance constructors
@@ -425,186 +439,165 @@ public class FluxCapacitor {
 
         UpdateGUI();
     }
-    #endregion
-
-    #region protected instance mehtods
-    public virtual void ApplyInputs(long currentFrame){
-        //-------------------------------------------------------------------------------------------------------------
-        // Retrieve the player 1 input in the previous frame
-        //-------------------------------------------------------------------------------------------------------------
-        UFEController player1Controller = this.PlayerManager.player1.inputController;
-
-		FrameInput? player1PreviousFrameInput;
-		bool foundPlayer1PreviousFrameInput = 
-			this.PlayerManager.TryGetInput(1, currentFrame - 1, out player1PreviousFrameInput) &&
-			player1PreviousFrameInput != null;
-
-		if (!foundPlayer1PreviousFrameInput) player1PreviousFrameInput = new FrameInput(FrameInput.NullSelectedOption);
-
-		Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player1PreviousTuple = 
-			player1Controller.inputReferences.GetInputEvents(player1PreviousFrameInput.Value);
-
-		IDictionary<InputReferences, InputEvents> player1PreviousInputs = player1PreviousTuple.Item1;
-		sbyte? player1PreviousSelectedOption = player1PreviousTuple.Item2;
-
-		//-------------------------------------------------------------------------------------------------------------
-		// Retrieve the player 1 input in the current frame
-		//-------------------------------------------------------------------------------------------------------------
-		FrameInput? player1CurrentFrameInput;
-		bool foundPlayer1CurrentFrameInput = 
-			this.PlayerManager.TryGetInput(1, currentFrame, out player1CurrentFrameInput) &&
-			player1CurrentFrameInput != null;
-
-		if (!foundPlayer1CurrentFrameInput) player1CurrentFrameInput = new FrameInput(FrameInput.NullSelectedOption);
-
-		Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player1CurrentTuple = 
-			player1Controller.inputReferences.GetInputEvents(player1CurrentFrameInput.Value);
-
-		IDictionary<InputReferences, InputEvents> player1CurrentInputs = player1CurrentTuple.Item1;
-		sbyte? player1CurrentSelectedOption = player1CurrentTuple.Item2;
-
-		int? player1SelectedOptions = null;
-		if (player1CurrentSelectedOption != null && player1CurrentSelectedOption != player1PreviousSelectedOption){
-			player1SelectedOptions = player1CurrentSelectedOption;
-		}
-
-		//-------------------------------------------------------------------------------------------------------------
-		// Retrieve the player 2 input in the previous frame
-		//-------------------------------------------------------------------------------------------------------------
-		UFEController player2Controller = this.PlayerManager.player2.inputController;
-
-		FrameInput? player2PreviousFrameInput;
-		bool foundPlayer2PreviousFrameInput = 
-			this.PlayerManager.TryGetInput(2, currentFrame - 1, out player2PreviousFrameInput) && 
-			player2PreviousFrameInput != null ;
-		
-		if (!foundPlayer2PreviousFrameInput) player2PreviousFrameInput = new FrameInput(FrameInput.NullSelectedOption);
-
-		Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player2PreviousTuple = 
-			player2Controller.inputReferences.GetInputEvents(player2PreviousFrameInput.Value);
-
-		IDictionary<InputReferences, InputEvents> player2PreviousInputs = player2PreviousTuple.Item1;
-		sbyte? player2PreviousSelectedOption = player2PreviousTuple.Item2;
+  #endregion
 
 
-		//-------------------------------------------------------------------------------------------------------------
-		// Retrieve the player 2 input in the current frame
-		//-------------------------------------------------------------------------------------------------------------
-		FrameInput? player2CurrentFrameInput;
-		bool foundPlayer2CurrentFrameInput = 
-			this.PlayerManager.TryGetInput(2, currentFrame, out player2CurrentFrameInput) &&
-			player2CurrentFrameInput != null;
+  void getInputDeltas(int playerId, UFEController controller, long currentFrame, AppliedInputs inputs)
+  {
+	//-------------------------------------------------------------------------------------------------------------
+	// Retrieve the player input in the previous frame
+	//-------------------------------------------------------------------------------------------------------------
 
-		if (!foundPlayer2CurrentFrameInput) player2CurrentFrameInput = new FrameInput(FrameInput.NullSelectedOption);
+	bool foundPlayer1PreviousFrameInput =
+		this.PlayerManager.TryGetInput(playerId, currentFrame - 1, out inputs.previousFrameInput) &&
+		inputs.previousFrameInput != null;
 
-		Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player2CurrentTuple = 
-			player2Controller.inputReferences.GetInputEvents(player2CurrentFrameInput.Value);
+	if (!foundPlayer1PreviousFrameInput) inputs.previousFrameInput = new FrameInput(FrameInput.NullSelectedOption);
 
-		IDictionary<InputReferences, InputEvents> player2CurrentInputs = player2CurrentTuple.Item1;
-		sbyte? player2CurrentSelectedOption = player2CurrentTuple.Item2;
+	Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player1PreviousTuple =
+		controller.inputReferences.GetInputEvents(inputs.previousFrameInput.Value);
 
-		int? player2SelectedOptions = null;
-		if (player2CurrentSelectedOption != null && player2CurrentSelectedOption != player2PreviousSelectedOption){
-			player2SelectedOptions = player2CurrentSelectedOption;
-		}
+	inputs.previousInputLookup = player1PreviousTuple.Item1;
+	sbyte? player1PreviousSelectedOption = player1PreviousTuple.Item2;
 
+	//-------------------------------------------------------------------------------------------------------------
+	// Retrieve the player input in the current frame
+	//-------------------------------------------------------------------------------------------------------------
+	bool foundPlayer1CurrentFrameInput =
+		this.PlayerManager.TryGetInput(playerId, currentFrame, out inputs.currentFrameInput) &&
+		inputs.currentFrameInput != null;
 
-		//-------------------------------------------------------------------------------------------------------------
-		// Set the Random Seed
-		//-------------------------------------------------------------------------------------------------------------
-        UnityEngine.Random.InitState((int)currentFrame);
+	if (!foundPlayer1CurrentFrameInput) inputs.currentFrameInput = new FrameInput(FrameInput.NullSelectedOption);
 
+	Tuple<Dictionary<InputReferences, InputEvents>, sbyte?> player1CurrentTuple =
+		controller.inputReferences.GetInputEvents(inputs.currentFrameInput.Value);
 
-        //-------------------------------------------------------------------------------------------------------------
-        // Before updating the state of the game, save the current state and the input that will be applied 
-        // to reach the next frame state
-        //-------------------------------------------------------------------------------------------------------------
-        FluxStates currentState = FluxStateTracker.SaveGameState(currentFrame);
-        this._history.TrySetState(
-			currentState,
-			new FluxFrameInput(
-				player1PreviousFrameInput.Value,
-				player1CurrentFrameInput.Value,
-				player2PreviousFrameInput.Value,
-				player2CurrentFrameInput.Value
-			)
-		);
+	inputs.currentInputLookup = player1CurrentTuple.Item1;
+	sbyte? player1CurrentSelectedOption = player1CurrentTuple.Item2;
+
+	inputs.selectedOptions = null;
+	if (player1CurrentSelectedOption != null && player1CurrentSelectedOption != player1PreviousSelectedOption)
+	{
+	  inputs.selectedOptions = player1CurrentSelectedOption;
+	}
+  }
 
 
-		//-------------------------------------------------------------------------------------------------------------
-		// Update the game state
-		//-------------------------------------------------------------------------------------------------------------
-        if (!UFE.isPaused()) 
-		{
-			// 1 - Update All ControlsScripts
-			List<ControlsScript> allScripts = UFE.GetAllControlsScripts();
-			foreach (ControlsScript cScript in allScripts)
-			{
-				this.UpdatePlayer(cScript, currentFrame, cScript.playerNum == 1 ? player1PreviousInputs : player2PreviousInputs, cScript.playerNum == 1 ? player1CurrentInputs : player2CurrentInputs);
-			}
+  #region protected instance methods
+  public virtual void ApplyInputs(long currentFrame)
+  {
 
-            // 2 - Update Camera
-            if (UFE.cameraScript != null) UFE.cameraScript.DoFixedUpdate();
-
-            // 3 - Execute Sync Delayed Actions
-            this.ExecuteSynchronizedDelayedActions();
-
-            // 4 - Remove Destroyed Projectiles
-            foreach (ControlsScript controlsScript in allScripts)
-                if (controlsScript.projectiles.Count > 0)
-                    controlsScript.projectiles.RemoveAll(item => item.IsDestroyed() || item == null);
-
-            // 5 - Update Instantiated Objects
-            this.UpdateInstantiatedObjects(currentFrame);
-
-            // 6 - Update Timer
-            this.UpdateTimer();
-
-            // 7 - Check End Round Conditions
-            if (UFE.gameRunning && !UFE.IsTimerPaused()) CheckEndRoundConditions();
-        }
-
-        this.ExecuteLocalDelayedActions();
-
-		this.UpdateGUI(
-			player1PreviousInputs, 
-			player1CurrentInputs, 
-			player1SelectedOptions,
-			player2PreviousInputs, 
-			player2CurrentInputs,
-			player2SelectedOptions
-		);
-
-		this.PlayerManager.player1.inputController.DoFixedUpdate();
-		this.PlayerManager.player2.inputController.DoFixedUpdate();
-
-
-		//-------------------------------------------------------------------------------------------------------------
-		// Finally, increment the frame count
-		//-------------------------------------------------------------------------------------------------------------
-		this._maxCurrentFrameValue = Math.Max(this._maxCurrentFrameValue, currentFrame);
-
-
-        if (UFE.config.debugOptions.debugMode)
-        {
-            debugger.enabled = true;
-            debugger.text = "";
-            if (UFE.config.debugOptions.currentLocalFrame) debugger.text += "Current Frame:" + currentFrame;
-            if (IsNetworkGame())
-            {
-                if (UFE.config.debugOptions.ping) debugger.text += "Ping:" + UFE.multiplayerAPI.GetLastPing() + " ms\n";
-                if (UFE.config.debugOptions.frameDelay) debugger.text += "Frame Delay:" + this.NetworkFrameDelay + "\n";
-            }
-        }
-        else
-        {
-            debugger.enabled = false;
-        }
-
-        UFE.currentFrame = currentFrame + 1;
+	foreach(var actor in PlayerManager.actorDictionary)
+    {
+	  if(!inputCache.ContainsKey(actor.Key))
+      {
+		inputCache[actor.Key] = new AppliedInputs();
+      }
+	  getInputDeltas(actor.Key, actor.Value.inputController, currentFrame, inputCache[actor.Key]);
     }
 
-    protected List<ControlsScript> UpdateCSGroup(int playerNum, long currentFrame, IDictionary<InputReferences, InputEvents> playerPreviousInputs, IDictionary<InputReferences, InputEvents> playerCurrentInputs)
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Set the Random Seed
+	//-------------------------------------------------------------------------------------------------------------
+	UnityEngine.Random.InitState((int)currentFrame);
+
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Before updating the state of the game, save the current state and the input that will be applied 
+	// to reach the next frame state
+	//-------------------------------------------------------------------------------------------------------------
+	FluxStates currentState = FluxStateTracker.SaveGameState(currentFrame);
+	this._history.TrySetState(
+		currentState,
+		new FluxFrameInput(
+			inputCache[1].previousFrameInput.Value,
+			inputCache[1].currentFrameInput.Value,
+			inputCache[2].previousFrameInput.Value,
+			inputCache[2].currentFrameInput.Value
+		)
+	);
+
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Update the game state
+	//-------------------------------------------------------------------------------------------------------------
+	if (!UFE.isPaused())
+	{
+	  // 1 - Update All ControlsScripts
+	  List<ControlsScript> allScripts = UFE.GetAllControlsScripts();
+	  foreach (ControlsScript cScript in allScripts)
+	  {
+		this.UpdatePlayer(cScript, currentFrame, inputCache[cScript.playerNum].previousInputLookup, inputCache[cScript.playerNum].currentInputLookup);
+	  }
+
+	  // 2 - Update Camera
+	  if (UFE.cameraScript != null) UFE.cameraScript.DoFixedUpdate();
+
+	  // 3 - Execute Sync Delayed Actions
+	  this.ExecuteSynchronizedDelayedActions();
+
+	  // 4 - Remove Destroyed Projectiles
+	  foreach (ControlsScript controlsScript in allScripts)
+		if (controlsScript.projectiles.Count > 0)
+		  controlsScript.projectiles.RemoveAll(item => item.IsDestroyed() || item == null);
+
+	  // 5 - Update Instantiated Objects
+	  this.UpdateInstantiatedObjects(currentFrame);
+
+	  // 6 - Update Timer
+	  this.UpdateTimer();
+
+	  // 7 - Check End Round Conditions
+	  if (UFE.gameRunning && !UFE.IsTimerPaused()) CheckEndRoundConditions();
+	}
+
+	this.ExecuteLocalDelayedActions();
+
+	this.UpdateGUI(
+		inputCache[1].previousInputLookup,
+		inputCache[1].currentInputLookup,
+		inputCache[1].selectedOptions,
+		inputCache[2].previousInputLookup,
+		inputCache[2].currentInputLookup,
+		inputCache[2].selectedOptions
+	);
+
+	foreach(var actor in PlayerManager.actorDictionary)
+    {
+	  actor.Value.inputController.DoFixedUpdate();
+    }
+
+	// this.PlayerManager.player1.inputController.DoFixedUpdate();
+	// this.PlayerManager.player2.inputController.DoFixedUpdate();
+
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Finally, increment the frame count
+	//-------------------------------------------------------------------------------------------------------------
+	this._maxCurrentFrameValue = Math.Max(this._maxCurrentFrameValue, currentFrame);
+
+
+	if (UFE.config.debugOptions.debugMode)
+	{
+	  debugger.enabled = true;
+	  debugger.text = "";
+	  if (UFE.config.debugOptions.currentLocalFrame) debugger.text += "Current Frame:" + currentFrame;
+	  if (IsNetworkGame())
+	  {
+		if (UFE.config.debugOptions.ping) debugger.text += "Ping:" + UFE.multiplayerAPI.GetLastPing() + " ms\n";
+		if (UFE.config.debugOptions.frameDelay) debugger.text += "Frame Delay:" + this.NetworkFrameDelay + "\n";
+	  }
+	}
+	else
+	{
+	  debugger.enabled = false;
+	}
+
+	UFE.currentFrame = currentFrame + 1;
+  }
+
+  protected List<ControlsScript> UpdateCSGroup(int playerNum, long currentFrame, IDictionary<InputReferences, InputEvents> playerPreviousInputs, IDictionary<InputReferences, InputEvents> playerCurrentInputs)
     {
 		List<ControlsScript> cSList = new List<ControlsScript>();
 		if (UFE.config.selectedMatchType != MatchType.Singles)
@@ -613,7 +606,8 @@ public class FluxCapacitor {
 		}
         else
         {
-			cSList.Add(UFE.GetControlsScript(playerNum));
+	  cSList.Add(PlayerManager.actorDictionary[playerNum].controlsScript);
+			// cSList.Add(UFE.GetControlsScript(playerNum));
 		}
 
         List<ControlsScript> activeCScripts = new List<ControlsScript>();
@@ -633,6 +627,7 @@ public class FluxCapacitor {
     }
 
     protected void CheckEndRoundConditions() {
+	return;
         if (UFE.GetControlsScript(1).currentLifePoints == 0 || UFE.GetControlsScript(2).currentLifePoints == 0) {
             UFE.FireAlert(UFE.config.selectedLanguage.ko, null);
 
@@ -982,12 +977,12 @@ public class FluxCapacitor {
 	protected virtual void ProcessInputBufferMessage(InputBufferMessage package){
 		// Check if the player number included in the package is valid...
 		int playerIndex = package.PlayerIndex;
-		if (playerIndex <= 0 || playerIndex > FluxPlayerManager.NumberOfPlayers){
+		if (playerIndex <= 0 || playerIndex > PlayerManager.NumberOfPlayers){
 			throw new IndexOutOfRangeException(string.Format(
 				FluxCapacitor.PlayerIndexOutOfRangeMessage, 
 				playerIndex, 
 				1, 
-				FluxPlayerManager.NumberOfPlayers
+				PlayerManager.NumberOfPlayers
 			));
 		}
 
@@ -1175,10 +1170,14 @@ public class FluxCapacitor {
         for (int i = 0; i <= frameDelay * 2; ++i) {
             long frame = UFE.currentFrame + i;
 
-            for (int j = 1; j <= FluxPlayerManager.NumberOfPlayers; ++j) {
-                if (this.PlayerManager.ReadInputs(j, frame, this._selectedOptions[j - 1], allowRollbacks)) {
+            for (int j = 1; j <= PlayerManager.NumberOfPlayers; ++j) {
+                if ( j <= 2 && this.PlayerManager.ReadInputs(j, frame, this._selectedOptions[j - 1], allowRollbacks)) {
                     this._selectedOptions[j - 1] = null;
                 }
+				else if(PlayerManager.ReadInputs(j, frame, this._selectedOptions[1], allowRollbacks))
+        {
+		  this._selectedOptions[1] = null;
+        }
             }
         }
     }
@@ -1432,8 +1431,10 @@ public class FluxCapacitor {
         {
             controlsScript.DoFixedUpdate(previousInputs, currentInputs);
 
-            if (controlsScript.MoveSet != null && controlsScript.MoveSet.MecanimControl != null)
-                controlsScript.MoveSet.MecanimControl.DoFixedUpdate();
+	  if (controlsScript.MoveSet != null && controlsScript.MoveSet.MecanimControl != null)
+	  {
+		controlsScript.MoveSet.MecanimControl.DoFixedUpdate();
+	  }
 
             if (controlsScript.MoveSet != null && controlsScript.MoveSet.LegacyControl != null)
                 controlsScript.MoveSet.LegacyControl.DoFixedUpdate();

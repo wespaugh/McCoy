@@ -67,24 +67,24 @@
 
 		public FluxPlayer(int player, int currentFrame, int maxBufferSize)
 		{
-			this._player = player;
-			this.Initialize(currentFrame, maxBufferSize);
+			this.Initialize(currentFrame, maxBufferSize, player);
 		}
 		#endregion
 
 		#region public instance methods
-		public virtual void Initialize()
+		public virtual void Initialize(int id)
 		{
-			this.Initialize(0);
+			this.Initialize(0, id);
 		}
 
-		public virtual void Initialize(long currentFrame)
+		public virtual void Initialize(long currentFrame, int id)
 		{
-			this.Initialize(currentFrame, -1);
+			this.Initialize(currentFrame, -1, id);
 		}
 
-		public virtual void Initialize(long currentFrame, int maxBufferSize)
+		public virtual void Initialize(long currentFrame, int maxBufferSize, int id)
 		{
+	  _player = id;
 			this._inputBuffer.Initialize(currentFrame, maxBufferSize);
 		}
 
