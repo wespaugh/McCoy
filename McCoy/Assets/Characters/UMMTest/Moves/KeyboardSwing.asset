@@ -40,8 +40,8 @@ MonoBehaviour:
   autoCorrectRotation: 0
   allowSideSwitch: 0
   frameWindowRotation: 0
-  cooldown: 0
-  cooldownFrames: 0
+  cooldown: 1
+  cooldownFrames: 70
   disableHeadLook: 1
   speedKeyFrameToggle: 0
   fixedSpeed: 1
@@ -376,11 +376,11 @@ MonoBehaviour:
         z:
           _serializedValue: 0
     hitToggle: 1
-    damageOptionsToggle: 1
-    hitStunOptionsToggle: 1
+    damageOptionsToggle: 0
+    hitStunOptionsToggle: 0
     forceOptionsToggle: 0
     opponentForceToggle: 0
-    selfForceToggle: 0
+    selfForceToggle: 1
     stageReactionsToggle: 0
     overrideEventsToggle: 0
     hitConditionsToggle: 0
