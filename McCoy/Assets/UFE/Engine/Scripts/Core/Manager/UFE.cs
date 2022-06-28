@@ -33,6 +33,7 @@ using System.Text;
 using FPLibrary;
 using UFENetcode;
 using UFE3D;
+using UFE3D.Brawler;
 
 public class UFE : MonoBehaviour, UFEInterface
 {
@@ -276,13 +277,23 @@ public class UFE : MonoBehaviour, UFEInterface
   private static AudioSource soundsAudioSource;
   private static Scene mainScene;
 
-  private static UFEController p1Controller;
-  private static UFEController p2Controller;
+  private static UFEController p1Controller
+  {
+    get { return brawlerEntityManager.GetController(1); }
+    set { brawlerEntityManager.SetController(value, 1); }
+  }
+  private static UFEController p2Controller
+  {
+    get { return brawlerEntityManager.GetController(2); }
+    set { brawlerEntityManager.SetController(value, 2); }
+  }
+
+  public static BrawlerSpawnedEntityManager brawlerEntityManager = new BrawlerSpawnedEntityManager();
 
   private static RandomAI p1RandomAI;
   private static RandomAI p2RandomAI;
-  private static AbstractInputController p1FuzzyAI;
-  private static AbstractInputController p2FuzzyAI;
+  private static AbstractInputController p1FuzzyAI { get { return p1Controller?.cpuController; } set { if(p1Controller != null) p1Controller.cpuController = value; } }
+  private static AbstractInputController p2FuzzyAI { get { return p2Controller?.cpuController; } set { if(p2Controller != null) p2Controller.cpuController = value; } }
   private static SimpleAI p1SimpleAI;
   private static SimpleAI p2SimpleAI;
 
@@ -1361,6 +1372,20 @@ public class UFE : MonoBehaviour, UFEInterface
     }
   }
 
+  public static void StartBrawlerMode()
+  {
+    var characters = UFE.GetStoryModeSelectableCharacters();
+    UFE.SetCPU(1, false);
+    UFE.SetCPU(2, true);
+    // invincible umm
+    UFE.SetPlayer(1, characters[2]);
+    // vincible umm
+    UFE.SetPlayer(2, characters[1]);
+    UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-1];
+
+    UFE.StartLoadingBattleScreen();
+  }
+
   public static void StartStoryMode()
   {
     UFE.StartStoryMode((float)UFE.config.gameGUI.screenFadeDuration);
@@ -1802,7 +1827,7 @@ public class UFE : MonoBehaviour, UFEInterface
   {
     if (player == 1) return UFE.GetPlayer1Controller();
     else if (player == 2) return UFE.GetPlayer2Controller();
-    else return null;
+    else return brawlerEntityManager.GetController(player);
   }
 
   public static int GetLocalPlayer()
@@ -2167,7 +2192,7 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       return UFE.GetPlayer2ControlsScript();
     }
-    return null;
+    return brawlerEntityManager.GetControlsScript(player);
   }
 
   public static List<ControlsScript> GetControlsScriptTeam(int player)
@@ -2223,6 +2248,11 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       allScripts.AddRange(cScript.assists);
     }
+    foreach(var cont in UFE.brawlerEntityManager.GetAllControlsScripts())
+    {
+      if (cont.Key == 1 || cont.Key == 2) continue;
+      allScripts.Add(cont.Value);
+    }
     return allScripts;
   }
 
@@ -2230,10 +2260,18 @@ public class UFE : MonoBehaviour, UFEInterface
   {
     List<ControlsScript> allScripts = new List<ControlsScript>();
     List<ControlsScript> targetList = GetControlsScriptTeam(player);
-    allScripts.AddRange(targetList);
-    foreach (ControlsScript cScript in targetList)
+    if (targetList != null)
     {
-      allScripts.AddRange(cScript.assists);
+      allScripts.AddRange(targetList);
+      foreach (ControlsScript cScript in targetList)
+      {
+        allScripts.AddRange(cScript.assists);
+      }
+    }
+
+    if(player > 2)
+    {
+      allScripts.Add(UFE.brawlerEntityManager.GetControlsScript(player));
     }
 
     return allScripts;
@@ -2769,27 +2807,6 @@ public class UFE : MonoBehaviour, UFEInterface
 
 
     // Initialize the input systems
-    // Player 1
-    p1Controller = gameObject.AddComponent<UFEController>();
-    if (UFE.config.inputOptions.inputManagerType == InputManagerType.ControlFreak)
-    {
-      p1Controller.humanController = gameObject.AddComponent<InputTouchController>();
-    }
-    else if (UFE.config.inputOptions.inputManagerType == InputManagerType.Rewired)
-    {
-      p1Controller.humanController = gameObject.AddComponent<RewiredInputController>();
-      (p1Controller.humanController as RewiredInputController).rewiredPlayerId = 0;
-    }
-    else if (UFE.config.inputOptions.inputManagerType == InputManagerType.CustomClass)
-    {
-      p1Controller.humanController = gameObject.GetComponent<AbstractInputController>();
-    }
-    else
-    {
-      p1Controller.humanController = gameObject.AddComponent<InputController>();
-    }
-
-    // Initialize AI
     p1SimpleAI = gameObject.AddComponent<SimpleAI>();
     p1SimpleAI.player = 1;
 
@@ -2797,32 +2814,6 @@ public class UFE : MonoBehaviour, UFEInterface
     p1RandomAI.player = 1;
 
     p1FuzzyAI = null;
-    if (UFE.isAiAddonInstalled && UFE.config.aiOptions.engine == AIEngine.FuzzyAI)
-    {
-      p1FuzzyAI = gameObject.AddComponent(UFE.SearchClass("RuleBasedAI")) as AbstractInputController;
-      p1FuzzyAI.player = 1;
-      p1Controller.cpuController = p1FuzzyAI;
-    }
-    else
-    {
-      p1Controller.cpuController = p1RandomAI;
-    }
-
-    p1Controller.isCPU = UFE.config.deploymentOptions.AIControlled[0];
-    p1Controller.player = 1;
-
-    // Player 2
-    p2Controller = gameObject.AddComponent<UFEController>();
-    if (UFE.config.inputOptions.inputManagerType == InputManagerType.Rewired)
-    {
-      p2Controller.humanController = gameObject.AddComponent<RewiredInputController>();
-      (p2Controller.humanController as RewiredInputController).rewiredPlayerId = 1;
-    }
-    else
-    {
-      p2Controller.humanController = gameObject.AddComponent<InputController>();
-    }
-
     p2SimpleAI = gameObject.AddComponent<SimpleAI>();
     p2SimpleAI.player = 2;
 
@@ -2830,23 +2821,12 @@ public class UFE : MonoBehaviour, UFEInterface
     p2RandomAI.player = 2;
 
     p2FuzzyAI = null;
-    if (UFE.isAiAddonInstalled && UFE.config.aiOptions.engine == AIEngine.FuzzyAI)
-    {
-      p2FuzzyAI = gameObject.AddComponent(UFE.SearchClass("RuleBasedAI")) as AbstractInputController;
-      p2FuzzyAI.player = 2;
-      p2Controller.cpuController = p2FuzzyAI;
-    }
-    else
-    {
-      p2Controller.cpuController = p2RandomAI;
-    }
 
-    p2Controller.isCPU = UFE.config.deploymentOptions.AIControlled[1];
-    p2Controller.player = 2;
+    // Player 1
+    initController(1, gameObject);
 
-
-    p1Controller.Initialize(config.player1_Inputs);
-    p2Controller.Initialize(config.player2_Inputs);
+    // Player 2
+    initController(2, gameObject);
 
     if (config.fps > 0)
     {
@@ -2864,6 +2844,67 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.SetMusicVolume(PlayerPrefs.GetFloat(UFE.MusicVolumeKey, 1f));
     UFE.SetSoundFX(PlayerPrefs.GetInt(UFE.SoundsEnabledKey, 1) > 0);
     UFE.SetSoundFXVolume(PlayerPrefs.GetFloat(UFE.SoundsVolumeKey, 1f));
+  }
+
+  protected static void initController(int id, GameObject gameObject)
+  {
+    var newController = gameObject.AddComponent<UFEController>();
+
+    if (id == 1 && UFE.config.inputOptions.inputManagerType == InputManagerType.ControlFreak)
+    {
+      p1Controller.humanController = gameObject.AddComponent<InputTouchController>();
+    }
+    else if (id == 1 && UFE.config.inputOptions.inputManagerType == InputManagerType.CustomClass)
+    {
+      p1Controller.humanController = gameObject.GetComponent<AbstractInputController>();
+    }
+    else if (UFE.config.inputOptions.inputManagerType == InputManagerType.Rewired)
+    {
+      newController.humanController = gameObject.AddComponent<RewiredInputController>();
+      (newController.humanController as RewiredInputController).rewiredPlayerId = id-1;
+    }
+    else
+    {
+      newController.humanController = gameObject.AddComponent<InputController>();
+    }
+
+    if (UFE.isAiAddonInstalled && UFE.config.aiOptions.engine == AIEngine.FuzzyAI)
+    {
+      AbstractInputController fuzzyAI = gameObject.AddComponent(UFE.SearchClass("RuleBasedAI")) as AbstractInputController;
+      fuzzyAI.player = id;
+      newController.cpuController = fuzzyAI;
+    }
+    else
+    {
+      newController.cpuController = p2RandomAI;
+    }
+
+    newController.isCPU = (id != 1 && id != 2) || UFE.config.deploymentOptions.AIControlled[id-1];
+    newController.player = id;
+
+    int newId = fluxCapacitor.PlayerManager.AddPlayer(UFE.currentFrame);
+    if(newId != id)
+    {
+      Debug.LogError("New player " + newId + " did not match expected ID " + id);
+    }
+
+    if (id == 1)
+    {
+      newController.Initialize(config.player1_Inputs);
+      p1Controller = newController;
+    }
+    else
+    {
+      newController.Initialize(config.player2_Inputs);
+      if(id==2)
+      {
+        p2Controller = newController;
+      }
+      else
+      {
+        brawlerEntityManager.SetController(newController, id);
+      }
+    }
   }
 
   protected void Start()
@@ -2965,8 +3006,10 @@ public class UFE : MonoBehaviour, UFEInterface
   {
     if ((replayMode != null && replayMode.isPlayback) || !UFE.config.useFixedUpdateInputs)
     {
-      UFE.GetPlayer1Controller().DoUpdate();
-      UFE.GetPlayer2Controller().DoUpdate();
+      foreach (var player in fluxCapacitor.PlayerManager.actorDictionary)
+      {
+        player.Value.inputController.DoUpdate();
+      }
     }
 
     if (UFE.fluxCapacitor != null && UFE.gameRunning && replayMode != null)
@@ -2982,8 +3025,10 @@ public class UFE : MonoBehaviour, UFEInterface
 
       if (UFE.config.useFixedUpdateInputs)
       {
-        UFE.GetPlayer1Controller().DoUpdate();
-        UFE.GetPlayer2Controller().DoUpdate();
+        foreach(var player in fluxCapacitor.PlayerManager.actorDictionary)
+        {
+          player.Value.inputController.DoUpdate();
+        }
       }
     }
 
@@ -4000,6 +4045,7 @@ public class UFE : MonoBehaviour, UFEInterface
       cScript1 = SpawnCharacter(UFE.config.player1Character, 1, -1, p1Pos, false);
       p1TeamControlsScripts.Add(cScript1);
       cScript1.debugInfo = UFE.config.debugOptions.p1DebugInfo;
+      brawlerEntityManager.SetControlsScript(cScript1, 1);
       UFE.p1ControlsScript = cScript1;
       UFE.config.player1Character = cScript1.myInfo;
       UFE.cameraScript.player1 = cScript1;
@@ -4019,10 +4065,22 @@ public class UFE : MonoBehaviour, UFEInterface
       cScript2 = SpawnCharacter(UFE.config.player2Character, 2, 1, p2Pos, false, null, null, altCostume);
       p2TeamControlsScripts.Add(cScript2);
       cScript2.debugInfo = UFE.config.debugOptions.p2DebugInfo;
+      brawlerEntityManager.SetControlsScript(cScript2, 2);
       UFE.p2ControlsScript = cScript2;
       UFE.config.player2Character = cScript2.myInfo;
       UFE.cameraScript.player2 = cScript2;
     }
+
+    // initialize some third bloke
+    UFE.initController(3, UFE.gameEngine);
+    UFE.SetFuzzyAI(3, UFE.config.player2Character);
+    int altCostumed = -1;
+    FPVector p2Position = UFE.config.selectedStage.position;
+    p2Position += UFE.config.roundOptions._p2XPosition + new FPVector(UnityEngine.Random.Range(0.0f, 2.0f), 0.0f, UnityEngine.Random.Range(0.0f, 2.0f));
+    if (UFE.config.player1Character.characterName == UFE.config.player2Character.characterName && UFE.config.player2Character.alternativeCostumes.Length > 0) altCostumed = 0;
+    var assholeScript = SpawnCharacter(UFE.config.player2Character, 3, -1, p2Position, false, null, null, altCostumed);
+    brawlerEntityManager.SetControlsScript(assholeScript, 3);
+    assholeScript.opControlsScript = p1ControlsScript;
 
     if (cScript1 != null && cScript2 != null)
     {
@@ -4052,7 +4110,7 @@ public class UFE : MonoBehaviour, UFEInterface
       UFE.debugger1.enabled = UFE.debugger2.enabled = config.debugOptions.debugMode;
 
 
-      for (int i = 1; i <= 2; i++)
+      for (int i = 1; i <= brawlerEntityManager.GetAllControlsScripts().Count; i++)
       {
         ControlsScript opCScript;
         UFE3D.CharacterInfo opCharInfo;

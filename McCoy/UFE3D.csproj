@@ -232,6 +232,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Network\Netcode\FluxGameReplay.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\FPLibrary\FPRandom.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\PossibleMoveStates.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\Core\Brawler\BrawlerSpawnedEntityManager.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\HitTypeOptions.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\Enums\NetworkInputMessageFrequency.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\Enums\GameplayType.cs" />

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2e5269517f28664db5ccd78cbd208b1, type: 3}
-  m_Name: UmmDefault
+  m_Name: UmmDefaultInvincible
   m_EditorClassIdentifier: 
   gameplayType: 0
   profilePictureSmall: {fileID: 2800000, guid: 96d72f21a2b34954eb793da82d419ccf, type: 3}
   profilePictureBig: {fileID: 2800000, guid: 6843a7d3e515c7041bd9f988eca2c08d, type: 3}
-  characterName: Ultra Mech Mage
+  characterName: Invincible Mage
   gender: 0
   characterDescription: 
   selectionAnimation: {fileID: 7400000, guid: 1d0af9224ac35bf4cb7c1d0ef430ce66, type: 2}
@@ -24,7 +24,7 @@ MonoBehaviour:
   height: 0
   age: 21
   bloodType: Unknown
-  lifePoints: 1000
+  lifePoints: 1000000
   maxGaugePoints: 0
   characterPrefabStorage: 0
   characterPrefab: {fileID: 8138875218885103485, guid: c086949e5f1184b4e9eca08d616bdf83,

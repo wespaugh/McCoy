@@ -70,7 +70,6 @@
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBoss.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultGameOverScreen.cs" />
-    <Compile Include="Assets\BrawlerRuleBasedAI.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\TextureIntroScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultPauseScreen.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBullet.cs" />
