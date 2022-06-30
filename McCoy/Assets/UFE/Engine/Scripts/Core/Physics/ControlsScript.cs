@@ -93,6 +93,7 @@ public class ControlsScript : MonoBehaviour
   public GameObject emulatedCam;
   public CameraScript cameraScript;
 
+  public Text characterDebugger;
   public Text debugger;
   public string aiDebugger { get; set; }
   public CharacterDebugInfo debugInfo;
@@ -103,7 +104,18 @@ public class ControlsScript : MonoBehaviour
   [HideInInspector] public GameObject character;
   [HideInInspector] public UFE3D.CharacterInfo opInfo;
   [HideInInspector] public ChallengeMode challengeMode;
-  [HideInInspector] public ControlsScript opControlsScript;
+  ControlsScript _opControlsScript;
+  [HideInInspector] public ControlsScript opControlsScript
+  {
+    get
+    {
+      return _opControlsScript;
+    }
+    set
+    {
+      _opControlsScript = value;
+    }
+  }
   [HideInInspector] public MoveSetData[] loadedMoves;
   [HideInInspector] public ControlsScript owner { get { return isAssist ? _owner : this; } set { _owner = value; } }
 
@@ -191,7 +203,6 @@ public class ControlsScript : MonoBehaviour
         standardYRotation = -standardYRotation;
         if (UFE.config.characterRotationOptions.autoMirror)
         {
-          Debug.Log("Automirror?");
           ForceMirror(true);
           myHitBoxesScript.inverted = true;
         }
@@ -208,7 +219,6 @@ public class ControlsScript : MonoBehaviour
     }*/
     else if (playerNum == 2)
     {
-      Debug.Log("initting player 2, mirror: " + mirror);
       // brawler: player2 doesn't start flipped
       testCharacterRotation(0, true);
     }
@@ -404,7 +414,7 @@ public class ControlsScript : MonoBehaviour
 )
   {
     // Update opControlsScript Reference if Needed
-    if (!opControlsScript.gameObject.activeInHierarchy) opControlsScript = UFE.GetControlsScript(playerNum);
+    if (!opControlsScript.gameObject.activeInHierarchy || opControlsScript == this) opControlsScript = UFE.FindNewOpponent(playerNum);//.GetControlsScript(playerNum);
 
     // Apply Training / Challenge Mode Options
     if (!isAssist)
@@ -764,6 +774,13 @@ public class ControlsScript : MonoBehaviour
 
   private void runDebugger(string inputDebugger)
   {
+    // run personal debugger
+    if(characterDebugger == null)
+    {
+      characterDebugger = gameObject.AddComponent<Text>();
+      characterDebugger.text = $"normalizedDistance";
+    }
+
     // Run Debugger
     if (!isAssist && debugger != null && UFE.config.debugOptions.debugMode)
     {
@@ -784,7 +801,11 @@ public class ControlsScript : MonoBehaviour
         if (debugInfo.currentState) debugger.text += "Is Blocking: " + isBlocking + "\n";
         if (debugInfo.currentState) debugger.text += "Is Crouching: " + isCrouching + "\n";
         if (debugInfo.stunTime && stunTime > 0) debugger.text += "Stun Time: " + stunTime + "\n";
-        debugger.text += "IsGrounded? " + IsGrounded();
+        debugger.text += "IsGrounded? " + IsGrounded() + "\n";
+        if(opControlsScript != null)
+        {
+          debugger.text += "Target ID: " + opControlsScript.playerNum + "\n";
+        }
         if (opControlsScript != null && opControlsScript.comboHits > 0)
         {
           debugger.text += "Current Combo\n";
@@ -804,7 +825,7 @@ public class ControlsScript : MonoBehaviour
 
         if (UFE.config.debugOptions.p1DebugInfo.currentMove && currentMove != null)
         {
-          debugger.text += "-----Move Info-----\n";
+          debugger.text += "\n-----Move Info-----\n";
           debugger.text += "Move: " + currentMove.name + "\n";
           debugger.text += "Frames: " + currentMove.currentFrame + "/" + (currentMove.totalFrames - 1) + "\n";
           debugger.text += "Tick: " + currentMove.currentTick.ToString() + "\n";
@@ -3240,6 +3261,7 @@ public class ControlsScript : MonoBehaviour
 
   public void GetHitBlocking(Hit hit, int remainingFrames, FPVector[] location, bool ignoreDirection, ControlsScript attacker)
   {
+    if (attacker == this) return;
     // Lose life
     if (hit._damageOnBlock >= currentLifePoints)
     {
@@ -3422,6 +3444,8 @@ public class ControlsScript : MonoBehaviour
 
   public void GetHit(Hit hit, int remainingFrames, FPVector[] location, bool ignoreDirection, ControlsScript attacker)
   {
+    if (attacker == this) return;
+
     // Get what animation should be played depending on the character's state
     bool airHit = false;
     bool armored = false;
@@ -4062,10 +4086,41 @@ public class ControlsScript : MonoBehaviour
       }
     }
 
+    if (isDead)
+    {
+      blinksRemaining = 5;
+      UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
+    }
+
     // Freeze screen depending on how strong the hit was
     HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
     UFE.DelaySynchronizedAction(this.HitUnpause, hitEffects._freezingTime);
   }
+
+  private int blinksRemaining = 5;
+  private void BlinkOut()
+  {
+    gameObject.SetActive(!gameObject.activeInHierarchy);
+    if (gameObject.activeInHierarchy)
+    {
+      --blinksRemaining;
+      if (blinksRemaining > 0)
+      {
+        UFE.DelaySynchronizedAction(BlinkOut, .1f);
+      }
+      else
+      {
+        gameObject.SetActive(false);
+        UFE.DespawnCharacter(playerNum);
+      }
+    }
+    else
+    {
+      UFE.DelaySynchronizedAction(BlinkOut, .1f);
+    }
+  }
+
+
 
   private Vector3 GetParticleSpawnPoint(HitEffectSpawnPoint spawnPoint, FPVector[] locations)
   {

@@ -41,9 +41,9 @@ MonoBehaviour:
       enableAttackSpeedFilter: 1
       enableHitTypeFilter: 1
   rulesGenerator:
-    preferableCombatDistance: 1
+    preferableCombatDistance: 2
     attacksAtPreferableDistance: 5
-    autoMove: 1
+    autoMove: 0
     restOnLocation: 1
     moveFrequency: 3
     autoJump: 0
@@ -67,14 +67,14 @@ MonoBehaviour:
       conditions:
       - enabled: 1
         boolean: 0
-        targetCharacter: 1
+        targetCharacter: 0
         conditionType: 5
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
-        playerDistance: 1
+        playerDistance: 2
         jumping: 0
         blocking: 1
         moveClassification:
@@ -110,8 +110,85 @@ MonoBehaviour:
       behavior: 0
       desirability: 5
     debugToggle: 0
-    eventsToggle: 1
-    reactionsToggle: 1
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Movement
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 5
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 2
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 5
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 1
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 1
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 6
+    debugToggle: 1
+    eventsToggle: 0
+    reactionsToggle: 0
   aiDefinitions:
     damage:
       veryWeak: 0.05
@@ -120,10 +197,10 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.1
-      close: 0.15
-      mid: 0.4
-      far: 0.6
+      veryClose: 0.01
+      close: 0.075
+      mid: 0.15
+      far: 0.225
       veryFar: 0.8
     desirability:
       theWorstOption: 0

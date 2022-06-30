@@ -1246,8 +1246,13 @@ public class RuleBasedAI : RandomAI{
 			}
 		}
 	}
-	
-	protected virtual void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage){
+
+  protected virtual void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage) {
+	InitMoveInputSequences();
+  }
+
+  public void InitMoveInputSequences()
+  {
 		ControlsScript self = UFE.GetControlsScript(this.player);
 		//this.movesSimulatedInput.Clear();
 
@@ -1439,6 +1444,7 @@ public class RuleBasedAI : RandomAI{
 	}
 	
 	protected virtual void RequestAIUpdate(ControlsScript self, ControlsScript opponent, float deltaTime){
+	if (self.currentLifePoints == 0) return;
 		if (self != null && opponent != null){
 			// If both ControlsScript are defined, retrieve the current position of each character...
 			Vector3 currentPositionSelf = self.transform.position;

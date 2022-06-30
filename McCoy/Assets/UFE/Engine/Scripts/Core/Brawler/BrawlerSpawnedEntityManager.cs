@@ -20,6 +20,17 @@ namespace UFE3D
       Dictionary<Faction, List<UFEController>> factionLookup = new Dictionary<Faction, List<UFEController>>();
       Dictionary<int, UFEController> controllers = new Dictionary<int, UFEController>();
       Dictionary<int, ControlsScript> controlsScripts = new Dictionary<int, ControlsScript>();
+      List<int> availableIDs = new List<int>();
+
+      public int GetAvailableID()
+      {
+        if (availableIDs.Count > 0)
+        {
+          return availableIDs[0];
+        }
+        // (plus 1 because 0 isn't an index ever)
+        else return controlsScripts.Count + 1;
+      }
 
       public UFEController GetController(int playerId)
       {
@@ -31,6 +42,7 @@ namespace UFE3D
         {
           Debug.LogWarning("Controller already exists for player with ID " + id);
         }
+        availableIDs.Remove(id);
         controllers[id] = c;
       }
 
@@ -41,10 +53,11 @@ namespace UFE3D
 
       public void SetControlsScript(ControlsScript cs, int id)
       {
-        if(controlsScripts.ContainsKey(id) && controlsScripts[id] != null)
+        if (controlsScripts.ContainsKey(id) && controlsScripts[id] != null)
         {
           Debug.LogWarning("Controls Script already exists for player with ID " + id);
         }
+        availableIDs.Remove(id);
         controlsScripts[id] = cs;
       }
 
@@ -56,6 +69,19 @@ namespace UFE3D
       public Dictionary<int, ControlsScript> GetAllControlsScripts()
       {
         return controlsScripts;
+      }
+
+      public void ReleaseController(int id)
+      {
+        availableIDs.Add(id);
+        if (controlsScripts.ContainsKey(id))
+        {
+          controlsScripts[id] = null;
+        }
+        if (controllers.ContainsKey(id))
+        {
+          controllers[id] = null;
+        }
       }
     }
   }

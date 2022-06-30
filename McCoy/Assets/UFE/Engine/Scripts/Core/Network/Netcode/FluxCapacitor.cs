@@ -1170,16 +1170,22 @@ public class FluxCapacitor
         for (int i = 0; i <= frameDelay * 2; ++i) {
             long frame = UFE.currentFrame + i;
 
-            for (int j = 1; j <= PlayerManager.NumberOfPlayers; ++j) {
-                if ( j <= 2 && this.PlayerManager.ReadInputs(j, frame, this._selectedOptions[j - 1], allowRollbacks)) {
+            for (int j = 1; j <= 2; ++j) {
+                if ( this.PlayerManager.ReadInputs(j, frame, this._selectedOptions[j - 1], allowRollbacks)) {
                     this._selectedOptions[j - 1] = null;
                 }
-				else if(PlayerManager.ReadInputs(j, frame, this._selectedOptions[1], allowRollbacks))
+				else// if(PlayerManager.ReadInputs(j, frame, this._selectedOptions[1], allowRollbacks))
         {
 		  this._selectedOptions[1] = null;
         }
             }
-        }
+	  foreach (ControlsScript c in UFE.GetAllControlsScripts())
+	  {
+		int j = c.playerNum;
+		if (j <= 2) continue;
+		PlayerManager.ReadInputs(j, frame, this._selectedOptions[1], allowRollbacks);
+	  }
+	  }
     }
 
     protected void AddSynchronizationState(List<FluxSyncState> targetList, long frame, FluxSyncState state)
@@ -1442,5 +1448,10 @@ public class FluxCapacitor
             controlsScript.HitBoxes.UpdateMap();
         }
 	}
-#endregion
+
+  public void RemovePlayer(int id)
+  {
+    inputCache.Remove(id);
+  }
+  #endregion
 }

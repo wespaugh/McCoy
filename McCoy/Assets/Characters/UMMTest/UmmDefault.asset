@@ -24,7 +24,7 @@ MonoBehaviour:
   height: 0
   age: 21
   bloodType: Unknown
-  lifePoints: 1000
+  lifePoints: 500
   maxGaugePoints: 0
   characterPrefabStorage: 0
   characterPrefab: {fileID: 8138875218885103485, guid: c086949e5f1184b4e9eca08d616bdf83,
@@ -3268,12 +3268,13 @@ MonoBehaviour:
       fallDown:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 2b3bbd5c0799a394cb0945b0a42319b4, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: dec6747cc011eea4a87b7889bf49d2d8,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -3332,7 +3333,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -3368,7 +3369,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -3684,7 +3685,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitLow:
         animMap:
@@ -4004,12 +4005,13 @@ MonoBehaviour:
       getHitAir:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 2b3bbd5c0799a394cb0945b0a42319b4, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: dec6747cc011eea4a87b7889bf49d2d8,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -4068,7 +4070,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4104,7 +4106,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:
@@ -4488,7 +4490,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -5478,7 +5480,7 @@ MonoBehaviour:
       parryEnabled: 0
     attackMoves:
     - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
-    enabledBasicMovesToggle: 1
+    enabledBasicMovesToggle: 0
     basicMovesToggle: 1
     attackMovesToggle: 1
   aiInstructionsSet:

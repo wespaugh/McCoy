@@ -60,9 +60,10 @@ namespace UFE3D
 		{
 			long firstFrameWhereRollbackIsRequired = -1;
 
-			for (int i = 1; i <= NumberOfPlayers; ++i)
+	  foreach(var actor in actorDictionary)
+			//for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
-				long temp = this.GetPlayer(i).inputBuffer.GetFirstFrameWhereRollbackIsRequired();
+				long temp = this.GetPlayer(actor.Key).inputBuffer.GetFirstFrameWhereRollbackIsRequired();
 				if (temp >= 0)
 				{
 					if (firstFrameWhereRollbackIsRequired < 0)
@@ -89,9 +90,10 @@ namespace UFE3D
 		{
 			long lastFrameWithConfirmedInput = -1L;
 
-			for (int i = 1; i <= NumberOfPlayers; ++i)
-			{
-				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithConfirmedInput();
+	  foreach (var actor in actorDictionary)
+	  //for (int i = 1; i <= NumberOfPlayers; ++i)
+	  {
+				long temp = this.GetPlayer(actor.Key).inputBuffer.GetLastFrameWithConfirmedInput();
 				if (temp >= 0)
 				{
 					if (lastFrameWithConfirmedInput < 0)
@@ -119,9 +121,10 @@ namespace UFE3D
 		{
 			long lastFrameWithPredictedInput = -1;
 
-			for (int i = 1; i <= NumberOfPlayers; ++i)
+	  foreach (var actor in actorDictionary)
+		//for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
-				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithPredictedInput();
+				long temp = this.GetPlayer(actor.Key).inputBuffer.GetLastFrameWithPredictedInput();
 				if (temp >= 0)
 				{
 					if (lastFrameWithPredictedInput < 0)
@@ -148,9 +151,10 @@ namespace UFE3D
 		{
 			long lastFrameWithReadyInput = -1;
 
-			for (int i = 1; i <= NumberOfPlayers; ++i)
+	  foreach (var actor in actorDictionary)
+		//for (int i = 1; i <= NumberOfPlayers; ++i)
 			{
-				long temp = this.GetPlayer(i).inputBuffer.GetLastFrameWithReadyInput();
+				long temp = this.GetPlayer(actor.Key).inputBuffer.GetLastFrameWithReadyInput();
 				if (temp >= 0)
 				{
 					if (lastFrameWithReadyInput < 0)
@@ -220,12 +224,17 @@ namespace UFE3D
 			this.Initialize(currentFrame, -1);
 		}
 
-	public virtual int AddPlayer(long currentFrame)
+	public virtual int AddPlayer(long currentFrame, int id = -1)
     {
-	  int playerId = actorDictionary.Keys.Count + 1;
+	  int playerId = id > 0 ? id : actorDictionary.Keys.Count + 1;
 	  actorDictionary.Add(playerId, new FluxPlayer(actorDictionary.Keys.Count));
 	  actorDictionary[playerId].Initialize(currentFrame, -1, playerId);
 	  return playerId;
+    }
+
+	public virtual void RemovePlayer(int playerId)
+    {
+	  actorDictionary.Remove(playerId);
     }
 
 		public virtual void Initialize(long currentFrame, int maxBufferSize)
@@ -358,10 +367,12 @@ namespace UFE3D
 		{
 			isConfirmed = true;
 
-			// Iterate over all characters trying to find out if the input is confirmed for the specified frame...
-			for (int i = 1; isConfirmed && i <= NumberOfPlayers; ++i)
+	  // Iterate over all characters trying to find out if the input is confirmed for the specified frame...
+	  foreach (var actor in actorDictionary)
+		//for (int i = 1; isConfirmed && i <= NumberOfPlayers; ++i)
 			{
-				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isConfirmed) || !isConfirmed)
+		if (!isConfirmed) break;
+				if (!this.GetPlayer(actor.Key).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isConfirmed) || !isConfirmed)
 				{
 					// If there has been an error while processing the request for any character, return false
 					isConfirmed = false;
@@ -402,9 +413,10 @@ namespace UFE3D
 			isPredicted = true;
 
 			// Iterate over all characters trying to find out if the input is predicted for the specified frame...
-			for (int i = 1; isPredicted && i <= NumberOfPlayers; ++i)
+			foreach(var actor in actorDictionary)
+			//for (int i = 1; isPredicted && i <= NumberOfPlayers; ++i)
 			{
-				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsPredicted(frame, out isPredicted) || !isPredicted)
+				if (!this.GetPlayer(actor.Key).inputBuffer.TryCheckIfInputIsPredicted(frame, out isPredicted) || !isPredicted)
 				{
 					// If there has been an error while processing the request for any character, return false
 					isPredicted = false;
@@ -446,9 +458,10 @@ namespace UFE3D
 			isReady = true;
 
 			// Iterate over all characters trying to find out if the input is ready for the specified frame...
-			for (int i = 1; isReady && i <= NumberOfPlayers; ++i)
+			foreach(var actor in actorDictionary)
+			//for (int i = 1; isReady && i <= NumberOfPlayers; ++i)
 			{
-				if (!this.GetPlayer(i).inputBuffer.TryCheckIfInputIsReady(frame, out isReady) || !isReady)
+				if (!this.GetPlayer(actor.Key).inputBuffer.TryCheckIfInputIsReady(frame, out isReady) || !isReady)
 				{
 					// If there has been an error while processing the request for any character, return false
 					isReady = false;

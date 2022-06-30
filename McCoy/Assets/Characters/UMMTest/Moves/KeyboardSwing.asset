@@ -40,7 +40,7 @@ MonoBehaviour:
   autoCorrectRotation: 0
   allowSideSwitch: 0
   frameWindowRotation: 0
-  cooldown: 1
+  cooldown: 0
   cooldownFrames: 70
   disableHeadLook: 1
   speedKeyFrameToggle: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 
-    buttonExecution: 06000000
+    buttonExecution: 0000000006000000
     editorToggle: 1
     buttonSequenceToggle: 1
     buttonExecutionToggle: 1
@@ -140,9 +140,9 @@ MonoBehaviour:
     _totalDrain:
       _serializedValue: 0
     _gaugeRequired:
-      _serializedValue: 0
+      _serializedValue: 429496729600
     _gaugeUsage:
-      _serializedValue: 0
+      _serializedValue: 429496729600
     _gaugeGainOnMiss:
       _serializedValue: 0
     _gaugeGainOnHit:

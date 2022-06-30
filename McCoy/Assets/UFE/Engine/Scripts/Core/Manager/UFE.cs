@@ -388,6 +388,21 @@ public class UFE : MonoBehaviour, UFEInterface
     }
   }
 
+  public static ControlsScript FindNewOpponent(int playerNum)
+  {
+    var allControlScripts = brawlerEntityManager.GetAllControlsScripts();
+    if(playerNum != 1)
+    {
+      return p1ControlsScript;
+    }
+    foreach(var script in allControlScripts)
+    {
+      if (script.Value == null) continue;
+      if (script.Value.playerNum != 1 && script.Value.gameObject.activeInHierarchy) return script.Value;
+    }
+    return brawlerEntityManager.GetControlsScript(playerNum);
+  }
+
   public static void FindAndRemoveDelayLocalAction(Action action)
   {
     foreach (DelayedAction delayedAction in UFE.delayedLocalActions)
@@ -2251,6 +2266,7 @@ public class UFE : MonoBehaviour, UFEInterface
     foreach(var cont in UFE.brawlerEntityManager.GetAllControlsScripts())
     {
       if (cont.Key == 1 || cont.Key == 2) continue;
+      if (cont.Value == null) continue;
       allScripts.Add(cont.Value);
     }
     return allScripts;
@@ -2882,7 +2898,7 @@ public class UFE : MonoBehaviour, UFEInterface
     newController.isCPU = (id != 1 && id != 2) || UFE.config.deploymentOptions.AIControlled[id-1];
     newController.player = id;
 
-    int newId = fluxCapacitor.PlayerManager.AddPlayer(UFE.currentFrame);
+    int newId = fluxCapacitor.PlayerManager.AddPlayer(UFE.currentFrame, id);
     if(newId != id)
     {
       Debug.LogError("New player " + newId + " did not match expected ID " + id);
@@ -3065,7 +3081,6 @@ public class UFE : MonoBehaviour, UFEInterface
 
   protected static void AddNetworkEventListeners()
   {
-    Debug.Log("AddNetworkEventListeners");
     UFE.multiplayerAPI.OnDisconnection -= UFE.OnDisconnectedFromServer;
     UFE.multiplayerAPI.OnJoined -= UFE.OnJoined;
     UFE.multiplayerAPI.OnJoinError -= UFE.OnJoinError;
@@ -4071,16 +4086,7 @@ public class UFE : MonoBehaviour, UFEInterface
       UFE.cameraScript.player2 = cScript2;
     }
 
-    // initialize some third bloke
-    UFE.initController(3, UFE.gameEngine);
-    UFE.SetFuzzyAI(3, UFE.config.player2Character);
-    int altCostumed = -1;
-    FPVector p2Position = UFE.config.selectedStage.position;
-    p2Position += UFE.config.roundOptions._p2XPosition + new FPVector(UnityEngine.Random.Range(0.0f, 2.0f), 0.0f, UnityEngine.Random.Range(0.0f, 2.0f));
-    if (UFE.config.player1Character.characterName == UFE.config.player2Character.characterName && UFE.config.player2Character.alternativeCostumes.Length > 0) altCostumed = 0;
-    var assholeScript = SpawnCharacter(UFE.config.player2Character, 3, -1, p2Position, false, null, null, altCostumed);
-    brawlerEntityManager.SetControlsScript(assholeScript, 3);
-    assholeScript.opControlsScript = p1ControlsScript;
+    // CreateRandomMonster();
 
     if (cScript1 != null && cScript2 != null)
     {
@@ -4197,6 +4203,69 @@ public class UFE : MonoBehaviour, UFEInterface
     }
 
     SceneManager.SetActiveScene(stageScene);
+  }
+
+  public static void CreateRandomMonster()
+  {
+    // initialize some bloke
+    int newId = brawlerEntityManager.GetAvailableID();
+    UFE.initController(newId, UFE.gameEngine);
+    UFE.SetFuzzyAI(newId, UFE.config.player2Character);
+    FPVector pos = UFE.config.selectedStage.position + new FPVector(UnityEngine.Random.Range(-2.0f, 2.0f), 0.0f, UnityEngine.Random.Range(0.0f, 2.0f));
+    var cScript = SpawnCharacter(UFE.config.player2Character, newId, -1, pos, false, null, null, -1);
+    brawlerEntityManager.SetControlsScript(cScript, newId);
+    cScript.opControlsScript = p1ControlsScript;
+    
+    UFE3D.CharacterInfo opCharInfo = UFE.config.player1Character;
+    cScript.opInfo = opCharInfo;
+
+#if !UFE_LITE && !UFE_BASIC
+    FindAndSpawnAssist(cScript, cScript.playerNum);
+#endif
+    // Initialize Characters
+    cScript.Init();
+    foreach (ControlsScript cAssist in cScript.assists) cAssist.Init();
+
+    // Set Sprite Renderer for 2D characters
+    if (cScript.myInfo.animationType == AnimationType.Mecanim2D)
+    {
+      cScript.mySpriteRenderer = cScript.GetComponentInChildren<SpriteRenderer>();
+      if (UFE.config.sortCharacterOnHit && cScript.mySpriteRenderer != null)
+      {
+        cScript.mySpriteRenderer.sortingOrder = UFE.config.foregroundSortLayer;
+      }
+    }
+
+    // initialize AI
+    AbstractInputController ai = brawlerEntityManager.GetController(newId).cpuController;
+    RuleBasedAI rai = ai as RuleBasedAI;
+    if(rai != null)
+    {
+      rai.InitMoveInputSequences();
+    }
+  }
+
+  public static void DespawnCharacter(int id)
+  {
+    if (id >= 3)
+    {
+      ControlsScript player = brawlerEntityManager.GetControlsScript(id);
+      fluxCapacitor.RemovePlayer(id);
+      fluxCapacitor.PlayerManager.RemovePlayer(id);
+      brawlerEntityManager.ReleaseController(id);
+      Destroy(player.gameObject);
+    }
+
+    var allPlayers = brawlerEntityManager.GetAllControlsScripts();
+    int numLivingPlayers = 0;
+    foreach(var p in allPlayers)
+    {
+      if(p.Value != null) ++numLivingPlayers;
+    }
+    for (int i = 0; i < 4 - numLivingPlayers; ++i)
+    {
+      UFE.DelaySynchronizedAction(CreateRandomMonster, 2.0f + i);
+    }
   }
 
   public static ControlsScript SpawnCharacter(UFE3D.CharacterInfo characterInfo, int player, int mirror, FPVector location, bool isAssist, MoveInfo enterMove = null, MoveInfo exitMove = null, int altCostume = -1)
