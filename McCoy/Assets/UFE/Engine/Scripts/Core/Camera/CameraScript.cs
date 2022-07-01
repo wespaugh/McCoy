@@ -35,7 +35,7 @@ namespace UFE3D
             playerLight = GameObject.Find("Player Light");
 
             ResetCam();
-            defaultDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
+      defaultDistance = 0.0f;// Vector3.Distance(player1.transform.position, player2.transform.position);
             defaultCameraPosition = Camera.main.transform.position;
             movementSpeed = UFE.config.cameraOptions.movementSpeed;
             rotationSpeed = UFE.config.cameraOptions.rotationSpeed;

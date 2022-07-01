@@ -353,10 +353,13 @@ namespace UFE3D
             this.player1.totalLife = player1.myInfo.lifePoints;
             this.player1.wonRounds = 0;
 
+      if(player2 != null)
+      {
             this.player2.controlsScript = player2;
             this.player2.targetLife = player2.myInfo.lifePoints;
             this.player2.totalLife = player2.myInfo.lifePoints;
             this.player2.wonRounds = 0;
+      }
 
             UFE.PlayMusic(stage.music);
             this.isRunning = true;

@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{DD797FB2-AC4E-9787-B746-FD07CED13CB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRocket.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyBattleGui.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOnlineModeAfterBattleScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\StoryModeTextureScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCreditsScreen.cs" />
@@ -934,6 +936,7 @@
       <Name>UFE3D</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

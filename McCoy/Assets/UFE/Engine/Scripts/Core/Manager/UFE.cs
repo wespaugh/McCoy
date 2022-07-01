@@ -233,9 +233,7 @@ public class UFE : MonoBehaviour, UFEInterface
   public static Fix64 timer;
   public static Fix64 timeScale;
   public static ControlsScript p1ControlsScript;
-  public static ControlsScript p2ControlsScript;
   public static List<ControlsScript> p1TeamControlsScripts = new List<ControlsScript>();
-  public static List<ControlsScript> p2TeamControlsScripts = new List<ControlsScript>();
   public static List<DelayedAction> delayedLocalActions = new List<DelayedAction>();
   public static List<DelayedAction> delayedSynchronizedActions = new List<DelayedAction>();
   public static List<InstantiatedGameObject> instantiatedObjects = new List<InstantiatedGameObject>();
@@ -282,18 +280,11 @@ public class UFE : MonoBehaviour, UFEInterface
     get { return brawlerEntityManager.GetController(1); }
     set { brawlerEntityManager.SetController(value, 1); }
   }
-  private static UFEController p2Controller
-  {
-    get { return brawlerEntityManager.GetController(2); }
-    set { brawlerEntityManager.SetController(value, 2); }
-  }
 
   public static BrawlerSpawnedEntityManager brawlerEntityManager = new BrawlerSpawnedEntityManager();
 
   private static RandomAI p1RandomAI;
-  private static RandomAI p2RandomAI;
   private static AbstractInputController p1FuzzyAI { get { return p1Controller?.cpuController; } set { if(p1Controller != null) p1Controller.cpuController = value; } }
-  private static AbstractInputController p2FuzzyAI { get { return p2Controller?.cpuController; } set { if(p2Controller != null) p2Controller.cpuController = value; } }
   private static SimpleAI p1SimpleAI;
   private static SimpleAI p2SimpleAI;
 
@@ -638,11 +629,6 @@ public class UFE : MonoBehaviour, UFEInterface
       UFE.p1SimpleAI.behaviour = behaviour;
       UFE.p1Controller.cpuController = UFE.p1SimpleAI;
     }
-    else if (player == 2)
-    {
-      UFE.p2SimpleAI.behaviour = behaviour;
-      UFE.p2Controller.cpuController = UFE.p2SimpleAI;
-    }
   }
 
   public static void SetRandomAI(int player)
@@ -650,10 +636,6 @@ public class UFE : MonoBehaviour, UFEInterface
     if (player == 1)
     {
       UFE.p1Controller.cpuController = UFE.p1RandomAI;
-    }
-    else if (player == 2)
-    {
-      UFE.p2Controller.cpuController = UFE.p2RandomAI;
     }
   }
 
@@ -669,10 +651,6 @@ public class UFE : MonoBehaviour, UFEInterface
       if (player == 1)
       {
         UFE.p1Controller.cpuController = UFE.p1FuzzyAI;
-      }
-      else if (player == 2)
-      {
-        UFE.p2Controller.cpuController = UFE.p2FuzzyAI;
       }
 
       UFEController controller = UFE.GetController(player);
@@ -1335,7 +1313,7 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.localPlayerController.Initialize(UFE.p1Controller.inputReferences);
     UFE.localPlayerController.humanController = UFE.p1Controller.humanController;
     UFE.localPlayerController.cpuController = UFE.p1Controller.cpuController;
-    UFE.remotePlayerController.Initialize(UFE.p2Controller.inputReferences);
+    // UFE.remotePlayerController.Initialize(UFE.p2Controller.inputReferences);
 
     if (localPlayer == 1)
     {
@@ -1822,6 +1800,7 @@ public class UFE : MonoBehaviour, UFEInterface
     return UFE.p1Controller;
   }
 
+  /*
   public static UFEController GetPlayer2Controller()
   {
     if (UFE.isNetworkAddonInstalled && UFE.isConnected)
@@ -1837,25 +1816,26 @@ public class UFE : MonoBehaviour, UFEInterface
     }
     return UFE.p2Controller;
   }
+  */
 
   public static UFEController GetController(int player)
   {
     if (player == 1) return UFE.GetPlayer1Controller();
-    else if (player == 2) return UFE.GetPlayer2Controller();
+    // else if (player == 2) return UFE.GetPlayer2Controller();
     else return brawlerEntityManager.GetController(player);
   }
 
   public static int GetLocalPlayer()
   {
     if (UFE.localPlayerController == UFE.GetPlayer1Controller()) return 1;
-    else if (UFE.localPlayerController == UFE.GetPlayer2Controller()) return 2;
+    // else if (UFE.localPlayerController == UFE.GetPlayer2Controller()) return 2;
     else return -1;
   }
 
   public static int GetRemotePlayer()
   {
     if (UFE.remotePlayerController == UFE.GetPlayer1Controller()) return 1;
-    else if (UFE.remotePlayerController == UFE.GetPlayer2Controller()) return 2;
+    // else if (UFE.remotePlayerController == UFE.GetPlayer2Controller()) return 2;
     else return -1;
   }
 
@@ -2203,10 +2183,12 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       return UFE.GetPlayer1ControlsScript();
     }
+    /*
     else if (player == 2)
     {
       return UFE.GetPlayer2ControlsScript();
     }
+    */
     return brawlerEntityManager.GetControlsScript(player);
   }
 
@@ -2216,10 +2198,12 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       return UFE.p1TeamControlsScripts;
     }
+    /*
     else if (player == 2)
     {
       return UFE.p2TeamControlsScripts;
     }
+    */
     return null;
   }
 
@@ -2229,10 +2213,12 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       return UFE.p1TeamControlsScripts[position];
     }
+    /*
     else if (player == 2)
     {
       return UFE.p2TeamControlsScripts[position];
     }
+    */
     return null;
   }
 
@@ -2243,11 +2229,13 @@ public class UFE : MonoBehaviour, UFEInterface
       p1ControlsScript = UFE.p1TeamControlsScripts[position];
       UFE.cameraScript.player1 = p1ControlsScript;
     }
+    /*
     else
     {
       p2ControlsScript = UFE.p2TeamControlsScripts[position];
       UFE.cameraScript.player2 = p2ControlsScript;
     }
+    */
   }
 
   public static List<ControlsScript> GetAllControlsScripts()
@@ -2258,14 +2246,16 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       allScripts.AddRange(cScript.assists);
     }
-    allScripts.AddRange(UFE.p2TeamControlsScripts);
+    // allScripts.AddRange(UFE.p2TeamControlsScripts);
+    /*
     foreach (ControlsScript cScript in UFE.p2TeamControlsScripts)
     {
       allScripts.AddRange(cScript.assists);
     }
+    */
     foreach(var cont in UFE.brawlerEntityManager.GetAllControlsScripts())
     {
-      if (cont.Key == 1 || cont.Key == 2) continue;
+      if (cont.Key == 1) continue;
       if (cont.Value == null) continue;
       allScripts.Add(cont.Value);
     }
@@ -2298,10 +2288,10 @@ public class UFE : MonoBehaviour, UFEInterface
     return p1ControlsScript;
   }
 
-  public static ControlsScript GetPlayer2ControlsScript()
+  /*public static ControlsScript GetPlayer2ControlsScript()
   {
     return p2ControlsScript;
-  }
+  }*/
   #endregion
 
   #region public class methods: methods that are used for raising events
@@ -2370,7 +2360,7 @@ public class UFE : MonoBehaviour, UFEInterface
     if (UFE.OnGameBegin != null)
     {
       gameRunning = true;
-      UFE.OnGameBegin(GetControlsScript(1), GetControlsScript(2), config.selectedStage);
+      UFE.OnGameBegin(GetControlsScript(1), null/*GetControlsScript(2)*/, config.selectedStage);
     }
   }
 
@@ -2522,7 +2512,7 @@ public class UFE : MonoBehaviour, UFEInterface
   public static void CastNewRound(Fix64 delay)
   {
     if (newRoundCasted) return;
-    if (p1ControlsScript.introPlayed && p2ControlsScript.introPlayed)
+    if (p1ControlsScript.introPlayed/* && p2ControlsScript.introPlayed*/)
     {
       UFE.FireRoundBegins(config.currentRound);
       UFE.DelaySynchronizedAction(StartFight, delay);
@@ -2830,6 +2820,7 @@ public class UFE : MonoBehaviour, UFEInterface
     p1RandomAI.player = 1;
 
     p1FuzzyAI = null;
+    /*
     p2SimpleAI = gameObject.AddComponent<SimpleAI>();
     p2SimpleAI.player = 2;
 
@@ -2837,12 +2828,15 @@ public class UFE : MonoBehaviour, UFEInterface
     p2RandomAI.player = 2;
 
     p2FuzzyAI = null;
+    */
 
     // Player 1
     initController(1, gameObject);
 
+    /*
     // Player 2
     initController(2, gameObject);
+    */
 
     if (config.fps > 0)
     {
@@ -2890,12 +2884,14 @@ public class UFE : MonoBehaviour, UFEInterface
       fuzzyAI.player = id;
       newController.cpuController = fuzzyAI;
     }
+    /*
     else
     {
       newController.cpuController = p2RandomAI;
     }
+    */
 
-    newController.isCPU = (id != 1 && id != 2) || UFE.config.deploymentOptions.AIControlled[id-1];
+    newController.isCPU = (id != 1) || UFE.config.deploymentOptions.AIControlled[id-1];
     newController.player = id;
 
     int newId = fluxCapacitor.PlayerManager.AddPlayer(UFE.currentFrame, id);
@@ -2912,11 +2908,13 @@ public class UFE : MonoBehaviour, UFEInterface
     else
     {
       newController.Initialize(config.player2_Inputs);
+      /*
       if(id==2)
       {
         p2Controller = newController;
       }
       else
+      */
       {
         brawlerEntityManager.SetController(newController, id);
       }
@@ -4004,11 +4002,10 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.PauseTimer();
 
     ControlsScript cScript1 = null;
-    ControlsScript cScript2 = null;
 
     // Initialize Teams
     p1TeamControlsScripts = new List<ControlsScript>();
-    p2TeamControlsScripts = new List<ControlsScript>();
+    // p2TeamControlsScripts = new List<ControlsScript>();
     if (UFE.config.selectedMatchType != MatchType.Singles)
     {
       //int maxSizePlayer1 = UFE.config.teamModes[UFE.config.selectedTeamMode].teams[0].characters.Length;
@@ -4034,6 +4031,7 @@ public class UFE : MonoBehaviour, UFEInterface
       }
 
       counter = 0;
+      /*
       foreach (UFE3D.CharacterInfo character in UFE.config.player2Team)
       {
         FPVector spawnPos = UFE.config.teamModes[UFE.config.selectedTeamMode].teams[1].characters[counter].spawnPosition;
@@ -4051,6 +4049,7 @@ public class UFE : MonoBehaviour, UFEInterface
         }
         counter++;
       }
+      */
     }
     else
     {
@@ -4072,6 +4071,7 @@ public class UFE : MonoBehaviour, UFEInterface
       }
 
 
+      /*
       // Initialize Player 2 Character
       int altCostume = -1;
       FPVector p2Pos = UFE.config.selectedStage.position;
@@ -4084,11 +4084,12 @@ public class UFE : MonoBehaviour, UFEInterface
       UFE.p2ControlsScript = cScript2;
       UFE.config.player2Character = cScript2.myInfo;
       UFE.cameraScript.player2 = cScript2;
+      */
     }
 
     // CreateRandomMonster();
 
-    if (cScript1 != null && cScript2 != null)
+    if (cScript1 != null/* && cScript2 != null*/)
     {
       // Extra Options
       if (UFE.config.roundOptions.allowMovementStart)
@@ -4108,12 +4109,14 @@ public class UFE : MonoBehaviour, UFEInterface
         UFE.p1ControlsScript.debugger = UFE.debugger1;
       }
 
+      /*
       if (UFE.debugger2 == null)
       {
         UFE.debugger2 = UFE.DebuggerText("Debugger2", "", new Vector2(Screen.width - 50, Screen.height - 180), TextAnchor.UpperRight);
         UFE.p2ControlsScript.debugger = UFE.debugger2;
       }
-      UFE.debugger1.enabled = UFE.debugger2.enabled = config.debugOptions.debugMode;
+      */
+      UFE.debugger1.enabled = /*UFE.debugger2.enabled =*/ config.debugOptions.debugMode;
 
 
       for (int i = 1; i <= brawlerEntityManager.GetAllControlsScripts().Count; i++)
@@ -4122,7 +4125,7 @@ public class UFE : MonoBehaviour, UFEInterface
         UFE3D.CharacterInfo opCharInfo;
         if (i == 1)
         {
-          opCScript = cScript2;
+          opCScript = cScript1;// cScript2;
           opCharInfo = UFE.config.player2Character;
         }
         else
@@ -4293,10 +4296,12 @@ public class UFE : MonoBehaviour, UFEInterface
       {
         cScript = FindSpawnedAssist(UFE.p1ControlsScript, characterInfo);
       }
+      /*
       else if (player == 2 && UFE.p2ControlsScript != null)
       {
         cScript = FindSpawnedAssist(UFE.p2ControlsScript, characterInfo);
       }
+      */
 
       if (cScript == null)
       {
@@ -4315,10 +4320,12 @@ public class UFE : MonoBehaviour, UFEInterface
         {
           cScript = UFE.p1ControlsScript;
         }
+        /*
         else if (player == 2 && UFE.p2ControlsScript != null)
         {
           cScript = UFE.p2ControlsScript;
         }
+        */
         else
         {
           go = new GameObject("Player" + player);
@@ -4454,11 +4461,13 @@ public class UFE : MonoBehaviour, UFEInterface
         cScript.owner = UFE.p1ControlsScript;
         UFE.p1ControlsScript.assists.Add(cScript);
       }
+      /*
       else if (player == 2)
       {
         cScript.owner = UFE.p2ControlsScript;
         UFE.p2ControlsScript.assists.Add(cScript);
       }
+      */
 
     }
 #endif

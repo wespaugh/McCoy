@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 2
   player1Character: {fileID: 0}
-  player2Character: {fileID: 0}
+  player2Character: {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
   player1Team:
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
@@ -105,7 +105,8 @@ MonoBehaviour:
       type: 3}
     loadingBattleScreen: {fileID: 11400008, guid: 238b7713a35be4f919fcef89a9d43a23,
       type: 3}
-    battleGUI: {fileID: 11400032, guid: 3cc97a7591eae4678bb26cd12746e0ec, type: 3}
+    battleGUI: {fileID: 8598034297409143752, guid: 0a73ed4714e20b6448bb24973a80b65f,
+      type: 3}
     storyModeContinueScreen: {fileID: 11400018, guid: 979dfe6c6baae4df1ae04fdbd4bcbff1,
       type: 3}
     storyModeGameOverScreen: {fileID: 11400004, guid: 79e43a319a85a4c7ea68f019b05163cc,

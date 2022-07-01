@@ -513,8 +513,8 @@ public class FluxCapacitor
 		new FluxFrameInput(
 			inputCache[1].previousFrameInput.Value,
 			inputCache[1].currentFrameInput.Value,
-			inputCache[2].previousFrameInput.Value,
-			inputCache[2].currentFrameInput.Value
+			inputCache.Count > 1 ? inputCache[2].previousFrameInput.Value : inputCache[1].previousFrameInput.Value,
+			inputCache.Count > 1 ? inputCache[2].currentFrameInput.Value : inputCache[1].currentFrameInput.Value
 		)
 	);
 
@@ -558,9 +558,9 @@ public class FluxCapacitor
 		inputCache[1].previousInputLookup,
 		inputCache[1].currentInputLookup,
 		inputCache[1].selectedOptions,
-		inputCache[2].previousInputLookup,
-		inputCache[2].currentInputLookup,
-		inputCache[2].selectedOptions
+		inputCache.Count > 1 ? inputCache[2].previousInputLookup : inputCache[1].previousInputLookup,
+		inputCache.Count > 1 ? inputCache[2].currentInputLookup : inputCache[1].currentInputLookup,
+		inputCache.Count > 1 ? inputCache[2].selectedOptions: inputCache[1].selectedOptions
 	);
 
 	foreach(var actor in PlayerManager.actorDictionary)
@@ -1170,7 +1170,7 @@ public class FluxCapacitor
         for (int i = 0; i <= frameDelay * 2; ++i) {
             long frame = UFE.currentFrame + i;
 
-            for (int j = 1; j <= 2; ++j) {
+            for (int j = 1; j <= 1/*2*/; ++j) {
                 if ( this.PlayerManager.ReadInputs(j, frame, this._selectedOptions[j - 1], allowRollbacks)) {
                     this._selectedOptions[j - 1] = null;
                 }
@@ -1337,8 +1337,8 @@ public class FluxCapacitor
 			UFE.battleGUI.DoFixedUpdate(
 				player1PreviousInputs,
 				player1CurrentInputs,
-				player2PreviousInputs,
-				player2CurrentInputs
+				player1PreviousInputs,//player2PreviousInputs,
+				player1CurrentInputs
             );
 		}
 
@@ -1393,8 +1393,12 @@ public class FluxCapacitor
 		}
         
 		ControlsScript p1ControlsScript = UFE.GetControlsScript(1);
-		ControlsScript p2ControlsScript = UFE.GetControlsScript(2);
-
+	// ControlsScript p2ControlsScript = UFE.GetControlsScript(2);
+	if (UFE.timer == 0 && p1ControlsScript != null)
+	{
+	  UFE.DelaySynchronizedAction(this.NewRound, UFE.config.roundOptions._newRoundDelay);
+	}
+	/*
 		if (UFE.timer == 0 && p1ControlsScript != null && !UFE.config.lockMovements){
 			Fix64 p1LifePercentage = p1ControlsScript.currentLifePoints/(Fix64)p1ControlsScript.myInfo.lifePoints;
             Fix64 p2LifePercentage = p2ControlsScript.currentLifePoints / (Fix64)p2ControlsScript.myInfo.lifePoints;
@@ -1410,9 +1414,10 @@ public class FluxCapacitor
                 UFE.FireAlert(UFE.config.selectedLanguage.draw, null);
                 UFE.DelaySynchronizedAction(this.NewRound, 1.0);
             } else {
-                SetWinner((p1LifePercentage > p2LifePercentage) ? p1ControlsScript : p2ControlsScript);
+		SetWinner((p1LifePercentage > p2LifePercentage) ? p1ControlsScript : p2ControlsScript);
             }
 		}
+	*/
 	}
 
     protected virtual void UpdateInstantiatedObjects(long currentFrame)

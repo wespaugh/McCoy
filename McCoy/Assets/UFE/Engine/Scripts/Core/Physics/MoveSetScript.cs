@@ -193,7 +193,6 @@ public class MoveSetScript : MonoBehaviour
         }
         else
         {
-          Debug.Log("Idle");
           PlayBasicMove(basicMoves.idle);
           controlsScript.currentState = PossibleStates.Stand;
           controlsScript.currentSubState = SubStates.Resting;

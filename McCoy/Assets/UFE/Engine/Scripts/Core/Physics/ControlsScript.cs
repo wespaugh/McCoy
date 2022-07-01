@@ -473,7 +473,7 @@ public class ControlsScript : MonoBehaviour
 
     // Input Viewer
     string inputDebugger = "";
-    if (!isAssist && (UFE.p1ControlsScript == this || UFE.p2ControlsScript == this))
+    if (!isAssist && (UFE.p1ControlsScript == this/* || UFE.p2ControlsScript == this*/))
     {
       List<InputReferences> inputList = new List<InputReferences>();
       Texture2D lastIconAdded = null;
@@ -688,7 +688,7 @@ public class ControlsScript : MonoBehaviour
     if (!introPlayed && (isAssist || myMoveSetScript.intro == null))
     {
       introPlayed = true;
-      if (!isAssist && playerNum == 2 && opControlsScript.introPlayed)
+      if (!isAssist /*&& playerNum == 2*/ && opControlsScript.introPlayed)
       {
         UFE.CastNewRound(2);
       }
@@ -2936,7 +2936,7 @@ public class ControlsScript : MonoBehaviour
         currentState = PossibleStates.Stand;
       }
     }
-    if (!isAssist && (UFE.p1ControlsScript == this || UFE.p2ControlsScript == this)) translateInputs(previousInputs, currentInputs);
+    if (!isAssist && (UFE.p1ControlsScript == this/* || UFE.p2ControlsScript == this*/)) translateInputs(previousInputs, currentInputs);
   }
 
   private void ReleaseCam()
