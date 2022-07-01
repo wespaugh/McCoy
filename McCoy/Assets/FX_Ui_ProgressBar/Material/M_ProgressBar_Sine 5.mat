@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_ProgressBar_Sine 5
+  m_Shader: {fileID: 4800000, guid: 4bb1c7f1b6ea89e429fa9e7560f90218, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _MASK_OVER_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 24dc116343b8f3149bc8d72d53aa8d3d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverMask:
+        m_Texture: {fileID: 2800000, guid: beea0694d337e23449c7d21e4dfef1cb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 29ff51df72b94ab449fc0666f9fd8d71, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 5887b179f01ae0240a485ae5eb741def, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Emision: 2
+    - _Float2: 1.27
+    - _InvFade: 1
+    - _Mask_over: 1
+    - _OverMaskEmission: 0.54
+    - _amplitude: 0.01
+    - _progress: -0.32
+    - _speed: 7
+    - _waves: 6.88
+    m_Colors:
+    - _Color0: {r: 1, g: 0.5212951, b: 0, a: 1}
+    - _OverMask_Speed: {r: 0, g: -0.7, b: 0, a: 0}
+    - _OverMask_Tiling: {r: 10, g: 2, b: 0, a: 0}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  m_BuildTextureStacks: []

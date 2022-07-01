@@ -220,10 +220,7 @@ public class DefaultBattleGUI : BattleGUI{
 			}
 
 
-			// Draw the Life Bars and Gauge Meters using the data stored in UFE.config.guiOptions
-			if (this.player1GUI != null && this.player1GUI.lifeBar != null){
-				this.player1GUI.lifeBar.fillAmount = this.player1.targetLife / this.player1.totalLife;
-			}
+	  UpdatePlayerHealthBar(this.player1.targetLife / this.player1.totalLife);
 			
 			if (this.player2GUI != null && this.player2GUI.lifeBar != null){
 				this.player2GUI.lifeBar.fillAmount = this.player2.targetLife / this.player2.totalLife;
@@ -272,6 +269,14 @@ public class DefaultBattleGUI : BattleGUI{
 			*/
 		}
 	}
+
+  protected virtual void UpdatePlayerHealthBar(float percent)
+  {
+	if (this.player1GUI != null && this.player1GUI.lifeBar != null)
+	{
+	  this.player1GUI.lifeBar.fillAmount = percent;
+	}
+  }
 
 	public override void OnHide ()
     {
@@ -364,58 +369,8 @@ public class DefaultBattleGUI : BattleGUI{
 	protected override void OnGameBegin (ControlsScript cPlayer1, ControlsScript cPlayer2, StageOptions stage){
 		base.OnGameBegin (cPlayer1, cPlayer2, stage);
 
-		if (this.wonRounds.NotFinishedRounds == null){
-			Debug.LogError("\"Not Finished Rounds\" Sprite not found! Make sure you have set the sprite correctly in the Editor");
-		}else if (this.wonRounds.WonRounds == null){
-			Debug.LogError("\"Won Rounds\" Sprite not found! Make sure you have set the sprite correctly in the Editor");
-		}else if (this.wonRounds.LostRounds == null && this.wonRounds.VisibleImages == DefaultBattleGUI.VisibleImages.AllRounds){
-			Debug.LogError("\"Lost Rounds\" Sprite not found! If you want to display Lost Rounds, make sure you have set the sprite correctly in the Editor");
-		}else{
-			// To calculate the target number of images, check if the "Lost Rounds" Sprite is defined or not
-			int targetNumberOfImages = this.wonRounds.GetNumberOfRoundsImages();
 
-			if(
-				this.player1GUI != null && 
-				this.player1GUI.wonRoundsImages != null && 
-				this.player1GUI.wonRoundsImages.Length >= targetNumberOfImages
-			){
-				for (int i = 0; i < targetNumberOfImages; ++i){
-					this.player1GUI.wonRoundsImages[i].enabled = true;
-					this.player1GUI.wonRoundsImages[i].sprite = this.wonRounds.NotFinishedRounds;
-				}
-					
-				for (int i = targetNumberOfImages; i < this.player1GUI.wonRoundsImages.Length; ++i){
-					this.player1GUI.wonRoundsImages[i].enabled = false;
-				}
-			}else{
-				Debug.LogError(
-					"Player 1: not enough \"Won Rounds\" Images not found! " +
-					"Expected:" + targetNumberOfImages + " / Found: " + this.player1GUI.wonRoundsImages.Length +
-					"\nMake sure you have set the images correctly in the Editor"
-				);
-			}
-
-			if(
-				this.player2GUI != null && 
-				this.player2GUI.wonRoundsImages != null && 
-				this.player2GUI.wonRoundsImages.Length >= targetNumberOfImages
-			){
-				for (int i = 0; i < targetNumberOfImages; ++i){
-					this.player2GUI.wonRoundsImages[i].enabled = true;
-					this.player2GUI.wonRoundsImages[i].sprite = this.wonRounds.NotFinishedRounds;
-				}
-					
-				for (int i = targetNumberOfImages; i < this.player2GUI.wonRoundsImages.Length; ++i){
-					this.player2GUI.wonRoundsImages[i].enabled = false;
-				}
-			}else{
-				Debug.LogError(
-					"Player 2: not enough \"Won Rounds\" Images not found! " +
-					"Expected:" + targetNumberOfImages + " / Found: " + this.player2GUI.wonRoundsImages.Length +
-					"\nMake sure you have set the images correctly in the Editor"
-				);
-			}
-		}
+	UpdateWonRounds();
 		
 		// Set the character names
 		if (this.player1GUI != null && this.player1GUI.name != null){
@@ -509,7 +464,80 @@ public class DefaultBattleGUI : BattleGUI{
 		}
 	}
 
-	protected override void OnGameEnd (ControlsScript winner, ControlsScript loser){
+  protected virtual void UpdateWonRounds()
+  {
+	if (this.wonRounds.NotFinishedRounds == null)
+	{
+	  Debug.LogError("\"Not Finished Rounds\" Sprite not found! Make sure you have set the sprite correctly in the Editor");
+	}
+	else if (this.wonRounds.WonRounds == null)
+	{
+	  Debug.LogError("\"Won Rounds\" Sprite not found! Make sure you have set the sprite correctly in the Editor");
+	}
+	else if (this.wonRounds.LostRounds == null && this.wonRounds.VisibleImages == DefaultBattleGUI.VisibleImages.AllRounds)
+	{
+	  Debug.LogError("\"Lost Rounds\" Sprite not found! If you want to display Lost Rounds, make sure you have set the sprite correctly in the Editor");
+	}
+	else
+	{
+	  // To calculate the target number of images, check if the "Lost Rounds" Sprite is defined or not
+	  int targetNumberOfImages = this.wonRounds.GetNumberOfRoundsImages();
+
+	  if (
+		  this.player1GUI != null &&
+		  this.player1GUI.wonRoundsImages != null &&
+		  this.player1GUI.wonRoundsImages.Length >= targetNumberOfImages
+	  )
+	  {
+		for (int i = 0; i < targetNumberOfImages; ++i)
+		{
+		  this.player1GUI.wonRoundsImages[i].enabled = true;
+		  this.player1GUI.wonRoundsImages[i].sprite = this.wonRounds.NotFinishedRounds;
+		}
+
+		for (int i = targetNumberOfImages; i < this.player1GUI.wonRoundsImages.Length; ++i)
+		{
+		  this.player1GUI.wonRoundsImages[i].enabled = false;
+		}
+	  }
+	  else
+	  {
+		Debug.LogError(
+			"Player 1: not enough \"Won Rounds\" Images not found! " +
+			"Expected:" + targetNumberOfImages + " / Found: " + this.player1GUI.wonRoundsImages.Length +
+			"\nMake sure you have set the images correctly in the Editor"
+		);
+	  }
+
+	  if (
+		  this.player2GUI != null &&
+		  this.player2GUI.wonRoundsImages != null &&
+		  this.player2GUI.wonRoundsImages.Length >= targetNumberOfImages
+	  )
+	  {
+		for (int i = 0; i < targetNumberOfImages; ++i)
+		{
+		  this.player2GUI.wonRoundsImages[i].enabled = true;
+		  this.player2GUI.wonRoundsImages[i].sprite = this.wonRounds.NotFinishedRounds;
+		}
+
+		for (int i = targetNumberOfImages; i < this.player2GUI.wonRoundsImages.Length; ++i)
+		{
+		  this.player2GUI.wonRoundsImages[i].enabled = false;
+		}
+	  }
+	  else
+	  {
+		Debug.LogError(
+			"Player 2: not enough \"Won Rounds\" Images not found! " +
+			"Expected:" + targetNumberOfImages + " / Found: " + this.player2GUI.wonRoundsImages.Length +
+			"\nMake sure you have set the images correctly in the Editor"
+		);
+	  }
+	}
+  }
+
+  protected override void OnGameEnd (ControlsScript winner, ControlsScript loser){
 		base.OnGameEnd (winner, loser);
 
         if (this.info != null) this.info.text = string.Empty;
