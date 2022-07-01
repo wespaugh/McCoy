@@ -140,6 +140,7 @@ public class DefaultBattleGUI : BattleGUI{
                     this.player1.targetLife = (float)UFE.GetPlayer1ControlsScript().currentLifePoints;
 			}
 			
+			/*
 			// Animate life points when it goes down (P2)
 			if (this.player2.targetLife > UFE.GetPlayer2ControlsScript().currentLifePoints){
                 this.player2.targetLife -= this.lifeDownSpeed * deltaTime;
@@ -151,6 +152,7 @@ public class DefaultBattleGUI : BattleGUI{
                 if (this.player2.targetLife > UFE.GetPlayer2ControlsScript().currentLifePoints)
                     this.player2.targetLife = (float)UFE.GetPlayer2ControlsScript().currentLifePoints;
 			}
+			*/
 
 
 			bool player1CurrentStartButton = false;
@@ -205,7 +207,7 @@ public class DefaultBattleGUI : BattleGUI{
 			if(
 				// Check if both players have their life points above zero...
 				UFE.GetPlayer1ControlsScript().currentLifePoints > 0 &&
-				UFE.GetPlayer2ControlsScript().currentLifePoints > 0 &&
+				// UFE.GetPlayer2ControlsScript().currentLifePoints > 0 &&
 				UFE.gameMode != GameMode.NetworkGame &&
 				(
 					// and at least one of the players have pressed the Start button...

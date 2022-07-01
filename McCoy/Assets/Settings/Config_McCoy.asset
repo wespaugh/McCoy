@@ -105,7 +105,7 @@ MonoBehaviour:
       type: 3}
     loadingBattleScreen: {fileID: 11400008, guid: 238b7713a35be4f919fcef89a9d43a23,
       type: 3}
-    battleGUI: {fileID: 8598034297409143752, guid: 0a73ed4714e20b6448bb24973a80b65f,
+    battleGUI: {fileID: 8590900883021212469, guid: 0a73ed4714e20b6448bb24973a80b65f,
       type: 3}
     storyModeContinueScreen: {fileID: 11400018, guid: 979dfe6c6baae4df1ae04fdbd4bcbff1,
       type: 3}
