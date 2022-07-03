@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6840210511083663680}
   - component: {fileID: 2274900628793328910}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 6840210511083663683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 80}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6840210511949421181}
   m_Father: {fileID: 0}
@@ -4880,7 +4880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6840210511949421181}
   - component: {fileID: 6840210511949421178}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4966,7 +4966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6840210512711726301}
   - component: {fileID: 6840210512711726298}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FX_ProgressBar_Sin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

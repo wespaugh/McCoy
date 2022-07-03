@@ -1182,7 +1182,7 @@ public class FluxCapacitor
 	  foreach (ControlsScript c in UFE.GetAllControlsScripts())
 	  {
 		int j = c.playerNum;
-		if (j <= 2) continue;
+		if (j <= 1) continue;
 		PlayerManager.ReadInputs(j, frame, this._selectedOptions[1], allowRollbacks);
 	  }
 	  }

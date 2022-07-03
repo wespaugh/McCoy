@@ -7,9 +7,9 @@ namespace Assets.McCoy.UI
   public class McCoyBattleGui : DefaultBattleGUI
   {
     [SerializeField]
-    public GameObject healthBarPrefab = null;
-    [SerializeField]
-    public GameObject healthBarAnchor = null;
+    public GameObject worldSpacePrefab = null;
+
+    GameObject uiRoot = null;
 
     McCoyProgressBar healthBar = null;
 
@@ -17,10 +17,28 @@ namespace Assets.McCoy.UI
 
     private void Awake()
     {
-      if(healthBarPrefab != null && healthBar == null)
+      var camera2 = GameObject.Find("UI Camera");
+      if(camera2.transform.childCount > 0)
       {
-        healthBar = Instantiate(healthBarPrefab, healthBarAnchor.transform).GetComponent<McCoyProgressBar>();
+        uiRoot = camera2.transform.GetChild(0).gameObject;
       }
+      else
+      {
+        uiRoot = new GameObject("UI Root");
+        uiRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
+        // uiRoot.transform.position = camera2.transform.position;
+      }
+
+      var bonusUI = Instantiate(worldSpacePrefab, uiRoot.transform);
+      // bonusUI.transform.position = new Vector3(0, 0, 2) + uiRoot.gameObject.transform.position;
+      healthBar = bonusUI.GetComponentInChildren<McCoyProgressBar>();
+      healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
+    }
+
+    private void OnDestroy()
+    {
+      var camera2 = GameObject.Find("UI Camera");
+      Destroy(uiRoot);
     }
 
     protected override void UpdatePlayerHealthBar(float percent)

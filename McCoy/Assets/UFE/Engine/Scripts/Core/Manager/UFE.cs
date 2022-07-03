@@ -4189,6 +4189,8 @@ public class UFE : MonoBehaviour, UFEInterface
     }
 
     UFE.eventSystem.enabled = true;
+
+    CreateRandomMonster();
   }
   #endregion
 
@@ -4246,6 +4248,8 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       rai.InitMoveInputSequences();
     }
+
+    UFE.DelaySynchronizedAction(CreateRandomMonster, 10.0f);
   }
 
   public static void DespawnCharacter(int id)
@@ -4264,10 +4268,6 @@ public class UFE : MonoBehaviour, UFEInterface
     foreach(var p in allPlayers)
     {
       if(p.Value != null) ++numLivingPlayers;
-    }
-    for (int i = 0; i < 4 - numLivingPlayers; ++i)
-    {
-      UFE.DelaySynchronizedAction(CreateRandomMonster, 2.0f + i);
     }
   }
 

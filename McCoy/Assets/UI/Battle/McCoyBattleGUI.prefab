@@ -126,9 +126,8 @@ MonoBehaviour:
   pauseScreen: {fileID: 11400000, guid: 6241d31f6482b42a88a8e7c8b62e2716, type: 3}
   networkPlayerPointer: {fileID: 0}
   pointerTimer: 4
-  healthBarPrefab: {fileID: 6840210511083663683, guid: d3d32b55bdb69c84794f8911397e78c6,
+  worldSpacePrefab: {fileID: 402771471151369095, guid: f80bf3a92c53855489657992dc860a97,
     type: 3}
-  healthBarAnchor: {fileID: 5563841622049222953}
   overrideHealth: -1
 --- !u!1 &100026
 GameObject:
