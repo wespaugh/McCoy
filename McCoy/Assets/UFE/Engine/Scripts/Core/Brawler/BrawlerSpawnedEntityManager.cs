@@ -6,18 +6,9 @@ namespace UFE3D
 {
   namespace Brawler
   {
-    public enum Faction
-    {
-      None = 0,
-      Werewolf,
-      Mage,
-      Bull,
-      Angel
-    }
 
     public class BrawlerSpawnedEntityManager
     {
-      Dictionary<Faction, List<UFEController>> factionLookup = new Dictionary<Faction, List<UFEController>>();
       Dictionary<int, UFEController> controllers = new Dictionary<int, UFEController>();
       Dictionary<int, ControlsScript> controlsScripts = new Dictionary<int, ControlsScript>();
       List<int> availableIDs = new List<int>();
