@@ -15,6 +15,7 @@ namespace Assets.McCoy.UI
       if (board == null)
       {
         board = Instantiate(boardContents);
+        GameObject.Find("CityCamera").GetComponent<Camera>().enabled = true;
         board.GetComponent<Canvas>().worldCamera = GameObject.Find("CityCamera").GetComponent<Camera>();
       }
     }
@@ -23,6 +24,7 @@ namespace Assets.McCoy.UI
     {
       if (board != null)
       {
+        GameObject.Find("CityCamera").GetComponent<Camera>().enabled = false;
         Destroy(board);
       }
     }
