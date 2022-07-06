@@ -93,7 +93,8 @@ MonoBehaviour:
       screenMatchMode: 0
       scaleMode: 1
     introScreen: {fileID: 11400002, guid: 70fb6f5004bbf493190d7b2f011adfdf, type: 3}
-    mainMenuScreen: {fileID: 11400002, guid: 5ae2a078222193e4ca9658f7044c53ad, type: 3}
+    mainMenuScreen: {fileID: 3101840184121778836, guid: 78b20301a30c435439b1d5c4e380a43d,
+      type: 3}
     optionsScreen: {fileID: 11400056, guid: 2737f2cf99cd3416b9a9d13df2abbe04, type: 3}
     creditsScreen: {fileID: 11400010, guid: aa93c5bcd99024642a42c5a1f110eeb1, type: 3}
     pauseScreen: {fileID: 11400000, guid: 6241d31f6482b42a88a8e7c8b62e2716, type: 3}

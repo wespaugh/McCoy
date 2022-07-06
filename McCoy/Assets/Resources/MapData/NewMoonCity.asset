@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8562d8ed699c4b04f922d21f1cd162d3, type: 3}
+  m_Name: NewMoonCity
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGuid: 516f997ff8c16e34c91d9534926141ed
+    PortName: Right
+    TargetNodeGuid: 4a3482616f144e746ae7a842a43bdeef
+  - BaseNodeGuid: 319198f1ad8492a43b965d401c8884b5
+    PortName: Right
+    TargetNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
+  - BaseNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
+    PortName: Right
+    TargetNodeGuid: 20888d9701a6e1c4294784294f939b28
+  - BaseNodeGuid: 20888d9701a6e1c4294784294f939b28
+    PortName: Right
+    TargetNodeGuid: 83ad669713d871b4787ab3e441764e13
+  - BaseNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
+    PortName: Right
+    TargetNodeGuid: 435452702222f9344b33cd833e2b410e
+  - BaseNodeGuid: 435452702222f9344b33cd833e2b410e
+    PortName: Right
+    TargetNodeGuid: 516f997ff8c16e34c91d9534926141ed
+  - BaseNodeGuid: 319198f1ad8492a43b965d401c8884b5
+    PortName: Right
+    TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
+  - BaseNodeGuid: 516f997ff8c16e34c91d9534926141ed
+    PortName: Right
+    TargetNodeGuid: 7c688bb0005018d4d91f534c23b4b438
+  - BaseNodeGuid: 5b5dd699f62d6d2409c9d390202a506e
+    PortName: Right
+    TargetNodeGuid: bca2ecf53f57d724abe75d786eea6d75
+  - BaseNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+    PortName: Right
+    TargetNodeGuid: 83ad669713d871b4787ab3e441764e13
+  - BaseNodeGuid: bca2ecf53f57d724abe75d786eea6d75
+    PortName: Right
+    TargetNodeGuid: aed39e83bff372045a0d9c263b13f4d7
+  - BaseNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+    PortName: Right
+    TargetNodeGuid: 07d7f6ea6aaedf04b982db947277082b
+  - BaseNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
+    PortName: Right
+    TargetNodeGuid: 1cd0a89b6bcb6c14bbe4f0808cdba578
+  - BaseNodeGuid: 1cd0a89b6bcb6c14bbe4f0808cdba578
+    PortName: Right
+    TargetNodeGuid: 20888d9701a6e1c4294784294f939b28
+  - BaseNodeGuid: 07d7f6ea6aaedf04b982db947277082b
+    PortName: Right
+    TargetNodeGuid: 83ad669713d871b4787ab3e441764e13
+  - BaseNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
+    PortName: Right
+    TargetNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
+  - BaseNodeGuid: 5b5dd699f62d6d2409c9d390202a506e
+    PortName: Right
+    TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
+  - BaseNodeGuid: 4a3482616f144e746ae7a842a43bdeef
+    PortName: Right
+    TargetNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
+  - BaseNodeGuid: 9280bee4b8e1f424696c95a89e668418
+    PortName: Right
+    TargetNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
+  - BaseNodeGuid: aed39e83bff372045a0d9c263b13f4d7
+    PortName: Right
+    TargetNodeGuid: 07d7f6ea6aaedf04b982db947277082b
+  - BaseNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
+    PortName: Right
+    TargetNodeGuid: 07d7f6ea6aaedf04b982db947277082b
+  - BaseNodeGuid: 7c688bb0005018d4d91f534c23b4b438
+    PortName: Right
+    TargetNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
+  - BaseNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
+    PortName: Right
+    TargetNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+  - BaseNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
+    PortName: Right
+    TargetNodeGuid: 4a3482616f144e746ae7a842a43bdeef
+  - BaseNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+    PortName: Right
+    TargetNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
+  - BaseNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
+    PortName: Right
+    TargetNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+  - BaseNodeGuid: bca2ecf53f57d724abe75d786eea6d75
+    PortName: Right
+    TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
+  NodeData:
+  - NodeID: 516f997ff8c16e34c91d9534926141ed
+    ZoneName: Government Office Building
+    Position: {x: 163, y: -92}
+  - NodeID: 435452702222f9344b33cd833e2b410e
+    ZoneName: Airfield
+    Position: {x: -20.5, y: -73}
+  - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
+    ZoneName: Meat-Packing District
+    Position: {x: 440, y: 378}
+  - NodeID: 20888d9701a6e1c4294784294f939b28
+    ZoneName: Nimby Street
+    Position: {x: 672, y: 301}
+  - NodeID: 83ad669713d871b4787ab3e441764e13
+    ZoneName: Power Station
+    Position: {x: 803, y: 71.5}
+  - NodeID: 5b5dd699f62d6d2409c9d390202a506e
+    ZoneName: College
+    Position: {x: -119.5, y: 225.5}
+  - NodeID: bca2ecf53f57d724abe75d786eea6d75
+    ZoneName: Harbor
+    Position: {x: 68.5, y: 378}
+  - NodeID: 7561d6c4bbfed7747a0affa4400cd38e
+    ZoneName: Preservation Zone
+    Position: {x: -159.5, y: 33}
+  - NodeID: 4ce0d0c15420f7d4cb53747c94795e9e
+    ZoneName: Convention Center
+    Position: {x: 579.5, y: 33}
+  - NodeID: 4a3482616f144e746ae7a842a43bdeef
+    ZoneName: Museum
+    Position: {x: 163, y: 4}
+  - NodeID: 9280bee4b8e1f424696c95a89e668418
+    ZoneName: City Center
+    Position: {x: 163, y: 169.5}
+  - NodeID: aed39e83bff372045a0d9c263b13f4d7
+    ZoneName: Skybridge
+    Position: {x: 284, y: 262.5}
+  - NodeID: 319198f1ad8492a43b965d401c8884b5
+    ZoneName: City Hall
+    Position: {x: -52.5, y: 131}
+  - NodeID: fcff9c39b002b4c438a07eb25e1a1fe2
+    ZoneName: Nightclub
+    Position: {x: 345.5, y: 81}
+  - NodeID: 1cd0a89b6bcb6c14bbe4f0808cdba578
+    ZoneName: Subway
+    Position: {x: 440, y: 169.5}
+  - NodeID: 07d7f6ea6aaedf04b982db947277082b
+    ZoneName: Financial District
+    Position: {x: 727, y: -130.5}
+  - NodeID: c39ce560d0ce07e498aa32e6a39a865f
+    ZoneName: Penthouse
+    Position: {x: 551, y: -111.5}
+  - NodeID: 7c688bb0005018d4d91f534c23b4b438
+    ZoneName: Sol HQ
+    Position: {x: 406, y: -188.5}
