@@ -19,8 +19,11 @@ namespace Assets.McCoy.UI
     [SerializeField]
     GameObject MobPanelPrefab = null;
 
+    MapNode node = null;
+
     public void Initialize(MapNode node)
     {
+      this.node = node;
       NodeName.text = node.ZoneName;
 
       List<Factions> fs = new List<Factions>();
@@ -36,6 +39,12 @@ namespace Assets.McCoy.UI
         MapCityNodePanelMob mob = Instantiate(MobPanelPrefab, MobNodeContainer.transform).GetComponent<MapCityNodePanelMob>();
         mob.Initialize(fs[i], Random.Range(1,6), Random.Range(1,6));
       }
+    }
+
+    public void ZoneClicked()
+    {
+      Debug.Log($"Clicked node with ID {node.NodeID}");
+      UFE.StartBrawlerMode();
     }
   }
 }
