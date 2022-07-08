@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.McCoy.BoardGame;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,15 +23,15 @@ namespace Assets.McCoy.UI
     [SerializeField]
     TMP_Text strength;
 
-    public void Initialize(Factions f, int str, int hp)
+    public void Initialize(McCoyMobData mobData)
     {
-      health.text = $"{hp}x<sprite=1>";
-      strength.text = $"{str}x<sprite=0>";
+      health.text = $"{mobData.Health}x<sprite=1>";
+      strength.text = $"{mobData.StrengthForXP()}x<sprite=0>";
 
       minotaurImage.gameObject.SetActive(false);
       mageImage.gameObject.SetActive(false);
       militiaImage.gameObject.SetActive(false);
-      switch (f)
+      switch (mobData.Faction)
       {
         case Factions.AngelMilitia: militiaImage.gameObject.SetActive(true); break;
         case Factions.CyberMinotaurs: minotaurImage.gameObject.SetActive(true); break;

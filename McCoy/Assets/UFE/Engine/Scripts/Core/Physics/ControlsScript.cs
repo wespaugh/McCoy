@@ -301,24 +301,27 @@ public class ControlsScript : MonoBehaviour
     }
 #endif
 
-    if (mirror == -1 && forceMirror )
-    //if ((mirror == -1 || forceMirror) && myX > opX)
+    if (currentMove = null)
     {
-      potentialBlock = false;
-      InvertRotation(1);
-      if (UFE.config.characterRotationOptions.autoMirror) ForceMirror(true);
-      myHitBoxesScript.inverted = true;
-      UFE.FireSideSwitch(mirror, this);
+      if (mirror == -1 && forceMirror)
+      //if ((mirror == -1 || forceMirror) && myX > opX)
+      {
+        potentialBlock = false;
+        InvertRotation(1);
+        if (UFE.config.characterRotationOptions.autoMirror) ForceMirror(true);
+        myHitBoxesScript.inverted = true;
+        UFE.FireSideSwitch(mirror, this);
 
-    }
-    else if (mirror == 1 && forceMirror)
-    // else if ((mirror == 1 || forceMirror) && myX < opX)
-    {
-      potentialBlock = false;
-      InvertRotation(-1);
-      if (UFE.config.characterRotationOptions.autoMirror) ForceMirror(false);
-      myHitBoxesScript.inverted = false;
-      UFE.FireSideSwitch(mirror, this);
+      }
+      else if (mirror == 1 && forceMirror)
+      // else if ((mirror == 1 || forceMirror) && myX < opX)
+      {
+        potentialBlock = false;
+        InvertRotation(-1);
+        if (UFE.config.characterRotationOptions.autoMirror) ForceMirror(false);
+        myHitBoxesScript.inverted = false;
+        UFE.FireSideSwitch(mirror, this);
+      }
     }
 
     if (rotationSpeed == 0 || UFE.config.characterRotationOptions.smoothRotation ||

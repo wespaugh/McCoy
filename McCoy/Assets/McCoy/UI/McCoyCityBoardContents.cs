@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.Brawler;
 using System.Collections.Generic;
 using System.Linq;
 using UFE3D;
@@ -23,8 +24,12 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Transform Scaler = null;
 
+    bool loadingStage = false;
+
     private void Awake()
     {
+      loadingStage = false;
+
       var mapCacheObj = Resources.Load($"{ProjectConstants.MAPDATA_DIRECTORY}/{dataFile}");
       MapGraphNodeContainer mapCache = mapCacheObj as MapGraphNodeContainer;
 
@@ -36,7 +41,7 @@ namespace Assets.McCoy.UI
           if (assetNode.NodeID == node.NodeId)
           {
             var nodePanel = Instantiate(ZonePanelPrefab, node.transform);
-            nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode);
+            nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this);
             break;
           }
         }
@@ -73,6 +78,15 @@ namespace Assets.McCoy.UI
         positions.Add(new Vector3(sourceNodes[0].transform.position.x/* * Scaler.localScale.x*/, sourceNodes[0].transform.position.y /* * Scaler.localScale.y*/, -10));
         positions.Add(new Vector3(destNodes[0].transform.position.x/* * Scaler.localScale.x*/, destNodes[0].transform.position.y /** Scaler.localScale.y*/, -10));
         lineRenderer.SetPositions(positions.ToArray());
+      }
+    }
+
+    public void LoadStage(McCoyStageData stageData)
+    {
+      if (!loadingStage)
+      {
+        loadingStage = true;
+        McCoy.GetInstance().LoadBrawlerStage(stageData);
       }
     }
   }

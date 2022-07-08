@@ -62,6 +62,16 @@ namespace UFE3D
         return controlsScripts;
       }
 
+      public int GetNumLivingEntities()
+      {
+        int count = 0;
+        foreach(var c in controlsScripts)
+        {
+          if (c.Value != null) ++count;
+        }
+        return count;
+      }
+
       public void ReleaseController(int id)
       {
         availableIDs.Add(id);

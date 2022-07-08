@@ -1,4 +1,6 @@
-﻿using UFE3D;
+﻿using Assets.McCoy.Brawler;
+using System;
+using UFE3D;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +16,8 @@ namespace Assets.McCoy.UI
     McCoyProgressBar healthBar = null;
 
     [SerializeField] float overrideHealth = -1.0f;
+
+    McCoyStageData currentStage;
 
     private void Awake()
     {
@@ -33,11 +37,20 @@ namespace Assets.McCoy.UI
       // bonusUI.transform.position = new Vector3(0, 0, 2) + uiRoot.gameObject.transform.position;
       healthBar = bonusUI.GetComponentInChildren<McCoyProgressBar>();
       healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
+
+      currentStage = McCoy.GetInstance().currentStage;
+
+      initSpawner();
+    }
+
+    private void initSpawner()
+    {
+      gameObject.AddComponent<McCoyBrawlerSpawnManager>().Initialize(currentStage.GetSpawnData());
+      info.text = currentStage.Name;
     }
 
     private void OnDestroy()
     {
-      var camera2 = GameObject.Find("UI Camera");
       Destroy(uiRoot);
     }
 

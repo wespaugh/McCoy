@@ -513,8 +513,8 @@ public class FluxCapacitor
 		new FluxFrameInput(
 			inputCache[1].previousFrameInput.Value,
 			inputCache[1].currentFrameInput.Value,
-			inputCache.Count > 1 ? inputCache[2].previousFrameInput.Value : inputCache[1].previousFrameInput.Value,
-			inputCache.Count > 1 ? inputCache[2].currentFrameInput.Value : inputCache[1].currentFrameInput.Value
+			/*inputCache.Count > 1 ? inputCache[2].previousFrameInput.Value : */inputCache[1].previousFrameInput.Value,
+			/*inputCache.Count > 1 ? inputCache[2].currentFrameInput.Value : */inputCache[1].currentFrameInput.Value
 		)
 	);
 
@@ -558,9 +558,9 @@ public class FluxCapacitor
 		inputCache[1].previousInputLookup,
 		inputCache[1].currentInputLookup,
 		inputCache[1].selectedOptions,
-		inputCache.Count > 1 ? inputCache[2].previousInputLookup : inputCache[1].previousInputLookup,
-		inputCache.Count > 1 ? inputCache[2].currentInputLookup : inputCache[1].currentInputLookup,
-		inputCache.Count > 1 ? inputCache[2].selectedOptions: inputCache[1].selectedOptions
+		/*inputCache.Count > 2 ? inputCache[2].previousInputLookup : */inputCache[1].previousInputLookup,
+		/*inputCache.Count > 2 ? inputCache[2].currentInputLookup : */inputCache[1].currentInputLookup,
+		/*inputCache.Count > 2 ? inputCache[2].selectedOptions: */inputCache[1].selectedOptions
 	);
 
 	foreach(var actor in PlayerManager.actorDictionary)
@@ -1312,7 +1312,71 @@ public class FluxCapacitor
         this.UpdateGUI(null, null, null, null, null, null);
     }
 
-    protected virtual void UpdateGUI(
+	protected virtual void UpdateGUI(
+		IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+		IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+		int? player1SelectedOptions
+	)
+	{
+
+		if (CameraFade.instance.enabled)
+		{
+			CameraFade.instance.DoFixedUpdate();
+		}
+
+		if (UFE.battleGUI != null)
+		{
+			if (player1SelectedOptions != null)
+			{
+				UFE.battleGUI.SelectOption(player1SelectedOptions.Value, 1);
+			}
+
+			UFE.battleGUI.DoFixedUpdate(
+				player1PreviousInputs,
+				player1CurrentInputs,
+				player1PreviousInputs,//player2PreviousInputs,
+				player1CurrentInputs
+						);
+		}
+
+		if (UFE.isControlFreak2Installed && UFE.touchControllerBridge != null)
+		{
+			UFE.touchControllerBridge.DoFixedUpdate();
+		}
+		else if (UFE.isControlFreak1Installed)
+		{
+			if (UFE.gameRunning && UFE.controlFreakPrefab != null && !UFE.controlFreakPrefab.activeSelf)
+			{
+				UFE.controlFreakPrefab.SetActive(true);
+			}
+			else if (!UFE.gameRunning && UFE.controlFreakPrefab != null && UFE.controlFreakPrefab.activeSelf)
+			{
+				UFE.controlFreakPrefab.SetActive(false);
+			}
+		}
+
+		if (UFE.currentScreen != null)
+		{
+			if (player1SelectedOptions != null)
+			{
+				UFE.currentScreen.SelectOption(player1SelectedOptions.Value, 1);
+			}
+
+			UFE.currentScreen.DoFixedUpdate(
+				player1PreviousInputs,
+				player1CurrentInputs,
+				null,
+				null
+			);
+		}
+
+		if (UFE.canvasGroup.alpha == 0)
+		{
+			UFE.canvasGroup.alpha = 1;
+		}
+	}
+
+	protected virtual void UpdateGUI(
 		IDictionary<InputReferences, InputEvents> player1PreviousInputs,
 		IDictionary<InputReferences, InputEvents> player1CurrentInputs,
 		int? player1SelectedOptions,

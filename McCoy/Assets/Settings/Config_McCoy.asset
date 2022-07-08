@@ -104,7 +104,7 @@ MonoBehaviour:
       type: 3}
     stageSelectionScreen: {fileID: 11400008, guid: 4e1ca63af339f4c6b84a167dd4fc7ede,
       type: 3}
-    loadingBattleScreen: {fileID: 11400008, guid: 238b7713a35be4f919fcef89a9d43a23,
+    loadingBattleScreen: {fileID: 4804544593231045120, guid: 198b513207abc3f4da0d0ea3b60b5a71,
       type: 3}
     battleGUI: {fileID: 8590900883021212469, guid: 0a73ed4714e20b6448bb24973a80b65f,
       type: 3}

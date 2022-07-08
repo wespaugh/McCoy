@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.Brawler;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D.Brawler;
@@ -21,10 +22,15 @@ namespace Assets.McCoy.UI
 
     MapNode node = null;
 
-    public void Initialize(MapNode node)
+    List<McCoyMobData> mobs = new List<McCoyMobData>();
+
+    McCoyCityBoardContents board = null;
+
+    public void Initialize(MapNode node, McCoyCityBoardContents board)
     {
       this.node = node;
       NodeName.text = node.ZoneName;
+      this.board = board;
 
       List<Factions> fs = new List<Factions>();
       do
@@ -37,14 +43,18 @@ namespace Assets.McCoy.UI
       for (int i = 0; i < fs.Count; ++i)
       {
         MapCityNodePanelMob mob = Instantiate(MobPanelPrefab, MobNodeContainer.transform).GetComponent<MapCityNodePanelMob>();
-        mob.Initialize(fs[i], Random.Range(1,6), Random.Range(1,6));
+        McCoyMobData mobData = new McCoyMobData(fs[i]);
+        mob.Initialize(mobData);
+        mobs.Add(mobData);
       }
     }
 
     public void ZoneClicked()
     {
-      Debug.Log($"Clicked node with ID {node.NodeID}");
-      UFE.StartBrawlerMode();
+      McCoyStageData stageData = new McCoyStageData();
+      stageData.Initialize(node.ZoneName, mobs);
+
+      board.LoadStage(stageData);
     }
   }
 }

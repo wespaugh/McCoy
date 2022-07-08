@@ -281,7 +281,7 @@ public class DefaultBattleGUI : BattleGUI{
 	public override void OnHide ()
     {
 		UFE.debugger1.enabled = false;
-		UFE.debugger2.enabled = false;
+		// UFE.debugger2.enabled = false;
 
 		this.hiding = true;
 		this.OnGamePaused(false);

@@ -1367,11 +1367,19 @@ public class UFE : MonoBehaviour, UFEInterface
 
   public static void StartBrawlerMode()
   {
+    foreach (var controller in brawlerEntityManager.GetAllControlsScripts())
+    {
+      if (controller.Value == null) continue;
+      fluxCapacitor.RemovePlayer(controller.Key);
+      brawlerEntityManager.ReleaseController(controller.Key);
+      p1ControlsScript = null;
+    }
+
     var characters = UFE.GetStoryModeSelectableCharacters();
     UFE.SetCPU(1, false);
     UFE.SetCPU(2, true);
-    // invincible umm
-    UFE.SetPlayer(1, characters[2]);
+    // Ax Test
+    UFE.SetPlayer(1, characters[0]);
     // vincible umm
     UFE.SetPlayer(2, characters[1]);
     UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-1];
@@ -4137,6 +4145,10 @@ public class UFE : MonoBehaviour, UFEInterface
         // Set References
         foreach (ControlsScript cScript in UFE.GetAllControlsScriptsByPlayer(i))
         {
+          if(cScript == null)
+          {
+            Debug.LogWarning("ok found a null controlsscript for player " + i + ", is that a problem really?");
+          }
           cScript.opControlsScript = opCScript;
           cScript.opInfo = opCharInfo;
 
@@ -4214,7 +4226,10 @@ public class UFE : MonoBehaviour, UFEInterface
     int newId = brawlerEntityManager.GetAvailableID();
     UFE.initController(newId, UFE.gameEngine);
     UFE.SetFuzzyAI(newId, UFE.config.player2Character);
-    FPVector pos = UFE.config.selectedStage.position + new FPVector(UnityEngine.Random.Range(-2.0f, 2.0f), 0.0f, UnityEngine.Random.Range(0.0f, 2.0f));
+    int dx = UnityEngine.Random.Range(0, 2) == 1 ? 1 : -1;
+    dx *= 10;
+    float dy = dx > 0 ? UnityEngine.Random.Range(0.0f, 1.5f) : 0.0f;
+    FPVector pos = UFE.config.selectedStage.position + new FPVector(dx, 0.0f, dy);
     var cScript = SpawnCharacter(UFE.config.player2Character, newId, -1, pos, false, null, null, -1);
     brawlerEntityManager.SetControlsScript(cScript, newId);
     cScript.opControlsScript = p1ControlsScript;
@@ -4250,7 +4265,7 @@ public class UFE : MonoBehaviour, UFEInterface
 
   public static void DespawnCharacter(int id)
   {
-    if (id >= 3)
+    if (id >= 2)
     {
       ControlsScript player = brawlerEntityManager.GetControlsScript(id);
       fluxCapacitor.RemovePlayer(id);
