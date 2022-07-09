@@ -62,10 +62,14 @@ namespace Assets.McCoy.Brawler
         {
           if (numLivingEnemies == 0)
           {
-            Debug.Log("YOU WON!");
-            UFE.FireGameEnds();
-            UFE.EndGame();
-            McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+            UFE.DelaySynchronizedAction(() =>
+            {
+              Debug.Log("YOU WON!");
+              UFE.FireAlert("All Dudes BEATEN!", UFE.GetPlayer1ControlsScript());
+              UFE.FireGameEnds();
+              UFE.EndGame();
+              McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+            }, 2.0f);
           }
           else
           {
@@ -79,7 +83,7 @@ namespace Assets.McCoy.Brawler
         foreach(var m in spawnNumbers)
         {
           totalMonstersRemaining -= m.Value;
-          if(totalMonstersRemaining < randomMonsterIndex && false)
+          if(totalMonstersRemaining < randomMonsterIndex)
           {
             spawnNumbers[m.Key]--;
             UFE.CreateRandomMonster();

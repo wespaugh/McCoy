@@ -67,7 +67,7 @@ namespace UFE3D
         int count = 0;
         foreach(var c in controlsScripts)
         {
-          if (c.Value != null) ++count;
+          if (c.Value != null && ! c.Value.isDead) ++count;
         }
         return count;
       }

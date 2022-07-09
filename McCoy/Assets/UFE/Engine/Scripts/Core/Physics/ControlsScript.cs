@@ -301,7 +301,7 @@ public class ControlsScript : MonoBehaviour
     }
 #endif
 
-    if (currentMove = null)
+    if (currentMove == null)
     {
       if (mirror == -1 && forceMirror)
       //if ((mirror == -1 || forceMirror) && myX > opX)
