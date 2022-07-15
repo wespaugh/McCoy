@@ -2283,9 +2283,13 @@ public class UFE : MonoBehaviour, UFEInterface
       }
     }
 
-    if(player > 2)
+    if(player > 1)
     {
-      allScripts.Add(UFE.brawlerEntityManager.GetControlsScript(player));
+      var pScript = UFE.brawlerEntityManager.GetControlsScript(player);
+      if (pScript != null)
+      {
+        allScripts.Add(pScript);
+      }
     }
 
     return allScripts;

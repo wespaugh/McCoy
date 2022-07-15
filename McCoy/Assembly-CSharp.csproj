@@ -72,6 +72,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeScreen.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultGameOverScreen.cs" />
+    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrame.cs" />
     <Compile Include="Assets\BrawlerRuleBasedAI.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityZonePlacementNode.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\TextureIntroScreen.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothGameScreen.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapNodeLinkData.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultHostGameScreen.cs" />
+    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrameView.cs" />
     <Compile Include="Assets\McCoy\UI\MapCityNodePanel.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultLoadingBattleScreen.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoPlanes.cs" />

@@ -123,7 +123,7 @@ public class DefaultBattleGUI : BattleGUI{
 				if (this.mainAlertTimer > 0f){
 					this.mainAlertTimer -= deltaTime;
 				}else if (!string.IsNullOrEmpty(this.mainAlert.text.text)){
-					this.mainAlert.text.text = string.Empty;
+					SetAlertMessage(string.Empty);
 				}
 			}
 
@@ -608,7 +608,7 @@ public class DefaultBattleGUI : BattleGUI{
 			string processedMessage = this.ProcessMessage(msg, null);
 
 			if (this.mainAlert != null && this.mainAlert.text != null){
-				this.mainAlert.text.text = processedMessage;
+				SetAlertMessage(processedMessage);
 
 				if (msg == UFE.config.selectedLanguage.round || msg == UFE.config.selectedLanguage.finalRound){
                     this.mainAlertTimer = 2f;
@@ -625,6 +625,11 @@ public class DefaultBattleGUI : BattleGUI{
 		}
 	}
 
+	protected virtual void SetAlertMessage(string msg)
+  {
+		this.mainAlert.text.text = msg;
+
+	}
 	protected override void OnRoundBegin(int roundNumber){
 		base.OnRoundBegin(roundNumber);
 

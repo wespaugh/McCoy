@@ -27,7 +27,7 @@ MonoBehaviour:
   lifePoints: 50000
   maxGaugePoints: 0
   characterPrefabStorage: 0
-  characterPrefab: {fileID: 8610856068620173220, guid: 9a161e700108f1d42812ab78acc53202,
+  characterPrefab: {fileID: 4008542871262631591, guid: 9a161e700108f1d42812ab78acc53202,
     type: 3}
   prefabResourcePath: 
   alternativeCostumes: []
@@ -223,8 +223,8 @@ MonoBehaviour:
       moveForward:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 54cc114d1dffae14889d04fa7e13a3d9, type: 2}
-          customHitBoxDefinition: {fileID: 11400000, guid: 6b6ec386d0f5c1144925d5f9a32d202e,
+          clip: {fileID: 7400000, guid: f9613a6b1a4dd454ab6e48f0f394d05b, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: ef8a909ccbcbd0240a9f3346eb2317a9,
             type: 2}
           length:
             _serializedValue: 0
@@ -749,12 +749,13 @@ MonoBehaviour:
       jumpStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: b3f0cce26c9aa97469d7354e3077d1ff,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -813,7 +814,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -849,7 +850,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -1064,7 +1065,7 @@ MonoBehaviour:
       fallStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1128,7 +1129,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -1164,7 +1165,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       fallBack:
         animMap:
@@ -3269,7 +3270,7 @@ MonoBehaviour:
       fallDown:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3333,7 +3334,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -3369,7 +3370,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -4528,7 +4529,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       standUpFromAirHit:
         animMap:
@@ -5476,12 +5477,14 @@ MonoBehaviour:
         editorToggle: 0
         soundEffectsToggle: 0
       moveEnabled: 1
-      jumpEnabled: 0
+      jumpEnabled: 1
       crouchEnabled: 0
       blockEnabled: 0
       parryEnabled: 0
     attackMoves:
     - {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+    - {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
+    - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
     attackMovesToggle: 1

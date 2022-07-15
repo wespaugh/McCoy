@@ -4103,13 +4103,18 @@ public class ControlsScript : MonoBehaviour
   private int blinksRemaining = 5;
   private void BlinkOut()
   {
+    if (blinksRemaining == 5) RunBlink();
+  }
+
+  private void RunBlink()
+  {
     gameObject.SetActive(!gameObject.activeInHierarchy);
     if (gameObject.activeInHierarchy)
     {
       --blinksRemaining;
       if (blinksRemaining > 0)
       {
-        UFE.DelaySynchronizedAction(BlinkOut, .1f);
+        UFE.DelaySynchronizedAction(RunBlink, .1f);
       }
       else
       {
@@ -4119,7 +4124,7 @@ public class ControlsScript : MonoBehaviour
     }
     else
     {
-      UFE.DelaySynchronizedAction(BlinkOut, .1f);
+      UFE.DelaySynchronizedAction(RunBlink, .1f);
     }
   }
 

@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.Brawler;
 using System;
+using TMPro;
 using UFE3D;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Assets.McCoy.UI
     McCoyProgressBar healthBar = null;
 
     [SerializeField] float overrideHealth = -1.0f;
+
+    [SerializeField] TMP_Text alertText = null;
 
     McCoyStageData currentStage;
 
@@ -54,6 +57,18 @@ namespace Assets.McCoy.UI
       Destroy(uiRoot);
     }
 
+    protected override void SetAlertMessage(string msg)
+    {
+      alertText.text = msg;
+    }
+
+    protected override void OnNewAlert(string msg, ControlsScript player)
+    {
+      if (player == null)
+      {
+        alertText.text = msg;
+      }
+    }
     protected override void UpdatePlayerHealthBar(float percent)
     {
       healthBar.SetFill(overrideHealth >= 0.0f ? overrideHealth : percent);

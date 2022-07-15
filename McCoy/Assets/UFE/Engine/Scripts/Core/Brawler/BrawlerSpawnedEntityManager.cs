@@ -72,6 +72,43 @@ namespace UFE3D
         return count;
       }
 
+      public void PrintDebugger()
+      {
+        Debug.Log("Welcome to the Controls Scripts Debugger. Let's hope this never need to debug FluxCapacitor");
+        Debug.Log("#UFEControllers: " + controllers.Count);
+        Debug.Log("#ControlsScripts: " + controlsScripts.Count);
+
+        foreach(var c in controllers)
+        {
+          if(!controlsScripts.ContainsKey(c.Key))
+          {
+            Debug.Log("UFEControllers retained a key " + c.Key + " that controllers doesn't have. Is it player 1?");
+          }
+          if( c.Value == null )
+          {
+            Debug.Log("UFEController at " + c.Key + " was null");
+            if(controlsScripts[c.Key] != null)
+            {
+              Debug.Log("even weirder, the corresponding controller WASN'T null!");
+            }
+          }
+        }
+        foreach (var c in controlsScripts)
+        {
+          // don't reconsider places we've already examined in controllers
+          if (controllers.ContainsKey(c.Key)) continue;
+          Debug.Log("ID " + c.Key + " was found in controlScripts that didn't exist in controllers. You didn't expect this!");
+          if(c.Value == null)
+          {
+            Debug.Log("AND! It was null. Wait, that's good, right? is it good?");
+          }
+          else
+          {
+            Debug.Log("But it wasn't null! That's probably bad, right?");
+          }
+        }
+      }
+
       public void ReleaseController(int id)
       {
         availableIDs.Add(id);
