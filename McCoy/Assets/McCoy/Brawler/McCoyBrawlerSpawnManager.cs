@@ -10,6 +10,8 @@ namespace Assets.McCoy.Brawler
   using SpawnData = Dictionary<Factions, McCoyMobData>;
   public class McCoyBrawlerSpawnManager : MonoBehaviour
   {
+    public bool enableSpawning = false;
+
     // Faction -> <totalEnemiesRemaining, avgEnemiesAtOnce>
     Dictionary<Factions, int> spawnNumbers = new Dictionary<Factions, int>();
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();

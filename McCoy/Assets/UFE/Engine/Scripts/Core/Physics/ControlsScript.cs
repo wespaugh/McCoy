@@ -95,6 +95,8 @@ public class ControlsScript : MonoBehaviour
 
   public Text characterDebugger;
   public Text debugger;
+  public string debuggerText;
+  public bool debugOn;
   public string aiDebugger { get; set; }
   public CharacterDebugInfo debugInfo;
   public int playerNum;
@@ -837,6 +839,7 @@ public class ControlsScript : MonoBehaviour
       }
       if (inputDebugger != "") debugger.text += inputDebugger;
       if (aiDebugger != null && debugInfo.aiWeightList) debugger.text += aiDebugger;
+      debuggerText = debugger.text;
     }
   }
 

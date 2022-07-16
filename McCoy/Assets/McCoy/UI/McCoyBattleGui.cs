@@ -20,6 +20,8 @@ namespace Assets.McCoy.UI
 
     [SerializeField] TMP_Text alertText = null;
 
+    [SerializeField] TMP_Text debuggerText = null;
+
     McCoyStageData currentStage;
 
     private void Awake()
@@ -76,6 +78,22 @@ namespace Assets.McCoy.UI
 
     protected override void UpdateWonRounds()
     {
+    }
+
+    private void FixedUpdate()
+    {
+      if(UFE.config.debugOptions.debugMode)
+      {
+        string sb = "";
+        foreach(var controlScript in UFE.brawlerEntityManager.GetAllControlsScripts())
+        {
+          if(controlScript.Value.debugOn)
+          {
+            sb += $"{controlScript.Value.debuggerText}\n\n";
+          }
+        }
+        debuggerText.text = sb;
+      }
     }
   }
 }
