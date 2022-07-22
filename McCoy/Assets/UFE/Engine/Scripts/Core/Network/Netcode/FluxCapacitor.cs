@@ -659,7 +659,7 @@ public class FluxCapacitor
         ControlsScript p2ControlScript = UFE.GetControlsScript(2);
 
         // Make sure both characters are grounded
-        if (!p1ControlScript.Physics.IsGrounded() || !p2ControlScript.Physics.IsGrounded()) {
+        if (!p1ControlScript.Physics.IsGrounded() /*|| !p2ControlScript.Physics.IsGrounded()*/) {
             UFE.DelaySynchronizedAction(this.EndRound, .5);
             return;
         }
