@@ -5481,6 +5481,7 @@ MonoBehaviour:
       parryEnabled: 0
     attackMoves:
     - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
+    - {fileID: 11400000, guid: f6365bc5527919341831550ebbe64e33, type: 2}
     enabledBasicMovesToggle: 0
     basicMovesToggle: 1
     attackMovesToggle: 1
