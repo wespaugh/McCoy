@@ -86,7 +86,7 @@ namespace Assets.McCoy.Brawler
         foreach(var m in spawnNumbers)
         {
           totalMonstersRemaining -= m.Value;
-          if (totalMonstersRemaining < randomMonsterIndex )
+          if (totalMonstersRemaining < randomMonsterIndex && false)
           {
             spawnNumbers[m.Key]--;
             UFE.CreateRandomMonster();

@@ -1481,7 +1481,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       blockingCrouchingPose:
         animMap:
@@ -4009,12 +4009,13 @@ MonoBehaviour:
       getHitAir:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 2b3bbd5c0799a394cb0945b0a42319b4, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: dec6747cc011eea4a87b7889bf49d2d8,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 1503238656
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -4073,7 +4074,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4109,7 +4110,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:
@@ -5488,6 +5489,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     - {fileID: 11400000, guid: 54957a0f0ef3c584697fcde994080931, type: 2}
     - {fileID: 11400000, guid: a17b0b9e81296b14a87e4de28c77a3a4, type: 2}
+    - {fileID: 11400000, guid: f6365bc5527919341831550ebbe64e33, type: 2}
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
     attackMovesToggle: 1

@@ -4,6 +4,7 @@ using TMPro;
 using UFE3D;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.McCoy.UI
 {
@@ -22,10 +23,21 @@ namespace Assets.McCoy.UI
 
     [SerializeField] TMP_Text debuggerText = null;
 
+    [SerializeField] Button spawnButton = null;
+    [SerializeField] TMP_InputField xInput = null;
+    [SerializeField] TMP_InputField yInput = null;
+
     McCoyStageData currentStage;
 
     private void Awake()
     {
+      if(spawnButton != null)
+      {
+        spawnButton.onClick.AddListener(() =>
+        {
+          UFE.CreateRandomMonster(float.Parse(xInput.text), float.Parse(yInput.text));
+        });
+      }
       var camera2 = GameObject.Find("UI Camera");
       if(camera2.transform.childCount > 0)
       {
@@ -87,7 +99,7 @@ namespace Assets.McCoy.UI
         string sb = "";
         foreach(var controlScript in UFE.brawlerEntityManager.GetAllControlsScripts())
         {
-          if(controlScript.Value.debugOn)
+          if(controlScript.Value != null && controlScript.Value.debugOn)
           {
             sb += $"{controlScript.Value.debuggerText}\n\n";
           }

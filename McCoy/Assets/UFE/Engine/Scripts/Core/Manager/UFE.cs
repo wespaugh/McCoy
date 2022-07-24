@@ -4224,7 +4224,7 @@ public class UFE : MonoBehaviour, UFEInterface
     SceneManager.SetActiveScene(stageScene);
   }
 
-  public static void CreateRandomMonster()
+  public static void CreateRandomMonster(float? posX = null, float? posZ = null)
   {
     // initialize some bloke
     int newId = brawlerEntityManager.GetAvailableID();
@@ -4234,6 +4234,10 @@ public class UFE : MonoBehaviour, UFEInterface
     dx *= 10;
     float dy = dx > 0 ? UnityEngine.Random.Range(0.0f, 1.5f) : 0.0f;
     FPVector pos = UFE.config.selectedStage.position + new FPVector(dx, 0.0f, dy);
+    if(posX != null && posZ != null)
+    {
+      pos = new FPVector(posX.Value, 0.0f, posZ.Value);
+    }
     var cScript = SpawnCharacter(UFE.config.player2Character, newId, -1, pos, false, null, null, -1);
     brawlerEntityManager.SetControlsScript(cScript, newId);
     cScript.opControlsScript = p1ControlsScript;
