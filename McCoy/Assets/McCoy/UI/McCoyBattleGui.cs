@@ -35,7 +35,9 @@ namespace Assets.McCoy.UI
       {
         spawnButton.onClick.AddListener(() =>
         {
-          UFE.CreateRandomMonster(float.Parse(xInput.text), float.Parse(yInput.text));
+          float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
+          float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
+          UFE.CreateRandomMonster(x, z);
         });
       }
       var camera2 = GameObject.Find("UI Camera");

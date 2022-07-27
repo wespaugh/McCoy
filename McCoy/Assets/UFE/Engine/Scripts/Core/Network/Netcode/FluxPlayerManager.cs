@@ -392,7 +392,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsConfirmed(int player, long frame, out bool isReady)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isReady);
 			}
@@ -436,7 +436,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsPredicted(int player, long frame, out bool isPredicted)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsPredicted(frame, out isPredicted);
 			}
@@ -481,7 +481,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryCheckIfInputIsReady(int player, long frame, out bool isReady)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryCheckIfInputIsReady(frame, out isReady);
 			}
@@ -500,7 +500,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryConfirmPredictedInput(int player, long frame)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryConfirmPredictedInput(frame);
 			}
@@ -519,7 +519,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryGetInput(int player, long frame, out FrameInput? input)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryGetInput(frame, out input);
 			}
@@ -538,7 +538,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TryOverridePredictionWithConfirmedInput(int player, long frame)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TryOverridePredictionWithConfirmedInput(frame);
 			}
@@ -562,7 +562,7 @@ namespace UFE3D
 
 		public bool TrySetConfirmedInput(int player, long frame, FrameInput characterInput, bool overridePrediction)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				FluxPlayerInputBuffer buffer = this.GetPlayer(player).inputBuffer;
 				bool isPredicted = false;
@@ -616,7 +616,7 @@ namespace UFE3D
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public bool TrySetPredictedInput(int player, long frame, FrameInput characterInput)
 		{
-			if (player >= 1 && player <= NumberOfPlayers)
+			if (actorDictionary.ContainsKey(player))
 			{
 				return this.GetPlayer(player).inputBuffer.TrySetPredictedInput(frame, characterInput);
 			}

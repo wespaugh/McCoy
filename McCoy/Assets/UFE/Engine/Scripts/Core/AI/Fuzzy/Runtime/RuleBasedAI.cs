@@ -610,7 +610,7 @@ public class RuleBasedAI : RandomAI{
 					});
 					
 					self.aiDebugger = "";
-					if (self.debugger != null && UFE.config.debugOptions.debugMode && ai.debugMode && ai.debug_ReactionWeight){
+					if (/*self.debugger != null &&*/ UFE.config.debugOptions.debugMode && ai.debugMode && ai.debug_ReactionWeight){
 						self.aiDebugger = "-----AI Reaction Weights-----\n";
 						StringBuilder sb = new StringBuilder();
 						sb.Append("Instruction Set: ").Append(ai.instructionsName).AppendLine();

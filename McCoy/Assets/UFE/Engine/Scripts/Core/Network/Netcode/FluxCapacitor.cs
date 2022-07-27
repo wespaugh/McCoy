@@ -223,6 +223,27 @@ public class FluxCapacitor
         // We need to leave the confirmed information for a few extra frames
         // because we may need them later during a rollback.
         //-------------------------------------------------------------------------------------------------------------
+		foreach(var p in this.PlayerManager.actorDictionary)
+    {
+	  while (
+			p.Value.inputBuffer.FirstFrame < currentFrame - 1L
+			&&
+			p.Value.inputBuffer.FirstFrame < lastFrameWithSynchronizedInput - 1L
+			&&
+			p.Value.inputBuffer.FirstFrame < this._remotePlayerNextExpectedFrame
+			&&
+			(
+				p.Value.inputBuffer.FirstFrame < lastFrameWithSynchronizationMessage - 1L
+				||
+				p.Value.inputBuffer.MaxBufferSize > 0 &&
+				p.Value.inputBuffer.Count > p.Value.inputBuffer.MaxBufferSize * 3 / 4
+			)
+		)
+	  {
+		this.PlayerManager.player1.inputBuffer.RemoveNextInput();
+	  }
+	}
+		/*
         while (
 			this.PlayerManager.player1.inputBuffer.FirstFrame < currentFrame - 1L 
 			&&
@@ -256,6 +277,7 @@ public class FluxCapacitor
 		){
 			this.PlayerManager.player2.inputBuffer.RemoveNextInput();
 		}
+		*/
 
 		while(
 			this._history.FirstStoredFrame < currentFrame - 1L 
@@ -977,7 +999,8 @@ public class FluxCapacitor
 	protected virtual void ProcessInputBufferMessage(InputBufferMessage package){
 		// Check if the player number included in the package is valid...
 		int playerIndex = package.PlayerIndex;
-		if (playerIndex <= 0 || playerIndex > PlayerManager.NumberOfPlayers){
+		if (!PlayerManager.actorDictionary.ContainsKey(playerIndex))
+	{
 			throw new IndexOutOfRangeException(string.Format(
 				FluxCapacitor.PlayerIndexOutOfRangeMessage, 
 				playerIndex, 
@@ -1520,6 +1543,7 @@ public class FluxCapacitor
 
   public void RemovePlayer(int id)
   {
+	Debug.Log("Removing player from cache " + id);
     inputCache.Remove(id);
   }
   #endregion

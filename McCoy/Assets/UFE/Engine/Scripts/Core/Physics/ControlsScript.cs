@@ -787,59 +787,69 @@ public class ControlsScript : MonoBehaviour
     }
 
     // Run Debugger
-    if (!isAssist && debugger != null && UFE.config.debugOptions.debugMode)
+    if (!isAssist && UFE.config.debugOptions.debugMode)
     {
-      debugger.color = Color.cyan;
-      debugger.text = "";
+      string debuggerTextBuilder = "";
+      if (debugger != null)
+      {
+        debugger.text = "";
+      }
+
       if (UFE.config.debugOptions.debugMode &&
           (!UFE.config.debugOptions.trainingModeDebugger || UFE.gameMode == GameMode.TrainingRoom))
       {
-        debugger.text += "FPS: " + (1.0f / UFE.fixedDeltaTime) + "\n";
-        debugger.text += "-----Character Info-----\n";
-        if (debugInfo.lifePoints) debugger.text += "Life Points: " + currentLifePoints + "\n";
-        if (debugInfo.gaugePoints) debugger.text += "Gauge Points: " + currentGaugesPoints[0] + "\n";
-        if (debugInfo.position) debugger.text += "Position: " + worldTransform.position + "\n";
-        if (debugInfo.currentState) debugger.text += "State: " + currentState + "\n";
-        if (debugInfo.currentSubState) debugger.text += "Sub State: " + currentSubState + "\n";
-        if (debugInfo.currentState) debugger.text += "Potential Block: " + potentialBlock + "\n";
-        if (debugInfo.currentState) debugger.text += "Taking Off: " + myPhysicsScript.isTakingOff + "\n";
-        if (debugInfo.currentState) debugger.text += "Is Blocking: " + isBlocking + "\n";
-        if (debugInfo.currentState) debugger.text += "Is Crouching: " + isCrouching + "\n";
-        if (debugInfo.stunTime && stunTime > 0) debugger.text += "Stun Time: " + stunTime + "\n";
-        debugger.text += "IsGrounded? " + IsGrounded() + "\n";
+        debuggerTextBuilder += "FPS: " + (1.0f / UFE.fixedDeltaTime) + "\n";
+        debuggerTextBuilder += "-----Character Info-----\n";
+        if (debugInfo.lifePoints) debuggerTextBuilder += "Life Points: " + currentLifePoints + "\n";
+        if (debugInfo.gaugePoints) debuggerTextBuilder += "Gauge Points: " + currentGaugesPoints[0] + "\n";
+        if (debugInfo.position) debuggerTextBuilder += "Position: " + worldTransform.position + "\n";
+        if (debugInfo.currentState) debuggerTextBuilder += "State: " + currentState + "\n";
+        if (debugInfo.currentSubState) debuggerTextBuilder += "Sub State: " + currentSubState + "\n";
+        if (debugInfo.currentState) debuggerTextBuilder += "Potential Block: " + potentialBlock + "\n";
+        if (debugInfo.currentState) debuggerTextBuilder += "Taking Off: " + myPhysicsScript.isTakingOff + "\n";
+        if (debugInfo.currentState) debuggerTextBuilder += "Is Blocking: " + isBlocking + "\n";
+        if (debugInfo.currentState) debuggerTextBuilder += "Is Crouching: " + isCrouching + "\n";
+        if (debugInfo.stunTime && stunTime > 0) debuggerTextBuilder += "Stun Time: " + stunTime + "\n";
+        debuggerTextBuilder += "IsGrounded? " + IsGrounded() + "\n";
         if(opControlsScript != null)
         {
-          debugger.text += "Target ID: " + opControlsScript.playerNum + "\n";
+          debuggerTextBuilder += "Target ID: " + opControlsScript.playerNum + "\n";
         }
         if (opControlsScript != null && opControlsScript.comboHits > 0)
         {
-          debugger.text += "Current Combo\n";
-          if (debugInfo.comboHits) debugger.text += "- Total Hits: " + opControlsScript.comboHits + "\n";
+          debuggerTextBuilder += "Current Combo\n";
+          if (debugInfo.comboHits) debuggerTextBuilder += "- Total Hits: " + opControlsScript.comboHits + "\n";
           if (debugInfo.comboDamage)
           {
-            debugger.text += "- Total Damage: " + opControlsScript.comboDamage + "\n";
-            debugger.text += "- Hit Damage: " + opControlsScript.comboHitDamage + "\n";
+            debuggerTextBuilder += "- Total Damage: " + opControlsScript.comboDamage + "\n";
+            debuggerTextBuilder += "- Hit Damage: " + opControlsScript.comboHitDamage + "\n";
           }
         }
 
         // Other uses
-        if (potentialParry > 0) debugger.text += "Parry Window: " + potentialParry + "\n";
-        //debugger.text += "Air Jumps: "+ myPhysicsScript.currentAirJumps + "\n";
-        //debugger.text += "Horizontal Force: "+ myPhysicsScript.horizontalForce + "\n";
-        //debugger.text += "Vertical Force: "+ myPhysicsScript.verticalForce + "\n";
+        if (potentialParry > 0) debuggerTextBuilder += "Parry Window: " + potentialParry + "\n";
+        //debuggerTextBuilder += "Air Jumps: "+ myPhysicsScript.currentAirJumps + "\n";
+        //debuggerTextBuilder += "Horizontal Force: "+ myPhysicsScript.horizontalForce + "\n";
+        //debuggerTextBuilder += "Vertical Force: "+ myPhysicsScript.verticalForce + "\n";
 
         if (UFE.config.debugOptions.p1DebugInfo.currentMove && currentMove != null)
         {
-          debugger.text += "\n-----Move Info-----\n";
-          debugger.text += "Move: " + currentMove.name + "\n";
-          debugger.text += "Frames: " + currentMove.currentFrame + "/" + (currentMove.totalFrames - 1) + "\n";
-          debugger.text += "Tick: " + currentMove.currentTick.ToString() + "\n";
-          debugger.text += "Animation Speed: " + myMoveSetScript.GetAnimationSpeed() + "\n";
+          debuggerTextBuilder += "\n-----Move Info-----\n";
+          debuggerTextBuilder += "Move: " + currentMove.name + "\n";
+          debuggerTextBuilder += "Frames: " + currentMove.currentFrame + "/" + (currentMove.totalFrames - 1) + "\n";
+          debuggerTextBuilder += "Tick: " + currentMove.currentTick.ToString() + "\n";
+          debuggerTextBuilder += "Animation Speed: " + myMoveSetScript.GetAnimationSpeed() + "\n";
         }
       }
-      if (inputDebugger != "") debugger.text += inputDebugger;
-      if (aiDebugger != null && debugInfo.aiWeightList) debugger.text += aiDebugger;
-      debuggerText = debugger.text;
+      if (inputDebugger != "") debuggerTextBuilder += inputDebugger;
+      if (aiDebugger != null && debugInfo.aiWeightList) debuggerTextBuilder += aiDebugger;
+
+      debuggerText = debuggerTextBuilder;
+      if (debugger != null)
+      {
+        debugger.text = debuggerTextBuilder;
+        debugger.color = Color.cyan;
+      }
     }
   }
 
