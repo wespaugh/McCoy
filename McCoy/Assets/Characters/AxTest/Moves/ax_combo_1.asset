@@ -104,7 +104,7 @@ MonoBehaviour:
     basicMoveLimitation: 
     possibleMoveStates: []
     basicMovesToggle: 0
-    statesToggle: 0
+    statesToggle: 1
   moveClassification:
     attackType: 0
     hitType: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     hitBoxType: 0
     anyHitType: 1
     hitType: 0
-    ignoreInputs: 1
+    ignoreInputs: 0
     ignorePlayerConditions: 0
     ignoreGauge: 0
     nextMoveStartupFrame: 1
