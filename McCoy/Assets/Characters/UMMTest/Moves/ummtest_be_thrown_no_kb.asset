@@ -237,6 +237,8 @@ MonoBehaviour:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
+    _hitDepth:
+      _serializedValue: 2147483648
     resetPreviousHorizontalPush: 0
     resetPreviousVerticalPush: 0
     resetPreviousSidewaysPush: 0

@@ -19,7 +19,7 @@ MonoBehaviour:
     customHitBoxDefinition: {fileID: 11400000, guid: 1f5097f274b706c48a18ad1d272edac6,
       type: 2}
     length:
-      _serializedValue: 3650722048
+      _serializedValue: 1503238656
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
@@ -46,10 +46,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 51
-  startUpFrames: 25
-  activeFrames: 13
-  recoveryFrames: 13
+  totalFrames: 22
+  startUpFrames: 10
+  activeFrames: 5
+  recoveryFrames: 7
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 25
-    activeFramesEnds: 37
+  - activeFramesBegin: 10
+    activeFramesEnds: 14
     hitConfirmType: 1
     throwMove: {fileID: 11400000, guid: a17b0b9e81296b14a87e4de28c77a3a4, type: 2}
     techMove: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
     crouchingHit: 1
     airHit: 1
     stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 

@@ -234,13 +234,15 @@ MonoBehaviour:
     frameAdvantageOnHit: 0
     frameAdvantageOnBlock: 0
     damageScaling: 0
-    damageType: 0
+    damageType: 1
     _damageOnHit:
       _serializedValue: 214748364800
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
+    _hitDepth:
+      _serializedValue: 42949672960
     resetPreviousHorizontalPush: 0
     resetPreviousVerticalPush: 0
     resetPreviousSidewaysPush: 0

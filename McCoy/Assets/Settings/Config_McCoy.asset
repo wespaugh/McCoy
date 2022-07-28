@@ -270,7 +270,7 @@ MonoBehaviour:
     minZoom: 40
     maxZoom: 60
     _maxDistance:
-      _serializedValue: 77309411328
+      _serializedValue: 4294967296000
     rotationSpeed: 12
     heightOffSet: 0.5
     rotationOffSet: {x: 0, y: 3.5, z: 0}

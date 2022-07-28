@@ -19,13 +19,13 @@ namespace UFE3D
     /// <param name="blockableArea">Blockable area to be tested against.</param>
     /// <param name="invertHitBoxes">Mirror hitboxes positions horizontally.</param>
     /// <param name="invertBlockableArea">Mirror blockable area horizontally.</param>
-    public static FPVector[] TestCollision(HitBox[] hitBoxes, BlockArea blockableArea, bool invertHitBoxes = false, bool invertBlockableArea = false)
+    public static FPVector[] TestCollision(HitBox[] hitBoxes, BlockArea blockableArea, Fix64 maxZ, bool invertHitBoxes = false, bool invertBlockableArea = false)
     {
       if (blockableArea == null) return new FPVector[0];
 
       foreach (HitBox hitBox in hitBoxes)
       {
-        if (PushForce(hitBox, blockableArea, invertHitBoxes, invertBlockableArea) > 0)
+        if (PushForce(hitBox, blockableArea, maxZ, invertHitBoxes, invertBlockableArea) > 0)
           return new FPVector[] { blockableArea.position, hitBox.mappedPosition, (blockableArea.position + hitBox.mappedPosition) / 2 };
       }
 
@@ -46,7 +46,7 @@ namespace UFE3D
     /// <param name="hitConfirmType">Hit confirm type being tested.</param>
     /// <param name="invertHitBoxes">Mirror hitboxes positions horizontally.</param>
     /// <param name="invertHurtBoxes">Mirror hurtboxes positions horizontally.</param>
-    public static FPVector[] TestCollision(HitBox[] hitBoxes, HurtBox[] hurtBoxes, HitConfirmType hitConfirmType, bool invertHitBoxes = false, bool invertHurtBoxes = false)
+    public static FPVector[] TestCollision(HitBox[] hitBoxes, HurtBox[] hurtBoxes, HitConfirmType hitConfirmType, Fix64 maxZDiff, bool invertHitBoxes = false, bool invertHurtBoxes = false)
     {
       foreach (HitBox hitBox in hitBoxes)
       {
@@ -62,7 +62,7 @@ namespace UFE3D
           if (hitBox.collisionType == CollisionType.projectileInvincibleCollider && hurtBox.type == HurtBoxType.projectile) continue;
           if (hitBox.collisionType == CollisionType.physicalInvincibleCollider && hurtBox.type == HurtBoxType.physical) continue;
 
-          if (PushForce(hitBox, hurtBox, invertHitBoxes, invertHurtBoxes) > 0)
+          if (PushForce(hitBox, hurtBox, maxZDiff, invertHitBoxes, invertHurtBoxes) > 0)
           {
             if (hitConfirmType == HitConfirmType.Hit) hitBox.state = 1;
             return new FPVector[] { hurtBox.position, hitBox.mappedPosition, (hurtBox.position + hitBox.mappedPosition) / 2 };
@@ -85,7 +85,7 @@ namespace UFE3D
     /// <param name="opHitBoxes">Array of hitboxes.</param>
     /// <param name="invertHitBoxes">Mirror hitboxes positions horizontally.</param>
     /// <param name="invertOpHitBoxes">Mirror opposing hitboxes positions horizontally.</param>
-    public static Fix64 TestCollision(HitBox[] hitBoxes, HitBox[] opHitBoxes, bool invertHitBoxes = false, bool invertOpHitBoxes = false)
+    public static Fix64 TestCollision(HitBox[] hitBoxes, HitBox[] opHitBoxes, Fix64 zMax, bool invertHitBoxes = false, bool invertOpHitBoxes = false)
     {
       Fix64 totalPushForce = 0;
       foreach (HitBox hitBox in hitBoxes)
@@ -95,7 +95,7 @@ namespace UFE3D
         {
           if (opHitBox.collisionType != CollisionType.bodyCollider) continue;
 
-          totalPushForce += PushForce(hitBox, opHitBox, invertHitBoxes, invertOpHitBoxes);
+          totalPushForce += PushForce(hitBox, opHitBox, zMax, invertHitBoxes, invertOpHitBoxes);
         }
       }
       return totalPushForce;
@@ -105,32 +105,31 @@ namespace UFE3D
 
     #region private methods
     /// <summary>Turn variables from hitbox and blockableArea into generic values</summary>
-    private static Fix64 PushForce(HitBox hitBox, BlockArea blockableArea, bool invertHitBoxes = false, bool invertBlockableArea = false)
+    private static Fix64 PushForce(HitBox hitBox, BlockArea blockableArea, Fix64 zMax, bool invertHitBoxes = false, bool invertBlockableArea = false)
     {
-      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, blockableArea.shape, blockableArea._rect, blockableArea._radius, blockableArea.position, invertBlockableArea);
+      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, blockableArea.shape, blockableArea._rect, blockableArea._radius, blockableArea.position, invertBlockableArea, zMax);
     }
 
     /// <summary>Turn variables from hitbox and hurtbox into generic values</summary>
-    private static Fix64 PushForce(HitBox hitBox, HurtBox hurtBox, bool invertHitBoxes = false, bool invertHurtBoxes = false)
+    private static Fix64 PushForce(HitBox hitBox, HurtBox hurtBox, Fix64 zMax, bool invertHitBoxes = false, bool invertHurtBoxes = false)
     {
-      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, hurtBox.shape, hurtBox._rect, hurtBox._radius, hurtBox.position, invertHurtBoxes);
+      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, hurtBox.shape, hurtBox._rect, hurtBox._radius, hurtBox.position, invertHurtBoxes, zMax);
     }
 
     /// <summary>Turn variables from both hitboxes into generic values</summary>
-    private static Fix64 PushForce(HitBox hitBox, HitBox opHitBox, bool invertHitBoxes = false, bool invertOpHitBoxes = false)
+    private static Fix64 PushForce(HitBox hitBox, HitBox opHitBox, Fix64 zMax, bool invertHitBoxes = false, bool invertOpHitBoxes = false)
     {
-      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, opHitBox.shape, opHitBox._rect, opHitBox._radius, opHitBox.mappedPosition, invertOpHitBoxes);
+      return PushForce(hitBox.shape, hitBox._rect, hitBox._radius, hitBox.mappedPosition, invertHitBoxes, opHitBox.shape, opHitBox._rect, opHitBox._radius, opHitBox.mappedPosition, invertOpHitBoxes, zMax);
     }
 
     /// <summary>Return the intersection value between the 2 objects</summary>
-    private static Fix64 PushForce(HitBoxShape shape1, FPRect rect1, Fix64 radius1, FPVector position1, bool invert1, HitBoxShape shape2, FPRect rect2, Fix64 radius2, FPVector position2, bool invert2)
+    private static Fix64 PushForce(HitBoxShape shape1, FPRect rect1, Fix64 radius1, FPVector position1, bool invert1, HitBoxShape shape2, FPRect rect2, Fix64 radius2, FPVector position2, bool invert2, Fix64 zMax )
     {
       Fix64 pushForce = 0;
 
       if (!UFE.config.detect3D_Hits)
       {
-        float smol = 0.5f;
-        if(Mathf.Abs((float)position1.z - (float)position2.z) > smol)
+        if(Mathf.Abs((float)position1.z - (float)position2.z) > zMax)
         {
           return 0.0f;
         }

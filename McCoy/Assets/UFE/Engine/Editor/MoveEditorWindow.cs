@@ -942,6 +942,7 @@ public class MoveEditorWindow : EditorWindow {
                                                     moveInfo.hits[i].airHit = EditorGUILayout.Toggle("In the Air", moveInfo.hits[i].airHit, toggleStyle);
                                                     moveInfo.hits[i].stunHit = EditorGUILayout.Toggle("Stunned", moveInfo.hits[i].stunHit, toggleStyle);
                                                     moveInfo.hits[i].downHit = EditorGUILayout.Toggle("Down", moveInfo.hits[i].downHit, toggleStyle);
+						  moveInfo.hits[i].zRange = EditorGUILayout.FloatField("Brawler Z Range:", (float)moveInfo.hits[i].zRange);
 
                                                     PlayerConditionsGroup("Advanced Filters", moveInfo.hits[i].opponentConditions, false);
 
@@ -2594,6 +2595,7 @@ public class MoveEditorWindow : EditorWindow {
 								}EditorGUILayout.EndHorizontal();
 								moveInfo.appliedForces[i].resetPreviousHorizontal = EditorGUILayout.Toggle("Reset X Force", moveInfo.appliedForces[i].resetPreviousHorizontal, toggleStyle);
 								moveInfo.appliedForces[i].resetPreviousVertical = EditorGUILayout.Toggle("Reset Y Force", moveInfo.appliedForces[i].resetPreviousVertical, toggleStyle);
+				moveInfo.appliedForces[i].relativeToOpponent = EditorGUILayout.Toggle("Relative To Opponent", moveInfo.appliedForces[i].relativeToOpponent, toggleStyle);
                                 if (moveInfo.gameplayType == GameplayType._2DFighter)
                                 {
                                     moveInfo.appliedForces[i]._force = FPVector.ToFPVector(EditorGUILayout.Vector2Field("Force Applied:", moveInfo.appliedForces[i]._force.ToVector2()));

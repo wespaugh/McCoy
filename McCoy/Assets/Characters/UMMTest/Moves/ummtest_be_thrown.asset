@@ -46,8 +46,8 @@ MonoBehaviour:
   fixedSpeed: 1
   animSpeedKeyFrame: []
   totalFrames: 61
-  startUpFrames: 20
-  activeFrames: 41
+  startUpFrames: 31
+  activeFrames: 30
   recoveryFrames: 0
   applyRootMotion: 0
   lockXMotion: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     recoverySpeed: 0
     hitConfirmType: 0
     preferableDistance: 0
-    gaugeUsage: 0
+    gaugeUsage: 2
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
@@ -120,14 +120,15 @@ MonoBehaviour:
   sortOrder: []
   particleEffects: []
   appliedForces:
-  - castingFrame: 24
+  - castingFrame: 22
     resetPreviousVertical: 0
     resetPreviousHorizontal: 0
+    relativeToOpponent: 1
     _force:
       x:
-        _serializedValue: 85899345920
+        _serializedValue: -64424509440
       y:
-        _serializedValue: 64424509440
+        _serializedValue: 107374182400
       z:
         _serializedValue: 0
   slowMoEffects: []
@@ -151,7 +152,7 @@ MonoBehaviour:
     characterSpecific: 0
     move: {fileID: 11400000, guid: ec6ae59f036f8c84e93fb651a0104cfd, type: 2}
     characterSpecificMoves:
-    - move: {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+    - move: {fileID: 11400000, guid: b16cad7c600f0c944be249bd452f580b, type: 2}
       characterName: Ax
     animationPreview: 0
     movesToggle: 1
@@ -161,7 +162,7 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 20
+  - activeFramesBegin: 31
     activeFramesEnds: 60
     hitConfirmType: 0
     throwMove: {fileID: 0}
@@ -178,6 +179,8 @@ MonoBehaviour:
     crouchingHit: 1
     airHit: 1
     stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 
@@ -254,7 +257,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 21474836480
+      _serializedValue: 107374182400
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -367,7 +370,7 @@ MonoBehaviour:
         z:
           _serializedValue: 0
     hitToggle: 1
-    damageOptionsToggle: 1
+    damageOptionsToggle: 0
     hitStunOptionsToggle: 0
     forceOptionsToggle: 0
     opponentForceToggle: 0
@@ -376,7 +379,7 @@ MonoBehaviour:
     overrideEventsToggle: 0
     hitConditionsToggle: 0
     pullInToggle: 0
-    hurtBoxesToggle: 1
+    hurtBoxesToggle: 0
     wallBounceToggle: 0
     groundBounceToggle: 0
     hurtBoxes:

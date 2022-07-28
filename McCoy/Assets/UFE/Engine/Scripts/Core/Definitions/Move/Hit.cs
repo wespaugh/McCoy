@@ -24,6 +24,7 @@ public class Hit : ICloneable
     public bool crouchingHit = true;
     public bool airHit = true;
     public bool stunHit = true;
+  public Fix64 zRange = 0.5f;
     public bool allowMultiHit = true;
     public PlayerConditions opponentConditions = new PlayerConditions();
 

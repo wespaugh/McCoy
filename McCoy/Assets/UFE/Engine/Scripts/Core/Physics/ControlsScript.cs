@@ -2120,7 +2120,15 @@ public class ControlsScript : MonoBehaviour
       if (!addedForce.casted && move.currentFrame >= addedForce.castingFrame)
       {
         myPhysicsScript.ResetForces(addedForce.resetPreviousHorizontal, addedForce.resetPreviousVertical);
-        myPhysicsScript.AddForce(addedForce._force, GetDirection(), true);
+        if (addedForce.relativeToOpponent && opControlsScript != null)
+        {
+          int dir = opControlsScript.worldTransform.position.x > worldTransform.position.x ? -1 : 1;
+          myPhysicsScript.AddForce(addedForce._force, dir, true);
+        }
+        else
+        {
+          myPhysicsScript.AddForce(addedForce._force, GetDirection(), true);
+        }
         addedForce.casted = true;
       }
     }
@@ -2554,7 +2562,7 @@ public class ControlsScript : MonoBehaviour
         if (!opControlsScript.isBlocking
             && !opControlsScript.blockStunned
             && opControlsScript.currentSubState != SubStates.Stunned
-            && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, myHitBoxesScript.blockableArea, opControlsScript.mirror > 0, mirror > 0).Length > 0)
+            && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, myHitBoxesScript.blockableArea, 0.5, opControlsScript.mirror > 0, mirror > 0).Length > 0)
         {
           opControlsScript.CheckBlocking(true);
         }
@@ -2670,182 +2678,200 @@ public class ControlsScript : MonoBehaviour
           activeHurtBoxes = hit.hurtBoxes;
           if (hit.impactList == null) hit.impactList = new List<ControlsScript>();
 
-          if ((opControlsScript.HitBoxes == null)
-          || (!hit.allowMultiHit && opControlsScript.HitBoxes.isHit)
-          || (hit.continuousHit && (opControlsScript.HitBoxes.isHit || move.currentTick < move.currentFrame))
-          || (!hit.continuousHit && hit.impactList.Contains(opControlsScript))
-          || (!opControlsScript.ValidateHit(hit))) continue;
-
-          foreach (HurtBox hurtBox in activeHurtBoxes)
+          foreach (var opponentDict in UFE.brawlerEntityManager.GetAllControlsScripts())
           {
-            if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+            ControlsScript opponent = opponentDict.Value;
+            if(opponent == this || opponent == null)
             {
-              CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[hurtBox.hitBoxDefinitionIndex];
-
-              hurtBox.shape = hitboxDef.shape;
-              hurtBox._radius = hitboxDef.activeFrames[move.currentFrame].radius;
-              hurtBox._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
-              FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
-              if (mirror == 1) newPosition.x *= -1;
-              hurtBox.position = newPosition + worldTransform.position;
+              continue;
             }
-            else
+            if (opponent == null) Debug.Log("null opponent");
+            if (hit == null) Debug.Log("null hit");
+            if (opponent.HitBoxes == null) Debug.Log("null HitBoxes");
+            if (move == null) Debug.Log("null move");
+            if (hit.impactList== null) Debug.Log("null impact list");
+
+            if ((opponent.HitBoxes == null)
+            || (!hit.allowMultiHit && opponent.HitBoxes.isHit)
+            || (hit.continuousHit && (opponent.HitBoxes.isHit || move.currentTick < move.currentFrame))
+            || (!hit.continuousHit && hit.impactList.Contains(opponent))
+            || (!opponent.ValidateHit(hit))) continue;
+
+            foreach (HurtBox hurtBox in activeHurtBoxes)
             {
-              if (UFE.config.gameplayType == GameplayType._2DFighter)
+              if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
               {
-                hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart);
-                if (hurtBox.shape == HitBoxShape.circle)
-                {
-                  if (mirror == 1) hurtBox._offSet.x *= -1;
-                  hurtBox.position += hurtBox._offSet;
-                }
+                CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[hurtBox.hitBoxDefinitionIndex];
+
+                hurtBox.shape = hitboxDef.shape;
+                hurtBox._radius = hitboxDef.activeFrames[move.currentFrame].radius;
+                hurtBox._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
+                FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
+                if (mirror == 1) newPosition.x *= -1;
+                hurtBox.position = newPosition + worldTransform.position;
               }
-#if !UFE_LITE && !UFE_BASIC
               else
               {
-                hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart, true);
-                hurtBox.position += hurtBox._offSet;
-                hurtBox.position = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * hurtBox.position) + worldTransform.position;
-              }
+                if (UFE.config.gameplayType == GameplayType._2DFighter)
+                {
+                  hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart);
+                  if (hurtBox.shape == HitBoxShape.circle)
+                  {
+                    if (mirror == 1) hurtBox._offSet.x *= -1;
+                    hurtBox.position += hurtBox._offSet;
+                  }
+                }
+#if !UFE_LITE && !UFE_BASIC
+                else
+                {
+                  hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart, true);
+                  hurtBox.position += hurtBox._offSet;
+                  hurtBox.position = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * hurtBox.position) + worldTransform.position;
+                }
 #endif
 
-              hurtBox.rendererBounds = myHitBoxesScript.GetBounds();
-            }
-          }
-
-          FPVector[] collisionVectors = CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, activeHurtBoxes, hit.hitConfirmType, false, mirror > 0);
-          if (collisionVectors.Length > 0)
-          { // HURTBOX TEST
-            Fix64 newAnimSpeed = GetHitAnimationSpeed(hit.hitStrength);
-            Fix64 freezingTime = GetHitFreezingTime(hit.hitStrength);
-
-            // Tech Throw
-            if (hit.hitConfirmType == HitConfirmType.Throw
-                && hit.techable
-                && opControlsScript.currentMove != null
-                && opControlsScript.currentMove.IsThrow(true)
-                )
-            {
-              CastMove(hit.techMove, true);
-              opControlsScript.CastMove(opControlsScript.currentMove.GetTechMove(), true);
-              return;
-
-              // Throw
-            }
-            else if (hit.hitConfirmType == HitConfirmType.Throw)
-            {
-              CastMove(hit.throwMove, true);
-              return;
-
-              // Parry
-            }
-            else if (opControlsScript.potentialParry > 0
-                && opControlsScript.currentMove == null
-                && hit.hitConfirmType != HitConfirmType.Throw
-                && opControlsScript.TestParryStances(hit.hitType))
-            {
-              opControlsScript.GetHitParry(hit, move.totalFrames - move.currentFrame, collisionVectors, this);
-              foreach (GaugeInfo gaugeInfo in move.gauges)
-              {
-                opControlsScript.AddGauge(gaugeInfo._opGaugeGainOnParry, (int)gaugeInfo.targetGauge);
+                hurtBox.rendererBounds = myHitBoxesScript.GetBounds();
               }
-              move.hitConfirmOnParry = true;
-
-              myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
-              if (hit.applyDifferentSelfBlockForce)
-                myPhysicsScript.AddForce(hit._appliedForceBlock, GetDirection(), true);
-              else
-                myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
             }
-            // Block
-            else if (opControlsScript.currentSubState != SubStates.Stunned
-                && opControlsScript.currentMove == null
-                && opControlsScript.isBlocking
-                && opControlsScript.TestBlockStances(hit.hitType)
-                && !hit.unblockable)
+
+            FPVector[] collisionVectors = CollisionManager.TestCollision(opponent.HitBoxes.hitBoxes, activeHurtBoxes, hit.hitConfirmType, hit.zRange, false, mirror > 0);
+            if (collisionVectors.Length > 0)
             {
-              opControlsScript.GetHitBlocking(hit, move.totalFrames - move.currentFrame, collisionVectors, (UFE.config.gameplayType != GameplayType._2DFighter), this);
-              foreach (GaugeInfo gaugeInfo in move.gauges)
+              this.opControlsScript = opponent;
+              opInfo = opponent.myInfo;
+
+              // HURTBOX TEST
+              Fix64 newAnimSpeed = GetHitAnimationSpeed(hit.hitStrength);
+              Fix64 freezingTime = GetHitFreezingTime(hit.hitStrength);
+
+              // Tech Throw
+              if (hit.hitConfirmType == HitConfirmType.Throw
+                  && hit.techable
+                  && opponent.currentMove != null
+                  && opponent.currentMove.IsThrow(true)
+                  )
               {
-                AddGauge(gaugeInfo._gaugeGainOnBlock, (int)gaugeInfo.targetGauge);
-                opControlsScript.AddGauge(gaugeInfo._opGaugeGainOnBlock, (int)gaugeInfo.targetGauge);
+                CastMove(hit.techMove, true);
+                opponent.CastMove(opponent.currentMove.GetTechMove(), true);
+                return;
+
+                // Throw
               }
-              move.hitConfirmOnBlock = true;
-
-              if (hit.overrideHitEffectsBlock)
+              else if (hit.hitConfirmType == HitConfirmType.Throw)
               {
-                newAnimSpeed = hit.hitEffectsBlock._animationSpeed;
-                freezingTime = hit.hitEffectsBlock._freezingTime;
+                CastMove(hit.throwMove, true);
+                return;
+
+                // Parry
               }
-
-              myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
-              if (hit.applyDifferentSelfBlockForce)
-                myPhysicsScript.AddForce(hit._appliedForceBlock, GetDirection(), true);
-              else
-                myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
-            }
-            // Hit
-            else
-            {
-              opControlsScript.GetHit(hit, move.totalFrames - move.currentFrame, collisionVectors, false, this);
-              foreach (GaugeInfo gaugeInfo in move.gauges)
+              else if (opponent.potentialParry > 0
+                  && opponent.currentMove == null
+                  && hit.hitConfirmType != HitConfirmType.Throw
+                  && opponent.TestParryStances(hit.hitType))
               {
-                AddGauge(gaugeInfo._gaugeGainOnHit, (int)gaugeInfo.targetGauge);
-                opControlsScript.AddGauge(gaugeInfo._opGaugeGainOnHit, (int)gaugeInfo.targetGauge);
-              }
-
-              if (hit.pullSelfIn.position != FPVector.zero)
-              {
-                activePullIn = new PullIn();
-                FPVector newPos = hit.pullSelfIn.position;
-                newPos.x *= -mirror;
-                activePullIn.position = opControlsScript.worldTransform.position + newPos;
-                activePullIn.speed = hit.pullSelfIn.speed;
-                activePullIn._targetDistance = FPVector.Distance(worldTransform.position, activePullIn.position);
-                activePullIn.forceGrounded = hit.pullSelfIn.forceGrounded;
-
-                if (hit.pullSelfIn.forceGrounded)
+                opponent.GetHitParry(hit, move.totalFrames - move.currentFrame, collisionVectors, this);
+                foreach (GaugeInfo gaugeInfo in move.gauges)
                 {
-                  activePullIn.position.y = 0;
-                  myPhysicsScript.ForceGrounded();
+                  opponent.AddGauge(gaugeInfo._opGaugeGainOnParry, (int)gaugeInfo.targetGauge);
+                }
+                move.hitConfirmOnParry = true;
+
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
+                if (hit.applyDifferentSelfBlockForce)
+                  myPhysicsScript.AddForce(hit._appliedForceBlock, GetDirection(), true);
+                else
+                  myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
+              }
+              // Block
+              else if (opponent.currentSubState != SubStates.Stunned
+                  && opponent.currentMove == null
+                  && opponent.isBlocking
+                  && opponent.TestBlockStances(hit.hitType)
+                  && !hit.unblockable)
+              {
+                opponent.GetHitBlocking(hit, move.totalFrames - move.currentFrame, collisionVectors, (UFE.config.gameplayType != GameplayType._2DFighter), this);
+                foreach (GaugeInfo gaugeInfo in move.gauges)
+                {
+                  AddGauge(gaugeInfo._gaugeGainOnBlock, (int)gaugeInfo.targetGauge);
+                  opponent.AddGauge(gaugeInfo._opGaugeGainOnBlock, (int)gaugeInfo.targetGauge);
+                }
+                move.hitConfirmOnBlock = true;
+
+                if (hit.overrideHitEffectsBlock)
+                {
+                  newAnimSpeed = hit.hitEffectsBlock._animationSpeed;
+                  freezingTime = hit.hitEffectsBlock._freezingTime;
+                }
+
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
+                if (hit.applyDifferentSelfBlockForce)
+                  myPhysicsScript.AddForce(hit._appliedForceBlock, GetDirection(), true);
+                else
+                  myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
+              }
+              // Hit
+              else
+              {
+                opponent.GetHit(hit, move.totalFrames - move.currentFrame, collisionVectors, false, this);
+                foreach (GaugeInfo gaugeInfo in move.gauges)
+                {
+                  AddGauge(gaugeInfo._gaugeGainOnHit, (int)gaugeInfo.targetGauge);
+                  opponent.AddGauge(gaugeInfo._opGaugeGainOnHit, (int)gaugeInfo.targetGauge);
+                }
+
+                if (hit.pullSelfIn.position != FPVector.zero)
+                {
+                  activePullIn = new PullIn();
+                  FPVector newPos = hit.pullSelfIn.position;
+                  newPos.x *= -mirror;
+                  activePullIn.position = opponent.worldTransform.position + newPos;
+                  activePullIn.speed = hit.pullSelfIn.speed;
+                  activePullIn._targetDistance = FPVector.Distance(worldTransform.position, activePullIn.position);
+                  activePullIn.forceGrounded = hit.pullSelfIn.forceGrounded;
+
+                  if (hit.pullSelfIn.forceGrounded)
+                  {
+                    activePullIn.position.y = 0;
+                    myPhysicsScript.ForceGrounded();
+                  }
+                }
+
+                move.hitConfirmOnStrike = true;
+
+                if (hit.overrideHitEffects)
+                {
+                  newAnimSpeed = hit.hitEffects._animationSpeed;
+                  freezingTime = hit.hitEffects._freezingTime;
+                }
+
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
+                if (hit.applyDifferentSelfAirForce && !opponent.Physics.IsGrounded())
+                  myPhysicsScript.AddForce(hit._appliedForceAir, GetDirection(), true);
+                else
+                  myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
+              }
+
+              // Test position boundaries
+              if (UFE.config.gameplayType == GameplayType._2DFighter)
+              {
+                if ((opponent.worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 2
+                    || opponent.worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 2)
+                    && IsGrounded() && !UFE.config.comboOptions.neverCornerPush && hit.cornerPush)
+                {
+                  myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, false);
+                  myPhysicsScript.AddForce(
+                      new FPVector(hit._pushForce.x + (opponent.Physics.airTime * opInfo.physics._friction), 0, 0), -GetDirection(), true);
                 }
               }
 
-              move.hitConfirmOnStrike = true;
-
-              if (hit.overrideHitEffects)
+              // Apply freezing effect
+              if (opponent.Physics.freeze)
               {
-                newAnimSpeed = hit.hitEffects._animationSpeed;
-                freezingTime = hit.hitEffects._freezingTime;
+                HitPause(newAnimSpeed * .01);
+                UFE.DelaySynchronizedAction(this.HitUnpause, freezingTime);
               }
-
-              myPhysicsScript.ResetForces(hit.resetPreviousHorizontal, hit.resetPreviousVertical, hit.resetPreviousSideways);
-              if (hit.applyDifferentSelfAirForce && !opControlsScript.Physics.IsGrounded())
-                myPhysicsScript.AddForce(hit._appliedForceAir, GetDirection(), true);
-              else
-                myPhysicsScript.AddForce(hit._appliedForce, GetDirection(), true);
+              hit.impactList.Add(opponent);
             }
-
-            // Test position boundaries
-            if (UFE.config.gameplayType == GameplayType._2DFighter)
-            {
-              if ((opControlsScript.worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 2
-                  || opControlsScript.worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 2)
-                  && IsGrounded() && !UFE.config.comboOptions.neverCornerPush && hit.cornerPush)
-              {
-                myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, false);
-                myPhysicsScript.AddForce(
-                    new FPVector(hit._pushForce.x + (opControlsScript.Physics.airTime * opInfo.physics._friction), 0, 0), -GetDirection(), true);
-              }
-            }
-
-            // Apply freezing effect
-            if (opControlsScript.Physics.freeze)
-            {
-              HitPause(newAnimSpeed * .01);
-              UFE.DelaySynchronizedAction(this.HitUnpause, freezingTime);
-            }
-            hit.impactList.Add(opControlsScript);
           }
         }
         myHitBoxesScript.activeHurtBoxes = activeHurtBoxes;

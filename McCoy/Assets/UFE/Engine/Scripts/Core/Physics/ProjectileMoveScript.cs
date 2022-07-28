@@ -227,7 +227,7 @@ namespace UFE3D
       if (!opControlsScript.isBlocking
           && !opControlsScript.blockStunned
           && opControlsScript.currentSubState != SubStates.Stunned
-          && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, blockableArea, opControlsScript.mirror > 0, mirror > 0).Length > 0)
+          && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, blockableArea, 0.5f, opControlsScript.mirror > 0, mirror > 0).Length > 0)
       {
         opControlsScript.CheckBlocking(true);
       }
@@ -280,7 +280,7 @@ namespace UFE3D
           if (projectile.hitBox == null) continue;
           if (projectile.hurtBox == null) continue;
 
-          if (CollisionManager.TestCollision(new HitBox[] { projectile.hitBox }, new HurtBox[] { hurtBox }, HitConfirmType.Hit, projectile.mirror > 0, mirror > 0).Length > 0)
+          if (CollisionManager.TestCollision(new HitBox[] { projectile.hitBox }, new HurtBox[] { hurtBox }, HitConfirmType.Hit, 0.5f, projectile.mirror > 0, mirror > 0).Length > 0)
           {
             ProjectileHit();
             projectile.ProjectileHit();
@@ -292,7 +292,7 @@ namespace UFE3D
 
     public void IsCollidingCharacter(ControlsScript opControlsScript)
     {
-      FPVector[] collisionVectors = CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, new HurtBox[] { hurtBox }, HitConfirmType.Hit, false, mirror > 0);
+      FPVector[] collisionVectors = CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, new HurtBox[] { hurtBox }, HitConfirmType.Hit, 0.5f, false, mirror > 0);
       if (collisionVectors.Length > 0 && opControlsScript.ValidateHit(hit))
       {
         ProjectileHit();

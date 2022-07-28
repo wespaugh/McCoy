@@ -9,6 +9,7 @@ namespace UFE3D
         public int castingFrame;
         public bool resetPreviousVertical;
         public bool resetPreviousHorizontal;
+    public bool relativeToOpponent = false;
         public FPVector _force;
 
         #region trackable definitions
