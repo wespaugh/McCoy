@@ -123,6 +123,7 @@ MonoBehaviour:
   - castingFrame: 24
     resetPreviousVertical: 0
     resetPreviousHorizontal: 0
+    relativeToOpponent: 0
     _force:
       x:
         _serializedValue: 42949672960
@@ -156,6 +157,9 @@ MonoBehaviour:
     crouchingHit: 1
     airHit: 1
     stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
+    targetFilter: 1
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 
@@ -237,8 +241,6 @@ MonoBehaviour:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
-    _hitDepth:
-      _serializedValue: 2147483648
     resetPreviousHorizontalPush: 0
     resetPreviousVerticalPush: 0
     resetPreviousSidewaysPush: 0

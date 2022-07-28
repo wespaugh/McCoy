@@ -2526,7 +2526,7 @@ public class UFE : MonoBehaviour, UFEInterface
     if (newRoundCasted) return;
     if (p1ControlsScript.introPlayed/* && p2ControlsScript.introPlayed*/)
     {
-      UFE.FireRoundBegins(config.currentRound);
+      // UFE.FireRoundBegins(config.currentRound);
       UFE.DelaySynchronizedAction(StartFight, delay);
       newRoundCasted = true;
     }
@@ -4224,7 +4224,7 @@ public class UFE : MonoBehaviour, UFEInterface
     SceneManager.SetActiveScene(stageScene);
   }
 
-  public static void CreateRandomMonster(float? posX = null, float? posZ = null)
+  public static ControlsScript CreateRandomMonster(float? posX = null, float? posZ = null)
   {
     // initialize some bloke
     int newId = brawlerEntityManager.GetAvailableID();
@@ -4269,6 +4269,8 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       rai.InitMoveInputSequences();
     }
+
+    return cScript;
   }
 
   public static void DespawnCharacter(int id)

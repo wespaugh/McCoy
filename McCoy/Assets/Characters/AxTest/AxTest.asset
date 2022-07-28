@@ -850,7 +850,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -1066,11 +1066,12 @@ MonoBehaviour:
         animMap:
         - animationMaps: []
           clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
-          customHitBoxDefinition: {fileID: 0}
+          customHitBoxDefinition: {fileID: 11400000, guid: b3f0cce26c9aa97469d7354e3077d1ff,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -1165,7 +1166,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       fallBack:
         animMap:
@@ -4110,7 +4111,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:

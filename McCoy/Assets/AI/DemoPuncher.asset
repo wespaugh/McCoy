@@ -58,7 +58,7 @@ MonoBehaviour:
     autoAttack: 0
     obeyPreferableDistances: 1
     attackFrequency: 3
-    debugToggle: 1
+    debugToggle: 0
   aiRules:
   - ruleName: Manual Attack
     events:
@@ -109,7 +109,7 @@ MonoBehaviour:
       buttonPress: 4
       behavior: 0
       desirability: 5
-    debugToggle: 0
+    debugToggle: 1
     eventsToggle: 0
     reactionsToggle: 0
   - ruleName: Movement
@@ -238,7 +238,7 @@ MonoBehaviour:
       buttonPress: 4
       behavior: 0
       desirability: 0
-    debugToggle: 0
+    debugToggle: 1
     eventsToggle: 1
     reactionsToggle: 1
   aiDefinitions:

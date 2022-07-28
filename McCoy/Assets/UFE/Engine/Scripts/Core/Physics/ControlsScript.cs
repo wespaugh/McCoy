@@ -128,6 +128,12 @@ public class ControlsScript : MonoBehaviour
   public SpriteRenderer mySpriteRenderer;
   private ControlsScript _owner;
 
+  // this should be an enum of broad classes of player / enemy specific to your game
+  // things not in allies will test for hit collisions. 
+  private List<int> _allies = new List<int>();
+  private int _team = -1;
+  public int Team { get => _team; set => _team = value; }
+
   public void Init()
   {
     // Set Input Recording
@@ -2697,6 +2703,18 @@ public class ControlsScript : MonoBehaviour
             || (!hit.continuousHit && hit.impactList.Contains(opponent))
             || (!opponent.ValidateHit(hit))) continue;
 
+            // if targetting allies, make sure we're the same team
+            TargetFilter targetsFilter = hit.targetFilter;
+            if (targetsFilter == TargetFilter.Allies && Team != opponent.Team)
+            {
+              continue;
+            }
+            // if targetting opponents, make sure opponent's team isn't in our allies list
+            if (targetsFilter == TargetFilter.Opponents && _allies.Contains(opponent.Team))
+            {
+              continue;
+            }
+
             foreach (HurtBox hurtBox in activeHurtBoxes)
             {
               if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
@@ -4355,6 +4373,12 @@ public class ControlsScript : MonoBehaviour
     this.SetMove(myMoveSetScript.GetOutro());
 
     outroPlayed = true;
+  }
+
+  public void SetAllies(List<int> allies)
+  {
+    _allies.Clear();
+    _allies.AddRange(allies);
   }
 
   public void ResetData(bool resetLife)

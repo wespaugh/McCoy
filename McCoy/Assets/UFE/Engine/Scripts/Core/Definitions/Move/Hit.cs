@@ -25,6 +25,7 @@ public class Hit : ICloneable
     public bool airHit = true;
     public bool stunHit = true;
   public Fix64 zRange = 0.5f;
+  public TargetFilter targetFilter = TargetFilter.Opponents;
     public bool allowMultiHit = true;
     public PlayerConditions opponentConditions = new PlayerConditions();
 

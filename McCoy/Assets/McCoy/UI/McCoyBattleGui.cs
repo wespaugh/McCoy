@@ -29,8 +29,35 @@ namespace Assets.McCoy.UI
 
     McCoyStageData currentStage;
 
+    bool debug = false;
+
+    bool spawnerInitialized = false;
+
+    public override void OnShow()
+    {
+      base.OnShow();
+      UFE.OnGameBegin += onGameBegin;
+    }
+
+    public override void OnHide()
+    {
+      base.OnHide();
+      UFE.OnGameBegin -= onGameBegin;
+    }
+
+    private void onGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
+    {
+      if (!spawnerInitialized)
+      {
+        spawnerInitialized = true;
+        initSpawner();
+      }
+    }
+
     private void Awake()
     {
+      toggleDebug();
+
       if(spawnButton != null)
       {
         spawnButton.onClick.AddListener(() =>
@@ -58,8 +85,13 @@ namespace Assets.McCoy.UI
       healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
 
       currentStage = McCoy.GetInstance().currentStage;
+    }
 
-      initSpawner();
+    private void toggleDebug()
+    {
+      spawnButton.gameObject.SetActive(debug);
+      xInput.gameObject.SetActive(debug);
+      yInput.gameObject.SetActive(debug);
     }
 
     private void initSpawner()
@@ -76,13 +108,20 @@ namespace Assets.McCoy.UI
     protected override void SetAlertMessage(string msg)
     {
       alertText.text = msg;
+
+      UFE.DelaySynchronizedAction(hideAlertText, 2.0f);
+    }
+
+    private void hideAlertText()
+    {
+      SetAlertMessage("");
     }
 
     protected override void OnNewAlert(string msg, ControlsScript player)
     {
       if (player == null)
       {
-        alertText.text = msg;
+        SetAlertMessage(msg);
       }
     }
     protected override void UpdatePlayerHealthBar(float percent)

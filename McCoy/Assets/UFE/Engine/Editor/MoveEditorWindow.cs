@@ -942,6 +942,7 @@ public class MoveEditorWindow : EditorWindow {
                                                     moveInfo.hits[i].airHit = EditorGUILayout.Toggle("In the Air", moveInfo.hits[i].airHit, toggleStyle);
                                                     moveInfo.hits[i].stunHit = EditorGUILayout.Toggle("Stunned", moveInfo.hits[i].stunHit, toggleStyle);
                                                     moveInfo.hits[i].downHit = EditorGUILayout.Toggle("Down", moveInfo.hits[i].downHit, toggleStyle);
+													moveInfo.hits[i].targetFilter = (TargetFilter) EditorGUILayout.EnumPopup("Target Filter", moveInfo.hits[i].targetFilter);
 						  moveInfo.hits[i].zRange = EditorGUILayout.FloatField("Brawler Z Range:", (float)moveInfo.hits[i].zRange);
 
                                                     PlayerConditionsGroup("Advanced Filters", moveInfo.hits[i].opponentConditions, false);
@@ -3462,10 +3463,13 @@ public class MoveEditorWindow : EditorWindow {
 							}
 
 							GaugeUsage gaugeUsageTemp = GaugeUsage.None;
-							if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 50) gaugeUsageTemp = GaugeUsage.Quarter;
-							else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 75) gaugeUsageTemp = GaugeUsage.Half;
-							else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 100) gaugeUsageTemp = GaugeUsage.ThreeQuarters;
-							else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage >= 100) gaugeUsageTemp = GaugeUsage.All;
+							if (moveInfo.gauges.Length > 0)
+							{
+								if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 50) gaugeUsageTemp = GaugeUsage.Quarter;
+								else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 75) gaugeUsageTemp = GaugeUsage.Half;
+								else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage < 100) gaugeUsageTemp = GaugeUsage.ThreeQuarters;
+								else if (moveInfo.gauges[0] != null && moveInfo.gauges[0]._gaugeUsage >= 100) gaugeUsageTemp = GaugeUsage.All;
+							}
 							moveInfo.moveClassification.gaugeUsage = gaugeUsageTemp;
 
 							EditorGUI.indentLevel -= 1;

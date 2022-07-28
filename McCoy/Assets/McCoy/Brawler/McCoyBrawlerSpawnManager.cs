@@ -10,12 +10,34 @@ namespace Assets.McCoy.Brawler
   using SpawnData = Dictionary<Factions, McCoyMobData>;
   public class McCoyBrawlerSpawnManager : MonoBehaviour
   {
-    public bool enableSpawning = false;
-
     // Faction -> <totalEnemiesRemaining, avgEnemiesAtOnce>
     Dictionary<Factions, int> spawnNumbers = new Dictionary<Factions, int>();
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
     int avgEnemiesOnscreenAtOnce = 0;
+
+    bool debugSpawnsOnly = false;
+
+    public static void SetTeam(int id, Factions f)
+    {
+      UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
+    }
+    public static void SetTeam(ControlsScript s, Factions f)
+    {
+      SetTeam(s.playerNum, f);
+    }
+
+    public static void SetAllies(int i, List<Factions> allies)
+    {
+      SetAllies(UFE.brawlerEntityManager.GetControlsScript(i), allies);
+    }
+
+    public static void SetAllies(ControlsScript s, List<Factions> allies)
+    {
+      List<int> iAllies = new List<int>();
+      allies.ForEach((x) => iAllies.Add((int)x));
+      s.SetAllies(iAllies);
+    }
+
     public void Initialize(SpawnData spawns)
     {
       foreach(var s in spawns)
@@ -24,6 +46,9 @@ namespace Assets.McCoy.Brawler
         avgSpawnNumbers[s.Value.Faction] = s.Value.CalculateNumberSimultaneousBrawlerEnemies();
       }
       recalcAverageSpawns();
+
+      SetTeam(1, Factions.Werewolves);
+      SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
     }
@@ -86,10 +111,12 @@ namespace Assets.McCoy.Brawler
         foreach(var m in spawnNumbers)
         {
           totalMonstersRemaining -= m.Value;
-          if (totalMonstersRemaining < randomMonsterIndex && false)
+          if (totalMonstersRemaining < randomMonsterIndex && !debugSpawnsOnly)
           {
             spawnNumbers[m.Key]--;
-            UFE.CreateRandomMonster();
+            ControlsScript newMonster = UFE.CreateRandomMonster();
+            SetTeam(newMonster, m.Key);
+            SetAllies(newMonster, new List<Factions> { m.Key });
             break;
           }
         }

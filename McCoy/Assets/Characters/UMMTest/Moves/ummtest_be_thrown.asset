@@ -133,29 +133,7 @@ MonoBehaviour:
         _serializedValue: 0
   slowMoEffects: []
   bodyPartVisibilityChanges: []
-  opponentOverride:
-  - _position:
-      x:
-        _serializedValue: 0
-      y:
-        _serializedValue: 0
-      z:
-        _serializedValue: 0
-    castingFrame: 0
-    blendSpeed: 80
-    stun: 0
-    _stunTime:
-      _serializedValue: 0
-    overrideHitAnimations: 0
-    resetAppliedForces: 0
-    standUpOptions: 0
-    characterSpecific: 0
-    move: {fileID: 11400000, guid: ec6ae59f036f8c84e93fb651a0104cfd, type: 2}
-    characterSpecificMoves:
-    - move: {fileID: 11400000, guid: b16cad7c600f0c944be249bd452f580b, type: 2}
-      characterName: Ax
-    animationPreview: 0
-    movesToggle: 1
+  opponentOverride: []
   characterAssist: []
   soundEffects: []
   inGameAlert: []
@@ -181,6 +159,7 @@ MonoBehaviour:
     stunHit: 1
     zRange:
       _serializedValue: 2147483648
+    targetFilter: 1
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 
@@ -274,7 +253,7 @@ MonoBehaviour:
       x:
         _serializedValue: 0
       y:
-        _serializedValue: 0
+        _serializedValue: 64424509440
       z:
         _serializedValue: 0
     _pushForceAir:
@@ -370,16 +349,16 @@ MonoBehaviour:
         z:
           _serializedValue: 0
     hitToggle: 1
-    damageOptionsToggle: 0
+    damageOptionsToggle: 1
     hitStunOptionsToggle: 0
-    forceOptionsToggle: 0
-    opponentForceToggle: 0
+    forceOptionsToggle: 1
+    opponentForceToggle: 1
     selfForceToggle: 0
     stageReactionsToggle: 0
-    overrideEventsToggle: 0
-    hitConditionsToggle: 0
+    overrideEventsToggle: 1
+    hitConditionsToggle: 1
     pullInToggle: 0
-    hurtBoxesToggle: 0
+    hurtBoxesToggle: 1
     wallBounceToggle: 0
     groundBounceToggle: 0
     hurtBoxes:
