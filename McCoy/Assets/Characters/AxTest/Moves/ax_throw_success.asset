@@ -93,7 +93,8 @@ MonoBehaviour:
     editorToggle: 0
     buttonSequenceToggle: 0
     buttonExecutionToggle: 0
-  previousMoves: []
+  previousMoves:
+  - {fileID: 11400000, guid: 54957a0f0ef3c584697fcde994080931, type: 2}
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []

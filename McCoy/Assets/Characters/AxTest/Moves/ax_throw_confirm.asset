@@ -135,7 +135,7 @@ MonoBehaviour:
     hitConfirmType: 1
     throwMove: {fileID: 11400000, guid: a17b0b9e81296b14a87e4de28c77a3a4, type: 2}
     techMove: {fileID: 0}
-    techable: 1
+    techable: 0
     resetHitAnimations: 1
     forceStand: 0
     fixRotation: 0
