@@ -19,14 +19,13 @@ MonoBehaviour:
     customHitBoxDefinition: {fileID: 11400000, guid: 803e6fb8b634abf4c875bc02beac1677,
       type: 2}
     length:
-      _serializedValue: 1288490240
+      _serializedValue: 2433814784
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
     _serializedValue: 4294967296
   wrapMode: 0
-  characterPrefab: {fileID: 8610856068620173220, guid: 9a161e700108f1d42812ab78acc53202,
-    type: 3}
+  characterPrefab: {fileID: 0}
   moveName: ax_combo_1
   description: 
   fps: 60
@@ -47,9 +46,9 @@ MonoBehaviour:
   fixedSpeed: 1
   animSpeedKeyFrame: []
   totalFrames: 18
-  startUpFrames: 4
-  activeFrames: 6
-  recoveryFrames: 8
+  startUpFrames: 8
+  activeFrames: 10
+  recoveryFrames: 0
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -74,7 +73,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 
-    buttonExecution: 06000000
+    buttonExecution: 04000000
     editorToggle: 1
     buttonSequenceToggle: 0
     buttonExecutionToggle: 1
@@ -155,8 +154,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 4
-    activeFramesEnds: 9
+  - activeFramesBegin: 8
+    activeFramesEnds: 17
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -172,6 +171,9 @@ MonoBehaviour:
     crouchingHit: 1
     airHit: 1
     stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
+    targetFilter: 2
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 
@@ -253,8 +255,6 @@ MonoBehaviour:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
-    _hitDepth:
-      _serializedValue: 2147483648
     resetPreviousHorizontalPush: 0
     resetPreviousVerticalPush: 0
     resetPreviousSidewaysPush: 0

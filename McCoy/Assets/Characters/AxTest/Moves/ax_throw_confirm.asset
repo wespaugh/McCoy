@@ -74,7 +74,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 
-    buttonExecution: 07000000
+    buttonExecution: 05000000
     editorToggle: 1
     buttonSequenceToggle: 0
     buttonExecutionToggle: 1
@@ -149,6 +149,7 @@ MonoBehaviour:
     stunHit: 1
     zRange:
       _serializedValue: 2147483648
+    targetFilter: 2
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 

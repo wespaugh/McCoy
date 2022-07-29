@@ -2691,11 +2691,6 @@ public class ControlsScript : MonoBehaviour
             {
               continue;
             }
-            if (opponent == null) Debug.Log("null opponent");
-            if (hit == null) Debug.Log("null hit");
-            if (opponent.HitBoxes == null) Debug.Log("null HitBoxes");
-            if (move == null) Debug.Log("null move");
-            if (hit.impactList== null) Debug.Log("null impact list");
 
             if ((opponent.HitBoxes == null)
             || (!hit.allowMultiHit && opponent.HitBoxes.isHit)

@@ -15,7 +15,7 @@ MonoBehaviour:
   clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
   speed:
     _serializedValue: 4294967296
-  preview: {fileID: 8610856068620173220, guid: 9a161e700108f1d42812ab78acc53202, type: 3}
+  preview: {fileID: 4008542871262631591, guid: 9a161e700108f1d42812ab78acc53202, type: 3}
   totalFrames: 6
   customHitBoxes:
   - name: Body Collider
