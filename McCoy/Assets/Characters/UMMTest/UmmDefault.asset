@@ -24,7 +24,7 @@ MonoBehaviour:
   height: 0
   age: 21
   bloodType: Unknown
-  lifePoints: 500
+  lifePoints: 100
   maxGaugePoints: 0
   characterPrefabStorage: 0
   characterPrefab: {fileID: 8138875218885103485, guid: c086949e5f1184b4e9eca08d616bdf83,
@@ -224,7 +224,8 @@ MonoBehaviour:
         animMap:
         - animationMaps: []
           clip: {fileID: 7400000, guid: 5943d82d77a775e4394921aadcd25a61, type: 2}
-          customHitBoxDefinition: {fileID: 0}
+          customHitBoxDefinition: {fileID: 11400000, guid: 91d53a21e2df24647aad576a519abaa9,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
@@ -323,7 +324,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveBack:
         animMap:

@@ -27,26 +27,21 @@ namespace Assets.McCoy.UI
     [SerializeField] TMP_InputField xInput = null;
     [SerializeField] TMP_InputField yInput = null;
 
+    [SerializeField] TMP_Text tmpNameText = null;
+
     McCoyStageData currentStage;
 
     bool debug = false;
 
     bool spawnerInitialized = false;
 
-    public override void OnShow()
-    {
-      base.OnShow();
-      UFE.OnGameBegin += onGameBegin;
-    }
 
-    public override void OnHide()
+    protected override void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
     {
-      base.OnHide();
-      UFE.OnGameBegin -= onGameBegin;
-    }
+      base.OnGameBegin(player1, player2, stage);
 
-    private void onGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
-    {
+      tmpNameText.text = player1.myInfo.characterName;
+
       if (!spawnerInitialized)
       {
         spawnerInitialized = true;

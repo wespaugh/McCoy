@@ -15,24 +15,23 @@ MonoBehaviour:
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: cf80fd2e6172a8647bc8b9aba8539e1a, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: f44816e818fc8c14fb10a5962beb96ce,
+    clip: {fileID: 7400000, guid: 07f73d02b7fc44040b3ca2a65c8bc02f, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: 15d2db8910ba8af459f3c642bcdebac2,
       type: 2}
     length:
-      _serializedValue: 1503238656
+      _serializedValue: 2433814784
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
     _serializedValue: 4294967296
-  wrapMode: 1
-  characterPrefab: {fileID: 8610856068620173220, guid: 9a161e700108f1d42812ab78acc53202,
-    type: 3}
+  wrapMode: 0
+  characterPrefab: {fileID: 0}
   moveName: ax_combo_3
   description: 
   fps: 60
   ignoreGravity: 0
   ignoreFriction: 0
-  cancelMoveWheLanding: 1
+  cancelMoveWheLanding: 0
   forceMirrorLeft: 0
   forceMirrorRight: 0
   invertRotationLeft: 0
@@ -46,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 22
-  startUpFrames: 13
-  activeFrames: 5
-  recoveryFrames: 4
+  totalFrames: 34
+  startUpFrames: 10
+  activeFrames: 11
+  recoveryFrames: 13
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -74,7 +73,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 
-    buttonExecution: 06000000
+    buttonExecution: 04000000
     editorToggle: 1
     buttonSequenceToggle: 0
     buttonExecutionToggle: 1
@@ -103,9 +102,21 @@ MonoBehaviour:
     statesToggle: 0
   selfConditions:
     basicMoveLimitation: 
-    possibleMoveStates: []
-    basicMovesToggle: 0
-    statesToggle: 0
+    possibleMoveStates:
+    - possibleState: 0
+      jumpArc: 0
+      jumpArcBegins: 0
+      jumpArcEnds: 100
+      opponentDistance: 0
+      proximityRangeBegins: 0
+      proximityRangeEnds: 100
+      movingForward: 1
+      movingBack: 1
+      standBy: 1
+      blocking: 0
+      stunned: 0
+    basicMovesToggle: 1
+    statesToggle: 1
   moveClassification:
     attackType: 0
     hitType: 0
@@ -117,34 +128,47 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  frameLinks: []
+  frameLinks:
+  - linkType: 0
+    allowBuffer: 1
+    onStrike: 1
+    onBlock: 1
+    onParry: 1
+    activeFramesBegins: 15
+    activeFramesEnds: 25
+    counterMoveType: 0
+    counterMoveFilter: {fileID: 0}
+    disableHitImpact: 1
+    anyHitStrength: 1
+    hitStrength: 0
+    anyStrokeHitBox: 1
+    hitBoxType: 0
+    anyHitType: 1
+    hitType: 0
+    ignoreInputs: 0
+    ignorePlayerConditions: 0
+    ignoreGauge: 0
+    nextMoveStartupFrame: 1
+    linkableMoves:
+    - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
+    linkableMovesToggle: 1
+    hitConfirmToggle: 0
+    counterMoveToggle: 0
   gauges: []
   sortOrder: []
   particleEffects: []
-  appliedForces:
-  - castingFrame: 13
-    resetPreviousVertical: 1
-    resetPreviousHorizontal: 1
-    _force:
-      x:
-        _serializedValue: 0
-      y:
-        _serializedValue: 107374182400
-      z:
-        _serializedValue: 0
+  appliedForces: []
   slowMoEffects: []
   bodyPartVisibilityChanges: []
   opponentOverride: []
   characterAssist: []
   soundEffects: []
-  inGameAlert:
-  - castingFrame: 18
-    alert: UPPERCOMBO!
+  inGameAlert: []
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 13
-    activeFramesEnds: 17
+  - activeFramesBegin: 10
+    activeFramesEnds: 20
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -160,6 +184,9 @@ MonoBehaviour:
     crouchingHit: 1
     airHit: 1
     stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
+    targetFilter: 2
     allowMultiHit: 1
     opponentConditions:
       basicMoveLimitation: 
@@ -241,8 +268,6 @@ MonoBehaviour:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
-    _hitDepth:
-      _serializedValue: 42949672960
     resetPreviousHorizontalPush: 0
     resetPreviousVerticalPush: 0
     resetPreviousSidewaysPush: 0
@@ -358,7 +383,7 @@ MonoBehaviour:
     selfForceToggle: 0
     stageReactionsToggle: 0
     overrideEventsToggle: 0
-    hitConditionsToggle: 0
+    hitConditionsToggle: 1
     pullInToggle: 0
     hurtBoxesToggle: 1
     wallBounceToggle: 0

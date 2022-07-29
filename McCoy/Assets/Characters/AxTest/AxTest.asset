@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AxTest
   m_EditorClassIdentifier: 
   gameplayType: 0
-  profilePictureSmall: {fileID: 2800000, guid: 92c486bbd09615a4985e69c07a96b3cf, type: 3}
+  profilePictureSmall: {fileID: 2800000, guid: ec324a6eb9306384383ac3d3f90cea68, type: 3}
   profilePictureBig: {fileID: 2800000, guid: 92c486bbd09615a4985e69c07a96b3cf, type: 3}
-  characterName: Ax
+  characterName: Rex
   gender: 0
   characterDescription: 
   selectionAnimation: {fileID: 7400000, guid: 54cc114d1dffae14889d04fa7e13a3d9, type: 2}
@@ -24,7 +24,7 @@ MonoBehaviour:
   height: 0
   age: 0
   bloodType: Unknown
-  lifePoints: 50000
+  lifePoints: 200
   maxGaugePoints: 0
   characterPrefabStorage: 0
   characterPrefab: {fileID: 4008542871262631591, guid: 9a161e700108f1d42812ab78acc53202,
@@ -5490,7 +5490,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     - {fileID: 11400000, guid: 54957a0f0ef3c584697fcde994080931, type: 2}
     - {fileID: 11400000, guid: a17b0b9e81296b14a87e4de28c77a3a4, type: 2}
-    - {fileID: 11400000, guid: b16cad7c600f0c944be249bd452f580b, type: 2}
+    - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
+    - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
     attackMovesToggle: 1
