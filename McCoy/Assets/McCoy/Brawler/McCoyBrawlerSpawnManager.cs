@@ -17,6 +17,8 @@ namespace Assets.McCoy.Brawler
 
     bool debugSpawnsOnly = false;
 
+    bool allPlayersDead = false;
+
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -40,6 +42,8 @@ namespace Assets.McCoy.Brawler
 
     public void Initialize(SpawnData spawns)
     {
+      allPlayersDead = false;
+
       foreach(var s in spawns)
       {
         spawnNumbers[s.Value.Faction] = s.Value.CalculateNumberOfBrawlerEnemies();
@@ -65,12 +69,44 @@ namespace Assets.McCoy.Brawler
 
     private void checkSpawns()
     {
+      if(allPlayersDead)
+      {
+        return;
+      }
       if(UFE.config.lockInputs)
       {
         UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
         return;
       }
-      int numPlayers = 1;
+      int[] playerIDs = { 1 };
+
+      // for one line, assume everyone's dead
+      allPlayersDead = true;
+      foreach (int i in playerIDs)
+      {
+        // if any single player is alive, set allPlayersDead back to false and break
+        allPlayersDead &= UFE.brawlerEntityManager.GetControlsScript(i).currentLifePoints <= 0;
+        if(!allPlayersDead)
+        {
+          break;
+        }
+      }
+
+      if(allPlayersDead)
+      {
+        Debug.Log("YOU lose!");
+        UFE.FireAlert("Werewolf Down!", null);
+
+        UFE.DelaySynchronizedAction(() =>
+        {
+          UFE.FireGameEnds();
+          UFE.EndGame();
+          McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+        }, 6.0f);
+        return;
+      }
+
+      int numPlayers = playerIDs.Length;
       int numLivingEnemies = UFE.brawlerEntityManager.GetNumLivingEntities() - numPlayers;
 
       recalcAverageSpawns();

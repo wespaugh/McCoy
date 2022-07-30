@@ -92,7 +92,8 @@ MonoBehaviour:
       scaleFactor: 1
       screenMatchMode: 0
       scaleMode: 1
-    introScreen: {fileID: 11400002, guid: 70fb6f5004bbf493190d7b2f011adfdf, type: 3}
+    introScreen: {fileID: 6045128067864134123, guid: bd0349450b9070b419c32b4fbcacc943,
+      type: 3}
     mainMenuScreen: {fileID: 3101840184121778836, guid: 78b20301a30c435439b1d5c4e380a43d,
       type: 3}
     optionsScreen: {fileID: 11400056, guid: 2737f2cf99cd3416b9a9d13df2abbe04, type: 3}
@@ -833,7 +834,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -978,7 +979,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow

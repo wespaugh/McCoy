@@ -1545,6 +1545,7 @@ public class FluxCapacitor
   {
 	Debug.Log("Removing player from cache " + id);
     inputCache.Remove(id);
+	PlayerManager.RemovePlayer(id);
   }
   #endregion
 }

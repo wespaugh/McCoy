@@ -49,6 +49,21 @@ namespace Assets.McCoy.UI
       }
     }
 
+    protected override void OnGameEnd(ControlsScript winner, ControlsScript loser)
+    {
+      /*
+      UFE.DelaySynchronizedAction(() => 
+      {
+        McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+      }, 4.0f);
+
+      UFE.DelaySynchronizedAction(() =>
+      {
+          UFE.EndGame();
+      }, 5.0f);
+      */
+    }
+
     private void Awake()
     {
       toggleDebug();
@@ -62,7 +77,7 @@ namespace Assets.McCoy.UI
           UFE.CreateRandomMonster(x, z);
         });
       }
-      var camera2 = GameObject.Find("UI Camera");
+      var camera2 = GameObject.Find("BattleUI Camera");
       if(camera2.transform.childCount > 0)
       {
         uiRoot = camera2.transform.GetChild(0).gameObject;

@@ -74,7 +74,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 
-    buttonExecution: 05000000
+    buttonExecution: 09000000
     editorToggle: 1
     buttonSequenceToggle: 0
     buttonExecutionToggle: 1

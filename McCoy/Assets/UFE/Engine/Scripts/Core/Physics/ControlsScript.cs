@@ -763,6 +763,10 @@ public class ControlsScript : MonoBehaviour
     //myHitBoxesScript.UpdateMap(myMoveSetScript.GetCurrentClipFrame(myHitBoxesScript.bakeSpeed));
   }
 
+  public bool AlliedWith(int team)
+  {
+    return _allies.Contains(team);
+  }
 
   public bool IsAxisRested(IDictionary<InputReferences, InputEvents> currentInputs)
   {
