@@ -110,7 +110,7 @@ MonoBehaviour:
       behavior: 0
       desirability: 5
     debugToggle: 1
-    eventsToggle: 0
+    eventsToggle: 1
     reactionsToggle: 0
   - ruleName: Movement
     events:
@@ -239,8 +239,8 @@ MonoBehaviour:
       behavior: 0
       desirability: 0
     debugToggle: 1
-    eventsToggle: 1
-    reactionsToggle: 1
+    eventsToggle: 0
+    reactionsToggle: 0
   aiDefinitions:
     damage:
       veryWeak: 0.05
@@ -249,8 +249,8 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.01
-      close: 0.075
+      veryClose: 0.04
+      close: 0.1
       mid: 0.15
       far: 0.225
       veryFar: 0.8
