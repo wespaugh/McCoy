@@ -382,16 +382,19 @@ public class UFE : MonoBehaviour, UFEInterface
   public static ControlsScript FindNewOpponent(int playerNum)
   {
     var allControlScripts = brawlerEntityManager.GetAllControlsScripts();
-    if(playerNum != 1)
-    {
-      return p1ControlsScript;
-    }
+    var player = brawlerEntityManager.GetControlsScript(playerNum);
+
     foreach(var script in allControlScripts)
     {
+      // don't target nothing
       if (script.Value == null) continue;
-      if (script.Value.playerNum != 1 && script.Value.gameObject.activeInHierarchy) return script.Value;
+      // don't target allies
+      if (player.Team == script.Value.Team || player.AlliedWith(script.Value.Team)) continue;
+      if (!script.Value.gameObject.activeInHierarchy) continue;
+      return script.Value;
     }
-    return brawlerEntityManager.GetControlsScript(playerNum);
+
+    return player;
   }
 
   public static void FindAndRemoveDelayLocalAction(Action action)
@@ -1367,13 +1370,7 @@ public class UFE : MonoBehaviour, UFEInterface
 
   public static void StartBrawlerMode()
   {
-    foreach (var controller in brawlerEntityManager.GetAllControlsScripts())
-    {
-      if (controller.Value == null) continue;
-      fluxCapacitor.RemovePlayer(controller.Key);
-      brawlerEntityManager.ReleaseController(controller.Key);
-      p1ControlsScript = null;
-    }
+    p1ControlsScript = null;
 
     var characters = UFE.GetStoryModeSelectableCharacters();
     UFE.SetCPU(1, false);
@@ -2383,7 +2380,7 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.newRoundCasted = false;
     UFE.player1WonLastBattle = (winner != null && winner == UFE.GetControlsScript(1));
 
-    if (winner != null && loser != null && UFE.OnGameEnds != null)
+    if (/*winner != null && loser != null && */UFE.OnGameEnds != null)
     {
       UFE.OnGameEnds(winner, loser);
     }
@@ -2495,6 +2492,18 @@ public class UFE : MonoBehaviour, UFEInterface
       battleGUI.OnHide();
       GameObject.Destroy(UFE.battleGUI.gameObject);
       battleGUI = null;
+    }
+
+    int[] keysToRelease = new int[brawlerEntityManager.GetAllControlsScripts().Count];
+    brawlerEntityManager.GetAllControlsScripts().Keys.CopyTo(keysToRelease, 0);
+    foreach (int key in keysToRelease)
+    {
+      if (key == 1 || brawlerEntityManager.GetControlsScript(key) == null)
+      {
+        continue;
+      }
+      fluxCapacitor.RemovePlayer(key);
+      brawlerEntityManager.ReleaseController(key);
     }
 
     if (gameEngine != null)
@@ -4282,13 +4291,6 @@ public class UFE : MonoBehaviour, UFEInterface
       fluxCapacitor.PlayerManager.RemovePlayer(id);
       brawlerEntityManager.ReleaseController(id);
       Destroy(player.gameObject);
-    }
-
-    var allPlayers = brawlerEntityManager.GetAllControlsScripts();
-    int numLivingPlayers = 0;
-    foreach(var p in allPlayers)
-    {
-      if(p.Value != null) ++numLivingPlayers;
     }
   }
 

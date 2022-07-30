@@ -49,7 +49,7 @@ MonoBehaviour:
       _serializedValue: 0
   physics:
     _moveForwardSpeed:
-      _serializedValue: 17179869184
+      _serializedValue: 21474836480
     _moveBackSpeed:
       _serializedValue: 15032385536
     _moveSidewaysSpeed:
@@ -97,7 +97,7 @@ MonoBehaviour:
     crouchButton: 3
   hideGauges: 00000000000000000000
   _executionTiming:
-    _serializedValue: 1288490188
+    _serializedValue: 1288490240
   possibleAirMoves: 1
   _blendingTime:
     _serializedValue: 429496736
