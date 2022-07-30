@@ -158,7 +158,7 @@ MonoBehaviour:
     airHit: 1
     stunHit: 1
     zRange:
-      _serializedValue: 2147483648
+      _serializedValue: 8589934592
     targetFilter: 1
     allowMultiHit: 1
     opponentConditions:
