@@ -126,9 +126,9 @@ MonoBehaviour:
     relativeToOpponent: 1
     _force:
       x:
-        _serializedValue: -64424509440
+        _serializedValue: -107374182400
       y:
-        _serializedValue: 107374182400
+        _serializedValue: 85899345920
       z:
         _serializedValue: 0
   slowMoEffects: []
