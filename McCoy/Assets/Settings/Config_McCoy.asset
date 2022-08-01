@@ -24,24 +24,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: Bathroom
+    stageName: Pier One
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
-    prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
+    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
+    prefab: {fileID: 2339586843444817353, guid: 08dd271d971de9c49bbee3dcb0ab64b1,
       type: 3}
-    music: {fileID: 8300000, guid: 14211787309d5c6419cbed1c12c6f270, type: 3}
+    music: {fileID: 8300000, guid: 6d5eb77403c6fce4d8e7f19691da1772, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: -163208757248
+      _serializedValue: 0
     _rightBoundary:
-      _serializedValue: 163208757248
+      _serializedValue: 42949672960
     position:
       x:
-        _serializedValue: 0
+        _serializedValue: -12884901888
       y:
-        _serializedValue: 0
+        _serializedValue: 21474836480
       z:
         _serializedValue: 0
   gameName: Space Wolves from Outer Space
@@ -264,7 +264,7 @@ MonoBehaviour:
     height3d: 0
     enableZoom: 0
     followCharacters: 0
-    initialFieldOfView: 12
+    initialFieldOfView: 1
     verticalPriority: 0
     verticalThreshold: 2
     movementSpeed: 12
@@ -277,8 +277,8 @@ MonoBehaviour:
     rotationOffSet: {x: 0, y: 3.5, z: 0}
     motionSensor: 0
     motionSensibility: 1
-    cameraFollowBoundsX: 3
-    cameraFollowBoundsY: 1
+    cameraFollowBoundsX: 1.47
+    cameraFollowBoundsY: 0.499
   lockOnOptions:
     lockOnType: 0
     lockOnButtonEnabled: 0
@@ -1177,6 +1177,26 @@ MonoBehaviour:
         _serializedValue: 0
       y:
         _serializedValue: 0
+      z:
+        _serializedValue: 0
+  - stageName: Pier One
+    stageLoadingMethod: 0
+    stagePath: 
+    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
+    prefab: {fileID: 2339586843444817353, guid: 08dd271d971de9c49bbee3dcb0ab64b1,
+      type: 3}
+    music: {fileID: 8300000, guid: 6d5eb77403c6fce4d8e7f19691da1772, type: 3}
+    _groundFriction:
+      _serializedValue: 429496729600
+    _leftBoundary:
+      _serializedValue: 0
+    _rightBoundary:
+      _serializedValue: 42949672960
+    position:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 21474836480
       z:
         _serializedValue: 0
   characters:

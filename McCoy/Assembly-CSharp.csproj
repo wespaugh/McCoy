@@ -69,6 +69,7 @@
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoEnemy.cs" />
     <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\rotationCamera.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBoss.cs" />
+    <Compile Include="Assets\McCoy\Brawler\Stages\StageParallaxItem.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeScreen.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultGameOverScreen.cs" />

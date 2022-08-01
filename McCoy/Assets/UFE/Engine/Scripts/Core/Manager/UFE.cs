@@ -4242,7 +4242,7 @@ public class UFE : MonoBehaviour, UFEInterface
     int dx = UnityEngine.Random.Range(0, 2) == 1 ? 1 : -1;
     dx *= 10;
     float dy = dx > 0 ? UnityEngine.Random.Range(0.0f, 1.5f) : 0.0f;
-    FPVector pos = UFE.config.selectedStage.position + new FPVector(dx, 0.0f, dy);
+    FPVector pos = UFE.config.selectedStage.position + new FPVector(Camera.main.transform.localPosition.x + dx, 0.0f, dy);
     if(posX != null && posZ != null)
     {
       pos = new FPVector(posX.Value, 0.0f, posZ.Value);

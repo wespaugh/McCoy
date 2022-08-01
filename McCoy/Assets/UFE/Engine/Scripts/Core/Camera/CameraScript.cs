@@ -125,6 +125,9 @@ namespace UFE3D
             newPosition = ((player1.transform.position + player2.transform.position) / 2) + UFE.config.cameraOptions.initialDistance;
           }
 
+          newPosition.x = Mathf.Max(0.0f, newPosition.x);
+          newPosition.y = Mathf.Max(0.0f, newPosition.y);
+
           float highestPos;
           if (!brawler)
           {
