@@ -28,5 +28,7 @@ namespace UFE3D
         public Vector3 rotationOffSet = new Vector3(0, 4, 0);
         public MotionSensor motionSensor;
         public float motionSensibility = 1;
-    }
+    public float cameraFollowBoundsX = 0.0f;
+    public float cameraFollowBoundsY = 0.0f;
+  }
 }

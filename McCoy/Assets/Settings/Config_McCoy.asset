@@ -30,7 +30,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
     prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
       type: 3}
-    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
+    music: {fileID: 8300000, guid: 14211787309d5c6419cbed1c12c6f270, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -256,9 +256,9 @@ MonoBehaviour:
     selectedChallengeMode: 0
     skipLoadingScreen: 0
   cameraOptions:
-    initialDistance: {x: 0, y: 9, z: -46}
-    initialRotation: {x: 7, y: 0, z: 0}
-    enableLookAt: 1
+    initialDistance: {x: 0, y: 3, z: -46}
+    initialRotation: {x: 0, y: 0, z: 0}
+    enableLookAt: 0
     dollyAngle: 0
     distance3d: 0
     height3d: 0
@@ -277,6 +277,8 @@ MonoBehaviour:
     rotationOffSet: {x: 0, y: 3.5, z: 0}
     motionSensor: 0
     motionSensibility: 1
+    cameraFollowBoundsX: 3
+    cameraFollowBoundsY: 1
   lockOnOptions:
     lockOnType: 0
     lockOnButtonEnabled: 0
@@ -1163,7 +1165,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: 13b3a5b29ce262f4dacaf53f6f8f9dc6, type: 3}
     prefab: {fileID: 5367921059652040849, guid: 80ae0b4cb05190e4491992d03fef6b66,
       type: 3}
-    music: {fileID: 8300000, guid: 2a4c1b9367a6de84e8b4ea1f7e33d5fe, type: 3}
+    music: {fileID: 8300000, guid: 14211787309d5c6419cbed1c12c6f270, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:

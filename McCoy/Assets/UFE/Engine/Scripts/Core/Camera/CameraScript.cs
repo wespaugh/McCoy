@@ -66,7 +66,7 @@ namespace UFE3D
         public void DoFixedUpdate()
         {
             if (killCamMove) return;
-            if (player1 == null || player2 == null) return;
+            if (player1 == null) return;
 
             if (UFE.freeCamera)
             {
@@ -83,28 +83,75 @@ namespace UFE3D
             {
                 if (UFE.config.gameplayType == GameplayType._2DFighter)
                 {
-                    Vector3 newPosition = ((player1.transform.position + player2.transform.position) / 2) + UFE.config.cameraOptions.initialDistance;
-                    float highestPos = player1.transform.position.y > player2.transform.position.y ? player1.transform.position.y : player2.transform.position.y;
-                    if (highestPos >= UFE.config.cameraOptions.verticalThreshold)
-                    {
-                        if (UFE.config.cameraOptions.verticalPriority == VerticalPriority.AverageDistance)
-                        {
-                            newPosition.y += Mathf.Abs(player1.transform.position.y - player2.transform.position.y) / 2;
-                        }
-                        else if (UFE.config.cameraOptions.verticalPriority == VerticalPriority.HighestCharacter)
-                        {
-                            newPosition.y += highestPos;
-                        }
-                    }
-                    else
-                    {
-                        newPosition.y = UFE.config.cameraOptions.initialDistance.y;
-                    }
+          Vector3 newPosition;
+          bool brawler = true;
+          if (brawler)
+          {
+            var currentPosition = Camera.main.transform.localPosition;
+            Vector3 originalTarget = player1.transform.position + UFE.config.cameraOptions.initialDistance;
+            newPosition = new Vector3(originalTarget.x, originalTarget.y, originalTarget.z);
 
+            // if player is more than a little ahead of the camera, just lag behind the player a bit
+            if (newPosition.x - currentPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
+            {
+              newPosition = new Vector3(originalTarget.x - UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
+            }
+            // if player is more than a little behind the camera, just lag behind the player a bit
+            else if(currentPosition.x - newPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
+            {
+              newPosition = new Vector3(originalTarget.x + UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
+            }
+            else
+            {
+              newPosition = currentPosition;
+            }
 
-                    newPosition.x = Mathf.Clamp(newPosition.x,
-                        (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 8),
-                        (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 8));
+            // if player is more than a little above of the camera, just lag behind the player a bit
+            if (originalTarget.y - currentPosition.y > UFE.config.cameraOptions.cameraFollowBoundsY)
+            {
+              newPosition = new Vector3(newPosition.x, originalTarget.y - UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
+            }
+            // if player is more than a little below the camera, just lag behind the player a bit
+            else if (currentPosition.y - originalTarget.y > UFE.config.cameraOptions.cameraFollowBoundsY)
+            {
+              newPosition = new Vector3(newPosition.x, originalTarget.y + UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
+            }
+            else
+            {
+              newPosition = new Vector3(newPosition.x, currentPosition.y, currentPosition.z);
+            }
+          }
+          else {
+            newPosition = ((player1.transform.position + player2.transform.position) / 2) + UFE.config.cameraOptions.initialDistance;
+          }
+
+          float highestPos;
+          if (!brawler)
+          {
+            highestPos = player1.transform.position.y > player2.transform.position.y ? player1.transform.position.y : player2.transform.position.y;
+            if (highestPos >= UFE.config.cameraOptions.verticalThreshold)
+            {
+              if (UFE.config.cameraOptions.verticalPriority == VerticalPriority.AverageDistance)
+              {
+                newPosition.y += Mathf.Abs(player1.transform.position.y - player2.transform.position.y) / 2;
+              }
+              else if (UFE.config.cameraOptions.verticalPriority == VerticalPriority.HighestCharacter)
+              {
+                newPosition.y += highestPos;
+              }
+            }
+            else
+            {
+              newPosition.y = UFE.config.cameraOptions.initialDistance.y;
+            }
+          }
+
+          if (!brawler)
+          {
+            newPosition.x = Mathf.Clamp(newPosition.x,
+                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 8),
+                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 8));
+          }
 
                     // Zoom
                     if (UFE.config.cameraOptions.enableZoom)

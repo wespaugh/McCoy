@@ -907,6 +907,8 @@ public class GlobalEditorWindow : EditorWindow {
 
 
                         globalInfo.cameraOptions._maxDistance = EditorGUILayout.FloatField("Maximum Players Distance:", (float)globalInfo.cameraOptions._maxDistance);
+			globalInfo.cameraOptions.cameraFollowBoundsX = EditorGUILayout.Slider("Follow X Width", globalInfo.cameraOptions.cameraFollowBoundsX, 0.0f, 6.0f);
+			globalInfo.cameraOptions.cameraFollowBoundsY = EditorGUILayout.Slider("Follow Y Width", globalInfo.cameraOptions.cameraFollowBoundsY, 0.0f, 4.0f);
 						EditorGUIUtility.labelWidth = 150;
 
 						EditorGUI.indentLevel -= 1;
