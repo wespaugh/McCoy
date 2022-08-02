@@ -628,10 +628,20 @@ public class PhysicsScript : MonoBehaviour
     // Clamp Max Stage Distance
     if (UFE.config.gameplayType == GameplayType._2DFighter)
     {
-      worldTransform.position = new FPVector(
-      FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary),
-      FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y),
-      worldTransform.position.z);
+      bool brawler = true;
+      Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary);
+      Fix64 y = FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
+      Fix64 z;
+      if(brawler)
+      {
+        GetYBounds(x, out var yMin, out var yMax);
+        z = FPMath.Clamp(worldTransform.position.z, UFE.config.selectedStage.position.y + yMin, UFE.config.selectedStage.position.y + yMax);
+      }
+      else
+      {
+        z = FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
+      }
+      worldTransform.position = new FPVector( x, y, z);
     }
     else
     {
@@ -1097,6 +1107,12 @@ public class PhysicsScript : MonoBehaviour
 
     if (activeForces.x == 0 && activeForces.y == 0)
       moveDirection = 0;
+  }
+
+  public void GetYBounds(Fix64 x, out Fix64 yMin, out Fix64 yMax)
+  {
+    yMin = -6.2f;
+    yMax = -2.0f;
   }
 
   public bool IsGrounded()
