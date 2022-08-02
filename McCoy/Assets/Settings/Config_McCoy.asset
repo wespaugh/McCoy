@@ -36,10 +36,10 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: 0
     _rightBoundary:
-      _serializedValue: 42949672960
+      _serializedValue: 85899345920
     position:
       x:
-        _serializedValue: -12884901888
+        _serializedValue: 0
       y:
         _serializedValue: 21474836480
       z:
@@ -1189,9 +1189,9 @@ MonoBehaviour:
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: 0
+      _serializedValue: -120259084288
     _rightBoundary:
-      _serializedValue: 42949672960
+      _serializedValue: 120259084288
     position:
       x:
         _serializedValue: 0
