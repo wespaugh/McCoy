@@ -44,6 +44,8 @@ MonoBehaviour:
         _serializedValue: 21474836480
       z:
         _serializedValue: 0
+    advancedStageData: 
+    stageInfo: {fileID: 0}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -1140,6 +1142,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
+    advancedStageData: 
+    stageInfo: {fileID: 0}
   - stageName: Training Room (Scene)
     stageLoadingMethod: 2
     stagePath: Assets/UFE/Demos/Shared_Assets/Stages/TrainingRoom2D/TrainingRoom.unity
@@ -1159,6 +1163,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
+    advancedStageData: 
+    stageInfo: {fileID: 0}
   - stageName: Bathroom
     stageLoadingMethod: 0
     stagePath: 
@@ -1179,6 +1185,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
+    advancedStageData: 
+    stageInfo: {fileID: 0}
   - stageName: Pier One
     stageLoadingMethod: 0
     stagePath: 
@@ -1199,6 +1207,8 @@ MonoBehaviour:
         _serializedValue: 21474836480
       z:
         _serializedValue: 0
+    advancedStageData: StageData/Pier_1
+    stageInfo: {fileID: 0}
   characters:
   - {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}

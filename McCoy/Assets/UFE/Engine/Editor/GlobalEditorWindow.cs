@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FPLibrary;
 using UFE3D;
+using Assets.McCoy.Brawler.Stages;
 
 public class GlobalEditorWindow : EditorWindow {
 	public static GlobalEditorWindow globalEditorWindow;
@@ -1493,6 +1494,7 @@ public class GlobalEditorWindow : EditorWindow {
                                     globalInfo.stages[i]._leftBoundary = EditorGUILayout.FloatField("Left Boundary:", (float)globalInfo.stages[i]._leftBoundary);
                                     globalInfo.stages[i]._rightBoundary = EditorGUILayout.FloatField("Right Boundary:", (float)globalInfo.stages[i]._rightBoundary);
                                 }
+				globalInfo.stages[i].advancedStageData = EditorGUILayout.TextField("Advanced Stage Info:", globalInfo.stages[i].advancedStageData);
 								globalInfo.stages[i]._groundFriction = EditorGUILayout.FloatField("Ground Friction:", (float)globalInfo.stages[i]._groundFriction);
                                 globalInfo.stages[i].position = FPVector.ToFPVector(EditorGUILayout.Vector3Field("Position:", globalInfo.stages[i].position.ToVector()));
                                 EditorGUILayout.LabelField("Screenshot:");

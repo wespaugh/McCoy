@@ -31,7 +31,7 @@ namespace Assets.McCoy.UI
 
     McCoyStageData currentStage;
 
-    bool debug = true;
+    bool debug = false;
 
     bool spawnerInitialized = false;
 

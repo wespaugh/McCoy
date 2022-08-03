@@ -632,9 +632,9 @@ public class PhysicsScript : MonoBehaviour
       Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary);
       Fix64 y = FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
       Fix64 z;
-      if(brawler)
+      if(brawler && UFE.config.selectedStage.stageInfo != null)
       {
-        GetYBounds(x, out var yMin, out var yMax);
+        UFE.config.selectedStage.stageInfo.GetYBounds(UFE.config.currentRound, ((float)x), out var yMin, out var yMax);
         z = FPMath.Clamp(worldTransform.position.z, UFE.config.selectedStage.position.y + yMin, UFE.config.selectedStage.position.y + yMax);
       }
       else
@@ -1107,12 +1107,6 @@ public class PhysicsScript : MonoBehaviour
 
     if (activeForces.x == 0 && activeForces.y == 0)
       moveDirection = 0;
-  }
-
-  public void GetYBounds(Fix64 x, out Fix64 yMin, out Fix64 yMax)
-  {
-    yMin = -6.2f;
-    yMax = -2.0f;
   }
 
   public bool IsGrounded()

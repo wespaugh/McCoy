@@ -4015,7 +4015,7 @@ public class UFE : MonoBehaviour, UFEInterface
       SceneManager.LoadScene(UFE.config.selectedStage.stagePath, LoadSceneMode.Additive);
       UFE.DelayLocalAction(SetActiveStageScene, 3);
     }
-
+    config.selectedStage.LoadAdvancedLevelInfo();
 
     UFE.config.currentRound = 1;
     UFE.config.lockInputs = true;
