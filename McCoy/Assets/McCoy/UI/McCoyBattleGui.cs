@@ -74,7 +74,7 @@ namespace Assets.McCoy.UI
         {
           float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
           float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
-          UFE.CreateRandomMonster(x, z);
+          UFE.CreateRandomMonster(null, x, z);
         });
       }
       var camera2 = GameObject.Find("BattleUI Camera");

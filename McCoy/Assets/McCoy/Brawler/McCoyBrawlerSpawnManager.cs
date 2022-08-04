@@ -21,6 +21,8 @@ namespace Assets.McCoy.Brawler
 
     ControlsScript player;
 
+    McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
+
     List<McCoySpawnerTrigger> spawners = null;
     public static void SetTeam(int id, Factions f)
     {
@@ -79,7 +81,8 @@ namespace Assets.McCoy.Brawler
         if (player.worldTransform.position.x >= spawner.transform.localPosition.x)
         {
           spawner.Fired = true;
-          createMonster(Factions.Mages);
+          factionLookup.FindCharacterInfo(spawner.EnemyName, out var charInfo, out var fac);
+          createMonster(charInfo, fac);
         }
       }
     }
@@ -211,7 +214,7 @@ namespace Assets.McCoy.Brawler
       if(totalMonstersRemaining < 0)
       {
         Debug.LogWarning("spawned more actors than we anticipated");
-        createMonster(Factions.Mages);
+        createMonster(null, Factions.Mages);
       }
 
       int randomMonsterIndex = UnityEngine.Random.Range(1, totalMonstersRemaining+1);
@@ -221,15 +224,16 @@ namespace Assets.McCoy.Brawler
         if (totalMonstersRemaining < randomMonsterIndex && !debugSpawnsOnly)
         {
           spawnNumbers[m.Key]--;
-          createMonster(m.Key);
+          UFE3D.CharacterInfo toSpawn = factionLookup.RandomEnemy(m.Key);
+          createMonster(toSpawn, m.Key);
           break;
         }
       }
     }
 
-    private void createMonster(Factions f)
+    private void createMonster(UFE3D.CharacterInfo info, Factions f)
     {
-      ControlsScript newMonster = UFE.CreateRandomMonster();
+      ControlsScript newMonster = UFE.CreateRandomMonster(info);
       SetTeam(newMonster, f);
       SetAllies(newMonster, new List<Factions> { f });
     }

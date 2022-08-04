@@ -132,6 +132,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyFactionLookup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

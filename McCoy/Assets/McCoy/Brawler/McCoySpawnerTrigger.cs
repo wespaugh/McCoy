@@ -12,7 +12,7 @@ namespace Assets.McCoy.Brawler
 
     public void OnDestroy()
     {
-      Debug.Log("GETTING DESTROYED HERE SOMEHOW");
+      // Debug.Log("GETTING DESTROYED HERE SOMEHOW");
     }
   }
 }

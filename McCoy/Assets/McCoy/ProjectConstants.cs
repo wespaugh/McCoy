@@ -19,5 +19,6 @@ namespace Assets.McCoy
     public const string RESOURCES_DIRECTORY = "Assets/Resources/";
     public const string MAPDATA_DIRECTORY = "MapData";
     public const string STAGEDATA_DIRECTORY = "StageData";
+    public const string FACTIONLOOKUP_DIRECTORY = "FactionLookup";
   }
 }
