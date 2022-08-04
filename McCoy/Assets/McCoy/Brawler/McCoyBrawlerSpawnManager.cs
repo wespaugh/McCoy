@@ -79,7 +79,7 @@ namespace Assets.McCoy.Brawler
         if (player.worldTransform.position.x >= spawner.transform.localPosition.x)
         {
           spawner.Fired = true;
-          UFE.CreateRandomMonster();
+          createMonster(Factions.Mages);
         }
       }
     }
@@ -185,21 +185,7 @@ namespace Assets.McCoy.Brawler
           }
           return;
         }
-
-        int randomMonsterIndex = UnityEngine.Random.Range(1, totalMonstersRemaining+1);
-
-        foreach(var m in spawnNumbers)
-        {
-          totalMonstersRemaining -= m.Value;
-          if (totalMonstersRemaining < randomMonsterIndex && !debugSpawnsOnly)
-          {
-            spawnNumbers[m.Key]--;
-            ControlsScript newMonster = UFE.CreateRandomMonster();
-            SetTeam(newMonster, m.Key);
-            SetAllies(newMonster, new List<Factions> { m.Key });
-            break;
-          }
-        }
+        spawnRandomMonster(totalMonstersRemaining);
         UFE.DelaySynchronizedAction(checkSpawns, (float)UnityEngine.Random.Range(3, 7));
       }
       // check again in a bit
@@ -208,6 +194,44 @@ namespace Assets.McCoy.Brawler
         UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
       }
 
+    }
+
+    private void spawnRandomMonster(int totalMonstersRemaining = -1)
+    {
+      if(totalMonstersRemaining < 0)
+      {
+        totalMonstersRemaining = 0;
+        // get total remaining monsters from each mob
+        foreach (var m in spawnNumbers)
+        {
+          totalMonstersRemaining += m.Value;
+        }
+      }
+
+      if(totalMonstersRemaining < 0)
+      {
+        Debug.LogWarning("spawned more actors than we anticipated");
+        createMonster(Factions.Mages);
+      }
+
+      int randomMonsterIndex = UnityEngine.Random.Range(1, totalMonstersRemaining+1);
+      foreach (var m in spawnNumbers)
+      {
+        totalMonstersRemaining -= m.Value;
+        if (totalMonstersRemaining < randomMonsterIndex && !debugSpawnsOnly)
+        {
+          spawnNumbers[m.Key]--;
+          createMonster(m.Key);
+          break;
+        }
+      }
+    }
+
+    private void createMonster(Factions f)
+    {
+      ControlsScript newMonster = UFE.CreateRandomMonster();
+      SetTeam(newMonster, f);
+      SetAllies(newMonster, new List<Factions> { f });
     }
   }
 }
