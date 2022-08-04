@@ -21,7 +21,7 @@ namespace Assets.McCoy.Brawler
 
     ControlsScript player;
 
-    Queue<McCoySpawnerTrigger> spawners = null;
+    List<McCoySpawnerTrigger> spawners = null;
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -57,19 +57,6 @@ namespace Assets.McCoy.Brawler
       SetTeam(1, Factions.Werewolves);
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
-      var spawnerList = new List<McCoySpawnerTrigger>(GameObject.FindObjectsOfType<McCoySpawnerTrigger>());
-      spawnerList.Sort((a, b) => { return (int) (a.transform.position.x < b.transform.position.x ? 1 : -1 ); });
-      
-      foreach(var s in spawnerList)
-      {
-        spawners.Enqueue(s);
-      }
-
-      foreach(var go in spawners)
-      {
-        Debug.Log("sorted the spawners: " + go.transform.position.x);
-      }
-
       player = UFE.brawlerEntityManager.GetControlsScript(1);
 
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
@@ -77,18 +64,37 @@ namespace Assets.McCoy.Brawler
 
     private void FixedUpdate()
     {
-      if(spawners.Count == 0)
+      if(spawners == null)
       {
-        return;
+        initSpawners();
       }
-
-      if(player.worldTransform.position.x >= spawners.Peek().transform.position.x)
+      foreach (var spawner in spawners)
       {
-        if(string.IsNullOrEmpty(spawners.Peek().EnemyName))
+        if(spawner.Fired)
         {
+          continue;
+        }
+        if (player.worldTransform.position.x >= spawner.transform.localPosition.x)
+        {
+          spawner.Fired = true;
           UFE.CreateRandomMonster();
-          spawners.Dequeue();
-          GameObject.Destroy(spawners.Peek().gameObject);
+        }
+      }
+    }
+
+    private void initSpawners()
+    {
+      spawners = new List<McCoySpawnerTrigger>();
+      GameObject spawnerRoot = GameObject.FindGameObjectWithTag("Spawner");
+      var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
+      spawnerList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
+
+      foreach (var s in spawnerList)
+      {
+        if (s != null)
+        {
+          s.Fired = false;
+          spawners.Add(s);
         }
       }
     }

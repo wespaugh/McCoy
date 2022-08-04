@@ -7,5 +7,12 @@ namespace Assets.McCoy.Brawler
   {
     [SerializeField]
     public string EnemyName;
+
+    public bool Fired { get; set; }
+
+    public void OnDestroy()
+    {
+      Debug.Log("GETTING DESTROYED HERE SOMEHOW");
+    }
   }
 }
