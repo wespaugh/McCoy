@@ -64,6 +64,8 @@ namespace Assets.McCoy.Brawler
 
     private void FixedUpdate()
     {
+      // unfortunately we cannot do this during initialize.
+      // somehow the prefab is destroyed and by the time we get here the list is full of null refs
       if(spawners == null)
       {
         initSpawners();
