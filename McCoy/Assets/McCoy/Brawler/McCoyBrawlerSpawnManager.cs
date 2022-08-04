@@ -15,10 +15,13 @@ namespace Assets.McCoy.Brawler
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
     int avgEnemiesOnscreenAtOnce = 0;
 
-    bool debugSpawnsOnly = false;
+    bool debugSpawnsOnly = true;
 
     bool allPlayersDead = false;
 
+    ControlsScript player;
+
+    Queue<McCoySpawnerTrigger> spawners = null;
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -54,7 +57,40 @@ namespace Assets.McCoy.Brawler
       SetTeam(1, Factions.Werewolves);
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
+      var spawnerList = new List<McCoySpawnerTrigger>(GameObject.FindObjectsOfType<McCoySpawnerTrigger>());
+      spawnerList.Sort((a, b) => { return (int) (a.transform.position.x < b.transform.position.x ? 1 : -1 ); });
+      
+      foreach(var s in spawnerList)
+      {
+        spawners.Enqueue(s);
+      }
+
+      foreach(var go in spawners)
+      {
+        Debug.Log("sorted the spawners: " + go.transform.position.x);
+      }
+
+      player = UFE.brawlerEntityManager.GetControlsScript(1);
+
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
+    }
+
+    private void FixedUpdate()
+    {
+      if(spawners.Count == 0)
+      {
+        return;
+      }
+
+      if(player.worldTransform.position.x >= spawners.Peek().transform.position.x)
+      {
+        if(string.IsNullOrEmpty(spawners.Peek().EnemyName))
+        {
+          UFE.CreateRandomMonster();
+          spawners.Dequeue();
+          GameObject.Destroy(spawners.Peek().gameObject);
+        }
+      }
     }
 
     private void recalcAverageSpawns()

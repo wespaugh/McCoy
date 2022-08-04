@@ -50,7 +50,7 @@ MonoBehaviour:
     lowerBound:
       slope: 0
       yIntercept: -6
-  - unitXStart: 8
+  - unitXStart: 10
     upperBound:
       slope: 0
       yIntercept: -2.3
