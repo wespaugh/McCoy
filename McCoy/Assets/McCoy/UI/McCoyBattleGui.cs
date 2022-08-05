@@ -8,16 +8,14 @@ using UnityEngine.UI;
 
 namespace Assets.McCoy.UI
 {
-  public class McCoyBattleGui : DefaultBattleGUI
+  public class McCoyBattleGui : DefaultBattleGUI, IBossSpawnListener
   {
     [SerializeField]
-    public GameObject worldSpacePrefab = null;
+    public McCoyWorldUI worldSpacePrefab = null;
 
     GameObject uiRoot = null;
 
-    McCoyProgressBar healthBar = null;
-
-    [SerializeField] float overrideHealth = -1.0f;
+    McCoyWorldUI worldUI = null;
 
     [SerializeField] TMP_Text alertText = null;
 
@@ -28,6 +26,8 @@ namespace Assets.McCoy.UI
     [SerializeField] TMP_InputField yInput = null;
 
     [SerializeField] TMP_Text tmpNameText = null;
+
+    [SerializeField] TMP_Text bossName = null;
 
     McCoyStageData currentStage;
 
@@ -51,17 +51,6 @@ namespace Assets.McCoy.UI
 
     protected override void OnGameEnd(ControlsScript winner, ControlsScript loser)
     {
-      /*
-      UFE.DelaySynchronizedAction(() => 
-      {
-        McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
-      }, 4.0f);
-
-      UFE.DelaySynchronizedAction(() =>
-      {
-          UFE.EndGame();
-      }, 5.0f);
-      */
     }
 
     private void Awake()
@@ -89,10 +78,8 @@ namespace Assets.McCoy.UI
         // uiRoot.transform.position = camera2.transform.position;
       }
 
-      var bonusUI = Instantiate(worldSpacePrefab, uiRoot.transform);
+      worldUI = Instantiate(worldSpacePrefab, uiRoot.transform);
       // bonusUI.transform.position = new Vector3(0, 0, 2) + uiRoot.gameObject.transform.position;
-      healthBar = bonusUI.GetComponentInChildren<McCoyProgressBar>();
-      healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
 
       currentStage = McCoy.GetInstance().currentStage;
     }
@@ -106,7 +93,7 @@ namespace Assets.McCoy.UI
 
     private void initSpawner()
     {
-      gameObject.AddComponent<McCoyBrawlerSpawnManager>().Initialize(currentStage.GetSpawnData());
+      gameObject.AddComponent<McCoyBrawlerSpawnManager>().Initialize(currentStage.GetSpawnData(), this);
       info.text = currentStage.Name;
     }
 
@@ -136,7 +123,7 @@ namespace Assets.McCoy.UI
     }
     protected override void UpdatePlayerHealthBar(float percent)
     {
-      healthBar.SetFill(overrideHealth >= 0.0f ? overrideHealth : percent);
+      worldUI.UpdatePlayerHealth(percent);
     }
 
     protected override void UpdateWonRounds()
@@ -157,6 +144,19 @@ namespace Assets.McCoy.UI
         }
         debuggerText.text = sb;
       }
+    }
+
+    public void BossSpawned(ControlsScript boss)
+    {
+      bossName.gameObject.SetActive(true);
+      bossName.text = boss.myInfo.characterName;
+      worldUI.BossSpawned(boss);
+    }
+
+    public void BossDied(ControlsScript boss)
+    {
+      bossName.gameObject.SetActive(false);
+      worldUI.BossDied(boss);
     }
   }
 }

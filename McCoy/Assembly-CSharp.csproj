@@ -86,6 +86,7 @@
     <Compile Include="Assets\McCoy\BoardGame\MapGraphNodeContainer.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapData.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultStageSelectionScreen.cs" />
+    <Compile Include="Assets\McCoy\Brawler\IBossSpawnListener.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothGameScreen.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapNodeLinkData.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultHostGameScreen.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cKeys.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInput.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyLoadingBattleScreen.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyWorldUI.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoSetup.cs" />
     <Compile Include="Assets\McCoy\ProjectConstants.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOptionsScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeAfterBattleScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCongratulationsScreen.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyFactionLookup.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRestart.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyBattleGui.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyMainMenuScene.cs" />
@@ -132,7 +135,6 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoyFactionLookup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />
