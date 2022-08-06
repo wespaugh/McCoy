@@ -17,7 +17,7 @@ namespace Assets.McCoy.Brawler
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
     int avgEnemiesOnscreenAtOnce = 0;
 
-    bool debugSpawnsOnly = true;
+    bool debugSpawnsOnly = false;
 
     bool allPlayersDead = false;
 
@@ -93,6 +93,10 @@ namespace Assets.McCoy.Brawler
       if (spawners == null)
       {
         initSpawners();
+      }
+      if(debugSpawnsOnly)
+      {
+        return;
       }
       foreach (var spawner in spawners)
       {
