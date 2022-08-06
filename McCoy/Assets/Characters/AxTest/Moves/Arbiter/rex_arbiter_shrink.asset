@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
-  m_Name: rex_homid_grow
+  m_Name: rex_arbiter_shrink
   m_EditorClassIdentifier: 
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 32ac6c7d320858f45b89029133a11dd0, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 0c10ec939ac02dd4e974af5a533606d9,
+    clip: {fileID: 7400000, guid: 3aa4cc12e6cacda4bbd93eab2447d7f1, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: 61b0fe635e4468c42b11698e91fcabbd,
       type: 2}
     length:
-      _serializedValue: 9162596352
+      _serializedValue: 1861152512
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
     _serializedValue: 4294967296
   wrapMode: 0
-  characterPrefab: {fileID: 4008542871262631591, guid: 9a161e700108f1d42812ab78acc53202,
-    type: 3}
-  moveName: rex_homid_grow
+  characterPrefab: {fileID: 0}
+  moveName: rex_arbiter_shrink
   description: 
   fps: 60
   ignoreGravity: 0
@@ -46,7 +45,7 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 128
+  totalFrames: 26
   startUpFrames: 0
   activeFrames: 1
   recoveryFrames: 2
@@ -74,7 +73,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 08000000
-    buttonExecution: 07000000
+    buttonExecution: 05000000
     editorToggle: 1
     buttonSequenceToggle: 1
     buttonExecutionToggle: 1
@@ -128,8 +127,8 @@ MonoBehaviour:
   soundEffects: []
   inGameAlert: []
   stanceChanges:
-  - castingFrame: 76
-    newStance: 1
+  - castingFrame: 3
+    newStance: 0
   cameraMovements: []
   hits: []
   blockableArea:

@@ -5490,6 +5490,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a17b0b9e81296b14a87e4de28c77a3a4, type: 2}
     - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
     - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
+    - {fileID: 11400000, guid: d39f6564b6b23144086c84310c57bba2, type: 2}
     enabledBasicMovesToggle: 1
     basicMovesToggle: 0
     attackMovesToggle: 1
@@ -10869,7 +10870,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 35b70f254bb39d74d9972874f8878564, type: 2}
     - {fileID: 11400000, guid: 65f2360f591b0b145803ef3e8597f95f, type: 2}
     - {fileID: 11400000, guid: b2f04a5dc5a20fd40af6426a970605d2, type: 2}
-    enabledBasicMovesToggle: 1
+    enabledBasicMovesToggle: 0
     basicMovesToggle: 1
     attackMovesToggle: 1
   aiInstructionsSet: []
