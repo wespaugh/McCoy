@@ -80,7 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcad5d56ce9cae49bc7fa33a28183fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyName: UmmDefault
+  spawnData:
+    EnemyName: UmmDefault
+    IsBoss: 1
 --- !u!1 &3606682145742124791
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcad5d56ce9cae49bc7fa33a28183fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyName: UmmDefault
+  spawnData:
+    EnemyName: UmmDefault
+    IsBoss: 0
 --- !u!1 &4007221582364150341
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcad5d56ce9cae49bc7fa33a28183fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyName: UmmDefault
+  spawnData:
+    EnemyName: UmmDefault
+    IsBoss: 0
 --- !u!1 &4985532327438737981
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ namespace Assets.McCoy.Brawler
   using SpawnData = Dictionary<Factions, McCoyMobData>;
   public class McCoyBrawlerSpawnManager : MonoBehaviour
   {
+    int[] playerIDs = { 1 };
+
     // Faction -> <totalEnemiesRemaining, avgEnemiesAtOnce>
     Dictionary<Factions, int> spawnNumbers = new Dictionary<Factions, int>();
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
@@ -19,11 +21,14 @@ namespace Assets.McCoy.Brawler
 
     bool allPlayersDead = false;
 
+    ControlsScript boss = null;
+    IBossSpawnListener bossSpawnListener = null;
+
     ControlsScript player;
 
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
 
-    List<McCoySpawnerTrigger> spawners = null;
+    List<McCoySpawnData> spawners = null;
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -45,7 +50,7 @@ namespace Assets.McCoy.Brawler
       s.SetAllies(iAllies);
     }
 
-    public void Initialize(SpawnData spawns)
+    public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
     {
       allPlayersDead = false;
 
@@ -61,45 +66,68 @@ namespace Assets.McCoy.Brawler
 
       player = UFE.brawlerEntityManager.GetControlsScript(1);
 
+      this.bossSpawnListener = bossSpawnListener;
+
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
     }
 
     private void FixedUpdate()
     {
+      updateSpawners();
+      updateBoss();
+    }
+
+    private void updateBoss()
+    {
+      if(boss && boss.currentLifePoints <= 0)
+      {
+        boss = null;
+        bossSpawnListener.BossDied(boss);
+      }
+    }
+
+    private void updateSpawners()
+    {
       // unfortunately we cannot do this during initialize.
       // somehow the prefab is destroyed and by the time we get here the list is full of null refs
-      if(spawners == null)
+      if (spawners == null)
       {
         initSpawners();
       }
       foreach (var spawner in spawners)
       {
-        if(spawner.Fired)
+        if (player.worldTransform.position.x >= spawner.xPosition)
         {
-          continue;
-        }
-        if (player.worldTransform.position.x >= spawner.transform.localPosition.x)
-        {
-          spawner.Fired = true;
+          spawners.RemoveAt(0);
           factionLookup.FindCharacterInfo(spawner.EnemyName, out var charInfo, out var fac);
-          createMonster(charInfo, fac);
+          var monsterCScript = createMonster(charInfo, fac);
+          if (bossSpawnListener != null && spawner.IsBoss)
+          {
+            boss = monsterCScript;
+            monsterCScript.currentLifePoints *= 12;
+            bossSpawnListener.BossSpawned(monsterCScript);
+          }
+          break;
         }
       }
     }
 
     private void initSpawners()
     {
-      spawners = new List<McCoySpawnerTrigger>();
+      spawners = new List<McCoySpawnData>();
       GameObject spawnerRoot = GameObject.FindGameObjectWithTag("Spawner");
       var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
       spawnerList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
 
-      foreach (var s in spawnerList)
+      while(spawnerList.Count > 0)
       {
-        if (s != null)
+        var spawner = spawnerList[0];
+        spawnerList.Remove(spawner);
+        if (spawner != null)
         {
-          s.Fired = false;
-          spawners.Add(s);
+          spawner.spawnData.Initialize(spawner.gameObject.transform.localPosition.x);
+          spawners.Add(spawner.spawnData);
+          Destroy(spawner.gameObject);
         }
       }
     }
@@ -125,31 +153,12 @@ namespace Assets.McCoy.Brawler
         UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
         return;
       }
-      int[] playerIDs = { 1 };
 
-      // for one line, assume everyone's dead
-      allPlayersDead = true;
-      foreach (int i in playerIDs)
-      {
-        // if any single player is alive, set allPlayersDead back to false and break
-        allPlayersDead &= UFE.brawlerEntityManager.GetControlsScript(i).currentLifePoints <= 0;
-        if(!allPlayersDead)
-        {
-          break;
-        }
-      }
+      updateAllPlayersDead();
 
       if(allPlayersDead)
       {
-        Debug.Log("YOU lose!");
-        UFE.FireAlert("Werewolf Down!", null);
-
-        UFE.DelaySynchronizedAction(() =>
-        {
-          UFE.FireGameEnds();
-          UFE.EndGame();
-          McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
-        }, 6.0f);
+        fireLose();
         return;
       }
 
@@ -158,45 +167,73 @@ namespace Assets.McCoy.Brawler
 
       recalcAverageSpawns();
 
+      float recheckDelay = 3.0f;
+
       // if it's time to spawn another monster
       if(avgEnemiesOnscreenAtOnce > numLivingEnemies)
       {
-        int totalMonstersRemaining = 0;
-        // get total remaining monsters from each mob
-        foreach(var m in spawnNumbers)
-        {
-          totalMonstersRemaining += m.Value;
-        }
+        recalcRemainingMonsters(out var totalMonstersRemaining);
 
-        if (totalMonstersRemaining <= 0)
+        if (totalMonstersRemaining <= 0 && numLivingEnemies == 0)
         {
-          if (numLivingEnemies == 0)
-          {
-            Debug.Log("YOU WON!");
-            UFE.FireAlert("All Dudes BEATEN!", null);
-
-            UFE.DelaySynchronizedAction(() =>
-            {
-              UFE.FireGameEnds();
-              UFE.EndGame();
-              McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
-            }, 6.0f);
-          }
-          else
-          {
-            UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
-          }
-          return;
+            fireWon();
+            return;
         }
         spawnRandomMonster(totalMonstersRemaining);
-        UFE.DelaySynchronizedAction(checkSpawns, (float)UnityEngine.Random.Range(3, 7));
-      }
-      // check again in a bit
-      else
-      {
-        UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
+        recheckDelay = (float)UnityEngine.Random.Range(3, 7);
       }
 
+      UFE.DelaySynchronizedAction(checkSpawns, recheckDelay);
+
+    }
+
+    private void recalcRemainingMonsters(out int totalMonstersRemaining)
+    {
+      totalMonstersRemaining = 0;
+      // get total remaining monsters from each mob
+      foreach (var m in spawnNumbers)
+      {
+        totalMonstersRemaining += m.Value;
+      }
+    }
+
+    private void fireWon()
+    {
+      UFE.FireAlert("All Dudes BEATEN!", null);
+
+      UFE.DelaySynchronizedAction(() =>
+      {
+        UFE.FireGameEnds();
+        UFE.EndGame();
+        McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+      }, 6.0f);
+    }
+
+    private void fireLose()
+    {
+      UFE.FireAlert("Werewolf Down!", null);
+
+      UFE.DelaySynchronizedAction(() =>
+      {
+        UFE.FireGameEnds();
+        UFE.EndGame();
+        McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+      }, 6.0f);
+    }
+
+    private void updateAllPlayersDead()
+    {
+      // for one line, assume everyone's dead
+      allPlayersDead = true;
+      foreach (int i in playerIDs)
+      {
+        // if any single player is alive, set allPlayersDead back to false and break
+        allPlayersDead &= UFE.brawlerEntityManager.GetControlsScript(i).currentLifePoints <= 0;
+        if (!allPlayersDead)
+        {
+          break;
+        }
+      }
     }
 
     private void spawnRandomMonster(int totalMonstersRemaining = -1)
@@ -231,11 +268,12 @@ namespace Assets.McCoy.Brawler
       }
     }
 
-    private void createMonster(UFE3D.CharacterInfo info, Factions f)
+    private ControlsScript createMonster(UFE3D.CharacterInfo info, Factions f)
     {
       ControlsScript newMonster = UFE.CreateRandomMonster(info);
       SetTeam(newMonster, f);
       SetAllies(newMonster, new List<Factions> { f });
+      return newMonster;
     }
   }
 }
