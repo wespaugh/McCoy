@@ -4247,10 +4247,7 @@ public class UFE : MonoBehaviour, UFEInterface
     {
       pos = new FPVector(posX.Value, 0.0f, posZ.Value);
     }
-    if (character != null)
-    {
-      Debug.Log("Yes, we're spawning an " + character.name + ", but this time it's because we meant to!");
-    }
+
     UFE3D.CharacterInfo toSpawn = character == null ? config.player2Character : character;
     var cScript = SpawnCharacter(toSpawn, newId, -1, pos, false, null, null, -1);
     brawlerEntityManager.SetControlsScript(cScript, newId);
