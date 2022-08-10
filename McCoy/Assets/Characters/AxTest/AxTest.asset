@@ -63,7 +63,7 @@ MonoBehaviour:
     canJump: 1
     pressureSensitiveJump: 0
     _jumpForce:
-      _serializedValue: 171798691840
+      _serializedValue: 107374182400
     _minJumpForce:
       _serializedValue: 128849018880
     minJumpDelay: 4
@@ -72,7 +72,7 @@ MonoBehaviour:
     _jumpBackDistance:
       _serializedValue: 34359738368
     cumulativeForce: 1
-    multiJumps: 1
+    multiJumps: 2
     _weight:
       _serializedValue: 751619276800
     jumpDelay: 8
@@ -93,7 +93,7 @@ MonoBehaviour:
     zAxisMovement: 0
     disableJump: 0
     disableCrouch: 0
-    jumpButton: 2
+    jumpButton: 7
     crouchButton: 3
   hideGauges: 00000000000000000000
   _executionTiming:
@@ -644,12 +644,13 @@ MonoBehaviour:
       takeOff:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: b21484ca0755bc84f8d1dbb394f5ba16, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 830bceb56faf7f24f95f16da9108f441,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 787410688
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -744,13 +745,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       jumpStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: c1d1163bf6553dc47a8df4d6276a364a, type: 2}
-          customHitBoxDefinition: {fileID: 11400000, guid: b3f0cce26c9aa97469d7354e3077d1ff,
+          clip: {fileID: 7400000, guid: 26ebfbdba99edf94ca40c9715615e40d, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: f9b686dc0e4144845b429497591f3eb0,
             type: 2}
           length:
             _serializedValue: 0
@@ -850,7 +851,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -5492,7 +5493,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
     - {fileID: 11400000, guid: d39f6564b6b23144086c84310c57bba2, type: 2}
     enabledBasicMovesToggle: 1
-    basicMovesToggle: 0
+    basicMovesToggle: 1
     attackMovesToggle: 1
   - combatStance: 0
     cinematicIntro: {fileID: 0}

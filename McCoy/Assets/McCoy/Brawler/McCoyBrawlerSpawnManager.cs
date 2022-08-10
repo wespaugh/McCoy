@@ -109,7 +109,6 @@ namespace Assets.McCoy.Brawler
           if (bossSpawnListener != null && spawner.IsBoss)
           {
             boss = monsterCScript;
-            monsterCScript.currentLifePoints *= 12;
             bossSpawnListener.BossSpawned(monsterCScript);
           }
           break;
@@ -184,7 +183,10 @@ namespace Assets.McCoy.Brawler
             fireWon();
             return;
         }
-        spawnRandomMonster(totalMonstersRemaining);
+        if (!debugSpawnsOnly)
+        {
+          spawnRandomMonster(totalMonstersRemaining);
+        }
         recheckDelay = (float)UnityEngine.Random.Range(3, 7);
       }
 

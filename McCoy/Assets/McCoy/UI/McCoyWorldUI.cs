@@ -39,7 +39,7 @@ namespace Assets.McCoy.UI
 
     public void BossSpawned(ControlsScript boss)
     {
-      bossHud.Initialize((int)boss.currentLifePoints, 210);
+      bossHud.Initialize((int)boss.currentLifePoints, 250);
       this.boss = boss;
       bossStartingLife = (float)boss.currentLifePoints;
       bossHud.gameObject.SetActive(true);

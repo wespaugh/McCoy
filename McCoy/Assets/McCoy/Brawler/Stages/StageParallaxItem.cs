@@ -8,7 +8,7 @@ namespace Assets.McCoy.Brawler.Stages
   public class StageParallaxItem : MonoBehaviour
   {
     [SerializeField]
-    GameObject contents = null;
+    public GameObject contents = null;
 
     [SerializeField]
     private float unitWidth;
@@ -27,10 +27,9 @@ namespace Assets.McCoy.Brawler.Stages
     float camMaxX;
 
     List<GameObject> instances = new List<GameObject>();
+
     private void Awake()
     {
-      GameObject instance = Instantiate(contents, transform);
-      instances.Add(instance);
 
       float cameraWidth = Camera.main.aspect * Camera.main.orthographicSize * 2;
       int numInstancesNeeded = ((int)(cameraWidth / unitWidth)) + 3;
@@ -39,7 +38,17 @@ namespace Assets.McCoy.Brawler.Stages
       {
         var next = Instantiate(contents, transform);
         instances.Add(next);
+        float index = Camera.main.transform.localPosition.x * (1.0f - speed) + (next.transform.localScale.x * unitWidth * i);
+        float chunkWidth = next.transform.localScale.x * unitWidth;
+        int iIndex = (int)(index / chunkWidth);
+        Debug.Log("in initialization, item at " + index + " has a chunk index of " + iIndex);
+        ItemMoved(next, iIndex);
       }
+      Debug.Log("ALL DONE");
+    }
+    protected virtual void ItemMoved(GameObject item, int index)
+    {
+
     }
 
     private void FixedUpdate()
@@ -59,11 +68,13 @@ namespace Assets.McCoy.Brawler.Stages
         {
           float newX = go.transform.position.x + chunkWidth * instances.Count;
           go.transform.position = new Vector3(newX, go.transform.position.y, go.transform.position.z);
+          ItemMoved(go, (int) (go.transform.position.x / (float)chunkWidth));
         }
         else if(go.transform.position.x > camMaxX)
         {
           float newX = go.transform.position.x - chunkWidth * instances.Count;
           go.transform.position = new Vector3(newX, go.transform.position.y, go.transform.position.z);
+          ItemMoved(go, (int)(go.transform.position.x / (float)chunkWidth));
         }
       }
     }
