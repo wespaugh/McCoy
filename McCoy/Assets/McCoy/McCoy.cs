@@ -11,6 +11,7 @@ namespace Assets.McCoy
 {
   public class McCoy : MonoBehaviour
   {
+    public bool Debug = false;
     public UFEScreen cityScene;
     public enum McCoyScenes
     {

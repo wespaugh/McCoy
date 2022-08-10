@@ -17,7 +17,7 @@ namespace Assets.McCoy.Brawler
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
     int avgEnemiesOnscreenAtOnce = 0;
 
-    bool debugSpawnsOnly = false;
+    bool debugSpawnsOnly => McCoy.GetInstance().Debug;
 
     bool allPlayersDead = false;
 
@@ -103,6 +103,7 @@ namespace Assets.McCoy.Brawler
         if (player.worldTransform.position.x >= spawner.xPosition)
         {
           spawners.RemoveAt(0);
+          Debug.Log("looking up enemy named " + spawner.EnemyName);
           factionLookup.FindCharacterInfo(spawner.EnemyName, out var charInfo, out var fac);
           var monsterCScript = createMonster(charInfo, fac);
           if (bossSpawnListener != null && spawner.IsBoss)
@@ -178,7 +179,7 @@ namespace Assets.McCoy.Brawler
       {
         recalcRemainingMonsters(out var totalMonstersRemaining);
 
-        if (totalMonstersRemaining <= 0 && numLivingEnemies == 0)
+        if (totalMonstersRemaining <= 0 && numLivingEnemies == 0 && spawners.Count == 0)
         {
             fireWon();
             return;

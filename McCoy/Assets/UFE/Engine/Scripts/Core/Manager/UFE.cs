@@ -4235,10 +4235,12 @@ public class UFE : MonoBehaviour, UFEInterface
 
   public static ControlsScript CreateRandomMonster(UFE3D.CharacterInfo character = null, float? posX = null, float? posZ = null)
   {
+    UFE3D.CharacterInfo toSpawn = character == null ? config.player2Character : character;
+
     // initialize some bloke
     int newId = brawlerEntityManager.GetAvailableID();
     UFE.initController(newId, UFE.gameEngine);
-    UFE.SetFuzzyAI(newId, UFE.config.player2Character);
+    UFE.SetFuzzyAI(newId, toSpawn);
     int dx = UnityEngine.Random.Range(0, 2) == 1 ? 1 : -1;
     dx *= 10;
     float dy = dx > 0 ? UnityEngine.Random.Range(0.0f, 1.5f) : 0.0f;
@@ -4248,7 +4250,6 @@ public class UFE : MonoBehaviour, UFEInterface
       pos = new FPVector(posX.Value, 0.0f, posZ.Value);
     }
 
-    UFE3D.CharacterInfo toSpawn = character == null ? config.player2Character : character;
     var cScript = SpawnCharacter(toSpawn, newId, -1, pos, false, null, null, -1);
     brawlerEntityManager.SetControlsScript(cScript, newId);
     cScript.opControlsScript = p1ControlsScript;

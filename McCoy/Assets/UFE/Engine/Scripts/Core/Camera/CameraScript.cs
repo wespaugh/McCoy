@@ -120,6 +120,7 @@ namespace UFE3D
             {
               newPosition = new Vector3(newPosition.x, currentPosition.y, currentPosition.z);
             }
+            newPosition.z = player1.transform.position.z - 5.0f;
           }
           else {
             newPosition = ((player1.transform.position + player2.transform.position) / 2) + UFE.config.cameraOptions.initialDistance;

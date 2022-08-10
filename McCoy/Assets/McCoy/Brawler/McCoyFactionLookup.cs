@@ -79,19 +79,20 @@ namespace Assets.McCoy.Brawler
       mageLookup = new Dictionary<string, UFE3D.CharacterInfo>();
       foreach (var mage in mageCharacters)
       {
-        mageLookup[mage.name] = mage;
+        Debug.Log("adding " + mage.characterName);
+        mageLookup[mage.characterName] = mage;
       }
 
       minotaurLookup = new Dictionary<string, UFE3D.CharacterInfo>();
       foreach (var minotaur in minotaurCharacters)
       {
-        minotaurLookup[minotaur.name] = minotaur;
+        minotaurLookup[minotaur.characterName] = minotaur;
       }
 
       militiaLookup = new Dictionary<string, UFE3D.CharacterInfo>();
       foreach (var m in militiaCharacters)
       {
-        militiaLookup[m.name] = m;
+        militiaLookup[m.characterName] = m;
       }
     }
     public UFE3D.CharacterInfo RandomEnemy(Factions f)

@@ -24,6 +24,7 @@ namespace Assets.McCoy.UI
     [SerializeField] Button spawnButton = null;
     [SerializeField] TMP_InputField xInput = null;
     [SerializeField] TMP_InputField yInput = null;
+    [SerializeField] TMP_InputField nameInput = null;
 
     [SerializeField] TMP_Text tmpNameText = null;
 
@@ -31,7 +32,7 @@ namespace Assets.McCoy.UI
 
     McCoyStageData currentStage;
 
-    bool debug = false;
+    bool debug => McCoy.GetInstance().Debug;
 
     bool spawnerInitialized = false;
 
@@ -63,7 +64,16 @@ namespace Assets.McCoy.UI
         {
           float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
           float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
-          UFE.CreateRandomMonster(null, x, z);
+          UFE3D.CharacterInfo m = null;
+          foreach(var name in UFE.config.characters)
+          {
+            if(name.characterName.ToLower() == nameInput.text.ToLower())
+            {
+              m = name;
+              break;
+            }
+          }
+          UFE.CreateRandomMonster(m, x, z);
         });
       }
       var camera2 = GameObject.Find("BattleUI Camera");
@@ -89,6 +99,7 @@ namespace Assets.McCoy.UI
       spawnButton.gameObject.SetActive(debug);
       xInput.gameObject.SetActive(debug);
       yInput.gameObject.SetActive(debug);
+      nameInput.gameObject.SetActive(debug);
     }
 
     private void initSpawner()
