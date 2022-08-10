@@ -75,6 +75,7 @@ namespace Assets.McCoy.Brawler
 
     private void initLookups()
     {
+      Debug.Log("initializing lookups: " + mageCharacters.Count);
       mageLookup = new Dictionary<string, UFE3D.CharacterInfo>();
       foreach (var mage in mageCharacters)
       {
@@ -95,6 +96,11 @@ namespace Assets.McCoy.Brawler
     }
     public UFE3D.CharacterInfo RandomEnemy(Factions f)
     {
+      if (mageLookup == null)
+      {
+        initLookups();
+      }
+
       Dictionary<string, UFE3D.CharacterInfo> collection;
       switch (f)
       {
@@ -109,6 +115,11 @@ namespace Assets.McCoy.Brawler
           break;
         default:
           return null;
+      }
+
+      if(collection == null)
+      {
+        Debug.Log("NULL COLLECTION FOR " + f);
       }
 
       int index = UnityEngine.Random.Range(0, collection.Count);
