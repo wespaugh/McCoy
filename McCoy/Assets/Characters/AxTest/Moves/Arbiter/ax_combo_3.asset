@@ -193,7 +193,7 @@ MonoBehaviour:
       possibleMoveStates: []
       basicMovesToggle: 0
       statesToggle: 0
-    downHit: 0
+    downHit: 1
     resetPreviousHitStun: 0
     resetCrumples: 0
     customStunValues: 0

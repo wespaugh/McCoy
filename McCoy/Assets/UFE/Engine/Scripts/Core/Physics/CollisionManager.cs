@@ -59,6 +59,10 @@ namespace UFE3D
 
         foreach (HurtBox hurtBox in hurtBoxes)
         {
+          if(hurtBox.position.x == 0 && hurtBox.position.y == 0)
+          {
+            Debug.Log("Hooo buddy we got problems");
+          }
           if (hitBox.collisionType == CollisionType.projectileInvincibleCollider && hurtBox.type == HurtBoxType.projectile) continue;
           if (hitBox.collisionType == CollisionType.physicalInvincibleCollider && hurtBox.type == HurtBoxType.physical) continue;
 

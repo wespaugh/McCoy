@@ -93,7 +93,7 @@ MonoBehaviour:
     zAxisMovement: 0
     disableJump: 0
     disableCrouch: 0
-    jumpButton: 7
+    jumpButton: 5
     crouchButton: 3
   hideGauges: 00000000000000000000
   _executionTiming:
