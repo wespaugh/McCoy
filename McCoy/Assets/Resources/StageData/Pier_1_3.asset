@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a98cd6ca1bdee840a9f245fe62ca326, type: 3}
+  m_Name: Pier_1_3
+  m_EditorClassIdentifier: 
+  substageName: Pier 3
+  stagePrefab: {fileID: 7874723557239885595, guid: dcf4ebe2c46b1de469cd2d20516b120c,
+    type: 3}
+  boundaries:
+  - unitXStart: -8
+    upperBound:
+      slope: 0
+      yIntercept: -2.3
+    lowerBound:
+      slope: 0
+      yIntercept: -6

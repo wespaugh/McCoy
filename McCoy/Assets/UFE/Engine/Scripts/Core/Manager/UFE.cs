@@ -4209,7 +4209,7 @@ public class UFE : MonoBehaviour, UFEInterface
         {
           stage = config.selectedStage.stageInfo.substages[config.currentRound-1].stagePrefab;
         }
-        currentStage = Instantiate(config.selectedStage.prefab);
+        currentStage = Instantiate(stage);
         currentStage.transform.parent = gameEngine.transform;
       }
       else

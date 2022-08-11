@@ -35,6 +35,7 @@ namespace Assets.McCoy
     public void LoadBrawlerStage(McCoyStageData stageData)
     {
       currentStage = stageData;
+      UFE.config.currentRound = 1;
       UFE.StartBrawlerMode();
     }
 

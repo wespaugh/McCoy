@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98cd6ca1bdee840a9f245fe62ca326, type: 3}
   m_Name: Pier_1_1
   m_EditorClassIdentifier: 
-  substageName: 
-  stagePrefab: {fileID: 0}
+  substageName: Pier 1
+  stagePrefab: {fileID: 2339586843444817353, guid: 08dd271d971de9c49bbee3dcb0ab64b1,
+    type: 3}
   boundaries:
   - unitXStart: -8
     upperBound:
