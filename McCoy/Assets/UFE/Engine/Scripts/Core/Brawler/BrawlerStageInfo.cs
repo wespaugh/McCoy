@@ -20,7 +20,7 @@ namespace Assets.McCoy.Brawler.Stages
 
     public void GetXBounds(int currentRound, float x, float y, out float xMin, out float xMax)
     {
-      var substage = substages[currentRound];
+      var substage = substages[currentRound-1];
       BrawlerStageBoundary bounds = substage.boundaries[0];
       foreach (var b in substage.boundaries)
       {
@@ -81,7 +81,7 @@ namespace Assets.McCoy.Brawler.Stages
 
     public void GetYBounds(int currentRound, float x, out float yMin, out float yMax)
     {
-      var substage = substages[currentRound];
+      var substage = substages[currentRound-1];
       BrawlerStageBoundary bounds = substage.boundaries[0];
       foreach (var b in substage.boundaries)
       {

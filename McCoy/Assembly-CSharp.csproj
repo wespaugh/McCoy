@@ -173,6 +173,7 @@
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\AForge.Core.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\AForge.Fuzzy.dll" />
+    <None Include="Assets\Generic Backgrounds\Ocean-Background-Pack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\UFE\Demos\Shared_Assets\Stages\TrainingRoom3D\Skybox\README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

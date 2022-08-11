@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3519fa6631352a94bb9d27267df41668, type: 3}
   m_Name: Pier_1
   m_EditorClassIdentifier: 
-  Name: New Stage
+  Name: Pier-1
   substages:
   - {fileID: 11400000, guid: fb3cba5fbf1496c41bb4a613350fa9bf, type: 2}
   - {fileID: 11400000, guid: fb3cba5fbf1496c41bb4a613350fa9bf, type: 2}

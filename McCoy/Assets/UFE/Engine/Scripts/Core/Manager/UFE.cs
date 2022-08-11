@@ -34,6 +34,7 @@ using FPLibrary;
 using UFENetcode;
 using UFE3D;
 using UFE3D.Brawler;
+using Assets.McCoy.Brawler.Stages;
 
 public class UFE : MonoBehaviour, UFEInterface
 {
@@ -186,6 +187,7 @@ public class UFE : MonoBehaviour, UFEInterface
   public static UFE UFEInstance;
   public static CameraScript cameraScript { get; set; }
   public static ReplayMode replayMode;
+  public static GameObject currentStage { get; set; }
   #endregion
 
   #region gui definitions
@@ -1382,6 +1384,13 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-1];
 
     UFE.StartLoadingBattleScreen();
+  }
+
+  public static void NextBrawlerStage()
+  {
+    UFE.config.currentRound++;
+    UFE.brawlerEntityManager.GetControlsScript(1).worldTransform.position = FPVector.zero;
+    ReloadStage();
   }
 
   public static void StartStoryMode()
@@ -3982,40 +3991,7 @@ public class UFE : MonoBehaviour, UFEInterface
       UFE.SetRandomAI(2);
     }
 
-    // Load Stage
-    GameObject stageInstance = null;
-    if (config.selectedStage.stageLoadingMethod == StorageMode.Prefab)
-    {
-      if (UFE.config.selectedStage.prefab != null)
-      {
-        stageInstance = Instantiate(config.selectedStage.prefab);
-        stageInstance.transform.parent = gameEngine.transform;
-      }
-      else
-      {
-        Debug.LogError("Stage prefab not found! Make sure you have set the prefab correctly in the Global Editor.");
-      }
-    }
-    else if (config.selectedStage.stageLoadingMethod == StorageMode.ResourcesFolder)
-    {
-      GameObject prefab = Resources.Load<GameObject>(config.selectedStage.stagePath);
-
-      if (prefab != null)
-      {
-        stageInstance = Instantiate(prefab);
-        stageInstance.transform.parent = gameEngine.transform;
-      }
-      else
-      {
-        Debug.LogError("Stage prefab not found! Make sure the prefab is correctly located under the Resources folder and the path is written correctly.");
-      }
-    }
-    else
-    {
-      SceneManager.LoadScene(UFE.config.selectedStage.stagePath, LoadSceneMode.Additive);
-      UFE.DelayLocalAction(SetActiveStageScene, 3);
-    }
-    config.selectedStage.LoadAdvancedLevelInfo();
+    ReloadStage();
 
     UFE.config.currentRound = 1;
     UFE.config.lockInputs = true;
@@ -4214,6 +4190,55 @@ public class UFE : MonoBehaviour, UFEInterface
     }
 
     UFE.eventSystem.enabled = true;
+  }
+
+  private static void ReloadStage()
+  {
+    // Load Stage
+    if(currentStage != null)
+    {
+      Destroy(currentStage);
+    }
+    currentStage = null;
+    if (config.selectedStage.stageLoadingMethod == StorageMode.Prefab)
+    {
+      if (UFE.config.selectedStage.prefab != null)
+      {
+        GameObject stage = config.selectedStage.prefab;
+        if(config.selectedStage.stageInfo != null && config.selectedStage.stageInfo.substages != null && config.selectedStage.stageInfo.substages.Count > 0)
+        {
+          stage = config.selectedStage.stageInfo.substages[config.currentRound-1].stagePrefab;
+        }
+        currentStage = Instantiate(config.selectedStage.prefab);
+        currentStage.transform.parent = gameEngine.transform;
+      }
+      else
+      {
+        Debug.LogError("Stage prefab not found! Make sure you have set the prefab correctly in the Global Editor.");
+      }
+    }
+    // todo: brawler resources load
+    else if (config.selectedStage.stageLoadingMethod == StorageMode.ResourcesFolder)
+    {
+      GameObject prefab = Resources.Load<GameObject>(config.selectedStage.stagePath);
+
+      if (prefab != null)
+      {
+        currentStage = Instantiate(prefab);
+        currentStage.transform.parent = gameEngine.transform;
+      }
+      else
+      {
+        Debug.LogError("Stage prefab not found! Make sure the prefab is correctly located under the Resources folder and the path is written correctly.");
+      }
+    }
+    // todo: brawler additive load
+    else
+    {
+      SceneManager.LoadScene(UFE.config.selectedStage.stagePath, LoadSceneMode.Additive);
+      UFE.DelayLocalAction(SetActiveStageScene, 3);
+    }
+    config.selectedStage.LoadAdvancedLevelInfo();
   }
   #endregion
 

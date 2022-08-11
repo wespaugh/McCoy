@@ -29,6 +29,8 @@ namespace Assets.McCoy.Brawler
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
 
     List<McCoySpawnData> spawners = null;
+
+    SpawnData spawnData = null;
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -52,6 +54,7 @@ namespace Assets.McCoy.Brawler
 
     public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
     {
+      spawnData = spawns;
       allPlayersDead = false;
 
       foreach(var s in spawns)
@@ -94,10 +97,11 @@ namespace Assets.McCoy.Brawler
       {
         initSpawners();
       }
-      if(debugSpawnsOnly)
+      if(spawners == null || spawners.Count == 0 || debugSpawnsOnly)
       {
         return;
       }
+
       foreach (var spawner in spawners)
       {
         if (player.worldTransform.position.x >= spawner.xPosition)
@@ -209,9 +213,17 @@ namespace Assets.McCoy.Brawler
 
       UFE.DelaySynchronizedAction(() =>
       {
-        UFE.FireGameEnds();
-        UFE.EndGame();
-        McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+        if (UFE.config.currentRound == 3)
+        {
+          UFE.FireGameEnds();
+          UFE.EndGame();
+          McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
+        }
+        else
+        {
+          UFE.NextBrawlerStage();
+          Initialize(spawnData, bossSpawnListener);
+        }
       }, 6.0f);
     }
 
