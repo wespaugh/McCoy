@@ -103,9 +103,8 @@ namespace Assets.McCoy.Brawler
         if (player.worldTransform.position.x >= spawner.xPosition)
         {
           spawners.RemoveAt(0);
-          Debug.Log("looking up enemy named " + spawner.EnemyName);
           factionLookup.FindCharacterInfo(spawner.EnemyName, out var charInfo, out var fac);
-          var monsterCScript = createMonster(charInfo, fac);
+          var monsterCScript = createMonster(charInfo, fac, spawner.xPosition, ((float)player.worldTransform.position.z));
           if (bossSpawnListener != null && spawner.IsBoss)
           {
             boss = monsterCScript;
@@ -275,9 +274,9 @@ namespace Assets.McCoy.Brawler
       }
     }
 
-    private ControlsScript createMonster(UFE3D.CharacterInfo info, Factions f)
+    private ControlsScript createMonster(UFE3D.CharacterInfo info, Factions f, float? posX = null, float? posZ = null)
     {
-      ControlsScript newMonster = UFE.CreateRandomMonster(info);
+      ControlsScript newMonster = UFE.CreateRandomMonster(info, posX, posZ);
       SetTeam(newMonster, f);
       SetAllies(newMonster, new List<Factions> { f });
       return newMonster;

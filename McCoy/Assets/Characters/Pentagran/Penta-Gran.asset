@@ -49,11 +49,11 @@ MonoBehaviour:
       _serializedValue: 0
   physics:
     _moveForwardSpeed:
-      _serializedValue: 17179869184
+      _serializedValue: 0
     _moveBackSpeed:
-      _serializedValue: 15032385536
+      _serializedValue: 0
     _moveSidewaysSpeed:
-      _serializedValue: 17179869184
+      _serializedValue: 0
     highMovingFriction: 1
     _friction:
       _serializedValue: 128849018880
@@ -97,7 +97,7 @@ MonoBehaviour:
     crouchButton: 3
   hideGauges: 00000000000000000000
   _executionTiming:
-    _serializedValue: 1288490188
+    _serializedValue: 1288490240
   possibleAirMoves: 1
   _blendingTime:
     _serializedValue: 429496736
@@ -4528,7 +4528,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       standUpFromAirHit:
         animMap:
@@ -5480,10 +5480,11 @@ MonoBehaviour:
       crouchEnabled: 0
       blockEnabled: 0
       parryEnabled: 0
-    attackMoves: []
+    attackMoves:
+    - {fileID: 11400000, guid: b70d332b025709547940f66e4fb0a9fc, type: 2}
     enabledBasicMovesToggle: 0
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   aiInstructionsSet:
-  - aiInfo: {fileID: 11400000, guid: c38da5b298d120b4a87401af70a8db4f, type: 2}
+  - aiInfo: {fileID: 11400000, guid: f48c28eedae1eba4a98edaade4c936eb, type: 2}
     behavior: 0
