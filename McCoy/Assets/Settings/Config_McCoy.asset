@@ -558,7 +558,7 @@ MonoBehaviour:
         _serializedValue: 1717986944
       hideHitBoxesOnFrame: 10
       hideHitBoxes: 0
-      editorToggle: 0
+      editorToggle: 1
       hasQuickStand: 0
       _predefinedPushForce:
         x:
@@ -842,7 +842,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W

@@ -180,7 +180,7 @@ MonoBehaviour:
       possibleMoveStates: []
       basicMovesToggle: 0
       statesToggle: 0
-    downHit: 1
+    downHit: 0
     resetPreviousHitStun: 0
     resetCrumples: 0
     customStunValues: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     hitStrength: 0
     hitStunType: 1
     _hitStunOnHit:
-      _serializedValue: 64424509440
+      _serializedValue: 0
     _hitStunOnBlock:
       _serializedValue: 0
     frameAdvantageOnHit: 0
