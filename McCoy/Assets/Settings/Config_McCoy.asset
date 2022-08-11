@@ -558,7 +558,7 @@ MonoBehaviour:
         _serializedValue: 1717986944
       hideHitBoxesOnFrame: 10
       hideHitBoxes: 0
-      editorToggle: 0
+      editorToggle: 1
       hasQuickStand: 0
       _predefinedPushForce:
         x:
@@ -1678,5 +1678,5 @@ MonoBehaviour:
   colorHighHitBoxTypeFill: 0
   colorCollisionBoxFill: 0
   colorHurtBoxThrowFill: 0
-  colorHurtBoxNotThrowFill: 0
+  colorHurtBoxNotThrowFill: 1
   colorBlockBoxFill: 0

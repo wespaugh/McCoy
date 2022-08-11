@@ -242,7 +242,7 @@ MonoBehaviour:
     hitStrength: 0
     hitStunType: 1
     _hitStunOnHit:
-      _serializedValue: 64424509440
+      _serializedValue: 0
     _hitStunOnBlock:
       _serializedValue: 0
     frameAdvantageOnHit: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 214748364800
+      _serializedValue: 4294967296
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -366,11 +366,11 @@ MonoBehaviour:
     damageOptionsToggle: 1
     hitStunOptionsToggle: 1
     forceOptionsToggle: 0
-    opponentForceToggle: 0
+    opponentForceToggle: 1
     selfForceToggle: 0
     stageReactionsToggle: 0
     overrideEventsToggle: 0
-    hitConditionsToggle: 0
+    hitConditionsToggle: 1
     pullInToggle: 0
     hurtBoxesToggle: 1
     wallBounceToggle: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
   blockableArea:
     enabled: 1
     activeFramesBegin: 0
-    activeFramesEnds: 17
+    activeFramesEnds: 33
     bodyPart: 0
     hitBoxDefinitionIndex: 0
     shape: 0
