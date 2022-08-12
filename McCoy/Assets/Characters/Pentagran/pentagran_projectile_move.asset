@@ -267,7 +267,7 @@ MonoBehaviour:
       _serializedValue: 8589934592
     impactDuration: 0.1
     fixedZAxis: 0
-    projectileCollision: 0
+    projectileCollision: 1
     unblockable: 1
     mirrorOn2PSide: 1
     destroyWhenOffCameraBounds: 0
@@ -536,9 +536,9 @@ MonoBehaviour:
       _shakeCameraDensity:
         _serializedValue: 3435973836
       editorToggle: 0
-    groundHit: 0
+    groundHit: 1
     airHit: 1
-    downHit: 0
+    downHit: 1
     damageType: 1
     _damageOnHit:
       _serializedValue: 85899345920

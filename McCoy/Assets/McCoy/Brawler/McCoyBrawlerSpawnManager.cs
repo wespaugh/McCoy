@@ -56,6 +56,7 @@ namespace Assets.McCoy.Brawler
     {
       spawnData = spawns;
       allPlayersDead = false;
+      spawners = null;
 
       foreach(var s in spawns)
       {

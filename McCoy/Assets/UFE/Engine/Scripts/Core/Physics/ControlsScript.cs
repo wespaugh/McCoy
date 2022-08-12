@@ -4164,6 +4164,10 @@ public class ControlsScript : MonoBehaviour
 
   private void RunBlink()
   {
+    if(gameObject == null)
+    {
+      Debug.LogError("Trying to blink out, but THE THING DOESN'T EXIST");
+    }
     gameObject.SetActive(!gameObject.activeInHierarchy);
     if (gameObject.activeInHierarchy)
     {

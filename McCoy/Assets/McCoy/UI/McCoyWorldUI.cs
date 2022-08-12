@@ -19,7 +19,7 @@ namespace Assets.McCoy.UI
     {
       playerHealthInitialized = true;
       healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
-      healthBar.Initialize(1000, 100);
+      healthBar.Initialize((int)UFE.GetPlayer1ControlsScript().currentLifePoints, 1000);
     }
 
     public void UpdatePlayerHealth(float percent)
@@ -39,7 +39,7 @@ namespace Assets.McCoy.UI
 
     public void BossSpawned(ControlsScript boss)
     {
-      bossHud.Initialize((int)boss.currentLifePoints, 250);
+      bossHud.Initialize((int)boss.currentLifePoints, 333);
       this.boss = boss;
       bossStartingLife = (float)boss.currentLifePoints;
       bossHud.gameObject.SetActive(true);
