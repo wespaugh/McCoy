@@ -57,7 +57,7 @@ namespace Assets.McCoy.Brawler.Stages
       // if neither defined, use the stage boundaries
       if(upperBoundIntersect == null && lowerBoundIntersect == null)
       {
-        xMax = (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary);
+        xMax = (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary);
       }
       else if(upperBoundIntersect != null)
       {

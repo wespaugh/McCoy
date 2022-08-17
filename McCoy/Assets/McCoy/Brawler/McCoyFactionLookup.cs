@@ -75,11 +75,9 @@ namespace Assets.McCoy.Brawler
 
     private void initLookups()
     {
-      Debug.Log("initializing lookups: " + mageCharacters.Count);
       mageLookup = new Dictionary<string, UFE3D.CharacterInfo>();
       foreach (var mage in mageCharacters)
       {
-        Debug.Log("adding " + mage.characterName);
         mageLookup[mage.characterName] = mage;
       }
 

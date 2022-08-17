@@ -6,7 +6,8 @@ namespace UFE3D
     public class CameraScript : MonoBehaviour
     {
 
-        #region trackable definitions
+    #region trackable definitions
+    public bool combatZoneFreeze;
         public bool cinematicFreeze;
         public Vector3 currentLookAtPosition;
         public Vector3 defaultCameraPosition;
@@ -87,40 +88,48 @@ namespace UFE3D
           bool brawler = true;
           if (brawler)
           {
-            var currentPosition = Camera.main.transform.localPosition;
-            Vector3 originalTarget = player1.transform.position + UFE.config.cameraOptions.initialDistance;
-            newPosition = new Vector3(originalTarget.x, originalTarget.y, originalTarget.z);
-
-            // if player is more than a little ahead of the camera, just lag behind the player a bit
-            if (newPosition.x - currentPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
+            if (combatZoneFreeze)
             {
-              newPosition = new Vector3(originalTarget.x - UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
-            }
-            // if player is more than a little behind the camera, just lag behind the player a bit
-            else if(currentPosition.x - newPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
-            {
-              newPosition = new Vector3(originalTarget.x + UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
+              newPosition = Camera.main.transform.localPosition;
+              newPosition.z = player1.transform.position.z - 5.0f;
             }
             else
             {
-              newPosition = currentPosition;
-            }
+              var currentPosition = Camera.main.transform.localPosition;
+              Vector3 originalTarget = player1.transform.position + UFE.config.cameraOptions.initialDistance;
+              newPosition = new Vector3(originalTarget.x, originalTarget.y, originalTarget.z);
 
-            // if player is more than a little above of the camera, just lag behind the player a bit
-            if (originalTarget.y - currentPosition.y > UFE.config.cameraOptions.cameraFollowBoundsY)
-            {
-              newPosition = new Vector3(newPosition.x, originalTarget.y - UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
+              // if player is more than a little ahead of the camera, just lag behind the player a bit
+              if (newPosition.x - currentPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
+              {
+                newPosition = new Vector3(originalTarget.x - UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
+              }
+              // if player is more than a little behind the camera, just lag behind the player a bit
+              else if (currentPosition.x - newPosition.x > UFE.config.cameraOptions.cameraFollowBoundsX)
+              {
+                newPosition = new Vector3(originalTarget.x + UFE.config.cameraOptions.cameraFollowBoundsX, newPosition.y, currentPosition.z);
+              }
+              else
+              {
+                newPosition = currentPosition;
+              }
+
+              // if player is more than a little above of the camera, just lag behind the player a bit
+              if (originalTarget.y - currentPosition.y > UFE.config.cameraOptions.cameraFollowBoundsY)
+              {
+                newPosition = new Vector3(newPosition.x, originalTarget.y - UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
+              }
+              // if player is more than a little below the camera, just lag behind the player a bit
+              else if (currentPosition.y - originalTarget.y > UFE.config.cameraOptions.cameraFollowBoundsY)
+              {
+                newPosition = new Vector3(newPosition.x, originalTarget.y + UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
+              }
+              else
+              {
+                newPosition = new Vector3(newPosition.x, currentPosition.y, currentPosition.z);
+              }
+              newPosition.z = player1.transform.position.z - 5.0f;
             }
-            // if player is more than a little below the camera, just lag behind the player a bit
-            else if (currentPosition.y - originalTarget.y > UFE.config.cameraOptions.cameraFollowBoundsY)
-            {
-              newPosition = new Vector3(newPosition.x, originalTarget.y + UFE.config.cameraOptions.cameraFollowBoundsY, currentPosition.z);
-            }
-            else
-            {
-              newPosition = new Vector3(newPosition.x, currentPosition.y, currentPosition.z);
-            }
-            newPosition.z = player1.transform.position.z - 5.0f;
           }
           else {
             newPosition = ((player1.transform.position + player2.transform.position) / 2) + UFE.config.cameraOptions.initialDistance;
@@ -153,8 +162,8 @@ namespace UFE3D
           if (!brawler)
           {
             newPosition.x = Mathf.Clamp(newPosition.x,
-                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 8),
-                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 8));
+                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary + 8),
+                (float)(UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary - 8));
           }
 
                     // Zoom
@@ -311,6 +320,15 @@ namespace UFE3D
             currentOwner = null;
         }
 
+    public void FreezeForCombatZone()
+    {
+      combatZoneFreeze = true;
+    }
+
+    public void ReleaseFromCombatZone()
+    {
+      combatZoneFreeze = false;
+    }
         public void OverrideSpeed(float newMovement, float newRotation)
         {
             movementSpeed = newMovement;

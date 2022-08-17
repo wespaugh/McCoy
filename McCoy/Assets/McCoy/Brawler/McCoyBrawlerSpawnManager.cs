@@ -23,6 +23,8 @@ namespace Assets.McCoy.Brawler
     int monstersSpawned = 0;
     int totalMonstersToSpawn = 0;
     int avgEnemiesOnscreenAtOnce = 0;
+    bool inCombatZone = false;
+    int combatZoneEnemiesRemaining = 0;
     float playerStartX = 0;
     [SerializeField]
     float currentPlayerProgress = 0; // measured in number of enemies they should have encountered
@@ -33,8 +35,11 @@ namespace Assets.McCoy.Brawler
     ControlsScript boss = null;
     IBossSpawnListener bossSpawnListener = null;
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
+    // spawners within a stage
     List<McCoySpawnData> spawners = null;
+    // spawners based on mobs
     SpawnData spawnData = null;
+    List<McCoyCombatZoneData> combatZones = null;
 
     public static void SetTeam(int id, Factions f)
     {
@@ -84,6 +89,7 @@ namespace Assets.McCoy.Brawler
     private void FixedUpdate()
     {
       updateSpawners();
+      updateCombatZones();
       updateBoss();
     }
 
@@ -96,13 +102,43 @@ namespace Assets.McCoy.Brawler
       }
     }
 
+    private void updateCombatZones()
+    {
+      foreach(var combatZone in combatZones)
+      {
+        if(player.worldTransform.position.x >= combatZone.XPosition)
+        {
+          EnterCombatZone(combatZone);
+          combatZones.RemoveAt(0);
+          break;
+        }
+      }
+    }
+
+    private void EnterCombatZone(McCoyCombatZoneData combatZone)
+    {
+      inCombatZone = true;
+      UFE.config.selectedStage.SetTemporaryBoundaries(combatZone.XPosition - 10.0f, combatZone.XPosition + 6.0f);
+      combatZoneEnemiesRemaining = Math.Min((int)(combatZone.EnemyPercentage * totalMonstersToSpawn), recalcRemainingMonsters());
+      currentPlayerProgress += combatZoneEnemiesRemaining;
+      UFE.cameraScript.FreezeForCombatZone();
+    }
+
+    private void ExitCombatZone()
+    {
+      Debug.Log("GO! GO! GO!");
+      inCombatZone = false;
+      UFE.config.selectedStage.UnsetTemporaryBoundaries();
+      UFE.cameraScript.ReleaseFromCombatZone();
+    }
+
     private void updateSpawners()
     {
       // unfortunately we cannot do this during initialize.
       // somehow the prefab is destroyed and by the time we get here the list is full of null refs
       if (spawners == null)
       {
-        initSpawners();
+        stageBegan();
       }
       playerStartX = ((float)player.worldTransform.position.x);
       if(spawners == null || spawners.Count == 0 || debugSpawnsOnly)
@@ -127,8 +163,9 @@ namespace Assets.McCoy.Brawler
       }
     }
 
-    private void initSpawners()
+    private void stageBegan()
     {
+      currentPlayerProgress = 0;
       transitioning = false;
       levelBoundsStart = UFE.config.selectedStage.LeftBoundary.AsFloat();
       levelBoundsEnd = UFE.config.selectedStage.RightBoundary.AsFloat();
@@ -148,6 +185,18 @@ namespace Assets.McCoy.Brawler
           spawners.Add(spawner.spawnData);
           Destroy(spawner.gameObject);
         }
+      }
+
+      combatZones = new List<McCoyCombatZoneData>();
+      var combatZoneList = new List<McCoyCombatZoneTrigger>(spawnerRoot.GetComponentsInChildren<McCoyCombatZoneTrigger>());
+      combatZoneList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
+      while(combatZoneList.Count > 0)
+      {
+        var combatZone = combatZoneList[0];
+        combatZoneList.Remove(combatZone);
+        combatZone.ZoneData.Initialize(combatZone.gameObject.transform.localPosition.x);
+        combatZones.Add(combatZone.ZoneData);
+        Destroy(combatZone.gameObject);
       }
     }
 
@@ -198,28 +247,42 @@ namespace Assets.McCoy.Brawler
       recalcAverageSpawns();
       recalcPlayerProgress();
 
-      float recheckDelay = 3.0f;
+      float recheckDelay = 1.0f;
 
       // if it's time to spawn another monster
       if(avgEnemiesOnscreenAtOnce > numLivingEnemies )
       {
-        recalcRemainingMonsters(out int totalMonstersRemaining);
+        int totalMonstersRemaining = recalcRemainingMonsters();
+
+        bool exitedCombatZone = combatZoneEnemiesRemaining <= 0 && numLivingEnemies == 0 && inCombatZone;
+        if (exitedCombatZone)
+        {
+          ExitCombatZone();
+        }
 
         if (totalMonstersRemaining <= 0 && numLivingEnemies == 0 && spawners.Count == 0)
         {
+          if(inCombatZone)
+          {
+            Debug.LogError("(but we're in a combat zone)");
+            Debug.LogError(combatZoneEnemiesRemaining);
+          }
+
             fireWon();
             return;
         }
         if (!debugSpawnsOnly && totalMonstersRemaining > 0 && currentPlayerProgress > monstersSpawned)
         {
           ++monstersSpawned;
+          if(inCombatZone)
+          {
+            --combatZoneEnemiesRemaining;
+          }
           spawnRandomMonster(totalMonstersRemaining);
         }
-        recheckDelay = (float)UnityEngine.Random.Range(3, 7);
       }
 
       UFE.DelaySynchronizedAction(checkSpawns, recheckDelay);
-
     }
 
     private int calcLivingEnemies()
@@ -235,14 +298,15 @@ namespace Assets.McCoy.Brawler
       return UFE.brawlerEntityManager.GetNumLivingEntities() - numLivingPlayers;
     }
 
-    private void recalcRemainingMonsters(out int totalMonstersRemaining)
+    private int recalcRemainingMonsters()
     {
-      totalMonstersRemaining = 0;
+      int totalMonstersRemaining = 0;
       // get total remaining monsters from each mob
       foreach (var m in spawnNumbers)
       {
         totalMonstersRemaining += m.Value;
       }
+      return totalMonstersRemaining;
     }
 
     private void fireWon()

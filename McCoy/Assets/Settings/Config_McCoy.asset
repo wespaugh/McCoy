@@ -37,6 +37,10 @@ MonoBehaviour:
       _serializedValue: -120259084288
     _rightBoundary:
       _serializedValue: 120259084288
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
     position:
       x:
         _serializedValue: 0
@@ -1139,6 +1143,10 @@ MonoBehaviour:
       _serializedValue: -158913789952
     _rightBoundary:
       _serializedValue: 158913789952
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
     position:
       x:
         _serializedValue: 0
@@ -1160,6 +1168,10 @@ MonoBehaviour:
       _serializedValue: -158913789952
     _rightBoundary:
       _serializedValue: 158913789952
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
     position:
       x:
         _serializedValue: 0
@@ -1182,6 +1194,10 @@ MonoBehaviour:
       _serializedValue: -163208757248
     _rightBoundary:
       _serializedValue: 163208757248
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
     position:
       x:
         _serializedValue: 0
@@ -1204,6 +1220,10 @@ MonoBehaviour:
       _serializedValue: -120259084288
     _rightBoundary:
       _serializedValue: 120259084288
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
     position:
       x:
         _serializedValue: 0

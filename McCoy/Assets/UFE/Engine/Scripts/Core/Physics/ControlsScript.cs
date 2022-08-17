@@ -2871,8 +2871,8 @@ public class ControlsScript : MonoBehaviour
               // Test position boundaries
               if (UFE.config.gameplayType == GameplayType._2DFighter)
               {
-                if ((opponent.worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary - 2
-                    || opponent.worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary + 2)
+                if ((opponent.worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary - 2
+                    || opponent.worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary + 2)
                     && IsGrounded() && !UFE.config.comboOptions.neverCornerPush && hit.cornerPush)
                 {
                   myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, false);

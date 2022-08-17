@@ -241,8 +241,8 @@ namespace UFE3D
 
 
       // Test out of bounds - stage
-      if (fpTransform.position.x > UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary + 5
-          || fpTransform.position.x < UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary - 5)
+      if (fpTransform.position.x > UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary + 5
+          || fpTransform.position.x < UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary - 5)
       {
         destroyMe = true;
         return;

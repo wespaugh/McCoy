@@ -41,10 +41,9 @@ namespace Assets.McCoy.Brawler.Stages
         float index = Camera.main.transform.localPosition.x * (1.0f - speed) + (next.transform.localScale.x * unitWidth * i);
         float chunkWidth = next.transform.localScale.x * unitWidth;
         int iIndex = (int)(index / chunkWidth);
-        Debug.Log("in initialization, item at " + index + " has a chunk index of " + iIndex);
+        // Debug.Log("in initialization, item at " + index + " has a chunk index of " + iIndex);
         ItemMoved(next, iIndex);
       }
-      Debug.Log("ALL DONE");
     }
     protected virtual void ItemMoved(GameObject item, int index)
     {

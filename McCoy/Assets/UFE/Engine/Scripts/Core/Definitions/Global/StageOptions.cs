@@ -18,10 +18,30 @@ namespace UFE3D
         public Fix64 _groundFriction = 100;
         public Fix64 _leftBoundary = -38;
         public Fix64 _rightBoundary = 38;
+
+    public Fix64 tempLeftBoundary;
+    public Fix64 tempRightBoundary;
+    bool useTempBoundary;
+    public void SetTemporaryBoundaries(Fix64 left, Fix64 right)
+    {
+      Debug.Log("setting temp boundaries to " + left + ", " + right);
+      useTempBoundary = true;
+      tempLeftBoundary = left;
+      tempRightBoundary = right;
+    }
+    public void UnsetTemporaryBoundaries()
+    {
+      useTempBoundary = false;
+      Debug.Log("resetting temp boundaries");
+    }
     public Fix64 LeftBoundary
     {
       get
       {
+        if(useTempBoundary)
+        {
+          return tempLeftBoundary;
+        }
         if(stageInfo != null)
         {
           return stageInfo.substages[UFE.config.currentRound-1].leftBoundary;
@@ -33,6 +53,10 @@ namespace UFE3D
     {
       get
       {
+        if(useTempBoundary)
+        {
+          return tempRightBoundary;
+        }
         if(stageInfo != null)
         {
           return stageInfo.substages[UFE.config.currentRound-1].rightBoundary;

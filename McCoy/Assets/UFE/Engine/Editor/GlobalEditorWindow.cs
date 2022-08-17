@@ -1487,12 +1487,12 @@ public class GlobalEditorWindow : EditorWindow {
 
                                 if (globalInfo.gameplayType != GameplayType._2DFighter)
                                 {
-                                    globalInfo.stages[i]._rightBoundary = EditorGUILayout.FloatField("Radius:", (float)globalInfo.stages[i]._rightBoundary);
+                                    globalInfo.stages[i]._rightBoundary = EditorGUILayout.FloatField("Radius:", (float)globalInfo.stages[i].RightBoundary);
                                 }
                                 else
                                 {
-                                    globalInfo.stages[i]._leftBoundary = EditorGUILayout.FloatField("Left Boundary:", (float)globalInfo.stages[i]._leftBoundary);
-                                    globalInfo.stages[i]._rightBoundary = EditorGUILayout.FloatField("Right Boundary:", (float)globalInfo.stages[i]._rightBoundary);
+                                    globalInfo.stages[i]._leftBoundary = EditorGUILayout.FloatField("Left Boundary:", (float)globalInfo.stages[i].LeftBoundary);
+                                    globalInfo.stages[i]._rightBoundary = EditorGUILayout.FloatField("Right Boundary:", (float)globalInfo.stages[i].RightBoundary);
                                 }
 				globalInfo.stages[i].advancedStageData = EditorGUILayout.TextField("Advanced Stage Info:", globalInfo.stages[i].advancedStageData);
 								globalInfo.stages[i]._groundFriction = EditorGUILayout.FloatField("Ground Friction:", (float)globalInfo.stages[i]._groundFriction);

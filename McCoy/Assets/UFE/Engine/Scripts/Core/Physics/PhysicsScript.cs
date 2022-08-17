@@ -364,18 +364,18 @@ public class PhysicsScript : MonoBehaviour
 
       if (UFE.config.gameplayType == GameplayType._2DFighter)
       {
-        if (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary ||
-        worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary)
+        if (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary ||
+        worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary)
         {
           targetPosition = opWorldTransform.position;
-          targetPosition.x = (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary) ?
+          targetPosition.x = (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary) ?
               worldTransform.position.x + controlScript.activePullIn._targetDistance : worldTransform.position.x - controlScript.activePullIn._targetDistance;
           opIsMoving = true;
         }
       }
       else
       {
-        if (FPVector.Distance(worldTransform.position, FPVector.zero) > UFE.config.selectedStage._rightBoundary) // Distance from center is higher than stage radius
+        if (FPVector.Distance(worldTransform.position, FPVector.zero) > UFE.config.selectedStage.RightBoundary) // Distance from center is higher than stage radius
         {
           targetPosition += opWorldTransform.forward * -1;
           opIsMoving = true;
@@ -449,13 +449,13 @@ public class PhysicsScript : MonoBehaviour
         bool bouncingOnBounds = false;
         if (UFE.config.gameplayType == GameplayType._2DFighter)
         {
-          if (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary
-          || worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary)
+          if (worldTransform.position.x <= UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary
+          || worldTransform.position.x >= UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary)
             bouncingOnBounds = true;
         }
         else
         {
-          if (FPVector.Distance(worldTransform.position, FPVector.zero) > UFE.config.selectedStage._rightBoundary) // Distance from center is higher than stage radius
+          if (FPVector.Distance(worldTransform.position, FPVector.zero) > UFE.config.selectedStage.RightBoundary) // Distance from center is higher than stage radius
             bouncingOnBounds = true;
         }
 
@@ -629,7 +629,7 @@ public class PhysicsScript : MonoBehaviour
     if (UFE.config.gameplayType == GameplayType._2DFighter)
     {
       bool brawler = true;
-      Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary);
+      Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary);
       Fix64 y = FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
       Fix64 z;
       if(brawler && UFE.config.selectedStage.stageInfo != null)
@@ -647,7 +647,7 @@ public class PhysicsScript : MonoBehaviour
     {
       FPVector centerPosition = FPVector.zero;
       Fix64 distanceFromCenter = FPVector.Distance(worldTransform.position, centerPosition);
-      Fix64 radius = UFE.config.selectedStage._rightBoundary;
+      Fix64 radius = UFE.config.selectedStage.RightBoundary;
       if (distanceFromCenter > radius)
       {
         FPVector fromOriginToObject = worldTransform.position - centerPosition;
