@@ -12,7 +12,8 @@ namespace Assets.McCoy.Brawler.Stages
     public string substageName = null;
     public GameObject stagePrefab = null;
     public List<BrawlerStageBoundary> boundaries;
-    string namename;
+    public float leftBoundary;
+    public float rightBoundary;
     public object Clone()
     {
       return CloneObject.Clone(this);

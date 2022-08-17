@@ -18,6 +18,28 @@ namespace UFE3D
         public Fix64 _groundFriction = 100;
         public Fix64 _leftBoundary = -38;
         public Fix64 _rightBoundary = 38;
+    public Fix64 LeftBoundary
+    {
+      get
+      {
+        if(stageInfo != null)
+        {
+          return stageInfo.substages[UFE.config.currentRound-1].leftBoundary;
+        }
+        return _leftBoundary;
+      }
+    }
+    public Fix64 RightBoundary
+    {
+      get
+      {
+        if(stageInfo != null)
+        {
+          return stageInfo.substages[UFE.config.currentRound-1].rightBoundary;
+        }
+        return _rightBoundary;
+      }
+    }
         public FPVector position;
     public string advancedStageData = null;
 

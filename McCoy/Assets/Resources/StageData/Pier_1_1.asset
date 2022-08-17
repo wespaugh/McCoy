@@ -58,3 +58,5 @@ MonoBehaviour:
     lowerBound:
       slope: 0
       yIntercept: -6
+  leftBoundary: -8
+  rightBoundary: 38

@@ -36,7 +36,7 @@ namespace Assets.McCoy.BoardGame
 
     public int CalculateNumberSimultaneousBrawlerEnemies()
     {
-      return Health * 1;
+      return Health * 2;
     }
 
     public int StrengthForXP(int XP = -1)
