@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.Brawler.Stages;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,25 +13,29 @@ namespace Assets.McCoy.Brawler
   {
     int[] playerIDs = { 1 };
 
-    // Faction -> <totalEnemiesRemaining, avgEnemiesAtOnce>
+    // Faction -> totalEnemiesRemaining
     Dictionary<Factions, int> spawnNumbers = new Dictionary<Factions, int>();
+    // Faction -> avgEnemiesAtOnce
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
-    int avgEnemiesOnscreenAtOnce = 0;
 
     bool debugSpawnsOnly => McCoy.GetInstance().Debug;
 
+    int monstersSpawned = 0;
+    int totalMonstersToSpawn = 0;
+    int avgEnemiesOnscreenAtOnce = 0;
+    float playerStartX = 0;
+    [SerializeField]
+    float currentPlayerProgress = 0; // measured in number of enemies they should have encountered
+    float levelBoundsStart, levelBoundsEnd;
+    ControlsScript player;
     bool allPlayersDead = false;
-
+    bool transitioning = false;
     ControlsScript boss = null;
     IBossSpawnListener bossSpawnListener = null;
-
-    ControlsScript player;
-
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
-
     List<McCoySpawnData> spawners = null;
-
     SpawnData spawnData = null;
+
     public static void SetTeam(int id, Factions f)
     {
       UFE.brawlerEntityManager.GetControlsScript(id).Team = (int)f;
@@ -61,6 +66,7 @@ namespace Assets.McCoy.Brawler
       foreach(var s in spawns)
       {
         spawnNumbers[s.Value.Faction] = s.Value.CalculateNumberOfBrawlerEnemies();
+        totalMonstersToSpawn += spawnNumbers[s.Value.Faction];
         avgSpawnNumbers[s.Value.Faction] = s.Value.CalculateNumberSimultaneousBrawlerEnemies();
       }
       recalcAverageSpawns();
@@ -98,6 +104,7 @@ namespace Assets.McCoy.Brawler
       {
         initSpawners();
       }
+      playerStartX = ((float)player.worldTransform.position.x);
       if(spawners == null || spawners.Count == 0 || debugSpawnsOnly)
       {
         return;
@@ -122,6 +129,10 @@ namespace Assets.McCoy.Brawler
 
     private void initSpawners()
     {
+      transitioning = false;
+      levelBoundsStart = UFE.config.selectedStage.LeftBoundary.AsFloat();
+      levelBoundsEnd = UFE.config.selectedStage.RightBoundary.AsFloat();
+
       spawners = new List<McCoySpawnData>();
       GameObject spawnerRoot = GameObject.FindGameObjectWithTag("Spawner");
       var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
@@ -150,6 +161,18 @@ namespace Assets.McCoy.Brawler
       avgEnemiesOnscreenAtOnce /= spawnNumbers.Count;
     }
 
+    private void recalcPlayerProgress()
+    {
+      // arbitrary amount to look ahead by
+      float buffer = 4.0f;
+      float tempProgress = ((float)player.worldTransform.position.x + (playerStartX - levelBoundsStart) + buffer) * totalMonstersToSpawn / (levelBoundsEnd - levelBoundsStart);
+
+      if(tempProgress > currentPlayerProgress)
+      {
+        currentPlayerProgress = tempProgress;
+      }
+    }
+
     private void checkSpawns()
     {
       if(allPlayersDead)
@@ -170,25 +193,26 @@ namespace Assets.McCoy.Brawler
         return;
       }
 
-      int numPlayers = playerIDs.Length;
-      int numLivingEnemies = UFE.brawlerEntityManager.GetNumLivingEntities() - numPlayers;
+      int numLivingEnemies = calcLivingEnemies();
 
       recalcAverageSpawns();
+      recalcPlayerProgress();
 
       float recheckDelay = 3.0f;
 
       // if it's time to spawn another monster
-      if(avgEnemiesOnscreenAtOnce > numLivingEnemies)
+      if(avgEnemiesOnscreenAtOnce > numLivingEnemies )
       {
-        recalcRemainingMonsters(out var totalMonstersRemaining);
+        recalcRemainingMonsters(out int totalMonstersRemaining);
 
         if (totalMonstersRemaining <= 0 && numLivingEnemies == 0 && spawners.Count == 0)
         {
             fireWon();
             return;
         }
-        if (!debugSpawnsOnly)
+        if (!debugSpawnsOnly && totalMonstersRemaining > 0 && currentPlayerProgress > monstersSpawned)
         {
+          ++monstersSpawned;
           spawnRandomMonster(totalMonstersRemaining);
         }
         recheckDelay = (float)UnityEngine.Random.Range(3, 7);
@@ -196,6 +220,19 @@ namespace Assets.McCoy.Brawler
 
       UFE.DelaySynchronizedAction(checkSpawns, recheckDelay);
 
+    }
+
+    private int calcLivingEnemies()
+    {
+      int numLivingPlayers = 0;
+      foreach(int i in playerIDs)
+      {
+        if(UFE.brawlerEntityManager.GetControlsScript(i).currentLifePoints >= 0)
+        {
+          ++numLivingPlayers;
+        }
+      }
+      return UFE.brawlerEntityManager.GetNumLivingEntities() - numLivingPlayers;
     }
 
     private void recalcRemainingMonsters(out int totalMonstersRemaining)
@@ -210,6 +247,11 @@ namespace Assets.McCoy.Brawler
 
     private void fireWon()
     {
+      if(transitioning)
+      {
+        return;
+      }
+      transitioning = true;
       UFE.FireAlert("All Dudes BEATEN!", null);
 
       UFE.DelaySynchronizedAction(() =>
@@ -230,6 +272,12 @@ namespace Assets.McCoy.Brawler
 
     private void fireLose()
     {
+      if(transitioning)
+      {
+        return;
+      }
+      transitioning = true;
+
       UFE.FireAlert("Werewolf Down!", null);
 
       UFE.DelaySynchronizedAction(() =>
@@ -255,24 +303,8 @@ namespace Assets.McCoy.Brawler
       }
     }
 
-    private void spawnRandomMonster(int totalMonstersRemaining = -1)
+    private void spawnRandomMonster(int totalMonstersRemaining)
     {
-      if(totalMonstersRemaining < 0)
-      {
-        totalMonstersRemaining = 0;
-        // get total remaining monsters from each mob
-        foreach (var m in spawnNumbers)
-        {
-          totalMonstersRemaining += m.Value;
-        }
-      }
-
-      if(totalMonstersRemaining < 0)
-      {
-        Debug.LogWarning("spawned more actors than we anticipated");
-        createMonster(null, Factions.Mages);
-      }
-
       int randomMonsterIndex = UnityEngine.Random.Range(1, totalMonstersRemaining+1);
       foreach (var m in spawnNumbers)
       {
