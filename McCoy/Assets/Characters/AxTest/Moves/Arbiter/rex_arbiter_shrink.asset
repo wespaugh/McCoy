@@ -15,8 +15,8 @@ MonoBehaviour:
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 3aa4cc12e6cacda4bbd93eab2447d7f1, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 61b0fe635e4468c42b11698e91fcabbd,
+    clip: {fileID: 7400000, guid: 34e0ee13c0c58b545b4e266a2decac94, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: c45d1c29a82af1d48a63142f4ff3e57e,
       type: 2}
     length:
       _serializedValue: 1861152512
