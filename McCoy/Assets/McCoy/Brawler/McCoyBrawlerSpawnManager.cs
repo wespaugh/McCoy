@@ -109,7 +109,7 @@ namespace Assets.McCoy.Brawler
     {
       foreach(var combatZone in combatZones)
       {
-        if(player.worldTransform.position.x >= combatZone.XPosition)
+        if(player.worldTransform.position.x >= combatZone.XPosition && ! debugSpawnsOnly)
         {
           EnterCombatZone(combatZone);
           combatZones.RemoveAt(0);

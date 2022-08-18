@@ -124,7 +124,7 @@ namespace UFE3D
             }
             newPosition.z = player1.transform.position.z - 5.0f;
 
-            if (combatZoneFreeze)
+            if (combatZoneFreeze || player1.Physics.isFatallyFalling)
             {
               newPosition.x = currentPosition.x;
               if(player1.Physics.isFatallyFalling)

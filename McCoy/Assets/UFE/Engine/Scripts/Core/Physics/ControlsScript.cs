@@ -134,6 +134,9 @@ public class ControlsScript : MonoBehaviour
   private int _team = -1;
   public int Team { get => _team; set => _team = value; }
 
+  private bool isFatallyFalling;
+  private FPVector fallPosition;
+
   public void Init()
   {
     // Set Input Recording
@@ -761,6 +764,44 @@ public class ControlsScript : MonoBehaviour
 
     //Update Hitboxes Position Map
     //myHitBoxesScript.UpdateMap(myMoveSetScript.GetCurrentClipFrame(myHitBoxesScript.bakeSpeed));
+    if(Physics.isFatallyFalling && ! isFatallyFalling)
+    {
+      mySpriteRenderer.sortingOrder = -760;
+      isFatallyFalling = true;
+      fallPosition = worldTransform.position;
+      if(UFE.GetController(playerNum).isCPU)
+      {
+        currentLifePoints = 0.0f;
+        KillCurrentMove();
+        isDead = DamageMe(currentLifePoints);
+        myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
+        blinksRemaining = 5;
+        UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
+      }
+      else
+      {
+        isDead = DamageMe(20);
+        KillCurrentMove();
+        myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight,true);
+        if(!isDead)
+        {
+          UFE.DelaySynchronizedAction(ResetAfterFall, 3.0f);
+        }
+      }
+    }
+    else if(!isFatallyFalling)
+    {
+      mySpriteRenderer.sortingOrder = (int)(this.transform.position.z * -100.0f);
+    }
+  }
+
+  private void ResetAfterFall()
+  {
+    Physics.ResetForces(true, true, true);
+    FPVector newPosition = fallPosition + new FPVector(-5.0f, -fallPosition.y, 0);
+    worldTransform.position = newPosition;
+    isFatallyFalling = false;
+    Physics.isFatallyFalling = false;
   }
 
   public bool AlliedWith(int team)
@@ -784,7 +825,7 @@ public class ControlsScript : MonoBehaviour
 
   public bool IsGrounded()
   {
-      return worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y;
+      return ! Physics.isFatallyFalling && worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y;
   }
 
   private void runDebugger(string inputDebugger)

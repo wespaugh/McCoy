@@ -80,6 +80,7 @@ namespace FPLibrary
     bool checkedForSpriteRenderer = false;
     public void updateSpriteZDepth()
     {
+      /* Moving this to the end of controlsScript fixedUpdate
       if(!checkedForSpriteRenderer)
       {
         checkedForSpriteRenderer = true;
@@ -90,6 +91,7 @@ namespace FPLibrary
         return;
       }
       _spriteRenderer.sortingOrder = (int)(this.transform.position.z*-100.0f);
+      */
     }
 
         public void RotateAround(FPVector point, FPVector axis, Fix64 angle) {

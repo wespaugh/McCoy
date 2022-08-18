@@ -557,7 +557,6 @@ public class PhysicsScript : MonoBehaviour
           worldTransform.Translate(0, 0, activeForces.z * UFE.fixedDeltaTime);
           if (isFatallyFalling && worldTransform.position.y < UFE.config.selectedStage.position.y - 1.5f)
           {
-            worldTransform.Translate(0, 0, - 10.0f - worldTransform.position.z);
             ResetForces(true, true, true);
           }
 
