@@ -11,6 +11,13 @@ namespace Assets.McCoy.Brawler
   using SpawnData = Dictionary<Factions, McCoyMobData>;
   public class McCoyBrawlerSpawnManager : MonoBehaviour
   {
+    enum SubstageExitCondition
+    {
+      None,
+      Escaped,
+      BossDefeated,
+      AllEnemiesDefeated,
+    }
     int[] playerIDs = { 1 };
 
     // Faction -> totalEnemiesRemaining
@@ -30,6 +37,8 @@ namespace Assets.McCoy.Brawler
     float playerX = 0.0f;
     [SerializeField]
     float playerY = 0.0f;
+    [SerializeField]
+    float playerZ = 0.0f;
     float currentPlayerProgress = 0; // measured in number of enemies they should have encountered
     float levelBoundsStart, levelBoundsEnd;
     ControlsScript player;
@@ -43,6 +52,11 @@ namespace Assets.McCoy.Brawler
     // spawners based on mobs
     SpawnData spawnData = null;
     List<McCoyCombatZoneData> combatZones = null;
+
+    bool allEnemiesDefeated = false;
+    bool bossRemains = false;
+    string bossName;
+    SubstageExitCondition endCondition;
 
     public static void SetTeam(int id, Factions f)
     {
@@ -94,14 +108,30 @@ namespace Assets.McCoy.Brawler
       updateSpawners();
       updateCombatZones();
       updateBoss();
+      checkGameEnd();
+    }
+
+    private void checkGameEnd()
+    {
+      if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.RightBoundary))
+      {
+        if(endCondition == SubstageExitCondition.None)
+        {
+          endCondition = allEnemiesDefeated ? SubstageExitCondition.AllEnemiesDefeated : SubstageExitCondition.Escaped;
+        }
+        fireWon(endCondition);
+      }
     }
 
     private void updateBoss()
     {
       if(boss && boss.currentLifePoints <= 0)
       {
+        bossRemains = false;
+        bossName = boss.myInfo.name;
         boss = null;
         bossSpawnListener.BossDied(boss);
+        endCondition = SubstageExitCondition.BossDefeated;
       }
     }
 
@@ -168,6 +198,8 @@ namespace Assets.McCoy.Brawler
 
     private void stageBegan()
     {
+      endCondition = SubstageExitCondition.None;
+      allEnemiesDefeated = false;
       currentPlayerProgress = 0;
       transitioning = false;
       levelBoundsStart = UFE.config.selectedStage.LeftBoundary.AsFloat();
@@ -184,6 +216,10 @@ namespace Assets.McCoy.Brawler
         spawnerList.Remove(spawner);
         if (spawner != null)
         {
+          if(spawner.spawnData.IsBoss)
+          {
+            bossRemains = true;
+          }
           spawner.spawnData.Initialize(spawner.gameObject.transform.localPosition.x);
           spawners.Add(spawner.spawnData);
           Destroy(spawner.gameObject);
@@ -220,6 +256,7 @@ namespace Assets.McCoy.Brawler
       float tempProgress = ((float)player.worldTransform.position.x + (playerStartX - levelBoundsStart) + buffer) * totalMonstersToSpawn / (levelBoundsEnd - levelBoundsStart);
       playerX = (float)player.worldTransform.position.x;
       playerY = (float)player.worldTransform.position.y;
+      playerZ = (float)player.worldTransform.position.z;
       if(tempProgress > currentPlayerProgress)
       {
         currentPlayerProgress = tempProgress;
@@ -271,9 +308,8 @@ namespace Assets.McCoy.Brawler
             Debug.LogError("(but we're in a combat zone)");
             Debug.LogError(combatZoneEnemiesRemaining);
           }
-
-            fireWon();
-            return;
+          allEnemiesDefeated = true;
+          return;
         }
         if (!debugSpawnsOnly && totalMonstersRemaining > 0 && currentPlayerProgress > monstersSpawned)
         {
@@ -313,14 +349,26 @@ namespace Assets.McCoy.Brawler
       return totalMonstersRemaining;
     }
 
-    private void fireWon()
+    private void fireWon(SubstageExitCondition endCondition)
     {
       if(transitioning)
       {
         return;
       }
       transitioning = true;
-      UFE.FireAlert("All Dudes BEATEN!", null);
+
+      string message = "All Dudes Beaten!";
+      switch(endCondition)
+      {
+        case SubstageExitCondition.BossDefeated:
+          message = $"Defeated {bossName}!";
+          break;
+        case SubstageExitCondition.Escaped:
+          message = $"Howl Another Day!";
+          break;
+      }
+
+      UFE.FireAlert(message, null);
 
       UFE.DelaySynchronizedAction(() =>
       {

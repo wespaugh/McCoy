@@ -428,7 +428,9 @@ public class ControlsScript : MonoBehaviour
 )
   {
     // Update opControlsScript Reference if Needed
-    if (!opControlsScript.gameObject.activeInHierarchy || opControlsScript == this) opControlsScript = UFE.FindNewOpponent(playerNum);//.GetControlsScript(playerNum);
+    if (!opControlsScript.gameObject.activeInHierarchy || 
+      opControlsScript == this || 
+      opControlsScript.Team == Team) opControlsScript = UFE.FindNewOpponent(playerNum);//.GetControlsScript(playerNum);
 
     // Apply Training / Challenge Mode Options
     if (!isAssist)

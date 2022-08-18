@@ -1133,7 +1133,8 @@ public class PhysicsScript : MonoBehaviour
     {
       return true;
     }
-    if (UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound - 1].IsInHole((float)controlScript.worldTransform.position.x, (float)(controlScript.worldTransform.position.y + controlScript.worldTransform.position.z)))
+    var stageY = UFE.config.selectedStage.position.y;
+    if ( controlScript.worldTransform.position.y - stageY <= 0 && UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound - 1].IsInHole((float)controlScript.worldTransform.position.x, (float)controlScript.worldTransform.position.z))
     {
       // TODO: play falling animation if needed
       Debug.Log("FATALLY FALLING!");
