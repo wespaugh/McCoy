@@ -89,7 +89,7 @@ namespace FPLibrary
       {
         return;
       }
-      _spriteRenderer.sortingOrder = (int)(this.position.z*100.0f);
+      _spriteRenderer.sortingOrder = (int)(this.transform.position.z*-100.0f);
     }
 
         public void RotateAround(FPVector point, FPVector axis, Fix64 angle) {

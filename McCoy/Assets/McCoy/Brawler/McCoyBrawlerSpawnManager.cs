@@ -27,6 +27,9 @@ namespace Assets.McCoy.Brawler
     int combatZoneEnemiesRemaining = 0;
     float playerStartX = 0;
     [SerializeField]
+    float playerX = 0.0f;
+    [SerializeField]
+    float playerY = 0.0f;
     float currentPlayerProgress = 0; // measured in number of enemies they should have encountered
     float levelBoundsStart, levelBoundsEnd;
     ControlsScript player;
@@ -215,7 +218,8 @@ namespace Assets.McCoy.Brawler
       // arbitrary amount to look ahead by
       float buffer = 4.0f;
       float tempProgress = ((float)player.worldTransform.position.x + (playerStartX - levelBoundsStart) + buffer) * totalMonstersToSpawn / (levelBoundsEnd - levelBoundsStart);
-
+      playerX = (float)player.worldTransform.position.x;
+      playerY = (float)player.worldTransform.position.y;
       if(tempProgress > currentPlayerProgress)
       {
         currentPlayerProgress = tempProgress;

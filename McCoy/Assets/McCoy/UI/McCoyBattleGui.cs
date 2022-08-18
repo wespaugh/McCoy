@@ -30,6 +30,8 @@ namespace Assets.McCoy.UI
 
     [SerializeField] TMP_Text bossName = null;
 
+    [SerializeField] int playerSortOrder;
+
     McCoyStageData currentStage;
 
     bool debug => McCoy.GetInstance().Debug;
@@ -143,7 +145,11 @@ namespace Assets.McCoy.UI
 
     private void FixedUpdate()
     {
-      if(UFE.config.debugOptions.debugMode)
+      if (UFE.GetPlayer1ControlsScript() != null && UFE.GetPlayer1ControlsScript().mySpriteRenderer != null)
+      {
+        playerSortOrder = UFE.GetPlayer1ControlsScript().mySpriteRenderer.sortingOrder;
+      }
+      if (UFE.config.debugOptions.debugMode)
       {
         string sb = "";
         foreach(var controlScript in UFE.brawlerEntityManager.GetAllControlsScripts())

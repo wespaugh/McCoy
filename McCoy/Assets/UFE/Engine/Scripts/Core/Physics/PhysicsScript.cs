@@ -17,6 +17,7 @@ public class PhysicsScript : MonoBehaviour
   public Fix64 horizontalJumpForce;
   public bool isGroundBouncing;
   public bool isLanding;
+  public bool isFatallyFalling;
   public bool isTakingOff;
   public bool isWallBouncing;
   public Fix64 moveDirection;
@@ -552,7 +553,13 @@ public class PhysicsScript : MonoBehaviour
           worldTransform.Translate(activeForces.x * UFE.fixedDeltaTime, 0, 0);
 
           // for brawler physics, our 'z' translates to a y-offset
+          // TODO: is this wrong? this might be wrong
           worldTransform.Translate(0, 0, activeForces.z * UFE.fixedDeltaTime);
+          if (isFatallyFalling && worldTransform.position.y < UFE.config.selectedStage.position.y - 1.5f)
+          {
+            worldTransform.Translate(0, 0, - 10.0f - worldTransform.position.z);
+            ResetForces(true, true, true);
+          }
 
         }
 #if !UFE_LITE && !UFE_BASIC
@@ -630,7 +637,7 @@ public class PhysicsScript : MonoBehaviour
     {
       bool brawler = true;
       Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary);
-      Fix64 y = FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
+      Fix64 y = isFatallyFalling ? worldTransform.position.y : FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
       Fix64 z;
       if(brawler && UFE.config.selectedStage.stageInfo != null)
       {
@@ -661,6 +668,11 @@ public class PhysicsScript : MonoBehaviour
     if (worldTransform.position.y < 0) worldTransform.Translate(new FPVector(0, -worldTransform.position.y, 0));
 
     if (controlScript.currentState == PossibleStates.Down) return;
+
+    if (testFatallyFalling())
+    {
+      return;
+    }
 
     if (IsGrounded())
     {
@@ -749,6 +761,13 @@ public class PhysicsScript : MonoBehaviour
         Fix64 animationSpeed = 0;
         Fix64 delayTime = 0;
         if (controlScript.currentMove != null && controlScript.currentMove.hitAnimationOverride) return;
+
+        /*
+        if(testFatallyFalling())
+        {
+          return;
+        }
+        */
         if (controlScript.currentSubState == SubStates.Stunned)
         {
           if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airRecovery.name))
@@ -1109,11 +1128,30 @@ public class PhysicsScript : MonoBehaviour
       moveDirection = 0;
   }
 
+  private bool testFatallyFalling()
+  {
+    if(isFatallyFalling)
+    {
+      return true;
+    }
+    if (UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound - 1].IsInHole((float)controlScript.worldTransform.position.x, (float)(controlScript.worldTransform.position.y + controlScript.worldTransform.position.z)))
+    {
+      // TODO: play falling animation if needed
+      Debug.Log("FATALLY FALLING!");
+      isFatallyFalling = true;
+      activeForces.y = -1;
+      controlScript.mySpriteRenderer.sortingOrder = -100;
+      return true;
+    }
+    return false;
+  }
+
   public bool IsGrounded()
   {
+    if (isFatallyFalling) return false;
     if (!brawlerZShifted)
     {
-      return worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y; ;
+      return worldTransform.position.y - worldTransform.position.z <= UFE.config.selectedStage.position.y;
     }
     return worldTransform.position.y <= UFE.config.selectedStage.position.y;
   }
