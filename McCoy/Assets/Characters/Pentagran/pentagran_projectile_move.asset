@@ -15,16 +15,16 @@ MonoBehaviour:
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 596ab7e3dfda5494793f40c897ac1f43, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 489d30208f492554f8c4cb23cb12333d,
+    clip: {fileID: 7400000, guid: de8c645b9ed2abd4ea339bfd41ce6121, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: af4d67d2ac283194f9edae01e98e8074,
       type: 2}
     length:
-      _serializedValue: 5082377728
+      _serializedValue: 4366550016
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
     _serializedValue: 4294967296
-  wrapMode: 4
+  wrapMode: 1
   characterPrefab: {fileID: 0}
   moveName: pentagram_projectile
   description: 
@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 71
+  totalFrames: 61
   startUpFrames: 0
-  activeFrames: 1
-  recoveryFrames: 2
+  activeFrames: 3
+  recoveryFrames: 58
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -128,7 +128,229 @@ MonoBehaviour:
   inGameAlert: []
   stanceChanges: []
   cameraMovements: []
-  hits: []
+  hits:
+  - activeFramesBegin: 0
+    activeFramesEnds: 2
+    hitConfirmType: 0
+    throwMove: {fileID: 0}
+    techMove: {fileID: 0}
+    techable: 1
+    resetHitAnimations: 1
+    forceStand: 0
+    fixRotation: 0
+    armorBreaker: 0
+    continuousHit: 0
+    unblockable: 0
+    spaceBetweenHits: 0
+    groundHit: 1
+    crouchingHit: 1
+    airHit: 1
+    stunHit: 1
+    zRange:
+      _serializedValue: 2147483648
+    targetFilter: 2
+    allowMultiHit: 1
+    opponentConditions:
+      basicMoveLimitation: 
+      possibleMoveStates: []
+      basicMovesToggle: 0
+      statesToggle: 0
+    downHit: 0
+    resetPreviousHitStun: 0
+    resetCrumples: 0
+    customStunValues: 0
+    overrideHitEffects: 0
+    hitEffects:
+      hitParticle: {fileID: 0}
+      killTime: 0
+      hitSound: {fileID: 0}
+      spawnPoint: 1
+      _freezingTime:
+        _serializedValue: 0
+      _animationSpeed:
+        _serializedValue: 429496729
+      autoHitStop: 1
+      _hitStop:
+        _serializedValue: 429496729
+      mirrorOn2PSide: 0
+      shakeCharacterOnHit: 1
+      shakeCameraOnHit: 1
+      _shakeDensity:
+        _serializedValue: 3435973836
+      _shakeCameraDensity:
+        _serializedValue: 3435973836
+      editorToggle: 0
+    overrideHitEffectsBlock: 0
+    hitEffectsBlock:
+      hitParticle: {fileID: 0}
+      killTime: 0
+      hitSound: {fileID: 0}
+      spawnPoint: 1
+      _freezingTime:
+        _serializedValue: 0
+      _animationSpeed:
+        _serializedValue: 429496729
+      autoHitStop: 1
+      _hitStop:
+        _serializedValue: 429496729
+      mirrorOn2PSide: 0
+      shakeCharacterOnHit: 1
+      shakeCameraOnHit: 1
+      _shakeDensity:
+        _serializedValue: 3435973836
+      _shakeCameraDensity:
+        _serializedValue: 3435973836
+      editorToggle: 0
+    overrideEffectSpawnPoint: 0
+    spawnPoint: 1
+    overrideHitAnimationBlend: 0
+    _newHitBlendingIn:
+      _serializedValue: 0
+    overrideJuggleWeight: 0
+    _newJuggleWeight:
+      _serializedValue: 0
+    overrideAirRecoveryType: 0
+    newAirRecoveryType: 0
+    instantAirRecovery: 0
+    overrideHitAnimation: 0
+    newHitAnimation: 27
+    hitStrength: 0
+    hitStunType: 1
+    _hitStunOnHit:
+      _serializedValue: 0
+    _hitStunOnBlock:
+      _serializedValue: 0
+    frameAdvantageOnHit: 0
+    frameAdvantageOnBlock: 0
+    damageScaling: 0
+    damageType: 0
+    _damageOnHit:
+      _serializedValue: 0
+    _damageOnBlock:
+      _serializedValue: 0
+    doesntKill: 0
+    hitType: 0
+    resetPreviousHorizontalPush: 0
+    resetPreviousVerticalPush: 0
+    resetPreviousSidewaysPush: 0
+    resetJumpForce: 0
+    applyDifferentAirForce: 0
+    applyDifferentBlockForce: 0
+    applyDifferentSelfAirForce: 0
+    applyDifferentSelfBlockForce: 0
+    _pushForce:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    _pushForceAir:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    _pushForceBlock:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    resetPreviousHorizontal: 0
+    resetPreviousVertical: 0
+    resetPreviousSideways: 0
+    _appliedForce:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    _appliedForceAir:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    _appliedForceBlock:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    cornerPush: 1
+    groundBounce: 1
+    overrideForcesOnGroundBounce: 0
+    resetGroundBounceHorizontalPush: 0
+    resetGroundBounceVerticalPush: 0
+    _groundBouncePushForce:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    wallBounce: 0
+    knockOutOnWallBounce: 0
+    overrideForcesOnWallBounce: 0
+    resetWallBounceHorizontalPush: 0
+    resetWallBounceVerticalPush: 0
+    _wallBouncePushForce:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    bounceOnCameraEdge: 0
+    cameraEdgeOffSet:
+      _serializedValue: 0
+    overrideCameraSpeed: 0
+    _newMovementSpeed:
+      _serializedValue: 0
+    _newRotationSpeed:
+      _serializedValue: 0
+    _cameraSpeedDuration:
+      _serializedValue: 0
+    pullEnemyIn:
+      speed: 50
+      forceGrounded: 0
+      position:
+        x:
+          _serializedValue: 0
+        y:
+          _serializedValue: 0
+        z:
+          _serializedValue: 0
+    pullSelfIn:
+      speed: 50
+      forceGrounded: 0
+      position:
+        x:
+          _serializedValue: 0
+        y:
+          _serializedValue: 0
+        z:
+          _serializedValue: 0
+    hitToggle: 1
+    damageOptionsToggle: 0
+    hitStunOptionsToggle: 0
+    forceOptionsToggle: 0
+    opponentForceToggle: 0
+    selfForceToggle: 0
+    stageReactionsToggle: 0
+    overrideEventsToggle: 0
+    hitConditionsToggle: 0
+    pullInToggle: 0
+    hurtBoxesToggle: 0
+    wallBounceToggle: 0
+    groundBounceToggle: 0
+    hurtBoxes: []
   blockableArea:
     enabled: 1
     activeFramesBegin: 0
@@ -247,7 +469,7 @@ MonoBehaviour:
     damageAbsorption: 0
     nonAffectedBodyParts: 
   projectiles:
-  - castingFrame: 60
+  - castingFrame: 36
     projectilePrefab: {fileID: 730415572856302657, guid: 209c37d0660d5684fb269b795ab82883,
       type: 3}
     impactPrefab: {fileID: 730415572856302657, guid: 209c37d0660d5684fb269b795ab82883,
@@ -258,7 +480,7 @@ MonoBehaviour:
       x:
         _serializedValue: 2147483648
       y:
-        _serializedValue: 0
+        _serializedValue: 8589934592
       z:
         _serializedValue: 0
     speed: 15
