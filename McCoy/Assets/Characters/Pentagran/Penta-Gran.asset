@@ -3276,8 +3276,8 @@ MonoBehaviour:
       fallDown:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 596ab7e3dfda5494793f40c897ac1f43, type: 2}
-          customHitBoxDefinition: {fileID: 11400000, guid: 489d30208f492554f8c4cb23cb12333d,
+          clip: {fileID: 7400000, guid: 371e4f5cc84bb7943b5c4b29e8e1adb0, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 750fefbdfa4294048988e8e5a1c5ebb8,
             type: 2}
           length:
             _serializedValue: 5082377728
@@ -3377,7 +3377,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -3592,8 +3592,8 @@ MonoBehaviour:
       getHitHigh:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 596ab7e3dfda5494793f40c897ac1f43, type: 2}
-          customHitBoxDefinition: {fileID: 11400000, guid: 489d30208f492554f8c4cb23cb12333d,
+          clip: {fileID: 7400000, guid: f33c5dc0eb317604ca89a03da4bfc646, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9754ef01931243a41bfeaff373493c6d,
             type: 2}
           length:
             _serializedValue: 5082377728
@@ -3693,7 +3693,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       getHitLow:
         animMap:
