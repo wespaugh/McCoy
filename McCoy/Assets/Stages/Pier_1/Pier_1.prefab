@@ -89,7 +89,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &63176755211112693
 Transform:
   m_ObjectHideFlags: 0
@@ -122,8 +122,10 @@ MonoBehaviour:
   unitWidth: 4
   speed: 0.3
   cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
   camMinX: 0
   camMaxX: 0
+  firstPosition: 0
   sprites:
   - {fileID: 21300000, guid: 30107b9dfee44894aa80edcaac9b8dbd, type: 3}
   - {fileID: 21300000, guid: f235cbfea24b61f489f81632d0be01fa, type: 3}
@@ -266,8 +268,10 @@ MonoBehaviour:
   unitWidth: 7.3142858
   speed: 1
   cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
   camMinX: 0
   camMaxX: 0
+  firstPosition: 0
 --- !u!1 &4177315001254267955
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +321,10 @@ MonoBehaviour:
   unitWidth: 14.6285715
   speed: 0
   cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
   camMinX: 0
   camMaxX: 0
+  firstPosition: 0
 --- !u!1 &4223605453783703468
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,10 +702,12 @@ MonoBehaviour:
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
   unitWidth: 4
-  speed: 0.6
+  speed: 0.85
   cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
   camMinX: 0
   camMaxX: 0
+  firstPosition: 0
   sprites:
   - {fileID: 21300000, guid: 30107b9dfee44894aa80edcaac9b8dbd, type: 3}
   - {fileID: 21300000, guid: f235cbfea24b61f489f81632d0be01fa, type: 3}

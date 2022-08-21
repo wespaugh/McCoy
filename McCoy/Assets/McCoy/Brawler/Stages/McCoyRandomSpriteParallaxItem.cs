@@ -13,9 +13,14 @@ namespace Assets.McCoy.Brawler.Stages
 
     protected override void ItemMoved(GameObject obj, int newIndex)
     {
+      debug = true;
       if(!indexes.ContainsKey(newIndex))
       {
-        indexes[newIndex] = Random.Range(0, sprites.Length);
+        indexes[newIndex] = newIndex % 2 == 0 ? 0 : 1;// Random.Range(0, sprites.Length);
+      }
+      if (debug)
+      {
+        Debug.Log("assigning index " + indexes[newIndex]);
       }
       obj.GetComponent<McCoySpriteRandomizer>().Sprite.sprite = sprites[indexes[newIndex]];
     }
