@@ -70,4 +70,4 @@ MonoBehaviour:
     width: 2.5
     height: 2
   leftBoundary: -8
-  rightBoundary: 38
+  rightBoundary: 100

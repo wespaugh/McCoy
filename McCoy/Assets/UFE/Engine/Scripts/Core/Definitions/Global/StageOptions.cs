@@ -42,7 +42,7 @@ namespace UFE3D
         {
           return tempLeftBoundary;
         }
-        if(stageInfo != null)
+        if(stageInfo != null && stageInfo.substages != null && UFE.config != null && UFE.config.currentRound-1 >= 0 && stageInfo.substages.Count > UFE.config.currentRound)
         {
           return stageInfo.substages[UFE.config.currentRound-1].leftBoundary;
         }
@@ -57,7 +57,7 @@ namespace UFE3D
         {
           return tempRightBoundary;
         }
-        if(stageInfo != null)
+        if (stageInfo != null && stageInfo.substages != null && UFE.config != null && UFE.config.currentRound - 1 >= 0 && stageInfo.substages.Count > UFE.config.currentRound)
         {
           return stageInfo.substages[UFE.config.currentRound-1].rightBoundary;
         }

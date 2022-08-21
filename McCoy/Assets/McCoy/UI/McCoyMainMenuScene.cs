@@ -11,6 +11,10 @@ namespace Assets.McCoy.UI
       if(game == null)
       {
         game = FindObjectOfType<McCoy>();
+        if(game.Debug)
+        {
+          StartCityScene();
+        }
       }
     }
     public void StartCityScene()
