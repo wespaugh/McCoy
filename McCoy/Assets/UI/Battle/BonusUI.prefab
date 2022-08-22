@@ -130,6 +130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6840210511949421178, guid: dc4775c0c63690c44bf2f8065d8643aa,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.14901961
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4775c0c63690c44bf2f8065d8643aa, type: 3}
 --- !u!114 &1874901061978190844 stripped

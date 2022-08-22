@@ -37,8 +37,6 @@ namespace Assets.McCoy.Brawler.Stages
     [SerializeField]
     float camMinX;
     [SerializeField]
-    float camMaxX;
-    [SerializeField]
     float firstPosition = 0.0f;
 
     private void Awake()

@@ -543,6 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336c2e798c9e52644962550a4d8b0dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug: 0
+  Debug: 1
   cityScene: {fileID: 1337723929919130329, guid: 376059da1f9984144b0dc1dc9b0084a2,
     type: 3}
