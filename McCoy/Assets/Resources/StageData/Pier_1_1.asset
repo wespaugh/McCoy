@@ -58,6 +58,13 @@ MonoBehaviour:
     lowerBound:
       slope: 0
       yIntercept: -6
+  - unitXStart: 42.7
+    upperBound:
+      slope: -0.5
+      yIntercept: -2.3
+    lowerBound:
+      slope: -0.5
+      yIntercept: -6.3
   holes:
   - serializedVersion: 2
     x: 11.5
@@ -65,9 +72,9 @@ MonoBehaviour:
     width: 2
     height: 3
   - serializedVersion: 2
-    x: 8.5
+    x: 23.1
     y: -2
     width: 2.5
     height: 2
   leftBoundary: -8
-  rightBoundary: 100
+  rightBoundary: 50

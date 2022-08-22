@@ -67,11 +67,11 @@ namespace Assets.McCoy.Brawler.Stages
       cameraPos = Camera.main.transform.localPosition;
       int i = 0;
       float chunkWidth = contents.transform.localScale.x * unitWidth;
-      camMinX = cameraPos.x - (cameraWidth/2.0f) + unitWidth/2;
-      camMaxX = cameraPos.x + (cameraWidth/2.0f);
-      firstPosition = camMinX * (1.0f - speed);
+      camMinX = cameraPos.x;
 
+      firstPosition = camMinX * (1.0f - speed);
       chunkIndex = 0;
+
       while (firstPosition + unitWidth <= camMinX)
       {
         ++chunkIndex;
@@ -80,7 +80,7 @@ namespace Assets.McCoy.Brawler.Stages
 
       foreach (var go in instances)
       {
-        go.transform.position = new Vector3(firstPosition+(chunkWidth*i), go.transform.position.y, go.transform.position.z);
+        go.transform.position = new Vector3(firstPosition+(chunkWidth*i) - (cameraWidth / 2.0f) + unitWidth / 2, go.transform.position.y, go.transform.position.z);
         ItemMoved(go, chunkIndex+i);
         ++i;
       }

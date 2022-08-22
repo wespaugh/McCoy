@@ -36,7 +36,7 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: -34359738368
     _rightBoundary:
-      _serializedValue: 163208757248
+      _serializedValue: 429496729600
     tempLeftBoundary:
       _serializedValue: 0
     tempRightBoundary:
@@ -287,7 +287,7 @@ MonoBehaviour:
     rotationOffSet: {x: 0, y: 3.5, z: 0}
     motionSensor: 0
     motionSensibility: 1
-    cameraFollowBoundsX: 1.47
+    cameraFollowBoundsX: 0
     cameraFollowBoundsY: 0.499
   lockOnOptions:
     lockOnType: 0
@@ -846,7 +846,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
