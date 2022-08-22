@@ -782,7 +782,7 @@ public class ControlsScript : MonoBehaviour
       }
       else
       {
-        isDead = DamageMe(20);
+        isDead = DamageMe(myInfo.lifePoints * .2f);
         KillCurrentMove();
         myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight,true);
         if(!isDead)

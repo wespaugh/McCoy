@@ -67,89 +67,23 @@ namespace Assets.McCoy.Brawler.Stages
       cameraPos = Camera.main.transform.localPosition;
       int i = 0;
       float chunkWidth = contents.transform.localScale.x * unitWidth;
-      camMinX = cameraPos.x - (cameraWidth/2.0f) + unitWidth/2;
-      camMaxX = cameraPos.x + (cameraWidth/2.0f);
-      firstPosition = (cameraPos.x - (cameraWidth / 2)) * (1.0f - speed); // (cameraPos.x - (cameraWidth / 2)) * (1.0f - speed); // (int)(camMinX * (1.0f - speed) / chunkWidth); cameraPos.x * (1.0f - speed) + (contents.transform.localScale.x * unitWidth * i++)
+      camMinX = cameraPos.x;
 
-      float quoteActualPositionUnquote = (cameraPos.x - (cameraWidth / 2));
-      int quoteOffsetQuote = (int)((quoteActualPositionUnquote - firstPosition) / chunkWidth);
+      firstPosition = camMinX * (1.0f - speed);
+      chunkIndex = 0;
 
-      int offset = (int)((camMinX - firstPosition) / chunkWidth);
-      offset = quoteOffsetQuote;
-      int newFirstIndex = ((int)(firstPosition / chunkWidth)) + offset;
-      firstPosition = firstPosition + (offset * chunkWidth);
-      int direction = newFirstIndex - firstIndex;
-      
-      if(firstIndex != newFirstIndex)
+      while (firstPosition + unitWidth <= camMinX)
       {
-        if (debug)
-        {
-          Debug.Log("Moving from index " + firstIndex + " to index " + newFirstIndex);
-        }
-        chunkIndex += direction > 0 ? 1 : -1;
-        firstIndex = newFirstIndex;
+        ++chunkIndex;
+        firstPosition += unitWidth;
       }
-      
-      if(direction < 0)
-      {
-        var last = instances[instances.Count - 1];
-        instances.RemoveAt(instances.Count - 1);
-        instances.Insert(0, last);
-        //ItemMoved(last, firstIndex);
-      }
-      else if(direction > 0)
-      {
-        var first = instances[0];
-        instances.RemoveAt(0);
-        instances.Add(first);
-        //ItemMoved(first, firstIndex + instances.Count - 1);
-      }
+
       foreach (var go in instances)
       {
-        go.transform.position = new Vector3(firstPosition+(chunkWidth*i), go.transform.position.y, go.transform.position.z); //cameraPos.x*(1.0f-speed) + (go.transform.localScale.x*unitWidth*i++),go.transform.position.y,go.transform.position.z);
-        // if (direction != 0)
-        {
-          if (debug)
-          {
-            Debug.Log((chunkIndex +i)+ ". i getting moved at x: " + go.transform.position.x);
-          }
-          ItemMoved(go, chunkIndex+i);
-
-          /*
-          if (direction > 0 && i == instances.Count - 1)
-          {
-            ItemMoved(go, chunkIndex); // (int) ((go.transform.position.x) / chunkWidth));
-          }
-          else if(direction < 0 && i == 0 )
-          {
-            ItemMoved(go, chunkIndex);
-          }
-          */
-        }
+        go.transform.position = new Vector3(firstPosition+(chunkWidth*i) - (cameraWidth / 2.0f) + unitWidth / 2, go.transform.position.y, go.transform.position.z);
+        ItemMoved(go, chunkIndex+i);
         ++i;
       }
-      /*
-      i = 0;
-      foreach(var go in instances)
-      {
-        int previousIndex = (int) (go.transform.position.x / (float)chunkWidth);
-        if (go.transform.position.x <= camMinX)
-        {
-          float newX = go.transform.position.x + chunkWidth * instances.Count;
-          go.transform.position = new Vector3(newX, go.transform.position.y, go.transform.position.z);
-          Debug.Log(i + ". moving item from " + previousIndex + " to " + (int)(go.transform.position.x / (float)chunkWidth));
-          ItemMoved(go, (int) (go.transform.position.x / (float)chunkWidth));
-        }
-        else if(go.transform.position.x > camMaxX)
-        {
-          float newX = go.transform.position.x - chunkWidth * instances.Count;
-          go.transform.position = new Vector3(newX, go.transform.position.y, go.transform.position.z);
-          Debug.Log(i + " moving item from " + previousIndex + " to " + (int)(go.transform.position.x / (float)chunkWidth));
-          ItemMoved(go, (int)(go.transform.position.x / (float)chunkWidth));
-        }
-        ++i;
-      }
-      */
     }
   }
 }
