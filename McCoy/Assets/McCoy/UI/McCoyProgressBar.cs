@@ -18,6 +18,15 @@ namespace Assets.McCoy.UI
     [SerializeField]
     float overrideHP = -2.0f;
 
+    [SerializeField]
+    float animateSpeed = 0.6f;
+
+    //debug fields
+    [SerializeField]
+    Color Sprite1Color;
+    [SerializeField]
+    Color Sprite2Color;
+
     private float hpPerBar;
     private float hpCache = -1;
     private int barCache = -1;
@@ -51,7 +60,7 @@ namespace Assets.McCoy.UI
 
       // be sure to use cache here. it's only updated when animation flips to the right bar
       int currentBar = (int)(hpCache / hpPerBar);
-      if(hpCache % hpPerBar == 0 && ((float)currentBar)*hpPerBar == hpCache)
+      if(hpCache % hpPerBar == 0 && ((float)currentBar)*hpPerBar == hpCache && currentBar > 0)
       {
         --currentBar;
       }
@@ -60,7 +69,7 @@ namespace Assets.McCoy.UI
       targetPercent = barFlip && direction != 0.0f ? (direction > 0 ? 1.0f : 0.0f) : percent;
 
       // float direction = currentPercent > targetPercent ? -1.0f : 1.0f;
-      float distance = direction * .6f * Time.deltaTime; // speed
+      float distance = direction * animateSpeed * Time.deltaTime; // speed
       currentPercent += distance;
       if( (direction == 1 && currentPercent >= targetPercent)
         || (direction == -1 && currentPercent <= targetPercent))
@@ -89,7 +98,7 @@ namespace Assets.McCoy.UI
 
       sprite.material.SetFloat("_progress", -1.0f + currentPercent);
 
-      float p2 = (totalHP > hpPerBar ? 1.0f : 0);
+      float p2 = (totalHP > hpPerBar || barFlip ? 1.0f : 0);
       sprite2.material.SetFloat("_progress", -1.0f + p2);
       
       if(currentBar == barCache)
@@ -161,6 +170,8 @@ namespace Assets.McCoy.UI
 
     private void SetColor(Color sprite1Color, Color sprite2Color, Color borderColor)
     {
+      Sprite1Color = sprite1Color;
+      Sprite2Color = sprite2Color;
       sprite.material.SetColor("_Color0", sprite1Color);
       if (borderColor != null)
       {
