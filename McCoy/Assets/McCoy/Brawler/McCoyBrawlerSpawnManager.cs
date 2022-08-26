@@ -113,7 +113,7 @@ namespace Assets.McCoy.Brawler
 
     private void checkGameEnd()
     {
-      if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.RightBoundary))
+      if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.GetLevelExit()))
       {
         if(endCondition == SubstageExitCondition.None)
         {

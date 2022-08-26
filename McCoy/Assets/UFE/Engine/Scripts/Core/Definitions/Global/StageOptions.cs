@@ -64,7 +64,13 @@ namespace UFE3D
         return _rightBoundary;
       }
     }
-        public FPVector position;
+    
+    public float GetLevelExit()
+    {
+      return ((float)_rightBoundary);
+    }
+
+    public FPVector position;
     public string advancedStageData = null;
 
     public BrawlerStageInfo stageInfo = null;
