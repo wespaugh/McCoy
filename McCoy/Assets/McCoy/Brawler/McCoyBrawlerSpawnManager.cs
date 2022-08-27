@@ -370,7 +370,20 @@ namespace Assets.McCoy.Brawler
 
       UFE.FireAlert(message, null);
 
-      UFE.DelaySynchronizedAction(() =>
+      float transitionTime = 4.0f; // total time before scene switches
+      if (UFE.config.currentRound != 3)
+      {
+        float fadeTime = .40f; // fade out time
+        float fadeDelay = 2.0f; // time to wait before fading out
+        float buffer = .5f; // time to wait after scene switch
+        UFE.DelaySynchronizedAction(() =>
+        {
+          CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, false, fadeTime);
+          WaitAndFadeIn(transitionTime - fadeTime - fadeDelay + buffer);
+        }, fadeDelay);
+      }
+
+        UFE.DelaySynchronizedAction(() =>
       {
         if (UFE.config.currentRound == 3)
         {
@@ -383,7 +396,15 @@ namespace Assets.McCoy.Brawler
           UFE.NextBrawlerStage();
           Initialize(spawnData, bossSpawnListener);
         }
-      }, 6.0f);
+      }, transitionTime);
+    }
+
+    private void WaitAndFadeIn(float time)
+    {
+      UFE.DelaySynchronizedAction(() =>
+      {
+        CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, time);
+      }, time);
     }
 
     private void fireLose()

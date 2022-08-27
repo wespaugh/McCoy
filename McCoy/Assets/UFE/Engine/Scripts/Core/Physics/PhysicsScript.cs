@@ -609,7 +609,7 @@ public class PhysicsScript : MonoBehaviour
 
 
     // Clamp Max Distance Between Players
-    if (!controlScript.isAssist)
+    if (!controlScript.isAssist && !UFE.GetController(controlScript.playerNum).isCPU)
     {
       if (UFE.config.gameplayType == GameplayType._2DFighter)
       {

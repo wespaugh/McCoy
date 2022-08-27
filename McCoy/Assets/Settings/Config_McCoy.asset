@@ -36,11 +36,11 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: -34359738368
     _rightBoundary:
-      _serializedValue: 429496729600
+      _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -11166914560
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 57552560128
     position:
       x:
         _serializedValue: 0
@@ -1219,11 +1219,11 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: -34359738368
     _rightBoundary:
-      _serializedValue: 429496729600
+      _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -11166914560
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 57552560128
     position:
       x:
         _serializedValue: 0
