@@ -139,6 +139,10 @@ namespace Assets.McCoy.Brawler
 
     private void updateCombatZones()
     {
+      if(combatZones == null)
+      {
+        return;
+      }
       foreach(var combatZone in combatZones)
       {
         if(player.worldTransform.position.x >= combatZone.XPosition && ! debugSpawnsOnly)
@@ -173,7 +177,8 @@ namespace Assets.McCoy.Brawler
       // somehow the prefab is destroyed and by the time we get here the list is full of null refs
       if (spawners == null)
       {
-        stageBegan();
+        spawners = new List<McCoySpawnData>();
+        UFE.DelaySynchronizedAction(stageBegan, 0.5f);
       }
       playerStartX = ((float)player.worldTransform.position.x);
       if(spawners == null || spawners.Count == 0 || debugSpawnsOnly)
@@ -210,8 +215,13 @@ namespace Assets.McCoy.Brawler
       levelBoundsStart = UFE.config.selectedStage.LeftBoundary.AsFloat();
       levelBoundsEnd = UFE.config.selectedStage.RightBoundary.AsFloat();
 
-      spawners = new List<McCoySpawnData>();
+      spawners.Clear();
+
       GameObject spawnerRoot = GameObject.FindGameObjectWithTag("Spawner");
+      if(spawnerRoot == null)
+      {
+        return;
+      }
       var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
       spawnerList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
 
@@ -242,6 +252,7 @@ namespace Assets.McCoy.Brawler
         combatZones.Add(combatZone.ZoneData);
         Destroy(combatZone.gameObject);
       }
+      Destroy(spawnerRoot);
     }
 
     private void recalcAverageSpawns()
