@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler.Stages;
+using FPLibrary;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -26,6 +27,8 @@ namespace Assets.McCoy.Brawler
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
 
     bool debugSpawnsOnly => McCoy.GetInstance().Debug;
+
+    const float bossXOffset = 3.5f;
 
     int monstersSpawned = 0;
     int totalMonstersToSpawn = 0;
@@ -97,7 +100,6 @@ namespace Assets.McCoy.Brawler
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
       player = UFE.brawlerEntityManager.GetControlsScript(1);
-
       this.bossSpawnListener = bossSpawnListener;
 
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
@@ -185,7 +187,9 @@ namespace Assets.McCoy.Brawler
         {
           spawners.RemoveAt(0);
           factionLookup.FindCharacterInfo(spawner.EnemyName, out var charInfo, out var fac);
-          var monsterCScript = createMonster(charInfo, fac, spawner.xPosition, ((float)player.worldTransform.position.z));
+          float x = spawner.xPosition + bossXOffset;
+          UFE.config.selectedStage.stageInfo.GetYBounds(UFE.config.currentRound, x, out var min, out var max);
+          var monsterCScript = createMonster(charInfo, fac, x, ((float) (min + max) / 2.0f));
           if (bossSpawnListener != null && spawner.IsBoss)
           {
             boss = monsterCScript;
@@ -201,6 +205,7 @@ namespace Assets.McCoy.Brawler
       endCondition = SubstageExitCondition.None;
       allEnemiesDefeated = false;
       currentPlayerProgress = 0;
+      monstersSpawned = 0;
       transitioning = false;
       levelBoundsStart = UFE.config.selectedStage.LeftBoundary.AsFloat();
       levelBoundsEnd = UFE.config.selectedStage.RightBoundary.AsFloat();
@@ -216,7 +221,7 @@ namespace Assets.McCoy.Brawler
         spawnerList.Remove(spawner);
         if (spawner != null)
         {
-          if(spawner.spawnData.IsBoss)
+          if (spawner.spawnData.IsBoss)
           {
             bossRemains = true;
           }
@@ -375,28 +380,47 @@ namespace Assets.McCoy.Brawler
       {
         float fadeTime = .40f; // fade out time
         float fadeDelay = 2.0f; // time to wait before fading out
+
+        // wait until faded out, then switch substage
+        UFE.DelaySynchronizedAction(() =>
+        {
+          // also kill any remaining enemies
+          foreach (var control in UFE.brawlerEntityManager.GetAllControllers())
+          {
+            if(control != null && control.isCPU)
+            {
+              var cScript = UFE.brawlerEntityManager.GetControlsScript(control.player);
+              if(!cScript.isDead)
+              {
+                cScript.Physics.isFatallyFalling = true;
+              }
+            }
+          }
+
+          UFE.NextBrawlerStage();
+          Initialize(spawnData, bossSpawnListener);
+          player.worldTransform.position = FPVector.zero;
+          UFE.cameraScript.MoveCameraToLocation(player.worldTransform.position.ToVector(), Vector3.zero, UFE.cameraScript.targetFieldOfView, 1000, player.gameObject);
+          UFE.DelaySynchronizedAction(() => UFE.cameraScript.ReleaseCam(), .5f);
+        }, fadeTime + fadeDelay);
+
         float buffer = .5f; // time to wait after scene switch
+        // wait until faded out and a little more, then fade back in
         UFE.DelaySynchronizedAction(() =>
         {
           CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, false, fadeTime);
           WaitAndFadeIn(transitionTime - fadeTime - fadeDelay + buffer);
         }, fadeDelay);
       }
-
-        UFE.DelaySynchronizedAction(() =>
+      else
       {
-        if (UFE.config.currentRound == 3)
+        UFE.DelaySynchronizedAction(() =>
         {
           UFE.FireGameEnds();
           UFE.EndGame();
           McCoy.GetInstance().LoadScene(McCoy.McCoyScenes.CityMap);
-        }
-        else
-        {
-          UFE.NextBrawlerStage();
-          Initialize(spawnData, bossSpawnListener);
-        }
-      }, transitionTime);
+        }, transitionTime);
+      }
     }
 
     private void WaitAndFadeIn(float time)

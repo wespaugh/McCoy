@@ -15,5 +15,5 @@ MonoBehaviour:
   Name: Pier-1
   substages:
   - {fileID: 11400000, guid: fb3cba5fbf1496c41bb4a613350fa9bf, type: 2}
-  - {fileID: 11400000, guid: 1d5d3dbe59ef3fc42addffbd07b29619, type: 2}
-  - {fileID: 11400000, guid: e6a8c79904555ba46a5f7036c21596da, type: 2}
+  - {fileID: 11400000, guid: fb3cba5fbf1496c41bb4a613350fa9bf, type: 2}
+  - {fileID: 11400000, guid: fb3cba5fbf1496c41bb4a613350fa9bf, type: 2}

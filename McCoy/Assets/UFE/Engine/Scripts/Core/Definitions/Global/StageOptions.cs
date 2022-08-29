@@ -21,7 +21,7 @@ namespace UFE3D
 
     public Fix64 tempLeftBoundary;
     public Fix64 tempRightBoundary;
-    bool useTempBoundary;
+    public bool useTempBoundary = false;
     public void SetTemporaryBoundaries(Fix64 left, Fix64 right)
     {
       Debug.Log("setting temp boundaries to " + left + ", " + right);
@@ -57,17 +57,25 @@ namespace UFE3D
         {
           return tempRightBoundary;
         }
-        if (stageInfo != null && stageInfo.substages != null && UFE.config != null && UFE.config.currentRound - 1 >= 0 && stageInfo.substages.Count > UFE.config.currentRound)
-        {
-          return stageInfo.substages[UFE.config.currentRound-1].rightBoundary;
-        }
-        return _rightBoundary;
+        return substageRightBoundary;
       }
     }
     
+    private float substageRightBoundary
+    {
+      get
+      {
+        if (stageInfo != null && stageInfo.substages != null && UFE.config != null && UFE.config.currentRound - 1 >= 0 && stageInfo.substages.Count >= UFE.config.currentRound)
+        {
+          return stageInfo.substages[UFE.config.currentRound - 1].rightBoundary;
+        }
+        return (float)_rightBoundary;
+      }
+    }
+
     public float GetLevelExit()
     {
-      return ((float)_rightBoundary);
+      return substageRightBoundary;
     }
 
     public FPVector position;
@@ -82,6 +90,8 @@ namespace UFE3D
 
     public void LoadAdvancedLevelInfo()
     {
+      // TODO: WHY THE HECK DO I NEED THIS
+      useTempBoundary = false;
       if (stageInfo == null)
       {
         // TODO: Be smarter about loading level location

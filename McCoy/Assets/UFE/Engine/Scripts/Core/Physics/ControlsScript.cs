@@ -777,8 +777,8 @@ public class ControlsScript : MonoBehaviour
         KillCurrentMove();
         isDead = DamageMe(currentLifePoints);
         myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
-        blinksRemaining = 5;
-        UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
+        blinksRemaining = 1;
+        UFE.DelaySynchronizedAction(RunBlink, 2.5f);
       }
       else
       {

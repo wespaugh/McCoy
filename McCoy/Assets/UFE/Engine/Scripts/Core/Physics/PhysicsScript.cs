@@ -608,14 +608,19 @@ public class PhysicsScript : MonoBehaviour
     }
 
 
+    bool brawler = true;
+
     // Clamp Max Distance Between Players
     if (!controlScript.isAssist && !UFE.GetController(controlScript.playerNum).isCPU)
     {
       if (UFE.config.gameplayType == GameplayType._2DFighter)
       {
-        Fix64 minDist = opWorldTransform.position.x - UFE.config.cameraOptions._maxDistance;
-        Fix64 maxDist = opWorldTransform.position.x + UFE.config.cameraOptions._maxDistance;
-        worldTransform.position = new FPVector(FPMath.Clamp(worldTransform.position.x, minDist, maxDist), worldTransform.position.y, worldTransform.position.z);
+        if (!brawler)
+        {
+          Fix64 minDist = opWorldTransform.position.x - UFE.config.cameraOptions._maxDistance;
+          Fix64 maxDist = opWorldTransform.position.x + UFE.config.cameraOptions._maxDistance;
+          worldTransform.position = new FPVector(FPMath.Clamp(worldTransform.position.x, minDist, maxDist), worldTransform.position.y, worldTransform.position.z);
+        }
       }
 #if !UFE_LITE && !UFE_BASIC
       else
@@ -634,7 +639,6 @@ public class PhysicsScript : MonoBehaviour
     // Clamp Max Stage Distance
     if (UFE.config.gameplayType == GameplayType._2DFighter)
     {
-      bool brawler = true;
       Fix64 x = FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage.LeftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage.RightBoundary);
       Fix64 y = isFatallyFalling ? worldTransform.position.y : FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y);
       Fix64 z;
@@ -1136,8 +1140,6 @@ public class PhysicsScript : MonoBehaviour
     var stageY = UFE.config.selectedStage.position.y;
     if ( controlScript.worldTransform.position.y - stageY <= 0 && UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound - 1].IsInHole((float)controlScript.worldTransform.position.x, (float)controlScript.worldTransform.position.z))
     {
-      // TODO: play falling animation if needed
-      Debug.Log("FATALLY FALLING!");
       isFatallyFalling = true;
       activeForces.y = -1;
       controlScript.mySpriteRenderer.sortingOrder = -100;

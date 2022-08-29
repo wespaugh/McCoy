@@ -292,7 +292,7 @@ namespace UFE3D
 #endif
         }
 
-        public void MoveCameraToLocation(Vector3 targetPos, Vector3 targetRot, float targetFOV, float speed, GameObject owner)
+        public void MoveCameraToLocation(Vector3 targetPos, Vector3 targetRot, float targetFOV, float speed, GameObject owner, bool force = false)
         {
 #if !UFE_LITE && !UFE_BASIC
             if (UFE.config.gameplayType == GameplayType._3DFighter)
@@ -301,6 +301,10 @@ namespace UFE3D
 
             targetFieldOfView = targetFOV;
             targetPosition = targetPos;
+      if(force)
+      {
+        Camera.main.transform.position = targetPos;
+      }
             targetRotation = Quaternion.Euler(targetRot);
             freeCameraSpeed = speed;
             UFE.freeCamera = true;

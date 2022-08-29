@@ -112,19 +112,19 @@ namespace Assets.McCoy.UI
           SetColor(Color.white, Color.clear, Color.white);
           break;
         case 1:
-          SetColor(Color.yellow, Color.white, Color.white);
+          SetColor(Color.cyan, Color.white, Color.white);
           break;
         case 2:
-          SetColor(Color.cyan, Color.yellow, Color.white);
-          break;
-        case 3:
           SetColor(Color.green, Color.cyan, Color.white);
           break;
-        case 4:
+        case 3:
           SetColor(Color.blue, Color.green, Color.white);
           break;
+        case 4:
+          SetColor(Color.black, Color.blue, Color.white);
+          break;
         default:
-          SetColor(Color.blue, Color.blue, Color.white);
+          SetColor(Color.black, Color.black, Color.white);
           break;
       }
     }
