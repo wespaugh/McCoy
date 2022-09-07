@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 924726910428585395}
   - component: {fileID: 5308889660954610031}
-  - component: {fileID: 3090154077312920750}
+  - component: {fileID: 9195194886079508395}
   m_Layer: 5
   m_Name: MobsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &924726910428585395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33,9 +33,9 @@ RectTransform:
   m_Father: {fileID: 1904822904559590213}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 135.375, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 135.375, y: -47.14}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5308889660954610031
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &3090154077312920750
+--- !u!114 &9195194886079508395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849015890331095232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -69,13 +69,15 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 12, y: 12}
-  m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ChildAlignment: 0
+  m_Spacing: 12
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1904822904195998409
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +243,6 @@ GameObject:
   - component: {fileID: 1904822904559590233}
   - component: {fileID: 5076638600607285072}
   - component: {fileID: 5282452704800271561}
-  - component: {fileID: 2634815019922687118}
   - component: {fileID: 2633630338541483617}
   m_Layer: 5
   m_Name: City Zone
@@ -270,7 +271,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 270.75, y: 47.14}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1904822904559590234
 CanvasRenderer:
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeName: {fileID: 1904822904195998415}
-  MobNodeContainer: {fileID: 1849015890331095232}
+  MobNodeContainer: {fileID: 1904822904559590214}
   MobPanelPrefab: {fileID: 5649161370590008477, guid: bffec535b2d6be44091f87e9a9885382,
     type: 3}
 --- !u!114 &5282452704800271561
@@ -367,20 +368,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2634815019922687118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904822904559590214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!114 &2633630338541483617
 MonoBehaviour:
   m_ObjectHideFlags: 0

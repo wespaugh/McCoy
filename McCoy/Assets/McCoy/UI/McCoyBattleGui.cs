@@ -21,6 +21,7 @@ namespace Assets.McCoy.UI
 
     [SerializeField] TMP_Text debuggerText = null;
 
+    [SerializeField] Button winButton = null;
     [SerializeField] Button spawnButton = null;
     [SerializeField] TMP_InputField xInput = null;
     [SerializeField] TMP_InputField yInput = null;
@@ -31,6 +32,7 @@ namespace Assets.McCoy.UI
     [SerializeField] TMP_Text bossName = null;
 
     [SerializeField] int playerSortOrder;
+    [SerializeField] McCoyBrawlerMobStatusLabel mobStatusLabel = null;
 
     McCoyStageData currentStage;
 
@@ -58,6 +60,7 @@ namespace Assets.McCoy.UI
 
     private void Awake()
     {
+      Camera.main.orthographic = true;
       toggleDebug();
 
       if(spawnButton != null)
@@ -98,6 +101,7 @@ namespace Assets.McCoy.UI
 
     private void toggleDebug()
     {
+      winButton.gameObject.SetActive(debug);
       spawnButton.gameObject.SetActive(debug);
       xInput.gameObject.SetActive(debug);
       yInput.gameObject.SetActive(debug);
@@ -106,7 +110,9 @@ namespace Assets.McCoy.UI
 
     private void initSpawner()
     {
-      gameObject.AddComponent<McCoyBrawlerSpawnManager>().Initialize(currentStage.GetSpawnData(), this);
+      McCoyBrawlerSpawnManager spawner = gameObject.AddComponent<McCoyBrawlerSpawnManager>();
+      spawner.Initialize(currentStage.GetSpawnData(), this);
+      spawner.AddMobSpawnListener(mobStatusLabel);
       info.text = currentStage.Name;
     }
 
@@ -174,6 +180,11 @@ namespace Assets.McCoy.UI
     {
       bossName.gameObject.SetActive(false);
       worldUI.BossDied(boss);
+    }
+
+    public void CheatWin()
+    {
+      McCoy.GetInstance().debugCheatWin = true;
     }
   }
 }

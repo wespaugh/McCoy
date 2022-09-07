@@ -9,7 +9,7 @@ namespace Assets.McCoy.BoardGame
   public class MapNode : SearchableNode
   {
     [NonSerialized]
-    public List<object> Mobs = new List<object>();
+    public List<McCoyMobData> Mobs = new List<McCoyMobData>();
 
     public string ZoneName;
     public Vector2 Position;

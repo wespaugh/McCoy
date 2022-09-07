@@ -23,29 +23,31 @@ namespace Assets.McCoy.UI
     MapNode node = null;
 
     List<McCoyMobData> mobs = new List<McCoyMobData>();
+    List<GameObject> mobObjects = new List<GameObject>();
 
-    McCoyCityBoardContents board = null;
+    McCoyCityScreen uiRoot = null;
 
-    public void Initialize(MapNode node, McCoyCityBoardContents board)
+    public void Initialize(MapNode node, McCoyCityScreen screen)
     {
       this.node = node;
       NodeName.text = node.ZoneName;
-      this.board = board;
+      uiRoot = screen;
 
-      List<Factions> fs = new List<Factions>();
-      do
+      while(this.mobObjects.Count > 0)
       {
-        if (Random.Range(0, 6) <= 1) fs.Add(Factions.AngelMilitia);
-        if (Random.Range(0, 6) <= 1) fs.Add(Factions.CyberMinotaurs);
-        if (Random.Range(0, 6) <= 1) fs.Add(Factions.Mages);
-      } while (fs.Count == 0);
+        var next = this.mobObjects[0];
+        mobObjects.RemoveAt(0);
+        Destroy(next);
+      }
+      mobObjects.Clear();
+      this.mobs.Clear();
 
-      for (int i = 0; i < fs.Count; ++i)
+      foreach(var mobData in node.Mobs)
       {
         MapCityNodePanelMob mob = Instantiate(MobPanelPrefab, MobNodeContainer.transform).GetComponent<MapCityNodePanelMob>();
-        McCoyMobData mobData = new McCoyMobData(fs[i]);
         mob.Initialize(mobData);
-        mobs.Add(mobData);
+        this.mobs.Add(mobData);
+        mobObjects.Add(mob.gameObject);
       }
     }
 
@@ -54,7 +56,7 @@ namespace Assets.McCoy.UI
       McCoyStageData stageData = new McCoyStageData();
       stageData.Initialize(node.ZoneName, mobs);
 
-      board.LoadStage(stageData);
+      uiRoot.LoadStage(node, stageData);
     }
   }
 }

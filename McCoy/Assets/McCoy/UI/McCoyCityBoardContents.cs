@@ -1,16 +1,60 @@
 ﻿using Assets.McCoy.BoardGame;
-using Assets.McCoy.Brawler;
 using System.Collections.Generic;
 using System.Linq;
-using UFE3D;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.McCoy.UI
 {
   public class McCoyCityBoardContents : MonoBehaviour
   {
-    Dictionary<string, McCoyCityZonePlacementNode> cityZoneLookup = new Dictionary<string, McCoyCityZonePlacementNode>();
+    Dictionary<string, MapNode> mapNodeLookup = new Dictionary<string, MapNode>();
+    Dictionary<string, GameObject> cityZoneLookup = new Dictionary<string, GameObject>();
+    Dictionary<string, McCoyZoneMapMobIndicator> mobIndicatorLookup = new Dictionary<string, McCoyZoneMapMobIndicator>();
+
+    List<MapNode> mapNodes = new List<MapNode>();
+
+    [SerializeField]
+    GameObject cameraAnchor = null;
+
+    [SerializeField]
+    const float CAMERA_CITY_FIELD_OF_VIEW = 37.0f;
+
+    [SerializeField]
+    float lineStartWidth = .25f;
+    [SerializeField]
+    float lineEndWidth = .05f;
+
+    [SerializeField]
+    MeshRenderer map = null;
+
+    [SerializeField]
+    Sprite mapTexture = null;
+
+    public List<MapNode> MapNodes
+    {
+      get
+      {
+        if(mapCache == null)
+        {
+          initMapCache();
+        }
+        return mapNodes;
+      }
+    }
+
+    MapGraphNodeContainer _mapCache;
+
+    MapGraphNodeContainer mapCache
+    {
+      get
+      {
+        if(_mapCache == null)
+        {
+          initMapCache();
+        }
+        return _mapCache;
+      }
+    }
 
     [SerializeField]
     GameObject NodeParent;
@@ -19,34 +63,57 @@ namespace Assets.McCoy.UI
     string dataFile;
 
     [SerializeField]
-    GameObject ZonePanelPrefab = null;
-
-    [SerializeField]
     Transform Scaler = null;
+    private GameObject selectedNode;
 
-    bool loadingStage = false;
+    private void OnDestroy()
+    {
+      _mapCache = null;
+      mapNodes.Clear();
+    }
+
+    private void initMapCache()
+    {
+      if(_mapCache != null)
+      {
+        return;
+      }
+      var mapCacheObj = Resources.Load($"{ProjectConstants.MAPDATA_DIRECTORY}/{dataFile}");
+      _mapCache = mapCacheObj as MapGraphNodeContainer;
+
+      foreach (var assetNode in mapCache.NodeData)
+      {
+        mapNodes.Add(assetNode);
+        mapNodeLookup.Add(assetNode.NodeID, assetNode);
+      }
+      foreach(var assetLink in mapCache.NodeLinks)
+      {
+        // base is connected to target
+        mapNodeLookup[assetLink.BaseNodeGuid].connectedNodes.Add(mapNodeLookup[assetLink.TargetNodeGuid]);
+        // target is connected to base
+        mapNodeLookup[assetLink.TargetNodeGuid].connectedNodes.Add(mapNodeLookup[assetLink.BaseNodeGuid]);
+      }
+    }
 
     private void Awake()
     {
-      loadingStage = false;
+      Camera.main.transform.localPosition = cameraAnchor.transform.localPosition;
+      Camera.main.transform.rotation = cameraAnchor.transform.rotation;
+      Camera.main.fieldOfView = CAMERA_CITY_FIELD_OF_VIEW;
 
-      var mapCacheObj = Resources.Load($"{ProjectConstants.MAPDATA_DIRECTORY}/{dataFile}");
-      MapGraphNodeContainer mapCache = mapCacheObj as MapGraphNodeContainer;
+      map.materials[0].mainTexture = mapTexture.texture;
 
       McCoyCityZonePlacementNode[] nodes = NodeParent.GetComponentsInChildren<McCoyCityZonePlacementNode>();
-      foreach (var node in nodes)
+      foreach(var node in nodes)
       {
-        foreach (var assetNode in mapCache.NodeData)
-        {
-          if (assetNode.NodeID == node.NodeId)
-          {
-            var nodePanel = Instantiate(ZonePanelPrefab, node.transform);
-            nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this);
-            break;
-          }
-        }
+        cityZoneLookup[node.NodeId] = node.gameObject;
+        mobIndicatorLookup[node.NodeId] = node.gameObject.GetComponentInChildren<McCoyZoneMapMobIndicator>();
       }
+      initConnectionLines(nodes);
+    }
 
+    private void initConnectionLines(McCoyCityZonePlacementNode[] nodes)
+    {
       GameObject connections = new GameObject();
       connections.transform.SetParent(transform);
       Material lineMaterial = new Material(Shader.Find("Unlit/Texture"));
@@ -55,7 +122,7 @@ namespace Assets.McCoy.UI
         var fromID = assetLink.BaseNodeGuid;
         List<McCoyCityZonePlacementNode> sourceNodes = nodes.Where(x => x.NodeId == fromID).ToList();
         int fromIdx = -1;
-        for (int i = 0; i < nodes.Length; ++i) if(nodes[i] == sourceNodes[0]) { fromIdx = i; break; }
+        for (int i = 0; i < nodes.Length; ++i) if (nodes[i] == sourceNodes[0]) { fromIdx = i; break; }
         if (sourceNodes == null || sourceNodes.Count == 0) Debug.LogWarning("Found no source node connected to link for ID" + fromID);
 
         var toID = assetLink.TargetNodeGuid;
@@ -69,24 +136,38 @@ namespace Assets.McCoy.UI
         line.name = $"Line {fromIdx}::{toIdx}";
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
-        lineRenderer.startWidth = 4.0f;
-        lineRenderer.endWidth = 1.0f;
+        lineRenderer.startWidth = lineStartWidth;
+        lineRenderer.endWidth = lineEndWidth;
         lineRenderer.startColor = Color.blue;
         lineRenderer.endColor = Color.green;
         lineRenderer.material = lineMaterial;
         List<Vector3> positions = new List<Vector3>();
-        positions.Add(new Vector3(sourceNodes[0].transform.position.x/* * Scaler.localScale.x*/, sourceNodes[0].transform.position.y /* * Scaler.localScale.y*/, -10));
-        positions.Add(new Vector3(destNodes[0].transform.position.x/* * Scaler.localScale.x*/, destNodes[0].transform.position.y /** Scaler.localScale.y*/, -10));
+        positions.Add(new Vector3(sourceNodes[0].transform.position.x, sourceNodes[0].transform.position.y /* * Scaler.localScale.y*/, sourceNodes[0].transform.position.z));
+        positions.Add(new Vector3(destNodes[0].transform.position.x/* * Scaler.localScale.x*/, destNodes[0].transform.position.y /** Scaler.localScale.y*/, destNodes[0].transform.position.z));
         lineRenderer.SetPositions(positions.ToArray());
       }
     }
 
-    public void LoadStage(McCoyStageData stageData)
+    public void SelectMapNode(MapNode m)
     {
-      if (!loadingStage)
+      if(selectedNode)
       {
-        loadingStage = true;
-        McCoy.GetInstance().LoadBrawlerStage(stageData);
+        selectedNode.transform.localScale = Vector3.one;
+      }
+      selectedNode = cityZoneLookup[m.NodeID];
+      cityZoneLookup[m.NodeID].transform.localScale = Vector3.one * 1.5f;
+    }
+    public void UpdateNodes()
+    {
+      Dictionary<MapNode, int> playerLocs = new Dictionary<MapNode, int>();
+      for(int i = 1; i <= ProjectConstants.NUM_BOARDGAME_PLAYERS; ++i)
+      {
+        playerLocs[McCoy.GetInstance().boardGameState.PlayerLocation(i)] = i;
+      }
+      foreach(var node in mapNodes)
+      {
+        int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
+        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum);
       }
     }
   }

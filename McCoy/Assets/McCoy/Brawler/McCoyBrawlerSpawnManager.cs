@@ -18,9 +18,12 @@ namespace Assets.McCoy.Brawler
       Escaped,
       BossDefeated,
       AllEnemiesDefeated,
+      Cheat
     }
     int[] playerIDs = { 1 };
 
+    // Faction -> enemies required total
+    Dictionary<Factions, int> initialSpawnNumbers = new Dictionary<Factions, int>();
     // Faction -> totalEnemiesRemaining
     Dictionary<Factions, int> spawnNumbers = new Dictionary<Factions, int>();
     // Faction -> avgEnemiesAtOnce
@@ -55,6 +58,7 @@ namespace Assets.McCoy.Brawler
     // spawners based on mobs
     SpawnData spawnData = null;
     List<McCoyCombatZoneData> combatZones = null;
+    List<IMobChangeDelegate> mobChangeListeners = new List<IMobChangeDelegate>();
 
     bool allEnemiesDefeated = false;
     bool bossRemains = false;
@@ -82,6 +86,12 @@ namespace Assets.McCoy.Brawler
       s.SetAllies(iAllies);
     }
 
+    public void AddMobSpawnListener(IMobChangeDelegate d)
+    {
+      mobChangeListeners.Add(d);
+      recalcRemainingMonsters();
+    }
+
     public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
     {
       spawnData = spawns;
@@ -91,6 +101,7 @@ namespace Assets.McCoy.Brawler
       foreach(var s in spawns)
       {
         spawnNumbers[s.Value.Faction] = s.Value.CalculateNumberOfBrawlerEnemies();
+        initialSpawnNumbers[s.Value.Faction] = spawnNumbers[s.Value.Faction];
         totalMonstersToSpawn += spawnNumbers[s.Value.Faction];
         avgSpawnNumbers[s.Value.Faction] = s.Value.CalculateNumberSimultaneousBrawlerEnemies();
       }
@@ -115,6 +126,13 @@ namespace Assets.McCoy.Brawler
 
     private void checkGameEnd()
     {
+      if(McCoy.GetInstance().debugCheatWin)
+      {
+        UFE.config.currentRound = 3;
+        McCoy.GetInstance().debugCheatWin = false;
+        fireWon(SubstageExitCondition.Cheat);
+        return;
+      }
       if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.GetLevelExit()))
       {
         if(endCondition == SubstageExitCondition.None)
@@ -309,7 +327,7 @@ namespace Assets.McCoy.Brawler
       // if it's time to spawn another monster
       if(avgEnemiesOnscreenAtOnce > numLivingEnemies )
       {
-        int totalMonstersRemaining = recalcRemainingMonsters();
+        int totalMonstersRemaining = recalcRemainingMonsters(true);
 
         bool exitedCombatZone = combatZoneEnemiesRemaining <= 0 && numLivingEnemies == 0 && inCombatZone;
         if (exitedCombatZone)
@@ -354,13 +372,25 @@ namespace Assets.McCoy.Brawler
       return UFE.brawlerEntityManager.GetNumLivingEntities() - numLivingPlayers;
     }
 
-    private int recalcRemainingMonsters()
+    private int recalcRemainingMonsters(bool updateDelegates = false)
     {
       int totalMonstersRemaining = 0;
+      Dictionary<Factions, float> factionHealthLookup = updateDelegates ? new Dictionary<Factions, float>() : null;
       // get total remaining monsters from each mob
       foreach (var m in spawnNumbers)
       {
         totalMonstersRemaining += m.Value;
+        if(factionHealthLookup != null)
+        {
+          factionHealthLookup[m.Key] = ((float)m.Value) / ((float)initialSpawnNumbers[m.Key]);
+        }
+      }
+      if(updateDelegates)
+      {
+        foreach(var d in this.mobChangeListeners)
+        {
+          d.MobsChanged(factionHealthLookup);
+        }
       }
       return totalMonstersRemaining;
     }
@@ -381,6 +411,9 @@ namespace Assets.McCoy.Brawler
           break;
         case SubstageExitCondition.Escaped:
           message = $"Howl Another Day!";
+          break;
+        case SubstageExitCondition.Cheat:
+          message = $"Levelskip";
           break;
       }
 

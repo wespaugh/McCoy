@@ -7,6 +7,8 @@ namespace Assets.McCoy.UI
   {
     [SerializeField]
     string _NodeId;
+
+    public string debugName;
     public string NodeId { get => _NodeId; set => _NodeId = value; }
   }
 }

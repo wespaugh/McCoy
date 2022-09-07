@@ -12,6 +12,7 @@ namespace Assets.McCoy
   public class McCoy : MonoBehaviour
   {
     public bool Debug = true;
+    public bool debugCheatWin = false;
     public UFEScreen cityScene;
     public enum McCoyScenes
     {
@@ -22,6 +23,7 @@ namespace Assets.McCoy
     static McCoy instance = null;
 
     public McCoyStageData currentStage = null;
+    public McCoyBoardGameState boardGameState = null;
 
     public static McCoy GetInstance()
     {
