@@ -9,5 +9,6 @@ namespace Assets.McCoy.Brawler
   {
     List<Factions> factionsWeakened = new List<Factions>();
     List<Factions> factionsRouted = new List<Factions>();
+
   }
 }

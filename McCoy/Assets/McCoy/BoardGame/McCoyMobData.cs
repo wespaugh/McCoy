@@ -7,9 +7,31 @@ namespace Assets.McCoy.BoardGame
   public class McCoyMobData
   {
     public int XP { get; private set; }
-    public int Health { get; private set; }
+    public int maxHealth = 6;
+    public int MaxHealth
+    {
+      get => maxHealth;
+      private set => maxHealth = value;
+    }
+
+    private int monsterHealthScaleFactor = 6;
+
+    public bool IsRouted
+    {
+      get;
+      private set;
+    }
+
+    public float Health { get; private set; }
 
     public Factions Faction { get; private set; }
+
+    public int MonstersPerSubstage
+    {
+      get;
+      private set;
+    }
+    private int monstersKilledInStage = 0;
 
     public McCoyMobData(Factions f, int startingXP = -1, int startingHealth = -1)
     {
@@ -23,20 +45,54 @@ namespace Assets.McCoy.BoardGame
       Health = startingHealth;
       Faction = f;
     }
-    public void ChangeHealth(int amount)
+
+    public int StageBegan()
     {
-      if (amount > 0) amount = Mathf.Min(6, Health + amount);
-      else amount = Mathf.Max(1, Health + amount);
+      monstersKilledInStage = 0;
+      MonstersPerSubstage = (int)(CalculateNumberOfBrawlerEnemies() / (float)UFE.config.selectedStage.stageInfo.substages.Count);
+      return MonstersPerSubstage;
     }
 
-    public int CalculateNumberOfBrawlerEnemies()
+    public void StageEnded()
     {
-      return Health * 2;
+      float percentKilled = ((float)MonstersPerSubstage) / ((float)monstersKilledInStage);
+      float healthReduced = Health * percentKilled;
+      Debug.Log($"Health reduced from {Health} by {healthReduced}");
+      changeHealth(-healthReduced);
+    }
+
+    private void changeHealth(float amount)
+    {
+      if (amount > 0) Health = Mathf.Min(MaxHealth, Health + amount);
+      else
+      {
+        float newVal = Health + amount;
+        if(newVal < .5f)
+        {
+          Lose1Strength();
+          IsRouted = true;
+          Health = MaxHealth / 2;
+        }
+        else
+        {
+          Health = newVal;
+        }
+      }
+    }
+
+    public void MonstersKilled(int numKilled)
+    {
+      monstersKilledInStage += numKilled;
+    }
+
+    public float CalculateNumberOfBrawlerEnemies()
+    {
+      return Health * monsterHealthScaleFactor;
     }
 
     public int CalculateNumberSimultaneousBrawlerEnemies()
     {
-      return Health * 2;
+      return (int)(Health * 2);
     }
 
     public int StrengthForXP(int XP = -1)

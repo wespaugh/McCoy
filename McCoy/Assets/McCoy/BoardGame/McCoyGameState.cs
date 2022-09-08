@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Assets.McCoy.Brawler;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.McCoy.BoardGame
 {
   [Serializable]
-  public class McCoyBoardGameState
+  public class McCoyGameState
   {
     [NonSerialized]
     public bool Initialized;
@@ -19,6 +20,7 @@ namespace Assets.McCoy.BoardGame
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
 
     Dictionary<int, MapNode> playerLocations = new Dictionary<int, MapNode>();
+    BrawlerResult stageesults = null;
 
     public MapNode PlayerLocation(int playerNumber)
     {

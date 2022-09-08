@@ -89,7 +89,7 @@ namespace Assets.McCoy.Brawler
     public void AddMobSpawnListener(IMobChangeDelegate d)
     {
       mobChangeListeners.Add(d);
-      recalcRemainingMonsters();
+      updateRemainingMonsters();
     }
 
     public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
@@ -100,7 +100,9 @@ namespace Assets.McCoy.Brawler
 
       foreach(var s in spawns)
       {
-        spawnNumbers[s.Value.Faction] = s.Value.CalculateNumberOfBrawlerEnemies();
+        int enemiesInSubstage = s.Value.StageBegan();
+        spawnNumbers[s.Value.Faction] = enemiesInSubstage;
+        Debug.Log($"Going to spawn {spawnNumbers[s.Value.Faction]} {s.Value.Faction}s into {UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound-1].substageName}");
         initialSpawnNumbers[s.Value.Faction] = spawnNumbers[s.Value.Faction];
         totalMonstersToSpawn += spawnNumbers[s.Value.Faction];
         avgSpawnNumbers[s.Value.Faction] = s.Value.CalculateNumberSimultaneousBrawlerEnemies();
@@ -128,9 +130,7 @@ namespace Assets.McCoy.Brawler
     {
       if(McCoy.GetInstance().debugCheatWin)
       {
-        UFE.config.currentRound = 3;
-        McCoy.GetInstance().debugCheatWin = false;
-        fireWon(SubstageExitCondition.Cheat);
+        cheatWin();
         return;
       }
       if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.GetLevelExit()))
@@ -141,6 +141,18 @@ namespace Assets.McCoy.Brawler
         }
         fireWon(endCondition);
       }
+    }
+
+    private void cheatWin()
+    {
+      // call all the things killed
+      List<Factions> allKeys = new List<Factions>(spawnNumbers.Keys);
+      foreach(var spawnNumber in allKeys)
+      {
+        spawnNumbers[spawnNumber] = 0;
+      }
+      McCoy.GetInstance().debugCheatWin = false;
+      fireWon(SubstageExitCondition.Cheat);
     }
 
     private void updateBoss()
@@ -176,7 +188,7 @@ namespace Assets.McCoy.Brawler
     {
       inCombatZone = true;
       UFE.config.selectedStage.SetTemporaryBoundaries(combatZone.XPosition - 10.0f, combatZone.XPosition + 6.0f);
-      combatZoneEnemiesRemaining = Math.Min((int)(combatZone.EnemyPercentage * totalMonstersToSpawn), recalcRemainingMonsters());
+      combatZoneEnemiesRemaining = Math.Min((int)(combatZone.EnemyPercentage * totalMonstersToSpawn), updateRemainingMonsters());
       currentPlayerProgress += combatZoneEnemiesRemaining;
       UFE.cameraScript.FreezeForCombatZone();
     }
@@ -327,7 +339,7 @@ namespace Assets.McCoy.Brawler
       // if it's time to spawn another monster
       if(avgEnemiesOnscreenAtOnce > numLivingEnemies )
       {
-        int totalMonstersRemaining = recalcRemainingMonsters(true);
+        int totalMonstersRemaining = updateRemainingMonsters(true);
 
         bool exitedCombatZone = combatZoneEnemiesRemaining <= 0 && numLivingEnemies == 0 && inCombatZone;
         if (exitedCombatZone)
@@ -372,10 +384,24 @@ namespace Assets.McCoy.Brawler
       return UFE.brawlerEntityManager.GetNumLivingEntities() - numLivingPlayers;
     }
 
-    private int recalcRemainingMonsters(bool updateDelegates = false)
+    private int updateRemainingMonsters(bool updateDelegates = false)
+    {
+      Dictionary<Factions, float> factionHealthLookup = updateDelegates ? new Dictionary<Factions, float>() : null;
+
+      if (factionHealthLookup != null)
+      {
+        foreach (var d in this.mobChangeListeners)
+        {
+          d.MobsChanged(factionHealthLookup);
+        }
+      }
+
+      return recalcRemainingMonsters(factionHealthLookup);
+    }
+
+    private int recalcRemainingMonsters(Dictionary<Factions, float> factionHealthLookup)
     {
       int totalMonstersRemaining = 0;
-      Dictionary<Factions, float> factionHealthLookup = updateDelegates ? new Dictionary<Factions, float>() : null;
       // get total remaining monsters from each mob
       foreach (var m in spawnNumbers)
       {
@@ -385,14 +411,23 @@ namespace Assets.McCoy.Brawler
           factionHealthLookup[m.Key] = ((float)m.Value) / ((float)initialSpawnNumbers[m.Key]);
         }
       }
-      if(updateDelegates)
-      {
-        foreach(var d in this.mobChangeListeners)
-        {
-          d.MobsChanged(factionHealthLookup);
-        }
-      }
       return totalMonstersRemaining;
+    }
+
+    private void commitStageResultsToMobs()
+    {
+      var monstersKilled = new Dictionary<Factions, int>();
+      // get total remaining monsters from each mob
+      foreach (var m in spawnNumbers)
+      {
+        monstersKilled[m.Key] = initialSpawnNumbers[m.Key] - m.Value;
+      }
+
+      foreach (var spawn in spawnData)
+      {
+        // divide by substages again here because the percentage of enemies killed on this substage is only 1/3 of the total enemies killed for the stage
+        spawn.Value.MonstersKilled(monstersKilled[spawn.Key]);
+      }
     }
 
     private void fireWon(SubstageExitCondition endCondition)
@@ -402,6 +437,8 @@ namespace Assets.McCoy.Brawler
         return;
       }
       transitioning = true;
+
+      commitStageResultsToMobs();
 
       string message = "All Dudes Beaten!";
       switch(endCondition)
@@ -458,6 +495,10 @@ namespace Assets.McCoy.Brawler
       }
       else
       {
+        foreach (var s in spawnData)
+        {
+          s.Value.StageEnded();
+        }
         UFE.DelaySynchronizedAction(() =>
         {
           UFE.FireGameEnds();
@@ -482,6 +523,8 @@ namespace Assets.McCoy.Brawler
         return;
       }
       transitioning = true;
+
+      commitStageResultsToMobs();
 
       UFE.FireAlert("Werewolf Down!", null);
 
