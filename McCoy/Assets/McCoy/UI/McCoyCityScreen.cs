@@ -38,6 +38,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     TMP_Text currentWeekText = null;
 
+    [SerializeField]
+    McCoyMobRoutingUI routingUI = null;
+
     int selectedPlayer = 1;
 
     McCoyCityBoardContents board = null;
@@ -56,6 +59,7 @@ namespace Assets.McCoy.UI
         initPlayerStartLocations();
         initMapPanels();
         initSelectedCharacter();
+        checkForMobRouting();
         Camera.main.orthographic = false;
       }
     }
@@ -254,5 +258,31 @@ namespace Assets.McCoy.UI
         McCoy.GetInstance().LoadBrawlerStage(stageData);
       }
     }
+
+    private void checkForMobRouting()
+    {
+      Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes = new Dictionary<MapNode, List<McCoyMobData>>();
+      foreach(MapNode m in board.MapNodes)
+      {
+        List<McCoyMobData> mobsToRoute = new List<McCoyMobData>();
+        foreach (McCoyMobData mob in m.Mobs)
+        {
+          if (mob.IsRouted)
+          {
+            mobsToRoute.Add(mob);
+          }
+        }
+        if(mobsToRoute.Count > 0)
+        {
+          routedMobsInMapNodes.Add(m, mobsToRoute);
+        }
+      }
+      if (routedMobsInMapNodes.Count > 0)
+      {
+        var routeMenu = Instantiate(routingUI, transform);
+        routeMenu.Initialize(routedMobsInMapNodes);
+      }
+    }
+
   }
 }

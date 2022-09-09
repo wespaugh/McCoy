@@ -146,6 +146,7 @@
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingUI.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyGenericTextAccessor.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyGameState.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingDestination.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

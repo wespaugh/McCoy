@@ -351,7 +351,6 @@ namespace Assets.McCoy.Brawler
         {
           if(inCombatZone)
           {
-            Debug.LogError("(but we're in a combat zone)");
             Debug.LogError(combatZoneEnemiesRemaining);
           }
           allEnemiesDefeated = true;

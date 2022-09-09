@@ -53,6 +53,10 @@ namespace Assets.McCoy.UI
 
     public void ZoneClicked()
     {
+      if(uiRoot == null)
+      {
+        return;
+      }
       McCoyStageData stageData = new McCoyStageData();
       stageData.Initialize(node.ZoneName, mobs);
 

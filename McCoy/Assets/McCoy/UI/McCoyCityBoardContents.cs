@@ -86,12 +86,24 @@ namespace Assets.McCoy.UI
         mapNodes.Add(assetNode);
         mapNodeLookup.Add(assetNode.NodeID, assetNode);
       }
+
       foreach(var assetLink in mapCache.NodeLinks)
       {
+        var baseNode = mapNodeLookup[assetLink.BaseNodeGuid];
+        var targetNode = mapNodeLookup[assetLink.TargetNodeGuid];
+
+        // weird thing here. Resources.Load seems to be cacheing the loaded objects,
+        // meaning making a second board will already have map nodes connected. we can skip that part, if so
         // base is connected to target
-        mapNodeLookup[assetLink.BaseNodeGuid].connectedNodes.Add(mapNodeLookup[assetLink.TargetNodeGuid]);
+        if (!baseNode.connectedNodes.Contains(targetNode))
+        {
+          baseNode.connectedNodes.Add(targetNode);
+        }
         // target is connected to base
-        mapNodeLookup[assetLink.TargetNodeGuid].connectedNodes.Add(mapNodeLookup[assetLink.BaseNodeGuid]);
+        if (!targetNode.connectedNodes.Contains(baseNode))
+        {
+          targetNode.connectedNodes.Add(baseNode);
+        }
       }
     }
 
