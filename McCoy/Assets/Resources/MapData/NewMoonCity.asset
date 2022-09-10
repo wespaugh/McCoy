@@ -46,9 +46,6 @@ MonoBehaviour:
   - BaseNodeGuid: bca2ecf53f57d724abe75d786eea6d75
     PortName: Right
     TargetNodeGuid: aed39e83bff372045a0d9c263b13f4d7
-  - BaseNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
-    PortName: Right
-    TargetNodeGuid: 07d7f6ea6aaedf04b982db947277082b
   - BaseNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
     PortName: Right
     TargetNodeGuid: 1cd0a89b6bcb6c14bbe4f0808cdba578
