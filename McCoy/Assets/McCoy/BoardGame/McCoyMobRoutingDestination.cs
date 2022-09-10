@@ -14,9 +14,9 @@ namespace Assets.McCoy.BoardGame
     MapNode originalNode;
     MapNode destinationNode;
 
-    Action callback;
+    Action<MapNode, MapNode, McCoyMobData> callback;
 
-    public void Initialize(MapNode originalNode, MapNode destinationNode, McCoyMobData mob, Action selectCallback)
+    public void Initialize(MapNode originalNode, MapNode destinationNode, McCoyMobData mob, Action<MapNode, MapNode, McCoyMobData> selectCallback)
     {
       zoneLabel.text = destinationNode.ZoneName;
       this.destinationNode = destinationNode;
@@ -27,9 +27,7 @@ namespace Assets.McCoy.BoardGame
 
     public void ZoneSelected()
     {
-      originalNode.Mobs.Remove(mob);
-      destinationNode.Mobs.Add(mob);
-      callback.Invoke();
+      callback.Invoke(originalNode, destinationNode, mob);
     }
   }
 }

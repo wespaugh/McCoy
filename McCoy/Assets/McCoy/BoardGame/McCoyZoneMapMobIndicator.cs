@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,11 +25,20 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     Sprite zoneIconTexture = null;
 
-    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum)
+    [SerializeField]
+    TMP_Text zoneNameLabel = null;
+
+    [SerializeField]
+    GameObject hoverIndicator = null;
+
+    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
 
-      zoneIcon.sprite = zoneIconTexture;
+      // zoneIcon.sprite = zoneIconTexture;
+      zoneNameLabel.text = zoneName;
+
+      hoverIndicator.SetActive(false);
 
       switch (playerNum)
       {
@@ -46,7 +56,7 @@ namespace Assets.McCoy.BoardGame
           break;
       }
 
-      zoneIcon.gameObject.SetActive(false);
+      //zoneIcon.gameObject.SetActive(false);
 
       McCoyMobData mage = null;
       McCoyMobData minotaur = null;
@@ -122,6 +132,11 @@ namespace Assets.McCoy.BoardGame
       building.GetComponent<MeshRenderer>().materials[0].color = c;
 
       return currentY;// + (healthFactor * 2.0f);
+    }
+
+    public void ToggleHover(bool on)
+    {
+      hoverIndicator.SetActive(on);
     }
   }
 }

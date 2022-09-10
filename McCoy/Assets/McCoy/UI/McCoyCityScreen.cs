@@ -44,6 +44,10 @@ namespace Assets.McCoy.UI
     int selectedPlayer = 1;
 
     McCoyCityBoardContents board = null;
+    public McCoyCityBoardContents Board
+    {
+      get => board;
+    }
 
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
 
@@ -132,6 +136,18 @@ namespace Assets.McCoy.UI
         generateInitialBoardState();
       }
 
+      refreshBoardAndPanels();
+    }
+
+    private void refreshBoardAndPanels()
+    {
+      GameObject[] toDestroy = new GameObject[zonePanels.Count];
+      zonePanels.Values.CopyTo(toDestroy,0);
+      for(int i = 0; i < toDestroy.Length; ++i)
+      {
+        Destroy(toDestroy[i]);
+      }
+      zonePanels.Clear();
       foreach (var assetNode in board.MapNodes)
       {
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
@@ -139,23 +155,26 @@ namespace Assets.McCoy.UI
         nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this);
       }
       board.UpdateNodes();
+      // updates panel interactibility
+      selectedCharacterChanged();
     }
 
     private void selectedCharacterChanged()
     {
       playerIcon.sprite = playerIconIndexes[selectedPlayer-1];
-      MapNode p1Loc = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
-      board.SelectMapNode(p1Loc);
+      MapNode playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
+      board.SelectMapNode(playerLoc);
+      board.SetHoverNode(null);
 
       selectedCharacterText.text = ProjectConstants.PlayerName(selectedPlayer);
-      currentZoneText.text = p1Loc.ZoneName;
+      currentZoneText.text = playerLoc.ZoneName;
 
-      selectedZonePanel.Initialize(p1Loc, this);
+      selectedZonePanel.Initialize(playerLoc, null);
 
       List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
       sortedNodes.Sort((x, y) =>
       {
-        foreach (var v in p1Loc.connectedNodes)
+        foreach (var v in playerLoc.connectedNodes)
         {
           if (x.NodeID == v.NodeID) return -1;
           if (y.NodeID == v.NodeID) return 1;
@@ -167,7 +186,7 @@ namespace Assets.McCoy.UI
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
-        foreach (var connection in p1Loc.connectedNodes)
+        foreach (var connection in playerLoc.connectedNodes)
         {
           if (connection.NodeID == node.NodeID)
           {
@@ -280,8 +299,13 @@ namespace Assets.McCoy.UI
       if (routedMobsInMapNodes.Count > 0)
       {
         var routeMenu = Instantiate(routingUI, transform);
-        routeMenu.Initialize(routedMobsInMapNodes);
+        routeMenu.Initialize(routedMobsInMapNodes, routingFinished);
       }
+    }
+
+    private void routingFinished()
+    {
+      refreshBoardAndPanels();
     }
 
   }

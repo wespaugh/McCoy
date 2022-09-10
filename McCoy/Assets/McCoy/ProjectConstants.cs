@@ -16,6 +16,21 @@ namespace Assets.McCoy
       Neutral
     }
 
+    public static string FactionDisplayName(Factions f)
+    {
+      switch(f)
+      {
+        case Factions.AngelMilitia:
+          return "Angel Militia";
+        case Factions.CyberMinotaurs:
+          return "Cyber-Minotaurs";
+        case Factions.Mages:
+          return "Techno-Mages";
+        default:
+          return "Werewolves";
+      }
+    }
+
     public const int NUM_BOARDGAME_PLAYERS = 4;
 
     public const string RESOURCES_DIRECTORY = "Assets/Resources/";

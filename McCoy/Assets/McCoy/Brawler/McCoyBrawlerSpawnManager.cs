@@ -145,6 +145,7 @@ namespace Assets.McCoy.Brawler
 
     private void cheatWin()
     {
+      UFE.config.currentRound = UFE.config.selectedStage.stageInfo.substages.Count;
       // call all the things killed
       List<Factions> allKeys = new List<Factions>(spawnNumbers.Keys);
       foreach(var spawnNumber in allKeys)

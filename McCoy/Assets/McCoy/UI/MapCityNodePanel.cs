@@ -5,6 +5,7 @@ using TMPro;
 using UFE3D.Brawler;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
@@ -20,6 +21,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     GameObject MobPanelPrefab = null;
 
+    [SerializeField]
+    Button enterZoneButton;
+
     MapNode node = null;
 
     List<McCoyMobData> mobs = new List<McCoyMobData>();
@@ -32,6 +36,8 @@ namespace Assets.McCoy.UI
       this.node = node;
       NodeName.text = node.ZoneName;
       uiRoot = screen;
+
+      enterZoneButton.gameObject.SetActive(screen != null);
 
       while(this.mobObjects.Count > 0)
       {
@@ -58,9 +64,34 @@ namespace Assets.McCoy.UI
         return;
       }
       McCoyStageData stageData = new McCoyStageData();
+      if(mobs.Count == 0)
+      {
+        Factions f;
+        switch(Random.Range(1,4))
+        {
+          case 1:
+            f = Factions.Mages;
+            break;
+          case 2:
+            f = Factions.AngelMilitia;
+            break;
+          case 3:
+            f = Factions.CyberMinotaurs;
+            break;
+          default:
+            f = Factions.CyberMinotaurs;
+            break;
+        }
+        mobs.Add(new McCoyMobData(f, 1, 1));
+      }
       stageData.Initialize(node.ZoneName, mobs);
 
       uiRoot.LoadStage(node, stageData);
+    }
+
+    public void ZoneHighlighted()
+    {
+      uiRoot.Board.SetHoverNode(node);
     }
   }
 }

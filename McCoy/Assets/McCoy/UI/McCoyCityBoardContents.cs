@@ -11,7 +11,10 @@ namespace Assets.McCoy.UI
     Dictionary<string, GameObject> cityZoneLookup = new Dictionary<string, GameObject>();
     Dictionary<string, McCoyZoneMapMobIndicator> mobIndicatorLookup = new Dictionary<string, McCoyZoneMapMobIndicator>();
 
+    McCoyZoneMapMobIndicator highlightedZone = null;
+
     List<MapNode> mapNodes = new List<MapNode>();
+    Dictionary<string, LineRenderer> lineLookup = new Dictionary<string, LineRenderer>();
 
     [SerializeField]
     GameObject cameraAnchor = null;
@@ -72,6 +75,22 @@ namespace Assets.McCoy.UI
       mapNodes.Clear();
     }
 
+    public void SetHoverNode(MapNode node)
+    {
+      if(highlightedZone != null)
+      {
+        highlightedZone.ToggleHover(false);
+      }
+
+      if(node == null)
+      {
+        return;
+      }
+
+      highlightedZone = mobIndicatorLookup[node.NodeID];
+      highlightedZone.ToggleHover(true);
+    }
+
     private void initMapCache()
     {
       if(_mapCache != null)
@@ -124,11 +143,12 @@ namespace Assets.McCoy.UI
       initConnectionLines(nodes);
     }
 
+
     private void initConnectionLines(McCoyCityZonePlacementNode[] nodes)
     {
       GameObject connections = new GameObject();
       connections.transform.SetParent(transform);
-      Material lineMaterial = new Material(Shader.Find("Unlit/Texture"));
+      Material lineMaterial = new Material(Shader.Find("Particles/Standard Unlit"));
       foreach (var assetLink in mapCache.NodeLinks)
       {
         var fromID = assetLink.BaseNodeGuid;
@@ -150,13 +170,15 @@ namespace Assets.McCoy.UI
         lineRenderer.useWorldSpace = false;
         lineRenderer.startWidth = lineStartWidth;
         lineRenderer.endWidth = lineEndWidth;
-        lineRenderer.startColor = Color.blue;
-        lineRenderer.endColor = Color.green;
+        lineRenderer.startColor = Color.black;// Color.blue;
+        lineRenderer.endColor = Color.black; // Color.green;
         lineRenderer.material = lineMaterial;
         List<Vector3> positions = new List<Vector3>();
         positions.Add(new Vector3(sourceNodes[0].transform.position.x, sourceNodes[0].transform.position.y /* * Scaler.localScale.y*/, sourceNodes[0].transform.position.z));
         positions.Add(new Vector3(destNodes[0].transform.position.x/* * Scaler.localScale.x*/, destNodes[0].transform.position.y /** Scaler.localScale.y*/, destNodes[0].transform.position.z));
         lineRenderer.SetPositions(positions.ToArray());
+
+        lineLookup[$"{sourceNodes[0].NodeId}{destNodes[0].NodeId}"] = lineRenderer;
       }
     }
 
@@ -168,6 +190,13 @@ namespace Assets.McCoy.UI
       }
       selectedNode = cityZoneLookup[m.NodeID];
       cityZoneLookup[m.NodeID].transform.localScale = Vector3.one * 1.5f;
+
+      foreach (var entry in lineLookup)
+      {
+        bool isSelectedNow = entry.Key.Contains(m.NodeID);
+        entry.Value.startColor = isSelectedNow ? Color.green : Color.black;
+        entry.Value.endColor = isSelectedNow ? Color.green : Color.black;
+      }
     }
     public void UpdateNodes()
     {
@@ -179,7 +208,7 @@ namespace Assets.McCoy.UI
       foreach(var node in mapNodes)
       {
         int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
-        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum);
+        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName);
       }
     }
   }
