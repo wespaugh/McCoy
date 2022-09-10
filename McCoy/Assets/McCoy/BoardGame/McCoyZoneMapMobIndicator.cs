@@ -8,14 +8,15 @@ namespace Assets.McCoy.BoardGame
 {
   public class McCoyZoneMapMobIndicator : MonoBehaviour
   {
+    const string factionAnimatorParam = "Faction";
     [SerializeField]
-    Transform mageObject = null;
+    Animator mageObject = null;
 
     [SerializeField]
-    Transform minotaurObject = null;
+    Animator minotaurObject = null;
 
     [SerializeField]
-    Transform militiaObject = null;
+    Animator militiaObject = null;
 
     [SerializeField]
     SpriteRenderer wolfIndicator = null;
@@ -34,7 +35,8 @@ namespace Assets.McCoy.BoardGame
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
-
+      wolfIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+      wolfIndicator.GetComponent<Animator>().SetInteger(factionAnimatorParam, 1);
       // zoneIcon.sprite = zoneIconTexture;
       zoneNameLabel.text = zoneName;
 
@@ -77,8 +79,11 @@ namespace Assets.McCoy.BoardGame
         }
       }
       mageObject.gameObject.SetActive(mage != null);
-      minotaurObject.gameObject.SetActive(minotaur != null);
+      mageObject.SetInteger(factionAnimatorParam, 4);
       militiaObject.gameObject.SetActive(militia != null);
+      militiaObject.SetInteger(factionAnimatorParam, 4);
+      minotaurObject.gameObject.SetActive(minotaur != null);
+      minotaurObject.SetInteger(factionAnimatorParam, 4);
 
       mobs.Sort((x, y) =>
       {
@@ -92,13 +97,13 @@ namespace Assets.McCoy.BoardGame
         switch(mob.Faction)
         {
           case ProjectConstants.Factions.Mages:
-            building = mageObject;
+            building = mageObject.transform;
             break;
           case ProjectConstants.Factions.CyberMinotaurs:
-            building = minotaurObject;
+            building = minotaurObject.transform;
             break;
           case ProjectConstants.Factions.AngelMilitia:
-            building = militiaObject;
+            building = militiaObject.transform;
             break;
         }
         currentY = updateMobObject(mob, building, currentY);
@@ -107,9 +112,9 @@ namespace Assets.McCoy.BoardGame
 
     private float updateMobObject(McCoyMobData mob, Transform building, float currentY)
     {
-      float strengthFactor = .5f + ((float)mob.XP) / 10.0f;
+      float strengthFactor = 5f + ((float)mob.XP) / 10.0f;
       float healthFactor = ((float)mob.Health) * .1f;
-      building.localScale = new Vector3(strengthFactor, healthFactor, strengthFactor);
+      building.localScale = new Vector3(strengthFactor, strengthFactor, strengthFactor);
       building.localPosition = new Vector3(building.localPosition.x, currentY + (healthFactor/2.0f), building.localPosition.z);
 
       Color c;
@@ -119,17 +124,17 @@ namespace Assets.McCoy.BoardGame
           c = new Color(227.0f / 255.0f, 99.0f / 255.0f, 151.0f / 255.0f);
           break;
         case ProjectConstants.Factions.CyberMinotaurs:
-          c = new Color(0.0f, 128.0f / 255.0f, 255.0f / 255.0f);
+          c = Color.white;// c = new Color(0.0f, 128.0f / 255.0f, 255.0f / 255.0f);
           break;
         case ProjectConstants.Factions.AngelMilitia:
-          c = new Color(130.0f/255.0f, 209.0f/255.0f, 115.0f);
+          c = new Color(0.0f, 255.0f / 255.0f, 128.0f / 255.0f); // c = new Color(130.0f/255.0f, 209.0f/255.0f, 115.0f);
           break;
         default:
           c = Color.white;
           break;
       }
 
-      building.GetComponent<MeshRenderer>().materials[0].color = c;
+      building.GetComponent<SpriteRenderer>().materials[0].color = c;
 
       return currentY;// + (healthFactor * 2.0f);
     }
