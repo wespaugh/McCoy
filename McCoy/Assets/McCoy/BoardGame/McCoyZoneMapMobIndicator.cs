@@ -81,7 +81,7 @@ namespace Assets.McCoy.BoardGame
         }
       }
       mageObject.gameObject.SetActive(mage != null);
-      mageObject.SetInteger(factionAnimatorParam, 4);
+      mageObject.SetInteger(factionAnimatorParam, 2);
       militiaObject.gameObject.SetActive(militia != null);
       militiaObject.SetInteger(factionAnimatorParam, 4);
       minotaurObject.gameObject.SetActive(minotaur != null);
@@ -146,6 +146,7 @@ namespace Assets.McCoy.BoardGame
       building.localScale = new Vector3(strengthFactor, strengthFactor, strengthFactor);
       building.localPosition = new Vector3(building.localPosition.x, currentY + (healthFactor/2.0f), building.localPosition.z);
 
+      /*
       Color c;
       switch (mob.Faction)
       {
@@ -164,7 +165,7 @@ namespace Assets.McCoy.BoardGame
       }
 
       building.GetComponent<SpriteRenderer>().materials[0].color = c;
-
+      */
       return currentY;// + (healthFactor * 2.0f);
     }
 

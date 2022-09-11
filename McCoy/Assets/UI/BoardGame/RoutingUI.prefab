@@ -484,6 +484,7 @@ MonoBehaviour:
   leftButton: {fileID: 7109965267227454538}
   rightButton: {fileID: 8425921377532150724}
   zoneSelectRoot: {fileID: 5485858497648682727}
+  factionIconAnimator: {fileID: 7902679142656214712}
 --- !u!114 &2171409929064761866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,11 +1169,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: FactionIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 5455127072689179042, guid: f830deb3d0eaee64cabd3c6d508f170d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 624ecaab2bf0e2d4184a2aec33a90eb7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f830deb3d0eaee64cabd3c6d508f170d, type: 3}
 --- !u!224 &1767395661155358359 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4510488178097101197, guid: f830deb3d0eaee64cabd3c6d508f170d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2747043923383340826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7902679142656214712 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5455127072689179042, guid: f830deb3d0eaee64cabd3c6d508f170d,
     type: 3}
   m_PrefabInstance: {fileID: 2747043923383340826}
   m_PrefabAsset: {fileID: 0}
