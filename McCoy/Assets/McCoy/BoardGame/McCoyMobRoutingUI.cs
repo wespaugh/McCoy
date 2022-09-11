@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
@@ -35,10 +36,16 @@ namespace Assets.McCoy.BoardGame
 
     List<GameObject> zoneSelectObjects = new List<GameObject>();
 
-    Action routingFinishedCallback = null;
+    McCoyCityBoardContents board;
 
-    public void Initialize(Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes, Action routingFinished)
+    // combats awaiting animation once a mob move has finished
+    Dictionary<MapNode, Factions> pendingCombats = new Dictionary<MapNode, Factions>();
+
+    Action<bool> routingFinishedCallback = null;
+
+    public void Initialize(Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes, Action<bool> routingFinished, McCoyCityBoardContents board)
     {
+      this.board = board;
       routingFinishedCallback = routingFinished;
       int totalCount = 0;
       foreach (var zone in routedMobsInMapNodes)
@@ -80,7 +87,7 @@ namespace Assets.McCoy.BoardGame
       alert.text = $"Mobs Routed out of {zoneMobs[zoneIndex].Item1.ZoneName}!";
       if (fromCombo)
       {
-        instructions.text = $"WOMBO COMBO! Pick a zone and route {ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
+        instructions.text = $"Follow-Up Attack! Pick a zone and route {ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
       }
       else
       { 
@@ -122,6 +129,10 @@ namespace Assets.McCoy.BoardGame
         var playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(i);
         if (playerLoc.NodeID == newLocation.NodeID)
         {
+          if(!pendingCombats.ContainsKey(newLocation))
+          {
+            pendingCombats.Add(newLocation, m.Faction);
+          }
           m.OffscreenCombat(3);
         }
       }
@@ -150,10 +161,7 @@ namespace Assets.McCoy.BoardGame
       zoneMobs[zoneIndex].Item2.IsRouted &= validConnections().Count > 0;
 
       // update the map for the newly moved mob
-      if (routingFinishedCallback != null)
-      {
-        routingFinishedCallback();
-      }
+      board.AnimateMobMove(mob.Faction, originalLocation, newLocation, .5f, mobMoveFinished);
 
       // if we're truly done routing this mob...
       if (!mob.IsRouted)
@@ -165,7 +173,7 @@ namespace Assets.McCoy.BoardGame
         zoneMobs.RemoveAt(zoneIndex);
         if (zoneMobs.Count == 0)
         {
-          Destroy(gameObject);
+          closeDialog();
           return;
         }
         // but if there are more, move to the next one and continue
@@ -180,6 +188,21 @@ namespace Assets.McCoy.BoardGame
       {
         updateZoneIndex(true);
       }
+    }
+
+    private void mobMoveFinished()
+    {
+      foreach(var pendingCombat in pendingCombats)
+      {
+        board.AnimateMobCombat(pendingCombat.Key, pendingCombat.Value);
+      }
+      pendingCombats.Clear();
+      routingFinishedCallback(zoneMobs.Count == 0);
+    }
+
+    private void closeDialog()
+    {
+      Destroy(gameObject);
     }
 
     private McCoyMobData moveMob(MapNode originalLocation, MapNode newLocation, McCoyMobData mob)
