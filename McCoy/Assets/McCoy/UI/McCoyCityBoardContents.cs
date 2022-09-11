@@ -1,7 +1,9 @@
 ﻿using Assets.McCoy.BoardGame;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
 {
@@ -11,6 +13,7 @@ namespace Assets.McCoy.UI
     Dictionary<string, GameObject> cityZoneLookup = new Dictionary<string, GameObject>();
     Dictionary<string, McCoyZoneMapMobIndicator> mobIndicatorLookup = new Dictionary<string, McCoyZoneMapMobIndicator>();
 
+    McCoyZoneMapMobIndicator selectedPlayerZone = null;
     McCoyZoneMapMobIndicator highlightedZone = null;
 
     List<MapNode> mapNodes = new List<MapNode>();
@@ -77,18 +80,30 @@ namespace Assets.McCoy.UI
 
     public void SetHoverNode(MapNode node)
     {
-      if(highlightedZone != null)
+      if(highlightedZone != null && highlightedZone != selectedPlayerZone)
       {
         highlightedZone.ToggleHover(false);
       }
 
       if(node == null)
       {
+        highlightedZone = null;
         return;
       }
 
       highlightedZone = mobIndicatorLookup[node.NodeID];
       highlightedZone.ToggleHover(true);
+    }
+
+    public void AnimateMobMove(Factions f, MapNode start, MapNode end, float time, Action finishedCallback, bool resetAtEnd = true)
+    {
+      var mobIndicator = mobIndicatorLookup[start.NodeID];
+      mobIndicator.AnimateFaction(f, OffsetBetweenNodes(start, end), time, finishedCallback, resetAtEnd);
+    }
+
+    public Vector3 OffsetBetweenNodes(MapNode start, MapNode end)
+    {
+      return cityZoneLookup[end.NodeID].transform.position - cityZoneLookup[start.NodeID].transform.position;
     }
 
     private void initMapCache()
@@ -182,18 +197,32 @@ namespace Assets.McCoy.UI
       }
     }
 
+    public void AnimateMobCombat(MapNode location, ProjectConstants.Factions faction)
+    {
+      mobIndicatorLookup[location.NodeID].AnimateCombat(faction);
+    }
+
     public void SelectMapNode(MapNode m)
     {
-      if(selectedNode)
+      if(selectedPlayerZone != null && highlightedZone != selectedPlayerZone)
       {
-        selectedNode.transform.localScale = Vector3.one;
+        selectedPlayerZone.ToggleHover(false);
       }
-      selectedNode = cityZoneLookup[m.NodeID];
-      cityZoneLookup[m.NodeID].transform.localScale = Vector3.one * 1.5f;
+      if (m == null)
+      {
+        selectedNode = null;
+        selectedPlayerZone = null;
+      }
+      else
+      {
+        selectedNode = cityZoneLookup[m.NodeID];
+        selectedPlayerZone = mobIndicatorLookup[m.NodeID];
+        selectedPlayerZone.ToggleHover(true);
+      }
 
       foreach (var entry in lineLookup)
       {
-        bool isSelectedNow = entry.Key.Contains(m.NodeID);
+        bool isSelectedNow = m == null ? false : entry.Key.Contains(m.NodeID);
         entry.Value.startColor = isSelectedNow ? Color.green : Color.black;
         entry.Value.endColor = isSelectedNow ? Color.green : Color.black;
       }

@@ -49,7 +49,12 @@ namespace Assets.McCoy.UI
       get => board;
     }
 
+    [SerializeField]
+    List<GameObject> bottomUIElements = new List<GameObject>();
+
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
+
+    private McCoyStageData stageDataToLoad = null;
 
     bool loadingStage;
 
@@ -269,12 +274,19 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
+      board.SelectMapNode(null);
+      stageDataToLoad = stageData;
+      MapNode initialLocation = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
       McCoy.GetInstance().boardGameState.SetPlayerLocation(selectedPlayer, node);
+      Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback, false);
+    }
+    public void LoadStageCallback()
+    {
       McCoy.GetInstance().boardGameState.SetPlayerTookTurn(selectedPlayer);
       if (!loadingStage)
       {
         loadingStage = true;
-        McCoy.GetInstance().LoadBrawlerStage(stageData);
+        McCoy.GetInstance().LoadBrawlerStage(stageDataToLoad);
       }
     }
 
@@ -298,14 +310,27 @@ namespace Assets.McCoy.UI
       }
       if (routedMobsInMapNodes.Count > 0)
       {
+        foreach(GameObject toHide in bottomUIElements)
+        {
+          toHide.SetActive(false);
+        }
+
         var routeMenu = Instantiate(routingUI, transform);
-        routeMenu.Initialize(routedMobsInMapNodes, routingFinished);
+        routeMenu.Initialize(routedMobsInMapNodes, routingFinished, board);
       }
     }
 
-    private void routingFinished()
+    private void routingFinished(bool routingMenuClosed)
     {
       refreshBoardAndPanels();
+
+      if(routingMenuClosed)
+      {
+        foreach(GameObject toShow in bottomUIElements)
+        {
+          toShow.SetActive(true);
+        }
+      }
     }
 
   }
