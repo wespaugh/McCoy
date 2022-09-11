@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CyberMinotaursIdle
+  m_Name: WerewolfIdle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 0b9cdff307920fa4281e1dc57ffe7882, type: 3}
-    - time: 0.5833333
-      value: {fileID: 21300000, guid: 1078cfb4f6978a24bab43cef549b42f0, type: 3}
-    - time: 0.8333333
-      value: {fileID: 21300000, guid: 1078cfb4f6978a24bab43cef549b42f0, type: 3}
+      value: {fileID: 21300000, guid: 4cbab0b5bc52e2d4ab6d20cfb4dc65bb, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 21b6406725c466543a7b668cde4c56f6, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 21b6406725c466543a7b668cde4c56f6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,15 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 0b9cdff307920fa4281e1dc57ffe7882, type: 3}
-    - {fileID: 21300000, guid: 1078cfb4f6978a24bab43cef549b42f0, type: 3}
-    - {fileID: 21300000, guid: 1078cfb4f6978a24bab43cef549b42f0, type: 3}
+    - {fileID: 21300000, guid: 4cbab0b5bc52e2d4ab6d20cfb4dc65bb, type: 3}
+    - {fileID: 21300000, guid: 21b6406725c466543a7b668cde4c56f6, type: 3}
+    - {fileID: 21300000, guid: 21b6406725c466543a7b668cde4c56f6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
