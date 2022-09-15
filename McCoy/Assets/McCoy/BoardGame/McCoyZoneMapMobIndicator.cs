@@ -141,7 +141,7 @@ namespace Assets.McCoy.BoardGame
 
     private float updateMobObject(McCoyMobData mob, Transform building, float currentY)
     {
-      float strengthFactor = 5f + ((float)mob.XP) / 10.0f;
+      float strengthFactor = 4f + ((float)mob.XP) / 4.0f;
       float healthFactor = ((float)mob.Health) * .1f;
       building.localScale = new Vector3(strengthFactor, strengthFactor, strengthFactor);
       building.localPosition = new Vector3(building.localPosition.x, currentY + (healthFactor/2.0f), building.localPosition.z);

@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D;
@@ -58,6 +59,8 @@ namespace Assets.McCoy.UI
 
     bool loadingStage;
 
+    bool mobRouting = false;
+
     private void Awake()
     {
       loadingStage = false;
@@ -65,12 +68,23 @@ namespace Assets.McCoy.UI
       {
         board = Instantiate(boardContents);
         currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
-        initPlayerStartLocations();
-        initMapPanels();
-        initSelectedCharacter();
-        checkForMobRouting();
+
+        StartCoroutine(cityBooySequence());
         Camera.main.orthographic = false;
       }
+    }
+
+    private IEnumerator cityBooySequence()
+    {
+      initPlayerStartLocations();
+      initMapPanels();
+      checkForMobRouting();
+
+      while(mobRouting)
+      {
+        yield return null;
+      }
+      initSelectedCharacter();
     }
 
     private void initSelectedCharacter()
@@ -79,6 +93,8 @@ namespace Assets.McCoy.UI
       {
         Debug.Log("END THE WEEK!");
         McCoy.GetInstance().boardGameState.EndWeek();
+        board.Weekend();
+        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
       }
 
       for(int i = 1; i <= NUM_BOARDGAME_PLAYERS; ++i)
@@ -310,6 +326,7 @@ namespace Assets.McCoy.UI
       }
       if (routedMobsInMapNodes.Count > 0)
       {
+        mobRouting = true;
         foreach(GameObject toHide in bottomUIElements)
         {
           toHide.SetActive(false);
@@ -326,6 +343,7 @@ namespace Assets.McCoy.UI
 
       if(routingMenuClosed)
       {
+        mobRouting = false;
         foreach(GameObject toShow in bottomUIElements)
         {
           toShow.SetActive(true);
