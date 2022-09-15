@@ -81,9 +81,9 @@ namespace Assets.McCoy.BoardGame
         }
       }
       mageObject.gameObject.SetActive(mage != null);
-      mageObject.SetInteger(factionAnimatorParam, 4);
+      mageObject.SetInteger(factionAnimatorParam, 2);
       militiaObject.gameObject.SetActive(militia != null);
-      militiaObject.SetInteger(factionAnimatorParam, 4);
+      militiaObject.SetInteger(factionAnimatorParam, 3);
       minotaurObject.gameObject.SetActive(minotaur != null);
       minotaurObject.SetInteger(factionAnimatorParam, 4);
 
