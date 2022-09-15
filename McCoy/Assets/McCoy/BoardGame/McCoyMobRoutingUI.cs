@@ -13,6 +13,7 @@ namespace Assets.McCoy.BoardGame
 {
   class McCoyMobRoutingUI : MonoBehaviour
   {
+    const string factionAnimatorParam = "Faction";
     [SerializeField]
     TMP_Text alert = null;
 
@@ -30,6 +31,9 @@ namespace Assets.McCoy.BoardGame
 
     [SerializeField]
     Transform zoneSelectRoot = null;
+
+    [SerializeField]
+    Animator factionIconAnimator = null;
 
     List<Tuple<MapNode, McCoyMobData>> zoneMobs = new List<Tuple<MapNode, McCoyMobData>>();
     int zoneIndex = 0;
@@ -91,7 +95,20 @@ namespace Assets.McCoy.BoardGame
       }
       else
       { 
-        instructions.text = $"{zoneMobs[zoneIndex].Item2.Faction} Routed! Pick a zone and send them packing!"; 
+        instructions.text = $"{ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
+      }
+
+      switch(zoneMobs[zoneIndex].Item2.Faction)
+      {
+        case Factions.Mages:
+          factionIconAnimator.SetInteger(factionAnimatorParam, 2);
+          break;
+        case Factions.AngelMilitia:
+          factionIconAnimator.SetInteger(factionAnimatorParam, 4);
+          break;
+        case Factions.CyberMinotaurs:
+          factionIconAnimator.SetInteger(factionAnimatorParam, 4);
+          break;
       }
 
       foreach(var mapNode in validConnections())

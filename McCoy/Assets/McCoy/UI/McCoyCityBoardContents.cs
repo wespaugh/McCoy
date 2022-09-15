@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,10 @@ namespace Assets.McCoy.UI
 
     List<MapNode> mapNodes = new List<MapNode>();
     Dictionary<string, LineRenderer> lineLookup = new Dictionary<string, LineRenderer>();
+
+    // mob routing caches
+    Dictionary<MapNode, List<McCoyMobData>> toRoute = null;
+    int mobsMoving = 0;
 
     [SerializeField]
     GameObject cameraAnchor = null;
@@ -93,6 +98,114 @@ namespace Assets.McCoy.UI
 
       highlightedZone = mobIndicatorLookup[node.NodeID];
       highlightedZone.ToggleHover(true);
+    }
+
+    public void Weekend()
+    {
+      toRoute = new Dictionary<MapNode, List<McCoyMobData>>();
+      foreach(MapNode node in mapNodes)
+      {
+        List<McCoyMobData> mobsDefeated = new List<McCoyMobData>();
+        for(int i = 0; i < node.Mobs.Count; ++i)
+        {
+          bool combat = false;
+          for(int j = i+1; j < node.Mobs.Count; ++j)
+          {
+            combat = true;
+            node.Mobs[i].OffscreenCombat(node.Mobs[j].StrengthForXP());
+            AnimateMobCombat(node, node.Mobs[i].Faction);
+            node.Mobs[j].OffscreenCombat(node.Mobs[i].StrengthForXP());
+            AnimateMobCombat(node, node.Mobs[j].Faction);
+            if(node.Mobs[i].IsRouted)
+            {
+              mobsDefeated.Add(node.Mobs[i]);
+            }
+            if(node.Mobs[j].IsRouted)
+            {
+              mobsDefeated.Add(node.Mobs[j]);
+            }
+          }
+          node.Mobs[i].WeekEnded(combat);
+        }
+        if(mobsDefeated.Count > 0)
+        {
+          toRoute.Add(node, mobsDefeated);
+        }
+      }
+      StartCoroutine(waitForWeekendMobConflictsAnim(0.5f));
+    }
+
+    private IEnumerator waitForWeekendMobConflictsAnim(float animationTime)
+    {
+      float startTime = Time.time;
+      while(Time.time < startTime + animationTime)
+      {
+        yield return null;
+      }
+
+      foreach (var route in toRoute)
+      {
+        foreach (var mob in route.Value)
+        {
+          List<SearchableNode> connections = route.Key.connectedNodes;
+          MapNode conn = null;
+          while (connections.Count > 0)
+          {
+            int idx = UnityEngine.Random.Range(0, connections.Count);
+            conn = (connections[idx]) as MapNode;
+            connections.RemoveAt(idx);
+            if (mob.CanRouteTo(conn))
+            {
+              break;
+            }
+            conn = null;
+          }
+          if (conn != null)
+          {
+            route.Key.Mobs.Remove(mob);
+
+            McCoyMobData existingMob = null;
+            foreach (var mobAtConnection in conn.Mobs)
+            {
+              if (mobAtConnection.Faction == mob.Faction)
+              {
+                existingMob = mobAtConnection;
+                break;
+              }
+
+            }
+            if (existingMob == null)
+            {
+              conn.Mobs.Add(mob);
+            }
+            else
+            {
+              if (existingMob.XP > mob.XP)
+              {
+                existingMob.Absorb(mob);
+              }
+              else
+              {
+                conn.Mobs.Remove(existingMob);
+                mob.Absorb(existingMob);
+                conn.Mobs.Add(mob);
+              }
+            }
+            ++mobsMoving;
+            mob.FinishedRouting();
+            AnimateMobMove(mob.Faction, route.Key, conn, 1.0f, WeekendMobRouted);
+          }
+        }
+      }
+    }
+
+    private void WeekendMobRouted()
+    {
+      --mobsMoving;
+      if(mobsMoving == 0)
+      {
+        UpdateNodes();
+      }
     }
 
     public void AnimateMobMove(Factions f, MapNode start, MapNode end, float time, Action finishedCallback, bool resetAtEnd = true)

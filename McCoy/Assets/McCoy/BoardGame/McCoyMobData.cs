@@ -9,7 +9,7 @@ namespace Assets.McCoy.BoardGame
   public class McCoyMobData
   {
     public int XP { get; private set; }
-    public int maxHealth = 6;
+    int maxHealth = 6;
     public int MaxHealth
     {
       get => maxHealth;
@@ -23,6 +23,9 @@ namespace Assets.McCoy.BoardGame
     }
 
     private int monsterHealthScaleFactor = 6;
+
+    private float minHealthForXP = 0.5f;
+    private float regenPerWeek = 0.5f;
 
     List<MapNode> routedLocations = new List<MapNode>();
     public bool IsRouted
@@ -155,6 +158,20 @@ namespace Assets.McCoy.BoardGame
       int targetStrength = currentStrength - 2;
       while (StrengthForXP() != targetStrength) --XP;
       ++XP;
+    }
+
+    internal void WeekEnded(bool combat)
+    {
+      float healthPercent = ((float)Health) / ((float)MaxHealth);
+
+      if(!combat)
+      {
+        if (healthPercent >= minHealthForXP)
+        {
+          AddXP(2);
+        }
+        changeHealth(regenPerWeek * (float)maxHealth);
+      }
     }
 
     public void AddRoutingLocation(MapNode m)
