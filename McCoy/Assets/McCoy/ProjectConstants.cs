@@ -8,11 +8,11 @@ namespace Assets.McCoy
     public enum Factions
     {
       None = 0,
-      Werewolves,
-      CyberMinotaurs,
-      Mages,
-      AngelMilitia,
-      Hunter,
+      Werewolves = 1,
+      Mages = 2,
+      AngelMilitia = 3,
+      CyberMinotaurs = 4,
+      Hunter = 5,
       Neutral
     }
 

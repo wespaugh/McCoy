@@ -34,6 +34,12 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     GameObject hoverIndicator = null;
 
+    [SerializeField]
+    Animator factionIcon = null;
+
+    [SerializeField]
+    MeshRenderer baseMesh = null;
+
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
@@ -59,7 +65,7 @@ namespace Assets.McCoy.BoardGame
           wolfIndicator.color = Color.cyan;
           break;
       }
-
+      baseMesh.material.color = playerNum > 0 ? wolfIndicator.color : Color.black;
       //zoneIcon.gameObject.SetActive(false);
 
       McCoyMobData mage = null;
@@ -115,27 +121,35 @@ namespace Assets.McCoy.BoardGame
       }
     }
 
-    public void AnimateFaction(Factions faction, Vector3 diff, float time, Action callback, bool resetAtEnd)
+    public void AnimateFaction(Factions faction, Vector3 diff, float time, Action callback, bool hideOriginal)
     {
-      StartCoroutine(updateAnimation(animatorForFaction(faction).gameObject, diff, time, callback, resetAtEnd));
+      Animator existingAnimator = animatorForFaction(faction);
+      
+      Animator meeple = Instantiate(factionIcon, existingAnimator.transform.parent);
+      meeple.transform.localPosition = existingAnimator.transform.localPosition;
+      meeple.SetInteger(factionAnimatorParam, (int)faction);
+
+      if (hideOriginal)
+      {
+        existingAnimator.gameObject.SetActive(false);
+      }
+      StartCoroutine(updateAnimation(meeple.gameObject, diff, time, callback));
     }
 
-    private IEnumerator updateAnimation(GameObject building, Vector3 diff, float totalTime, Action callback, bool resetAtEnd)
+    private IEnumerator updateAnimation(GameObject meeple, Vector3 diff, float totalTime, Action callback)
     {
-      Vector3 startPos = building.transform.localPosition;
+      Vector3 startPos = meeple.transform.localPosition;
       Vector3 endPos = startPos + diff;
 
       float startTime = Time.time;
-      building.transform.localPosition = startPos;
-      while(building.transform.localPosition != endPos)
+      meeple.transform.localPosition = startPos;
+      while(meeple.transform.localPosition != endPos)
       {
-        building.transform.localPosition = Vector3.Lerp(startPos, endPos, (Time.time - startTime) / totalTime);
+        meeple.transform.localPosition = Vector3.Lerp(startPos, endPos, (Time.time - startTime) / totalTime);
         yield return null;
       }
-      if (resetAtEnd)
-      {
-        building.transform.localPosition = startPos;
-      }
+      
+      Destroy(meeple);
       callback();
     }
 

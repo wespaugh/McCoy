@@ -16,6 +16,9 @@ namespace Assets.McCoy.UI
     TMP_Text NodeName = null;
 
     [SerializeField]
+    TMP_Text SearchStatus = null;
+
+    [SerializeField]
     GameObject MobNodeContainer = null;
 
     [SerializeField]
@@ -35,6 +38,7 @@ namespace Assets.McCoy.UI
     {
       this.node = node;
       NodeName.text = node.ZoneName;
+      SearchStatus.text = $"Search Progress: %{node.SearchPercent}";
       uiRoot = screen;
 
       enterZoneButton.gameObject.SetActive(screen != null);
@@ -92,6 +96,11 @@ namespace Assets.McCoy.UI
     public void ZoneHighlighted()
     {
       uiRoot.Board.SetHoverNode(node);
+    }
+
+    public void SetInteractable(bool isConnected)
+    {
+      enterZoneButton.gameObject.SetActive(isConnected);
     }
   }
 }

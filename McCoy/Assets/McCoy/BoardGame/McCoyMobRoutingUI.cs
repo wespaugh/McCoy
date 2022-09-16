@@ -177,8 +177,20 @@ namespace Assets.McCoy.BoardGame
       // being able to continue routing this mob (if requested) requires there be a valid location to route it to
       zoneMobs[zoneIndex].Item2.IsRouted &= validConnections().Count > 0;
 
+      // flag will be set to true if the original location still contains a mob of the relevant faction
+      // this is an important animation flag
+      bool originalContainsFaction = false;
+      foreach(var origMob in originalLocation.Mobs)
+      {
+        if(origMob.Faction == mob.Faction)
+        {
+          originalContainsFaction = true;
+          break;
+        }
+      }
+
       // update the map for the newly moved mob
-      board.AnimateMobMove(mob.Faction, originalLocation, newLocation, .5f, mobMoveFinished);
+      board.AnimateMobMove(mob.Faction, originalLocation, newLocation, .5f, mobMoveFinished, !originalContainsFaction);
 
       // if we're truly done routing this mob...
       if (!mob.IsRouted)
@@ -240,7 +252,10 @@ namespace Assets.McCoy.BoardGame
       if (existingMob == null || mob.IsRouted)
       {
         originalLocation.Mobs.Remove(mob);
-        newLocation.Mobs.Add(mob);
+        if (!mob.IsRouted)
+        {
+          newLocation.Mobs.Add(mob);
+        }
       }
       // otherwise, the stronger mob will absorb the weaker mob
       else

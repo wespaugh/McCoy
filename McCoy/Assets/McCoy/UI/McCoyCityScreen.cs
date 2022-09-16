@@ -91,9 +91,8 @@ namespace Assets.McCoy.UI
     {
       if(McCoy.GetInstance().boardGameState.IsEndOfWeek)
       {
-        Debug.Log("END THE WEEK!");
         McCoy.GetInstance().boardGameState.EndWeek();
-        board.Weekend();
+        board.Weekend(weekendAnimationsFinished);
         currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
       }
 
@@ -106,6 +105,11 @@ namespace Assets.McCoy.UI
         }
       }
       selectedCharacterChanged();
+    }
+
+    private void weekendAnimationsFinished()
+    {
+      refreshBoardAndPanels();
     }
 
     private void OnDestroy()
@@ -215,7 +219,7 @@ namespace Assets.McCoy.UI
             break;
           }
         }
-        zonePanels[node].GetComponent<Button>().interactable = isConnected;
+        zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
       }
     }
@@ -294,7 +298,7 @@ namespace Assets.McCoy.UI
       stageDataToLoad = stageData;
       MapNode initialLocation = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
       McCoy.GetInstance().boardGameState.SetPlayerLocation(selectedPlayer, node);
-      Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback, false);
+      Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback);
     }
     public void LoadStageCallback()
     {
