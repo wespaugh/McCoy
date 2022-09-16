@@ -21,7 +21,7 @@ namespace Assets.McCoy.UI
     Dictionary<string, LineRenderer> lineLookup = new Dictionary<string, LineRenderer>();
 
     // mob routing caches
-    Dictionary<MapNode, List<McCoyMobData>> toRoute = null;
+    Dictionary<MapNode, List<McCoyMobData>> toRoute = new Dictionary<MapNode, List<McCoyMobData>>();
     int mobsMoving = 0;
 
     [SerializeField]
@@ -40,6 +40,11 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     Sprite mapTexture = null;
+
+    [SerializeField]
+    bool OnlyStrongestMobsSearch = false;
+
+    Action weekendFinishedCallback = null;
 
     public List<MapNode> MapNodes
     {
@@ -100,9 +105,10 @@ namespace Assets.McCoy.UI
       highlightedZone.ToggleHover(true);
     }
 
-    public void Weekend()
+    public void Weekend(Action callback)
     {
-      toRoute = new Dictionary<MapNode, List<McCoyMobData>>();
+      this.weekendFinishedCallback = callback;
+      toRoute.Clear();
       foreach(MapNode node in mapNodes)
       {
         List<McCoyMobData> mobsDefeated = new List<McCoyMobData>();
@@ -160,7 +166,12 @@ namespace Assets.McCoy.UI
             }
             conn = null;
           }
-          if (conn != null)
+          if (conn == null)
+          {
+            Debug.Log($"couldn't find connection for {mob.Faction}. Ending routing");
+            mob.FinishedRouting();
+          }
+          else
           {
             route.Key.Mobs.Remove(mob);
 
@@ -172,7 +183,6 @@ namespace Assets.McCoy.UI
                 existingMob = mobAtConnection;
                 break;
               }
-
             }
             if (existingMob == null)
             {
@@ -204,14 +214,48 @@ namespace Assets.McCoy.UI
       --mobsMoving;
       if(mobsMoving == 0)
       {
+        advanceDoomsdayClock();
         UpdateNodes();
+        if(weekendFinishedCallback != null)
+        {
+          weekendFinishedCallback();
+        }
       }
     }
 
-    public void AnimateMobMove(Factions f, MapNode start, MapNode end, float time, Action finishedCallback, bool resetAtEnd = true)
+    private void advanceDoomsdayClock()
+    {
+      foreach(var node in mapNodes)
+      {
+        McCoyMobData strongestMob = null;
+        foreach(var mob in node.Mobs)
+        {
+          if(strongestMob == null || mob.XP > strongestMob.XP)
+          {
+            strongestMob = mob;
+          }
+          if(!OnlyStrongestMobsSearch)
+          {
+            node.Search(mob.XP);
+          }
+        }
+        if(strongestMob == null)
+        {
+          continue;
+        }
+        if (OnlyStrongestMobsSearch)
+        {
+          node.Search(strongestMob.XP);
+        }
+      }
+      mapNodes.Sort((a, b) => { return b.SearchPercent - a.SearchPercent; });
+      Debug.Log("most searched area is " + mapNodes[0].ZoneName + ", " + mapNodes[0].SearchPercent + "%");
+    }
+
+    public void AnimateMobMove(Factions f, MapNode start, MapNode end, float time, Action finishedCallback, bool hideOriginal = true)
     {
       var mobIndicator = mobIndicatorLookup[start.NodeID];
-      mobIndicator.AnimateFaction(f, OffsetBetweenNodes(start, end), time, finishedCallback, resetAtEnd);
+      mobIndicator.AnimateFaction(f, OffsetBetweenNodes(start, end), time, finishedCallback, hideOriginal);
     }
 
     public Vector3 OffsetBetweenNodes(MapNode start, MapNode end)

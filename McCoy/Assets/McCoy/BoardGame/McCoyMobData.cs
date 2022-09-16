@@ -197,7 +197,6 @@ namespace Assets.McCoy.BoardGame
       AddXP(xpGain);
       Health = Math.Max(Health, otherMob.Health);
       routedLocations = otherMob.routedLocations;
-      IsRouted = otherMob.IsRouted;
     }
   }
 }
