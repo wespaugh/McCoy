@@ -321,6 +321,7 @@ namespace Assets.McCoy.UI
       GameObject connections = new GameObject();
       connections.transform.SetParent(transform);
       Material lineMaterial = new Material(Shader.Find("Particles/Standard Unlit"));
+      bool log = true;
       foreach (var assetLink in mapCache.NodeLinks)
       {
         var fromID = assetLink.BaseNodeGuid;
@@ -338,21 +339,77 @@ namespace Assets.McCoy.UI
         var line = new GameObject();
         line.transform.SetParent(connections.transform);
         line.name = $"Line {fromIdx}::{toIdx}";
+
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
         lineRenderer.startWidth = lineStartWidth;
         lineRenderer.endWidth = lineEndWidth;
-        lineRenderer.startColor = Color.black;// Color.blue;
-        lineRenderer.endColor = Color.black; // Color.green;
+        lineRenderer.startColor = Color.grey;// Color.blue;
+        lineRenderer.endColor = Color.grey; // Color.green;
         lineRenderer.material = lineMaterial;
-        List<Vector3> positions = new List<Vector3>();
-        positions.Add(new Vector3(sourceNodes[0].transform.position.x, sourceNodes[0].transform.position.y /* * Scaler.localScale.y*/, sourceNodes[0].transform.position.z));
-        positions.Add(new Vector3(destNodes[0].transform.position.x/* * Scaler.localScale.x*/, destNodes[0].transform.position.y /** Scaler.localScale.y*/, destNodes[0].transform.position.z));
-        lineRenderer.SetPositions(positions.ToArray());
 
+        /*
+        List<Vector3> positions = new List<Vector3>();
+        positions.Add(new Vector3(sourceNodes[0].transform.position.x, sourceNodes[0].transform.position.y, sourceNodes[0].transform.position.z));
+        positions.Add(new Vector3(destNodes[0].transform.position.x, destNodes[0].transform.position.y, destNodes[0].transform.position.z));
+        lineRenderer.SetPositions(positions.ToArray());
+        */
+        DrawConnections(lineRenderer, sourceNodes[0].transform.position, destNodes[0].transform.position, log);
+        log = false;
         lineLookup[$"{sourceNodes[0].NodeId}{destNodes[0].NodeId}"] = lineRenderer;
       }
     }
+
+    void DrawConnections(LineRenderer lineRenderer, Vector3 p0, Vector3 p2, bool log = false)
+    {
+      List<Vector3> positions = new List<Vector3>();
+      if(log)
+      {
+        Debug.Log($"drawing line from {p0} to {p2}");
+      }
+      float segmentCount = 20.0f;
+      for (int i = 0; i <= segmentCount; i++)
+      {
+        // float t = i / segmentCount;
+        Vector3 p1 = CalculateArcMidpointBetweenPoints(p0, p2);
+
+        positions.Add(CalculateQuadraticBezierPoint(((float)i)/segmentCount, p0, p1, p2));
+        if(log)
+        {
+          Debug.Log($"Adding position: " + positions[i]);
+        }
+      }
+      lineRenderer.positionCount = positions.Count;
+      lineRenderer.SetPositions(positions.ToArray());
+    }
+
+    /*
+    Vector3 CalculateQuadraticBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
+    {
+      // (1 - t)2P0 + 2(1 - t)tP1 + t2P2 , 0 < t < 1
+      float inverseTime = 1 - t;
+      Vector3 retVal = inverseTime * inverseTime * p0;
+      retVal = retVal + (2 * inverseTime * t * p1);
+      retVal = retVal + t * t * p2;
+      return retVal;
+    }
+
+    Vector3 CalculateCubicBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+      float u = 1 - t;
+      float tt = t * t;
+      float uu = u * u;
+      float uuu = uu * u;
+      float ttt = tt * t;
+
+      Vector3 p = uuu * p0;
+      p += 3 * uu * t * p1;
+      p += 3 * u * tt * p2;
+      p += ttt * p3;
+
+      return p;
+    }
+    */
 
     public void AnimateMobCombat(MapNode location, ProjectConstants.Factions faction)
     {
@@ -380,8 +437,8 @@ namespace Assets.McCoy.UI
       foreach (var entry in lineLookup)
       {
         bool isSelectedNow = m == null ? false : entry.Key.Contains(m.NodeID);
-        entry.Value.startColor = isSelectedNow ? Color.green : Color.black;
-        entry.Value.endColor = isSelectedNow ? Color.green : Color.black;
+        entry.Value.startColor = isSelectedNow ? Color.green : Color.grey;
+        entry.Value.endColor = isSelectedNow ? Color.green : Color.grey;
       }
     }
     public void UpdateNodes()

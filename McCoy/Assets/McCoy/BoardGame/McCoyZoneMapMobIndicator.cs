@@ -143,12 +143,12 @@ namespace Assets.McCoy.BoardGame
 
       float startTime = Time.time;
       meeple.transform.localPosition = startPos;
-      while(meeple.transform.localPosition != endPos)
+      while(Time.time  < startTime + totalTime)
       {
-        meeple.transform.localPosition = Vector3.Lerp(startPos, endPos, (Time.time - startTime) / totalTime);
+        meeple.transform.localPosition = CalculateQuadraticBezierPoint((Time.time - startTime) / totalTime, startPos, CalculateArcMidpointBetweenPoints(startPos, endPos), endPos); // Vector3.Lerp(startPos, endPos, (Time.time - startTime) / totalTime);
         yield return null;
       }
-      
+      meeple.transform.position = endPos;
       Destroy(meeple);
       callback();
     }

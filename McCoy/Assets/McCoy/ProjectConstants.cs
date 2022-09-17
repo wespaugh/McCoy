@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.McCoy
@@ -56,6 +57,28 @@ namespace Assets.McCoy
         default:
           return PLAYER_4_NAME;
       }
+    }
+
+    public static Vector3 CalculateArcMidpointBetweenPoints(Vector3 p0, Vector3 p2)
+    {
+      Vector3 p1 = (p0 + p2) * .5f;
+      float height = CalculateHeightBetweenPoints(p0, p2);
+      p1.y = height;
+      return p1;
+    }
+    public static float CalculateHeightBetweenPoints(Vector3 p0, Vector3 p2)
+    {
+      return 3.0f + (Math.Abs(p0.x - p2.x) + Math.Abs(p0.z - p2.z)) / 5.0f;
+    }
+
+    public static Vector3 CalculateQuadraticBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
+    {
+      // (1 - t)2P0 + 2(1 - t)tP1 + t2P2 , 0 < t < 1
+      float inverseTime = 1 - t;
+      Vector3 retVal = inverseTime * inverseTime * p0;
+      retVal = retVal + (2 * inverseTime * t * p1);
+      retVal = retVal + t * t * p2;
+      return retVal;
     }
   }
 }
