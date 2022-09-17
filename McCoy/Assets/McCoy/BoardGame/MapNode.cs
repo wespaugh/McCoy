@@ -21,5 +21,17 @@ namespace Assets.McCoy.BoardGame
 
     public string ZoneName;
     public Vector2 Position;
+
+    public int DistanceToMechanism
+    {
+      get;
+      private set;
+    }
+
+    public void SetMechanismLocation(MapNode loc)
+    {
+      DistanceToMechanism = DistanceTo(loc);
+    }
+
   }
 }

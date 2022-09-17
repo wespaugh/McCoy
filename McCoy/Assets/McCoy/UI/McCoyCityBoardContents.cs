@@ -321,7 +321,7 @@ namespace Assets.McCoy.UI
       GameObject connections = new GameObject();
       connections.transform.SetParent(transform);
       Material lineMaterial = new Material(Shader.Find("Particles/Standard Unlit"));
-      bool log = true;
+      bool log = false;
       foreach (var assetLink in mapCache.NodeLinks)
       {
         var fromID = assetLink.BaseNodeGuid;
@@ -344,16 +344,8 @@ namespace Assets.McCoy.UI
         lineRenderer.useWorldSpace = false;
         lineRenderer.startWidth = lineStartWidth;
         lineRenderer.endWidth = lineEndWidth;
-        lineRenderer.startColor = Color.grey;// Color.blue;
-        lineRenderer.endColor = Color.grey; // Color.green;
         lineRenderer.material = lineMaterial;
 
-        /*
-        List<Vector3> positions = new List<Vector3>();
-        positions.Add(new Vector3(sourceNodes[0].transform.position.x, sourceNodes[0].transform.position.y, sourceNodes[0].transform.position.z));
-        positions.Add(new Vector3(destNodes[0].transform.position.x, destNodes[0].transform.position.y, destNodes[0].transform.position.z));
-        lineRenderer.SetPositions(positions.ToArray());
-        */
         DrawConnections(lineRenderer, sourceNodes[0].transform.position, destNodes[0].transform.position, log);
         log = false;
         lineLookup[$"{sourceNodes[0].NodeId}{destNodes[0].NodeId}"] = lineRenderer;

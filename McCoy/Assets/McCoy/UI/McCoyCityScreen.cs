@@ -61,6 +61,8 @@ namespace Assets.McCoy.UI
 
     bool mobRouting = false;
 
+    MapNode antikytheraMechanismLocation = null;
+
     private void Awake()
     {
       loadingStage = false;
@@ -173,12 +175,23 @@ namespace Assets.McCoy.UI
         Destroy(toDestroy[i]);
       }
       zonePanels.Clear();
+
+      // test value
+      if (antikytheraMechanismLocation == null)
+      {
+        antikytheraMechanismLocation = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
+        Debug.Log("Antikythera Mechanism Location set to " + antikytheraMechanismLocation.ZoneName);
+      }
+
       foreach (var assetNode in board.MapNodes)
       {
+        assetNode.SetMechanismLocation(antikytheraMechanismLocation);
+
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         zonePanels[assetNode] = nodePanel;
         nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this);
       }
+
       board.UpdateNodes();
       // updates panel interactibility
       selectedCharacterChanged();
@@ -211,14 +224,22 @@ namespace Assets.McCoy.UI
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
+        int minDistanceToMechanism = -1;
         foreach (var connection in playerLoc.connectedNodes)
         {
           if (connection.NodeID == node.NodeID)
           {
+            int distanceToMechanism = antikytheraMechanismLocation == null ? -1 : (connection as MapNode).DistanceToMechanism;
+            Debug.Log("distance from " + (connection as MapNode).ZoneName + " to mechanism at location " + (antikytheraMechanismLocation == null ? "(null)" : antikytheraMechanismLocation.ZoneName) + "was " + distanceToMechanism);
+            if(minDistanceToMechanism < 0 || distanceToMechanism < minDistanceToMechanism)
+            {
+              minDistanceToMechanism = distanceToMechanism;
+            }
             isConnected = true;
             break;
           }
         }
+        Debug.Log("Min distance to mechanism among connections was " + minDistanceToMechanism);
         zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
       }
