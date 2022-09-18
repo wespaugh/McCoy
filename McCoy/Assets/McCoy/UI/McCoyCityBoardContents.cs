@@ -408,7 +408,7 @@ namespace Assets.McCoy.UI
       mobIndicatorLookup[location.NodeID].AnimateCombat(faction);
     }
 
-    public void SelectMapNode(MapNode m)
+    public void SelectMapNode(MapNode m, List<MapNode> validConnections)
     {
       if(selectedPlayerZone != null && highlightedZone != selectedPlayerZone)
       {
@@ -429,6 +429,20 @@ namespace Assets.McCoy.UI
       foreach (var entry in lineLookup)
       {
         bool isSelectedNow = m == null ? false : entry.Key.Contains(m.NodeID);
+
+        if (isSelectedNow && validConnections != null)
+        {
+          bool foundOtherEnd = false;
+          foreach (var c in validConnections)
+          {
+            if(entry.Key.Contains(c.NodeID))
+            {
+              foundOtherEnd = true;
+              break;
+            }
+          }
+          isSelectedNow &= foundOtherEnd;
+        }
         entry.Value.startColor = isSelectedNow ? Color.green : Color.grey;
         entry.Value.endColor = isSelectedNow ? Color.green : Color.grey;
       }
@@ -443,7 +457,9 @@ namespace Assets.McCoy.UI
       foreach(var node in mapNodes)
       {
         int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
-        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName);
+        MapNode mechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
+        bool showMechanism = mechanismLocation != null && mechanismLocation.NodeID == node.NodeID;
+        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName, showMechanism);
       }
     }
   }

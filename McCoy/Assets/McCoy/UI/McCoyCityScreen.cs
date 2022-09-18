@@ -61,8 +61,6 @@ namespace Assets.McCoy.UI
 
     bool mobRouting = false;
 
-    MapNode antikytheraMechanismLocation = null;
-
     private void Awake()
     {
       loadingStage = false;
@@ -111,6 +109,18 @@ namespace Assets.McCoy.UI
 
     private void weekendAnimationsFinished()
     {
+      if (McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation == null)
+      {
+        foreach (var m in board.MapNodes)
+        {
+          if (m.SearchPercent >= 100f)
+          {
+            McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation = m;
+            break;
+          }
+        }
+      }
+
       refreshBoardAndPanels();
     }
 
@@ -176,16 +186,14 @@ namespace Assets.McCoy.UI
       }
       zonePanels.Clear();
 
-      // test value
-      if (antikytheraMechanismLocation == null)
-      {
-        antikytheraMechanismLocation = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
-        Debug.Log("Antikythera Mechanism Location set to " + antikytheraMechanismLocation.ZoneName);
-      }
+      MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
 
       foreach (var assetNode in board.MapNodes)
       {
-        assetNode.SetMechanismLocation(antikytheraMechanismLocation);
+        if (antikytheraMechanismLocation != null)
+        {
+          assetNode.SetMechanismLocation(antikytheraMechanismLocation);
+        }
 
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         zonePanels[assetNode] = nodePanel;
@@ -199,50 +207,131 @@ namespace Assets.McCoy.UI
 
     private void selectedCharacterChanged()
     {
+      MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
+
       playerIcon.sprite = playerIconIndexes[selectedPlayer-1];
       MapNode playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
-      board.SelectMapNode(playerLoc);
-      board.SetHoverNode(null);
 
       selectedCharacterText.text = ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
 
       selectedZonePanel.Initialize(playerLoc, null);
 
+      int minDistanceToMechanism = -1;
+      foreach (var v in playerLoc.connectedNodes)
+      {
+        if (minDistanceToMechanism < 0 || (v as MapNode).DistanceToMechanism < minDistanceToMechanism)
+        {
+          minDistanceToMechanism = (v as MapNode).DistanceToMechanism;
+        }
+      }
+
       List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
       sortedNodes.Sort((x, y) =>
       {
-        foreach (var v in playerLoc.connectedNodes)
+        bool xIsConnected = false;
+        bool yIsConnected = false;
+        foreach (var connection in playerLoc.connectedNodes)
         {
-          if (x.NodeID == v.NodeID) return -1;
-          if (y.NodeID == v.NodeID) return 1;
+          if (x.NodeID == connection.NodeID)
+          {
+            xIsConnected = true;
+          }
+          if(y.NodeID == connection.NodeID)
+          {
+            yIsConnected = true;
+          }
         }
-        return 0;
+        bool xIsCloseEnough = antikytheraMechanismLocation == null || x.DistanceToMechanism <= minDistanceToMechanism;
+        bool yIsCloseEnough = antikytheraMechanismLocation == null || y.DistanceToMechanism <= minDistanceToMechanism;
+        if (xIsConnected)
+        {
+          // x is connected and close enough. best case
+          if (xIsCloseEnough)
+          {
+            if (yIsConnected && yIsCloseEnough)
+            {
+              return 0;
+            }
+            return -1;
+          }
+          // x is connected but not close enough
+          else
+          {
+            // y not connected, x has priority
+            if (!yIsConnected)
+            {
+              return -1;
+            }
+            // y is connected, but not close enough. same as X
+            if (!yIsCloseEnough)
+            {
+              return 0;
+            }
+            // y is connected and close enough. y has priority
+            return 1;
+          }
+        }
+        // x is not connected
+        else
+        {
+          // y is connected, y has priority
+          if(yIsConnected)
+          {
+            return 1;
+          }
+          // neither y or x is connected,
+          // x is close enough
+          if(xIsCloseEnough)
+          {
+            // y close enough, equivalent
+            if(yIsCloseEnough)
+            {
+              return 0;
+            }
+            // x close enough, y not close enough, x has priority
+            else
+            {
+              return -1;
+            }
+          }
+          // x not close enough
+          else
+          {
+            // x not close enough, y close enough, y has priority
+            if(yIsCloseEnough)
+            {
+              return 1;
+            }
+            else
+            {
+              // x not close enough, y not close enough, equivalent
+              return 0;
+            }
+          }
+        }
       });
+
+      List<MapNode> validConnections = new List<MapNode>();
 
       int siblingIndex = 0;
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
-        int minDistanceToMechanism = -1;
         foreach (var connection in playerLoc.connectedNodes)
         {
-          if (connection.NodeID == node.NodeID)
+          if (connection.NodeID == node.NodeID && (antikytheraMechanismLocation == null || node.DistanceToMechanism <= minDistanceToMechanism))
           {
-            int distanceToMechanism = antikytheraMechanismLocation == null ? -1 : (connection as MapNode).DistanceToMechanism;
-            Debug.Log("distance from " + (connection as MapNode).ZoneName + " to mechanism at location " + (antikytheraMechanismLocation == null ? "(null)" : antikytheraMechanismLocation.ZoneName) + "was " + distanceToMechanism);
-            if(minDistanceToMechanism < 0 || distanceToMechanism < minDistanceToMechanism)
-            {
-              minDistanceToMechanism = distanceToMechanism;
-            }
+            validConnections.Add(connection as MapNode);
             isConnected = true;
-            break;
           }
         }
-        Debug.Log("Min distance to mechanism among connections was " + minDistanceToMechanism);
         zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
       }
+
+      board.SelectMapNode(playerLoc, validConnections);
+      board.SetHoverNode(null);
     }
 
     private void initPlayerStartLocations()
@@ -315,7 +404,7 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
-      board.SelectMapNode(null);
+      board.SelectMapNode(null, null);
       stageDataToLoad = stageData;
       MapNode initialLocation = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
       McCoy.GetInstance().boardGameState.SetPlayerLocation(selectedPlayer, node);

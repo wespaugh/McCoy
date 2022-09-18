@@ -40,7 +40,10 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     MeshRenderer baseMesh = null;
 
-    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName)
+    [SerializeField]
+    Animator mechanismIndicator = null;
+
+    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, bool showMechanism = false)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
       wolfIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
@@ -49,6 +52,12 @@ namespace Assets.McCoy.BoardGame
       zoneNameLabel.text = zoneName;
 
       hoverIndicator.SetActive(false);
+
+      mechanismIndicator.gameObject.SetActive(showMechanism);
+      if(showMechanism)
+      {
+        mechanismIndicator.SetBool("Boss", true);
+      }
 
       switch (playerNum)
       {

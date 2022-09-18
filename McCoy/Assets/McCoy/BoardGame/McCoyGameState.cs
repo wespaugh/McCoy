@@ -22,6 +22,12 @@ namespace Assets.McCoy.BoardGame
     Dictionary<int, MapNode> playerLocations = new Dictionary<int, MapNode>();
     BrawlerResult stageesults = null;
 
+    public MapNode AntikytheraMechanismLocation
+    {
+      get;
+      set;
+    }
+
     public MapNode PlayerLocation(int playerNumber)
     {
       if(!playerLocations.ContainsKey(playerNumber))

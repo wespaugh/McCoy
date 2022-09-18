@@ -39,6 +39,10 @@ namespace Assets.McCoy.UI
       this.node = node;
       NodeName.text = node.ZoneName;
       SearchStatus.text = $"Search Progress: %{node.SearchPercent}";
+      if(screen != null && McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation != null)
+      {
+        SearchStatus.text = $"Distance to goal: {node.DistanceToMechanism}";
+      }
       uiRoot = screen;
 
       enterZoneButton.gameObject.SetActive(screen != null);

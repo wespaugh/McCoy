@@ -16,7 +16,7 @@ namespace Assets.McCoy.BoardGame
 
     public void Search(float strongestMobStrength)
     {
-      searchPercent += strongestMobStrength * .6f;
+      searchPercent += strongestMobStrength * .6f + 20;
     }
 
     public string ZoneName;

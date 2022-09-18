@@ -172,21 +172,16 @@ namespace Assets.McCoy.BoardGame
 
       SearchState root = new SearchState(null, 0, this, other, SearchState.SearchType.BreadthFirst);
 
-      Debug.Log("Searching from " + (this as MapNode).ZoneName + " to " + (other as MapNode).ZoneName);
-
       List<SearchState> results = new List<SearchState>();
       root.SearchToDepth(results);
 
-      if(results.Count == 0)
-      {
-        Debug.Log("NO RESULTS");
-        return -1;
-      }
-      else
+      if(results.Count != 0)
       {
         string sb = "";
+        int i = 0;
         foreach(var solution in results)
         {
+          sb = "";
           SearchState s = solution;
           while (s.Parent != null)
           {
@@ -194,8 +189,16 @@ namespace Assets.McCoy.BoardGame
             s = s.Parent;
           }
           sb = $"{(s.node as MapNode).ZoneName}->{sb}";
-          Debug.Log("Solution: " + sb);
+          if (i++ == 0)
+          {
+            //Debug.Log("Solution: " + sb);
+          }
         }
+      }
+      if (results.Count == 0)
+      {
+        Debug.Log("FOUCLTN find route between " + (this as MapNode).ZoneName + " and " + (other as MapNode).ZoneName);
+        return -1;
       }
       var result = results[0];
       while(result.Parent != null)
