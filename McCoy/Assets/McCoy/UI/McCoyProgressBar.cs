@@ -49,7 +49,7 @@ namespace Assets.McCoy.UI
       float percent = (totalHP % amountPerBar) / amountPerBar;
 
       int targetBar = (int)(totalHP / amountPerBar);
-      if (totalHP % amountPerBar == 0 && ((float)targetBar) * amountPerBar == totalHP)
+      if (targetBar > 0 && totalHP % amountPerBar == 0 && ((float)targetBar) * amountPerBar == totalHP)
       {
         --targetBar;
       }
