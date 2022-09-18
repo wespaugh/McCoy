@@ -42,6 +42,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     McCoyMobRoutingUI routingUI = null;
 
+    [SerializeField]
+    GameObject debugEndWeekButton = null;
+
     int selectedPlayer = 1;
 
     McCoyCityBoardContents board = null;
@@ -64,6 +67,7 @@ namespace Assets.McCoy.UI
     private void Awake()
     {
       loadingStage = false;
+      debugEndWeekButton.SetActive(McCoy.GetInstance().Debug);
       if (board == null)
       {
         board = Instantiate(boardContents);
@@ -87,13 +91,17 @@ namespace Assets.McCoy.UI
       initSelectedCharacter();
     }
 
+    public void DebugEndWeek()
+    {
+      endWeek();
+      selectedCharacterChanged();
+    }
+
     private void initSelectedCharacter()
     {
       if(McCoy.GetInstance().boardGameState.IsEndOfWeek)
       {
-        McCoy.GetInstance().boardGameState.EndWeek();
-        board.Weekend(weekendAnimationsFinished);
-        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
+        endWeek();
       }
 
       for(int i = 1; i <= NUM_BOARDGAME_PLAYERS; ++i)
@@ -107,20 +115,15 @@ namespace Assets.McCoy.UI
       selectedCharacterChanged();
     }
 
+    private void endWeek()
+    {
+      McCoy.GetInstance().boardGameState.EndWeek();
+      board.Weekend(weekendAnimationsFinished);
+      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
+    }
+
     private void weekendAnimationsFinished()
     {
-      if (McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation == null)
-      {
-        foreach (var m in board.MapNodes)
-        {
-          if (m.SearchPercent >= 100f)
-          {
-            McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation = m;
-            break;
-          }
-        }
-      }
-
       refreshBoardAndPanels();
     }
 
@@ -188,6 +191,14 @@ namespace Assets.McCoy.UI
 
       MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
 
+      if(antikytheraMechanismLocation == null)
+      {
+        MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
+        loc.HasMechanism = true;
+        Debug.Log("Setting Mechanism to location " + loc.ZoneName);
+        McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation = loc;
+      }
+
       foreach (var assetNode in board.MapNodes)
       {
         if (antikytheraMechanismLocation != null)
@@ -217,6 +228,8 @@ namespace Assets.McCoy.UI
 
       selectedZonePanel.Initialize(playerLoc, null);
 
+      bool mechanismFound = antikytheraMechanismLocation?.SearchStatus() == SearchState.CompletelySearched;
+
       int minDistanceToMechanism = -1;
       foreach (var v in playerLoc.connectedNodes)
       {
@@ -242,8 +255,8 @@ namespace Assets.McCoy.UI
             yIsConnected = true;
           }
         }
-        bool xIsCloseEnough = antikytheraMechanismLocation == null || x.DistanceToMechanism <= minDistanceToMechanism;
-        bool yIsCloseEnough = antikytheraMechanismLocation == null || y.DistanceToMechanism <= minDistanceToMechanism;
+        bool xIsCloseEnough = !mechanismFound || x.DistanceToMechanism <= minDistanceToMechanism;
+        bool yIsCloseEnough = !mechanismFound || y.DistanceToMechanism <= minDistanceToMechanism;
         if (xIsConnected)
         {
           // x is connected and close enough. best case
@@ -320,7 +333,7 @@ namespace Assets.McCoy.UI
         bool isConnected = false;
         foreach (var connection in playerLoc.connectedNodes)
         {
-          if (connection.NodeID == node.NodeID && (antikytheraMechanismLocation == null || node.DistanceToMechanism <= minDistanceToMechanism))
+          if (connection.NodeID == node.NodeID && (!mechanismFound || node.DistanceToMechanism <= minDistanceToMechanism))
           {
             validConnections.Add(connection as MapNode);
             isConnected = true;

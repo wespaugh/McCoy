@@ -27,29 +27,29 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Color Sprite2Color;
 
-    private float hpPerBar;
-    private float hpCache = -1;
+    private float amountPerBar;
+    private float amountCache = -1;
     private int barCache = -1;
 
     float currentPercent = 0.0f;
     float targetPercent = 0.0f;
 
-    public void Initialize(int totalHP, int hpPerBar)
+    public void Initialize(int totalAmount, int amountPerBar)
     {
-      this.hpPerBar = hpPerBar;
-      currentPercent = (totalHP % hpPerBar) / hpPerBar;
-      hpCache = totalHP;
+      this.amountPerBar = amountPerBar;
+      currentPercent = (totalAmount % amountPerBar) / amountPerBar;
+      amountCache = totalAmount;
     }
 
-    public void SetFill(float HP)
+    public void SetFill(float barAmount)
     {
-      float totalHP = overrideHP > 0 ? overrideHP : HP;
-      float direction = totalHP == hpCache ? 0 : totalHP < hpCache ? -1.0f : 1.0f;
+      float totalHP = overrideHP > 0 ? overrideHP : barAmount;
+      float direction = totalHP == amountCache ? 0 : totalHP < amountCache ? -1.0f : 1.0f;
 
-      float percent = (totalHP % hpPerBar) / hpPerBar;
+      float percent = (totalHP % amountPerBar) / amountPerBar;
 
-      int targetBar = (int)(totalHP / hpPerBar);
-      if (totalHP % hpPerBar == 0 && ((float)targetBar) * hpPerBar == totalHP)
+      int targetBar = (int)(totalHP / amountPerBar);
+      if (totalHP % amountPerBar == 0 && ((float)targetBar) * amountPerBar == totalHP)
       {
         --targetBar;
       }
@@ -59,8 +59,8 @@ namespace Assets.McCoy.UI
       }
 
       // be sure to use cache here. it's only updated when animation flips to the right bar
-      int currentBar = (int)(hpCache / hpPerBar);
-      if(hpCache % hpPerBar == 0 && ((float)currentBar)*hpPerBar == hpCache && currentBar > 0)
+      int currentBar = (int)(amountCache / amountPerBar);
+      if(amountCache % amountPerBar == 0 && ((float)currentBar)*amountPerBar == amountCache && currentBar > 0)
       {
         --currentBar;
       }
@@ -81,24 +81,24 @@ namespace Assets.McCoy.UI
       // if we are worrying about barflip, only cache the XP once we've filled/emptied the bar
       if (!barFlip)
       {
-        hpCache = currentBar * hpPerBar + currentPercent * hpPerBar;
+        amountCache = currentBar * amountPerBar + currentPercent * amountPerBar;
       }
       else if(direction > 0 && currentPercent >= .99)
       {
         currentBar = targetBar;
         currentPercent = 0.0f;
-        hpCache = hpPerBar*currentBar + .01f;
+        amountCache = amountPerBar*currentBar + .01f;
       }
       else if(direction < 0 && currentPercent <= .01)
       {
         currentBar = targetBar;
         currentPercent = 1.0f;
-        hpCache = hpPerBar * currentBar + hpPerBar;
+        amountCache = amountPerBar * currentBar + amountPerBar;
       }
 
       sprite.material.SetFloat("_progress", -1.0f + currentPercent);
 
-      float p2 = (totalHP > hpPerBar || barFlip ? 1.0f : 0);
+      float p2 = (totalHP > amountPerBar || barFlip ? 1.0f : 0);
       sprite2.material.SetFloat("_progress", -1.0f + p2);
       
       if(currentBar == barCache)

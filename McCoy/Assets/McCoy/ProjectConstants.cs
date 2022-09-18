@@ -6,6 +6,8 @@ namespace Assets.McCoy
 {
   public class ProjectConstants : ScriptableObject
   {
+
+    public static float SEARCH_COMPLETE_THRESHHOLD = 120.0f;
     public enum Factions
     {
       None = 0,
@@ -79,6 +81,34 @@ namespace Assets.McCoy
       retVal = retVal + (2 * inverseTime * t * p1);
       retVal = retVal + t * t * p2;
       return retVal;
+    }
+
+    public enum SearchState
+    {
+      BarelySearched,
+      Searching,
+      WellSearched,
+      CompletelySearched
+    }
+
+    public static SearchState SearchProgress(float searchValue)
+    {
+      if (searchValue < 40)
+      {
+        return SearchState.BarelySearched;
+      }
+      else if (searchValue < 80)
+      {
+        return SearchState.Searching;
+      }
+      else if (searchValue < SEARCH_COMPLETE_THRESHHOLD)
+      {
+        return SearchState.WellSearched;
+      }
+      else
+      {
+        return SearchState.CompletelySearched;
+      }
     }
   }
 }

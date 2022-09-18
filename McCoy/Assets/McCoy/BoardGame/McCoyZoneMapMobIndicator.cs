@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.McCoy.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -43,7 +44,10 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     Animator mechanismIndicator = null;
 
-    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, bool showMechanism = false)
+    [SerializeField]
+    McCoyProgressBar searchProgressBar = null;
+
+    public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
       wolfIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
@@ -52,6 +56,9 @@ namespace Assets.McCoy.BoardGame
       zoneNameLabel.text = zoneName;
 
       hoverIndicator.SetActive(false);
+
+      searchProgressBar.Initialize(100, 100);
+      searchProgressBar.SetFill(searchPercent);
 
       mechanismIndicator.gameObject.SetActive(showMechanism);
       if(showMechanism)

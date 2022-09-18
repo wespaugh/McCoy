@@ -149,6 +149,11 @@ namespace Assets.McCoy.UI
         yield return null;
       }
 
+      if(toRoute.Count == 0)
+      {
+        mobsMoving = 1;
+        WeekendMobRouted();
+      }
       foreach (var route in toRoute)
       {
         foreach (var mob in route.Value)
@@ -236,7 +241,7 @@ namespace Assets.McCoy.UI
           }
           if(!OnlyStrongestMobsSearch)
           {
-            node.Search(mob.XP);
+            node.Search(mob.XP, (int)mob.Health);
           }
         }
         if(strongestMob == null)
@@ -245,11 +250,11 @@ namespace Assets.McCoy.UI
         }
         if (OnlyStrongestMobsSearch)
         {
-          node.Search(strongestMob.XP);
+          node.Search(strongestMob.XP, (int)strongestMob.Health);
         }
       }
-      mapNodes.Sort((a, b) => { return b.SearchPercent - a.SearchPercent; });
-      Debug.Log("most searched area is " + mapNodes[0].ZoneName + ", " + mapNodes[0].SearchPercent + "%");
+      mapNodes.Sort((a, b) => { return b.SearchStatus() - a.SearchStatus(); });
+      Debug.Log("most searched area is " + mapNodes[0].ZoneName + ", " + mapNodes[0].SearchStatus());
     }
 
     public void AnimateMobMove(Factions f, MapNode start, MapNode end, float time, Action finishedCallback, bool hideOriginal = true)
@@ -458,8 +463,8 @@ namespace Assets.McCoy.UI
       {
         int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
         MapNode mechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
-        bool showMechanism = mechanismLocation != null && mechanismLocation.NodeID == node.NodeID;
-        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName, showMechanism);
+        bool showMechanism = mechanismLocation != null && mechanismLocation.SearchStatus() == SearchState.CompletelySearched && mechanismLocation.NodeID == node.NodeID;
+        mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName, node.SearchPercent, showMechanism);
       }
     }
   }
