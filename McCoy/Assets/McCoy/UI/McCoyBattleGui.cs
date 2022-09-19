@@ -28,7 +28,7 @@ namespace Assets.McCoy.UI
     [SerializeField] TMP_InputField nameInput = null;
 
     [SerializeField] TMP_Text tmpNameText = null;
-
+    [SerializeField] TMP_Text enemyName = null;
     [SerializeField] TMP_Text bossName = null;
 
     [SerializeField] int playerSortOrder;
@@ -143,6 +143,21 @@ namespace Assets.McCoy.UI
     protected override void UpdatePlayerHealthBar(float percent)
     {
       worldUI.UpdatePlayerHealth(percent);
+    }
+
+    protected override void OnLifePointsChange(float newFloat, ControlsScript player)
+    {
+      if(UFE.GetController(player.playerNum).isCPU)
+      {
+        enemyName.text = player.myInfo.characterName;
+        enemyName.gameObject.SetActive(true);
+        worldUI.updateEnemyHealth(player, enemyUIHidden);
+      }
+    }
+
+    private void enemyUIHidden()
+    {
+      enemyName.gameObject.SetActive(false);
     }
 
     protected override void UpdateWonRounds()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.McCoy.BoardGame;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
@@ -10,31 +11,33 @@ namespace Assets.McCoy.Brawler
   {
     [SerializeField] TMP_Text mobStatus;
 
-    public void MobsChanged(Dictionary<ProjectConstants.Factions, float> currentMobPopulations)
+    public void MobsChanged(Dictionary<McCoyMobData, int> killDict)
     {
       string status = "";
-      foreach (var pop in currentMobPopulations)
+      foreach (var kills in killDict)
       {
-        status += $"{pop.Key}: {labelForPercent(pop.Value)}\n";
+        float healthPreview = kills.Key.HealthPreview(kills.Value);
+        Debug.Log("HealthPreview for " + kills.Key.Faction + ": " + healthPreview);
+        status += $"{kills.Key.Faction}: {labelForHealth(healthPreview)}\n";
       }
       mobStatus.text = status;
     }
 
-    private string labelForPercent(float value)
+    private string labelForHealth(float value)
     {
-      if (value > .8f)
+      if (value >= 4f)
       {
         return "Healthy";
       }
-      else if (value > .6f)
+      else if (value >= 3f)
       {
         return "Shaken";
       }
-      else if (value > .4f)
+      else if (value >= 2f)
       {
         return "Weakened";
       }
-      else if (value > .2f)
+      else if (value >= 1f)
       {
         return "Weakened and Running Scared";
       }

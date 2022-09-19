@@ -1,4 +1,7 @@
 ﻿using Assets.McCoy.Brawler;
+using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.McCoy.UI
@@ -10,6 +13,13 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     McCoyProgressBar bossHud;
+
+    [SerializeField]
+    McCoyProgressBar enemyHud;
+
+    float enemyHPExpiryTime;
+    private Action uiDisappearedCallback;
+    const float enemyHealthDuration = 3.0f;
 
     bool playerHealthInitialized = false;
 
@@ -34,6 +44,33 @@ namespace Assets.McCoy.UI
       if(boss != null)
       {
         bossHud.SetFill((float)boss.currentLifePoints);
+      }
+    }
+
+    public void updateEnemyHealth(ControlsScript enemy, Action uiDisappearedCallback)
+    {
+      enemyHud.Initialize(enemy.myInfo.lifePoints, 100);
+      enemyHud.SetFill((float)enemy.currentLifePoints);
+      enemyHPExpiryTime = Time.time + enemyHealthDuration;
+      this.uiDisappearedCallback = uiDisappearedCallback;
+
+      if (! enemyHud.gameObject.activeInHierarchy)
+      {
+        enemyHud.gameObject.SetActive(true);
+        StartCoroutine(runEnemyHPBar());
+      }
+    }
+
+    private IEnumerator runEnemyHPBar()
+    {
+      while (Time.time < enemyHPExpiryTime)
+      {
+        yield return null;
+      }
+      enemyHud.gameObject.SetActive(false);
+      if(uiDisappearedCallback != null)
+      {
+        uiDisappearedCallback();
       }
     }
 

@@ -89,7 +89,7 @@ namespace Assets.McCoy.Brawler
     public void AddMobSpawnListener(IMobChangeDelegate d)
     {
       mobChangeListeners.Add(d);
-      updateRemainingMonsters();
+      updateRemainingMonsters(true);
     }
 
     public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
@@ -386,17 +386,23 @@ namespace Assets.McCoy.Brawler
 
     private int updateRemainingMonsters(bool updateDelegates = false)
     {
-      Dictionary<Factions, float> factionHealthLookup = updateDelegates ? new Dictionary<Factions, float>() : null;
+      Dictionary<McCoyMobData, int> factionHealthLookup = updateDelegates ? new Dictionary<McCoyMobData, int>() : null;
 
       if (factionHealthLookup != null)
       {
+        foreach(var s in spawnData)
+        {
+          int numKilled = initialSpawnNumbers[s.Key] - spawnNumbers[s.Key];
+          factionHealthLookup[s.Value] = numKilled;
+        }
+
         foreach (var d in this.mobChangeListeners)
         {
           d.MobsChanged(factionHealthLookup);
         }
       }
 
-      return recalcRemainingMonsters(factionHealthLookup);
+      return recalcRemainingMonsters(null);
     }
 
     private int recalcRemainingMonsters(Dictionary<Factions, float> factionHealthLookup)

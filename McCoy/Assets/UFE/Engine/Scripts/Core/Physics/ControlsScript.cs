@@ -4374,7 +4374,7 @@ public class ControlsScript : MonoBehaviour
 
     currentLifePoints -= damage;
     if (currentLifePoints < 0) currentLifePoints = 0;
-    UFE.FireLifePoints(currentLifePoints, opControlsScript);
+    UFE.FireLifePoints(currentLifePoints, this);
 
     if ((UFE.gameMode == GameMode.TrainingRoom || UFE.gameMode == GameMode.ChallengeMode)
         && ((playerNum == 1 && UFE.config.trainingModeOptions.p1Life == LifeBarTrainingMode.Refill)
