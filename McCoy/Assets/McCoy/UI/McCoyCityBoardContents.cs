@@ -448,8 +448,10 @@ namespace Assets.McCoy.UI
           }
           isSelectedNow &= foundOtherEnd;
         }
-        entry.Value.startColor = isSelectedNow ? Color.green : Color.grey;
-        entry.Value.endColor = isSelectedNow ? Color.green : Color.grey;
+        Color deselectColor = new Color(54f/255f, 126f/255f, 41f/255f);
+        Color selectColor = new Color(228f / 255f, 229f / 255f, 76f / 255f);
+        entry.Value.startColor = isSelectedNow ? selectColor : deselectColor;// Color.grey;
+        entry.Value.endColor = isSelectedNow ? selectColor : deselectColor; // Color.grey;
       }
     }
     public void UpdateNodes()

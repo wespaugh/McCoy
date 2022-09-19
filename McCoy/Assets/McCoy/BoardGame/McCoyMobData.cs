@@ -107,7 +107,7 @@ namespace Assets.McCoy.BoardGame
       else
       {
         float newVal = Health + amount;
-        if(newVal < .5f)
+        if(newVal < MOB_ROUTING_HEALTH_THRESHOLD)
         {
           IsRouted = true;
           Lose1Strength();

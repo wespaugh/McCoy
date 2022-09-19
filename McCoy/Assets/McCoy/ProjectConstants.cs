@@ -19,12 +19,14 @@ namespace Assets.McCoy
       Neutral
     }
 
+    public static float MOB_ROUTING_HEALTH_THRESHOLD = 0.5f;
+
     public static string FactionDisplayName(Factions f)
     {
       switch(f)
       {
         case Factions.AngelMilitia:
-          return "Angel Militia";
+          return "Militia";
         case Factions.CyberMinotaurs:
           return "Cyber-Minotaurs";
         case Factions.Mages:

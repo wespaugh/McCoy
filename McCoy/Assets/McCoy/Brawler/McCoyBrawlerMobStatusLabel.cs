@@ -18,7 +18,7 @@ namespace Assets.McCoy.Brawler
       {
         float healthPreview = kills.Key.HealthPreview(kills.Value);
         Debug.Log("HealthPreview for " + kills.Key.Faction + ": " + healthPreview);
-        status += $"{kills.Key.Faction}: {labelForHealth(healthPreview)}\n";
+        status += $"{ProjectConstants.FactionDisplayName(kills.Key.Faction)}: {labelForHealth(healthPreview)}\n";
       }
       mobStatus.text = status;
     }
@@ -27,19 +27,19 @@ namespace Assets.McCoy.Brawler
     {
       if (value >= 4f)
       {
-        return "Healthy";
+        return $"{(int)value}";// "Healthy";
       }
       else if (value >= 3f)
       {
-        return "Shaken";
+        return $"{(int)value}"; // "Shaken";
       }
       else if (value >= 2f)
       {
-        return "Weakened";
+        return $"{(int)value}"; // "Weakened";
       }
-      else if (value >= 1f)
+      else if (value >= ProjectConstants.MOB_ROUTING_HEALTH_THRESHOLD)
       {
-        return "Weakened and Running Scared";
+        return $"{(int)value}"; // "Weakened and Running Scared";
       }
       return "Weakened and Routed";
     }

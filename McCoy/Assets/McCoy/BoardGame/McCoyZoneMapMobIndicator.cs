@@ -55,7 +55,7 @@ namespace Assets.McCoy.BoardGame
       // zoneIcon.sprite = zoneIconTexture;
       zoneNameLabel.text = zoneName;
 
-      hoverIndicator.SetActive(false);
+      ToggleHover(false);
 
       searchProgressBar.Initialize(100, 100);
       searchProgressBar.SetFill(searchPercent);
@@ -201,7 +201,7 @@ namespace Assets.McCoy.BoardGame
 
     public void ToggleHover(bool on)
     {
-      hoverIndicator.SetActive(on);
+      hoverIndicator.transform.localScale = on ? Vector3.one : new Vector3(.5f, .5f, .5f);
     }
 
     public void AnimateCombat(Factions faction)
