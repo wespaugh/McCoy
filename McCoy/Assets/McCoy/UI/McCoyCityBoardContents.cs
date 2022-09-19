@@ -82,6 +82,11 @@ namespace Assets.McCoy.UI
     Transform Scaler = null;
     private GameObject selectedNode;
 
+    private Vector3 cameraOrigin;
+    private Vector3 cameraDestination;
+    private bool lerpingCamera;
+    private float cameraStartTime;
+
     private void OnDestroy()
     {
       _mapCache = null;
@@ -103,6 +108,11 @@ namespace Assets.McCoy.UI
 
       highlightedZone = mobIndicatorLookup[node.NodeID];
       highlightedZone.ToggleHover(true);
+    }
+
+    public Vector3 NodePosition(MapNode node)
+    {
+      return cityZoneLookup[node.NodeID].transform.position;
     }
 
     public void Weekend(Action callback)
@@ -429,6 +439,15 @@ namespace Assets.McCoy.UI
         selectedNode = cityZoneLookup[m.NodeID];
         selectedPlayerZone = mobIndicatorLookup[m.NodeID];
         selectedPlayerZone.ToggleHover(true);
+
+        Vector3 playerLocPosition = selectedNode.transform.localPosition;// NodePosition(m);
+        cameraDestination = new Vector3(Mathf.Clamp(playerLocPosition.x, 8.8f, 20), 21, Mathf.Clamp(playerLocPosition.z + 16f, 36, 42));
+        cameraOrigin = Camera.main.transform.position;
+        cameraStartTime = Time.time;
+        if (!lerpingCamera)
+        {
+          StartCoroutine(LerpCamera(.5f));
+        }
       }
 
       foreach (var entry in lineLookup)
@@ -454,6 +473,23 @@ namespace Assets.McCoy.UI
         entry.Value.endColor = isSelectedNow ? selectColor : deselectColor; // Color.grey;
       }
     }
+
+    private IEnumerator LerpCamera(float travelTime)
+    {
+      lerpingCamera = true;
+      while (Camera.main.transform.position != cameraDestination)
+      {
+        float currentTime = ((Time.time - cameraStartTime) / travelTime);
+        currentTime = 1f - (float)Math.Pow(1f - currentTime, 3f);
+        Camera.main.transform.position = new Vector3(
+          Mathf.Lerp(cameraOrigin.x, cameraDestination.x, currentTime),
+          Mathf.Lerp(cameraOrigin.y, cameraDestination.y, currentTime), 
+          Mathf.Lerp(cameraOrigin.z, cameraDestination.z, currentTime));
+        yield return null;
+      }
+      lerpingCamera = false;
+    }
+
     public void UpdateNodes()
     {
       Dictionary<MapNode, int> playerLocs = new Dictionary<MapNode, int>();
