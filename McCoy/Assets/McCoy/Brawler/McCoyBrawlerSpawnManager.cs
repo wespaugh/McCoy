@@ -92,7 +92,7 @@ namespace Assets.McCoy.Brawler
       updateRemainingMonsters(true);
     }
 
-    public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener)
+    public void Initialize(SpawnData spawns, IBossSpawnListener bossSpawnListener, bool clearExistingSpawnNumbers = true)
     {
       spawnData = spawns;
       allPlayersDead = false;
@@ -101,10 +101,19 @@ namespace Assets.McCoy.Brawler
       foreach(var s in spawns)
       {
         int enemiesInSubstage = s.Value.StageBegan();
-        spawnNumbers[s.Value.Faction] = enemiesInSubstage;
+        if (clearExistingSpawnNumbers)
+        {
+          spawnNumbers[s.Value.Faction] = enemiesInSubstage;
+          initialSpawnNumbers[s.Value.Faction] = enemiesInSubstage;
+        }
+        else
+        {
+          spawnNumbers[s.Value.Faction] += enemiesInSubstage;
+          initialSpawnNumbers[s.Value.Faction] += enemiesInSubstage;
+        }
         Debug.Log($"Going to spawn {spawnNumbers[s.Value.Faction]} {s.Value.Faction}s into {UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound-1].substageName}");
-        initialSpawnNumbers[s.Value.Faction] = spawnNumbers[s.Value.Faction];
-        totalMonstersToSpawn += spawnNumbers[s.Value.Faction];
+        
+        totalMonstersToSpawn = spawnNumbers[s.Value.Faction];
         avgSpawnNumbers[s.Value.Faction] = s.Value.CalculateNumberSimultaneousBrawlerEnemies();
       }
       recalcAverageSpawns();
@@ -402,20 +411,16 @@ namespace Assets.McCoy.Brawler
         }
       }
 
-      return recalcRemainingMonsters(null);
+      return recalcRemainingMonsters();
     }
 
-    private int recalcRemainingMonsters(Dictionary<Factions, float> factionHealthLookup)
+    private int recalcRemainingMonsters()
     {
       int totalMonstersRemaining = 0;
       // get total remaining monsters from each mob
       foreach (var m in spawnNumbers)
       {
         totalMonstersRemaining += m.Value;
-        if(factionHealthLookup != null)
-        {
-          factionHealthLookup[m.Key] = ((float)m.Value) / ((float)initialSpawnNumbers[m.Key]);
-        }
       }
       return totalMonstersRemaining;
     }
@@ -463,7 +468,7 @@ namespace Assets.McCoy.Brawler
       UFE.FireAlert(message, null);
 
       float transitionTime = 4.0f; // total time before scene switches
-      if (UFE.config.currentRound != 3)
+      if (UFE.config.currentRound != UFE.config.selectedStage.stageInfo.substages.Count)
       {
         float fadeTime = .40f; // fade out time
         float fadeDelay = 2.0f; // time to wait before fading out
@@ -485,7 +490,7 @@ namespace Assets.McCoy.Brawler
           }
 
           UFE.NextBrawlerStage();
-          Initialize(spawnData, bossSpawnListener);
+          Initialize(spawnData, bossSpawnListener, false);
           player.worldTransform.position = FPVector.zero;
           UFE.cameraScript.MoveCameraToLocation(player.worldTransform.position.ToVector(), Vector3.zero, UFE.cameraScript.targetFieldOfView, 1000, player.gameObject);
           UFE.DelaySynchronizedAction(() => UFE.cameraScript.ReleaseCam(), .5f);

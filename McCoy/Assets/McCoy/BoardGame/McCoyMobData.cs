@@ -81,19 +81,19 @@ namespace Assets.McCoy.BoardGame
 
     public void StageEnded()
     {
-      float healthReduced = calculateHealthDelta(monstersKilledInStage, out float percentKilled, true);
+      float healthReduced = calculateHealthDelta(monstersKilledInStage, true);
       changeHealth(healthReduced);
     }
 
     public float HealthPreview(int monstersKilled)
     {
-      return Health + calculateHealthDelta(monstersKilled, out float percentKilled);
+      Debug.Log("calculating health preview for " + Faction + " with " + monstersKilled + " monsters killed");
+      return Health + calculateHealthDelta(monstersKilled);
     }
 
-    private float calculateHealthDelta(int monstersKilled, out float percentKilled, bool log = false)
+    private float calculateHealthDelta(int monstersKilled, bool log = false)
     {
-      percentKilled = ((float)MonstersPerSubstage) / ((float)monstersKilled);
-      float healthReduced = Health * percentKilled;
+      float healthReduced = monstersKilled / monsterHealthScaleFactor;
       if (log)
       {
         Debug.Log($"Health reduced from {Health} by {healthReduced}");
