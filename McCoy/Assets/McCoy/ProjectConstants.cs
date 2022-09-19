@@ -36,6 +36,21 @@ namespace Assets.McCoy
       }
     }
 
+    public static string SearchStateDisplay(SearchState s)
+    {
+      switch (s)
+      {
+        case SearchState.BarelySearched:
+          return "Barely Searched";
+        case SearchState.CompletelySearched:
+          return "Fully Searched";
+        case SearchState.Searching:
+          return "Search Continues";
+        default:
+          return "Search Nearly Complete";
+      }
+    }
+
     public const int NUM_BOARDGAME_PLAYERS = 4;
 
     public const string RESOURCES_DIRECTORY = "Assets/Resources/";

@@ -44,6 +44,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     bool OnlyStrongestMobsSearch = false;
 
+    List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
+    bool showUnnecessaryLines = false;
+
     Action weekendFinishedCallback = null;
 
     public List<MapNode> MapNodes
@@ -113,6 +116,12 @@ namespace Assets.McCoy.UI
     public Vector3 NodePosition(MapNode node)
     {
       return cityZoneLookup[node.NodeID].transform.position;
+    }
+
+    internal void ToggleLines()
+    {
+      showUnnecessaryLines = !showUnnecessaryLines;
+      updateUnnecessaryLinesState();
     }
 
     public void Weekend(Action callback)
@@ -441,7 +450,7 @@ namespace Assets.McCoy.UI
         selectedPlayerZone.ToggleHover(true);
 
         Vector3 playerLocPosition = selectedNode.transform.localPosition;// NodePosition(m);
-        cameraDestination = new Vector3(Mathf.Clamp(playerLocPosition.x, 8.8f, 20), 21, Mathf.Clamp(playerLocPosition.z + 16f, 36, 42));
+        cameraDestination = new Vector3(Mathf.Clamp(playerLocPosition.x, 6.5f, 21), 18, Mathf.Clamp(playerLocPosition.z + 18f, 39, 45));
         cameraOrigin = Camera.main.transform.position;
         cameraStartTime = Time.time;
         if (!lerpingCamera)
@@ -449,7 +458,7 @@ namespace Assets.McCoy.UI
           StartCoroutine(LerpCamera(.5f));
         }
       }
-
+      inactiveConnectionLines.Clear();
       foreach (var entry in lineLookup)
       {
         bool isSelectedNow = m == null ? false : entry.Key.Contains(m.NodeID);
@@ -467,10 +476,24 @@ namespace Assets.McCoy.UI
           }
           isSelectedNow &= foundOtherEnd;
         }
-        Color deselectColor = new Color(94f/255f, 94f/255f, 41f/255f);
-        Color selectColor = new Color(228f / 255f, 229f / 255f, 76f / 255f);
+        Color deselectColor = new Color(227f/255f, 99f/255f, 151f/255f);
+        Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f);
+        if(!isSelectedNow)
+        {
+          inactiveConnectionLines.Add(entry.Value);
+        }
         entry.Value.startColor = isSelectedNow ? selectColor : deselectColor;// Color.grey;
         entry.Value.endColor = isSelectedNow ? selectColor : deselectColor; // Color.grey;
+      }
+
+      updateUnnecessaryLinesState();
+    }
+
+    private void updateUnnecessaryLinesState()
+    {
+      foreach (var entry in lineLookup)
+      {
+        entry.Value.gameObject.SetActive(showUnnecessaryLines || !inactiveConnectionLines.Contains(entry.Value));
       }
     }
 

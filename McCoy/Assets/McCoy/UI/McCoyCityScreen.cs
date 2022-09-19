@@ -71,7 +71,7 @@ namespace Assets.McCoy.UI
       if (board == null)
       {
         board = Instantiate(boardContents);
-        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
+        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}:";
 
         StartCoroutine(cityBooySequence());
         Camera.main.orthographic = false;
@@ -113,6 +113,11 @@ namespace Assets.McCoy.UI
         }
       }
       selectedCharacterChanged();
+    }
+
+    public void ToggleLines()
+    {
+      board.ToggleLines();
     }
 
     private void endWeek()
@@ -216,6 +221,10 @@ namespace Assets.McCoy.UI
       selectedCharacterChanged();
     }
 
+    private void updateWeekText(string playerName)
+    {
+      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}: {playerName}";
+    }
     private void selectedCharacterChanged()
     {
       MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
@@ -223,8 +232,10 @@ namespace Assets.McCoy.UI
       playerIcon.sprite = playerIconIndexes[selectedPlayer-1];
       MapNode playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
 
-      selectedCharacterText.text = ProjectConstants.PlayerName(selectedPlayer);
+      selectedCharacterText.text = "";// ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
+
+      updateWeekText(ProjectConstants.PlayerName(selectedPlayer));
 
       selectedZonePanel.Initialize(playerLoc, null);
 

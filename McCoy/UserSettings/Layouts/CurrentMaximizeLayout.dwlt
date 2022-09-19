@@ -187,8 +187,8 @@ MonoBehaviour:
     y: 0
     width: 257
     height: 489.5
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 98440100
-      m_LastClickedID: 83096
-      m_ExpandedIDs: f4b8ecff4cb9ecff304401005a440100744401007e4401008644010098440100dc440100
+      m_SelectedIDs: a4af0100
+      m_LastClickedID: 110500
+      m_ExpandedIDs: 8ccce9ffa2d0e9fffcd4e9ff54d5e9fff0ae010038af01004aaf01005caf0100a4af0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -557,9 +557,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 604.5392, y: 489.72018, z: 113.06287}
+    m_Target: {x: 300.3072, y: -93.49786, z: 115.79162}
     speed: 2
-    m_Value: {x: 604.5392, y: 489.72018, z: 113.06287}
+    m_Value: {x: 300.3072, y: -93.49786, z: 115.79162}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -610,9 +610,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 742.7126
+    m_Target: 469.8324
     speed: 2
-    m_Value: 742.7126
+    m_Value: 469.8324
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 23060
+  controlID: 50740
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -837,23 +837,23 @@ MonoBehaviour:
       m_ResourceFile: 
   m_AssetTreeState:
     scrollPos: {x: 0, y: 1813.0002}
-    m_SelectedIDs: 98440100
+    m_SelectedIDs: a4af0100
     m_LastClickedID: 0
     m_ExpandedIDs: ffffffff0000000092660000aa6c0000987400009a740000bc790000188900001a8900001c8900001e89000020890000228900002489000026890000288900002a8900002c8900002e89000030890000328900003489000036890000388900003a8900003c8900003e89000040890000428900004489000046890000488900004a8900004c8900004e89000050890000528900005489000056890000588900005a8900005c8900005e89000060890000628900006489000066890000688900006a8900006c8900006e89000070890000728900007489000076890000788900007a8900007e89000080890000828900008489000086890000888900008a8900008e8900002c8a00002e8a00005e8a00007097000078970000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: McCoy3DCityScreen
-      m_OriginalName: McCoy3DCityScreen
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 26272
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_SearchString: 
@@ -864,8 +864,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 98440100
-    m_LastClickedInstanceID: 83096
+    m_SelectedInstanceIDs: a4af0100
+    m_LastClickedInstanceID: 110500
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -954,7 +954,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 69150
+  m_LastSelectedObjectID: 110500
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1031,8 +1031,8 @@ MonoBehaviour:
     y: 0
     width: 447.5
     height: 772
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}

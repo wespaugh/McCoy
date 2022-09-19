@@ -38,7 +38,7 @@ namespace Assets.McCoy.UI
     {
       this.node = node;
       NodeName.text = node.ZoneName;
-      SearchStatus.text = $"Search Progress: {node.SearchStatus()}";
+      SearchStatus.text = $"{SearchStateDisplay(node.SearchStatus())}";
       var mechanismLoc = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
       if (screen != null && mechanismLoc != null && mechanismLoc.SearchStatus() == SearchState.CompletelySearched)
       {
