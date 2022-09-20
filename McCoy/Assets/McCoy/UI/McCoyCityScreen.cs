@@ -120,6 +120,11 @@ namespace Assets.McCoy.UI
       board.ToggleLines();
     }
 
+    public void ToggleZoom()
+    {
+      board.ToggleZoom();
+    }
+
     private void endWeek()
     {
       McCoy.GetInstance().boardGameState.EndWeek();
@@ -130,6 +135,7 @@ namespace Assets.McCoy.UI
     private void weekendAnimationsFinished()
     {
       refreshBoardAndPanels();
+      board.ToggleZoom(true);
     }
 
     private void OnDestroy()
@@ -417,6 +423,7 @@ namespace Assets.McCoy.UI
       }
       else
       {
+        board.ToggleZoom(true);
         selectedCharacterChanged();
       }
     }
