@@ -89,6 +89,7 @@ namespace Assets.McCoy.UI
     private Vector3 cameraDestination;
     private bool lerpingCamera;
     private float cameraStartTime;
+    private bool zoomed = true;
 
     private void OnDestroy()
     {
@@ -118,10 +119,42 @@ namespace Assets.McCoy.UI
       return cityZoneLookup[node.NodeID].transform.position;
     }
 
-    internal void ToggleLines()
+    public void ToggleLines()
     {
       showUnnecessaryLines = !showUnnecessaryLines;
       updateUnnecessaryLinesState();
+    }
+
+    public void ToggleZoom()
+    {
+      ToggleZoom(!zoomed);
+    }
+
+    public void ToggleZoom(bool isZoomed)
+    {
+      if (zoomed != isZoomed)
+      {
+        zoomed = isZoomed;
+        if (zoomed)
+        {
+          if(selectedNode == null)
+          {
+            zoomed = false;
+            return;
+          }
+          centerCameraOnNode(selectedNode);
+        }
+        else
+        {
+          cameraOrigin = Camera.main.transform.position;
+          cameraDestination = cameraAnchor.transform.position;
+          cameraStartTime = Time.time;
+          if (!lerpingCamera)
+          {
+            StartCoroutine(LerpCamera(0.5f));
+          }
+        }
+      }
     }
 
     public void Weekend(Action callback)
@@ -432,6 +465,19 @@ namespace Assets.McCoy.UI
       mobIndicatorLookup[location.NodeID].AnimateCombat(faction);
     }
 
+    private void centerCameraOnNode(GameObject node)
+    {
+      Vector3 locPosition = selectedNode.transform.localPosition;// NodePosition(m);
+      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x, 6.5f, 21), 18, Mathf.Clamp(locPosition.z + 18f, 39, 45));
+      cameraOrigin = Camera.main.transform.position;
+      cameraStartTime = Time.time;
+      if (!lerpingCamera)
+      {
+        StartCoroutine(LerpCamera(.5f));
+      }
+    }
+
+
     public void SelectMapNode(MapNode m, List<MapNode> validConnections)
     {
       if(selectedPlayerZone != null && highlightedZone != selectedPlayerZone)
@@ -449,13 +495,9 @@ namespace Assets.McCoy.UI
         selectedPlayerZone = mobIndicatorLookup[m.NodeID];
         selectedPlayerZone.ToggleHover(true);
 
-        Vector3 playerLocPosition = selectedNode.transform.localPosition;// NodePosition(m);
-        cameraDestination = new Vector3(Mathf.Clamp(playerLocPosition.x, 6.5f, 21), 18, Mathf.Clamp(playerLocPosition.z + 18f, 39, 45));
-        cameraOrigin = Camera.main.transform.position;
-        cameraStartTime = Time.time;
-        if (!lerpingCamera)
+        if (zoomed)
         {
-          StartCoroutine(LerpCamera(.5f));
+          centerCameraOnNode(selectedNode);
         }
       }
       inactiveConnectionLines.Clear();
