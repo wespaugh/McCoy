@@ -21,6 +21,18 @@ namespace Assets.McCoy
 
     public static float MOB_ROUTING_HEALTH_THRESHOLD = 0.5f;
 
+    public static Color PURPLE = new Color(122f / 255f, 66f / 255f, 191f / 255f);
+    public static Color DARK_PURPLE = new Color(63f / 255f, 0f / 255f, 140f / 255f);
+
+    public static Color BLUE = new Color(150f / 255f, 154f / 255f, 198f / 255f);
+
+    public static Color YELLOW = new Color(228f / 255f, 229f / 255f, 76f);
+    public static Color DARK_YELLOW = new Color(94f/255f, 94f/255f, 41f/255f);
+
+    public static Color PINK = new Color(227f/255f, 99f/255f, 151f/255f);
+
+    public static Color GREEN = new Color(130f/255f, 209f / 255f, 115f / 255f);
+
     public static string FactionDisplayName(Factions f)
     {
       switch(f)

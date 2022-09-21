@@ -45,6 +45,11 @@ namespace Assets.McCoy.UI
     [SerializeField]
     GameObject debugEndWeekButton = null;
 
+    [SerializeField]
+    McCoyMapPanelListSectionHeader sectionHeaderPrefab = null;
+
+    List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
+
     int selectedPlayer = 1;
 
     McCoyCityBoardContents board = null;
@@ -188,6 +193,20 @@ namespace Assets.McCoy.UI
       }
 
       refreshBoardAndPanels();
+    }
+
+    private void initSectionHeaders()
+    {
+      if(sectionHeaders.Count != 0)
+      {
+        return;
+      }
+      for(int i = 0; i < 2; ++i)
+      {
+        McCoyMapPanelListSectionHeader header = Instantiate(sectionHeaderPrefab, cityPanelsRoot);
+        header.Initialize(i == 0);
+        sectionHeaders.Add(header);
+      }
     }
 
     private void refreshBoardAndPanels()
@@ -344,7 +363,11 @@ namespace Assets.McCoy.UI
 
       List<MapNode> validConnections = new List<MapNode>();
 
+      initSectionHeaders();
+
       int siblingIndex = 0;
+      sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
+      bool iteratingThroughConnectedNodes = true;
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
@@ -355,6 +378,12 @@ namespace Assets.McCoy.UI
             validConnections.Add(connection as MapNode);
             isConnected = true;
           }
+        }
+        // when we get to the first disconnected node, insert the header for disconnected nodes
+        if(iteratingThroughConnectedNodes && !isConnected)
+        {
+          iteratingThroughConnectedNodes = false;
+          sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
         }
         zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
