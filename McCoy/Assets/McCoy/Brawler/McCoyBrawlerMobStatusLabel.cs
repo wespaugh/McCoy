@@ -17,7 +17,6 @@ namespace Assets.McCoy.Brawler
       foreach (var kills in killDict)
       {
         float healthPreview = kills.Key.HealthPreview(kills.Value);
-        Debug.Log("HealthPreview for " + kills.Key.Faction + ": " + healthPreview);
         status += $"{ProjectConstants.FactionDisplayName(kills.Key.Faction)}: {labelForHealth(healthPreview)}\n";
       }
       mobStatus.text = status;

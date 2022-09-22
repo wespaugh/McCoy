@@ -127,7 +127,10 @@ namespace Assets.McCoy.UI
 
     public void ToggleZoom()
     {
-      board.ToggleZoom();
+      if (!mobRouting)
+      {
+        board.ToggleZoom();
+      }
     }
 
     private void endWeek()
@@ -140,7 +143,10 @@ namespace Assets.McCoy.UI
     private void weekendAnimationsFinished()
     {
       refreshBoardAndPanels();
-      board.ToggleZoom(true);
+      if (!mobRouting)
+      {
+        board.ToggleZoom(true);
+      }
     }
 
     private void OnDestroy()
@@ -225,7 +231,6 @@ namespace Assets.McCoy.UI
       {
         MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
         loc.HasMechanism = true;
-        Debug.Log("Setting Mechanism to location " + loc.ZoneName);
         McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation = loc;
       }
 
@@ -276,7 +281,42 @@ namespace Assets.McCoy.UI
       }
 
       List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
-      sortedNodes.Sort((x, y) =>
+      sortedNodes.Sort((x, y) => sortMapNodes(x, y, playerLoc, mechanismFound, minDistanceToMechanism));
+      
+      List<MapNode> validConnections = new List<MapNode>();
+
+      initSectionHeaders();
+
+      int siblingIndex = 0;
+      sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
+      bool iteratingThroughConnectedNodes = true;
+      foreach (MapNode node in sortedNodes)
+      {
+        bool isConnected = false;
+        foreach (var connection in playerLoc.connectedNodes)
+        {
+          if (connection.NodeID == node.NodeID && (!mechanismFound || node.DistanceToMechanism <= minDistanceToMechanism))
+          {
+            validConnections.Add(connection as MapNode);
+            isConnected = true;
+          }
+        }
+        // when we get to the first disconnected node, insert the header for disconnected nodes
+        if(iteratingThroughConnectedNodes && !isConnected)
+        {
+          iteratingThroughConnectedNodes = false;
+          sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
+        }
+        zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
+        zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
+      }
+
+      board.SelectMapNode(playerLoc, validConnections);
+      board.SetHoverNode(null);
+    }
+
+    private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
+    {
       {
         bool xIsConnected = false;
         bool yIsConnected = false;
@@ -286,7 +326,7 @@ namespace Assets.McCoy.UI
           {
             xIsConnected = true;
           }
-          if(y.NodeID == connection.NodeID)
+          if (y.NodeID == connection.NodeID)
           {
             yIsConnected = true;
           }
@@ -325,16 +365,16 @@ namespace Assets.McCoy.UI
         else
         {
           // y is connected, y has priority
-          if(yIsConnected)
+          if (yIsConnected)
           {
             return 1;
           }
           // neither y or x is connected,
           // x is close enough
-          if(xIsCloseEnough)
+          if (xIsCloseEnough)
           {
             // y close enough, equivalent
-            if(yIsCloseEnough)
+            if (yIsCloseEnough)
             {
               return 0;
             }
@@ -348,7 +388,7 @@ namespace Assets.McCoy.UI
           else
           {
             // x not close enough, y close enough, y has priority
-            if(yIsCloseEnough)
+            if (yIsCloseEnough)
             {
               return 1;
             }
@@ -359,38 +399,7 @@ namespace Assets.McCoy.UI
             }
           }
         }
-      });
-
-      List<MapNode> validConnections = new List<MapNode>();
-
-      initSectionHeaders();
-
-      int siblingIndex = 0;
-      sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
-      bool iteratingThroughConnectedNodes = true;
-      foreach (MapNode node in sortedNodes)
-      {
-        bool isConnected = false;
-        foreach (var connection in playerLoc.connectedNodes)
-        {
-          if (connection.NodeID == node.NodeID && (!mechanismFound || node.DistanceToMechanism <= minDistanceToMechanism))
-          {
-            validConnections.Add(connection as MapNode);
-            isConnected = true;
-          }
-        }
-        // when we get to the first disconnected node, insert the header for disconnected nodes
-        if(iteratingThroughConnectedNodes && !isConnected)
-        {
-          iteratingThroughConnectedNodes = false;
-          sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
-        }
-        zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
-        zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
       }
-
-      board.SelectMapNode(playerLoc, validConnections);
-      board.SetHoverNode(null);
     }
 
     private void initPlayerStartLocations()

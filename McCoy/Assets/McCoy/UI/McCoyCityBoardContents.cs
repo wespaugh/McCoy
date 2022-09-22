@@ -89,7 +89,7 @@ namespace Assets.McCoy.UI
     private Vector3 cameraDestination;
     private bool lerpingCamera;
     private float cameraStartTime;
-    private bool zoomed = true;
+    private bool zoomed = false;
 
     private void OnDestroy()
     {
