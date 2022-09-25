@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerStation_1
   m_EditorClassIdentifier: 
   substageName: Entrance
-  stagePrefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+  stagePrefab: {fileID: 2758233175100111935, guid: 566f5a923902f70418555d191931a442,
     type: 3}
   boundaries:
   - unitXStart: -8
@@ -32,4 +32,4 @@ MonoBehaviour:
       yIntercept: -1
   holes: []
   leftBoundary: -8
-  rightBoundary: 14
+  rightBoundary: 50

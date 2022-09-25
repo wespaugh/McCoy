@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerStation_3
   m_EditorClassIdentifier: 
   substageName: PowerStation Exit
-  stagePrefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+  stagePrefab: {fileID: 2758233175100111935, guid: 566f5a923902f70418555d191931a442,
     type: 3}
   boundaries:
   - unitXStart: -8
