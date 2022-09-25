@@ -119,7 +119,7 @@ Transform:
   - {fileID: 4007850102812052681}
   - {fileID: 3512796141385094213}
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2339586843444817353
 GameObject:
@@ -152,6 +152,7 @@ Transform:
   - {fileID: 186730404370297497}
   - {fileID: 63176755211112693}
   - {fileID: 3374597923719842419}
+  - {fileID: 8694492410415270037}
   - {fileID: 7859064809194133391}
   - {fileID: 8553654132632466011}
   - {fileID: 134494002911952369}
@@ -291,16 +292,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
-  unitWidth: 4
+  unitSize: 4
   speed: 0.3
+  autoScrollSpeed: 5
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
-  camMinX: 0
+  horizontal: 1
+  camMinPos: 0
   firstPosition: 0
+  autoScrollOffset: 0
   sprites:
   - {fileID: 21300000, guid: 30107b9dfee44894aa80edcaac9b8dbd, type: 3}
   - {fileID: 21300000, guid: f235cbfea24b61f489f81632d0be01fa, type: 3}
   - {fileID: 21300000, guid: 1302b4853deaa864c85adfa942a7be8a, type: 3}
+--- !u!1 &3759813623437782992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8694492410415270037}
+  - component: {fileID: 8142708387462842301}
+  m_Layer: 0
+  m_Name: elevatorTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8694492410415270037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3759813623437782992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.3, z: 35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6195558373991489320}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8142708387462842301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3759813623437782992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798b03403186a7b419acee6e042c1c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
+    type: 3}
+  unitSize: 0.5
+  speed: 0
+  autoScrollSpeed: 5
+  cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
+  horizontal: 0
+  camMinPos: 0
+  firstPosition: 0
+  autoScrollOffset: 0
+  sprites:
+  - {fileID: 21300000, guid: 2f6191843f7e8a748ad27534a3778634, type: 3}
 --- !u!1 &3941288083424382156
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +485,7 @@ Transform:
   - {fileID: 3335713826782932901}
   - {fileID: 6934864352091537749}
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3878773000194598438
 MonoBehaviour:
@@ -440,12 +501,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 4385074880600568432, guid: 78e9327a9cd950743ae6f1bb43608128,
     type: 3}
-  unitWidth: 7.3142858
+  unitSize: 0
   speed: 1
+  autoScrollSpeed: 0
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
-  camMinX: 0
+  horizontal: 1
+  camMinPos: 0
   firstPosition: 0
+  autoScrollOffset: 0
 --- !u!1 &4177315001254267955
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,12 +556,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 6520915763857439236, guid: 0eeb23636ee0fae45b60269ee3d5b356,
     type: 3}
-  unitWidth: 14.6285715
-  speed: 0
+  unitSize: 14.62857
+  speed: 0.1
+  autoScrollSpeed: 5
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
-  camMinX: 0
+  horizontal: 1
+  camMinPos: 0
   firstPosition: 0
+  autoScrollOffset: 0
 --- !u!1 &4223605453783703468
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +679,7 @@ Transform:
   m_Children:
   - {fileID: 8632805354486450783}
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5952149159461107360
 GameObject:
@@ -644,7 +711,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4874828982281049411
 SpriteRenderer:
@@ -812,7 +879,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4585747758086400145
 SpriteRenderer:
@@ -912,12 +979,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
-  unitWidth: 4
+  unitSize: 4
   speed: 0.6
+  autoScrollSpeed: 5
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
-  camMinX: 0
+  horizontal: 1
+  camMinPos: 0
   firstPosition: 0
+  autoScrollOffset: 0
   sprites:
   - {fileID: 21300000, guid: 30107b9dfee44894aa80edcaac9b8dbd, type: 3}
   - {fileID: 21300000, guid: f235cbfea24b61f489f81632d0be01fa, type: 3}
@@ -952,7 +1022,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6195558373991489320}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5176908159572604784
 SpriteRenderer:

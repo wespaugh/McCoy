@@ -11,7 +11,7 @@ namespace Assets.McCoy.Brawler.Stages
     public GameObject contents = null;
 
     [SerializeField]
-    private float unitWidth;
+    private float unitSize;
 
     [SerializeField]
     // zero remains entirely static and unmoving
@@ -19,9 +19,12 @@ namespace Assets.McCoy.Brawler.Stages
     float speed = 1.0f;
 
     [SerializeField]
+    float autoScrollSpeed = 0.0f;
+
+    [SerializeField]
     Vector3 cameraPos;
 
-    float cameraWidth;
+    float cameraSize;
 
     // the index l-r to *start* positioning chunks at
     int firstIndex = 0;
@@ -33,26 +36,40 @@ namespace Assets.McCoy.Brawler.Stages
     [SerializeField]
     int chunkIndex = 0;
 
+    [SerializeField]
+    bool horizontal = true;
+
     // debug numbers
     [SerializeField]
-    float camMinX;
+    float camMinPos;
     [SerializeField]
     float firstPosition = 0.0f;
+    [SerializeField]
+    float autoScrollOffset = 0.0f;
+
+    private float scrollStartTime;
 
     private void Awake()
     {
+      scrollStartTime = Time.time;
 
-      cameraWidth = Camera.main.aspect * Camera.main.orthographicSize * 2;
-      int numInstancesNeeded = ((int)(cameraWidth / unitWidth)) + 3;
+      cameraSize = Camera.main.aspect * Camera.main.orthographicSize * 2;
+      if (!horizontal)
+      {
+        cameraSize = cameraSize / Camera.main.aspect; // cameraSize/aspect = height
+      }
+      int numInstancesNeeded = ((int)(cameraSize / unitSize)) + 3;
 
       for (int i = 0; i < numInstancesNeeded; ++i)
       {
         var next = Instantiate(contents, transform);
         instances.Add(next);
-        float index = Camera.main.transform.localPosition.x * (1.0f - speed) + (next.transform.localScale.x * unitWidth * i);
-        float chunkWidth = next.transform.localScale.x * unitWidth;
+        /*
+        float index = Camera.main.transform.localPosition.x * (1.0f - speed) + (next.transform.localScale.x * unitSize * i);
+        float chunkWidth = next.transform.localScale.x * unitSize;
         // Debug.Log("in initialization, item at " + index + " has a chunk index of " + iIndex);
         ItemMoved(next, chunkIndex+i);
+        */
       }
     }
     protected virtual void ItemMoved(GameObject item, int index)
@@ -64,21 +81,30 @@ namespace Assets.McCoy.Brawler.Stages
     {
       cameraPos = Camera.main.transform.localPosition;
       int i = 0;
-      float chunkWidth = contents.transform.localScale.x * unitWidth;
-      camMinX = cameraPos.x;
-
-      firstPosition = camMinX * (1.0f - speed);
+      float chunkSize = horizontal ? contents.transform.localScale.x : contents.transform.localScale.y;
+      chunkSize *= unitSize;
+      autoScrollOffset = ((Time.time - scrollStartTime) * autoScrollSpeed) * speed;
+      camMinPos = horizontal ? cameraPos.x : cameraPos.y; 
+      camMinPos -= autoScrollOffset;
+      firstPosition = camMinPos * (1.0f - speed);
       chunkIndex = 0;
 
-      while (firstPosition + unitWidth <= camMinX)
+      while (firstPosition + unitSize <= camMinPos + autoScrollOffset)
       {
         ++chunkIndex;
-        firstPosition += unitWidth;
+        firstPosition += unitSize;
       }
 
       foreach (var go in instances)
       {
-        go.transform.position = new Vector3(firstPosition+(chunkWidth*i) - (cameraWidth / 2.0f) + unitWidth / 2, go.transform.position.y, go.transform.position.z);
+        if (horizontal)
+        {
+          go.transform.position = new Vector3(firstPosition + (chunkSize * i) - (cameraSize / 2.0f) + unitSize / 2, go.transform.position.y, go.transform.position.z);
+        }
+        else
+        {
+          go.transform.position = new Vector3(go.transform.position.x, firstPosition + (chunkSize * i) - (cameraSize / 2.0f) + unitSize / 2, go.transform.position.z);
+        }
         ItemMoved(go, chunkIndex+i);
         ++i;
       }
