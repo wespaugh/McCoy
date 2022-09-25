@@ -976,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 960}
+  m_AnchoredPosition: {x: 0, y: 960.06506}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3030632364312417155
@@ -2780,6 +2780,7 @@ MonoBehaviour:
   debugEndWeekButton: {fileID: 1578927419627850848}
   sectionHeaderPrefab: {fileID: 9129317705743122466, guid: c802d1c574d8be6408b03b869b36797e,
     type: 3}
+  mapMusic: {fileID: 8300000, guid: b8933ff0882628b4b8d636facbef7903, type: 3}
   bottomUIElements:
   - {fileID: 3000745687599416458}
   - {fileID: 6762451373546365189}

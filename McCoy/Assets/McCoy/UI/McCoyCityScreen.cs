@@ -48,6 +48,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     McCoyMapPanelListSectionHeader sectionHeaderPrefab = null;
 
+    [SerializeField]
+    AudioClip mapMusic = null;
+
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
     int selectedPlayer = 1;
@@ -81,6 +84,7 @@ namespace Assets.McCoy.UI
         StartCoroutine(cityBooySequence());
         Camera.main.orthographic = false;
       }
+      UFE.PlayMusic(mapMusic);
     }
 
     private IEnumerator cityBooySequence()
@@ -473,7 +477,7 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
-      board.SelectMapNode(null, null);
+      board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
       MapNode initialLocation = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
       McCoy.GetInstance().boardGameState.SetPlayerLocation(selectedPlayer, node);

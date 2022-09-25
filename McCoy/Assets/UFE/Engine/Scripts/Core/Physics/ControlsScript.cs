@@ -4190,6 +4190,7 @@ public class ControlsScript : MonoBehaviour
 
     if (isDead)
     {
+      KillCurrentMove();
       blinksRemaining = 5;
       UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
     }

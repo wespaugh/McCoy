@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mageCharacters:
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
-  - {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}
   minotaurCharacters:
   - {fileID: 11400000, guid: 76fa29d052e047b4aa3c84ac4f0ed6c9, type: 2}
   militiaCharacters:

@@ -30,7 +30,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
     prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
       type: 3}
-    music: {fileID: 0}
+    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
@@ -996,7 +996,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow
@@ -1248,7 +1248,7 @@ MonoBehaviour:
     screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
     prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
       type: 3}
-    music: {fileID: 0}
+    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
