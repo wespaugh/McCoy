@@ -123,6 +123,7 @@ namespace Assets.McCoy.Brawler
 
       int index = UnityEngine.Random.Range(0, collection.Count);
       var enu = collection.Values.GetEnumerator();
+      enu.MoveNext();
       if (index > 0)
       {
         for (int i = 0; i < index; ++i)
