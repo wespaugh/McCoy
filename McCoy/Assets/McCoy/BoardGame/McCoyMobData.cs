@@ -87,7 +87,6 @@ namespace Assets.McCoy.BoardGame
 
     public float HealthPreview(int monstersKilled)
     {
-      Debug.Log("calculating health preview for " + Faction + " with " + monstersKilled + " monsters killed");
       return Health + calculateHealthDelta(monstersKilled);
     }
 
@@ -96,7 +95,7 @@ namespace Assets.McCoy.BoardGame
       float healthReduced = monstersKilled / monsterHealthScaleFactor;
       if (log)
       {
-        Debug.Log($"Health reduced from {Health} by {healthReduced}");
+        Debug.Log($"{monstersKilled} {Faction} killed. Health reduced from {Health} by {healthReduced}");
       }
       return -healthReduced;
     }

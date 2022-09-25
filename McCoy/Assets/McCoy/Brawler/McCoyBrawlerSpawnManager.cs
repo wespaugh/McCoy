@@ -157,6 +157,17 @@ namespace Assets.McCoy.Brawler
       UFE.config.currentRound = UFE.config.selectedStage.stageInfo.substages.Count;
       // call all the things killed
       List<Factions> allKeys = new List<Factions>(spawnNumbers.Keys);
+      for (int i = UFE.config.currentRound+1; i <= UFE.config.selectedStage.stageInfo.substages.Count; ++i)
+      {
+        foreach (var spawnDatum in spawnData)
+        {
+          initialSpawnNumbers[spawnDatum.Key] = initialSpawnNumbers[spawnDatum.Key] + (int)spawnDatum.Value.CalculateNumberOfBrawlerEnemies();
+        }
+      }
+      foreach(var spawnDatum in spawnData)
+      {
+        spawnDatum.Value.MonstersKilled(1000000);
+      }
       foreach(var spawnNumber in allKeys)
       {
         spawnNumbers[spawnNumber] = 0;

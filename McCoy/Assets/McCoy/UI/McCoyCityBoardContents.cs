@@ -89,7 +89,7 @@ namespace Assets.McCoy.UI
     private Vector3 cameraDestination;
     private bool lerpingCamera;
     private float cameraStartTime;
-    private bool zoomed = true;
+    private bool zoomed = false;
 
     private void OnDestroy()
     {
@@ -468,7 +468,7 @@ namespace Assets.McCoy.UI
     private void centerCameraOnNode(GameObject node)
     {
       Vector3 locPosition = selectedNode.transform.localPosition;// NodePosition(m);
-      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x, 6.5f, 21), 18, Mathf.Clamp(locPosition.z + 18f, 39, 45));
+      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x+3f, 6.5f, 24), 18, Mathf.Clamp(locPosition.z + 18f, 39, 45));
       cameraOrigin = Camera.main.transform.position;
       cameraStartTime = Time.time;
       if (!lerpingCamera)
