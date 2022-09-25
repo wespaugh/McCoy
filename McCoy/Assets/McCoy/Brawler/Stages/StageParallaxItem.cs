@@ -86,7 +86,14 @@ namespace Assets.McCoy.Brawler.Stages
       autoScrollOffset = ((Time.time - scrollStartTime) * autoScrollSpeed) * speed;
       camMinPos = horizontal ? cameraPos.x : cameraPos.y; 
       camMinPos -= autoScrollOffset;
-      firstPosition = camMinPos * (1.0f - speed);
+      if (!horizontal)//autoScrollSpeed != 0f)
+      {
+        firstPosition = -autoScrollSpeed * (Time.time - scrollStartTime);
+      }
+      else
+      {
+        firstPosition = camMinPos * (1.0f - speed);
+      }
       chunkIndex = 0;
 
       while (firstPosition + unitSize <= camMinPos + autoScrollOffset)

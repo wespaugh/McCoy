@@ -142,7 +142,7 @@ namespace Assets.McCoy.Brawler
         cheatWin();
         return;
       }
-      if (! bossRemains && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.GetLevelExit()))
+      if (! bossRemains && !inCombatZone && (allEnemiesDefeated || player.worldTransform.position.x >= UFE.config.selectedStage.GetLevelExit()))
       {
         if(endCondition == SubstageExitCondition.None)
         {

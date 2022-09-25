@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a98cd6ca1bdee840a9f245fe62ca326, type: 3}
+  m_Name: PowerStation_1
+  m_EditorClassIdentifier: 
+  substageName: Entrance
+  stagePrefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+    type: 3}
+  boundaries:
+  - unitXStart: -8
+    upperBound:
+      slope: 0
+      yIntercept: 2.5
+    lowerBound:
+      slope: -0.5
+      yIntercept: 1
+  - unitXStart: -4
+    upperBound:
+      slope: 0
+      yIntercept: 2.5
+    lowerBound:
+      slope: 0
+      yIntercept: -1
+  holes: []
+  leftBoundary: -8
+  rightBoundary: 14
