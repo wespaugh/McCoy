@@ -211,5 +211,13 @@ namespace Assets.McCoy.BoardGame
       Health = Math.Max(Health, otherMob.Health);
       routedLocations = otherMob.routedLocations;
     }
+
+    public McCoyMobData Split()
+    {
+      int newXP = (int) Math.Round((float)XP / 2f);
+      XP = newXP;
+      McCoyMobData retVal = new McCoyMobData(Faction, newXP, (int) Health);
+      return retVal;
+    }
   }
 }

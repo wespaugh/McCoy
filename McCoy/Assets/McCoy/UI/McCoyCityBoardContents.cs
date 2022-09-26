@@ -259,7 +259,7 @@ namespace Assets.McCoy.UI
               }
             }
             ++mobsMoving;
-            mob.FinishedRouting();
+            // mob.FinishedRouting();
             AnimateMobMove(mob.Faction, route.Key, conn, 1.0f, WeekendMobRouted);
           }
         }
@@ -271,12 +271,115 @@ namespace Assets.McCoy.UI
       --mobsMoving;
       if(mobsMoving == 0)
       {
-        advanceDoomsdayClock();
-        UpdateNodes();
-        if(weekendFinishedCallback != null)
+        VoluntaryMovementPhase();
+      }
+    }
+
+    private void VoluntaryMovementPhase()
+    {
+      if (mobsMoving == 0)
+      {
+        List<Tuple<McCoyMobData, MapNode>> mobsThatCanStillMove = new List<Tuple<McCoyMobData, MapNode>>();
+
+        foreach(var mapNode in mapNodes)
         {
-          weekendFinishedCallback();
+          foreach(McCoyMobData m in mapNode.Mobs)
+          {
+            if(!m.IsRouted)
+            {
+              mobsThatCanStillMove.Add(new Tuple<McCoyMobData, MapNode>(m, mapNode));
+            }
+          }
         }
+
+        while(mobsThatCanStillMove.Count > 0)
+        {
+          int idx = UnityEngine.Random.Range(0, mobsThatCanStillMove.Count);
+          Tuple<McCoyMobData, MapNode> nodePair = mobsThatCanStillMove[idx];
+          mobsThatCanStillMove.RemoveAt(idx);
+          decideMobMove(nodePair);
+        }
+
+        if(mobsMoving == 0)
+        {
+          finishWeekEnd();
+        }
+      }
+    }
+
+    private void decideMobMove(Tuple<McCoyMobData, MapNode> nodePair)
+    {
+      MapNode moveTarget = null;
+      McCoyMobData moveSubject = nodePair.Item1;
+
+      foreach(var connection in nodePair.Item2.connectedNodes)
+      {
+        MapNode neighbor = connection as MapNode;
+        // if there's an adjacent place we can divide into, divide into
+        if(neighbor.Mobs.Count == 0 && nodePair.Item1.XP >= 8)
+        {
+          moveTarget = neighbor;
+          moveSubject = nodePair.Item1.Split();
+          break;
+        }
+        bool shouldMove = true;
+        foreach (var mob in neighbor.Mobs)
+        {
+          // if there's already a mob of the same faction or if there is a faction too strong to challenge, bail
+          if(mob.Faction == nodePair.Item1.Faction || mob.XP * 2 >= nodePair.Item1.XP)
+          {
+            shouldMove = false;
+            break;
+          }
+        }
+        if(shouldMove)
+        {
+          moveTarget = neighbor;
+          break;
+        }
+      }
+      if(moveTarget != null)
+      {
+        ++mobsMoving;
+        bool hideOriginal = false;
+        // if the mob is moving (rather than being created from a split)
+        if(moveSubject == nodePair.Item1)
+        {
+          nodePair.Item2.Mobs.Remove(moveSubject);
+          hideOriginal = true;
+        }
+        moveTarget.Mobs.Add(moveSubject);
+        AnimateMobMove(moveSubject.Faction, nodePair.Item2, moveTarget, 10.5f, voluntaryMoveFinished,hideOriginal);
+      }
+    }
+
+    private void voluntaryMoveFinished()
+    {
+      --mobsMoving;
+      if(mobsMoving == 0)
+      {
+        finishWeekEnd();
+      }
+    }
+
+    private void finishWeekEnd()
+    {
+      foreach(var m in MapNodes)
+      {
+        foreach(var mob in m.Mobs)
+        {
+          if(mob.IsRouted)
+          {
+            mob.FinishedRouting();
+          }
+        }
+      }
+
+      advanceDoomsdayClock();
+      UpdateNodes();
+      if (weekendFinishedCallback != null)
+      {
+        weekendFinishedCallback();
       }
     }
 
