@@ -12,6 +12,8 @@ namespace Assets.McCoy.UI
 {
   public class McCoyCityScreen : UFEScreen
   {
+    float stingerDuration = 2.5f;
+
     [SerializeField]
     GameObject ZonePanelPrefab = null;
 
@@ -93,10 +95,36 @@ namespace Assets.McCoy.UI
       initMapPanels();
       checkForMobRouting();
 
+      float stingerTime;
+      if(mobRouting)
+      {
+        board.showStinger(McCoyStinger.StingerTypes.EnemiesRouted);
+        stingerTime = Time.time;
+        while (Time.time < stingerTime + stingerDuration)
+        {
+          yield return null;
+        }
+      }
+
       while(mobRouting)
       {
         yield return null;
       }
+
+      if (McCoy.GetInstance().boardGameState.IsEndOfWeek)
+      {
+        board.showStinger(McCoyStinger.StingerTypes.WeekEnded);
+      }
+      else
+      {
+        board.showStinger(McCoyStinger.StingerTypes.SelectZone);
+      }
+      stingerTime = Time.time;
+      while (Time.time < stingerTime + stingerDuration)
+      {
+        yield return null;
+      }
+
       initSelectedCharacter();
     }
 
@@ -147,6 +175,18 @@ namespace Assets.McCoy.UI
     private void weekendAnimationsFinished()
     {
       refreshBoardAndPanels();
+      StartCoroutine(weekendStingerFinished());
+    }
+    private IEnumerator weekendStingerFinished()
+    {
+      board.showStinger(McCoyStinger.StingerTypes.SelectZone);
+
+      float stingerStartTime = Time.time;
+      while(Time.time < stingerStartTime + stingerDuration)
+      {
+        yield return null;
+      }
+
       if (!mobRouting)
       {
         board.ToggleZoom(true);

@@ -52,10 +52,12 @@ namespace Assets.McCoy.UI
         spawnerInitialized = true;
         initSpawner();
       }
+      worldUI.StageBegan();
     }
 
     protected override void OnGameEnd(ControlsScript winner, ControlsScript loser)
     {
+      //worldUI.StageEnded();
     }
 
     private void Awake()
@@ -123,9 +125,21 @@ namespace Assets.McCoy.UI
 
     protected override void SetAlertMessage(string msg)
     {
-      alertText.text = msg;
-
-      UFE.DelaySynchronizedAction(hideAlertText, 2.0f);
+      if(msg == "stinger_stageover_escaped")
+      {
+        worldUI.StageEnded(McCoyStinger.StingerTypes.Escaped);
+      }
+      else if(msg == "stinger_stageover_bossdefeated")
+      {
+        worldUI.StageEnded(McCoyStinger.StingerTypes.BossDefeated);
+      }
+      else if(msg == "stinger_stageover_stagecleared")
+      {
+        worldUI.StageEnded(McCoyStinger.StingerTypes.StageCleared);
+      }
+      return;
+      //alertText.text = msg;
+      //UFE.DelaySynchronizedAction(hideAlertText, 2.0f);
     }
 
     private void hideAlertText()

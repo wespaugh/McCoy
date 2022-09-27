@@ -462,14 +462,14 @@ namespace Assets.McCoy.Brawler
 
       commitStageResultsToMobs();
 
-      string message = "All Dudes Beaten!";
+      string message = "stinger_stageover_stagecleared";
       switch(endCondition)
       {
         case SubstageExitCondition.BossDefeated:
-          message = $"Defeated {bossName}!";
+          message = $"stinger_stageover_bossdefeated";
           break;
         case SubstageExitCondition.Escaped:
-          message = $"Howl Another Day!";
+          message = $"stinger_stageover_escaped";
           break;
         case SubstageExitCondition.Cheat:
           message = $"Levelskip";

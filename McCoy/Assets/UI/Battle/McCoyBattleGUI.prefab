@@ -146,6 +146,7 @@ MonoBehaviour:
   bossName: {fileID: 6588300944248249767}
   playerSortOrder: 0
   mobStatusLabel: {fileID: 463535839587972670}
+  stinger: {fileID: 0}
 --- !u!1 &100032
 GameObject:
   m_ObjectHideFlags: 0
