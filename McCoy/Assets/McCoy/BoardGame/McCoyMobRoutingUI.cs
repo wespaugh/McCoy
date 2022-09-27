@@ -91,20 +91,21 @@ namespace Assets.McCoy.BoardGame
       alert.text = $"Mobs Routed out of {zoneMobs[zoneIndex].Item1.ZoneName}!";
       if (fromCombo)
       {
-        instructions.text = $"Follow-Up Attack! Pick a zone and route {ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
+        instructions.text = $"Follow-Up Attack! Pick a zone and route {FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
       }
       else
       { 
-        instructions.text = $"{ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
+        instructions.text = $"{FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
       }
 
-      switch(zoneMobs[zoneIndex].Item2.Faction)
+
+      switch (zoneMobs[zoneIndex].Item2.Faction)
       {
         case Factions.Mages:
           factionIconAnimator.SetInteger(factionAnimatorParam, 2);
           break;
         case Factions.AngelMilitia:
-          factionIconAnimator.SetInteger(factionAnimatorParam, 4);
+          factionIconAnimator.SetInteger(factionAnimatorParam, 3);
           break;
         case Factions.CyberMinotaurs:
           factionIconAnimator.SetInteger(factionAnimatorParam, 4);
