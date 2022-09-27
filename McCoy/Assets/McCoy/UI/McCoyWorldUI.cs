@@ -17,6 +17,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     McCoyProgressBar enemyHud;
 
+    [SerializeField]
+    McCoyStinger stinger = null;
+
     float enemyHPExpiryTime;
     private Action uiDisappearedCallback;
     const float enemyHealthDuration = 3.0f;
@@ -87,6 +90,15 @@ namespace Assets.McCoy.UI
     {
       this.boss = null;
       bossHud.FadeOut();
+    }
+
+    public void StageBegan()
+    {
+      stinger.RunStinger(McCoyStinger.StingerTypes.RoundStart);
+    }
+    public void StageEnded(McCoyStinger.StingerTypes stingerType)
+    {
+      stinger.RunStinger(stingerType);
     }
   }
 }

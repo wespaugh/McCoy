@@ -44,6 +44,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     bool OnlyStrongestMobsSearch = false;
 
+    [SerializeField]
+    McCoyStinger stinger = null;
+
     List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
     bool showUnnecessaryLines = false;
 
@@ -157,10 +160,25 @@ namespace Assets.McCoy.UI
       }
     }
 
+    public void showStinger(McCoyStinger.StingerTypes stingerType)
+    {
+      stinger.RunStinger(stingerType);
+    }
+
     public void Weekend(Action callback)
     {
-      this.weekendFinishedCallback = callback;
+      weekendFinishedCallback = callback;
+      StartCoroutine(runWeekend());
+    }
+    private IEnumerator runWeekend()
+    {
+      float startTime = Time.time;
+      while (Time.time < startTime + 2.5f)
+      {
+        yield return null;
+      }
       toRoute.Clear();
+
       foreach(MapNode node in mapNodes)
       {
         List<McCoyMobData> mobsDefeated = new List<McCoyMobData>();
