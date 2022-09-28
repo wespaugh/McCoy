@@ -52,6 +52,7 @@ namespace Assets.McCoy.BoardGame
       this.board = board;
       routingFinishedCallback = routingFinished;
       int totalCount = 0;
+
       foreach (var zone in routedMobsInMapNodes)
       {
         totalCount += zone.Value.Count;
@@ -98,6 +99,8 @@ namespace Assets.McCoy.BoardGame
         instructions.text = $"{FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
       }
 
+      List<MapNode> validConnections = this.validConnections();
+      board.SelectMapNode(zoneMobs[zoneIndex].Item1, validConnections);
 
       switch (zoneMobs[zoneIndex].Item2.Faction)
       {
@@ -112,9 +115,8 @@ namespace Assets.McCoy.BoardGame
           break;
       }
 
-      foreach(var mapNode in validConnections())
+      foreach(var mapNode in validConnections)
       {
-        Debug.Log($"{zoneMobs[zoneIndex].Item1.ZoneName} had a connected node {(mapNode as MapNode).ZoneName}");
         var zoneSelect = Instantiate(zoneSelectPrefab, zoneSelectRoot);
         zoneSelect.Initialize(zoneMobs[zoneIndex].Item1, mapNode as MapNode, zoneMobs[zoneIndex].Item2, mobRouted);
         zoneSelectObjects.Add(zoneSelect.gameObject);

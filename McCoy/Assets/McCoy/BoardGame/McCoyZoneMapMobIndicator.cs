@@ -144,6 +144,7 @@ namespace Assets.McCoy.BoardGame
       Animator meeple = Instantiate(factionIcon, existingAnimator.transform.parent);
       meeple.transform.localPosition = existingAnimator.transform.localPosition;
       meeple.SetInteger(factionAnimatorParam, (int)faction);
+      meeple.GetComponent<SpriteRenderer>().color = existingAnimator.GetComponent<SpriteRenderer>().color;
 
       if (hideOriginal)
       {

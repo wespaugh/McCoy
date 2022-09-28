@@ -73,6 +73,7 @@ namespace Assets.McCoy.UI
     bool loadingStage;
 
     bool mobRouting = false;
+    bool mobDying = false;
 
     private void Awake()
     {
@@ -94,6 +95,11 @@ namespace Assets.McCoy.UI
       initPlayerStartLocations();
       initMapPanels();
       checkForMobRouting();
+
+      while(mobDying)
+      {
+        yield return null;
+      }
 
       float stingerTime;
       if(mobRouting)
@@ -119,6 +125,7 @@ namespace Assets.McCoy.UI
       {
         board.showStinger(McCoyStinger.StingerTypes.SelectZone);
       }
+      board.SelectMapNode(null, null);
       stingerTime = Time.time;
       while (Time.time < stingerTime + stingerDuration)
       {
@@ -215,7 +222,7 @@ namespace Assets.McCoy.UI
         List<McCoyMobData> mobData = new List<McCoyMobData>();
         foreach (var f in fs)
         {
-          mobData.Add(new McCoyMobData(f));
+          mobData.Add(new McCoyMobData(f, 1));
         }
         mapNode.Mobs = mobData;
         McCoy.GetInstance().boardGameState.SetMobs(mapNode.NodeID, mobData);
@@ -536,12 +543,18 @@ namespace Assets.McCoy.UI
     private void checkForMobRouting()
     {
       Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes = new Dictionary<MapNode, List<McCoyMobData>>();
+      Dictionary<MapNode, List<McCoyMobData>> killedMobsInMapNodes = new Dictionary<MapNode, List<McCoyMobData>>();
       foreach(MapNode m in board.MapNodes)
       {
         List<McCoyMobData> mobsToRoute = new List<McCoyMobData>();
+        List<McCoyMobData> mobsToKill = new List<McCoyMobData>();
         foreach (McCoyMobData mob in m.Mobs)
         {
-          if (mob.IsRouted)
+          if(mob.MarkedForDeath)
+          {
+            mobsToKill.Add(mob);
+          }
+          else if (mob.IsRouted)
           {
             mobsToRoute.Add(mob);
           }
@@ -550,15 +563,49 @@ namespace Assets.McCoy.UI
         {
           routedMobsInMapNodes.Add(m, mobsToRoute);
         }
+        if(mobsToKill.Count > 0)
+        {
+          killedMobsInMapNodes.Add(m, mobsToKill);
+        }
       }
-      if (routedMobsInMapNodes.Count > 0)
+
+      mobDying = killedMobsInMapNodes.Count > 0;
+      // first, remove all dead mobs
+      foreach (var kill in killedMobsInMapNodes)
       {
-        mobRouting = true;
-        foreach(GameObject toHide in bottomUIElements)
+        foreach (var deadMob in kill.Value)
+        {
+          board.AnimateMobCombat(kill.Key, deadMob.Faction);
+          kill.Key.Mobs.Remove(deadMob);
+        }
+      }
+
+      mobRouting = routedMobsInMapNodes.Count > 0;
+
+      if(mobDying || mobRouting)
+      {
+        StartCoroutine(showMobRoutingUI(routedMobsInMapNodes));
+      }
+    }
+
+    private IEnumerator showMobRoutingUI(Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes)
+    {
+      if(mobDying)
+      {
+        float startTime = Time.time;
+        while(Time.time < startTime + 1.0f)
+        {
+          yield return null;
+        }
+        mobDying = false;
+        refreshBoardAndPanels();
+      }
+      if (mobRouting)
+      {
+        foreach (GameObject toHide in bottomUIElements)
         {
           toHide.SetActive(false);
         }
-
         var routeMenu = Instantiate(routingUI, transform);
         routeMenu.Initialize(routedMobsInMapNodes, routingFinished, board);
       }

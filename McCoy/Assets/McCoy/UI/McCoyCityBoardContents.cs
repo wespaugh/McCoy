@@ -45,7 +45,10 @@ namespace Assets.McCoy.UI
     bool OnlyStrongestMobsSearch = false;
 
     [SerializeField]
-    McCoyStinger stinger = null;
+    GameObject stingerPrefab = null;
+
+    [SerializeField]
+    Transform stingerTransformRoot = null;
 
     List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
     bool showUnnecessaryLines = false;
@@ -162,6 +165,7 @@ namespace Assets.McCoy.UI
 
     public void showStinger(McCoyStinger.StingerTypes stingerType)
     {
+      McCoyStinger stinger = Instantiate(stingerPrefab, stingerTransformRoot).GetComponent<McCoyStinger>();
       stinger.RunStinger(stingerType);
     }
 
@@ -367,7 +371,7 @@ namespace Assets.McCoy.UI
           hideOriginal = true;
         }
         moveTarget.Mobs.Add(moveSubject);
-        AnimateMobMove(moveSubject.Faction, nodePair.Item2, moveTarget, 10.5f, voluntaryMoveFinished,hideOriginal);
+        AnimateMobMove(moveSubject.Faction, nodePair.Item2, moveTarget, .5f, voluntaryMoveFinished,hideOriginal);
       }
     }
 
@@ -589,7 +593,7 @@ namespace Assets.McCoy.UI
     private void centerCameraOnNode(GameObject node)
     {
       Vector3 locPosition = selectedNode.transform.localPosition;// NodePosition(m);
-      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x+3f, 6.5f, 24), 20, Mathf.Clamp(locPosition.z + 18f, 39, 45));
+      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x+3f, 6.5f, 24), 19, Mathf.Clamp(locPosition.z + 18f, 39, 45));
       cameraOrigin = Camera.main.transform.position;
       cameraStartTime = Time.time;
       if (!lerpingCamera)

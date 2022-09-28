@@ -18,7 +18,10 @@ namespace Assets.McCoy.UI
     McCoyProgressBar enemyHud;
 
     [SerializeField]
-    McCoyStinger stinger = null;
+    GameObject stingerPrefab = null;
+
+    [SerializeField]
+    Transform stingerTransformRoot = null;
 
     float enemyHPExpiryTime;
     private Action uiDisappearedCallback;
@@ -94,7 +97,8 @@ namespace Assets.McCoy.UI
 
     public void StageBegan()
     {
-      stinger.RunStinger(McCoyStinger.StingerTypes.RoundStart);
+      var stinger = Instantiate(stingerPrefab, stingerTransformRoot);
+      stinger.GetComponent<McCoyStinger>().RunStinger(McCoyStinger.StingerTypes.RoundStart);
     }
     public void StageEnded(McCoyStinger.StingerTypes stingerType)
     {

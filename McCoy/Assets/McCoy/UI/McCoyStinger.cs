@@ -22,6 +22,11 @@ namespace Assets.McCoy.UI
       SelectZone,
     }
 
+    public void FinishedStinging()
+    {
+      Destroy(gameObject);
+    }
+
     public void RunStinger(StingerTypes type)
     {
       initSprite();
