@@ -12,7 +12,7 @@ namespace Assets.McCoy.UI
 {
   public class McCoyCityScreen : UFEScreen
   {
-    float stingerDuration = 2.5f;
+    float stingerDuration = 2.0f;
 
     [SerializeField]
     GameObject ZonePanelPrefab = null;
@@ -52,6 +52,9 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     AudioClip mapMusic = null;
+
+    [SerializeField]
+    AudioClip mobCombat = null;
 
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
@@ -222,7 +225,7 @@ namespace Assets.McCoy.UI
         List<McCoyMobData> mobData = new List<McCoyMobData>();
         foreach (var f in fs)
         {
-          mobData.Add(new McCoyMobData(f, 1));
+          mobData.Add(new McCoyMobData(f));
         }
         mapNode.Mobs = mobData;
         McCoy.GetInstance().boardGameState.SetMobs(mapNode.NodeID, mobData);
@@ -570,6 +573,10 @@ namespace Assets.McCoy.UI
       }
 
       mobDying = killedMobsInMapNodes.Count > 0;
+      if(mobDying)
+      {
+        UFE.PlaySound(mobCombat);
+      }
       // first, remove all dead mobs
       foreach (var kill in killedMobsInMapNodes)
       {

@@ -35,6 +35,9 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     Animator factionIconAnimator = null;
 
+    [SerializeField]
+    AudioClip mobCombatSound = null;
+
     List<Tuple<MapNode, McCoyMobData>> zoneMobs = new List<Tuple<MapNode, McCoyMobData>>();
     int zoneIndex = 0;
 
@@ -224,6 +227,10 @@ namespace Assets.McCoy.BoardGame
 
     private void mobMoveFinished()
     {
+      if(pendingCombats.Count > 0)
+      {
+        UFE.PlaySound(mobCombatSound);
+      }
       foreach(var pendingCombat in pendingCombats)
       {
         board.AnimateMobCombat(pendingCombat.Key, pendingCombat.Value);

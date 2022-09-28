@@ -485,6 +485,7 @@ MonoBehaviour:
   rightButton: {fileID: 8425921377532150724}
   zoneSelectRoot: {fileID: 5485858497648682727}
   factionIconAnimator: {fileID: 7902679142656214712}
+  mobCombatSound: {fileID: 8300000, guid: 7bc502e2c17c1544e8f54ec46195bd85, type: 3}
 --- !u!114 &2171409929064761866
 MonoBehaviour:
   m_ObjectHideFlags: 0

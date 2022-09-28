@@ -2781,6 +2781,7 @@ MonoBehaviour:
   sectionHeaderPrefab: {fileID: 9129317705743122466, guid: c802d1c574d8be6408b03b869b36797e,
     type: 3}
   mapMusic: {fileID: 8300000, guid: b8933ff0882628b4b8d636facbef7903, type: 3}
+  mobCombat: {fileID: 8300000, guid: 7bc502e2c17c1544e8f54ec46195bd85, type: 3}
   bottomUIElements:
   - {fileID: 3000745687599416458}
   - {fileID: 6762451373546365189}

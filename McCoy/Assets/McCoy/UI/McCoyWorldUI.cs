@@ -102,7 +102,8 @@ namespace Assets.McCoy.UI
     }
     public void StageEnded(McCoyStinger.StingerTypes stingerType)
     {
-      stinger.RunStinger(stingerType);
+      var stinger = Instantiate(stingerPrefab, stingerTransformRoot);
+      stinger.GetComponent<McCoyStinger>().RunStinger(McCoyStinger.StingerTypes.RoundOver);
     }
   }
 }
