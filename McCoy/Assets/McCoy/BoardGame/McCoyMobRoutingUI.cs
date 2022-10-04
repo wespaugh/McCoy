@@ -35,6 +35,9 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     Animator factionIconAnimator = null;
 
+    [SerializeField]
+    AudioClip mobCombatSound = null;
+
     List<Tuple<MapNode, McCoyMobData>> zoneMobs = new List<Tuple<MapNode, McCoyMobData>>();
     int zoneIndex = 0;
 
@@ -52,6 +55,7 @@ namespace Assets.McCoy.BoardGame
       this.board = board;
       routingFinishedCallback = routingFinished;
       int totalCount = 0;
+
       foreach (var zone in routedMobsInMapNodes)
       {
         totalCount += zone.Value.Count;
@@ -91,29 +95,31 @@ namespace Assets.McCoy.BoardGame
       alert.text = $"Mobs Routed out of {zoneMobs[zoneIndex].Item1.ZoneName}!";
       if (fromCombo)
       {
-        instructions.text = $"Follow-Up Attack! Pick a zone and route {ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
+        instructions.text = $"Follow-Up Attack! Pick a zone and route {FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} even further!";
       }
       else
       { 
-        instructions.text = $"{ProjectConstants.FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
+        instructions.text = $"{FactionDisplayName(zoneMobs[zoneIndex].Item2.Faction)} Routed! Pick a zone and send them packing!"; 
       }
 
-      switch(zoneMobs[zoneIndex].Item2.Faction)
+      List<MapNode> validConnections = this.validConnections();
+      board.SelectMapNode(zoneMobs[zoneIndex].Item1, validConnections);
+
+      switch (zoneMobs[zoneIndex].Item2.Faction)
       {
         case Factions.Mages:
           factionIconAnimator.SetInteger(factionAnimatorParam, 2);
           break;
         case Factions.AngelMilitia:
-          factionIconAnimator.SetInteger(factionAnimatorParam, 4);
+          factionIconAnimator.SetInteger(factionAnimatorParam, 3);
           break;
         case Factions.CyberMinotaurs:
           factionIconAnimator.SetInteger(factionAnimatorParam, 4);
           break;
       }
 
-      foreach(var mapNode in validConnections())
+      foreach(var mapNode in validConnections)
       {
-        Debug.Log($"{zoneMobs[zoneIndex].Item1.ZoneName} had a connected node {(mapNode as MapNode).ZoneName}");
         var zoneSelect = Instantiate(zoneSelectPrefab, zoneSelectRoot);
         zoneSelect.Initialize(zoneMobs[zoneIndex].Item1, mapNode as MapNode, zoneMobs[zoneIndex].Item2, mobRouted);
         zoneSelectObjects.Add(zoneSelect.gameObject);
@@ -221,6 +227,10 @@ namespace Assets.McCoy.BoardGame
 
     private void mobMoveFinished()
     {
+      if(pendingCombats.Count > 0)
+      {
+        UFE.PlaySound(mobCombatSound);
+      }
       foreach(var pendingCombat in pendingCombats)
       {
         board.AnimateMobCombat(pendingCombat.Key, pendingCombat.Value);

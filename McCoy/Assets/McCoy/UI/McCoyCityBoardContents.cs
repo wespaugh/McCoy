@@ -45,7 +45,13 @@ namespace Assets.McCoy.UI
     bool OnlyStrongestMobsSearch = false;
 
     [SerializeField]
-    McCoyStinger stinger = null;
+    GameObject stingerPrefab = null;
+
+    [SerializeField]
+    Transform stingerTransformRoot = null;
+
+    [SerializeField]
+    AudioClip mobCombatSound = null;
 
     List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
     bool showUnnecessaryLines = false;
@@ -162,6 +168,7 @@ namespace Assets.McCoy.UI
 
     public void showStinger(McCoyStinger.StingerTypes stingerType)
     {
+      McCoyStinger stinger = Instantiate(stingerPrefab, stingerTransformRoot).GetComponent<McCoyStinger>();
       stinger.RunStinger(stingerType);
     }
 
@@ -173,11 +180,13 @@ namespace Assets.McCoy.UI
     private IEnumerator runWeekend()
     {
       float startTime = Time.time;
-      while (Time.time < startTime + 2.5f)
+      while (Time.time < startTime + 1.5f)
       {
         yield return null;
       }
       toRoute.Clear();
+
+      bool playCombatSound = false;
 
       foreach(MapNode node in mapNodes)
       {
@@ -188,6 +197,7 @@ namespace Assets.McCoy.UI
           for(int j = i+1; j < node.Mobs.Count; ++j)
           {
             combat = true;
+            playCombatSound = true;
             node.Mobs[i].OffscreenCombat(node.Mobs[j].StrengthForXP());
             AnimateMobCombat(node, node.Mobs[i].Faction);
             node.Mobs[j].OffscreenCombat(node.Mobs[i].StrengthForXP());
@@ -208,6 +218,12 @@ namespace Assets.McCoy.UI
           toRoute.Add(node, mobsDefeated);
         }
       }
+
+      if(playCombatSound)
+      {
+        UFE.PlaySound(mobCombatSound);
+      }
+
       StartCoroutine(waitForWeekendMobConflictsAnim(0.5f));
     }
 
@@ -281,6 +297,10 @@ namespace Assets.McCoy.UI
             AnimateMobMove(mob.Faction, route.Key, conn, 1.0f, WeekendMobRouted);
           }
         }
+      }
+      if(mobsMoving == 0)
+      {
+        VoluntaryMovementPhase();
       }
     }
 
@@ -367,7 +387,7 @@ namespace Assets.McCoy.UI
           hideOriginal = true;
         }
         moveTarget.Mobs.Add(moveSubject);
-        AnimateMobMove(moveSubject.Faction, nodePair.Item2, moveTarget, 10.5f, voluntaryMoveFinished,hideOriginal);
+        AnimateMobMove(moveSubject.Faction, nodePair.Item2, moveTarget, .5f, voluntaryMoveFinished,hideOriginal);
       }
     }
 
@@ -589,7 +609,7 @@ namespace Assets.McCoy.UI
     private void centerCameraOnNode(GameObject node)
     {
       Vector3 locPosition = selectedNode.transform.localPosition;// NodePosition(m);
-      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x+3f, 6.5f, 24), 20, Mathf.Clamp(locPosition.z + 18f, 39, 45));
+      cameraDestination = new Vector3(Mathf.Clamp(locPosition.x+3f, 6.5f, 24), 19, Mathf.Clamp(locPosition.z + 18f, 39, 45));
       cameraOrigin = Camera.main.transform.position;
       cameraStartTime = Time.time;
       if (!lerpingCamera)

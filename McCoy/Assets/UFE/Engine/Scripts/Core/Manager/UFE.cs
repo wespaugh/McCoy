@@ -1035,6 +1035,7 @@ public class UFE : MonoBehaviour, UFEInterface
 
   public static void StartGame()
   {
+    Debug.Log("START GAME");
     UFE.StartGame((float)UFE.config.gameGUI.screenFadeDuration);
   }
 

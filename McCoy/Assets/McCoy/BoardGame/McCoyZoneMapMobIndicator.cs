@@ -14,12 +14,24 @@ namespace Assets.McCoy.BoardGame
     const string factionAnimatorParam = "Faction";
     [SerializeField]
     Animator mageObject = null;
+    [SerializeField]
+    TMP_Text mageText = null;
+    [SerializeField]
+    McCoyProgressBar mageHealthBar = null;
 
     [SerializeField]
     Animator minotaurObject = null;
+    [SerializeField]
+    TMP_Text minotaurText = null;
+    [SerializeField]
+    McCoyProgressBar minotaurHealthBar = null;
 
     [SerializeField]
     Animator militiaObject = null;
+    [SerializeField]
+    TMP_Text militiaText = null;
+    [SerializeField]
+    McCoyProgressBar militiaHealthBar = null;
 
     [SerializeField]
     SpriteRenderer wolfIndicator = null;
@@ -102,12 +114,9 @@ namespace Assets.McCoy.BoardGame
           mage = m;
         }
       }
-      mageObject.gameObject.SetActive(mage != null);
-      mageObject.SetInteger(factionAnimatorParam, 2);
-      militiaObject.gameObject.SetActive(militia != null);
-      militiaObject.SetInteger(factionAnimatorParam, 3);
-      minotaurObject.gameObject.SetActive(minotaur != null);
-      minotaurObject.SetInteger(factionAnimatorParam, 4);
+      initMob(mageObject, mage, 2, mageText, mageHealthBar);
+      initMob(militiaObject, militia, 3, militiaText, militiaHealthBar);
+      initMob(minotaurObject, minotaur, 4, minotaurText, minotaurHealthBar);
 
       mobs.Sort((x, y) =>
       {
@@ -119,6 +128,25 @@ namespace Assets.McCoy.BoardGame
       {
         Transform building = animatorForFaction(mob.Faction).transform;
         currentY = updateMobObject(mob, building, currentY);
+      }
+    }
+
+    private void initMob(Animator anim, McCoyMobData m, int factionIndex, TMP_Text text, McCoyProgressBar healthBar)
+    {
+      anim.gameObject.SetActive(m != null);
+      anim.SetInteger(factionAnimatorParam, factionIndex);
+      if (m != null)
+      {
+        text.gameObject.SetActive(true);
+        text.SetText($"{m.StrengthForXP()}");
+        healthBar.Initialize(m.MaxHealth+3, m.MaxHealth+3);
+        healthBar.SetFill(m.Health+2);
+        healthBar.gameObject.SetActive(true);
+      }
+      else
+      {
+        text.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(false);
       }
     }
 
@@ -144,6 +172,7 @@ namespace Assets.McCoy.BoardGame
       Animator meeple = Instantiate(factionIcon, existingAnimator.transform.parent);
       meeple.transform.localPosition = existingAnimator.transform.localPosition;
       meeple.SetInteger(factionAnimatorParam, (int)faction);
+      meeple.GetComponent<SpriteRenderer>().color = existingAnimator.GetComponent<SpriteRenderer>().color;
 
       if (hideOriginal)
       {
@@ -171,7 +200,7 @@ namespace Assets.McCoy.BoardGame
 
     private float updateMobObject(McCoyMobData mob, Transform building, float currentY)
     {
-      float strengthFactor = 2f + ((float)mob.XP) / 2.0f;
+      float strengthFactor = 3f;// + ((float)mob.XP) / 2.0f;
       float healthFactor = ((float)mob.Health) * .1f;
       building.localScale = new Vector3(strengthFactor, strengthFactor, strengthFactor);
       building.localPosition = new Vector3(building.localPosition.x, currentY + (healthFactor/2.0f), building.localPosition.z);
