@@ -137,6 +137,13 @@ public class ControlsScript : MonoBehaviour
   private bool isFatallyFalling;
   private FPVector fallPosition;
 
+  private bool isDespawning = false;
+  public bool IsDespawning
+  {
+    get => isDespawning;
+  }
+
+  public bool ForceKill;
   public void Init()
   {
     // Set Input Recording
@@ -427,8 +434,19 @@ public class ControlsScript : MonoBehaviour
   IDictionary<InputReferences, InputEvents> currentInputs
 )
   {
+    if(ForceKill && !IsDespawning)
+    {
+      currentLifePoints = 0.0f;
+      KillCurrentMove();
+      isDead = DamageMe(currentLifePoints);
+      myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
+      blinksRemaining = 1;
+      UFE.DelaySynchronizedAction(RunBlink, 0f);
+      return;
+    }
     // Update opControlsScript Reference if Needed
-    if (!opControlsScript.gameObject.activeInHierarchy || 
+    if (opControlsScript.isDespawning || 
+      !opControlsScript.gameObject.activeInHierarchy || 
       opControlsScript == this || 
       opControlsScript.Team == Team) opControlsScript = UFE.FindNewOpponent(playerNum);//.GetControlsScript(playerNum);
 
@@ -778,7 +796,7 @@ public class ControlsScript : MonoBehaviour
         isDead = DamageMe(currentLifePoints);
         myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
         blinksRemaining = 1;
-        UFE.DelaySynchronizedAction(RunBlink, 2.5f);
+        UFE.DelaySynchronizedAction(RunBlink, .5f);
       }
       else
       {
@@ -4188,10 +4206,9 @@ public class ControlsScript : MonoBehaviour
       }
     }
 
-    if (isDead)
+    if (isDead && ! isDespawning)
     {
       KillCurrentMove();
-      blinksRemaining = 5;
       UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
     }
 
@@ -4200,36 +4217,25 @@ public class ControlsScript : MonoBehaviour
     UFE.DelaySynchronizedAction(this.HitUnpause, hitEffects._freezingTime);
   }
 
-  private int blinksRemaining = 5;
+  private int blinksRemaining = 10;
   private void BlinkOut()
   {
-    if (blinksRemaining == 5) RunBlink();
+    if (blinksRemaining == 10 && ! isDespawning) RunBlink();
   }
 
   private void RunBlink()
   {
-    if(gameObject == null)
+    isDespawning = true;
+
+    --blinksRemaining;
+    if(blinksRemaining == 0)
     {
-      Debug.LogError("Trying to blink out, but THE THING DOESN'T EXIST");
+      gameObject.SetActive(false);
+      UFE.DespawnCharacter(playerNum);
+      return;
     }
-    gameObject.SetActive(!gameObject.activeInHierarchy);
-    if (gameObject.activeInHierarchy)
-    {
-      --blinksRemaining;
-      if (blinksRemaining > 0)
-      {
-        UFE.DelaySynchronizedAction(RunBlink, .1f);
-      }
-      else
-      {
-        gameObject.SetActive(false);
-        UFE.DespawnCharacter(playerNum);
-      }
-    }
-    else
-    {
-      UFE.DelaySynchronizedAction(RunBlink, .1f);
-    }
+    gameObject.SetActive(blinksRemaining % 2 == 0);
+    UFE.DelaySynchronizedAction(RunBlink, .1f);
   }
 
 

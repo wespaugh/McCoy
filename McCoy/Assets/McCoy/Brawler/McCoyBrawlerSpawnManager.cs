@@ -482,7 +482,7 @@ namespace Assets.McCoy.Brawler
       if (UFE.config.currentRound != UFE.config.selectedStage.stageInfo.substages.Count)
       {
         float fadeTime = .40f; // fade out time
-        float fadeDelay = 2.0f; // time to wait before fading out
+        float fadeDelay = 1.0f; // time to wait before fading out
 
         // wait until faded out, then switch substage
         UFE.DelaySynchronizedAction(() =>
@@ -493,9 +493,9 @@ namespace Assets.McCoy.Brawler
             if(control != null && control.isCPU)
             {
               var cScript = UFE.brawlerEntityManager.GetControlsScript(control.player);
-              if(!cScript.isDead)
+              if(!cScript.isDead && ! cScript.IsDespawning)
               {
-                cScript.Physics.isFatallyFalling = true;
+                cScript.ForceKill = true;
               }
             }
           }
