@@ -57,12 +57,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\McCoy\Editor\MapGraphNode.cs" />
+    <Compile Include="Assets\Talentus\Editor\Views\TalentTreeWorkView.cs" />
+    <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeTiersPropertiesDefineWindow.cs" />
+    <Compile Include="Assets\Talentus\Editor\Views\TalentTreeViewBase.cs" />
+    <Compile Include="Assets\Talentus\Editor\Utils\TalentTreeUtils.cs" />
     <Compile Include="Assets\McCoy\Editor\MapGraphEditor.cs" />
+    <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeUITemplateWindow.cs" />
+    <Compile Include="Assets\Talentus\Editor\Views\TalentTreePropertyView.cs" />
     <Compile Include="Assets\McCoy\Editor\MapGraphWindow.cs" />
+    <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeWindow.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Editor\cInputSetup.cs" />
+    <Compile Include="Assets\Talentus\Editor\Windows\TalentTreePopupWindow.cs" />
+    <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeTiersWindow.cs" />
     <Compile Include="Assets\McCoy\Editor\BrawlerStageEditor.cs" />
     <Compile Include="Assets\McCoy\Editor\MapSaveUtility.cs" />
+    <Compile Include="Assets\Talentus\Editor\Views\TalentTreeToolBar.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\Editor\DefaultCharacterSelectionScreenEditor.cs" />
+    <Compile Include="Assets\Talentus\Editor\Menus\TalentTreeMenus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

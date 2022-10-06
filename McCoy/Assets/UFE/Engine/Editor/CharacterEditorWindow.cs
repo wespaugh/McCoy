@@ -639,71 +639,8 @@ public class CharacterEditorWindow : EditorWindow {
 				}
 			}EditorGUILayout.EndVertical();
 
-			// Physics
-			EditorGUILayout.BeginVertical(rootGroupStyle);{
-				EditorGUILayout.BeginHorizontal();{
-					physicsOption = EditorGUILayout.Foldout(physicsOption, "Physics", foldStyle);
-					helpButton("character:physics");
-				}EditorGUILayout.EndHorizontal();
-
-				if (physicsOption){
-					EditorGUILayout.BeginVertical(subGroupStyle);{
-						EditorGUILayout.Space();
-						EditorGUI.indentLevel += 1;
-						EditorGUIUtility.labelWidth = 190;
-						SubGroupTitle("Movement");
-						characterInfo.physics._moveForwardSpeed = EditorGUILayout.FloatField("Move Forward Speed:", (float)characterInfo.physics._moveForwardSpeed);
-						characterInfo.physics._moveBackSpeed = EditorGUILayout.FloatField("Move Back Speed:", (float)characterInfo.physics._moveBackSpeed);
-#if !UFE_LITE && !UFE_BASIC
-                        // if (characterInfo.gameplayType == GameplayType._3DFighter)
-                            characterInfo.physics._moveSidewaysSpeed = EditorGUILayout.FloatField("Move Sideways Speed:", (float)characterInfo.physics._moveSidewaysSpeed);
-#endif
-
-                        characterInfo.physics.highMovingFriction = EditorGUILayout.Toggle("High Moving Friction", characterInfo.physics.highMovingFriction);
-						characterInfo.physics._friction = EditorGUILayout.FloatField("Friction:", (float)characterInfo.physics._friction);
-						EditorGUILayout.Space();
-
-                        /*SubGroupTitle("Crouch Options");
-                        characterInfo.physics.canCrouch = EditorGUILayout.Toggle("Enable Crouch", characterInfo.physics.canCrouch);
-                        EditorGUI.BeginDisabledGroup(!characterInfo.physics.canCrouch);{
-                            characterInfo.physics.crouchDelay = EditorGUILayout.IntField("Crouching Delay (frames):", characterInfo.physics.crouchDelay);
-                            characterInfo.physics.standingDelay = EditorGUILayout.IntField("Standing Delay (frames):", characterInfo.physics.standingDelay);
-                        } EditorGUI.EndDisabledGroup();
-                        EditorGUILayout.Space();*/
-
-                        SubGroupTitle("Jump Options");
-						characterInfo.physics.canJump = EditorGUILayout.Toggle("Enable Jump", characterInfo.physics.canJump);
-                        EditorGUI.BeginDisabledGroup(!characterInfo.physics.canJump);
-                        {
-                            characterInfo.physics.pressureSensitiveJump = EditorGUILayout.Toggle("Pressure Sensitive", characterInfo.physics.pressureSensitiveJump);
-                            if (characterInfo.physics.pressureSensitiveJump) characterInfo.physics._minJumpForce = EditorGUILayout.FloatField("Min. Jump Force:", (float)characterInfo.physics._minJumpForce);
-                            characterInfo.physics._jumpForce = EditorGUILayout.FloatField("Jump Force:", (float)characterInfo.physics._jumpForce);
-                            characterInfo.physics._jumpDistance = EditorGUILayout.FloatField("Forward Jump Distance:", (float)characterInfo.physics._jumpDistance);
-                            characterInfo.physics._jumpBackDistance = EditorGUILayout.FloatField("Backwards Jump Distance:", (float)characterInfo.physics._jumpBackDistance);
-                            if (characterInfo.physics.pressureSensitiveJump) characterInfo.physics.minJumpDelay = EditorGUILayout.IntField("Min. Jump Delay (frames):", characterInfo.physics.minJumpDelay);
-							characterInfo.physics.jumpDelay = EditorGUILayout.IntField("Jump Delay (frames):", characterInfo.physics.jumpDelay);
-							characterInfo.physics.landingDelay = EditorGUILayout.IntField("Landing Delay (frames):", characterInfo.physics.landingDelay);
-                            characterInfo.physics.multiJumps = EditorGUILayout.IntField("Air Jumps:", characterInfo.physics.multiJumps);
-                            characterInfo.possibleAirMoves = EditorGUILayout.IntField("Possible Air Moves:", characterInfo.possibleAirMoves); // TODO Move to possibleAirMoves to physics
-                        }
-                        EditorGUI.EndDisabledGroup();
-						EditorGUILayout.Space();
-
-                        SubGroupTitle("Move Control");
-                        characterInfo._executionTiming = EditorGUILayout.FloatField("Default Execution Timing:", (float)characterInfo._executionTiming);
-                        characterInfo.physics.cumulativeForce = EditorGUILayout.Toggle("Cumulative Force", characterInfo.physics.cumulativeForce);
-                        EditorGUILayout.Space();
-
-                        SubGroupTitle("Mass Variation");
-						characterInfo.physics._weight = EditorGUILayout.FloatField("Character's Weight:", (float)characterInfo.physics._weight);
-						characterInfo.physics._groundCollisionMass = EditorGUILayout.FloatField("Ground Collision Mass:", (float)characterInfo.physics._groundCollisionMass);
-						EditorGUIUtility.labelWidth = 150;
-						EditorGUILayout.Space();
-
-						EditorGUI.indentLevel -= 1;
-					}EditorGUILayout.EndVertical();
-				}
-			}EditorGUILayout.EndVertical();
+      // Physics
+      // PhysicsLayout();
 
 			// Head Look
 			EditorGUILayout.BeginVertical(rootGroupStyle);{
@@ -1022,6 +959,81 @@ public class CharacterEditorWindow : EditorWindow {
         }
 	}
     
+  private void PhysicsLayout(PhysicsData physics)
+  {
+    EditorGUILayout.BeginVertical(rootGroupStyle);
+    {
+      EditorGUILayout.BeginHorizontal();
+      {
+        physicsOption = EditorGUILayout.Foldout(physicsOption, "Physics", foldStyle);
+        helpButton("character:physics");
+      }
+      EditorGUILayout.EndHorizontal();
+
+      if (physicsOption)
+      {
+        EditorGUILayout.BeginVertical(subGroupStyle);
+        {
+          EditorGUILayout.Space();
+          EditorGUI.indentLevel += 1;
+          EditorGUIUtility.labelWidth = 190;
+          SubGroupTitle("Movement");
+          physics._moveForwardSpeed = EditorGUILayout.FloatField("Move Forward Speed:", (float)physics._moveForwardSpeed);
+          physics._moveBackSpeed = EditorGUILayout.FloatField("Move Back Speed:", (float)physics._moveBackSpeed);
+#if !UFE_LITE && !UFE_BASIC
+          // if (characterInfo.gameplayType == GameplayType._3DFighter)
+          physics._moveSidewaysSpeed = EditorGUILayout.FloatField("Move Sideways Speed:", (float)physics._moveSidewaysSpeed);
+#endif
+
+          physics.highMovingFriction = EditorGUILayout.Toggle("High Moving Friction", physics.highMovingFriction);
+          physics._friction = EditorGUILayout.FloatField("Friction:", (float)physics._friction);
+          EditorGUILayout.Space();
+
+          /*SubGroupTitle("Crouch Options");
+          physics.canCrouch = EditorGUILayout.Toggle("Enable Crouch", physics.canCrouch);
+          EditorGUI.BeginDisabledGroup(!physics.canCrouch);{
+              physics.crouchDelay = EditorGUILayout.IntField("Crouching Delay (frames):", physics.crouchDelay);
+              physics.standingDelay = EditorGUILayout.IntField("Standing Delay (frames):", physics.standingDelay);
+          } EditorGUI.EndDisabledGroup();
+          EditorGUILayout.Space();*/
+
+          SubGroupTitle("Jump Options");
+          physics.canJump = EditorGUILayout.Toggle("Enable Jump", physics.canJump);
+          EditorGUI.BeginDisabledGroup(!physics.canJump);
+          {
+            physics.pressureSensitiveJump = EditorGUILayout.Toggle("Pressure Sensitive", physics.pressureSensitiveJump);
+            if (physics.pressureSensitiveJump) physics._minJumpForce = EditorGUILayout.FloatField("Min. Jump Force:", (float)physics._minJumpForce);
+            physics._jumpForce = EditorGUILayout.FloatField("Jump Force:", (float)physics._jumpForce);
+            physics._jumpDistance = EditorGUILayout.FloatField("Forward Jump Distance:", (float)physics._jumpDistance);
+            physics._jumpBackDistance = EditorGUILayout.FloatField("Backwards Jump Distance:", (float)physics._jumpBackDistance);
+            if (physics.pressureSensitiveJump) physics.minJumpDelay = EditorGUILayout.IntField("Min. Jump Delay (frames):", physics.minJumpDelay);
+            physics.jumpDelay = EditorGUILayout.IntField("Jump Delay (frames):", physics.jumpDelay);
+            physics.landingDelay = EditorGUILayout.IntField("Landing Delay (frames):", physics.landingDelay);
+            physics.multiJumps = EditorGUILayout.IntField("Air Jumps:", physics.multiJumps);
+            characterInfo.possibleAirMoves = EditorGUILayout.IntField("Possible Air Moves:", characterInfo.possibleAirMoves); // TODO Move to possibleAirMoves to physics
+          }
+          EditorGUI.EndDisabledGroup();
+          EditorGUILayout.Space();
+
+          SubGroupTitle("Move Control");
+          characterInfo._executionTiming = EditorGUILayout.FloatField("Default Execution Timing:", (float)characterInfo._executionTiming);
+          physics.cumulativeForce = EditorGUILayout.Toggle("Cumulative Force", physics.cumulativeForce);
+          EditorGUILayout.Space();
+
+          SubGroupTitle("Mass Variation");
+          physics._weight = EditorGUILayout.FloatField("Character's Weight:", (float)physics._weight);
+          physics._groundCollisionMass = EditorGUILayout.FloatField("Ground Collision Mass:", (float)physics._groundCollisionMass);
+          EditorGUIUtility.labelWidth = 150;
+          EditorGUILayout.Space();
+
+          EditorGUI.indentLevel -= 1;
+        }
+        EditorGUILayout.EndVertical();
+      }
+    }
+    EditorGUILayout.EndVertical();
+  }
+
 	private void SubGroupTitle(string _name){
 		Texture2D originalBackground = GUI.skin.box.normal.background;
 		GUI.skin.box.normal.background = Texture2D.grayTexture;
@@ -1092,6 +1104,8 @@ public class CharacterEditorWindow : EditorWindow {
             moveSet.cinematicOutro = (MoveInfo)EditorGUILayout.ObjectField("Cinematic Outro:", moveSet.cinematicOutro, typeof(MoveInfo), false);
 
             EditorGUILayout.Space();
+
+      PhysicsLayout(moveSet.physics);
 
             moveSet.basicMovesToggle = EditorGUILayout.Foldout(moveSet.basicMovesToggle, "Basic Moves", foldStyle);
             if (moveSet.basicMovesToggle)

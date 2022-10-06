@@ -1,0 +1,909 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7908602138234937812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: ComboUpgrade_DashAttack
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -5585068864641846751}
+  toNode: {fileID: -7793204463600888794}
+  curvePoints:
+  - {x: 332, y: 224.66667, z: 0}
+  - {x: 351.1358, y: 224.0837, z: 0}
+  - {x: 374.41977, y: 222.52129, z: 0}
+  - {x: 400.66663, y: 220.25926, z: 0}
+  - {x: 428.6914, y: 217.57753, z: 0}
+  - {x: 457.30865, y: 214.75586, z: 0}
+  - {x: 485.33334, y: 212.07411, z: 0}
+  - {x: 511.58026, y: 209.8121, z: 0}
+  - {x: 534.86426, y: 208.2497, z: 0}
+  - {x: 554, y: 207.6667, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -2964715385710202547}
+  connectionType: 0
+--- !u!114 &-7808985026701709317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Regeneration must be active.
+--- !u!114 &-7793204463600888794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Dash Attack
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 554
+    y: 151.6667
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: 77ec22448b0764249b61ca242d0e3628, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Double-Tap Forward to rush down your enemies!
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: -1038688086939704337}
+--- !u!114 &-7789746215594251363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-7322163201615184191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18962e5781387be42968e80823f11f33, type: 3}
+  m_Name: Arbiter
+  m_EditorClassIdentifier: 
+  parentTree: {fileID: 11400000}
+  editorColor: {r: 0, g: 0, b: 1, a: 1}
+  description: These skills modify your stats and abilities while in Arbiter form
+--- !u!114 &-7211885148798200462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-7129082482753730879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Health Up!
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 244
+    y: 358.66666
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: f27eb2895b29e8e4097076fb95c6212f, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Adds 50% to your health!
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: -7211885148798200462}
+--- !u!114 &-5585068864641846751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Combo Upgrade
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 236
+    y: 168.66667
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: 71ec254050024cb4eabd67c2b967ff6d, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Adds an extra 2 hits to your basic combo!
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: 5011459199495472374}
+--- !u!114 &-4682264559014393643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Quick Shifter
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 451
+    y: 593.6667
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: 76248e5cce76936458b03a928873e9aa, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Shifting in and out of Wolf form takes half the time
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: 648556643586640128}
+  cost:
+  - {fileID: -3930420206435331115}
+--- !u!114 &-3930420206435331115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-3474082257142871904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Regeneration
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 413
+    y: 359.66666
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: 7b83367ebf0c97e4988ccf20cbda4778, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Transforming regains 10% of your health
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: 1799427901149877868}
+--- !u!114 &-3304697176543627669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Speed Up must be active.
+--- !u!114 &-2964715385710202547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Combo Upgrade must be active.
+--- !u!114 &-2905973489741682268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: SpeedUp_QuickShifter
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 8584156030395328547}
+  toNode: {fileID: -4682264559014393643}
+  curvePoints:
+  - {x: 330, y: 645.6667, z: 0}
+  - {x: 345.67218, y: 645.80383, z: 0}
+  - {x: 359.67352, y: 646.1715, z: 0}
+  - {x: 372.48145, y: 646.7036, z: 0}
+  - {x: 384.5734, y: 647.3348, z: 0}
+  - {x: 396.4266, y: 647.99866, z: 0}
+  - {x: 408.5185, y: 648.62964, z: 0}
+  - {x: 421.32648, y: 649.16187, z: 0}
+  - {x: 435.32785, y: 649.52954, z: 0}
+  - {x: 451, y: 649.6667, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -3304697176543627669}
+  connectionType: 0
+--- !u!114 &-2673157685494134036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-2630455431919575196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 2
+  Value: 0
+  Description: Calm must be active.
+--- !u!114 &-1842244750886083462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Regeneration must be active.
+--- !u!114 &-1606820217729415814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Regeneration_Calm
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -3474082257142871904}
+  toNode: {fileID: 1163855569019601277}
+  curvePoints:
+  - {x: 509, y: 415.66666, z: 0}
+  - {x: 526.21533, y: 418.89023, z: 0}
+  - {x: 544.35254, y: 427.5295, z: 0}
+  - {x: 563.1481, y: 440.037, z: 0}
+  - {x: 582.3389, y: 454.8656, z: 0}
+  - {x: 601.6612, y: 470.46777, z: 0}
+  - {x: 620.8518, y: 485.29626, z: 0}
+  - {x: 639.64746, y: 497.80383, z: 0}
+  - {x: 657.7846, y: 506.44305, z: 0}
+  - {x: 675, y: 509.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -7808985026701709317}
+  connectionType: 0
+--- !u!114 &-1470448303919658685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Health Up! must be active.
+--- !u!114 &-1038688086939704337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-516756029738254479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &-270148470093294593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: HealthUp!_Regeneration
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -7129082482753730879}
+  toNode: {fileID: -3474082257142871904}
+  curvePoints:
+  - {x: 340, y: 414.66666, z: 0}
+  - {x: 354.0261, y: 414.70096, z: 0}
+  - {x: 363.6159, y: 414.79288, z: 0}
+  - {x: 370.03702, y: 414.92587, z: 0}
+  - {x: 374.55695, y: 415.08374, z: 0}
+  - {x: 378.44308, y: 415.24963, z: 0}
+  - {x: 382.96298, y: 415.4074, z: 0}
+  - {x: 389.3841, y: 415.54047, z: 0}
+  - {x: 398.97394, y: 415.63235, z: 0}
+  - {x: 413, y: 415.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -1470448303919658685}
+  connectionType: 0
+--- !u!114 &-153497061957306682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563747bf02184ce4ea14006d97b0c701, type: 3}
+  m_Name: Rex
+  m_EditorClassIdentifier: 
+  treeName: Rex
+  talents:
+  - {fileID: -5585068864641846751}
+  - {fileID: -7793204463600888794}
+  - {fileID: -7129082482753730879}
+  - {fileID: -3474082257142871904}
+  - {fileID: 7587861104181390740}
+  - {fileID: 1163855569019601277}
+  - {fileID: 8584156030395328547}
+  - {fileID: -4682264559014393643}
+  - {fileID: 1614853778864886401}
+  - {fileID: 6055931433032566565}
+  connections:
+  - {fileID: -7908602138234937812}
+  - {fileID: -270148470093294593}
+  - {fileID: 3872223898440423393}
+  - {fileID: -1606820217729415814}
+  - {fileID: -2905973489741682268}
+  - {fileID: 193646044628781117}
+  - {fileID: 6154000515461142809}
+  - {fileID: 6563540161905023595}
+  tiers:
+  - {fileID: -7322163201615184191}
+  - {fileID: 648556643586640128}
+  selectedNode: {fileID: 0}
+  selectedConnection: {fileID: 0}
+  wantsConnection: 0
+  connectionNode: {fileID: 1163855569019601277}
+  showProperties: 0
+  PanX: 0
+  PanY: 52
+  mouseOverProperties: 0
+  propertyWidth: 307.8333
+  PointsToAssign: 0
+--- !u!114 &193646044628781117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: DashAttack_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -7793204463600888794}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 650, y: 207.6667, z: 0}
+  - {x: 671.7078, y: 213.59949, z: 0}
+  - {x: 701.8849, y: 229.49936, z: 0}
+  - {x: 738.1111, y: 252.51852, z: 0}
+  - {x: 777.9671, y: 279.8094, z: 0}
+  - {x: 819.03296, y: 308.52402, z: 0}
+  - {x: 858.8889, y: 335.81482, z: 0}
+  - {x: 895.11523, y: 358.834, z: 0}
+  - {x: 925.2921, y: 374.7339, z: 0}
+  - {x: 947, y: 380.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 4480520254343808524}
+  connectionType: 0
+--- !u!114 &648556643586640128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18962e5781387be42968e80823f11f33, type: 3}
+  m_Name: Wolf
+  m_EditorClassIdentifier: 
+  parentTree: {fileID: 11400000}
+  editorColor: {r: 0, g: 1, b: 0, a: 1}
+  description: These skills modify your stats and abilities in wolf form
+--- !u!114 &1163855569019601277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Calm
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 675
+    y: 453.66666
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: f0777a6fa5a0aea4dbf32dfb833758d9, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: 'Remaining still for 3 seconds causes the next attack '
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: 2701941028669112229}
+--- !u!114 &1614853778864886401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Leaping Bite
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 316
+    y: 749.6667
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: 4115c9b160171a64998527076aa09a14, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: While in Lupus, you can now jump and deal a small amount of damage
+    without breaking speed.
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: 648556643586640128}
+  cost:
+  - {fileID: -153497061957306682}
+--- !u!114 &1799427901149877868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &2701941028669112229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &3872223898440423393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Regeneration_Rage
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -3474082257142871904}
+  toNode: {fileID: 7587861104181390740}
+  curvePoints:
+  - {x: 509, y: 415.66666, z: 0}
+  - {x: 526.0439, y: 413.98624, z: 0}
+  - {x: 543.7215, y: 409.48288, z: 0}
+  - {x: 561.8518, y: 402.96292, z: 0}
+  - {x: 580.25385, y: 395.23325, z: 0}
+  - {x: 598.7463, y: 387.10013, z: 0}
+  - {x: 617.14813, y: 379.37036, z: 0}
+  - {x: 635.2785, y: 372.85046, z: 0}
+  - {x: 652.95605, y: 368.34705, z: 0}
+  - {x: 670, y: 366.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -1842244750886083462}
+  connectionType: 0
+--- !u!114 &4145799376607139213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 2
+  Value: 0
+  Description: Rage must be active.
+--- !u!114 &4480520254343808524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Dash Attack must be active.
+--- !u!114 &5011459199495472374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75df8525b622e5843ade7cf6f3703b93, type: 3}
+  m_Name: Default Cost
+  m_EditorClassIdentifier: 
+  Cost: 1
+  Bought: 0
+  WillBuy: 0
+  Description: 
+--- !u!114 &6055931433032566565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 947
+    y: 324.66666
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: a234435f746fb7449a9f196520e59415, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Rex's Strength and Recovery speed increase dramatically for a short
+    time
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: -516756029738254479}
+--- !u!114 &6154000515461142809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rage_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 7587861104181390740}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 766, y: 366.66666, z: 0}
+  - {x: 783.7298, y: 367.1468, z: 0}
+  - {x: 803.2456, y: 368.43347, z: 0}
+  - {x: 824.0369, y: 370.29623, z: 0}
+  - {x: 845.594, y: 372.50482, z: 0}
+  - {x: 867.4061, y: 374.82852, z: 0}
+  - {x: 888.963, y: 377.03702, z: 0}
+  - {x: 909.75446, y: 378.89984, z: 0}
+  - {x: 929.2702, y: 380.18655, z: 0}
+  - {x: 947, y: 380.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 4145799376607139213}
+  connectionType: 0
+--- !u!114 &6563540161905023595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Calm_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 1163855569019601277}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 771, y: 509.66666, z: 0}
+  - {x: 788.5583, y: 505.24283, z: 0}
+  - {x: 807.6146, y: 493.38687, z: 0}
+  - {x: 827.74066, y: 476.22217, z: 0}
+  - {x: 848.509, y: 455.8725, z: 0}
+  - {x: 869.4911, y: 434.46085, z: 0}
+  - {x: 890.2593, y: 414.1111, z: 0}
+  - {x: 910.3855, y: 396.94647, z: 0}
+  - {x: 929.44165, y: 385.0905, z: 0}
+  - {x: 947, y: 380.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -2630455431919575196}
+  connectionType: 0
+--- !u!114 &7587861104181390740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Rage
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 670
+    y: 310.66666
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: ed458be64707e27449f65d83a3608a1e, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: When health is below 50% damage, each hit you take grants you a 5%
+    damage boost for 5s. Stacks up to 3 times.
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: -7322163201615184191}
+  cost:
+  - {fileID: -2673157685494134036}
+--- !u!114 &8584156030395328547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
+  m_Name: Speed Up
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 234
+    y: 589.6667
+    width: 96
+    height: 112
+  parentTree: {fileID: 11400000}
+  nodeType: 0
+  Image: {fileID: 2800000, guid: bb79c41185144694393a4c44373b5094, type: 3}
+  DisabledImage: {fileID: 2800000, guid: 30a8e492a6e04ab42b42eb6e9e675b4a, type: 3}
+  isValid: 0
+  description: Imrpoves the Speed of the wolf form
+  explanation: 
+  isInResearch: 0
+  tier: {fileID: 648556643586640128}
+  cost:
+  - {fileID: -7789746215594251363}
