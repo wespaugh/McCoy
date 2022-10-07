@@ -57,6 +57,8 @@ namespace UFE3D
         public PlayerConditions selfConditions = new PlayerConditions();
         public MoveClassification moveClassification;
 
+    public bool locked;
+
         public ButtonPress[][] simulatedInputs;
 
         #region trackable definitions

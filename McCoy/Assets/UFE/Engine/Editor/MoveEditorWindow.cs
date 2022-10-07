@@ -3362,7 +3362,28 @@ public class MoveEditorWindow : EditorWindow {
 				}
 			}EditorGUILayout.EndVertical();
 			// End Projectile Options
+			
+			EditorGUILayout.BeginVertical(rootGroupStyle); {
+		EditorGUILayout.BeginHorizontal();
+		{
+		  classificationOptions = EditorGUILayout.Foldout(classificationOptions, "RPG Options", EditorStyles.foldout);
+		  if (classificationOptions)
+		  {
+			EditorGUILayout.BeginVertical(subGroupStyle);
+			{
+			  EditorGUILayout.Space();
+			  EditorGUI.indentLevel += 1;
 
+			  EditorGUIUtility.labelWidth = 180;
+			  moveInfo.locked = (bool)EditorGUILayout.ToggleLeft("Locked", moveInfo.locked, toggleStyle);// ("Move Type:", moveInfo.moveClassification.attackType, enumStyle);
+			}
+			EditorGUILayout.EndVertical();
+		  }
+			  //helpButton("move:aidefinitions");
+		}
+		EditorGUILayout.EndHorizontal();
+	  }
+	  EditorGUILayout.EndVertical();
 			
 			// Begin AI Definitions
 			if (UFE.isAiAddonInstalled){

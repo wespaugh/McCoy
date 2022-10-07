@@ -1137,6 +1137,11 @@ public class MoveSetScript : MonoBehaviour
 
   private MoveInfo TestMoveExecution(MoveInfo move, MoveInfo currentMove, ButtonPress[] buttonPress, bool inputUp, bool fromSequence, bool forceExecution)
   {
+    if (move.locked)
+    {
+      return null;
+    }
+
     foreach (GaugeInfo gaugeInfo in move.gauges)
     {
       if (!hasEnoughGauge(gaugeInfo._gaugeRequired, (int)gaugeInfo.targetGauge)) return null;
