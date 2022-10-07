@@ -12,6 +12,8 @@ public class MoveSetData : ICloneable
     public BasicMoves basicMoves = new BasicMoves(); // List of basic moves
     public MoveInfo[] attackMoves = new MoveInfo[0]; // List of attack moves
 
+  public PhysicsData physics;
+
     [HideInInspector] public bool enabledBasicMovesToggle;
     [HideInInspector] public bool basicMovesToggle;
     [HideInInspector] public bool attackMovesToggle;

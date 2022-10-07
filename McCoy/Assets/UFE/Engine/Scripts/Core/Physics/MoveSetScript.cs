@@ -62,6 +62,7 @@ public class MoveSetScript : MonoBehaviour
     {
       if (moveSetData.combatStance == newStance)
       {
+        controlsScript.myInfo.physics = moveSetData.physics;
         string currentClip = basicMoves != null ? GetCurrentClipName() : null;
         Fix64 currentNormalizedTime = basicMoves != null ? GetCurrentClipPosition() : 0;
         Fix64 currentSpeed = 0;

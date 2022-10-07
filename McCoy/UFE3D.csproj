@@ -309,8 +309,8 @@
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\MoveClassification.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\Enums\CharacterDistance.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\UI\Base\PauseScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\Core\Network\Messages\InputBufferMessageContent.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\Enums\HitType.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\Core\Network\Messages\InputBufferMessageContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Scripts\Core\UFE3D.asmdef" />

@@ -231,8 +231,8 @@ MonoBehaviour:
       _serializedValue: 0
     doesntKill: 0
     hitType: 0
-    resetPreviousHorizontalPush: 0
-    resetPreviousVerticalPush: 0
+    resetPreviousHorizontalPush: 1
+    resetPreviousVerticalPush: 1
     resetPreviousSidewaysPush: 0
     resetJumpForce: 0
     applyDifferentAirForce: 0
