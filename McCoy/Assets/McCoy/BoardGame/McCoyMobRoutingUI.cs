@@ -147,9 +147,9 @@ namespace Assets.McCoy.BoardGame
       //
       // assume we're done routing, but if player attacks hurt enough, we might get to route again
       m.IsRouted = false;
-      for (int i = 1; i <= ProjectConstants.NUM_BOARDGAME_PLAYERS; ++i)
+      for (int i = 0; i <= PlayerCharacters.Length; ++i)
       {
-        var playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(i);
+        var playerLoc = McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i]);
         if (playerLoc.NodeID == newLocation.NodeID)
         {
           if(!pendingCombats.ContainsKey(newLocation))

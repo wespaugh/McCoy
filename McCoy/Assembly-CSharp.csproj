@@ -181,6 +181,8 @@
     <Compile Include="Assets\Talentus\Core\PropertyDefinition.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoySkill.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoySkillUnlockManager.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

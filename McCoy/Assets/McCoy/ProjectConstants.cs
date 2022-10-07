@@ -48,6 +48,16 @@ namespace Assets.McCoy
       }
     }
 
+    public enum PlayerCharacter
+    {
+      Rex = 0,
+      Vicki,
+      Avalon,
+      Penelope
+    }
+
+    public static PlayerCharacter[] PlayerCharacters = { PlayerCharacter.Rex, PlayerCharacter.Vicki, PlayerCharacter.Avalon, PlayerCharacter.Penelope };
+
     public static string SearchStateDisplay(SearchState s)
     {
       switch (s)
@@ -70,20 +80,22 @@ namespace Assets.McCoy
     public const string STAGEDATA_DIRECTORY = "StageData";
     public const string FACTIONLOOKUP_DIRECTORY = "FactionLookup";
 
+    public const string PLAYERCHARACTER_DIRECTORY = "PlayerCharacters";
+
     public const string PLAYER_1_NAME = "Rex";
     public const string PLAYER_2_NAME = "Vicki";
     public const string PLAYER_3_NAME = "Avalon";
     public const string PLAYER_4_NAME = "Penelope";
 
-    public static string PlayerName(int playerNumber)
+    public static string PlayerName(PlayerCharacter player)
     {
-      switch(playerNumber)
+      switch(player)
       {
-        case 1:
+        case PlayerCharacter.Rex:
           return PLAYER_1_NAME;
-        case 2:
+        case PlayerCharacter.Vicki:
           return PLAYER_2_NAME;
-        case 3:
+        case PlayerCharacter.Avalon:
           return PLAYER_3_NAME;
         default:
           return PLAYER_4_NAME;

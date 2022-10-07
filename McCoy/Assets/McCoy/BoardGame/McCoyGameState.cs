@@ -1,7 +1,9 @@
 ﻿using Assets.McCoy.Brawler;
+using Assets.McCoy.RPG;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
@@ -17,9 +19,10 @@ namespace Assets.McCoy.BoardGame
       get => weekNumber;
     }
 
-    Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
+    public Dictionary<PlayerCharacter, McCoyPlayerCharacter> playerCharacters = new Dictionary<PlayerCharacter, McCoyPlayerCharacter>();
 
-    Dictionary<int, MapNode> playerLocations = new Dictionary<int, MapNode>();
+    Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
+    Dictionary<PlayerCharacter, MapNode> playerLocations = new Dictionary<PlayerCharacter, MapNode>();
     BrawlerResult stageesults = null;
 
     public MapNode AntikytheraMechanismLocation
@@ -28,18 +31,31 @@ namespace Assets.McCoy.BoardGame
       set;
     }
 
-    public MapNode PlayerLocation(int playerNumber)
+    public void Initialize()
     {
-      if(!playerLocations.ContainsKey(playerNumber))
+      Initialized = true;
+      for(int i = 0; i < PlayerCharacters.Length; ++i)
+      {
+        PlayerCharacter pc = PlayerCharacters[i];
+        string path = $"{PLAYERCHARACTER_DIRECTORY}/{PlayerName(pc)}";
+        Debug.Log(path);
+        McCoyPlayerCharacter pcData = Resources.Load<McCoyPlayerCharacter>(path);
+        playerCharacters[pc] = pcData.Clone() as McCoyPlayerCharacter;
+      }
+    }
+
+    public MapNode PlayerLocation(PlayerCharacter player)
+    {
+      if(!playerLocations.ContainsKey(player))
       {
         return null;
       }
-      return playerLocations[playerNumber];
+      return playerLocations[player];
     }
 
-    public void SetPlayerLocation(int playerNumber, MapNode loc)
+    public void SetPlayerLocation(PlayerCharacter player, MapNode loc)
     {
-      playerLocations[playerNumber] = loc;
+      playerLocations[player] = loc;
     }
 
     public void SetMobs(string nodeID, List<McCoyMobData> mobs)
@@ -75,13 +91,13 @@ namespace Assets.McCoy.BoardGame
         return retVal;
       }
     }
-    public bool CanPlayerTakeTurn(int pNumber)
+    public bool CanPlayerTakeTurn(PlayerCharacter player)
     {
-      return playerTurns[pNumber - 1];
+      return playerTurns[(int)player];
     }
-    public void SetPlayerTookTurn(int pNumber)
+    public void SetPlayerTookTurn(PlayerCharacter player)
     {
-      playerTurns[pNumber - 1] = false;
+      playerTurns[(int)player] = false;
     }
     public void EndWeek()
     {

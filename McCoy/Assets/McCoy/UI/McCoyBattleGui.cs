@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.Brawler;
+using Assets.McCoy.RPG;
 using System;
 using TMPro;
 using UFE3D;
@@ -46,6 +47,9 @@ namespace Assets.McCoy.UI
       base.OnGameBegin(player1, player2, stage);
 
       tmpNameText.text = player1.myInfo.characterName;
+
+      McCoyPlayerCharacter rex =  McCoy.GetInstance().gameState.playerCharacters[ProjectConstants.PlayerCharacter.Rex];
+      McCoySkillUnlockManager.PlayerSpawned(player1, rex.Skills);
 
       if (!spawnerInitialized)
       {

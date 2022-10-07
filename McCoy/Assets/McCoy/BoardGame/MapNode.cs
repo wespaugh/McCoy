@@ -22,7 +22,7 @@ namespace Assets.McCoy.BoardGame
     float bonusValue = 0;
     public void Search(int strongestMobStrength, int strongestMobHealth)
     {
-      int totalBonuses = bonusSearchDice + Math.Max(0, McCoy.GetInstance().boardGameState.Week - 5);
+      int totalBonuses = bonusSearchDice + Math.Max(0, McCoy.GetInstance().gameState.Week - 5);
       int numD10s = strongestMobStrength + totalBonuses;
       int numD6s = strongestMobHealth;
       int rollTotal = roll(10, numD10s);

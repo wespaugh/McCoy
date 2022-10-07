@@ -7,11 +7,14 @@ using UFE3D;
 
 namespace Assets.McCoy.RPG
 {
-  class McCoySkill
+  [Serializable]
+  public class McCoySkill
   {
-    public List<MoveInfo> movesToEnable = new List<MoveInfo>();
-    public List<object> buffsToAdd = new List<object>();
+    public List<MoveInfo> MovesToEnable = new List<MoveInfo>();
+    public List<object> BuffsToAdd = new List<object>();
 
-
+    public string Name;
+    public int Level;
+    public int MaxLevel;
   }
 }

@@ -58,13 +58,14 @@ namespace Assets.McCoy.UI
 
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
-    int selectedPlayer = 1;
+    PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
 
     McCoyCityBoardContents board = null;
     public McCoyCityBoardContents Board
     {
       get => board;
     }
+    public PlayerCharacter Rex { get; private set; }
 
     [SerializeField]
     List<GameObject> bottomUIElements = new List<GameObject>();
@@ -85,7 +86,7 @@ namespace Assets.McCoy.UI
       if (board == null)
       {
         board = Instantiate(boardContents);
-        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}:";
+        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}:";
 
         StartCoroutine(cityBooySequence());
         Camera.main.orthographic = false;
@@ -120,7 +121,7 @@ namespace Assets.McCoy.UI
         yield return null;
       }
 
-      if (McCoy.GetInstance().boardGameState.IsEndOfWeek)
+      if (McCoy.GetInstance().gameState.IsEndOfWeek)
       {
         board.showStinger(McCoyStinger.StingerTypes.WeekEnded);
       }
@@ -146,16 +147,16 @@ namespace Assets.McCoy.UI
 
     private void initSelectedCharacter()
     {
-      if(McCoy.GetInstance().boardGameState.IsEndOfWeek)
+      if(McCoy.GetInstance().gameState.IsEndOfWeek)
       {
         endWeek();
       }
 
-      for(int i = 1; i <= NUM_BOARDGAME_PLAYERS; ++i)
+      for(int i = 0; i < PlayerCharacters.Length; ++i)
       {
-        if(McCoy.GetInstance().boardGameState.CanPlayerTakeTurn(i))
+        if(McCoy.GetInstance().gameState.CanPlayerTakeTurn(PlayerCharacters[i]))
         {
-          selectedPlayer = i;
+          selectedPlayer = PlayerCharacters[i];
           break;
         }
       }
@@ -177,9 +178,9 @@ namespace Assets.McCoy.UI
 
     private void endWeek()
     {
-      McCoy.GetInstance().boardGameState.EndWeek();
+      McCoy.GetInstance().gameState.EndWeek();
       board.Weekend(weekendAnimationsFinished);
-      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}";
+      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}";
     }
 
     private void weekendAnimationsFinished()
@@ -228,22 +229,22 @@ namespace Assets.McCoy.UI
           mobData.Add(new McCoyMobData(f));
         }
         mapNode.Mobs = mobData;
-        McCoy.GetInstance().boardGameState.SetMobs(mapNode.NodeID, mobData);
+        McCoy.GetInstance().gameState.SetMobs(mapNode.NodeID, mobData);
       }
-      McCoy.GetInstance().boardGameState.Initialized = true;
+      McCoy.GetInstance().gameState.Initialize();
     }
 
     private void loadBoardState()
     {
       foreach(var m in board.MapNodes)
       {
-        m.Mobs = McCoy.GetInstance().boardGameState.GetMobs(m.NodeID);
+        m.Mobs = McCoy.GetInstance().gameState.GetMobs(m.NodeID);
       }
     }
 
     private void initMapPanels()
     {
-      if(McCoy.GetInstance().boardGameState.Initialized)
+      if(McCoy.GetInstance().gameState.Initialized)
       {
         loadBoardState();
       }
@@ -279,13 +280,13 @@ namespace Assets.McCoy.UI
       }
       zonePanels.Clear();
 
-      MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
+      MapNode antikytheraMechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
 
       if(antikytheraMechanismLocation == null)
       {
         MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
         loc.HasMechanism = true;
-        McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation = loc;
+        McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc;
       }
 
       foreach (var assetNode in board.MapNodes)
@@ -307,14 +308,14 @@ namespace Assets.McCoy.UI
 
     private void updateWeekText(string playerName)
     {
-      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().boardGameState.Week}: {playerName}";
+      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}: {playerName}";
     }
     private void selectedCharacterChanged()
     {
-      MapNode antikytheraMechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
+      MapNode antikytheraMechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
 
-      playerIcon.sprite = playerIconIndexes[selectedPlayer-1];
-      MapNode playerLoc = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
+      playerIcon.sprite = playerIconIndexes[(int)selectedPlayer];
+      MapNode playerLoc = McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer);
 
       selectedCharacterText.text = "";// ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
@@ -458,7 +459,7 @@ namespace Assets.McCoy.UI
 
     private void initPlayerStartLocations()
     {
-      if(McCoy.GetInstance().boardGameState.PlayerLocation(1) != null)
+      if(McCoy.GetInstance().gameState.PlayerLocation(Rex) != null)
       {
         return;
       }
@@ -469,11 +470,12 @@ namespace Assets.McCoy.UI
       {
         indices.Add(i);
       }
-      for (int i = 0; i < ProjectConstants.NUM_BOARDGAME_PLAYERS; ++i)
+      PlayerCharacter[] players = ProjectConstants.PlayerCharacters;
+      for (int i = 0; i < players.Length; ++i)
       {
         int index = Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
         int randomMapPoint = indices[index]; // the randomly picked number
-        McCoy.GetInstance().boardGameState.SetPlayerLocation(i+1,mapNodes[randomMapPoint]); // add the map node at the randomly picked number
+        McCoy.GetInstance().gameState.SetPlayerLocation(players[i],mapNodes[randomMapPoint]); // add the map node at the randomly picked number
         indices.RemoveAt(index); // remove the index so the same map point isn't picked again
       }
     }
@@ -490,26 +492,26 @@ namespace Assets.McCoy.UI
         Debug.LogError("improper use of change player");
       }
 
-      if (selectedPlayer >= NUM_BOARDGAME_PLAYERS && direction == 1)
+      if (selectedPlayer == PlayerCharacter.Penelope && direction == 1)
       {
-        selectedPlayer = 1;
+        selectedPlayer = PlayerCharacter.Rex;
       }
-      else if(selectedPlayer <= 1 && direction == -1)
+      else if(selectedPlayer == PlayerCharacter.Rex && direction == -1)
       {
-        selectedPlayer = NUM_BOARDGAME_PLAYERS;
+        selectedPlayer = PlayerCharacter.Penelope;
       }
       else
       {
         selectedPlayer += direction;
       }
 
-      if (McCoy.GetInstance().boardGameState.IsEndOfWeek)
+      if (McCoy.GetInstance().gameState.IsEndOfWeek)
       {
         Debug.LogError("inf recursion, bailing");
         return;
       }
 
-      if (!McCoy.GetInstance().boardGameState.CanPlayerTakeTurn(selectedPlayer))
+      if (!McCoy.GetInstance().gameState.CanPlayerTakeTurn(selectedPlayer))
       {
         changePlayer(direction);
       }
@@ -529,13 +531,13 @@ namespace Assets.McCoy.UI
     {
       board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
-      MapNode initialLocation = McCoy.GetInstance().boardGameState.PlayerLocation(selectedPlayer);
-      McCoy.GetInstance().boardGameState.SetPlayerLocation(selectedPlayer, node);
+      MapNode initialLocation = McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer);
+      McCoy.GetInstance().gameState.SetPlayerLocation(selectedPlayer, node);
       Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback);
     }
     public void LoadStageCallback()
     {
-      McCoy.GetInstance().boardGameState.SetPlayerTookTurn(selectedPlayer);
+      McCoy.GetInstance().gameState.SetPlayerTookTurn(selectedPlayer);
       if (!loadingStage)
       {
         loadingStage = true;

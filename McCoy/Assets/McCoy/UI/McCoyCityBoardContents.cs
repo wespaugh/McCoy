@@ -699,14 +699,14 @@ namespace Assets.McCoy.UI
     public void UpdateNodes()
     {
       Dictionary<MapNode, int> playerLocs = new Dictionary<MapNode, int>();
-      for(int i = 1; i <= ProjectConstants.NUM_BOARDGAME_PLAYERS; ++i)
+      for(int i = 0; i < PlayerCharacters.Length; ++i)
       {
-        playerLocs[McCoy.GetInstance().boardGameState.PlayerLocation(i)] = i;
+        playerLocs[McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i])] = i;
       }
       foreach(var node in mapNodes)
       {
         int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
-        MapNode mechanismLocation = McCoy.GetInstance().boardGameState.AntikytheraMechanismLocation;
+        MapNode mechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
         bool showMechanism = mechanismLocation != null && mechanismLocation.SearchStatus() == SearchState.CompletelySearched && mechanismLocation.NodeID == node.NodeID;
         mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName, node.SearchPercent, showMechanism);
       }

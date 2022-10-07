@@ -23,7 +23,7 @@ namespace Assets.McCoy
     static McCoy instance = null;
 
     public McCoyStageData currentStage = null;
-    public McCoyGameState boardGameState = null;
+    public McCoyGameState gameState = null;
 
     public static McCoy GetInstance()
     {
