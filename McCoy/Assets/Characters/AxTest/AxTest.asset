@@ -16319,7 +16319,7 @@ MonoBehaviour:
       _moveBackSpeed:
         _serializedValue: 51539607552
       _moveSidewaysSpeed:
-        _serializedValue: 51539607552
+        _serializedValue: 34359738368
       highMovingFriction: 1
       _friction:
         _serializedValue: 128849018880
