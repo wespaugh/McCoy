@@ -72,6 +72,7 @@
     <Compile Include="Assets\Talentus\Core\ConnectionProperties.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\UFEScreenExtensions.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoEnemy.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkill.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingUI.cs" />
     <Compile Include="Assets\Talentus\Core\Tier.cs" />
     <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\rotationCamera.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionUtils.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityZonePlacementNode.cs" />
     <Compile Include="Assets\Talentus\Core\Interfaces\ITalent.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\TextureIntroScreen.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyZoneMapMobIndicator.cs" />
     <Compile Include="Assets\McCoy\BoardGame\SearchableNode.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Assets\McCoy\Cutscene\CutsceneFrameView.cs" />
     <Compile Include="Assets\McCoy\UI\MapCityNodePanel.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeCost.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkillTreeMenu.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultLoadingBattleScreen.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoPlanes.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerSpawnManager.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\changeEffects.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyProgressBar.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerMobStatusLabel.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoySkillUnlockManager.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapNode.cs" />
     <Compile Include="Assets\McCoy\UI\MapCityNodePanelMob.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobData.cs" />
@@ -152,6 +156,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCharacterSelectionScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoySpawnerTrigger.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusAutoEnableRoots.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInputGUI.cs" />
     <Compile Include="Assets\McCoy\Brawler\IMobChangeDelegate.cs" />
@@ -174,15 +179,13 @@
     <Compile Include="Assets\Talentus\Components\TalentusEngine.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultReplayGUI.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoTurret.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkillTreePageToggle.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentExtraScript.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
     <Compile Include="Assets\Talentus\Core\PropertyDefinition.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoySkill.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoySkillUnlockManager.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />
@@ -191,6 +194,7 @@
     <None Include="Assets\OpenGameArt\bulkhead-walls-files\license.txt" />
     <None Include="Assets\SciFiFlatSkills\ReadMe.txt" />
     <None Include="Assets\cMonkeys\cInput\Documentation\changelog.txt" />
+    <None Include="Assets\Shaders\SpriteGradient.shader" />
     <None Include="Assets\cMonkeys\cInput\Example\Materials &amp; Textures\prototype_textures\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\cMonkeys\cInput\Example\AbstractModels\README.txt" />

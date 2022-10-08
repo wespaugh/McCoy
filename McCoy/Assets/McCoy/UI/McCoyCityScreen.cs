@@ -56,6 +56,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     AudioClip mobCombat = null;
 
+    [SerializeField]
+    GameObject RexSkillTree = null;
+
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
     PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
@@ -173,6 +176,16 @@ namespace Assets.McCoy.UI
       if (!mobRouting)
       {
         board.ToggleZoom();
+      }
+    }
+
+    public void OpenSkillTree()
+    {
+      switch (selectedPlayer)
+      {
+        case PlayerCharacter.Rex:
+          Instantiate(RexSkillTree, transform.parent);
+          break;
       }
     }
 

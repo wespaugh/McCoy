@@ -61,6 +61,7 @@
     <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeTiersPropertiesDefineWindow.cs" />
     <Compile Include="Assets\Talentus\Editor\Views\TalentTreeViewBase.cs" />
     <Compile Include="Assets\Talentus\Editor\Utils\TalentTreeUtils.cs" />
+    <Compile Include="Assets\McCoy\Editor\McCoyPlayerCharacterEditor.cs" />
     <Compile Include="Assets\McCoy\Editor\MapGraphEditor.cs" />
     <Compile Include="Assets\Talentus\Editor\Windows\TalentTreeUITemplateWindow.cs" />
     <Compile Include="Assets\Talentus\Editor\Views\TalentTreePropertyView.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Assets\Talentus\Editor\Views\TalentTreeToolBar.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\Editor\DefaultCharacterSelectionScreenEditor.cs" />
     <Compile Include="Assets\Talentus\Editor\Menus\TalentTreeMenus.cs" />
-    <Compile Include="Assets\McCoy\Editor\McCoyPlayerCharacterEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

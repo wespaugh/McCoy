@@ -59,7 +59,7 @@ namespace com.cygnusprojects.TalentTree
             if (Engine != null)
                 Engine.TalentTree.TreeEvaluated -= TalentTree_TreeEvaluated;
         }
-
+    public void ForceUpdate() { UpdateUI(); }
         void UpdateUI()
         {            
             if (Talent != null)
