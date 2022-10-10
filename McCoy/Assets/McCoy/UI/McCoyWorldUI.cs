@@ -34,7 +34,7 @@ namespace Assets.McCoy.UI
     private void initializePlayerHealth()
     {
       playerHealthInitialized = true;
-      healthBar.transform.localPosition = new Vector3(-4.40f, 4.4f, 0.0f);
+      healthBar.transform.localPosition = new Vector3(-4.4f, 4f, 0.0f);
       healthBar.Initialize((int)UFE.GetPlayer1ControlsScript().currentLifePoints, 1000);
     }
 

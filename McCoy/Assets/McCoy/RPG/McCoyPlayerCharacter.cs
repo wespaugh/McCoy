@@ -31,7 +31,12 @@ namespace Assets.McCoy.RPG
     }
     public int XP = 1;
 
-    public int[] XpThreshholds = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    public int[] XpThreshholds = {
+      12, 24, 40, 60, 85, 
+      115, 150, 200, 275, 380,
+      500, 750, 1000, 1500, 2100, 
+      2800, 3800, 5000, 6500, 9001
+    };
 
     /*
     public object Clone()
