@@ -108,6 +108,21 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
+--- !u!114 &-7770161519741289907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Accessory Slot 2 must be active.
 --- !u!114 &-7322163201615184191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +177,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: f27eb2895b29e8e4097076fb95c6212f, type: 3}
   DisabledImage: {fileID: 2800000, guid: f27eb2895b29e8e4097076fb95c6212f, type: 3}
-  isValid: 1
+  isValid: 0
   description: Adds 50% to your health!
   explanation: 
   isInResearch: 0
@@ -240,7 +255,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
-  m_Name: Combo Upgrade
+  m_Name: Uppercut
   m_EditorClassIdentifier: 
   isSelected: 0
   nodeRect:
@@ -254,7 +269,7 @@ MonoBehaviour:
   Image: {fileID: 2800000, guid: 71ec254050024cb4eabd67c2b967ff6d, type: 3}
   DisabledImage: {fileID: 2800000, guid: 71ec254050024cb4eabd67c2b967ff6d, type: 3}
   isValid: 1
-  description: Adds an extra 2 hits to your basic combo!
+  description: Press Up+Attack to perform an uppercut! Also extends your combo!
   explanation: 
   isInResearch: 0
   tier: {fileID: -7322163201615184191}
@@ -406,7 +421,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: 28c8d8959cd60c248bb4f0df3298e6a2, type: 3}
   DisabledImage: {fileID: 2800000, guid: 28c8d8959cd60c248bb4f0df3298e6a2, type: 3}
-  isValid: 1
+  isValid: 0
   description: 
   explanation: 
   isInResearch: 0
@@ -580,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
   m_Name: AccessorySlot2_HeavyArmor
   m_EditorClassIdentifier: 
-  isSelected: 0
+  isSelected: 1
   fromNode: {fileID: 2001911788940850315}
   toNode: {fileID: -980349744861754214}
   curvePoints:
@@ -596,7 +611,8 @@ MonoBehaviour:
   - {x: 842, y: 631.6667, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
-  Conditions: []
+  Conditions:
+  - {fileID: -7770161519741289907}
   connectionType: 0
 --- !u!114 &-2174281424183222175
 MonoBehaviour:
@@ -865,8 +881,8 @@ MonoBehaviour:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
-  selectedNode: {fileID: 3708116722363479858}
-  selectedConnection: {fileID: 0}
+  selectedNode: {fileID: 0}
+  selectedConnection: {fileID: -2329923399435889777}
   wantsConnection: 0
   connectionNode: {fileID: 2001911788940850315}
   showProperties: 1
@@ -874,7 +890,7 @@ MonoBehaviour:
   PanY: 52
   mouseOverProperties: 0
   propertyWidth: 317.83334
-  PointsToAssign: 1
+  PointsToAssign: 0
 --- !u!114 &193646044628781117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,7 +1036,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: 4115c9b160171a64998527076aa09a14, type: 3}
   DisabledImage: {fileID: 2800000, guid: 4115c9b160171a64998527076aa09a14, type: 3}
-  isValid: 1
+  isValid: 0
   description: While in Lupus, you can now jump and deal a small amount of damage
     without breaking speed.
   explanation: 
@@ -1067,7 +1083,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: db906b880f7b374479506cfb9735082a, type: 3}
   DisabledImage: {fileID: 2800000, guid: db906b880f7b374479506cfb9735082a, type: 3}
-  isValid: 1
+  isValid: 0
   description: Unlocks and additional accessory slot
   explanation: 
   isInResearch: 0
@@ -1102,7 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
   m_Name: Pounce
   m_EditorClassIdentifier: 
-  isSelected: 1
+  isSelected: 0
   nodeRect:
     serializedVersion: 2
     x: 517
@@ -1267,7 +1283,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: 24cf81394b21caf43a14f43b22f84d1c, type: 3}
   DisabledImage: {fileID: 2800000, guid: 24cf81394b21caf43a14f43b22f84d1c, type: 3}
-  isValid: 1
+  isValid: 0
   description: Unlocks a third weapon slot
   explanation: 
   isInResearch: 0
@@ -1318,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 1
   Bought: 0
-  WillBuy: 0
+  WillBuy: 1
   Description: 
 --- !u!114 &6055931433032566565
 MonoBehaviour:
@@ -1545,7 +1561,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: bb79c41185144694393a4c44373b5094, type: 3}
   DisabledImage: {fileID: 2800000, guid: bb79c41185144694393a4c44373b5094, type: 3}
-  isValid: 1
+  isValid: 0
   description: Imrpoves the Speed of the wolf form
   explanation: 
   isInResearch: 0

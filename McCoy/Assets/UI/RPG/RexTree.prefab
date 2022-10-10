@@ -390,8 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.24705882, g: 0, b: 0.54901963, a: 1}
+  m_Material: {fileID: 2100000, guid: f532a3ed3fe38d14082d5fb068417169, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -848,7 +848,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4024349668374978993}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 4064858006302851851, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 8532970866877325024}
   LevelIndicator: {fileID: 1783782083728743875}
   CostLabel: {fileID: 5291954959661884357}
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -5585068864641846751, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 8615784479681659955}
   LevelIndicator: {fileID: 6241672216750325451}
   CostLabel: {fileID: 6801961158163637050}
@@ -2110,7 +2110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2237724506723522690}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2212,7 +2212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -7129082482753730879, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 5032224188728897140}
   LevelIndicator: {fileID: 8154910321403937659}
   CostLabel: {fileID: 671211612769476267}
@@ -2435,7 +2435,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1019370266195239022}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2840,7 +2840,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4548607512440832501}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 2001911788940850315, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 8609057312618584249}
   LevelIndicator: {fileID: 6153572357503974199}
   CostLabel: {fileID: 4467747418862046233}
@@ -3185,7 +3185,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4425248171113408956}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3447,7 +3447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 1614853778864886401, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 490075756197975322}
   LevelIndicator: {fileID: 3532104080540129644}
   CostLabel: {fileID: 203421105404895136}
@@ -3738,7 +3738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -4682264559014393643, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 5287028931824227383}
   LevelIndicator: {fileID: 5915968347515684579}
   CostLabel: {fileID: 4840891219893447704}
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 831361973885346730, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 1659288716616952539}
   LevelIndicator: {fileID: 1290305472959394365}
   CostLabel: {fileID: 9146001032479787674}
@@ -4255,7 +4255,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 445053138786531426}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 4756888913770981202, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 5547981475969682650}
   LevelIndicator: {fileID: 2044961395660592043}
   CostLabel: {fileID: 571608674258773015}
@@ -5323,7 +5323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 243144647485323043}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6288,7 +6288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 7587861104181390740, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 6546442302316912939}
   LevelIndicator: {fileID: 8628874132822122508}
   CostLabel: {fileID: 5007060351398878101}
@@ -6483,7 +6483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -3474082257142871904, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 7361308891348343763}
   LevelIndicator: {fileID: 1838896157812577043}
   CostLabel: {fileID: 2452804174083615596}
@@ -7424,7 +7424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 4625256471681224181, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 4688117801222953936}
   LevelIndicator: {fileID: 8100397423231846214}
   CostLabel: {fileID: 2000119728453171033}
@@ -7539,7 +7539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 3708116722363479858, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 3168434836699232091}
   LevelIndicator: {fileID: 7391303939805917646}
   CostLabel: {fileID: 6483246723491243630}
@@ -7810,7 +7810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 8584156030395328547, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 8033660061214251711}
   LevelIndicator: {fileID: 1847804184897673463}
   CostLabel: {fileID: 8985755481944626494}
@@ -8171,7 +8171,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6338199443308847982}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8893,7 +8893,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 276701596999177278}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9027,7 +9027,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8002497280062465141}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9337,7 +9337,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3178998232758625029}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9483,7 +9483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -3390969173727728637, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 4831580536081883234}
   LevelIndicator: {fileID: 4455116108137446779}
   CostLabel: {fileID: 5644521429649358868}
@@ -10271,7 +10271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 1163855569019601277, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 1374021821126530065}
   LevelIndicator: {fileID: 8871889251511261513}
   CostLabel: {fileID: 5887662853162468051}
@@ -10581,7 +10581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -980349744861754214, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 7190312045295731403}
   LevelIndicator: {fileID: 306771823450066463}
   CostLabel: {fileID: 7853878408020974008}
@@ -11621,7 +11621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: 6055931433032566565, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 8464285483704807844}
   LevelIndicator: {fileID: 4630843918588893504}
   CostLabel: {fileID: 6441210275255058018}
@@ -12078,7 +12078,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7288044584001703030}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12340,7 +12340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Talent: {fileID: -7793204463600888794, guid: 1a3cee975f26bb9429b83523d1eb994b, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 6167048755096446224}
   NameLabel: {fileID: 1805825102627305049}
   LevelIndicator: {fileID: 2140304661882311812}
   CostLabel: {fileID: 6738578407375217573}
@@ -13585,7 +13585,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4061749972194296612}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13949,6 +13949,8 @@ MonoBehaviour:
   humanPage: {fileID: 4062451046636660537}
   wolfPage: {fileID: 636794941370773351}
   tabs: {fileID: 6118168921598907877}
+  Engine: {fileID: 6167048755096446224}
+  availablePoints: {fileID: 3603024815463471851}
 --- !u!1 &6182978877758333481
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,7 +14978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 216, y: -226.6}
+  m_AnchoredPosition: {x: 174, y: -226.6}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841474633271768210
@@ -15369,7 +15371,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4666944808297478757}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15702,7 +15704,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8304580035193217023}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16046,7 +16048,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5123624628877228898}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16580,7 +16582,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7277864431569343670}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16954,7 +16956,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5266841225777751392}
         m_TargetAssemblyTypeName: com.cygnusprojects.TalentTree.TalentUI, Assembly-CSharp
-        m_MethodName: ForceUpdate
+        m_MethodName: DoBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21079,6 +21081,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6167048755096446224}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1211134431791165529}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Apply
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: com.cygnusprojects.TalentTree.TalentusEngine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.McCoy.RPG.McCoySkillTreeMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496888923081528068, guid: eb36b5e74495b8c49957d394bdc9eb2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8100536758270353465, guid: eb36b5e74495b8c49957d394bdc9eb2a,
         type: 3}

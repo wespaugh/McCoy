@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 1944363958}
   - component: {fileID: 1944363957}
   - component: {fileID: 1944363959}
+  - component: {fileID: 1944363960}
   m_Layer: 0
   m_Name: UFE Manager
   m_TagString: Untagged
@@ -556,3 +557,20 @@ MonoBehaviour:
   debugCheatWin: 0
   cityScene: {fileID: 7717615156766846426, guid: 5f1902f4f1fb8654aa90363b8de84b63,
     type: 3}
+--- !u!114 &1944363960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944363956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206a15842d6518348b55a64b7ecf8005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveLookup:
+  - skill: 0
+    moves:
+    - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
+    - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}

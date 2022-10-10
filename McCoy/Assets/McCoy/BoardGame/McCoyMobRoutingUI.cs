@@ -130,7 +130,7 @@ namespace Assets.McCoy.BoardGame
     {
       List<MapNode> retVal = new List<MapNode>();
 
-      foreach (var mapNode in zoneMobs[zoneIndex].Item1.connectedNodes)
+      foreach (var mapNode in zoneMobs[zoneIndex].Item1.GetConnectedNodes())
       {
         if(zoneMobs[zoneIndex].Item2.CanRouteTo(mapNode as MapNode))
         {
@@ -147,9 +147,9 @@ namespace Assets.McCoy.BoardGame
       //
       // assume we're done routing, but if player attacks hurt enough, we might get to route again
       m.IsRouted = false;
-      for (int i = 0; i <= PlayerCharacters.Length; ++i)
+      for (int i = 0; i < PlayerCharacters.Length; ++i)
       {
-        var playerLoc = McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i]);
+        var playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i]));
         if (playerLoc.NodeID == newLocation.NodeID)
         {
           if(!pendingCombats.ContainsKey(newLocation))

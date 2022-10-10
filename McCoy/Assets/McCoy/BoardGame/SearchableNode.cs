@@ -12,8 +12,32 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     public string NodeID;
 
+    public List<string> connectionIDs = new List<string>();
+
     [NonSerialized]
-    public List<SearchableNode> connectedNodes = new List<SearchableNode>();
+    List<SearchableNode> connectedNodes = new List<SearchableNode>();
+
+    public List<SearchableNode> GetConnectedNodes()
+    {
+      return new List<SearchableNode>(connectedNodes);
+    }
+
+    public bool ConnectedToNode(SearchableNode other)
+    {
+      return connectedNodes.Contains(other);
+    }
+
+    public void AddConnectedNode(SearchableNode other)
+    {
+      if (!connectedNodes.Contains(other))
+      {
+        connectedNodes.Add(other);
+      }
+        if (!connectionIDs.Contains(other.NodeID))
+      {
+        connectionIDs.Add(other.NodeID);
+      }
+    }
 
     private class SearchState
     {

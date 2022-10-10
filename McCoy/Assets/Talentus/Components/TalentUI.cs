@@ -129,6 +129,10 @@ namespace com.cygnusprojects.TalentTree
             {
                 buyButton.gameObject.SetActive(true);
             }
+            if(revertButton != null)
+      {
+        revertButton.gameObject.SetActive(false);
+      }
         }
 		#endregion
 	}

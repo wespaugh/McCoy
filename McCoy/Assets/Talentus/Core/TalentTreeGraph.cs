@@ -318,7 +318,6 @@ namespace com.cygnusprojects.TalentTree
 
         public void Evaluate()
         {
-      Debug.Log("Evaluate");
             float startTime = Time.deltaTime;
             //Debug.Log(string.Format("Start evaluating {0}", startTime));
 

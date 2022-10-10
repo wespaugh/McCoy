@@ -14,16 +14,14 @@ namespace Assets.McCoy.Brawler
     {
       foreach (var skill in mcCoySkills)
       {
-        foreach (var move in skill.MovesToEnable)
+        foreach (var moveSet in controls.loadedMoves)
         {
-          Debug.Log($"skill name {move.moveName}");
-          foreach (var moveSet in controls.loadedMoves)
+          foreach (var atk in moveSet.attackMoves)
           {
-            foreach (var atk in moveSet.attackMoves)
+            foreach (var move in skill.EnabledMoves)
             {
               if (move.moveName == atk.moveName)
               {
-                Debug.Log("Found Move to Enable! " + move.moveName + " skill level " + skill.Level);
                 atk.locked = skill.Level == 0;
               }
             }

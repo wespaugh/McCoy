@@ -58,12 +58,7 @@ namespace Assets.McCoy.Editor
       }
       foreach(var node in Nodes)
       {
-        mapNodeContainer.NodeData.Add(new MapNode
-        {
-          NodeID = node.guid.ToString(),
-          ZoneName = node.zoneName,
-          Position = node.GetPosition().position
-        });
+        mapNodeContainer.NodeData.Add(new MapNode() { NodeID = node.guid.ToString(), ZoneName = node.zoneName, Position = node.GetPosition().position });
       }
 
       if(!AssetDatabase.IsValidFolder($"{ProjectConstants.RESOURCES_DIRECTORY}{ProjectConstants.MAPDATA_DIRECTORY}"))

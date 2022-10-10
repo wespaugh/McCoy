@@ -34,12 +34,11 @@ namespace Assets.McCoy.UI
 
     McCoyCityScreen uiRoot = null;
 
-    public void Initialize(MapNode node, McCoyCityScreen screen)
+    public void Initialize(MapNode node, McCoyCityScreen screen, MapNode mechanismLoc)
     {
       this.node = node;
       NodeName.text = node.ZoneName;
       SearchStatus.text = $"{SearchStateDisplay(node.SearchStatus())}";
-      var mechanismLoc = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
       if (screen != null && mechanismLoc != null && mechanismLoc.SearchStatus() == SearchState.CompletelySearched)
       {
         SearchStatus.text = $"Distance to goal: {node.DistanceToMechanism}";

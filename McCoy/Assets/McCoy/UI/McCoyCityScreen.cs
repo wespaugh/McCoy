@@ -1,5 +1,7 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
+using Assets.McCoy.RPG;
+using com.cygnusprojects.TalentTree;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -97,10 +99,22 @@ namespace Assets.McCoy.UI
       UFE.PlayMusic(mapMusic);
     }
 
+    private void saveCity()
+    {
+      List<MapNodeSearchData> updatedNodes = new List<MapNodeSearchData>();
+      foreach(var node in board.MapNodes)
+      {
+        updatedNodes.Add(node.SearchData);
+      }
+      McCoy.GetInstance().gameState.UpdateSearchData(updatedNodes);
+      McCoy.GetInstance().gameState.Save();
+    }
+
     private IEnumerator cityBooySequence()
     {
       initPlayerStartLocations();
       initMapPanels();
+      saveCity();
       checkForMobRouting();
 
       while(mobDying)
@@ -140,6 +154,7 @@ namespace Assets.McCoy.UI
       }
 
       initSelectedCharacter();
+      saveCity();
     }
 
     public void DebugEndWeek()
@@ -179,13 +194,37 @@ namespace Assets.McCoy.UI
       }
     }
 
+    private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
+    {
+      McCoy.GetInstance().gameState.UpdateSkills(pc, serializedSkills, availablePoints);
+    }
+
     public void OpenSkillTree()
     {
+      string skillTreeString = "";
+      int availableSkillPoints = 0;
+      McCoySkillTreeMenu talentDelegate = null;
+      McCoyPlayerCharacter playerData = null;
       switch (selectedPlayer)
       {
         case PlayerCharacter.Rex:
-          Instantiate(RexSkillTree, transform.parent);
+          talentDelegate = Instantiate(RexSkillTree, transform.parent).GetComponent<McCoySkillTreeMenu>();
+          playerData = McCoy.GetInstance().gameState.playerCharacters[PlayerCharacter.Rex];
           break;
+      }
+      if(playerData != null)
+      {
+        playerData.AvailableSkillPoints = 7;
+        availableSkillPoints = playerData.AvailableSkillPoints;
+        skillTreeString = playerData.SkillTreeString;
+      }
+      if(talentDelegate != null)
+      {
+        talentDelegate.SetAvailableSkillPoints(availableSkillPoints);
+        if(!string.IsNullOrEmpty(skillTreeString))
+        {
+          talentDelegate.LoadSkills(skillTreeString, loadSkills);
+        }
       }
     }
 
@@ -215,6 +254,7 @@ namespace Assets.McCoy.UI
       {
         board.ToggleZoom(true);
       }
+      saveCity();
     }
 
     private void OnDestroy()
@@ -245,6 +285,9 @@ namespace Assets.McCoy.UI
         McCoy.GetInstance().gameState.SetMobs(mapNode.NodeID, mobData);
       }
       McCoy.GetInstance().gameState.Initialize();
+      string skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
+      skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
+      loadSkills(1, skillString, Rex);
     }
 
     private void loadBoardState()
@@ -264,6 +307,16 @@ namespace Assets.McCoy.UI
       else
       {
         generateInitialBoardState();
+      }
+      foreach(var m in board.MapNodes)
+      {
+        m.SearchData = McCoy.GetInstance().gameState.GetSearchData(m.NodeID);
+        m.SearchData.NodeID = m.NodeID;
+        m.SearchData.ZoneName = m.ZoneName;
+        foreach (string conn in m.connectionIDs)
+        {
+          m.AddConnectedNode(board.NodeWithID(conn));
+        }
       }
 
       refreshBoardAndPanels();
@@ -293,25 +346,23 @@ namespace Assets.McCoy.UI
       }
       zonePanels.Clear();
 
-      MapNode antikytheraMechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
+      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
 
       if(antikytheraMechanismLocation == null)
       {
         MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
         loc.HasMechanism = true;
-        McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc;
+        McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc.NodeID;
+        antikytheraMechanismLocation = board.NodeWithID(loc.NodeID);
       }
 
       foreach (var assetNode in board.MapNodes)
       {
-        if (antikytheraMechanismLocation != null)
-        {
-          assetNode.SetMechanismLocation(antikytheraMechanismLocation);
-        }
+        assetNode.SetMechanismLocation(antikytheraMechanismLocation);
 
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         zonePanels[assetNode] = nodePanel;
-        nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this);
+        nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this, antikytheraMechanismLocation);
       }
 
       board.UpdateNodes();
@@ -325,22 +376,22 @@ namespace Assets.McCoy.UI
     }
     private void selectedCharacterChanged()
     {
-      MapNode antikytheraMechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
+      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
 
       playerIcon.sprite = playerIconIndexes[(int)selectedPlayer];
-      MapNode playerLoc = McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer);
+      MapNode playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
 
       selectedCharacterText.text = "";// ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
 
-      updateWeekText(ProjectConstants.PlayerName(selectedPlayer));
+      updateWeekText(PlayerName(selectedPlayer));
 
-      selectedZonePanel.Initialize(playerLoc, null);
+      selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
 
-      bool mechanismFound = antikytheraMechanismLocation?.SearchStatus() == SearchState.CompletelySearched;
+      bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
 
       int minDistanceToMechanism = -1;
-      foreach (var v in playerLoc.connectedNodes)
+      foreach (var v in playerLoc.GetConnectedNodes())
       {
         if (minDistanceToMechanism < 0 || (v as MapNode).DistanceToMechanism < minDistanceToMechanism)
         {
@@ -361,7 +412,7 @@ namespace Assets.McCoy.UI
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
-        foreach (var connection in playerLoc.connectedNodes)
+        foreach (var connection in playerLoc.GetConnectedNodes())
         {
           if (connection.NodeID == node.NodeID && (!mechanismFound || node.DistanceToMechanism <= minDistanceToMechanism))
           {
@@ -388,7 +439,7 @@ namespace Assets.McCoy.UI
       {
         bool xIsConnected = false;
         bool yIsConnected = false;
-        foreach (var connection in playerLoc.connectedNodes)
+        foreach (var connection in playerLoc.GetConnectedNodes())
         {
           if (x.NodeID == connection.NodeID)
           {
@@ -483,7 +534,7 @@ namespace Assets.McCoy.UI
       {
         indices.Add(i);
       }
-      PlayerCharacter[] players = ProjectConstants.PlayerCharacters;
+      PlayerCharacter[] players = PlayerCharacters;
       for (int i = 0; i < players.Length; ++i)
       {
         int index = Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
@@ -544,7 +595,7 @@ namespace Assets.McCoy.UI
     {
       board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
-      MapNode initialLocation = McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer);
+      MapNode initialLocation = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
       McCoy.GetInstance().gameState.SetPlayerLocation(selectedPlayer, node);
       Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback);
     }

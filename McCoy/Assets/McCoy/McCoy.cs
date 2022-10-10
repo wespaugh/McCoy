@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
+using Assets.McCoy.RPG;
 using FPLibrary;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,19 @@ namespace Assets.McCoy
     }
 
     static McCoy instance = null;
+
+    McCoySkillMoveInfoLookup skillLookup;
+    public McCoySkillMoveInfoLookup SkillLookup
+    {
+      get
+      {
+        if(skillLookup == null)
+        {
+          skillLookup = GetComponent<McCoySkillMoveInfoLookup>();
+        }
+        return skillLookup;
+      }
+    }
 
     public McCoyStageData currentStage = null;
     public McCoyGameState gameState = null;
