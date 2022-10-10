@@ -59,7 +59,7 @@ namespace com.cygnusprojects.TalentTree
             if (Engine != null)
                 Engine.TalentTree.TreeEvaluated -= TalentTree_TreeEvaluated;
         }
-
+    public void ForceUpdate() { UpdateUI(); }
         void UpdateUI()
         {            
             if (Talent != null)
@@ -129,6 +129,10 @@ namespace com.cygnusprojects.TalentTree
             {
                 buyButton.gameObject.SetActive(true);
             }
+            if(revertButton != null)
+      {
+        revertButton.gameObject.SetActive(false);
+      }
         }
 		#endregion
 	}

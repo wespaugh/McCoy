@@ -98,6 +98,27 @@ namespace com.cygnusprojects.TalentTree
             return retValue;
         }
 
+    public string ResetSkillTree()
+    {
+      string retValue = string.Empty;
+      for (int i = 0; i < TalentTree.talents.Count; i++)
+      {
+        foreach(var cost in TalentTree.talents[i].Cost)
+        {
+          cost.Bought = false;
+        }
+        string[] skillSave = TalentTree.talents[i].Save().Split(';');
+        retValue += skillSave[0] + ';'; // name
+        retValue += skillSave[1] + ';'; //  cost per skill
+        for (int j = 2; j < skillSave.Length - 1; ++j)
+        {
+          retValue += "0;"; // bought flags for each point in the skill
+        }
+        retValue += skillSave[skillSave.Length-1]; // closing tag
+      }
+      return retValue;
+    }
+
         /// <summary>
         /// Updated the talents statusses using a string.
         /// Evaluates afterwards so all dependencies are correctly updated.

@@ -64,6 +64,9 @@ namespace com.cygnusprojects.TalentTree.Editor
             EditorGUILayout.BeginVertical();
             GUILayout.Space(10);
 
+      float fadeGroupValue = 1.0f;
+
+      EditorGUILayout.BeginFadeGroup(fadeGroupValue);
             //Extra block that can be toggled on and off.
             m_ShowGeneralSection = EditorGUILayout.Foldout(m_ShowGeneralSection, "General Settings", true);
             if (m_ShowGeneralSection)
@@ -151,6 +154,7 @@ namespace com.cygnusprojects.TalentTree.Editor
 
             GUILayout.Space(12);
 
+      EditorGUILayout.BeginFadeGroup(fadeGroupValue);// ();
             //Extra block that can be toggled on and off.
             m_ShowTalentSection = EditorGUILayout.Foldout(m_ShowTalentSection, "Talent Settings", true);
             if (m_ShowTalentSection)
@@ -170,6 +174,7 @@ namespace com.cygnusprojects.TalentTree.Editor
 
             GUILayout.Space(12);
 
+      EditorGUILayout.BeginFadeGroup(fadeGroupValue);
             //Extra block that can be toggled on and off.
             m_ShowConnectionSection = EditorGUILayout.Foldout(m_ShowConnectionSection, "Connection Settings", true);
             if (m_ShowConnectionSection)

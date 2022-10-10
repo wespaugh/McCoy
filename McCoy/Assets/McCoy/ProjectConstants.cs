@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.McCoy.RPG;
+using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -71,6 +73,11 @@ namespace Assets.McCoy
         default:
           return "Search Nearly Complete";
       }
+    }
+
+    public static string SaveFilename(int v)
+    {
+      return Application.persistentDataPath + "/McCoySave.awoo";
     }
 
     public const int NUM_BOARDGAME_PLAYERS = 4;
@@ -151,5 +158,50 @@ namespace Assets.McCoy
         return SearchState.CompletelySearched;
       }
     }
+
+
+    #region Player Skills
+    public enum PlayerSkills
+    {
+      RexUppercut,
+      Invalid
+    }
+
+    public static PlayerSkills SkillForLabel(string label)
+    {
+      if(label == "Uppercut")
+      {
+        return PlayerSkills.RexUppercut;
+      }
+      return PlayerSkills.Invalid;
+    }
+
+    public static List<McCoySkill> LoadSkillsFromTalentus(string serializedSkills)
+    {
+      List<McCoySkill> retVal = new List<McCoySkill>();
+      string cdr = serializedSkills;
+      while (cdr.Length > 0)
+      {
+        int skillEndIdx = cdr.IndexOf(']') + 1;
+        string car = cdr.Substring(0, skillEndIdx);
+        car = car.Substring(1, skillEndIdx - 2); // trim leading/trailing []
+        string[] values = car.Split(";");
+        int level = 0;
+        int maxLevel = values.Length - 2;
+        for(int i = 2; i < values.Length; ++i)
+        {
+          if(string.IsNullOrEmpty(values[i]) || int.Parse(values[i]) == 0)
+          {
+            level = i-2;
+            break;
+          }
+        }
+        Debug.Log("Adding skill " + values[0] + " " + level + "/" + maxLevel);
+        retVal.Add(new McCoySkill(name : values[0], level : level, maxLevel : maxLevel));
+        cdr = cdr.Substring(skillEndIdx);
+      }
+      return retVal;
+    }
+    #endregion
   }
 }

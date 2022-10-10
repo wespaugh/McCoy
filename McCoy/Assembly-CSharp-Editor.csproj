@@ -74,7 +74,6 @@
     <Compile Include="Assets\Talentus\Editor\Views\TalentTreeToolBar.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\Editor\DefaultCharacterSelectionScreenEditor.cs" />
     <Compile Include="Assets\Talentus\Editor\Menus\TalentTreeMenus.cs" />
-    <Compile Include="Assets\McCoy\Editor\McCoyPlayerCharacterEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

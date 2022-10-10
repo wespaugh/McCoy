@@ -6,9 +6,18 @@ using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
+  [Serializable]
   public class McCoyMobData
   {
-    public int XP { get; private set; }
+    int xp;
+    public int XP 
+    {
+      get => xp;
+      private set
+      {
+        xp = value;
+      } 
+    }
     int maxHealth = 6;
     public int MaxHealth
     {
@@ -16,10 +25,14 @@ namespace Assets.McCoy.BoardGame
       private set => maxHealth = value;
     }
 
+    bool markedForDeath;
     public bool MarkedForDeath
     {
-      get;
-      private set;
+      get => markedForDeath;
+      private set
+      {
+        markedForDeath = value;
+      }
     }
 
     private int monsterHealthScaleFactor = 6;
@@ -27,30 +40,61 @@ namespace Assets.McCoy.BoardGame
     private float minHealthForXP = 0.5f;
     private float regenPerWeek = 0.5f;
 
+    [NonSerialized]
     List<MapNode> routedLocations = new List<MapNode>();
+    public List<MapNode> RoutedLocations
+    {
+      get
+      {
+        if(routedLocations == null)
+        {
+          routedLocations = new List<MapNode>();
+        }
+        return routedLocations;
+      }
+      private set
+      {
+        routedLocations = value;
+      }
+    }
+
+    bool isRouted;
     public bool IsRouted
     {
-      get;
-      set;
+      get => isRouted;
+      set
+      {
+        isRouted = value;
+      }
     }
 
-    public void FinishedRouting()
-    {
-      IsRouted = false;
-      routedLocations.Clear();
+    float health;
+    public float Health {
+      get => health;
+      private set
+      {
+        health = value;
+      }
     }
 
-    public float Health { 
-      get; 
-      private set; 
+    Factions faction;
+    public Factions Faction 
+    { 
+      get => faction;
+      private set
+      {
+        faction = value;
+      }
     }
 
-    public Factions Faction { get; private set; }
-
+    int monstersPerSubstage;
     public int MonstersPerSubstage
     {
-      get;
-      private set;
+      get => monstersPerSubstage;
+      private set
+      {
+        monstersPerSubstage = value;
+      }
     }
     private int monstersKilledInStage = 0;
 
@@ -83,6 +127,12 @@ namespace Assets.McCoy.BoardGame
     {
       float healthReduced = calculateHealthDelta(monstersKilledInStage, true);
       changeHealth(healthReduced);
+    }
+
+    public void FinishedRouting()
+    {
+      IsRouted = false;
+      RoutedLocations.Clear();
     }
 
     public float HealthPreview(int monstersKilled)
@@ -189,12 +239,12 @@ namespace Assets.McCoy.BoardGame
 
     public void AddRoutingLocation(MapNode m)
     {
-      routedLocations.Add(m);
+      RoutedLocations.Add(m);
     }
 
     public bool CanRouteTo(MapNode m)
     {
-      foreach(var loc in routedLocations)
+      foreach(var loc in RoutedLocations)
       {
         if(m.NodeID == loc.NodeID)
         {
@@ -209,7 +259,7 @@ namespace Assets.McCoy.BoardGame
       int xpGain = (otherMob.XP / 2) + (otherMob.XP % 2 == 1 ? 1 : 0);
       AddXP(xpGain);
       Health = Math.Max(Health, otherMob.Health);
-      routedLocations = otherMob.routedLocations;
+      RoutedLocations = otherMob.RoutedLocations;
     }
 
     public McCoyMobData Split()

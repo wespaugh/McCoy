@@ -2,24 +2,74 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static Assets.McCoy.ProjectConstants;
 using Random = UnityEngine.Random;
 
 namespace Assets.McCoy.BoardGame
 {
   [Serializable]
+  public class MapNodeSearchData
+  {
+    public string NodeID;
+    public string ZoneName;
+    public int bonusSearchDice = 0;
+    public float bonusValue = 0f;
+    public bool hasMechanism;
+    public int distanceToMechanism;
+  }
+  [Serializable]
   public class MapNode : SearchableNode
   {
-    [NonSerialized]
     public List<McCoyMobData> Mobs = new List<McCoyMobData>();
+
+    MapNodeSearchData searchData = null;
+    public MapNodeSearchData SearchData
+    {
+      get
+      {
+        if(searchData == null)
+        {
+          searchData = new MapNodeSearchData();
+        }
+        return searchData;
+      }
+      set
+      {
+        searchData = value;
+      }
+    }
     public bool HasMechanism
     {
-      get;
-      set;
+      get => SearchData.hasMechanism;
+      set
+      {
+        SearchData.hasMechanism = value;
+      }
     }
-    int bonusSearchDice = 0;
+
+    public string ZoneName;
+
+    [NonSerialized]
+    public Vector2 Position;
+
+    int bonusSearchDice
+    {
+      get => SearchData.bonusSearchDice;
+      set
+      {
+        SearchData.bonusSearchDice = value;
+      }
+    }
     // a value shown to the player indicating the likelihood of a given mob finding the mechanism at this location, if it is there.
-    float bonusValue = 0;
+    float bonusValue
+    {
+      get => SearchData.bonusValue;
+      set
+      {
+        SearchData.bonusValue = value;
+      }
+    }
     public void Search(int strongestMobStrength, int strongestMobHealth)
     {
       int totalBonuses = bonusSearchDice + Math.Max(0, McCoy.GetInstance().gameState.Week - 5);
@@ -35,7 +85,7 @@ namespace Assets.McCoy.BoardGame
 
       // 6.1 is roughly the average roll per d10 when rerolling 10s
       float averageSuccess = (totalBonuses * 6.1f);
-      // generally, save the average successes as the best search. we don't want to let the player see how well 
+      // generally, save the average successes as the best search. we don't want to let the player see how well the area was searched exactly, just how easy it is to search in future
       if(averageSuccess > bonusValue)
       {
         bonusValue = averageSuccess;
@@ -54,6 +104,8 @@ namespace Assets.McCoy.BoardGame
         return 100*bonusValue/SEARCH_COMPLETE_THRESHHOLD;
       }
     }
+
+    public bool MechanismFoundHere => SearchPercent >= 100f && HasMechanism;
 
     public SearchState SearchStatus()
     {
@@ -95,13 +147,13 @@ namespace Assets.McCoy.BoardGame
       return retVal;
     }
 
-    public string ZoneName;
-    public Vector2 Position;
-
     public int DistanceToMechanism
     {
-      get;
-      private set;
+      get => SearchData.distanceToMechanism;
+      private set
+      {
+        SearchData.distanceToMechanism = value;
+      }
     }
 
     public void SetMechanismLocation(MapNode loc)

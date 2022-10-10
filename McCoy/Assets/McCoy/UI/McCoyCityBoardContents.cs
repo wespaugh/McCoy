@@ -244,7 +244,7 @@ namespace Assets.McCoy.UI
       {
         foreach (var mob in route.Value)
         {
-          List<SearchableNode> connections = route.Key.connectedNodes;
+          List<SearchableNode> connections = route.Key.GetConnectedNodes();
           MapNode conn = null;
           while (connections.Count > 0)
           {
@@ -350,7 +350,7 @@ namespace Assets.McCoy.UI
       MapNode moveTarget = null;
       McCoyMobData moveSubject = nodePair.Item1;
 
-      foreach(var connection in nodePair.Item2.connectedNodes)
+      foreach(var connection in nodePair.Item2.GetConnectedNodes())
       {
         MapNode neighbor = connection as MapNode;
         // if there's an adjacent place we can divide into, divide into
@@ -474,6 +474,8 @@ namespace Assets.McCoy.UI
       {
         mapNodes.Add(assetNode);
         mapNodeLookup.Add(assetNode.NodeID, assetNode);
+        assetNode.SearchData.ZoneName = assetNode.ZoneName;
+        assetNode.SearchData.NodeID = assetNode.NodeID;
       }
 
       foreach(var assetLink in mapCache.NodeLinks)
@@ -484,14 +486,14 @@ namespace Assets.McCoy.UI
         // weird thing here. Resources.Load seems to be cacheing the loaded objects,
         // meaning making a second board will already have map nodes connected. we can skip that part, if so
         // base is connected to target
-        if (!baseNode.connectedNodes.Contains(targetNode))
+        if (!baseNode.ConnectedToNode(targetNode))
         {
-          baseNode.connectedNodes.Add(targetNode);
+          baseNode.AddConnectedNode(targetNode);
         }
         // target is connected to base
-        if (!targetNode.connectedNodes.Contains(baseNode))
+        if (!targetNode.ConnectedToNode(baseNode))
         {
-          targetNode.connectedNodes.Add(baseNode);
+          targetNode.AddConnectedNode(baseNode);
         }
       }
     }
@@ -696,18 +698,27 @@ namespace Assets.McCoy.UI
       lerpingCamera = false;
     }
 
+    public MapNode NodeWithID(string ID)
+    {
+      if(string.IsNullOrEmpty(ID) || !mapNodeLookup.ContainsKey(ID))
+      {
+        return null;
+      }
+      return mapNodeLookup[ID];
+    }
+
     public void UpdateNodes()
     {
-      Dictionary<MapNode, int> playerLocs = new Dictionary<MapNode, int>();
+      Dictionary<string, int> playerLocs = new Dictionary<string, int>();
       for(int i = 0; i < PlayerCharacters.Length; ++i)
       {
-        playerLocs[McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i])] = i;
+        playerLocs[McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[i])] = i+1;
       }
       foreach(var node in mapNodes)
       {
-        int playerNum = playerLocs.ContainsKey(node) ? playerLocs[node] : -1;
-        MapNode mechanismLocation = McCoy.GetInstance().gameState.AntikytheraMechanismLocation;
-        bool showMechanism = mechanismLocation != null && mechanismLocation.SearchStatus() == SearchState.CompletelySearched && mechanismLocation.NodeID == node.NodeID;
+        int playerNum = playerLocs.ContainsKey(node.NodeID) ? playerLocs[node.NodeID] : -1;
+        MapNode mechanismLocation = NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
+        bool showMechanism = mechanismLocation != null && mechanismLocation.MechanismFoundHere && mechanismLocation.NodeID == node.NodeID;
         mobIndicatorLookup[node.NodeID].UpdateWithMobs(node.Mobs, playerNum, node.ZoneName, node.SearchPercent, showMechanism);
       }
     }
