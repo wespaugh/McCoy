@@ -3377,7 +3377,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -3693,7 +3693,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitLow:
         animMap:
@@ -5489,7 +5489,39 @@ MonoBehaviour:
       parryEnabled: 0
     attackMoves:
     - {fileID: 11400000, guid: b70d332b025709547940f66e4fb0a9fc, type: 2}
-    enabledBasicMovesToggle: 0
+    physics:
+      _moveForwardSpeed:
+        _serializedValue: 17179869184
+      _moveBackSpeed:
+        _serializedValue: 15032385536
+      _moveSidewaysSpeed:
+        _serializedValue: 17179869184
+      highMovingFriction: 1
+      _friction:
+        _serializedValue: 128849018880
+      canCrouch: 1
+      crouchDelay: 2
+      standingDelay: 2
+      canJump: 1
+      pressureSensitiveJump: 0
+      _jumpForce:
+        _serializedValue: 171798691840
+      _minJumpForce:
+        _serializedValue: 128849018880
+      minJumpDelay: 4
+      _jumpDistance:
+        _serializedValue: 34359738368
+      _jumpBackDistance:
+        _serializedValue: 34359738368
+      cumulativeForce: 1
+      multiJumps: 1
+      _weight:
+        _serializedValue: 751619276800
+      jumpDelay: 8
+      landingDelay: 7
+      _groundCollisionMass:
+        _serializedValue: 8589934592
+    enabledBasicMovesToggle: 1
     basicMovesToggle: 1
     attackMovesToggle: 1
   aiInstructionsSet:
