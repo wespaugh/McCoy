@@ -14,6 +14,7 @@ namespace Assets.McCoy
   {
     public bool Debug = true;
     public bool debugCheatWin = false;
+    public bool levelAllPlayersEvenly = false;
     public UFEScreen cityScene;
     public enum McCoyScenes
     {

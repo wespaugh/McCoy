@@ -12,6 +12,10 @@ namespace Assets.McCoy.Brawler
   {
     public static void PlayerSpawned(ControlsScript controls, List<McCoySkill> mcCoySkills)
     {
+      if(mcCoySkills == null)
+      {
+        return;
+      }
       foreach (var skill in mcCoySkills)
       {
         foreach (var moveSet in controls.loadedMoves)

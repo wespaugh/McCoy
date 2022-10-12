@@ -13,17 +13,62 @@ namespace Assets.McCoy.Brawler
     public static string DEFAULT_FACTIONS_FILENAME = "FactionsLookup";
 
     [SerializeField]
-    public List<UFE3D.CharacterInfo> mageCharacters = new List<UFE3D.CharacterInfo>();
+    public List<UFE3D.CharacterInfo> mageLookup1 = new List<UFE3D.CharacterInfo>();
 
     [SerializeField]
-    public List<UFE3D.CharacterInfo> minotaurCharacters = new List<UFE3D.CharacterInfo>();
+    public List<UFE3D.CharacterInfo> mageLookup2 = new List<UFE3D.CharacterInfo>();
 
     [SerializeField]
-    public List<UFE3D.CharacterInfo> militiaCharacters = new List<UFE3D.CharacterInfo>();
+    public List<UFE3D.CharacterInfo> mageLookup3 = new List<UFE3D.CharacterInfo>();
 
-    private Dictionary<string, UFE3D.CharacterInfo> mageLookup;
-    private Dictionary<string, UFE3D.CharacterInfo> minotaurLookup;
-    private Dictionary<string, UFE3D.CharacterInfo> militiaLookup;
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> mageLookup4 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> mageLookup5 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> mageLookup6 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters1 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters2 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters3 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters4 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters5 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> minotaurCharacters6 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters1 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters2 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters3 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters4 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters5 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public List<UFE3D.CharacterInfo> militiaCharacters6 = new List<UFE3D.CharacterInfo>();
+
+    private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> mageLookup;
+    private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> minotaurLookup;
+    private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> militiaLookup;
 
     [MenuItem("Assets/Create/McCoy/Faction Lookup")]
     static void MakeFactionData()
@@ -58,49 +103,69 @@ namespace Assets.McCoy.Brawler
       }
       if(mageLookup.ContainsKey(enemyName))
       {
-        charInfo = mageLookup[enemyName];
+        charInfo = mageLookup[enemyName].Item2;
         faction = Factions.Mages;
       }
       else if(minotaurLookup.ContainsKey(enemyName))
       {
-        charInfo = minotaurLookup[enemyName];
+        charInfo = minotaurLookup[enemyName].Item2;
         faction = Factions.CyberMinotaurs;
       }
       else if(militiaLookup.ContainsKey(enemyName))
       {
-        charInfo = militiaLookup[enemyName];
+        charInfo = militiaLookup[enemyName].Item2;
         faction = Factions.AngelMilitia;
       }
     }
 
     private void initLookups()
     {
-      mageLookup = new Dictionary<string, UFE3D.CharacterInfo>();
-      foreach (var mage in mageCharacters)
-      {
-        mageLookup[mage.characterName] = mage;
-      }
+      mageLookup = new Dictionary<string, Tuple<int, UFE3D.CharacterInfo>>();
+      populateLookup(mageLookup, mageLookup1, 1);
+      populateLookup(mageLookup, mageLookup2, 2);
+      populateLookup(mageLookup, mageLookup3, 3);
+      populateLookup(mageLookup, mageLookup4, 4);
+      populateLookup(mageLookup, mageLookup5, 5);
+      populateLookup(mageLookup, mageLookup6, 6);
 
-      minotaurLookup = new Dictionary<string, UFE3D.CharacterInfo>();
-      foreach (var minotaur in minotaurCharacters)
-      {
-        minotaurLookup[minotaur.characterName] = minotaur;
-      }
 
-      militiaLookup = new Dictionary<string, UFE3D.CharacterInfo>();
-      foreach (var m in militiaCharacters)
+      minotaurLookup = new Dictionary<string, Tuple<int, UFE3D.CharacterInfo>>();
+      populateLookup(minotaurLookup, minotaurCharacters1, 1);
+      populateLookup(minotaurLookup, minotaurCharacters2, 2);
+      populateLookup(minotaurLookup, minotaurCharacters3, 3);
+      populateLookup(minotaurLookup, minotaurCharacters4, 4);
+      populateLookup(minotaurLookup, minotaurCharacters5, 5);
+      populateLookup(minotaurLookup, minotaurCharacters6, 6);
+
+      militiaLookup = new Dictionary<string, Tuple<int, UFE3D.CharacterInfo>>();
+      populateLookup(militiaLookup, militiaCharacters1, 1);
+      populateLookup(militiaLookup, militiaCharacters2, 2);
+      populateLookup(militiaLookup, militiaCharacters3, 3);
+      populateLookup(militiaLookup, militiaCharacters4, 4);
+      populateLookup(militiaLookup, militiaCharacters5, 5);
+      populateLookup(militiaLookup, militiaCharacters6, 6);
+    }
+
+    void populateLookup(Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> lookup, List<UFE3D.CharacterInfo> characters, int strength)
+    {
+      foreach(var character in characters)
       {
-        militiaLookup[m.characterName] = m;
+        if(lookup.ContainsKey(character.characterName))
+        {
+          continue;
+        }
+        lookup[character.characterName] = new Tuple<int, UFE3D.CharacterInfo>(strength, character);
       }
     }
-    public UFE3D.CharacterInfo RandomEnemy(Factions f)
+
+    public UFE3D.CharacterInfo RandomEnemy(Factions f, int strength = 1)
     {
       if (mageLookup == null)
       {
         initLookups();
       }
 
-      Dictionary<string, UFE3D.CharacterInfo> collection;
+      Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> collection;
       switch (f)
       {
         case Factions.Mages:
@@ -131,7 +196,26 @@ namespace Assets.McCoy.Brawler
           enu.MoveNext();
         }
       }
-      return enu.Current;
+      return enu.Current.Item2;
+    }
+
+    public int XPForMonster(string monsterName)
+    {
+      int retVal = 0;
+      if(mageLookup.ContainsKey(monsterName))
+      {
+        retVal = mageLookup[monsterName].Item1;
+      }
+      else if(minotaurLookup.ContainsKey(monsterName))
+      {
+        retVal = minotaurLookup[monsterName].Item1;
+      }
+      else if(militiaLookup.ContainsKey(monsterName))
+      {
+        retVal = militiaLookup[monsterName].Item1;
+      }
+      retVal *= 2;
+      return retVal;
     }
   }
 }

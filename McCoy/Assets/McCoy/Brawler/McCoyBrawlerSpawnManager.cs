@@ -152,6 +152,18 @@ namespace Assets.McCoy.Brawler
       }
     }
 
+    public void ActorKilled(ControlsScript monster)
+    {
+      int XP = McCoyFactionLookup.GetInstance().XPForMonster(monster.myInfo.characterName);
+      foreach(var player in McCoy.GetInstance().gameState.playerCharacters)
+      {
+        if (player.Value.Player == McCoy.GetInstance().gameState.selectedPlayer || McCoy.GetInstance().levelAllPlayersEvenly)
+        {
+          player.Value.GainXP(XP);
+        }
+      }
+    }
+
     private void cheatWin()
     {
       UFE.config.currentRound = UFE.config.selectedStage.stageInfo.substages.Count;

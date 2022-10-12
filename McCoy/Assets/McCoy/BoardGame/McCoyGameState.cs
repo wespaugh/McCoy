@@ -25,6 +25,9 @@ namespace Assets.McCoy.BoardGame
     // once all four are flipped false, a Week ends
     bool[] playerTurns = { true, true, true, true };
 
+    [NonSerialized]
+    public PlayerCharacter selectedPlayer;
+
     public Dictionary<PlayerCharacter, McCoyPlayerCharacter> playerCharacters = new Dictionary<PlayerCharacter, McCoyPlayerCharacter>();
 
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
@@ -165,7 +168,13 @@ namespace Assets.McCoy.BoardGame
     {
       return playerTurns[(int)player];
     }
-    public void SetPlayerTookTurn(PlayerCharacter player)
+    public void PlayerTakingTurn(PlayerCharacter player)
+    {
+      selectedPlayer = player;
+      SetPlayerTookTurn(player);
+    }
+
+    private void SetPlayerTookTurn(PlayerCharacter player)
     {
       playerTurns[(int)player] = false;
     }

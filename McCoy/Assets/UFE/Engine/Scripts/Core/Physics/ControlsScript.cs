@@ -441,9 +441,10 @@ public class ControlsScript : MonoBehaviour
       isDead = DamageMe(currentLifePoints);
       myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
       blinksRemaining = 1;
-      UFE.DelaySynchronizedAction(RunBlink, 0f);
+      Despawn(0f);
       return;
     }
+
     // Update opControlsScript Reference if Needed
     if (opControlsScript.isDespawning || 
       !opControlsScript.gameObject.activeInHierarchy || 
@@ -601,7 +602,8 @@ public class ControlsScript : MonoBehaviour
     if (myMoveSetScript.IsAnimationPlaying("idle")
         && !UFE.config.lockInputs
     && !UFE.config.lockMovements
-        && !myPhysicsScript.freeze)
+        && !myPhysicsScript.freeze
+        && !isDespawning)
     {
       afkTimer += UFE.fixedDeltaTime;
       if (afkTimer >= myMoveSetScript.basicMoves.idle._restingClipInterval)
@@ -675,7 +677,7 @@ public class ControlsScript : MonoBehaviour
 
 
     // Execute Move
-    if (currentMove != null)
+    if (currentMove != null && ! isDespawning)
     {
       ReadMove(currentMove);
     }
@@ -789,14 +791,14 @@ public class ControlsScript : MonoBehaviour
       mySpriteRenderer.sortingOrder = -760;
       isFatallyFalling = true;
       fallPosition = worldTransform.position;
-      if(UFE.GetController(playerNum).isCPU)
+      if(UFE.GetController(playerNum).isCPU && ! isDespawning)
       {
         currentLifePoints = 0.0f;
         KillCurrentMove();
         isDead = DamageMe(currentLifePoints);
         myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
         blinksRemaining = 1;
-        UFE.DelaySynchronizedAction(RunBlink, .5f);
+        Despawn(.5f);
       }
       else
       {
@@ -926,7 +928,7 @@ public class ControlsScript : MonoBehaviour
 
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
-    return;
+    // TODO: This code's still good! it does push the player away... HARD, at the start of each level, so fix that before committing. but I prefer this feel
     /*
     if (opControlsScript == null
         || !opControlsScript.GetActive()
@@ -944,7 +946,7 @@ public class ControlsScript : MonoBehaviour
 
 
     // Test collision between hitboxes
-    Fix64 pushForce = CollisionManager.TestCollision(myHitBoxesScript.hitBoxes, opControlsScript.HitBoxes.hitBoxes, false, false);
+    Fix64 pushForce = CollisionManager.TestCollision(myHitBoxesScript.hitBoxes, opControlsScript.HitBoxes.hitBoxes, .5, false, false);
     if (pushForce > 0)
     {
       if (UFE.config.gameplayType == GameplayType._2DFighter)
@@ -4209,7 +4211,7 @@ public class ControlsScript : MonoBehaviour
     if (isDead && ! isDespawning)
     {
       KillCurrentMove();
-      UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
+      Despawn(2.5f);
     }
 
     // Freeze screen depending on how strong the hit was
@@ -4218,23 +4220,32 @@ public class ControlsScript : MonoBehaviour
   }
 
   private int blinksRemaining = 10;
-  private void BlinkOut()
+
+  private void Despawn(float delay = 0.0f)
   {
-    if (blinksRemaining == 10 && ! isDespawning) RunBlink();
+    if(isDespawning)
+    {
+      return;
+    }
+    UFE.FireAlert("Actor Killed", this);
+    isDespawning = true;
+    UFE.DelaySynchronizedAction(RunBlink, delay);
   }
+
+  bool blinkVisible = true;
 
   private void RunBlink()
   {
-    isDespawning = true;
-
     --blinksRemaining;
     if(blinksRemaining == 0)
     {
-      gameObject.SetActive(false);
+      blinkVisible = false;
+      //gameObject.SetActive(false);
       UFE.DespawnCharacter(playerNum);
       return;
     }
-    gameObject.SetActive(blinksRemaining % 2 == 0);
+    blinkVisible = blinksRemaining % 2 == 0;
+    // gameObject.SetActive(blinksRemaining % 2 == 0);
     UFE.DelaySynchronizedAction(RunBlink, .1f);
   }
 

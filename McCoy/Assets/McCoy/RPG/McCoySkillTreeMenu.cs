@@ -89,6 +89,7 @@ namespace Assets.McCoy.RPG
     public void SetAvailableSkillPoints(int points)
     {
       Debug.Log(Engine.SaveToString());
+      Engine.AvailableSkillPoints = points;
       Engine.TalentTree.PointsToAssign = points;
       Engine.Evaluate();
       availablePoints.text = $"{points}";

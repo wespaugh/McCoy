@@ -51,18 +51,22 @@ namespace Assets.McCoy.RPG
     */
     public void GainXP(int amount)
     {
+      Debug.Log("GAIN XP: " + amount);
       int idx = 0;
-      while(XP<XpThreshholds[idx])
+      while(idx < XpThreshholds.Length && XP>XpThreshholds[idx])
       {
         ++idx;
       }
       int levelBefore = idx;
+      Debug.Log($"XP Before: {XP} (Level {levelBefore})");
       XP += amount;
-      while(XP < XpThreshholds[idx])
+      while(idx < XpThreshholds.Length && XP > XpThreshholds[idx])
       {
         ++idx;
       }
       int levelsGained = idx - levelBefore;
+      Debug.Log($"XP After: {XP} (Level {idx})");
+      Debug.Log("Levels Gained: " + levelsGained);
 
       AvailableSkillPoints += levelsGained;
     }
