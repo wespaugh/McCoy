@@ -163,15 +163,22 @@ namespace Assets.McCoy
     #region Player Skills
     public enum PlayerSkills
     {
-      RexUppercut,
+      RexArbiterUppercut,
+      RexStrengthUp,
+      RexLupusSpeedUp,
+      RexWeaponFireRateUp,
       Invalid
     }
 
     public static PlayerSkills SkillForLabel(string label)
     {
-      if(label == "Uppercut")
+      if(label == "Rex_Arbiter_Uppercut")
       {
-        return PlayerSkills.RexUppercut;
+        return PlayerSkills.RexArbiterUppercut;
+      }
+      else if (label == "")
+      {
+        return PlayerSkills.RexStrengthUp;
       }
       return PlayerSkills.Invalid;
     }
