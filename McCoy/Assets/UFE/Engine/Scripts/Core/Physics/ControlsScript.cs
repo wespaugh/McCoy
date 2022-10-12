@@ -444,6 +444,7 @@ public class ControlsScript : MonoBehaviour
       Despawn(0f);
       return;
     }
+
     // Update opControlsScript Reference if Needed
     if (opControlsScript.isDespawning || 
       !opControlsScript.gameObject.activeInHierarchy || 
@@ -601,7 +602,8 @@ public class ControlsScript : MonoBehaviour
     if (myMoveSetScript.IsAnimationPlaying("idle")
         && !UFE.config.lockInputs
     && !UFE.config.lockMovements
-        && !myPhysicsScript.freeze)
+        && !myPhysicsScript.freeze
+        && !isDespawning)
     {
       afkTimer += UFE.fixedDeltaTime;
       if (afkTimer >= myMoveSetScript.basicMoves.idle._restingClipInterval)
@@ -675,7 +677,7 @@ public class ControlsScript : MonoBehaviour
 
 
     // Execute Move
-    if (currentMove != null)
+    if (currentMove != null && ! isDespawning)
     {
       ReadMove(currentMove);
     }
@@ -926,7 +928,7 @@ public class ControlsScript : MonoBehaviour
 
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
-    return;
+    // TODO: This code's still good! it does push the player away... HARD, at the start of each level, so fix that before committing. but I prefer this feel
     /*
     if (opControlsScript == null
         || !opControlsScript.GetActive()
@@ -944,7 +946,7 @@ public class ControlsScript : MonoBehaviour
 
 
     // Test collision between hitboxes
-    Fix64 pushForce = CollisionManager.TestCollision(myHitBoxesScript.hitBoxes, opControlsScript.HitBoxes.hitBoxes, false, false);
+    Fix64 pushForce = CollisionManager.TestCollision(myHitBoxesScript.hitBoxes, opControlsScript.HitBoxes.hitBoxes, .5, false, false);
     if (pushForce > 0)
     {
       if (UFE.config.gameplayType == GameplayType._2DFighter)
@@ -4230,16 +4232,20 @@ public class ControlsScript : MonoBehaviour
     UFE.DelaySynchronizedAction(RunBlink, delay);
   }
 
+  bool blinkVisible = true;
+
   private void RunBlink()
   {
     --blinksRemaining;
     if(blinksRemaining == 0)
     {
-      gameObject.SetActive(false);
+      blinkVisible = false;
+      //gameObject.SetActive(false);
       UFE.DespawnCharacter(playerNum);
       return;
     }
-    gameObject.SetActive(blinksRemaining % 2 == 0);
+    blinkVisible = blinksRemaining % 2 == 0;
+    // gameObject.SetActive(blinksRemaining % 2 == 0);
     UFE.DelaySynchronizedAction(RunBlink, .1f);
   }
 

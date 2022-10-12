@@ -5509,7 +5509,7 @@ MonoBehaviour:
       canJump: 1
       pressureSensitiveJump: 0
       _jumpForce:
-        _serializedValue: 171798691840
+        _serializedValue: 64424509440
       _minJumpForce:
         _serializedValue: 128849018880
       minJumpDelay: 4
@@ -16347,5 +16347,5 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
     basicMovesToggle: 0
-    attackMovesToggle: 1
+    attackMovesToggle: 0
   aiInstructionsSet: []
