@@ -44,6 +44,9 @@ namespace Assets.McCoy.UI
     TMP_Text currentWeekText = null;
 
     [SerializeField]
+    TMP_Text availableSkillPointsText = null;
+
+    [SerializeField]
     McCoyMobRoutingUI routingUI = null;
 
     [SerializeField]
@@ -91,7 +94,7 @@ namespace Assets.McCoy.UI
       if (board == null)
       {
         board = Instantiate(boardContents);
-        currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}:";
+        updateWeekText();
 
         StartCoroutine(cityBooySequence());
         Camera.main.orthographic = false;
@@ -214,7 +217,6 @@ namespace Assets.McCoy.UI
       }
       if(playerData != null)
       {
-        playerData.AvailableSkillPoints = 7;
         availableSkillPoints = playerData.AvailableSkillPoints;
         skillTreeString = playerData.SkillTreeString;
       }
@@ -232,7 +234,6 @@ namespace Assets.McCoy.UI
     {
       McCoy.GetInstance().gameState.EndWeek();
       board.Weekend(weekendAnimationsFinished);
-      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}";
     }
 
     private void weekendAnimationsFinished()
@@ -370,9 +371,9 @@ namespace Assets.McCoy.UI
       selectedCharacterChanged();
     }
 
-    private void updateWeekText(string playerName)
+    private void updateWeekText()
     {
-      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}: {playerName}";
+      currentWeekText.text = $"New Moon City\nWeek {McCoy.GetInstance().gameState.Week}: {PlayerName(selectedPlayer)}";
     }
     private void selectedCharacterChanged()
     {
@@ -384,7 +385,8 @@ namespace Assets.McCoy.UI
       selectedCharacterText.text = "";// ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
 
-      updateWeekText(PlayerName(selectedPlayer));
+      updateWeekText();
+      availableSkillPointsText.text = $"{McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints}";
 
       selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
 
@@ -601,7 +603,7 @@ namespace Assets.McCoy.UI
     }
     public void LoadStageCallback()
     {
-      McCoy.GetInstance().gameState.SetPlayerTookTurn(selectedPlayer);
+      McCoy.GetInstance().gameState.PlayerTakingTurn(selectedPlayer);
       if (!loadingStage)
       {
         loadingStage = true;

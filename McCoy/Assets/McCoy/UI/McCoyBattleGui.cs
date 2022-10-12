@@ -40,7 +40,8 @@ namespace Assets.McCoy.UI
     bool debug => McCoy.GetInstance().Debug;
 
     bool spawnerInitialized = false;
-
+    private McCoyBrawlerSpawnManager spawner;
+    private int xpCache;
 
     protected override void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
     {
@@ -48,8 +49,10 @@ namespace Assets.McCoy.UI
 
       tmpNameText.text = player1.myInfo.characterName;
 
-      McCoyPlayerCharacter rex =  McCoy.GetInstance().gameState.playerCharacters[ProjectConstants.PlayerCharacter.Rex];
+      McCoyPlayerCharacter rex =  McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.selectedPlayer];
       McCoySkillUnlockManager.PlayerSpawned(player1, rex.Skills);
+
+      updateXP(true);
 
       if (!spawnerInitialized)
       {
@@ -116,7 +119,7 @@ namespace Assets.McCoy.UI
 
     private void initSpawner()
     {
-      McCoyBrawlerSpawnManager spawner = gameObject.AddComponent<McCoyBrawlerSpawnManager>();
+      spawner = gameObject.AddComponent<McCoyBrawlerSpawnManager>();
       spawner.Initialize(currentStage.GetSpawnData(), this);
       spawner.AddMobSpawnListener(mobStatusLabel);
       info.text = currentStage.Name;
@@ -157,10 +160,45 @@ namespace Assets.McCoy.UI
       {
         SetAlertMessage(msg);
       }
+      else if(msg == "Actor Killed")
+      {
+        var gameState = McCoy.GetInstance().gameState;
+        var selectedPlayer = gameState.playerCharacters[gameState.selectedPlayer];
+        int skillPointsBefore = selectedPlayer.AvailableSkillPoints;
+        spawner.ActorKilled(player);
+        // if #skillpoints changed, we leveled up. if we leveled up, #skillpoints changed
+        updateXP(skillPointsBefore != selectedPlayer.AvailableSkillPoints);
+      }
     }
+
+    private void updateXP(bool initialize)
+    {
+      var gameState = McCoy.GetInstance().gameState;
+      int XP = McCoy.GetInstance().gameState.playerCharacters[gameState.selectedPlayer].XP;
+      var selectedPlayer = gameState.playerCharacters[gameState.selectedPlayer];
+      int xpFloor = 0;
+      int xpCeiling = 0;
+      for (int i = 0; i < selectedPlayer.XpThreshholds.Length; ++i)
+      {
+        if (selectedPlayer.XpThreshholds[i] > XP)
+        {
+          if (i > 0)
+          {
+            xpFloor = selectedPlayer.XpThreshholds[i - 1];
+          }
+          xpCeiling = selectedPlayer.XpThreshholds[i];
+          break;
+        }
+      }
+      int diff = xpCeiling - xpFloor;
+      xpCache = XP - xpFloor;
+      worldUI.UpdatePlayerXP(xpCache, initialize, diff);
+    }
+
     protected override void UpdatePlayerHealthBar(float percent)
     {
       worldUI.UpdatePlayerHealth(percent);
+      worldUI.UpdatePlayerXP(xpCache, false);
     }
 
     protected override void OnLifePointsChange(float newFloat, ControlsScript player)

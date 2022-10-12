@@ -12,9 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9512e1923f7f8d44a6bf627a3823cac, type: 3}
   m_Name: FactionsLookup
   m_EditorClassIdentifier: 
-  mageCharacters:
+  mageLookup1:
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
-  minotaurCharacters:
+  mageLookup2: []
+  mageLookup3: []
+  mageLookup4: []
+  mageLookup5: []
+  mageLookup6: []
+  minotaurCharacters1:
   - {fileID: 11400000, guid: 76fa29d052e047b4aa3c84ac4f0ed6c9, type: 2}
-  militiaCharacters:
+  minotaurCharacters2: []
+  minotaurCharacters3: []
+  minotaurCharacters4: []
+  minotaurCharacters5: []
+  minotaurCharacters6: []
+  militiaCharacters1:
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  militiaCharacters2: []
+  militiaCharacters3: []
+  militiaCharacters4: []
+  militiaCharacters5: []
+  militiaCharacters6: []

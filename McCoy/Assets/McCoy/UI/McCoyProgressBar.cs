@@ -21,6 +21,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     float animateSpeed = 0.6f;
 
+    [SerializeField]
+    Texture2D MainTextureOverride = null;
+
     //debug fields
     [SerializeField]
     Color Sprite1Color;
@@ -39,6 +42,15 @@ namespace Assets.McCoy.UI
       this.amountPerBar = amountPerBar;
       currentPercent = (totalAmount % amountPerBar) / amountPerBar;
       amountCache = totalAmount;
+
+      if(MainTextureOverride != null)
+      {
+        sprite.material.SetTexture("_MainTexture", MainTextureOverride);
+        sprite.material.SetTexture("_MainTex", MainTextureOverride);
+        sprite2.material.SetTexture("_MainTexture", MainTextureOverride);
+        sprite2.material.SetTexture("_MainTex", MainTextureOverride);
+        sprite2.gameObject.SetActive(false);
+      }
     }
 
     public void SetFill(float barAmount)
@@ -173,7 +185,7 @@ namespace Assets.McCoy.UI
       Sprite1Color = sprite1Color;
       Sprite2Color = sprite2Color;
       sprite.material.SetColor("_Color0", sprite1Color);
-      if (borderColor != null)
+      if (borderColor != null && spriteBorder != null)
       {
         spriteBorder.color = borderColor;
       }
@@ -187,7 +199,7 @@ namespace Assets.McCoy.UI
       Color n = sprite.material.GetColor("_Color0");
       n.a = alpha;
       sprite.material.SetColor("_Color0", n);
-      if (includeBorder)
+      if (includeBorder && spriteBorder != null)
       {
         n = spriteBorder.material.color;
         n.a = alpha;

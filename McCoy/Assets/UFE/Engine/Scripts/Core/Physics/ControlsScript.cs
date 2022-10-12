@@ -441,7 +441,7 @@ public class ControlsScript : MonoBehaviour
       isDead = DamageMe(currentLifePoints);
       myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
       blinksRemaining = 1;
-      UFE.DelaySynchronizedAction(RunBlink, 0f);
+      Despawn(0f);
       return;
     }
     // Update opControlsScript Reference if Needed
@@ -789,14 +789,14 @@ public class ControlsScript : MonoBehaviour
       mySpriteRenderer.sortingOrder = -760;
       isFatallyFalling = true;
       fallPosition = worldTransform.position;
-      if(UFE.GetController(playerNum).isCPU)
+      if(UFE.GetController(playerNum).isCPU && ! isDespawning)
       {
         currentLifePoints = 0.0f;
         KillCurrentMove();
         isDead = DamageMe(currentLifePoints);
         myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.fallStraight, true);
         blinksRemaining = 1;
-        UFE.DelaySynchronizedAction(RunBlink, .5f);
+        Despawn(.5f);
       }
       else
       {
@@ -4209,7 +4209,7 @@ public class ControlsScript : MonoBehaviour
     if (isDead && ! isDespawning)
     {
       KillCurrentMove();
-      UFE.DelaySynchronizedAction(this.BlinkOut, 2.5f);
+      Despawn(2.5f);
     }
 
     // Freeze screen depending on how strong the hit was
@@ -4218,15 +4218,20 @@ public class ControlsScript : MonoBehaviour
   }
 
   private int blinksRemaining = 10;
-  private void BlinkOut()
+
+  private void Despawn(float delay = 0.0f)
   {
-    if (blinksRemaining == 10 && ! isDespawning) RunBlink();
+    if(isDespawning)
+    {
+      return;
+    }
+    UFE.FireAlert("Actor Killed", this);
+    isDespawning = true;
+    UFE.DelaySynchronizedAction(RunBlink, delay);
   }
 
   private void RunBlink()
   {
-    isDespawning = true;
-
     --blinksRemaining;
     if(blinksRemaining == 0)
     {

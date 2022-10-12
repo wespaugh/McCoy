@@ -23,6 +23,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Transform stingerTransformRoot = null;
 
+    [SerializeField]
+    McCoyProgressBar xpBar = null;
+
     float enemyHPExpiryTime;
     private Action uiDisappearedCallback;
     const float enemyHealthDuration = 3.0f;
@@ -36,6 +39,9 @@ namespace Assets.McCoy.UI
       playerHealthInitialized = true;
       healthBar.transform.localPosition = new Vector3(-4.4f, 4f, 0.0f);
       healthBar.Initialize((int)UFE.GetPlayer1ControlsScript().currentLifePoints, 1000);
+
+      xpBar.Initialize(10, 10);
+      xpBar.SetFill(5f);
     }
 
     public void UpdatePlayerHealth(float percent)
@@ -104,6 +110,18 @@ namespace Assets.McCoy.UI
     {
       var stinger = Instantiate(stingerPrefab, stingerTransformRoot);
       stinger.GetComponent<McCoyStinger>().RunStinger(McCoyStinger.StingerTypes.RoundOver);
+    }
+
+    public void UpdatePlayerXP(int xp, bool initialize, int nextLevel = -1)
+    {
+      if(initialize)
+      {
+        xpBar.Initialize(xp, nextLevel);
+      }
+      else
+      {
+        xpBar.SetFill(xp);
+      }
     }
   }
 }
