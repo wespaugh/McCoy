@@ -94,7 +94,7 @@ MonoBehaviour:
     buttonSequenceToggle: 0
     buttonExecutionToggle: 0
   previousMoves:
-  - {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
+  - {fileID: 11400000, guid: 19e8fc7994a82b4419f8156b4bda86b3, type: 2}
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []
@@ -136,7 +136,7 @@ MonoBehaviour:
     onBlock: 1
     onParry: 1
     activeFramesBegins: 15
-    activeFramesEnds: 25
+    activeFramesEnds: 33
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     ignoreGauge: 0
     nextMoveStartupFrame: 1
     linkableMoves:
-    - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
+    - {fileID: 11400000, guid: 04b492d0869e87743b65a62fedfb0e2f, type: 2}
     linkableMovesToggle: 1
     hitConfirmToggle: 0
     counterMoveToggle: 0
