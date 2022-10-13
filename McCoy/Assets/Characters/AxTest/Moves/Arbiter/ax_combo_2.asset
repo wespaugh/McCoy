@@ -128,7 +128,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
+  locked: 1
   frameLinks:
   - linkType: 2
     allowBuffer: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
     onBlock: 1
     onParry: 1
     activeFramesBegins: 15
-    activeFramesEnds: 25
+    activeFramesEnds: 33
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1

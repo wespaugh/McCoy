@@ -72,10 +72,10 @@ MonoBehaviour:
     onReleaseExecution: 0
     requireButtonPress: 1
     onPressExecution: 1
-    buttonSequence: 
-    buttonExecution: 07000000
+    buttonSequence: 02000000
+    buttonExecution: 04000000
     editorToggle: 1
-    buttonSequenceToggle: 0
+    buttonSequenceToggle: 1
     buttonExecutionToggle: 1
   altInputs:
     chargeMove: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
+  locked: 1
   frameLinks: []
   gauges: []
   sortOrder: []

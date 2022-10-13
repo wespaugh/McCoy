@@ -72,10 +72,10 @@ MonoBehaviour:
     onReleaseExecution: 0
     requireButtonPress: 1
     onPressExecution: 1
-    buttonSequence: 
-    buttonExecution: 07000000
+    buttonSequence: 02000000
+    buttonExecution: 04000000
     editorToggle: 1
-    buttonSequenceToggle: 0
+    buttonSequenceToggle: 1
     buttonExecutionToggle: 1
   altInputs:
     chargeMove: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     buttonSequenceToggle: 0
     buttonExecutionToggle: 0
   previousMoves:
-  - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
+  - {fileID: 11400000, guid: 8ad9a8b9e662b2147a2c61499a998c0c, type: 2}
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []
@@ -116,7 +116,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
+  locked: 1
   frameLinks: []
   gauges: []
   sortOrder: []

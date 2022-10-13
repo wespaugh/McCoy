@@ -111,7 +111,7 @@ MonoBehaviour:
     recoverySpeed: 0
     hitConfirmType: 0
     preferableDistance: 0
-    gaugeUsage: 0
+    gaugeUsage: 1
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
     ignoreGauge: 0
     nextMoveStartupFrame: 1
     linkableMoves:
-    - {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
+    - {fileID: 11400000, guid: 19e8fc7994a82b4419f8156b4bda86b3, type: 2}
     linkableMovesToggle: 1
     hitConfirmToggle: 0
     counterMoveToggle: 0
