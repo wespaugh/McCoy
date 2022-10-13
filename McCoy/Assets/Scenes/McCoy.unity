@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debug: 0
   debugCheatWin: 0
+  levelAllPlayersEvenly: 0
   cityScene: {fileID: 7717615156766846426, guid: 5f1902f4f1fb8654aa90363b8de84b63,
     type: 3}
 --- !u!114 &1944363960

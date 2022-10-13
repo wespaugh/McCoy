@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,8 @@ namespace com.cygnusprojects.TalentTree
         #region Variables
         public TalentTreeNodeBase Talent;
         public TalentusEngine Engine;
-        public Text NameLabel;
-        public Text LevelIndicator;
+        public TMP_Text NameLabel;
+        public TMP_Text LevelIndicator;
         public Text CostLabel;
         public Image IconField;
 
