@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
-  m_Name: ax_combo_2
+  m_Name: ax_combo_2_STRUP
   m_EditorClassIdentifier: 
   gameplayType: 0
   animMap:
@@ -26,7 +26,7 @@ MonoBehaviour:
     _serializedValue: 4294967296
   wrapMode: 0
   characterPrefab: {fileID: 0}
-  moveName: ax_combo_2
+  moveName: ax_combo_2_STRUP
   description: 
   fps: 60
   ignoreGravity: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 214748364800
+      _serializedValue: 257698037760
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0

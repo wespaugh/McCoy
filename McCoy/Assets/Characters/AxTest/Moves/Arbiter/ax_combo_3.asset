@@ -128,6 +128,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
+  locked: 0
   frameLinks:
   - linkType: 0
     allowBuffer: 1

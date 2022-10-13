@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
-  m_Name: ax_combo_2
+  m_Name: ax_combo_1_STRUP
   m_EditorClassIdentifier: 
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 07f73d02b7fc44040b3ca2a65c8bc02f, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 15d2db8910ba8af459f3c642bcdebac2,
+    clip: {fileID: 7400000, guid: 46efb8a0898abb646a8caf11cd51ee1f, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: 803e6fb8b634abf4c875bc02beac1677,
       type: 2}
     length:
       _serializedValue: 2433814784
@@ -26,7 +26,7 @@ MonoBehaviour:
     _serializedValue: 4294967296
   wrapMode: 0
   characterPrefab: {fileID: 0}
-  moveName: ax_combo_2
+  moveName: ax_combo_1_STRUP
   description: 
   fps: 60
   ignoreGravity: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 34
-  startUpFrames: 10
-  activeFrames: 11
-  recoveryFrames: 13
+  totalFrames: 18
+  startUpFrames: 8
+  activeFrames: 10
+  recoveryFrames: 0
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -92,9 +92,8 @@ MonoBehaviour:
     buttonExecution: 
     editorToggle: 0
     buttonSequenceToggle: 0
-    buttonExecutionToggle: 1
-  previousMoves:
-  - {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+    buttonExecutionToggle: 0
+  previousMoves: []
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []
@@ -102,20 +101,8 @@ MonoBehaviour:
     statesToggle: 0
   selfConditions:
     basicMoveLimitation: 
-    possibleMoveStates:
-    - possibleState: 0
-      jumpArc: 0
-      jumpArcBegins: 0
-      jumpArcEnds: 100
-      opponentDistance: 0
-      proximityRangeBegins: 0
-      proximityRangeEnds: 100
-      movingForward: 1
-      movingBack: 1
-      standBy: 1
-      blocking: 0
-      stunned: 0
-    basicMovesToggle: 1
+    possibleMoveStates: []
+    basicMovesToggle: 0
     statesToggle: 1
   moveClassification:
     attackType: 0
@@ -124,7 +111,7 @@ MonoBehaviour:
     recoverySpeed: 0
     hitConfirmType: 0
     preferableDistance: 0
-    gaugeUsage: 1
+    gaugeUsage: 0
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
@@ -135,8 +122,8 @@ MonoBehaviour:
     onStrike: 1
     onBlock: 1
     onParry: 1
-    activeFramesBegins: 15
-    activeFramesEnds: 25
+    activeFramesBegins: 9
+    activeFramesEnds: 17
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -151,7 +138,7 @@ MonoBehaviour:
     ignoreGauge: 0
     nextMoveStartupFrame: 1
     linkableMoves:
-    - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
+    - {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
     linkableMovesToggle: 1
     hitConfirmToggle: 0
     counterMoveToggle: 0
@@ -168,8 +155,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 10
-    activeFramesEnds: 20
+  - activeFramesBegin: 8
+    activeFramesEnds: 17
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -264,7 +251,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 214748364800
+      _serializedValue: 171798691840
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -380,13 +367,13 @@ MonoBehaviour:
     damageOptionsToggle: 1
     hitStunOptionsToggle: 1
     forceOptionsToggle: 0
-    opponentForceToggle: 0
+    opponentForceToggle: 1
     selfForceToggle: 0
     stageReactionsToggle: 0
     overrideEventsToggle: 0
     hitConditionsToggle: 1
     pullInToggle: 0
-    hurtBoxesToggle: 0
+    hurtBoxesToggle: 1
     wallBounceToggle: 0
     groundBounceToggle: 0
     hurtBoxes:
@@ -449,7 +436,7 @@ MonoBehaviour:
   blockableArea:
     enabled: 1
     activeFramesBegin: 0
-    activeFramesEnds: 0
+    activeFramesEnds: 33
     bodyPart: 0
     hitBoxDefinitionIndex: 0
     shape: 0

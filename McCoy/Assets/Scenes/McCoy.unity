@@ -575,3 +575,16 @@ MonoBehaviour:
     moves:
     - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
+  moveSwapLookup:
+  - skill: 1
+    MoveSwaps:
+    - ToDisable: {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+      ToEnable: {fileID: 11400000, guid: b942c999dcf23274babd0dc4f045518e, type: 2}
+    - ToDisable: {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
+      ToEnable: {fileID: 11400000, guid: 19e8fc7994a82b4419f8156b4bda86b3, type: 2}
+    - ToDisable: {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
+      ToEnable: {fileID: 11400000, guid: 8ad9a8b9e662b2147a2c61499a998c0c, type: 2}
+    - ToDisable: {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
+      ToEnable: {fileID: 11400000, guid: 04b492d0869e87743b65a62fedfb0e2f, type: 2}
+    - ToDisable: {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
+      ToEnable: {fileID: 11400000, guid: 6117d737131a2fd448e5291ec51d3363, type: 2}

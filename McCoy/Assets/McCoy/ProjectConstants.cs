@@ -261,7 +261,7 @@ namespace Assets.McCoy
       {
         return PlayerSkills.RexArbiterUppercut;
       }
-      else if (label == "")
+      else if (label == "Rex_Arbiter_StrengthUp")
       {
         return PlayerSkills.RexStrengthUp;
       }

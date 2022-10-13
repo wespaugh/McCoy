@@ -17,6 +17,9 @@ namespace Assets.McCoy.RPG
     [NonSerialized]
     public List<object> BuffsToAdd = new List<object>();
 
+    [NonSerialized]
+    List<McCoyMoveSwap> moveSwaps = new List<McCoyMoveSwap>();
+
     public string Name;
     public int Level;
     public int MaxLevel;
@@ -25,17 +28,28 @@ namespace Assets.McCoy.RPG
     {
       get
       {
-        if(! initialized)
-        {
-          Initialize();
-        }
+        Initialize();
         return movesToEnable;
+      }
+    }
+
+    public List<McCoyMoveSwap> MoveSwaps
+    {
+      get
+      {
+        Initialize();
+        return moveSwaps;
       }
     }
 
     private void Initialize()
     {
+      if(initialized)
+      {
+        return;
+      }
       movesToEnable = McCoy.GetInstance().SkillLookup.GetMoveUnlocksForSkill(Name);
+      moveSwaps = McCoy.GetInstance().SkillLookup.GetMoveSwapsForSkill(Name);
       initialized = true;
     }
 

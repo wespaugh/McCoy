@@ -5493,6 +5493,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
     - {fileID: 11400000, guid: d39f6564b6b23144086c84310c57bba2, type: 2}
     - {fileID: 11400000, guid: 32863bcccdff55946ba02927a0f382da, type: 2}
+    - {fileID: 11400000, guid: b942c999dcf23274babd0dc4f045518e, type: 2}
+    - {fileID: 11400000, guid: 19e8fc7994a82b4419f8156b4bda86b3, type: 2}
+    - {fileID: 11400000, guid: 8ad9a8b9e662b2147a2c61499a998c0c, type: 2}
+    - {fileID: 11400000, guid: 04b492d0869e87743b65a62fedfb0e2f, type: 2}
+    - {fileID: 11400000, guid: 6117d737131a2fd448e5291ec51d3363, type: 2}
     physics:
       _moveForwardSpeed:
         _serializedValue: 17179869184
@@ -5527,7 +5532,7 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
     basicMovesToggle: 0
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   - combatStance: 0
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
-  m_Name: ax_combo_2
+  m_Name: ax_combo_3_STRUP
   m_EditorClassIdentifier: 
   gameplayType: 0
   animMap:
@@ -26,7 +26,7 @@ MonoBehaviour:
     _serializedValue: 4294967296
   wrapMode: 0
   characterPrefab: {fileID: 0}
-  moveName: ax_combo_2
+  moveName: ax_combo_3_STRUP
   description: 
   fps: 60
   ignoreGravity: 0
@@ -92,9 +92,9 @@ MonoBehaviour:
     buttonExecution: 
     editorToggle: 0
     buttonSequenceToggle: 0
-    buttonExecutionToggle: 1
+    buttonExecutionToggle: 0
   previousMoves:
-  - {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+  - {fileID: 11400000, guid: bda03b2decb6235429a74ec93936d798, type: 2}
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []
@@ -130,7 +130,7 @@ MonoBehaviour:
     anyHitConfirmType: 1
   locked: 0
   frameLinks:
-  - linkType: 2
+  - linkType: 0
     allowBuffer: 1
     onStrike: 1
     onBlock: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     ignoreGauge: 0
     nextMoveStartupFrame: 1
     linkableMoves:
-    - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
+    - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     linkableMovesToggle: 1
     hitConfirmToggle: 0
     counterMoveToggle: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
     hitStrength: 0
     hitStunType: 1
     _hitStunOnHit:
-      _serializedValue: 0
+      _serializedValue: 64424509440
     _hitStunOnBlock:
       _serializedValue: 0
     frameAdvantageOnHit: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 214748364800
+      _serializedValue: 300647710720
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
     overrideEventsToggle: 0
     hitConditionsToggle: 1
     pullInToggle: 0
-    hurtBoxesToggle: 0
+    hurtBoxesToggle: 1
     wallBounceToggle: 0
     groundBounceToggle: 0
     hurtBoxes:

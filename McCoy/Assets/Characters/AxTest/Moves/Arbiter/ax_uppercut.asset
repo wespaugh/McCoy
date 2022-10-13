@@ -127,7 +127,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 1
+  locked: 0
   frameLinks: []
   gauges: []
   sortOrder: []
