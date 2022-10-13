@@ -199,6 +199,8 @@ namespace Assets.McCoy.UI
 
     private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
     {
+      McCoy.GetInstance().gameState.playerCharacters[pc].AvailableSkillPoints = availablePoints;
+      updateAvailableSkillPointsText();
       McCoy.GetInstance().gameState.UpdateSkills(pc, serializedSkills, availablePoints);
     }
 
@@ -386,7 +388,7 @@ namespace Assets.McCoy.UI
       currentZoneText.text = playerLoc.ZoneName;
 
       updateWeekText();
-      availableSkillPointsText.text = $"{McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints}";
+      updateAvailableSkillPointsText();
 
       selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
 
@@ -434,6 +436,11 @@ namespace Assets.McCoy.UI
 
       board.SelectMapNode(playerLoc, validConnections);
       board.SetHoverNode(null);
+    }
+
+    private void updateAvailableSkillPointsText()
+    {
+      availableSkillPointsText.text = $"{McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints}";
     }
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)

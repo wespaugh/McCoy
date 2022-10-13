@@ -103,7 +103,7 @@ namespace Assets.McCoy.RPG
 
     public void Close()
     {
-      applyCallback(Engine.AvailableSkillPoints, Engine.SaveToString(), player);
+      applyCallback(Engine.TalentTree.PointsToAssign, Engine.SaveToString(), player);
       Destroy(gameObject);
     }
 

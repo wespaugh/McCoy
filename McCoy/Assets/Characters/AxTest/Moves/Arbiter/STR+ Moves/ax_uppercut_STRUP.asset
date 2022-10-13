@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
-  m_Name: ax_combo_2
+  m_Name: ax_uppercut_STRUP
   m_EditorClassIdentifier: 
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 07f73d02b7fc44040b3ca2a65c8bc02f, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 15d2db8910ba8af459f3c642bcdebac2,
+    clip: {fileID: 7400000, guid: cf80fd2e6172a8647bc8b9aba8539e1a, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: f44816e818fc8c14fb10a5962beb96ce,
       type: 2}
     length:
-      _serializedValue: 2433814784
+      _serializedValue: 2075900928
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
     _serializedValue: 4294967296
-  wrapMode: 0
+  wrapMode: 1
   characterPrefab: {fileID: 0}
-  moveName: ax_combo_2
+  moveName: ax_uppercut_STRUP
   description: 
   fps: 60
   ignoreGravity: 0
   ignoreFriction: 0
-  cancelMoveWheLanding: 0
+  cancelMoveWheLanding: 1
   forceMirrorLeft: 0
   forceMirrorRight: 0
   invertRotationLeft: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 34
-  startUpFrames: 10
-  activeFrames: 11
-  recoveryFrames: 13
+  totalFrames: 22
+  startUpFrames: 13
+  activeFrames: 5
+  recoveryFrames: 4
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -72,10 +72,10 @@ MonoBehaviour:
     onReleaseExecution: 0
     requireButtonPress: 1
     onPressExecution: 1
-    buttonSequence: 
+    buttonSequence: 02000000
     buttonExecution: 04000000
     editorToggle: 1
-    buttonSequenceToggle: 0
+    buttonSequenceToggle: 1
     buttonExecutionToggle: 1
   altInputs:
     chargeMove: 0
@@ -92,9 +92,8 @@ MonoBehaviour:
     buttonExecution: 
     editorToggle: 0
     buttonSequenceToggle: 0
-    buttonExecutionToggle: 1
-  previousMoves:
-  - {fileID: 11400000, guid: 395cf44b60940e64da141532a79daa60, type: 2}
+    buttonExecutionToggle: 0
+  previousMoves: []
   opponentConditions:
     basicMoveLimitation: 
     possibleMoveStates: []
@@ -115,7 +114,7 @@ MonoBehaviour:
       standBy: 1
       blocking: 0
       stunned: 0
-    basicMovesToggle: 1
+    basicMovesToggle: 0
     statesToggle: 1
   moveClassification:
     attackType: 0
@@ -128,48 +127,36 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
-  frameLinks:
-  - linkType: 2
-    allowBuffer: 1
-    onStrike: 1
-    onBlock: 1
-    onParry: 1
-    activeFramesBegins: 15
-    activeFramesEnds: 25
-    counterMoveType: 0
-    counterMoveFilter: {fileID: 0}
-    disableHitImpact: 1
-    anyHitStrength: 1
-    hitStrength: 0
-    anyStrokeHitBox: 1
-    hitBoxType: 0
-    anyHitType: 1
-    hitType: 0
-    ignoreInputs: 0
-    ignorePlayerConditions: 0
-    ignoreGauge: 0
-    nextMoveStartupFrame: 1
-    linkableMoves:
-    - {fileID: 11400000, guid: 3cca7c48ae4d9ed43b2d652031a5f0ac, type: 2}
-    linkableMovesToggle: 1
-    hitConfirmToggle: 0
-    counterMoveToggle: 0
+  locked: 1
+  frameLinks: []
   gauges: []
   sortOrder: []
   particleEffects: []
-  appliedForces: []
+  appliedForces:
+  - castingFrame: 13
+    resetPreviousVertical: 1
+    resetPreviousHorizontal: 1
+    relativeToOpponent: 0
+    _force:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 107374182400
+      z:
+        _serializedValue: 0
   slowMoEffects: []
   bodyPartVisibilityChanges: []
   opponentOverride: []
   characterAssist: []
   soundEffects: []
-  inGameAlert: []
+  inGameAlert:
+  - castingFrame: 18
+    alert: UPPERCOMBO!
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 10
-    activeFramesEnds: 20
+  - activeFramesBegin: 13
+    activeFramesEnds: 17
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -256,7 +243,7 @@ MonoBehaviour:
     hitStrength: 0
     hitStunType: 1
     _hitStunOnHit:
-      _serializedValue: 0
+      _serializedValue: 64424509440
     _hitStunOnBlock:
       _serializedValue: 0
     frameAdvantageOnHit: 0
@@ -264,7 +251,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 1
     _damageOnHit:
-      _serializedValue: 214748364800
+      _serializedValue: 257698037760
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -384,9 +371,9 @@ MonoBehaviour:
     selfForceToggle: 0
     stageReactionsToggle: 0
     overrideEventsToggle: 0
-    hitConditionsToggle: 1
+    hitConditionsToggle: 0
     pullInToggle: 0
-    hurtBoxesToggle: 0
+    hurtBoxesToggle: 1
     wallBounceToggle: 0
     groundBounceToggle: 0
     hurtBoxes:

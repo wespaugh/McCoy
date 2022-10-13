@@ -170,13 +170,98 @@ namespace Assets.McCoy
       Invalid
     }
 
+    public static string DisplayStringForSkillName(string skillName)
+    {
+      if (skillName == "Rex_Arbiter_Uppercut")
+      {
+        return "Uppercut";
+      }
+      else if (skillName == "Rex_Arbiter_Dash")
+      {
+        return "Dash Attack";
+      }
+      else if (skillName == "Rex_Arbiter_StrengthUp")
+      {
+        return "STR+";
+      }
+      else if (skillName == "Rex_Arbiter_Regeneration")
+      {
+        return "Regeneration";
+      }
+      else if (skillName == "Rex_Arbiter_HPUp")
+      {
+        return "Health Up!";
+      }
+      else if (skillName == "Rex_Arbiter_Ultimate")
+      {
+        return "Ultimate";
+      }
+      else if (skillName == "Rex_Arbiter_Rage")
+      {
+        return "Rage";
+      }
+      else if (skillName == "Rex_Arbiter_Calm")
+      {
+        return "Calm";
+      }
+      else if (skillName == "Rex_Human_FireRateUp")
+      {
+        return "Fire Rate+";
+      }
+      else if (skillName == "Rex_Human_WeaponSlot")
+      {
+        return "Weapon Slot";
+      }
+      else if (skillName == "Rex_Human_DodgeRoll")
+      {
+        return "Dodge Roll";
+      }
+      else if (skillName == "Rex_Human_DodgeBullets")
+      {
+        return "Dodge Bullets";
+      }
+      else if (skillName == "Rex_Human_AccessorySlot")
+      {
+        return "Accessory Slot";
+      }
+      else if (skillName == "Rex_Human_HeavyArmor")
+      {
+        return "Heavy Armor";
+      }
+      else if (skillName == "Rex_Human_HeavyArmor")
+      {
+        return "Heavy Armor";
+      }
+      else if (skillName == "Rex_Wolf_SpeedUp")
+      {
+        return "Speed+";
+      }
+      else if (skillName == "Rex_Wolf_QuickShifter")
+      {
+        return "Quick Shifter";
+      }
+      else if (skillName == "Rex_Wolf_LeapingBite")
+      {
+        return "Leaping Bite";
+      }
+      else if (skillName == "Rex_Wolf_SlideDash")
+      {
+        return "Slide Dash";
+      }
+      else if (skillName == "Rex_Wolf_Pounce")
+      {
+        return "Pounce";
+      }
+      return "INVALID";
+    }
+
     public static PlayerSkills SkillForLabel(string label)
     {
       if(label == "Rex_Arbiter_Uppercut")
       {
         return PlayerSkills.RexArbiterUppercut;
       }
-      else if (label == "")
+      else if (label == "Rex_Arbiter_StrengthUp")
       {
         return PlayerSkills.RexStrengthUp;
       }
