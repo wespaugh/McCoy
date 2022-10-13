@@ -16,6 +16,37 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: Slide Dash now also knocks down many enemies
+--- !u!114 &-8574822935945220179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_Dash_Rex_Arbiter_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -7793204463600888794}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 507, y: 207.6667, z: 0}
+  - {x: 519.41425, y: 211.26752, z: 0}
+  - {x: 524.6845, y: 220.91774, z: 0}
+  - {x: 524.8518, y: 234.88889, z: 0}
+  - {x: 521.9575, y: 251.45271, z: 0}
+  - {x: 518.04254, y: 268.88068, z: 0}
+  - {x: 515.1482, y: 285.44446, z: 0}
+  - {x: 515.31555, y: 299.41565, z: 0}
+  - {x: 520.5857, y: 309.06586, z: 0}
+  - {x: 533, y: 312.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 5701293790626761442}
+  connectionType: 1
 --- !u!114 &-7908602138234937812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,35 +64,20 @@ MonoBehaviour:
   toNode: {fileID: -7793204463600888794}
   curvePoints:
   - {x: 371, y: 207.66667, z: 0}
-  - {x: 385.5748, y: 207.76958, z: 0}
-  - {x: 396.63516, y: 208.04529, z: 0}
-  - {x: 405.18518, y: 208.44444, z: 0}
-  - {x: 412.22913, y: 208.91776, z: 0}
-  - {x: 418.77094, y: 209.41565, z: 0}
-  - {x: 425.81482, y: 209.88892, z: 0}
-  - {x: 434.36487, y: 210.28809, z: 0}
-  - {x: 445.42523, y: 210.56383, z: 0}
-  - {x: 460, y: 210.6667, z: 0}
+  - {x: 383.89438, y: 207.66669, z: 0}
+  - {x: 390.45135, y: 207.66669, z: 0}
+  - {x: 392.48148, y: 207.66667, z: 0}
+  - {x: 391.79562, y: 207.6667, z: 0}
+  - {x: 390.20438, y: 207.66669, z: 0}
+  - {x: 389.51855, y: 207.6667, z: 0}
+  - {x: 391.5487, y: 207.6667, z: 0}
+  - {x: 398.10562, y: 207.66672, z: 0}
+  - {x: 411, y: 207.6667, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
   Conditions:
   - {fileID: -2964715385710202547}
   connectionType: 0
---- !u!114 &-7808985026701709317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 0
-  Value: 1
-  Description: Regeneration must be active.
 --- !u!114 &-7793204463600888794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,8 +93,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 460
-    y: 154.6667
+    x: 411
+    y: 151.6667
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -123,6 +139,21 @@ MonoBehaviour:
   ConditionType: 0
   Value: 1
   Description: Accessory Slot 2 must be active.
+--- !u!114 &-7645856377094596199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_StrengthUp must be active.
 --- !u!114 &-7498620232731714434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +170,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 271
-    y: 408
+    y: 351
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -199,8 +230,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 274
-    y: 283.66666
+    x: 400
+    y: 419.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -230,16 +261,16 @@ MonoBehaviour:
   fromNode: {fileID: -7498620232731714434}
   toNode: {fileID: -3474082257142871904}
   curvePoints:
-  - {x: 367, y: 464, z: 0}
-  - {x: 379.68863, y: 461.86243, z: 0}
-  - {x: 385.69412, y: 456.1335, z: 0}
-  - {x: 386.9259, y: 447.83948, z: 0}
-  - {x: 385.29358, y: 438.00644, z: 0}
-  - {x: 382.70645, y: 427.66025, z: 0}
-  - {x: 381.07407, y: 417.82715, z: 0}
-  - {x: 382.30588, y: 409.53317, z: 0}
-  - {x: 388.3114, y: 403.8043, z: 0}
-  - {x: 401, y: 401.66666, z: 0}
+  - {x: 367, y: 407, z: 0}
+  - {x: 379.65436, y: 405.20526, z: 0}
+  - {x: 385.56793, y: 400.39557, z: 0}
+  - {x: 386.66663, y: 393.43207, z: 0}
+  - {x: 384.8766, y: 385.17654, z: 0}
+  - {x: 382.1234, y: 376.49014, z: 0}
+  - {x: 380.3333, y: 368.23456, z: 0}
+  - {x: 381.4321, y: 361.27112, z: 0}
+  - {x: 387.3457, y: 356.46133, z: 0}
+  - {x: 400, y: 354.66666, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
   Conditions:
@@ -336,6 +367,37 @@ MonoBehaviour:
   tier: {fileID: -7322163201615184191}
   cost:
   - {fileID: 5011459199495472374}
+--- !u!114 &-5126396849366412914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_Ultimate_Rex_Arbiter_Calm
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 6055931433032566565}
+  toNode: {fileID: 1163855569019601277}
+  curvePoints:
+  - {x: 629, y: 312.66666, z: 0}
+  - {x: 641.8945, y: 315.27298, z: 0}
+  - {x: 648.4513, y: 322.25787, z: 0}
+  - {x: 650.4814, y: 332.3703, z: 0}
+  - {x: 649.79565, y: 344.35944, z: 0}
+  - {x: 648.2044, y: 356.97394, z: 0}
+  - {x: 647.5185, y: 368.96295, z: 0}
+  - {x: 649.5487, y: 379.07544, z: 0}
+  - {x: 656.1056, y: 386.06036, z: 0}
+  - {x: 669, y: 388.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 2923519029249736316}
+  connectionType: 0
 --- !u!114 &-5015360691515302121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +414,37 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
+--- !u!114 &-4701232437554913737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_StrengthUp_Rex_Arbiter_HPUp
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -7498620232731714434}
+  toNode: {fileID: -7129082482753730879}
+  curvePoints:
+  - {x: 367, y: 407, z: 0}
+  - {x: 379.65436, y: 409.3548, z: 0}
+  - {x: 385.56793, y: 415.6658, z: 0}
+  - {x: 386.66663, y: 424.80243, z: 0}
+  - {x: 384.8766, y: 435.6347, z: 0}
+  - {x: 382.1234, y: 447.032, z: 0}
+  - {x: 380.3333, y: 457.8642, z: 0}
+  - {x: 381.4321, y: 467.00092, z: 0}
+  - {x: 387.3457, y: 473.31183, z: 0}
+  - {x: 400, y: 475.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -7645856377094596199}
+  connectionType: 0
 --- !u!114 &-4682264559014393643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,8 +537,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 401
-    y: 345.66666
+    x: 400
+    y: 298.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -474,8 +567,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 839
-    y: 431.66666
+    x: 982
+    y: 429.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -520,16 +613,16 @@ MonoBehaviour:
   fromNode: {fileID: -3390969173727728637}
   toNode: {fileID: 4756888913770981202}
   curvePoints:
-  - {x: 935, y: 487.66666, z: 0}
-  - {x: 938.73804, y: 487.63232, z: 0}
-  - {x: 920.75586, y: 487.54047, z: 0}
-  - {x: 887.25916, y: 487.40735, z: 0}
-  - {x: 844.4541, y: 487.24973, z: 0}
-  - {x: 798.54596, y: 487.08365, z: 0}
-  - {x: 755.7407, y: 486.92593, z: 0}
-  - {x: 722.2442, y: 486.7929, z: 0}
-  - {x: 704.26196, y: 486.701, z: 0}
-  - {x: 708, y: 486.6667, z: 0}
+  - {x: 1078, y: 485.66666, z: 0}
+  - {x: 1080.4349, y: 485.90677, z: 0}
+  - {x: 1058.9602, y: 486.5501, z: 0}
+  - {x: 1020.4072, y: 487.4814, z: 0}
+  - {x: 971.6078, y: 488.5858, z: 0}
+  - {x: 919.39233, y: 489.7476, z: 0}
+  - {x: 870.5925, y: 490.85187, z: 0}
+  - {x: 832.0398, y: 491.78326, z: 0}
+  - {x: 810.5652, y: 492.42657, z: 0}
+  - {x: 813, y: 492.6667, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
   Conditions:
@@ -629,21 +722,6 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
---- !u!114 &-2630455431919575196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 2
-  Value: 0
-  Description: Calm must be active.
 --- !u!114 &-2329923399435889777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,16 +738,16 @@ MonoBehaviour:
   fromNode: {fileID: 2001911788940850315}
   toNode: {fileID: -980349744861754214}
   curvePoints:
-  - {x: 808, y: 632.6667, z: 0}
-  - {x: 820.68866, y: 632.6324, z: 0}
-  - {x: 826.69415, y: 632.5405, z: 0}
-  - {x: 827.92584, y: 632.40735, z: 0}
-  - {x: 826.2937, y: 632.24976, z: 0}
-  - {x: 823.7064, y: 632.0837, z: 0}
-  - {x: 822.0741, y: 631.92596, z: 0}
-  - {x: 823.3059, y: 631.7929, z: 0}
-  - {x: 829.31146, y: 631.701, z: 0}
-  - {x: 842, y: 631.6667, z: 0}
+  - {x: 912, y: 613.6667, z: 0}
+  - {x: 925.8546, y: 613.52954, z: 0}
+  - {x: 934.9849, y: 613.16187, z: 0}
+  - {x: 940.74066, y: 612.6296, z: 0}
+  - {x: 944.4719, y: 611.9987, z: 0}
+  - {x: 947.5281, y: 611.3347, z: 0}
+  - {x: 951.2593, y: 610.70374, z: 0}
+  - {x: 957.01514, y: 610.1715, z: 0}
+  - {x: 966.1455, y: 609.8039, z: 0}
+  - {x: 980, y: 609.6667, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
   Conditions:
@@ -707,67 +785,6 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
---- !u!114 &-1842244750886083462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 0
-  Value: 1
-  Description: Regeneration must be active.
---- !u!114 &-1606820217729415814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: Regeneration_Calm
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: -3474082257142871904}
-  toNode: {fileID: 1163855569019601277}
-  curvePoints:
-  - {x: 497, y: 401.66666, z: 0}
-  - {x: 509.96298, y: 403.89575, z: 0}
-  - {x: 516.70374, y: 409.86972, z: 0}
-  - {x: 518.99994, y: 418.51843, z: 0}
-  - {x: 518.6297, y: 428.77234, z: 0}
-  - {x: 517.37036, y: 439.56104, z: 0}
-  - {x: 517, y: 449.8148, z: 0}
-  - {x: 519.29626, y: 458.46362, z: 0}
-  - {x: 526.03705, y: 464.4376, z: 0}
-  - {x: 539, y: 466.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: -7808985026701709317}
-  connectionType: 0
---- !u!114 &-1470448303919658685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 0
-  Value: 1
-  Description: Health Up! must be active.
 --- !u!114 &-1183175438488872876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,8 +831,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 842
-    y: 575.6667
+    x: 980
+    y: 553.6667
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -829,6 +846,37 @@ MonoBehaviour:
   tier: {fileID: -5753281000726243567}
   cost:
   - {fileID: -2174281424183222175}
+--- !u!114 &-533099128340468185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_Ultimate_Rex_Arbiter_Rage
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 6055931433032566565}
+  toNode: {fileID: 7587861104181390740}
+  curvePoints:
+  - {x: 629, y: 312.66666, z: 0}
+  - {x: 641.9973, y: 310.54047, z: 0}
+  - {x: 648.82996, y: 304.84222, z: 0}
+  - {x: 651.2592, y: 296.59253, z: 0}
+  - {x: 651.0467, y: 286.8121, z: 0}
+  - {x: 649.95337, y: 276.52124, z: 0}
+  - {x: 649.7408, y: 266.74072, z: 0}
+  - {x: 652.1701, y: 258.49106, z: 0}
+  - {x: 659.00275, y: 252.79285, z: 0}
+  - {x: 672, y: 250.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -385777986989969344}
+  connectionType: 0
 --- !u!114 &-516756029738254479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,7 +893,7 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
---- !u!114 &-270148470093294593
+--- !u!114 &-385777986989969344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -854,28 +902,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: HealthUp!_Regeneration
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: -7129082482753730879}
-  toNode: {fileID: -3474082257142871904}
-  curvePoints:
-  - {x: 370, y: 339.66666, z: 0}
-  - {x: 382.58572, y: 341.7929, z: 0}
-  - {x: 388.31552, y: 347.49112, z: 0}
-  - {x: 389.14813, y: 355.7407, z: 0}
-  - {x: 387.04254, y: 365.52127, z: 0}
-  - {x: 383.95746, y: 375.8121, z: 0}
-  - {x: 381.85184, y: 385.59256, z: 0}
-  - {x: 382.68448, y: 393.84225, z: 0}
-  - {x: 388.41428, y: 399.54047, z: 0}
-  - {x: 401, y: 401.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: -1470448303919658685}
-  connectionType: 0
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_Ultimate must be active.
 --- !u!114 &-153497061957306682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,64 +959,33 @@ MonoBehaviour:
   - {fileID: -7498620232731714434}
   connections:
   - {fileID: -7908602138234937812}
-  - {fileID: -270148470093294593}
-  - {fileID: 3872223898440423393}
-  - {fileID: -1606820217729415814}
   - {fileID: -2905973489741682268}
-  - {fileID: 193646044628781117}
-  - {fileID: 6154000515461142809}
-  - {fileID: 6563540161905023595}
   - {fileID: 4566388040907606334}
   - {fileID: -5807429389522090362}
   - {fileID: 6604640947994761103}
   - {fileID: -3232181909458856740}
   - {fileID: -2329923399435889777}
   - {fileID: -6585646387453414976}
+  - {fileID: -8574822935945220179}
+  - {fileID: 1668765122817193811}
+  - {fileID: -533099128340468185}
+  - {fileID: -5126396849366412914}
+  - {fileID: -4701232437554913737}
+  - {fileID: 6913219474449518346}
   tiers:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
   selectedNode: {fileID: 0}
-  selectedConnection: {fileID: 0}
+  selectedConnection: {fileID: 6913219474449518346}
   wantsConnection: 0
-  connectionNode: {fileID: -7498620232731714434}
-  showProperties: 0
+  connectionNode: {fileID: -7129082482753730879}
+  showProperties: 1
   PanX: -242
-  PanY: -77
-  mouseOverProperties: 0
+  PanY: 52
+  mouseOverProperties: 1
   propertyWidth: 342
   PointsToAssign: 0
---- !u!114 &193646044628781117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: DashAttack_Ultimate
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: -7793204463600888794}
-  toNode: {fileID: 6055931433032566565}
-  curvePoints:
-  - {x: 556, y: 210.6667, z: 0}
-  - {x: 572.118, y: 210.59813, z: 0}
-  - {x: 587.31415, y: 210.4143, z: 0}
-  - {x: 601.85175, y: 210.14813, z: 0}
-  - {x: 615.99457, y: 209.83267, z: 0}
-  - {x: 630.0055, y: 209.50067, z: 0}
-  - {x: 644.14813, y: 209.18518, z: 0}
-  - {x: 658.6859, y: 208.91907, z: 0}
-  - {x: 673.882, y: 208.73524, z: 0}
-  - {x: 690, y: 208.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: 4480520254343808524}
-  connectionType: 0
 --- !u!114 &648556643586640128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,7 +1016,7 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 840
+    x: 978
     y: 311.66666
     width: 96
     height: 112
@@ -1045,8 +1046,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 539
-    y: 410.66666
+    x: 669
+    y: 332.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1107,6 +1108,37 @@ MonoBehaviour:
   tier: {fileID: 648556643586640128}
   cost:
   - {fileID: -153497061957306682}
+--- !u!114 &1668765122817193811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_Regeneration_Rex_Arbiter_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: -3474082257142871904}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 496, y: 354.66666, z: 0}
+  - {x: 508.7915, y: 353.2263, z: 0}
+  - {x: 515.0727, y: 349.36624, z: 0}
+  - {x: 516.7037, y: 343.77774, z: 0}
+  - {x: 515.5446, y: 337.15228, z: 0}
+  - {x: 513.4554, y: 330.18103, z: 0}
+  - {x: 512.29626, y: 323.55554, z: 0}
+  - {x: 513.9273, y: 317.96707, z: 0}
+  - {x: 520.2085, y: 314.107, z: 0}
+  - {x: 533, y: 312.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 7645723119668302430}
+  connectionType: 1
 --- !u!114 &1799427901149877868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,8 +1170,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 712
-    y: 576.6667
+    x: 816
+    y: 557.6667
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1153,6 +1185,21 @@ MonoBehaviour:
   tier: {fileID: -5753281000726243567}
   cost:
   - {fileID: -3164779786195538577}
+--- !u!114 &2474565287944900148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_HPUp must be active.
 --- !u!114 &2518111530530202855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,6 +1231,21 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
+--- !u!114 &2923519029249736316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_Ultimate must be active.
 --- !u!114 &3708116722363479858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,37 +1276,6 @@ MonoBehaviour:
   tier: {fileID: 648556643586640128}
   cost:
   - {fileID: -4168466645859378610}
---- !u!114 &3872223898440423393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: Regeneration_Rage
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: -3474082257142871904}
-  toNode: {fileID: 7587861104181390740}
-  curvePoints:
-  - {x: 497, y: 401.66666, z: 0}
-  - {x: 509.99728, y: 399.4719, z: 0}
-  - {x: 516.8299, y: 393.58987, z: 0}
-  - {x: 519.2592, y: 385.07397, z: 0}
-  - {x: 519.0467, y: 374.97806, z: 0}
-  - {x: 517.95337, y: 364.3553, z: 0}
-  - {x: 517.7407, y: 354.25922, z: 0}
-  - {x: 520.1701, y: 345.74347, z: 0}
-  - {x: 527.00275, y: 339.86145, z: 0}
-  - {x: 540, y: 337.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: -1842244750886083462}
-  connectionType: 0
 --- !u!114 &4064858006302851851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,36 +1308,6 @@ MonoBehaviour:
   - {fileID: 1302872601854933977}
   - {fileID: -3010255164028539910}
   - {fileID: -8592359611232275752}
---- !u!114 &4145799376607139213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 2
-  Value: 0
-  Description: Rage must be active.
---- !u!114 &4480520254343808524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 0
-  Value: 1
-  Description: Dash Attack must be active.
 --- !u!114 &4566388040907606334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,8 +1354,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 710
-    y: 311.66666
+    x: 810
+    y: 315.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1383,8 +1384,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 708
-    y: 430.6667
+    x: 813
+    y: 436.6667
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1430,6 +1431,21 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 1
   Description: 
+--- !u!114 &5701293790626761442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_Dash must be active.
 --- !u!114 &6055931433032566565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,8 +1461,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 690
-    y: 152.66666
+    x: 533
+    y: 256.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1461,68 +1477,6 @@ MonoBehaviour:
   tier: {fileID: -7322163201615184191}
   cost:
   - {fileID: -516756029738254479}
---- !u!114 &6154000515461142809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: Rage_Ultimate
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: 7587861104181390740}
-  toNode: {fileID: 6055931433032566565}
-  curvePoints:
-  - {x: 636, y: 337.66666, z: 0}
-  - {x: 649.37445, y: 333.24277, z: 0}
-  - {x: 657.21814, y: 321.38684, z: 0}
-  - {x: 661.111, y: 304.22217, z: 0}
-  - {x: 662.6338, y: 283.87244, z: 0}
-  - {x: 663.3662, y: 262.46088, z: 0}
-  - {x: 664.88885, y: 242.1111, z: 0}
-  - {x: 668.7819, y: 224.9465, z: 0}
-  - {x: 676.6255, y: 213.09052, z: 0}
-  - {x: 690, y: 208.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: 4145799376607139213}
-  connectionType: 0
---- !u!114 &6563540161905023595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: Calm_Ultimate
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: 1163855569019601277}
-  toNode: {fileID: 6055931433032566565}
-  curvePoints:
-  - {x: 635, y: 466.66666, z: 0}
-  - {x: 648.4088, y: 457.81894, z: 0}
-  - {x: 656.34436, y: 434.10696, z: 0}
-  - {x: 660.3703, y: 399.7777, z: 0}
-  - {x: 662.0508, y: 359.07822, z: 0}
-  - {x: 662.9492, y: 316.25513, z: 0}
-  - {x: 664.6296, y: 275.55554, z: 0}
-  - {x: 668.65576, y: 241.22633, z: 0}
-  - {x: 676.5912, y: 217.5144, z: 0}
-  - {x: 690, y: 208.66666, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: -2630455431919575196}
-  connectionType: 0
 --- !u!114 &6604640947994761103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,20 +1493,51 @@ MonoBehaviour:
   fromNode: {fileID: 4625256471681224181}
   toNode: {fileID: 831361973885346730}
   curvePoints:
-  - {x: 806, y: 367.66666, z: 0}
-  - {x: 818.68866, y: 367.66666, z: 0}
-  - {x: 824.6941, y: 367.66666, z: 0}
-  - {x: 825.9258, y: 367.66663, z: 0}
-  - {x: 824.2936, y: 367.6667, z: 0}
-  - {x: 821.7065, y: 367.66666, z: 0}
-  - {x: 820.07404, y: 367.66663, z: 0}
-  - {x: 821.3059, y: 367.66666, z: 0}
-  - {x: 827.3114, y: 367.6667, z: 0}
-  - {x: 840, y: 367.66666, z: 0}
+  - {x: 906, y: 371.66666, z: 0}
+  - {x: 919.9918, y: 371.52945, z: 0}
+  - {x: 929.4897, y: 371.16187, z: 0}
+  - {x: 935.7777, y: 370.62958, z: 0}
+  - {x: 940.14, y: 369.99866, z: 0}
+  - {x: 943.8601, y: 369.33472, z: 0}
+  - {x: 948.22217, y: 368.70367, z: 0}
+  - {x: 954.5103, y: 368.17145, z: 0}
+  - {x: 964.00824, y: 367.80383, z: 0}
+  - {x: 978, y: 367.66666, z: 0}
   curGraph: {fileID: 11400000}
   Name: 
   Conditions:
   - {fileID: -5894133020192201761}
+  connectionType: 0
+--- !u!114 &6913219474449518346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: Rex_Arbiter_HPUp_Rex_Arbiter_Ultimate
+  m_EditorClassIdentifier: 
+  isSelected: 1
+  fromNode: {fileID: -7129082482753730879}
+  toNode: {fileID: 6055931433032566565}
+  curvePoints:
+  - {x: 496, y: 475.66666, z: 0}
+  - {x: 508.7915, y: 470.0768, z: 0}
+  - {x: 515.0727, y: 455.096, z: 0}
+  - {x: 516.7037, y: 433.40738, z: 0}
+  - {x: 515.5446, y: 407.69415, z: 0}
+  - {x: 513.4554, y: 380.63922, z: 0}
+  - {x: 512.29626, y: 354.9259, z: 0}
+  - {x: 513.9273, y: 333.2373, z: 0}
+  - {x: 520.2085, y: 318.25653, z: 0}
+  - {x: 533, y: 312.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 2474565287944900148}
   connectionType: 0
 --- !u!114 &6991451358569337349
 MonoBehaviour:
@@ -1600,8 +1585,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 540
-    y: 281.66666
+    x: 672
+    y: 194.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1616,6 +1601,21 @@ MonoBehaviour:
   tier: {fileID: -7322163201615184191}
   cost:
   - {fileID: -2673157685494134036}
+--- !u!114 &7645723119668302430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Rex_Arbiter_Regeneration must be active.
 --- !u!114 &8006255587075189493
 MonoBehaviour:
   m_ObjectHideFlags: 0
