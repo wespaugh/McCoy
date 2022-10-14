@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.McCoy.Brawler;
+using System;
 using System.Collections.Generic;
 using UFE3D;
 using UnityEngine;
@@ -40,16 +41,27 @@ namespace Assets.McCoy.RPG
     public List<McCoyMoveSwap> MoveSwaps;
   }
 
+  [Serializable]
+  public class McCoyBuffTuple
+  {
+    public PlayerSkills skill;
+    public List<McCoyBuff> Buffs;
+  }
+
   public class McCoySkillMoveInfoLookup : MonoBehaviour
   {
     Dictionary<PlayerSkills, List<MoveInfo>> moveLookupDict = null;
     Dictionary<PlayerSkills, List<McCoyMoveSwap>> moveSwapLookupDict = null;
+    Dictionary<PlayerSkills, List<McCoyBuff>> buffLookupDict = null;
 
     [SerializeField]
     List<McCoySkillLookupTuple> moveLookup;
 
     [SerializeField]
     List<McCoySkillMoveSwapTuple> moveSwapLookup;
+
+    [SerializeField]
+    List<McCoyBuffTuple> buffLookup;
 
     public List<MoveInfo> GetMoveUnlocksForSkill(string skill)
     {
@@ -104,6 +116,37 @@ namespace Assets.McCoy.RPG
         return new List<McCoyMoveSwap>();
       }
       return moveSwapLookupDict[skill];
+    }
+
+    public List<McCoyBuff> GetBuffsForSkill(string skillName)
+    {
+      PlayerSkills s = SkillForLabel(skillName);
+      if(s == PlayerSkills.Invalid)
+      {
+        // Debug.LogWarning("Invalid skill name " + skillName);
+        return new List<McCoyBuff>();
+      }
+      return GetBuffsForSkill(s);
+    }
+
+    public List<McCoyBuff> GetBuffsForSkill(PlayerSkills skill)
+    {
+      if(buffLookupDict == null)
+      {
+        buffLookupDict = new Dictionary<PlayerSkills, List<McCoyBuff>>();
+        foreach(var pair in buffLookup)
+        {
+          buffLookupDict[pair.skill] = pair.Buffs;
+        }
+      }
+
+      if(! buffLookupDict.ContainsKey(skill))
+      {
+        Debug.LogWarning("Buff Lookup did not contain a skill for " + skill);
+        return new List<McCoyBuff>();
+      }
+
+      return buffLookupDict[skill];
     }
   }
 }

@@ -70,12 +70,12 @@ public class PhysicsScript : MonoBehaviour
     if (direction == 1)
     {
       controlScript.currentSubState = SubStates.MovingForward;
-      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics._moveForwardSpeed * axisValue;
+      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveForwardSpeed * axisValue;
     }
     else
     {
       controlScript.currentSubState = SubStates.MovingBack;
-      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics._moveBackSpeed * axisValue;
+      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveBackSpeed * axisValue;
     }
   }
 
@@ -144,7 +144,7 @@ public class PhysicsScript : MonoBehaviour
 
     moveDirection = 1;
     controlScript.currentSubState = SubStates.MovingForward;
-    activeForces.x = controlScript.myInfo.physics._moveForwardSpeed * axisValue;
+    activeForces.x = controlScript.myInfo.physics.MoveForwardSpeed * axisValue;
   }
 
   /// <summary>

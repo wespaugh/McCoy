@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: Default Cost
   m_EditorClassIdentifier: 
   Cost: 1
-  Bought: 0
+  Bought: 1
   WillBuy: 0
   Description: 
 --- !u!114 &-7770161519741289907
@@ -468,7 +468,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: 76248e5cce76936458b03a928873e9aa, type: 3}
   DisabledImage: {fileID: 2800000, guid: 76248e5cce76936458b03a928873e9aa, type: 3}
-  isValid: 0
+  isValid: 1
   description: Shifting in and out of Wolf form takes half the time
   explanation: 
   isInResearch: 0
@@ -582,21 +582,6 @@ MonoBehaviour:
   tier: {fileID: -5753281000726243567}
   cost:
   - {fileID: -2068606188535701894}
---- !u!114 &-3304697176543627669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConditionType: 0
-  Value: 1
-  Description: Speed Up must be active.
 --- !u!114 &-3232181909458856740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,37 +660,6 @@ MonoBehaviour:
   ConditionType: 0
   Value: 1
   Description: Combo Upgrade must be active.
---- !u!114 &-2905973489741682268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
-  m_Name: SpeedUp_QuickShifter
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  fromNode: {fileID: 8584156030395328547}
-  toNode: {fileID: -4682264559014393643}
-  curvePoints:
-  - {x: 344, y: 625.6666, z: 0}
-  - {x: 356.96295, y: 625.6667, z: 0}
-  - {x: 363.70374, y: 625.6667, z: 0}
-  - {x: 365.99997, y: 625.66656, z: 0}
-  - {x: 365.62964, y: 625.66675, z: 0}
-  - {x: 364.37036, y: 625.6667, z: 0}
-  - {x: 364.00003, y: 625.6667, z: 0}
-  - {x: 366.29626, y: 625.6666, z: 0}
-  - {x: 373.03705, y: 625.6667, z: 0}
-  - {x: 386, y: 625.6667, z: 0}
-  curGraph: {fileID: 11400000}
-  Name: 
-  Conditions:
-  - {fileID: -3304697176543627669}
-  connectionType: 0
 --- !u!114 &-2673157685494134036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +913,6 @@ MonoBehaviour:
   - {fileID: -7498620232731714434}
   connections:
   - {fileID: -7908602138234937812}
-  - {fileID: -2905973489741682268}
   - {fileID: 4566388040907606334}
   - {fileID: -5807429389522090362}
   - {fileID: 6604640947994761103}
@@ -976,16 +929,16 @@ MonoBehaviour:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
-  selectedNode: {fileID: 8584156030395328547}
+  selectedNode: {fileID: 0}
   selectedConnection: {fileID: 0}
   wantsConnection: 0
-  connectionNode: {fileID: -7129082482753730879}
+  connectionNode: {fileID: 8584156030395328547}
   showProperties: 1
-  PanX: -187
-  PanY: 52
+  PanX: -118
+  PanY: -43
   mouseOverProperties: 0
   propertyWidth: 317.83334
-  PointsToAssign: 1
+  PointsToAssign: 6
 --- !u!114 &648556643586640128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,11 +1597,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
   m_Name: Rex_Wolf_SpeedUp
   m_EditorClassIdentifier: 
-  isSelected: 1
+  isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 248
-    y: 569.6666
+    x: 242
+    y: 571.6666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}

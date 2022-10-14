@@ -162,6 +162,7 @@ namespace Assets.McCoy.UI
       }
       else if(msg == "Actor Killed")
       {
+        McCoy.GetInstance().BuffManager.ClearPlayer(player.playerNum);
         var gameState = McCoy.GetInstance().gameState;
         var selectedPlayer = gameState.playerCharacters[gameState.selectedPlayer];
         int skillPointsBefore = selectedPlayer.AvailableSkillPoints;
