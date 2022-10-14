@@ -219,6 +219,7 @@ namespace Assets.McCoy.UI
       }
       if(playerData != null)
       {
+        playerData.AvailableSkillPoints = 7;
         availableSkillPoints = playerData.AvailableSkillPoints;
         skillTreeString = playerData.SkillTreeString;
       }

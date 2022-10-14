@@ -3,13 +3,40 @@
 [System.Serializable]
 public class PhysicsData
 {
-    public Fix64 _moveForwardSpeed = 4; // How fast this character can move forward
-    public Fix64 _moveBackSpeed = 3.5; // How fast this character can move backwards
-    public Fix64 _moveSidewaysSpeed = 4; // How fast this character can move sizeways (3D Gameplay)
-    public bool highMovingFriction = true; // When releasing the horizontal controls character will stop imediatelly
-    public Fix64 _friction = 30; // Friction used in case of highMovingFriction false. Also used when player is pushed
+  public Fix64 _moveForwardSpeed = 4; // How fast this character can move forward
+  public Fix64 _moveForwardSpeedBonus { get; set; }
+  public Fix64 _moveBackSpeed = 3.5; // How fast this character can move backwards
+  public Fix64 _moveBackSpeedBonus { get; set; }
+  public Fix64 _moveSidewaysSpeed = 4; // How fast this character can move sizeways (3D Gameplay)
+  public Fix64 _moveSidewaysSpeedBonus { get; set; }
+  public bool highMovingFriction = true; // When releasing the horizontal controls character will stop imediatelly
+  public Fix64 _friction = 30; // Friction used in case of highMovingFriction false. Also used when player is pushed
 
-    public bool canCrouch = true;
+  public Fix64 MoveForwardSpeed
+  {
+    get
+    {
+      return _moveForwardSpeed + _moveForwardSpeedBonus;
+    }
+  }
+
+  public Fix64 MoveBackSpeed
+  {
+    get
+    {
+      return _moveSidewaysSpeed + _moveBackSpeedBonus;
+    }
+  }
+
+  public Fix64 MoveSidewaysSpeed
+  {
+    get
+    {
+      return _moveSidewaysSpeed + _moveSidewaysSpeedBonus;
+    }
+  }
+
+  public bool canCrouch = true;
     public int crouchDelay = 2;
     public int standingDelay = 2;
 

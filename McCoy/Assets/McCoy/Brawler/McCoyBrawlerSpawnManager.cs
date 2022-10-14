@@ -529,6 +529,7 @@ namespace Assets.McCoy.Brawler
       }
       else
       {
+        McCoy.GetInstance().BuffManager.ClearAllPlayers();
         foreach (var s in spawnData)
         {
           s.Value.StageEnded();

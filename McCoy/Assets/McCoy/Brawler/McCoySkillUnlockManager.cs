@@ -23,7 +23,11 @@ namespace Assets.McCoy.Brawler
         {
           atk.locked = false;
         }
+        moveSet.physics._moveForwardSpeedBonus = 0;
+        moveSet.physics._moveBackSpeedBonus = 0;
+        moveSet.physics._moveSidewaysSpeedBonus = 0;
       }
+
       foreach (var skill in mcCoySkills)
       {
         foreach (var moveSet in controls.loadedMoves)
@@ -48,7 +52,6 @@ namespace Assets.McCoy.Brawler
                   {
                     if(moveSwap.ToEnable.moveName == atk2.moveName)
                     {
-                      Debug.Log($"1. Locking move {atk2.moveName}. {atk.locked}/{skill.Level == 0}");
                       atk2.locked = true;
                     }
                   }
@@ -56,11 +59,18 @@ namespace Assets.McCoy.Brawler
                 else
                 {
                   // otherwise, lock our prerequisite so that the swapped move replaces it (moves are unlocked by default, we don't actually have to set it unlocked)
-                  Debug.Log($"2. Locking move {atk.moveName}. {atk.locked}/{skill.Level == 0}");
                   atk.locked = true;
                 }
               }
             }
+          }
+        }
+        if (skill.Level > 0)
+        {
+          foreach (var buff in skill.BuffsToAdd)
+          {
+            buff.Init(controls);
+            McCoy.GetInstance().BuffManager.AddBuff(buff, controls.playerNum);
           }
         }
       }

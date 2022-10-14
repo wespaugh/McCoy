@@ -37,6 +37,19 @@ namespace Assets.McCoy
       }
     }
 
+    McCoyCharacterBuffManager buffManager = null;
+    public McCoyCharacterBuffManager BuffManager
+    {
+      get
+      {
+        if(buffManager == null)
+        {
+          buffManager = GetComponent<McCoyCharacterBuffManager>();
+        }
+        return buffManager;
+      }
+    }
+
     public McCoyStageData currentStage = null;
     public McCoyGameState gameState = null;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.McCoy.Brawler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,7 @@ namespace Assets.McCoy.RPG
     [NonSerialized]
     List<MoveInfo> movesToEnable = new List<MoveInfo>();
     [NonSerialized]
-    public List<object> BuffsToAdd = new List<object>();
-
+    public List<McCoyBuff> buffsToAdd = new List<McCoyBuff>();
     [NonSerialized]
     List<McCoyMoveSwap> moveSwaps = new List<McCoyMoveSwap>();
 
@@ -42,6 +42,15 @@ namespace Assets.McCoy.RPG
       }
     }
 
+    public List<McCoyBuff> BuffsToAdd
+    {
+      get
+      { 
+        Initialize();
+        return buffsToAdd;
+      }
+    }
+
     private void Initialize()
     {
       if(initialized)
@@ -50,6 +59,7 @@ namespace Assets.McCoy.RPG
       }
       movesToEnable = McCoy.GetInstance().SkillLookup.GetMoveUnlocksForSkill(Name);
       moveSwaps = McCoy.GetInstance().SkillLookup.GetMoveSwapsForSkill(Name);
+      buffsToAdd = McCoy.GetInstance().SkillLookup.GetBuffsForSkill(Name);
       initialized = true;
     }
 

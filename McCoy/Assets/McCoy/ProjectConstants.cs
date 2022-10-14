@@ -164,9 +164,9 @@ namespace Assets.McCoy
     public enum PlayerSkills
     {
       RexArbiterUppercut,
-      RexStrengthUp,
-      RexLupusSpeedUp,
-      RexWeaponFireRateUp,
+      RexArbiterStrengthUp,
+      RexWolfSpeedUp,
+      RexHumanWeaponFireRateUp,
       Invalid
     }
 
@@ -263,7 +263,11 @@ namespace Assets.McCoy
       }
       else if (label == "Rex_Arbiter_StrengthUp")
       {
-        return PlayerSkills.RexStrengthUp;
+        return PlayerSkills.RexArbiterStrengthUp;
+      }
+      else if (label == "Rex_Wolf_SpeedUp")
+      {
+        return PlayerSkills.RexWolfSpeedUp;
       }
       return PlayerSkills.Invalid;
     }
