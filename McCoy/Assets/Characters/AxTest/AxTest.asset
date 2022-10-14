@@ -5514,7 +5514,7 @@ MonoBehaviour:
       canJump: 1
       pressureSensitiveJump: 0
       _jumpForce:
-        _serializedValue: 64424509440
+        _serializedValue: 171798691840
       _minJumpForce:
         _serializedValue: 128849018880
       minJumpDelay: 4
@@ -5525,7 +5525,7 @@ MonoBehaviour:
       cumulativeForce: 1
       multiJumps: 2
       _weight:
-        _serializedValue: 2147483648000
+        _serializedValue: 1717986918400
       jumpDelay: 8
       landingDelay: 7
       _groundCollisionMass:
@@ -10927,7 +10927,7 @@ MonoBehaviour:
       canJump: 1
       pressureSensitiveJump: 0
       _jumpForce:
-        _serializedValue: 171798691840
+        _serializedValue: 128849018880
       _minJumpForce:
         _serializedValue: 128849018880
       minJumpDelay: 4
@@ -10938,7 +10938,7 @@ MonoBehaviour:
       cumulativeForce: 1
       multiJumps: 1
       _weight:
-        _serializedValue: 751619276800
+        _serializedValue: 1073741824000
       jumpDelay: 8
       landingDelay: 7
       _groundCollisionMass:
