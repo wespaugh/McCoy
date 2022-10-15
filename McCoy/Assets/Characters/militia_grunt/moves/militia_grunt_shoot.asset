@@ -258,7 +258,7 @@ MonoBehaviour:
       x:
         _serializedValue: 8589934592
       y:
-        _serializedValue: 12884901888
+        _serializedValue: 10737418240
       z:
         _serializedValue: 0
     speed: 15
