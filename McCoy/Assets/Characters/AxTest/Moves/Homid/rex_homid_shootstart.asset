@@ -116,32 +116,7 @@ MonoBehaviour:
     anyHitType: 1
     anyHitConfirmType: 1
   locked: 0
-  frameLinks:
-  - linkType: 2
-    allowBuffer: 1
-    onStrike: 1
-    onBlock: 1
-    onParry: 1
-    activeFramesBegins: 9
-    activeFramesEnds: 10
-    counterMoveType: 0
-    counterMoveFilter: {fileID: 0}
-    disableHitImpact: 1
-    anyHitStrength: 1
-    hitStrength: 0
-    anyStrokeHitBox: 1
-    hitBoxType: 0
-    anyHitType: 1
-    hitType: 0
-    ignoreInputs: 0
-    ignorePlayerConditions: 0
-    ignoreGauge: 0
-    nextMoveStartupFrame: 1
-    linkableMoves:
-    - {fileID: 11400000, guid: ececfa3a12d46f2409145f9223540b11, type: 2}
-    linkableMovesToggle: 1
-    hitConfirmToggle: 0
-    counterMoveToggle: 0
+  frameLinks: []
   gauges: []
   sortOrder: []
   particleEffects: []

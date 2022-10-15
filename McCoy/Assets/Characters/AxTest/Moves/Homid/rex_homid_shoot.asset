@@ -122,8 +122,8 @@ MonoBehaviour:
     onStrike: 1
     onBlock: 1
     onParry: 1
-    activeFramesBegins: 0
-    activeFramesEnds: 0
+    activeFramesBegins: 20
+    activeFramesEnds: 40
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
     ignoreInputs: 0
     ignorePlayerConditions: 0
     ignoreGauge: 0
-    nextMoveStartupFrame: 1
+    nextMoveStartupFrame: 11
     linkableMoves:
     - {fileID: 11400000}
     linkableMovesToggle: 1
@@ -273,20 +273,20 @@ MonoBehaviour:
     damageAbsorption: 0
     nonAffectedBodyParts: 
   projectiles:
-  - castingFrame: 1
-    projectilePrefab: {fileID: 730415572856302657, guid: 209c37d0660d5684fb269b795ab82883,
+  - castingFrame: 20
+    projectilePrefab: {fileID: 2397388275670785177, guid: cf069932a6b9f3844881943d9ea00d20,
       type: 3}
     impactPrefab: {fileID: 0}
     bodyPart: 0
     hitBoxDefinitionIndex: 0
     _castingOffSet:
       x:
-        _serializedValue: 0
+        _serializedValue: 6442450944
       y:
-        _serializedValue: 0
+        _serializedValue: 8589934592
       z:
         _serializedValue: 0
-    speed: 20
+    speed: 10
     directionAngle: 0
     _duration:
       _serializedValue: 21474836480
@@ -298,7 +298,7 @@ MonoBehaviour:
     destroyWhenOffCameraBounds: 0
     applyGravity: 0
     limitMultiCasting: 0
-    onScreenLimit: 0
+    onScreenLimit: 2
     limitOnlyThis: 0
     forceApplied:
       x:
