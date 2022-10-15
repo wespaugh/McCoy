@@ -589,6 +589,10 @@ MonoBehaviour:
       ToEnable: {fileID: 11400000, guid: 04b492d0869e87743b65a62fedfb0e2f, type: 2}
     - ToDisable: {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
       ToEnable: {fileID: 11400000, guid: 6117d737131a2fd448e5291ec51d3363, type: 2}
+  - skill: 3
+    MoveSwaps:
+    - ToDisable: {fileID: 11400000, guid: d9e185b7509cf954293a003c3af6ae11, type: 2}
+      ToEnable: {fileID: 11400000, guid: ececfa3a12d46f2409145f9223540b11, type: 2}
   buffLookup:
   - skill: 2
     Buffs:

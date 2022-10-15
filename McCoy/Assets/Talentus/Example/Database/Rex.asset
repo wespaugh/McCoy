@@ -929,7 +929,7 @@ MonoBehaviour:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
-  selectedNode: {fileID: 0}
+  selectedNode: {fileID: 4625256471681224181}
   selectedConnection: {fileID: 0}
   wantsConnection: 0
   connectionNode: {fileID: 8584156030395328547}
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
   m_Name: Rex_Human_FireRateUp
   m_EditorClassIdentifier: 
-  isSelected: 0
+  isSelected: 1
   nodeRect:
     serializedVersion: 2
     x: 810

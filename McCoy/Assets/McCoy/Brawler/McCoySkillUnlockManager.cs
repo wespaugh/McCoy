@@ -52,12 +52,14 @@ namespace Assets.McCoy.Brawler
                   {
                     if(moveSwap.ToEnable.moveName == atk2.moveName)
                     {
+                      Debug.Log("move " + atk2.moveName + " was unavailable, locking");
                       atk2.locked = true;
                     }
                   }
                 }
                 else
                 {
+                  Debug.Log("skill " + atk.moveName + " was replaced, locking");
                   // otherwise, lock our prerequisite so that the swapped move replaces it (moves are unlocked by default, we don't actually have to set it unlocked)
                   atk.locked = true;
                 }

@@ -166,7 +166,7 @@ namespace Assets.McCoy
       RexArbiterUppercut,
       RexArbiterStrengthUp,
       RexWolfSpeedUp,
-      RexHumanWeaponFireRateUp,
+      RexHumanFireRateUp,
       Invalid
     }
 
@@ -268,6 +268,10 @@ namespace Assets.McCoy
       else if (label == "Rex_Wolf_SpeedUp")
       {
         return PlayerSkills.RexWolfSpeedUp;
+      }
+      else if (label == "Rex_Human_FireRateUp")
+      {
+        return PlayerSkills.RexHumanFireRateUp;
       }
       return PlayerSkills.Invalid;
     }
