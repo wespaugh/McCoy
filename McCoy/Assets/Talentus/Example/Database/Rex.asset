@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: Default Cost
   m_EditorClassIdentifier: 
   Cost: 1
-  Bought: 1
+  Bought: 0
   WillBuy: 0
   Description: 
 --- !u!114 &-7770161519741289907
@@ -929,13 +929,13 @@ MonoBehaviour:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
-  selectedNode: {fileID: 0}
+  selectedNode: {fileID: 4625256471681224181}
   selectedConnection: {fileID: 0}
   wantsConnection: 0
   connectionNode: {fileID: 8584156030395328547}
   showProperties: 1
   PanX: -118
-  PanY: -43
+  PanY: 52
   mouseOverProperties: 0
   propertyWidth: 317.83334
   PointsToAssign: 6
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
   m_Name: Rex_Human_FireRateUp
   m_EditorClassIdentifier: 
-  isSelected: 0
+  isSelected: 1
   nodeRect:
     serializedVersion: 2
     x: 810
