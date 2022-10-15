@@ -281,7 +281,7 @@ MonoBehaviour:
     hitBoxDefinitionIndex: 0
     _castingOffSet:
       x:
-        _serializedValue: 6442450944
+        _serializedValue: 8589934592
       y:
         _serializedValue: 8589934592
       z:
