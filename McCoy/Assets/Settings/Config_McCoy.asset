@@ -38,9 +38,9 @@ MonoBehaviour:
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -42949672960
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 25769803776
     useTempBoundary: 0
     position:
       x:
@@ -175,11 +175,15 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 0
-    selectableCharactersInStoryMode: 0100000000000000020000000300000004000000
-    selectableCharactersInVersusMode: 0000000001000000020000000300000004000000
+    selectableCharactersInStoryMode: 010000000000000002000000030000000400000005000000
+    selectableCharactersInVersusMode: 000000000100000002000000030000000400000005000000
     characterStories:
-      _keys: 0000000001000000020000000300000004000000
+      _keys: 000000000100000002000000030000000400000005000000
       _values:
+      - opening: {fileID: 0}
+        ending: {fileID: 0}
+        fightsGroups: []
+        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -851,7 +855,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -996,7 +1000,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow
@@ -1256,9 +1260,9 @@ MonoBehaviour:
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -42949672960
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 25769803776
     useTempBoundary: 0
     position:
       x:
@@ -1275,6 +1279,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c423bac83678ce343b37470e76fc2dfb, type: 2}
   - {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}
   - {fileID: 11400000, guid: 76fa29d052e047b4aa3c84ac4f0ed6c9, type: 2}
+  - {fileID: 11400000, guid: 8a21b4b68d2e73242a260db1c790f265, type: 2}
   teamModes:
   - modeName: Tag Battle (DBZF\Marvel) - 2D 3v3 Tag Team
     teams:

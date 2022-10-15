@@ -27,7 +27,7 @@ MonoBehaviour:
   minotaurCharacters5: []
   minotaurCharacters6: []
   militiaCharacters1:
-  - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  - {fileID: 11400000, guid: 8a21b4b68d2e73242a260db1c790f265, type: 2}
   militiaCharacters2: []
   militiaCharacters3: []
   militiaCharacters4: []

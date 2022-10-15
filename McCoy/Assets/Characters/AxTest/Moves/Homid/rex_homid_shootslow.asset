@@ -46,9 +46,9 @@ MonoBehaviour:
   fixedSpeed: 1
   animSpeedKeyFrame: []
   totalFrames: 41
-  startUpFrames: 0
-  activeFrames: 41
-  recoveryFrames: 0
+  startUpFrames: 35
+  activeFrames: 1
+  recoveryFrames: 5
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -155,8 +155,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 0
-    activeFramesEnds: 40
+  - activeFramesBegin: 35
+    activeFramesEnds: 35
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
     damageScaling: 0
     damageType: 0
     _damageOnHit:
-      _serializedValue: 429496729600
+      _serializedValue: 0
     _damageOnBlock:
       _serializedValue: 0
     doesntKill: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
         z:
           _serializedValue: 0
     hitToggle: 1
-    damageOptionsToggle: 1
+    damageOptionsToggle: 0
     hitStunOptionsToggle: 0
     forceOptionsToggle: 0
     opponentForceToggle: 0
@@ -373,66 +373,10 @@ MonoBehaviour:
     overrideEventsToggle: 0
     hitConditionsToggle: 0
     pullInToggle: 0
-    hurtBoxesToggle: 1
+    hurtBoxesToggle: 0
     wallBounceToggle: 0
     groundBounceToggle: 0
-    hurtBoxes:
-    - bodyPart: 0
-      followXBounds: 0
-      followYBounds: 0
-      hitBoxDefinitionIndex: 0
-      _offSet:
-        x:
-          _serializedValue: 0
-        y:
-          _serializedValue: 0
-        z:
-          _serializedValue: 0
-      _radius:
-        _serializedValue: 2147483648
-      _rect:
-        _x:
-          _serializedValue: 0
-        _y:
-          _serializedValue: 0
-        topRight:
-          x:
-            _serializedValue: 0
-          y:
-            _serializedValue: 0
-          z:
-            _serializedValue: 0
-        topLeft:
-          x:
-            _serializedValue: 0
-          y:
-            _serializedValue: 0
-          z:
-            _serializedValue: 0
-        bottomRight:
-          x:
-            _serializedValue: 0
-          y:
-            _serializedValue: 0
-          z:
-            _serializedValue: 0
-        bottomLeft:
-          x:
-            _serializedValue: 0
-          y:
-            _serializedValue: 0
-          z:
-            _serializedValue: 0
-        width:
-          _serializedValue: 0
-        height:
-          _serializedValue: 0
-        xMax:
-          _serializedValue: 0
-        yMax:
-          _serializedValue: 0
-      shape: 0
-      type: 0
+    hurtBoxes: []
   blockableArea:
     enabled: 1
     activeFramesBegin: 0
