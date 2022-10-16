@@ -2302,6 +2302,21 @@ public class UFE : MonoBehaviour, UFEInterface
     return allScripts;
   }
 
+  public static List<ControlsScript> GetAllOpponentControlsScriptsByPlayer(ControlsScript playerCScript)
+  {
+    int player = playerCScript.playerNum;
+    List<ControlsScript> allScripts = new List<ControlsScript>();
+    foreach(var cScript in brawlerEntityManager.GetAllControlsScripts())
+    {
+      if(cScript.Value != null && cScript.Value.Team != playerCScript.Team)
+      {
+        allScripts.Add(cScript.Value);
+      }
+    }
+
+    return allScripts;
+  }
+
   public static ControlsScript GetPlayer1ControlsScript()
   {
     return p1ControlsScript;

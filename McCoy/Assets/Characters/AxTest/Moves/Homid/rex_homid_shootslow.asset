@@ -783,7 +783,7 @@ MonoBehaviour:
       _shakeCameraDensity:
         _serializedValue: 3435973836
       editorToggle: 0
-    groundHit: 0
+    groundHit: 1
     airHit: 1
     downHit: 0
     damageType: 1

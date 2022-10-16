@@ -232,9 +232,17 @@ namespace UFE3D
         opControlsScript.CheckBlocking(true);
       }
 
-
+      bool brawler = true;
       // Test Collision with Opponent and their Projectiles 
-      List<ControlsScript> allOpCScripts = UFE.GetAllControlsScriptsByPlayer(opControlsScript.playerNum);
+      List<ControlsScript> allOpCScripts;
+      if (brawler)
+      {
+        allOpCScripts = UFE.GetAllOpponentControlsScriptsByPlayer(myControlsScript);
+      }
+      else
+      {
+        allOpCScripts = UFE.GetAllControlsScriptsByPlayer(opControlsScript.playerNum);
+      }
       if (data.projectileCollision)
         foreach (ControlsScript cScript in allOpCScripts) IsCollidingProjectile(cScript);
       foreach (ControlsScript cScript in allOpCScripts) IsCollidingCharacter(cScript);
@@ -271,6 +279,7 @@ namespace UFE3D
 
     public void IsCollidingProjectile(ControlsScript opControlsScript)
     {
+      Debug.Log("WE ARE TESTING PROJECTILE COLLISIONS NOW");
       if (opControlsScript.projectiles.Count > 0)
       {
         foreach (ProjectileMoveScript projectile in opControlsScript.projectiles)
@@ -295,6 +304,7 @@ namespace UFE3D
       FPVector[] collisionVectors = CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, new HurtBox[] { hurtBox }, HitConfirmType.Hit, 0.5f, false, mirror > 0);
       if (collisionVectors.Length > 0 && opControlsScript.ValidateHit(hit))
       {
+        Debug.Log("and I guess the player validated the hit?");
         ProjectileHit();
 
         if (opControlsScript.currentSubState != SubStates.Stunned && !data.unblockable && opControlsScript.isBlocking && opControlsScript.TestBlockStances(hit.hitType))
