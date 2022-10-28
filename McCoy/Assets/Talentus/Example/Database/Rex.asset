@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ce8f8d72a2c468f63aec748721cc, type: 3}
   m_Name: Rex_Arbiter_Dash
   m_EditorClassIdentifier: 
-  isSelected: 0
+  isSelected: 1
   nodeRect:
     serializedVersion: 2
     x: 411
@@ -124,6 +124,21 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
+--- !u!114 &-7770161519741289907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Accessory Slot 2 must be active.
 --- !u!114 &-7645856377094596199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +306,52 @@ MonoBehaviour:
   Name: 
   Conditions:
   - {fileID: 2518111530530202855}
+  connectionType: 0
+--- !u!114 &-5894133020192201761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Weapon Slot must be active.
+--- !u!114 &-5807429389522090362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: SlideDash_Pounce
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 4064858006302851851}
+  toNode: {fileID: 3708116722363479858}
+  curvePoints:
+  - {x: 479, y: 753.6667, z: 0}
+  - {x: 492.06586, y: 753.6667, z: 0}
+  - {x: 499.08234, y: 753.6667, z: 0}
+  - {x: 501.7777, y: 753.6666, z: 0}
+  - {x: 501.88068, y: 753.66675, z: 0}
+  - {x: 501.11932, y: 753.6667, z: 0}
+  - {x: 501.22223, y: 753.6667, z: 0}
+  - {x: 503.91772, y: 753.6667, z: 0}
+  - {x: 510.93414, y: 753.6667, z: 0}
+  - {x: 524, y: 753.6667, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -3887948151305863302}
   connectionType: 0
 --- !u!114 &-5753281000726243567
 MonoBehaviour:
@@ -469,7 +530,7 @@ MonoBehaviour:
   nodeType: 0
   Image: {fileID: 2800000, guid: 76248e5cce76936458b03a928873e9aa, type: 3}
   DisabledImage: {fileID: 2800000, guid: 76248e5cce76936458b03a928873e9aa, type: 3}
-  isValid: 0
+  isValid: 1
   description: Shifting in and out of Wolf form takes half the time
   explanation: 
   isInResearch: 0
@@ -523,6 +584,21 @@ MonoBehaviour:
   Bought: 0
   WillBuy: 0
   Description: 
+--- !u!114 &-3887948151305863302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Slide Dash must be active.
 --- !u!114 &-3474082257142871904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +783,37 @@ MonoBehaviour:
   Name: 
   Conditions:
   - {fileID: 7155267227270324288}
+  connectionType: 0
+--- !u!114 &-2329923399435889777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: AccessorySlot2_HeavyArmor
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 2001911788940850315}
+  toNode: {fileID: -980349744861754214}
+  curvePoints:
+  - {x: 912, y: 613.6667, z: 0}
+  - {x: 925.7517, y: 613.6324, z: 0}
+  - {x: 934.6063, y: 613.5405, z: 0}
+  - {x: 939.9629, y: 613.40735, z: 0}
+  - {x: 943.2209, y: 613.24976, z: 0}
+  - {x: 945.7792, y: 613.08374, z: 0}
+  - {x: 949.03705, y: 612.9259, z: 0}
+  - {x: 954.3937, y: 612.79285, z: 0}
+  - {x: 963.2483, y: 612.7009, z: 0}
+  - {x: 977, y: 612.6667, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -7770161519741289907}
   connectionType: 0
 --- !u!114 &-2174281424183222175
 MonoBehaviour:
@@ -914,7 +1021,11 @@ MonoBehaviour:
   - {fileID: -7498620232731714434}
   connections:
   - {fileID: -7908602138234937812}
+  - {fileID: 4566388040907606334}
+  - {fileID: -5807429389522090362}
+  - {fileID: 6604640947994761103}
   - {fileID: -3232181909458856740}
+  - {fileID: -2329923399435889777}
   - {fileID: -6585646387453414976}
   - {fileID: -8574822935945220179}
   - {fileID: 1668765122817193811}
@@ -922,25 +1033,20 @@ MonoBehaviour:
   - {fileID: -5126396849366412914}
   - {fileID: -4701232437554913737}
   - {fileID: 6913219474449518346}
-  - {fileID: -2582958037237800704}
-  - {fileID: -4993130010089470883}
-  - {fileID: 153035075456938266}
-  - {fileID: 3482382417402197217}
-  - {fileID: -7317742486466250128}
   tiers:
   - {fileID: -7322163201615184191}
   - {fileID: 648556643586640128}
   - {fileID: -5753281000726243567}
-  selectedNode: {fileID: 0}
+  selectedNode: {fileID: -7793204463600888794}
   selectedConnection: {fileID: 0}
   wantsConnection: 0
-  connectionNode: {fileID: 1614853778864886401}
-  showProperties: 0
-  PanX: -206
+  connectionNode: {fileID: 8584156030395328547}
+  showProperties: 1
+  PanX: -118
   PanY: 52
   mouseOverProperties: 0
-  propertyWidth: 317.83334
-  PointsToAssign: 1
+  propertyWidth: 169.5
+  PointsToAssign: 6
 --- !u!114 &153035075456938266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1446,37 @@ MonoBehaviour:
   - {fileID: 1302872601854933977}
   - {fileID: -3010255164028539910}
   - {fileID: -8592359611232275752}
+--- !u!114 &4566388040907606334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: LeapingBite_SlideDash
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 1614853778864886401}
+  toNode: {fileID: 4064858006302851851}
+  curvePoints:
+  - {x: 345, y: 753.6667, z: 0}
+  - {x: 357.8258, y: 753.6667, z: 0}
+  - {x: 364.1989, y: 753.6667, z: 0}
+  - {x: 365.96292, y: 753.6666, z: 0}
+  - {x: 364.96164, y: 753.66675, z: 0}
+  - {x: 363.0384, y: 753.6667, z: 0}
+  - {x: 362.03705, y: 753.6667, z: 0}
+  - {x: 363.8011, y: 753.6667, z: 0}
+  - {x: 370.17422, y: 753.6667, z: 0}
+  - {x: 383, y: 753.6667, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: 7566312997025265516}
+  connectionType: 0
 --- !u!114 &4625256471681224181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1355,8 +1492,8 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 813
-    y: 311.66666
+    x: 810
+    y: 315.66666
     width: 96
     height: 112
   parentTree: {fileID: 11400000}
@@ -1493,6 +1630,37 @@ MonoBehaviour:
   tier: {fileID: -7322163201615184191}
   cost:
   - {fileID: -516756029738254479}
+--- !u!114 &6604640947994761103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7559b44c1dfd4993445312a298f30, type: 3}
+  m_Name: WeaponSlot_FireRate+
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  fromNode: {fileID: 4625256471681224181}
+  toNode: {fileID: 831361973885346730}
+  curvePoints:
+  - {x: 906, y: 371.66666, z: 0}
+  - {x: 919.9918, y: 371.52945, z: 0}
+  - {x: 929.4897, y: 371.16187, z: 0}
+  - {x: 935.7777, y: 370.62958, z: 0}
+  - {x: 940.14, y: 369.99866, z: 0}
+  - {x: 943.8601, y: 369.33472, z: 0}
+  - {x: 948.22217, y: 368.70367, z: 0}
+  - {x: 954.5103, y: 368.17145, z: 0}
+  - {x: 964.00824, y: 367.80383, z: 0}
+  - {x: 978, y: 367.66666, z: 0}
+  curGraph: {fileID: 11400000}
+  Name: 
+  Conditions:
+  - {fileID: -5894133020192201761}
+  connectionType: 0
 --- !u!114 &6913219474449518346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,6 +1738,21 @@ MonoBehaviour:
   ConditionType: 0
   Value: 1
   Description: Rex_Human_FireRateUp must be active.
+--- !u!114 &7566312997025265516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f33da2dfabdea48bfd7bb631388197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConditionType: 0
+  Value: 1
+  Description: Leaping Bite must be active.
 --- !u!114 &7587861104181390740
 MonoBehaviour:
   m_ObjectHideFlags: 0

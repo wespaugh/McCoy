@@ -1034,7 +1034,10 @@ public class PhysicsScript : MonoBehaviour
           {
             if (moveSetScript.basicMoves.jumpStraight.animMap[0].clip == null)
               Debug.LogError("Jump animation not found! Make sure you have it set on Character -> Basic Moves -> Jump Straight");
-
+            if(controlScript.playerNum != 1)
+            {
+              Debug.Log("uh, weird. grunts gon jump?");
+            }
             airAnimation = moveSetScript.basicMoves.jumpStraight;
           }
         }

@@ -97,7 +97,7 @@ MonoBehaviour:
     crouchButton: 3
   hideGauges: 00000000000000000000
   _executionTiming:
-    _serializedValue: 1288490188
+    _serializedValue: 1288490240
   possibleAirMoves: 1
   _blendingTime:
     _serializedValue: 429496736
@@ -709,7 +709,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -814,7 +814,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -3124,7 +3124,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4599,7 +4599,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4704,7 +4704,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4809,7 +4809,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -4914,7 +4914,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -5484,8 +5484,40 @@ MonoBehaviour:
       parryEnabled: 0
     attackMoves:
     - {fileID: 11400000, guid: e1d48618e89fd79439efc5f5908573f5, type: 2}
+    physics:
+      _moveForwardSpeed:
+        _serializedValue: 17179869184
+      _moveBackSpeed:
+        _serializedValue: 15032385536
+      _moveSidewaysSpeed:
+        _serializedValue: 17179869184
+      highMovingFriction: 1
+      _friction:
+        _serializedValue: 128849018880
+      canCrouch: 1
+      crouchDelay: 2
+      standingDelay: 2
+      canJump: 1
+      pressureSensitiveJump: 0
+      _jumpForce:
+        _serializedValue: 171798691840
+      _minJumpForce:
+        _serializedValue: 128849018880
+      minJumpDelay: 4
+      _jumpDistance:
+        _serializedValue: 34359738368
+      _jumpBackDistance:
+        _serializedValue: 34359738368
+      cumulativeForce: 1
+      multiJumps: 1
+      _weight:
+        _serializedValue: 751619276800
+      jumpDelay: 8
+      landingDelay: 7
+      _groundCollisionMass:
+        _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
-    basicMovesToggle: 0
+    basicMovesToggle: 1
     attackMovesToggle: 1
   aiInstructionsSet:
   - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}

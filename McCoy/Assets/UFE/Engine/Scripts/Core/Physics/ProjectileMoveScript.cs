@@ -304,7 +304,6 @@ namespace UFE3D
       FPVector[] collisionVectors = CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, new HurtBox[] { hurtBox }, HitConfirmType.Hit, 0.5f, false, mirror > 0);
       if (collisionVectors.Length > 0 && opControlsScript.ValidateHit(hit))
       {
-        Debug.Log("and I guess the player validated the hit?");
         ProjectileHit();
 
         if (opControlsScript.currentSubState != SubStates.Stunned && !data.unblockable && opControlsScript.isBlocking && opControlsScript.TestBlockStances(hit.hitType))

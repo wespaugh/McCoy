@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 8328674274759771918}
   - component: {fileID: 1469516883369325326}
   - component: {fileID: 1854239568599894935}
+  - component: {fileID: 1539500651643752584}
   m_Layer: 0
   m_Name: AxTest
   m_TagString: Untagged
@@ -350,3 +351,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunAnimator: {fileID: 6848793584519321403}
+  gunAnimatorMirrored: {fileID: 0}
+--- !u!114 &1539500651643752584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008542871262631591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563a3f43a89980b418620ceca0f50ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSource: {fileID: 2167593329371993709}
+  spritePrefab: {fileID: 6230358053200867520, guid: 1780328a4baf62745a6231791f9d65b0,
+    type: 3}
