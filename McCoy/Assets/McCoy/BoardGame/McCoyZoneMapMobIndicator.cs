@@ -138,10 +138,13 @@ namespace Assets.McCoy.BoardGame
       if (m != null)
       {
         text.gameObject.SetActive(true);
-        text.SetText($"{m.StrengthForXP()}");
+        text.SetText($"{m.StrengthForXP()}<sprite name=\"stat_indicator_icons_1\">\n{m.Health}<sprite name=\"stat_indicator_icons_0\">");
+        healthBar.gameObject.SetActive(false);
+        /*
         healthBar.Initialize(m.MaxHealth+3, m.MaxHealth+3);
         healthBar.SetFill(m.Health+2);
         healthBar.gameObject.SetActive(true);
+        */
       }
       else
       {

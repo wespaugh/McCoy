@@ -29,15 +29,6 @@ namespace Assets.McCoy.UI
     MapCityNodePanel selectedZonePanel = null;
 
     [SerializeField]
-    List<Sprite> playerIconIndexes = new List<Sprite>();
-
-    [SerializeField]
-    Image playerIcon = null;
-
-    [SerializeField]
-    TMP_Text selectedCharacterText = null;
-
-    [SerializeField]
     TMP_Text currentZoneText = null;
 
     [SerializeField]
@@ -69,6 +60,7 @@ namespace Assets.McCoy.UI
     PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
 
     McCoyCityBoardContents board = null;
+    McCoySkillTreeMenu talentDelegate = null;
     public McCoyCityBoardContents Board
     {
       get => board;
@@ -100,6 +92,114 @@ namespace Assets.McCoy.UI
         Camera.main.orthographic = false;
       }
       UFE.PlayMusic(mapMusic);
+    }
+
+
+    public override void DoFixedUpdate(
+        IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+        IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player2CurrentInputs
+      )
+    {
+      bool previousSkillButton = false;
+      ButtonPress skillButton = ButtonPress.Button4;
+
+      ButtonPress charForwardButton = ButtonPress.Button5;
+      ButtonPress charBackwardButton = ButtonPress.Button6;
+      bool previousCycleCharacterForward = false;
+      bool previousCycleCharacterBackward = false;
+
+      ButtonPress toggleZoom = ButtonPress.Button3;
+      bool previousToggleZoom = false;
+      bool currentToggleZoom = false;
+
+      ButtonPress ToggleConnections = ButtonPress.Button1;
+      bool previousToggleConnections = false;
+      bool currentToggleConnections = false;
+
+      foreach (KeyValuePair<InputReferences, InputEvents> pair in player1PreviousInputs)
+      {
+        if (pair.Key.inputType == InputType.Button && pair.Value.button)
+        {
+          if (pair.Key.engineRelatedButton == skillButton)
+          {
+            previousSkillButton = true;
+          }
+          else if (pair.Key.engineRelatedButton == charForwardButton)
+          {
+            previousCycleCharacterForward = true;
+          }
+          else if (pair.Key.engineRelatedButton == charBackwardButton)
+          {
+            previousCycleCharacterBackward = true;
+          }
+          else if(pair.Key.engineRelatedButton == ToggleConnections)
+          {
+            previousToggleConnections = true;
+          }
+          else if(pair.Key.engineRelatedButton == toggleZoom)
+          {
+            previousToggleZoom = true;
+          }
+        }
+      }
+
+      bool currentSkillButton = false;
+      bool currentCycleCharacterForward = false;
+      bool currentCycleCharacterBackward = false;
+      foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
+      {
+        if (pair.Key.inputType == InputType.Button && pair.Value.button)
+        {
+          if (pair.Key.engineRelatedButton == skillButton)
+          {
+            currentSkillButton = true;
+          }
+          else if (pair.Key.engineRelatedButton == charForwardButton)
+          {
+            currentCycleCharacterForward = true;
+          }
+          else if (pair.Key.engineRelatedButton == charBackwardButton)
+          {
+            currentCycleCharacterBackward = true;
+          }
+          else if( pair.Key.engineRelatedButton == ToggleConnections)
+          {
+            currentToggleConnections = true;
+          }
+          else if(pair.Key.engineRelatedButton == toggleZoom)
+          {
+            currentToggleZoom = true;
+          }
+        }
+      }
+
+      if (!previousSkillButton && currentSkillButton)
+      {
+        OpenSkillTree();
+      }
+      else if(talentDelegate == null)
+      {
+        if (!previousCycleCharacterBackward && currentCycleCharacterBackward)
+        {
+          PreviousPlayer();
+        }
+        else if (!previousCycleCharacterForward && currentCycleCharacterForward)
+        {
+          NextPlayer();
+        }
+        else if(!previousToggleConnections && currentToggleConnections)
+        {
+          ToggleLines();
+        }
+        else if(!previousToggleZoom && currentToggleZoom)
+        {
+          ToggleZoom();
+        }
+      }
+
+      base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
 
     private void saveCity()
@@ -199,6 +299,7 @@ namespace Assets.McCoy.UI
 
     private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
     {
+      talentDelegate = null;
       McCoy.GetInstance().gameState.playerCharacters[pc].AvailableSkillPoints = availablePoints;
       updateAvailableSkillPointsText();
       McCoy.GetInstance().gameState.UpdateSkills(pc, serializedSkills, availablePoints);
@@ -206,9 +307,12 @@ namespace Assets.McCoy.UI
 
     public void OpenSkillTree()
     {
+      if(talentDelegate != null)
+      {
+        return;
+      }
       string skillTreeString = "";
       int availableSkillPoints = 0;
-      McCoySkillTreeMenu talentDelegate = null;
       McCoyPlayerCharacter playerData = null;
       switch (selectedPlayer)
       {
@@ -358,15 +462,21 @@ namespace Assets.McCoy.UI
         McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc.NodeID;
         antikytheraMechanismLocation = board.NodeWithID(loc.NodeID);
       }
-
+      MapCityNodePanel firstNode = null;
       foreach (var assetNode in board.MapNodes)
       {
         assetNode.SetMechanismLocation(antikytheraMechanismLocation);
 
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         zonePanels[assetNode] = nodePanel;
-        nodePanel.GetComponent<MapCityNodePanel>().Initialize(assetNode, this, antikytheraMechanismLocation);
+        var node = nodePanel.GetComponent<MapCityNodePanel>();
+        node.Initialize(assetNode, this, antikytheraMechanismLocation);
+        if(firstNode == null)
+        {
+          firstNode = node;
+        }
       }
+      firstNode.GetComponent<Button>().Select();
 
       board.UpdateNodes();
       // updates panel interactibility
@@ -381,10 +491,8 @@ namespace Assets.McCoy.UI
     {
       MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
 
-      playerIcon.sprite = playerIconIndexes[(int)selectedPlayer];
       MapNode playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
 
-      selectedCharacterText.text = "";// ProjectConstants.PlayerName(selectedPlayer);
       currentZoneText.text = playerLoc.ZoneName;
 
       updateWeekText();
@@ -440,7 +548,8 @@ namespace Assets.McCoy.UI
 
     private void updateAvailableSkillPointsText()
     {
-      availableSkillPointsText.text = $"{McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints}";
+      int value = McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints;
+      availableSkillPointsText.text = $"Buy Skills ({value})<sprite name=\"controller_buttons_ps4_1\">";
     }
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
@@ -560,11 +669,6 @@ namespace Assets.McCoy.UI
 
     private void changePlayer(int direction)
     {
-      if(direction != 1 && direction != -1)
-      {
-        Debug.LogError("improper use of change player");
-      }
-
       if (selectedPlayer == PlayerCharacter.Penelope && direction == 1)
       {
         selectedPlayer = PlayerCharacter.Rex;
@@ -576,12 +680,6 @@ namespace Assets.McCoy.UI
       else
       {
         selectedPlayer += direction;
-      }
-
-      if (McCoy.GetInstance().gameState.IsEndOfWeek)
-      {
-        Debug.LogError("inf recursion, bailing");
-        return;
       }
 
       if (!McCoy.GetInstance().gameState.CanPlayerTakeTurn(selectedPlayer))

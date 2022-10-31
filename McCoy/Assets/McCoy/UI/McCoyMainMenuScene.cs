@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UFE3D;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.McCoy.UI
@@ -22,7 +25,7 @@ namespace Assets.McCoy.UI
       {
         game = FindObjectOfType<McCoy>();
 
-        deleteSavesButton.gameObject.SetActive(game.Debug);
+        // deleteSavesButton.gameObject.SetActive(game.Debug);
         if (game.Debug)
         {
           // StartCityScene();
@@ -30,7 +33,18 @@ namespace Assets.McCoy.UI
       }
       updateMenuItems();
     }
-    public void StartCityScene()
+
+    public override void DoFixedUpdate(
+  IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+  IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+  IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+  IDictionary<InputReferences, InputEvents> player2CurrentInputs
+)
+    {
+      base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+    }
+
+      public void StartCityScene()
     {
       game.LoadScene(McCoy.McCoyScenes.CityMap);
     }
@@ -52,7 +66,8 @@ namespace Assets.McCoy.UI
 
     private void updateMenuItems()
     {
-      continueButton.gameObject.SetActive(File.Exists(ProjectConstants.SaveFilename(1)));
+      bool continueAvailable = File.Exists(ProjectConstants.SaveFilename(1));
+      // continueButton.gameObject.SetActive(continueAvailable);
     }
   }
 }

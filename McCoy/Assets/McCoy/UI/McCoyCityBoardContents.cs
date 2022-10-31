@@ -661,8 +661,8 @@ namespace Assets.McCoy.UI
           }
           isSelectedNow &= foundOtherEnd;
         }
-        Color deselectColor = new Color(227f/255f, 99f/255f, 151f/255f);
-        Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f);
+        Color deselectColor = new Color(227f/255f, 99f/255f, 151f/255f, 0f);
+        Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f, 128f/255f);
         if(!isSelectedNow)
         {
           inactiveConnectionLines.Add(entry.Value);
