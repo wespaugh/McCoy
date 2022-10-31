@@ -621,7 +621,7 @@ namespace Assets.McCoy.UI
     }
 
 
-    public void SelectMapNode(MapNode m, List<MapNode> validConnections)
+    public void SelectMapNode(MapNode m, List<MapNode> validConnections, bool refreshLines = true)
     {
       if(selectedPlayerZone != null && highlightedZone != selectedPlayerZone)
       {
@@ -643,6 +643,12 @@ namespace Assets.McCoy.UI
           centerCameraOnNode(selectedNode);
         }
       }
+
+      if(!refreshLines)
+      {
+        return;
+      }
+
       inactiveConnectionLines.Clear();
       foreach (var entry in lineLookup)
       {

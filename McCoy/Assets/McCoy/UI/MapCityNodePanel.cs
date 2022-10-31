@@ -168,7 +168,7 @@ namespace Assets.McCoy.UI
 
     public void ZoneHighlighted()
     {
-      uiRoot.Board.SelectMapNode(node, null);
+      uiRoot.Board.SelectMapNode(node, null, false);
       uiRoot.Board.ToggleZoom(true);
       uiRoot.Board.SetHoverNode(node);
     }
