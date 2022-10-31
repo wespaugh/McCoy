@@ -25,7 +25,7 @@ namespace Assets.McCoy.UI
     GameObject MobPanelPrefab = null;
 
     [SerializeField]
-    Button enterZoneButton;
+    Image selectionIcon = null;
 
     MapNode node = null;
 
@@ -45,7 +45,7 @@ namespace Assets.McCoy.UI
       }
       uiRoot = screen;
 
-      enterZoneButton.gameObject.SetActive(screen != null);
+      selectionIcon.gameObject.SetActive(screen != null);
 
       while(this.mobObjects.Count > 0)
       {
@@ -104,7 +104,7 @@ namespace Assets.McCoy.UI
 
     public void SetInteractable(bool isConnected)
     {
-      enterZoneButton.gameObject.SetActive(isConnected);
+      selectionIcon.gameObject.SetActive(isConnected);
     }
   }
 }

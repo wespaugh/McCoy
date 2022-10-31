@@ -144,6 +144,7 @@
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInput.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyLoadingBattleScreen.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyWorldUI.cs" />
+    <Compile Include="Assets\McCoy\UI\Menus\McCoyMainMenuInput.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoSetup.cs" />
     <Compile Include="Assets\McCoy\ProjectConstants.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />

@@ -72,7 +72,7 @@ namespace UFE3D
 					confirmSound,
 					cancelSound,
 					cancelAction
-				)
+				)/*
 				||
 				screen.DefaultNavigationSystem(
 					player2PreviousInputs,
@@ -81,7 +81,7 @@ namespace UFE3D
 					confirmSound,
 					cancelSound,
 					cancelAction
-				);
+				)*/;
 		}
 
 		public static bool DefaultNavigationSystem(
@@ -728,6 +728,7 @@ namespace UFE3D
 			{
 				if (confirmCallback != null && confirmCallback.Action != null)
 				{
+					Debug.Log("confirm me, daddy");
 					confirmCallback.Action(confirmCallback.Sound);
 				}
 				return true;
