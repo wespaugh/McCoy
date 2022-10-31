@@ -175,8 +175,6 @@ namespace Assets.McCoy.UI
         }
       }
 
-      bool askSuperclass = false;
-
       if (!previousSkillButton && currentSkillButton)
       {
         OpenSkillTree();
@@ -199,19 +197,9 @@ namespace Assets.McCoy.UI
         {
           ToggleZoom();
         }
-        else
-        {
-          askSuperclass = true;
-        }
       }
-      else
-      {
-        askSuperclass = true;
-      }
-      if(askSuperclass)
-      {
-        base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-      }
+
+      base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
 
     private void saveCity()
@@ -561,7 +549,7 @@ namespace Assets.McCoy.UI
     private void updateAvailableSkillPointsText()
     {
       int value = McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints;
-      availableSkillPointsText.text = $"Skill Points: {value}<sprite name=\"controller_buttons_ps4_1\">";
+      availableSkillPointsText.text = $"Buy Skills ({value})<sprite name=\"controller_buttons_ps4_1\">";
     }
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
@@ -681,11 +669,6 @@ namespace Assets.McCoy.UI
 
     private void changePlayer(int direction)
     {
-      if(direction != 1 && direction != -1)
-      {
-        Debug.LogError("improper use of change player");
-      }
-
       if (selectedPlayer == PlayerCharacter.Penelope && direction == 1)
       {
         selectedPlayer = PlayerCharacter.Rex;
@@ -697,12 +680,6 @@ namespace Assets.McCoy.UI
       else
       {
         selectedPlayer += direction;
-      }
-
-      if (McCoy.GetInstance().gameState.IsEndOfWeek)
-      {
-        Debug.LogError("inf recursion, bailing");
-        return;
       }
 
       if (!McCoy.GetInstance().gameState.CanPlayerTakeTurn(selectedPlayer))
