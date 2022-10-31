@@ -41,7 +41,7 @@ MonoBehaviour:
       _serializedValue: -42949672960
     tempRightBoundary:
       _serializedValue: 25769803776
-    useTempBoundary: 0
+    useTempBoundary: 1
     position:
       x:
         _serializedValue: 0
@@ -639,7 +639,7 @@ MonoBehaviour:
       hitParticle: {fileID: 194664, guid: b71a09eefd747c94787f6bc98149a21d, type: 3}
       killTime: 0.6
       hitSound: {fileID: 8300000, guid: 591a29322671baa479c0ef02c3a59bc8, type: 3}
-      spawnPoint: 1
+      spawnPoint: 2
       _freezingTime:
         _serializedValue: 429496736
       _animationSpeed:
@@ -1263,7 +1263,7 @@ MonoBehaviour:
       _serializedValue: -42949672960
     tempRightBoundary:
       _serializedValue: 25769803776
-    useTempBoundary: 0
+    useTempBoundary: 1
     position:
       x:
         _serializedValue: 0
