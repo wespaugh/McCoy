@@ -477,7 +477,7 @@ namespace Assets.McCoy.UI
         McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc.NodeID;
         antikytheraMechanismLocation = board.NodeWithID(loc.NodeID);
       }
-      MapCityNodePanel firstNode = null;
+
       foreach (var assetNode in board.MapNodes)
       {
         assetNode.SetMechanismLocation(antikytheraMechanismLocation);
@@ -486,12 +486,7 @@ namespace Assets.McCoy.UI
         zonePanels[assetNode] = nodePanel;
         var node = nodePanel.GetComponent<MapCityNodePanel>();
         node.Initialize(assetNode, this, antikytheraMechanismLocation);
-        if(firstNode == null)
-        {
-          firstNode = node;
-        }
       }
-      firstNode.GetComponent<Button>().Select();
 
       board.UpdateNodes();
       // updates panel interactibility
@@ -536,6 +531,7 @@ namespace Assets.McCoy.UI
       int siblingIndex = 0;
       sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
       bool iteratingThroughConnectedNodes = true;
+      GameObject firstNode = null;
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
@@ -555,6 +551,13 @@ namespace Assets.McCoy.UI
         }
         zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
+        
+        // select the first node in the list
+        if(firstNode == null)
+        {
+          firstNode = zonePanels[node];
+          firstNode.GetComponent<Button>().Select();
+        }
       }
 
       board.SelectMapNode(playerLoc, validConnections);

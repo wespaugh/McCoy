@@ -11,7 +11,7 @@ using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
 {
-  public class MapCityNodePanel : MonoBehaviour, ISelectHandler
+  public class MapCityNodePanel : MonoBehaviour, ISelectHandler, IDeselectHandler
   {
     [SerializeField]
     TMP_Text NodeName = null;
@@ -38,12 +38,16 @@ namespace Assets.McCoy.UI
 
     McCoyCityScreen uiRoot = null;
 
+    bool canConnect = false;
+    bool isSelected = false;
+
     bool bound = false;
 
     private void Awake()
     {
       scrollRect = GetComponentInParent<ScrollRect>();
       contentPanel = transform.parent as RectTransform;
+      selectionIcon.gameObject.SetActive(false);
       //bind();
     }
 
@@ -75,11 +79,26 @@ namespace Assets.McCoy.UI
     {
       Canvas.ForceUpdateCanvases();
 
+      isSelected = true;
       var anch = contentPanel.anchoredPosition;
       var newPos = (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
               - (Vector2)scrollRect.transform.InverseTransformPoint(transform.position);
       anch.y = newPos.y;
-      contentPanel.anchoredPosition = newPos;
+      contentPanel.anchoredPosition = anch;
+      updateIcon();
+      ZoneHighlighted();
+    }
+
+    private void updateIcon()
+    {
+      selectionIcon.gameObject.SetActive(isSelected);
+      selectionIcon.color = canConnect ? ProjectConstants.GREEN : ProjectConstants.PINK;
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+      selectionIcon.gameObject.SetActive(false);
+      isSelected = false;
     }
 
     public void Initialize(MapNode node, McCoyCityScreen screen, MapNode mechanismLoc)
@@ -93,7 +112,9 @@ namespace Assets.McCoy.UI
       }
       uiRoot = screen;
 
-      selectionIcon.gameObject.SetActive(screen != null);
+      canConnect = uiRoot != null;
+
+      selectionIcon.gameObject.SetActive(canConnect);
 
       while(this.mobObjects.Count > 0)
       {
@@ -115,7 +136,7 @@ namespace Assets.McCoy.UI
 
     public void ZoneClicked()
     {
-      if(uiRoot == null)
+      if(uiRoot == null || ! canConnect)
       {
         return;
       }
@@ -147,12 +168,15 @@ namespace Assets.McCoy.UI
 
     public void ZoneHighlighted()
     {
+      uiRoot.Board.SelectMapNode(node, null);
+      uiRoot.Board.ToggleZoom(true);
       uiRoot.Board.SetHoverNode(node);
     }
 
     public void SetInteractable(bool isConnected)
     {
-      selectionIcon.gameObject.SetActive(isConnected);
+      canConnect = isConnected;
+      selectionIcon.gameObject.SetActive(isConnected && isSelected);
     }
   }
 }
