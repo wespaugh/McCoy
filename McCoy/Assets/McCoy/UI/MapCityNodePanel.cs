@@ -5,12 +5,13 @@ using TMPro;
 using UFE3D.Brawler;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
 {
-  public class MapCityNodePanel : MonoBehaviour
+  public class MapCityNodePanel : MonoBehaviour, ISelectHandler
   {
     [SerializeField]
     TMP_Text NodeName = null;
@@ -27,12 +28,59 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Image selectionIcon = null;
 
+    protected ScrollRect scrollRect;
+    protected RectTransform contentPanel;
+
     MapNode node = null;
 
     List<McCoyMobData> mobs = new List<McCoyMobData>();
     List<GameObject> mobObjects = new List<GameObject>();
 
     McCoyCityScreen uiRoot = null;
+
+    bool bound = false;
+
+    private void Awake()
+    {
+      scrollRect = GetComponentInParent<ScrollRect>();
+      contentPanel = transform.parent as RectTransform;
+      //bind();
+    }
+
+    private void OnDestroy()
+    {
+      //unbind();
+    }
+
+    /*
+    private void bind()
+    {
+      if(bound)
+      {
+        return;
+      }
+      bound = true;
+    }
+
+    private void unbind()
+    {
+      if(! bound)
+      {
+        return;
+      }
+      Selection.selectionChanged -= selectionChanged;
+    }
+    */
+    public void OnSelect(BaseEventData eventData)
+    {
+      Canvas.ForceUpdateCanvases();
+
+      var anch = contentPanel.anchoredPosition;
+      var newPos = (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
+              - (Vector2)scrollRect.transform.InverseTransformPoint(transform.position);
+      anch.y = newPos.y;
+      contentPanel.anchoredPosition = newPos;
+    }
 
     public void Initialize(MapNode node, McCoyCityScreen screen, MapNode mechanismLoc)
     {

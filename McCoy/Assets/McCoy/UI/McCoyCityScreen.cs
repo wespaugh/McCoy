@@ -55,6 +55,12 @@ namespace Assets.McCoy.UI
     [SerializeField]
     GameObject RexSkillTree = null;
 
+    [SerializeField]
+    AudioClip selectSound = null;
+
+    [SerializeField]
+    AudioClip moveCursorSound = null;
+
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
     PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
@@ -199,7 +205,16 @@ namespace Assets.McCoy.UI
         }
       }
 
-      base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      this.DefaultNavigationSystem(
+          player1PreviousInputs,
+          player1CurrentInputs,
+          player2PreviousInputs,
+          player2CurrentInputs,
+          this.moveCursorSound,
+          this.selectSound,
+          null,
+          null
+      );
     }
 
     private void saveCity()
