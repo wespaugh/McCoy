@@ -726,7 +726,6 @@ namespace UFE3D
 
 			if (confirmButtonDown)
 			{
-				Debug.Log("confirm me, daddy");
 				if (confirmCallback != null && confirmCallback.Action != null)
 				{
 					confirmCallback.Action(confirmCallback.Sound);

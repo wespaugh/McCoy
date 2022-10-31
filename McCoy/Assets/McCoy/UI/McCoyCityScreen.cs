@@ -120,7 +120,7 @@ namespace Assets.McCoy.UI
       bool previousToggleZoom = false;
       bool currentToggleZoom = false;
 
-      ButtonPress ToggleConnections = ButtonPress.Button1;
+      ButtonPress ToggleConnections = ButtonPress.Button2;
       bool previousToggleConnections = false;
       bool currentToggleConnections = false;
 
@@ -567,7 +567,7 @@ namespace Assets.McCoy.UI
     private void updateAvailableSkillPointsText()
     {
       int value = McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints;
-      availableSkillPointsText.text = $"Buy Skills ({value})<sprite name=\"controller_buttons_ps4_1\">";
+      availableSkillPointsText.text = $"Buy Skills ({value})   <sprite name=\"controller_buttons_ps4_1\">";
     }
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
