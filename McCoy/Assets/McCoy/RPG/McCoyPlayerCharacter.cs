@@ -13,7 +13,7 @@ namespace Assets.McCoy.RPG
   public class McCoyPlayerCharacter
   {
     public PlayerCharacter Player;
-    public int AvailableSkillPoints = 1;
+    public int AvailableSkillPoints = 10;
     public List<McCoySkill> Skills;
 
     private string _skillTreeString;
@@ -51,23 +51,18 @@ namespace Assets.McCoy.RPG
     */
     public void GainXP(int amount)
     {
-      Debug.Log("GAIN XP: " + amount);
       int idx = 0;
       while(idx < XpThreshholds.Length && XP>XpThreshholds[idx])
       {
         ++idx;
       }
       int levelBefore = idx;
-      Debug.Log($"XP Before: {XP} (Level {levelBefore})");
       XP += amount;
       while(idx < XpThreshholds.Length && XP > XpThreshholds[idx])
       {
         ++idx;
       }
       int levelsGained = idx - levelBefore;
-      Debug.Log($"XP After: {XP} (Level {idx})");
-      Debug.Log("Levels Gained: " + levelsGained);
-
       AvailableSkillPoints += levelsGained;
     }
   }

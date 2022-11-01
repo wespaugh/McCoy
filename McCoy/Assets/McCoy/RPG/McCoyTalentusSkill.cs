@@ -1,5 +1,6 @@
 ﻿using com.cygnusprojects.TalentTree;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,17 @@ namespace Assets.McCoy.RPG
 
     public void Awake()
     {
+      skillName.gameObject.SetActive(false);
+      StartCoroutine(oneFrameDelay());
+    }
+    public IEnumerator oneFrameDelay()
+    {
+      yield return null;
+      skillName.gameObject.SetActive(true);
       var talent = GetComponent<TalentUI>();
       string talentName = talent.Talent.Name;
-      skillName.text = ProjectConstants.DisplayStringForSkillName(talentName);
+      string displayName = ProjectConstants.DisplayStringForSkillName(talentName);
+      skillName.text = displayName;
       if (levelIndicator != null)
       {
         levelIndicator.text = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";

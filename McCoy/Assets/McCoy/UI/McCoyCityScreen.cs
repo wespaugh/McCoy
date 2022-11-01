@@ -409,7 +409,7 @@ namespace Assets.McCoy.UI
       McCoy.GetInstance().gameState.Initialize();
       string skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
       skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
-      loadSkills(1, skillString, Rex);
+      loadSkills(McCoy.GetInstance().gameState.playerCharacters[PlayerCharacter.Rex].AvailableSkillPoints, skillString, Rex);
     }
 
     private void loadBoardState()
