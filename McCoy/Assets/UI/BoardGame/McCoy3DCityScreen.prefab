@@ -721,6 +721,8 @@ GameObject:
   - component: {fileID: 8284668372939645776}
   - component: {fileID: 6821063896400762172}
   - component: {fileID: 6708651242087494546}
+  - component: {fileID: 4210230793508230953}
+  - component: {fileID: 8227674589946926779}
   m_Layer: 5
   m_Name: City Label
   m_TagString: Untagged
@@ -846,6 +848,59 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4210230793508230953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814848657421660786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:f4295bb3e2aa1fa4f852a24d22bbf67a
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6708651242087494546}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &8227674589946926779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814848657421660786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4379618b489db2049807f24deae98516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionalText: {fileID: 0}
 --- !u!1 &3000745687599416458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,7 +2533,7 @@ MonoBehaviour:
   boardContents: {fileID: 7263689708247425655, guid: 6677ff728c45a1e4e97592c7764d4515,
     type: 3}
   selectedZonePanel: {fileID: 4719032487824798012}
-  currentZoneText: {fileID: 6708651242087494546}
+  currentZoneText: {fileID: 8227674589946926779}
   currentWeekText: {fileID: 2959108332844797634}
   availableSkillPointsText: {fileID: 2968736009682460008}
   routingUI: {fileID: 3409928249251075460, guid: 893611170ad45fc45830d6498f4cb451,

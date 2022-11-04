@@ -117,7 +117,7 @@ MonoBehaviour:
       idle:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 54cc114d1dffae14889d04fa7e13a3d9, type: 2}
+          clip: {fileID: 7400000, guid: c4ce373dfa1639942b1b2cada7a6d799, type: 2}
           customHitBoxDefinition: {fileID: 11400000, guid: 6b6ec386d0f5c1144925d5f9a32d202e,
             type: 2}
           length:
@@ -5532,7 +5532,7 @@ MonoBehaviour:
       _groundCollisionMass:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
-    basicMovesToggle: 0
+    basicMovesToggle: 1
     attackMovesToggle: 1
   - combatStance: 0
     cinematicIntro: {fileID: 0}
@@ -6275,7 +6275,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -8693,7 +8693,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       fallDown:
         animMap:
@@ -9536,7 +9536,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:
@@ -9957,7 +9957,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       standUpFromAirHit:
         animMap:
@@ -16359,7 +16359,7 @@ MonoBehaviour:
       landingDelay: 7
       _groundCollisionMass:
         _serializedValue: 8589934592
-    enabledBasicMovesToggle: 1
-    basicMovesToggle: 1
-    attackMovesToggle: 1
+    enabledBasicMovesToggle: 0
+    basicMovesToggle: 0
+    attackMovesToggle: 0
   aiInstructionsSet: []

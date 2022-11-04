@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: McCoy Game Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f4295bb3e2aa1fa4f852a24d22bbf67a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 492072370176
+    m_Localized: Subway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21032128512000
+    m_Localized: Preservation Zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24199339737088
+    m_Localized: Government Office Building
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24385453588480
+    m_Localized: Airfield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24427526651904
+    m_Localized: Meat-Packing District
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24504794120192
+    m_Localized: Nimby Street
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24551925514240
+    m_Localized: Power Station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24656288186368
+    m_Localized: College
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24794159153152
+    m_Localized: com.mccoy.cityzone.harbor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24927760318464
+    m_Localized: Convention Center
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24965970427904
+    m_Localized: Museum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25028675272704
+    m_Localized: Commerce Plaza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25222275956736
+    m_Localized: Skybridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25321156673536
+    m_Localized: City Hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25373434478592
+    m_Localized: Nightclub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25486705852416
+    m_Localized: Financial District
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25547800084480
+    m_Localized: Penthouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25604343496704
+    m_Localized: Sol HQ
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

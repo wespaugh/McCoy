@@ -57,140 +57,141 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\McCoy\UI\McCoyUIFactionIcon.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRocket.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyStinger.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOnlineModeAfterBattleScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\StoryModeTextureScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCreditsScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBattleGUI.cs" />
-    <Compile Include="Assets\Talentus\Core\Interfaces\ITier.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\VideoIntroScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\CommunityScripts\GUIExtensions.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyGenericTextAccessor.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothJoinGameScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultUFEScreen.cs" />
     <Compile Include="Assets\Talentus\Core\ConnectionProperties.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\UFEScreenExtensions.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoEnemy.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoySkill.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingUI.cs" />
     <Compile Include="Assets\Talentus\Core\Tier.cs" />
-    <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\rotationCamera.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBoss.cs" />
-    <Compile Include="Assets\McCoy\BoardGame\McCoyGameState.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoyCharacterBuffManager.cs" />
     <Compile Include="Assets\McCoy\Brawler\Stages\StageParallaxItem.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeScreen.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionBase.cs" />
-    <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionStatus.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultGameOverScreen.cs" />
-    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrame.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeLevel.cs" />
     <Compile Include="Assets\BrawlerRuleBasedAI.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoySkillMoveInfoLookup.cs" />
-    <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionUtils.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityZonePlacementNode.cs" />
-    <Compile Include="Assets\Talentus\Core\Interfaces\ITalent.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\TextureIntroScreen.cs" />
-    <Compile Include="Assets\McCoy\BoardGame\McCoyZoneMapMobIndicator.cs" />
     <Compile Include="Assets\McCoy\BoardGame\SearchableNode.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeCondition.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultPauseScreen.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoyBuff.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBullet.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnection.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultConnectionLostScreen.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityBoardContents.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultJoinGameScreen.cs" />
-    <Compile Include="Assets\Talentus\Example\Scripts\TalentRespecCachedScript.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapGraphNodeContainer.cs" />
     <Compile Include="Assets\Talentus\Core\Interfaces\IProperty.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineExtended.cs" />
-    <Compile Include="Assets\McCoy\Brawler\Stages\McCoyRandomSpriteParallaxItem.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapData.cs" />
-    <Compile Include="Assets\McCoy\Brawler\Stages\McCoySpriteRandomizer.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultStageSelectionScreen.cs" />
-    <Compile Include="Assets\McCoy\Brawler\IBossSpawnListener.cs" />
-    <Compile Include="Assets\McCoy\Brawler\Buffs\McCoyStancePhysicsChangeBuff.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothGameScreen.cs" />
-    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeBase.cs" />
-    <Compile Include="Assets\McCoy\BoardGame\MapNodeLinkData.cs" />
-    <Compile Include="Assets\Talentus\Components\UI Extensions\BezierPath.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultHostGameScreen.cs" />
-    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrameView.cs" />
-    <Compile Include="Assets\McCoy\UI\MapCityNodePanel.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeCost.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoySkillTreeMenu.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultLoadingBattleScreen.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoPlanes.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerSpawnManager.cs" />
     <Compile Include="Assets\Talentus\Core\Property.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoDestroy.cs" />
-    <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\changeEffects.cs" />
-    <Compile Include="Assets\McCoy\Brawler\FX\MulticolorSpriteCopyTrail.cs" />
-    <Compile Include="Assets\McCoy\UI\McCoyProgressBar.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerMobStatusLabel.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoySkillUnlockManager.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapNode.cs" />
-    <Compile Include="Assets\McCoy\UI\MapCityNodePanelMob.cs" />
-    <Compile Include="Assets\McCoy\BoardGame\McCoyMobData.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\StoryModeVideoScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyCombatZoneTrigger.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingDestination.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentRespecScript.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\DestroyScript.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cKeys.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInput.cs" />
-    <Compile Include="Assets\McCoy\Brawler\McCoyLoadingBattleScreen.cs" />
-    <Compile Include="Assets\McCoy\UI\McCoyWorldUI.cs" />
     <Compile Include="Assets\McCoy\UI\Menus\McCoyMainMenuInput.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoSetup.cs" />
-    <Compile Include="Assets\McCoy\ProjectConstants.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyStageData.cs" />
-    <Compile Include="Assets\McCoy\Brawler\Buffs\McCoyBuffDelegate.cs" />
-    <Compile Include="Assets\cMonkeys\cGUI\Plugins\cGUI.cs" />
-    <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineWithTreeRespec.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerCharacterAnimator.cs" />
     <Compile Include="Assets\Talentus\Components\TalentUI.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultNetworkOptionsScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultMainMenuScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultRoomMatchScreen.cs" />
-    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNode.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultMainMenuScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\PrefabStageCanvasSize.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCharacterSelectionScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoySpawnerTrigger.cs" />
-    <Compile Include="Assets\Talentus\Example\Scripts\TalentusAutoEnableRoots.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\CommunityScripts\UFEGradient.cs" />
+    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeNextLevel.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCongratulationsScreen.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRestart.cs" />
+    <Compile Include="Assets\Talentus\Components\UI Extensions\SetPropertyUtility.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyMapPanelListSectionHeader.cs" />
+    <Compile Include="Assets\Talentus\Components\UI Extensions\TalentUILineRenderer.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultReplayGUI.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoTurret.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkillTreePageToggle.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
+    <Compile Include="Assets\Talentus\Core\PropertyDefinition.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRocket.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCreditsScreen.cs" />
+    <Compile Include="Assets\Talentus\Core\Interfaces\ITier.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\VideoIntroScreen.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\CommunityScripts\GUIExtensions.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultUFEScreen.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\UFEScreenExtensions.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoEnemy.cs" />
+    <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\rotationCamera.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\McCoyGameState.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyCharacterBuffManager.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeScreen.cs" />
+    <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionStatus.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultGameOverScreen.cs" />
+    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrame.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkillMoveInfoLookup.cs" />
+    <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnectionUtils.cs" />
+    <Compile Include="Assets\Talentus\Core\Interfaces\ITalent.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\TextureIntroScreen.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\McCoyZoneMapMobIndicator.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultPauseScreen.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyBuff.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBullet.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultJoinGameScreen.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultConnectionLostScreen.cs" />
+    <Compile Include="Assets\Talentus\Example\Scripts\TalentRespecCachedScript.cs" />
+    <Compile Include="Assets\McCoy\Brawler\Stages\McCoyRandomSpriteParallaxItem.cs" />
+    <Compile Include="Assets\McCoy\Brawler\Stages\McCoySpriteRandomizer.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultStageSelectionScreen.cs" />
+    <Compile Include="Assets\McCoy\Brawler\IBossSpawnListener.cs" />
+    <Compile Include="Assets\McCoy\Brawler\Buffs\McCoyStancePhysicsChangeBuff.cs" />
+    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeBase.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\MapNodeLinkData.cs" />
+    <Compile Include="Assets\Talentus\Components\UI Extensions\BezierPath.cs" />
+    <Compile Include="Assets\McCoy\Cutscene\CutsceneFrameView.cs" />
+    <Compile Include="Assets\McCoy\UI\MapCityNodePanel.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoySkillTreeMenu.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultLoadingBattleScreen.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerSpawnManager.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoDestroy.cs" />
+    <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\changeEffects.cs" />
+    <Compile Include="Assets\McCoy\Brawler\FX\MulticolorSpriteCopyTrail.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyProgressBar.cs" />
+    <Compile Include="Assets\McCoy\UI\MapCityNodePanelMob.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\McCoyMobData.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\DestroyScript.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyLoadingBattleScreen.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyWorldUI.cs" />
+    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoSetup.cs" />
+    <Compile Include="Assets\McCoy\ProjectConstants.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />
+    <Compile Include="Assets\McCoy\Localization\McCoyLocalizedText.cs" />
+    <Compile Include="Assets\McCoy\Brawler\Buffs\McCoyBuffDelegate.cs" />
+    <Compile Include="Assets\cMonkeys\cGUI\Plugins\cGUI.cs" />
+    <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineWithTreeRespec.cs" />
+    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNode.cs" />
+    <Compile Include="Assets\Talentus\Example\Scripts\TalentusAutoEnableRoots.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInputGUI.cs" />
     <Compile Include="Assets\McCoy\Brawler\IMobChangeDelegate.cs" />
     <Compile Include="Assets\McCoy\McCoy.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\CommunityScripts\UFEGradient.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOptionsScreen.cs" />
-    <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeNextLevel.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeAfterBattleScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeEnums.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCongratulationsScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyFactionLookup.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoRestart.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineWithRespec.cs" />
-    <Compile Include="Assets\Talentus\Components\UI Extensions\SetPropertyUtility.cs" />
-    <Compile Include="Assets\McCoy\UI\McCoyMapPanelListSectionHeader.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyBattleGui.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyMainMenuScene.cs" />
-    <Compile Include="Assets\Talentus\Components\UI Extensions\TalentUILineRenderer.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GUIControlsInterface.cs" />
     <Compile Include="Assets\Talentus\Components\TalentusEngine.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultReplayGUI.cs" />
-    <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoTurret.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoySkillTreePageToggle.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentExtraScript.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
-    <Compile Include="Assets\Talentus\Core\PropertyDefinition.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
   </ItemGroup>
@@ -497,6 +498,9 @@
     </Reference>
     <Reference Include="AI4Unity.Fuzzy">
       <HintPath>Assets\UFE\Engine\Plugins\FuzzyAI\AI4Unity.Fuzzy.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Editor.dll</HintPath>
@@ -903,6 +907,12 @@
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -918,11 +928,11 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
@@ -939,11 +949,17 @@
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Localization.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Localization.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
@@ -965,6 +981,9 @@
     </Reference>
     <Reference Include="Unity.Recorder.Base">
       <HintPath>Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>Library\ScriptAssemblies\Unity.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
@@ -989,6 +1008,9 @@
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
@@ -1023,14 +1045,20 @@
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>

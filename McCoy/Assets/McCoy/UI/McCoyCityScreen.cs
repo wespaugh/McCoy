@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
+using Assets.McCoy.Localization;
 using Assets.McCoy.RPG;
 using com.cygnusprojects.TalentTree;
 using System.Collections;
@@ -29,7 +30,7 @@ namespace Assets.McCoy.UI
     MapCityNodePanel selectedZonePanel = null;
 
     [SerializeField]
-    TMP_Text currentZoneText = null;
+    McCoyLocalizedText currentZoneText = null;
 
     [SerializeField]
     TMP_Text currentWeekText = null;
@@ -503,7 +504,7 @@ namespace Assets.McCoy.UI
 
       MapNode playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
 
-      currentZoneText.text = playerLoc.ZoneName;
+      currentZoneText.SetText(playerLoc.ZoneName);
 
       updateWeekText();
       updateAvailableSkillPointsText();

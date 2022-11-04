@@ -119,56 +119,126 @@ MonoBehaviour:
     TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
   NodeData:
   - NodeID: 516f997ff8c16e34c91d9534926141ed
-    ZoneName: Government Office Building
-    Position: {x: 163, y: -92}
+    connectionIDs:
+    - 4a3482616f144e746ae7a842a43bdeef
+    - 435452702222f9344b33cd833e2b410e
+    - 7c688bb0005018d4d91f534c23b4b438
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.governmentofficebuilding
   - NodeID: 435452702222f9344b33cd833e2b410e
-    ZoneName: Airfield
-    Position: {x: -20.5, y: -73}
+    connectionIDs:
+    - 7561d6c4bbfed7747a0affa4400cd38e
+    - 516f997ff8c16e34c91d9534926141ed
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.airfield
   - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
-    ZoneName: Meat-Packing District
-    Position: {x: 440, y: 378}
+    connectionIDs:
+    - 20888d9701a6e1c4294784294f939b28
+    - 83ad669713d871b4787ab3e441764e13
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.meatpackingdistrict
   - NodeID: 20888d9701a6e1c4294784294f939b28
-    ZoneName: Nimby Street
-    Position: {x: 672, y: 301}
+    connectionIDs:
+    - 36e23897c1d8e5e459aa1500cefa8d44
+    - 83ad669713d871b4787ab3e441764e13
+    - 1cd0a89b6bcb6c14bbe4f0808cdba578
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.nimbystreet
   - NodeID: 83ad669713d871b4787ab3e441764e13
-    ZoneName: Power Station
-    Position: {x: 803, y: 71.5}
+    connectionIDs:
+    - 20888d9701a6e1c4294784294f939b28
+    - 4ce0d0c15420f7d4cb53747c94795e9e
+    - 07d7f6ea6aaedf04b982db947277082b
+    - 36e23897c1d8e5e459aa1500cefa8d44
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.powerstation
   - NodeID: 5b5dd699f62d6d2409c9d390202a506e
-    ZoneName: College
-    Position: {x: -119.5, y: 225.5}
+    connectionIDs:
+    - bca2ecf53f57d724abe75d786eea6d75
+    - 9280bee4b8e1f424696c95a89e668418
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.college
   - NodeID: bca2ecf53f57d724abe75d786eea6d75
-    ZoneName: Harbor
-    Position: {x: 68.5, y: 378}
+    connectionIDs:
+    - 5b5dd699f62d6d2409c9d390202a506e
+    - aed39e83bff372045a0d9c263b13f4d7
+    - 9280bee4b8e1f424696c95a89e668418
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.harbor
   - NodeID: 7561d6c4bbfed7747a0affa4400cd38e
-    ZoneName: Preservation Zone
-    Position: {x: -159.5, y: 33}
+    connectionIDs:
+    - 319198f1ad8492a43b965d401c8884b5
+    - 435452702222f9344b33cd833e2b410e
+    - 1cd0a89b6bcb6c14bbe4f0808cdba578
+    - 4a3482616f144e746ae7a842a43bdeef
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.preservationzone
   - NodeID: 4ce0d0c15420f7d4cb53747c94795e9e
-    ZoneName: Convention Center
-    Position: {x: 579.5, y: 33}
+    connectionIDs:
+    - 83ad669713d871b4787ab3e441764e13
+    - c39ce560d0ce07e498aa32e6a39a865f
+    - fcff9c39b002b4c438a07eb25e1a1fe2
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.conventioncenter
   - NodeID: 4a3482616f144e746ae7a842a43bdeef
-    ZoneName: Museum
-    Position: {x: 163, y: 4}
+    connectionIDs:
+    - 516f997ff8c16e34c91d9534926141ed
+    - fcff9c39b002b4c438a07eb25e1a1fe2
+    - 7561d6c4bbfed7747a0affa4400cd38e
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.museum
   - NodeID: 9280bee4b8e1f424696c95a89e668418
-    ZoneName: City Center
-    Position: {x: 163, y: 169.5}
+    connectionIDs:
+    - 319198f1ad8492a43b965d401c8884b5
+    - 5b5dd699f62d6d2409c9d390202a506e
+    - fcff9c39b002b4c438a07eb25e1a1fe2
+    - bca2ecf53f57d724abe75d786eea6d75
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.commerceplaza
   - NodeID: aed39e83bff372045a0d9c263b13f4d7
-    ZoneName: Skybridge
-    Position: {x: 284, y: 262.5}
+    connectionIDs:
+    - bca2ecf53f57d724abe75d786eea6d75
+    - 07d7f6ea6aaedf04b982db947277082b
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.skybridge
   - NodeID: 319198f1ad8492a43b965d401c8884b5
-    ZoneName: City Hall
-    Position: {x: -52.5, y: 131}
+    connectionIDs:
+    - 7561d6c4bbfed7747a0affa4400cd38e
+    - 9280bee4b8e1f424696c95a89e668418
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.cityhall
   - NodeID: fcff9c39b002b4c438a07eb25e1a1fe2
-    ZoneName: Nightclub
-    Position: {x: 345.5, y: 81}
+    connectionIDs:
+    - c39ce560d0ce07e498aa32e6a39a865f
+    - 4a3482616f144e746ae7a842a43bdeef
+    - 9280bee4b8e1f424696c95a89e668418
+    - 4ce0d0c15420f7d4cb53747c94795e9e
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.nightclub
   - NodeID: 1cd0a89b6bcb6c14bbe4f0808cdba578
-    ZoneName: Subway
-    Position: {x: 440, y: 169.5}
+    connectionIDs:
+    - 7561d6c4bbfed7747a0affa4400cd38e
+    - 20888d9701a6e1c4294784294f939b28
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.subway
   - NodeID: 07d7f6ea6aaedf04b982db947277082b
-    ZoneName: Financial District
-    Position: {x: 727, y: -130.5}
+    connectionIDs:
+    - 83ad669713d871b4787ab3e441764e13
+    - aed39e83bff372045a0d9c263b13f4d7
+    - c39ce560d0ce07e498aa32e6a39a865f
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.financialdistrict
   - NodeID: c39ce560d0ce07e498aa32e6a39a865f
-    ZoneName: Penthouse
-    Position: {x: 551, y: -111.5}
+    connectionIDs:
+    - fcff9c39b002b4c438a07eb25e1a1fe2
+    - 07d7f6ea6aaedf04b982db947277082b
+    - 7c688bb0005018d4d91f534c23b4b438
+    - 4ce0d0c15420f7d4cb53747c94795e9e
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.penthouse
   - NodeID: 7c688bb0005018d4d91f534c23b4b438
-    ZoneName: Sol HQ
-    Position: {x: 406, y: -188.5}
+    connectionIDs:
+    - 516f997ff8c16e34c91d9534926141ed
+    - c39ce560d0ce07e498aa32e6a39a865f
+    Mobs: []
+    ZoneName: com.mccoy.cityzone.solhq

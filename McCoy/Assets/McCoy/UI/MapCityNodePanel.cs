@@ -1,11 +1,13 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
+using Assets.McCoy.Localization;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D.Brawler;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
@@ -104,7 +106,7 @@ namespace Assets.McCoy.UI
     public void Initialize(MapNode node, McCoyCityScreen screen, MapNode mechanismLoc)
     {
       this.node = node;
-      NodeName.text = node.ZoneName;
+      NodeName.GetComponent<McCoyLocalizedText>().SetText(node.ZoneName);
       SearchStatus.text = $"{SearchStateDisplay(node.SearchStatus())}";
       if (screen != null && mechanismLoc != null && mechanismLoc.SearchStatus() == SearchState.CompletelySearched)
       {

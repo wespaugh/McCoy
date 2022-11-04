@@ -56,27 +56,27 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\UFE\Engine\Editor\SimpleAIBehaviourEditor.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\EditorCamera.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\ScriptableObjectUtility.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\GlobalEditor.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\MoveAsset.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\GlobalEditorWindow.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\CharacterEditor.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\MoveEditor.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\HitBoxEditorWindow.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\HitBoxEditorAsset.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\HitBoxEditor.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\AIAsset.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\CharacterAsset.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\StanceEditor.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\PlatformScriptEditor.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\GlobalAsset.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\AIEditor.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\PlayerPrefsEditor.cs" />
-    <Compile Include="Assets\UFE\Engine\Editor\SimpleAIBehaviourEditorWindow.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\UFEInputSetup.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\AIEditorWindow.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\SimpleAIBehaviourEditor.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\GlobalEditor.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\MoveAsset.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\GlobalEditorWindow.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\MoveEditor.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\StanceEditor.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\PlayerPrefsEditor.cs" />
+    <Compile Include="Assets\UFE\Engine\Editor\SimpleAIBehaviourEditorWindow.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\CharacterEditorWindow.cs" />
     <Compile Include="Assets\UFE\Engine\Editor\MoveEditorWindow.cs" />
   </ItemGroup>
@@ -359,6 +359,9 @@
     </Reference>
     <Reference Include="AI4Unity.Fuzzy">
       <HintPath>Assets\UFE\Engine\Plugins\FuzzyAI\AI4Unity.Fuzzy.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>

@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: McCoy Game Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: McCoy Game Text
+  m_TableCollectionNameGuidString: f4295bb3e2aa1fa4f852a24d22bbf67a
+  m_Entries:
+  - m_Id: 492072370176
+    m_Key: com.mccoy.cityzone.subway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21032128512000
+    m_Key: com.mccoy.cityzone.preservationzone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24199339737088
+    m_Key: com.mccoy.cityzone.governmentofficebuilding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24385453588480
+    m_Key: com.mccoy.cityzone.airfield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24427526651904
+    m_Key: com.mccoy.cityzone.meatpackingdistrict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24504794120192
+    m_Key: com.mccoy.cityzone.nimbystreet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24551925514240
+    m_Key: com.mccoy.cityzone.powerstation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24656288186368
+    m_Key: com.mccoy.cityzone.college
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24794159153152
+    m_Key: com.mccoy.cityzone.harbor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24927760318464
+    m_Key: com.mccoy.cityzone.conventioncenter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24965970427904
+    m_Key: com.mccoy.cityzone.museum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25028675272704
+    m_Key: com.mccoy.cityzone.commerceplaza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25222275956736
+    m_Key: com.mccoy.cityzone.skybridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25321156673536
+    m_Key: com.mccoy.cityzone.cityhall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25373434478592
+    m_Key: com.mccoy.cityzone.nightclub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25486705852416
+    m_Key: com.mccoy.cityzone.financialdistrict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25547800084480
+    m_Key: com.mccoy.cityzone.penthouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25604343496704
+    m_Key: com.mccoy.cityzone.solhq
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5351050479867265048
+  references:
+    version: 2
+    RefIds:
+    - rid: 5351050479867265048
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1667428999509
