@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1151709747582524878}
   - component: {fileID: 8972194045909780606}
   m_Layer: 0
-  m_Name: 15
+  m_Name: 15 - Convention Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 4ce0d0c15420f7d4cb53747c94795e9e
+  debugName: 
 --- !u!1 &480464902146742277
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ GameObject:
   - component: {fileID: 1247863550359698792}
   - component: {fileID: 2232300448974464508}
   m_Layer: 0
-  m_Name: 6
+  m_Name: 6 - Power Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 83ad669713d871b4787ab3e441764e13
+  debugName: 
 --- !u!1 &886681181320419833
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +113,7 @@ GameObject:
   - component: {fileID: 6414575983878991592}
   - component: {fileID: 4281824265519476998}
   m_Layer: 0
-  m_Name: 17
+  m_Name: 17 - Nimby Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 36e23897c1d8e5e459aa1500cefa8d44
+  debugName: 
 --- !u!1 &972344093930934696
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +242,7 @@ GameObject:
   - component: {fileID: 8687818229528043969}
   - component: {fileID: 28121993163740990}
   m_Layer: 0
-  m_Name: 7
+  m_Name: 7 - Museum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 4a3482616f144e746ae7a842a43bdeef
+  debugName: 
 --- !u!1 &1722226130401663480
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +293,7 @@ GameObject:
   - component: {fileID: 3009735508512667472}
   - component: {fileID: 6873813064207548773}
   m_Layer: 0
-  m_Name: 5
+  m_Name: 5 - Financial District
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,6 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 07d7f6ea6aaedf04b982db947277082b
+  debugName: 
 --- !u!1 &2579641768989585786
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +344,7 @@ GameObject:
   - component: {fileID: 8806276063293820242}
   - component: {fileID: 1441763209915786979}
   m_Layer: 0
-  m_Name: 2
+  m_Name: 2 - Airfield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 435452702222f9344b33cd833e2b410e
+  debugName: 
 --- !u!1 &2797940179074945796
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,10 +530,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f653f7da916da45b3e7364921b377a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraAnchor: {fileID: 0}
+  lineStartWidth: 0.25
+  lineEndWidth: 0.05
+  map: {fileID: 0}
+  mapTexture: {fileID: 0}
+  OnlyStrongestMobsSearch: 0
+  stingerPrefab: {fileID: 0}
+  stingerTransformRoot: {fileID: 0}
+  mobCombatSound: {fileID: 0}
   NodeParent: {fileID: 4997845742010107268}
   dataFile: NewMoonCity
-  ZonePanelPrefab: {fileID: 1904822904559590214, guid: 67dadf46de4a4e145aa8f9ab769f57d7,
-    type: 3}
   Scaler: {fileID: 2387632785953965381}
 --- !u!223 &4653742656558046952
 Canvas:
@@ -590,7 +603,7 @@ GameObject:
   - component: {fileID: 5722236479121664738}
   - component: {fileID: 3536751649683567275}
   m_Layer: 0
-  m_Name: 14
+  m_Name: 14 - Nightclub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -629,6 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: fcff9c39b002b4c438a07eb25e1a1fe2
+  debugName: 
 --- !u!1 &3525069980348671925
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +654,7 @@ GameObject:
   - component: {fileID: 5529079594897632555}
   - component: {fileID: 6396275329270499423}
   m_Layer: 0
-  m_Name: 16
+  m_Name: 16 - Meat-Packing District
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,6 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 20888d9701a6e1c4294784294f939b28
+  debugName: 
 --- !u!1 &4230452453970340301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1126,7 @@ GameObject:
   - component: {fileID: 6775613846795191940}
   - component: {fileID: 186040410227860591}
   m_Layer: 0
-  m_Name: 8
+  m_Name: 8 - Penthouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1150,6 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: c39ce560d0ce07e498aa32e6a39a865f
+  debugName: 
 --- !u!1 &6116930140042223587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1177,7 @@ GameObject:
   - component: {fileID: 4710442951630003109}
   - component: {fileID: 5434541512911943495}
   m_Layer: 0
-  m_Name: 4
+  m_Name: 4 - Sol HQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,6 +1216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 7c688bb0005018d4d91f534c23b4b438
+  debugName: 
 --- !u!1 &6797093278998062750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1228,7 @@ GameObject:
   - component: {fileID: 3729557315892180042}
   - component: {fileID: 5252460878005930362}
   m_Layer: 0
-  m_Name: 13
+  m_Name: 13 - Subway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1250,6 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 1cd0a89b6bcb6c14bbe4f0808cdba578
+  debugName: 
 --- !u!1 &6904749852960629337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1279,7 @@ GameObject:
   - component: {fileID: 5573203500453887681}
   - component: {fileID: 2462715082541467679}
   m_Layer: 0
-  m_Name: 9
+  m_Name: 9 - Skybridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,6 +1318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: aed39e83bff372045a0d9c263b13f4d7
+  debugName: 
 --- !u!1 &7159261439317974731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1330,7 @@ GameObject:
   - component: {fileID: 4973214134841014611}
   - component: {fileID: 7944558070613156740}
   m_Layer: 0
-  m_Name: 11
+  m_Name: 11 - City Hall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,6 +1369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 319198f1ad8492a43b965d401c8884b5
+  debugName: 
 --- !u!1 &7192378021088957207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1419,7 @@ GameObject:
   - component: {fileID: 5903741610968973725}
   - component: {fileID: 3574033843992355723}
   m_Layer: 0
-  m_Name: 3
+  m_Name: 3 - Government Office Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,6 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 516f997ff8c16e34c91d9534926141ed
+  debugName: 
 --- !u!1 &7245829028618428401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1470,7 @@ GameObject:
   - component: {fileID: 5450916933865833372}
   - component: {fileID: 8180511430151120611}
   m_Layer: 0
-  m_Name: 18
+  m_Name: 18 - Harbor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,6 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: bca2ecf53f57d724abe75d786eea6d75
+  debugName: 
 --- !u!1 &7787833158048934287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1521,7 @@ GameObject:
   - component: {fileID: 7922417294606542592}
   - component: {fileID: 6697775148205445690}
   m_Layer: 0
-  m_Name: 10
+  m_Name: 10 - Commerce Plaza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1538,6 +1560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 9280bee4b8e1f424696c95a89e668418
+  debugName: 
 --- !u!1 &8937644878224063691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1572,7 @@ GameObject:
   - component: {fileID: 7260555179036623371}
   - component: {fileID: 120469037518201392}
   m_Layer: 0
-  m_Name: 1
+  m_Name: 1 - Preservation Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1588,6 +1611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 7561d6c4bbfed7747a0affa4400cd38e
+  debugName: 
 --- !u!1 &9048132855514623043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,7 +1623,7 @@ GameObject:
   - component: {fileID: 3558886098344479738}
   - component: {fileID: 5844903480433943827}
   m_Layer: 0
-  m_Name: 12
+  m_Name: 12 - College
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1638,3 +1662,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NodeId: 5b5dd699f62d6d2409c9d390202a506e
+  debugName: 

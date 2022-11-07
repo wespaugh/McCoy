@@ -59,6 +59,9 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     McCoyProgressBar searchProgressBar = null;
 
+    [SerializeField]
+    SpriteRenderer selectionHighlight = null;
+
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
@@ -68,6 +71,8 @@ namespace Assets.McCoy.BoardGame
       zoneNameLabel.text = zoneName;
 
       ToggleHover(false);
+
+      hoverIndicator.SetActive(selectionHighlight == null);
 
       searchProgressBar.Initialize(100, 100);
       searchProgressBar.SetFill(searchPercent);
@@ -96,6 +101,8 @@ namespace Assets.McCoy.BoardGame
       baseMesh.material.color = playerNum > 0 ? wolfIndicator.color : Color.black;
       //zoneIcon.gameObject.SetActive(false);
 
+      McCoyMobData strongestMob = null;
+
       McCoyMobData mage = null;
       McCoyMobData minotaur = null;
       McCoyMobData militia = null;
@@ -113,10 +120,48 @@ namespace Assets.McCoy.BoardGame
         {
           mage = m;
         }
+        if(
+          strongestMob == null || // any mob is stronger than no mob
+          m.StrengthForXP() > strongestMob.StrengthForXP() || // strongest mob is strongest
+          (m.StrengthForXP() == strongestMob.StrengthForXP() && m.Health > strongestMob.Health) || // healthiest mob breaks ties between equally strong mobs
+          (m.StrengthForXP() == strongestMob.StrengthForXP() && m.Health == strongestMob.Health && UnityEngine.Random.Range(1,3) == 1) // randomness breaks ties between equally strong, equally healthy mobs
+          )
+        {
+          strongestMob = m;
+        }
       }
       initMob(mageObject, mage, 2, mageText, mageHealthBar);
       initMob(militiaObject, militia, 3, militiaText, militiaHealthBar);
       initMob(minotaurObject, minotaur, 4, minotaurText, minotaurHealthBar);
+
+      Color highlightColor = Color.white;
+      if (playerNum > 0)
+      {
+        highlightColor = wolfIndicator.color;
+        highlightColor.a = .5f;
+      }
+      else if(strongestMob != null)
+      {
+        switch (strongestMob.Faction)
+        {
+          case Factions.Mages:
+            highlightColor = ProjectConstants.PINK;
+            break;
+          case Factions.CyberMinotaurs:
+            highlightColor = ProjectConstants.BLUE;
+            break;
+          case Factions.AngelMilitia:
+            highlightColor = ProjectConstants.GREEN;
+            break;
+        }
+        highlightColor.a = .5f;
+      }
+
+      if (selectionHighlight != null)
+      {
+        selectionHighlight.color = highlightColor;
+        selectionHighlight.gameObject.SetActive(false);
+      }
 
       mobs.Sort((x, y) =>
       {
@@ -229,6 +274,18 @@ namespace Assets.McCoy.BoardGame
       building.GetComponent<SpriteRenderer>().materials[0].color = c;
       */
       return currentY;// + (healthFactor * 2.0f);
+    }
+
+    public void SetSelected(bool select)
+    {
+      if(selectionHighlight == null)
+      {
+        ToggleHover(select);
+      }
+      else
+      {
+        selectionHighlight.gameObject.SetActive(select);
+      }
     }
 
     public void ToggleHover(bool on)
