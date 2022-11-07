@@ -90,6 +90,7 @@ public class ControlsScript : MonoBehaviour
   public Color[] normalColors;
 
   public HeadLookScript headLookScript;
+  public SpriteSortingScript spriteSortScript;
   public GameObject emulatedCam;
   public CameraScript cameraScript;
 
@@ -179,6 +180,11 @@ public class ControlsScript : MonoBehaviour
       normalColors = colorList.ToArray();
     }
 
+    character.TryGetComponent<SpriteSortingScript>( out spriteSortScript );
+    if(spriteSortScript == null)
+    {
+      spriteSortScript = character.AddComponent<SpriteSortingScript>();
+    }
 
     // Head Movement
     if (myInfo.headLook.enabled)
@@ -811,9 +817,9 @@ public class ControlsScript : MonoBehaviour
         }
       }
     }
-    else if(!isFatallyFalling)
+    else if(!isFatallyFalling && spriteSortScript != null)
     {
-      mySpriteRenderer.sortingOrder = (int)(this.transform.position.z * -100.0f);
+      spriteSortScript.UpdateSortOrders((int)(this.transform.position.z * -100.0f));
     }
   }
 

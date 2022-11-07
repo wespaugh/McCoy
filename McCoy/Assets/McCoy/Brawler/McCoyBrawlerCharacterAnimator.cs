@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.McCoy.Brawler
@@ -6,11 +7,12 @@ namespace Assets.McCoy.Brawler
   [RequireComponent(typeof(SpriteRenderer))]
   public class McCoyBrawlerCharacterAnimator : MonoBehaviour
   {
+    private Dictionary<string, Animator> animators = new Dictionary<string, Animator>();
+    
     [SerializeField]
-    Animator gunAnimator = null;
-
+    List<Animator> foregroundAnimators;
     [SerializeField]
-    Animator gunAnimatorMirrored = null;
+    List<Animator> backgroundAnimators;
 
     private SpriteRenderer _characterSprite = null;
     private SpriteRenderer characterSprite
@@ -22,19 +24,6 @@ namespace Assets.McCoy.Brawler
           _characterSprite = GetComponent<SpriteRenderer>();
         }
         return _characterSprite;
-      }
-    }
-
-    public void Shoot()
-    {
-      gunAnimator.GetComponent<SpriteRenderer>().flipX = characterSprite.flipX;
-      if(characterSprite.flipX)
-      {
-        gunAnimator.SetTrigger("Shoot");
-      }
-      else
-      {
-        gunAnimator.SetTrigger("Shoot");
       }
     }
   }
