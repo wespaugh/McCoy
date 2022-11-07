@@ -131,13 +131,13 @@ MonoBehaviour:
     - 516f997ff8c16e34c91d9534926141ed
     Mobs: []
     ZoneName: com.mccoy.cityzone.airfield
-  - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
+  - NodeID: 20888d9701a6e1c4294784294f939b28
     connectionIDs:
     - 20888d9701a6e1c4294784294f939b28
     - 83ad669713d871b4787ab3e441764e13
     Mobs: []
     ZoneName: com.mccoy.cityzone.meatpackingdistrict
-  - NodeID: 20888d9701a6e1c4294784294f939b28
+  - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
     connectionIDs:
     - 36e23897c1d8e5e459aa1500cefa8d44
     - 83ad669713d871b4787ab3e441764e13

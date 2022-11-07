@@ -110,7 +110,7 @@ namespace Assets.McCoy.UI
     {
       if(highlightedZone != null && highlightedZone != selectedPlayerZone)
       {
-        highlightedZone.ToggleHover(false);
+        highlightedZone.SetSelected(false);
       }
 
       if(node == null)
@@ -120,7 +120,7 @@ namespace Assets.McCoy.UI
       }
 
       highlightedZone = mobIndicatorLookup[node.NodeID];
-      highlightedZone.ToggleHover(true);
+      highlightedZone.SetSelected(true);
     }
 
     public Vector3 NodePosition(MapNode node)
@@ -510,6 +510,7 @@ namespace Assets.McCoy.UI
       foreach(var node in nodes)
       {
         cityZoneLookup[node.NodeId] = node.gameObject;
+        Debug.Log($"{node.NodeId}: " + node.gameObject.name);
         mobIndicatorLookup[node.NodeId] = node.gameObject.GetComponentInChildren<McCoyZoneMapMobIndicator>();
       }
       initConnectionLines(nodes);
@@ -625,7 +626,7 @@ namespace Assets.McCoy.UI
     {
       if(selectedPlayerZone != null && highlightedZone != selectedPlayerZone)
       {
-        selectedPlayerZone.ToggleHover(false);
+        selectedPlayerZone.SetSelected(false);
       }
       if (m == null)
       {
@@ -636,7 +637,7 @@ namespace Assets.McCoy.UI
       {
         selectedNode = cityZoneLookup[m.NodeID];
         selectedPlayerZone = mobIndicatorLookup[m.NodeID];
-        selectedPlayerZone.ToggleHover(true);
+        selectedPlayerZone.SetSelected(true);
 
         if (zoomed)
         {
