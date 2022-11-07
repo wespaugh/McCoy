@@ -62,6 +62,20 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     SpriteRenderer selectionHighlight = null;
 
+    [SerializeField]
+    float deselectAlpha = .2f;
+
+    [SerializeField]
+    float selectAlphaMin = .5f;
+
+    [SerializeField]
+    float selectAlphaMax = .8f;
+
+    bool selected = false;
+
+    bool pulsing = false;
+    float pulseStart = 0f;
+
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {
       wolfIndicator.gameObject.SetActive(playerNum > 0);
@@ -138,7 +152,6 @@ namespace Assets.McCoy.BoardGame
       if (playerNum > 0)
       {
         highlightColor = wolfIndicator.color;
-        highlightColor.a = .5f;
       }
       else if(strongestMob != null)
       {
@@ -154,14 +167,13 @@ namespace Assets.McCoy.BoardGame
             highlightColor = ProjectConstants.GREEN;
             break;
         }
-        highlightColor.a = .5f;
       }
 
       if (selectionHighlight != null)
       {
         selectionHighlight.color = highlightColor;
-        selectionHighlight.gameObject.SetActive(false);
       }
+      SetSelected(false);
 
       mobs.Sort((x, y) =>
       {
@@ -284,7 +296,57 @@ namespace Assets.McCoy.BoardGame
       }
       else
       {
-        selectionHighlight.gameObject.SetActive(select);
+        Color c = selectionHighlight.color;
+        c.a = select ? selectAlphaMin : deselectAlpha;
+        selectionHighlight.color = c;
+      }
+      if(select && ! selected && ! pulsing)
+      {
+        StartCoroutine(pulse());
+      }
+      selected = select;
+    }
+
+    private IEnumerator pulse()
+    {
+      if(selectionHighlight == null)
+      {
+        yield break;
+      }
+      pulsing = true;
+      while (true)
+      {
+        pulseStart = Time.time;
+        float pulseDuration = 1.0f;
+        while (Time.time < pulseStart + pulseDuration)
+        {
+          yield return null;
+          Color c = selectionHighlight.color;
+          if (!selected)
+          {
+            c.a = deselectAlpha;
+            selectionHighlight.color = c;
+            pulsing = false;
+            yield break;
+          }
+          c.a = Mathf.Lerp(selectAlphaMin, selectAlphaMax, Time.time - pulseStart / pulseDuration);
+          selectionHighlight.color = c;
+        }
+        pulseStart = Time.time;
+        while (Time.time < pulseStart + pulseDuration)
+        {
+          yield return null;
+          Color c = selectionHighlight.color;
+          if (!selected)
+          {
+            c.a = deselectAlpha;
+            selectionHighlight.color = c;
+            pulsing = false;
+            yield break;
+          }
+          c.a = Mathf.Lerp(selectAlphaMax, selectAlphaMin, Time.time - pulseStart / pulseDuration);
+          selectionHighlight.color = c;
+        }
       }
     }
 

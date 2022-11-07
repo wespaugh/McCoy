@@ -37,12 +37,12 @@ MonoBehaviour:
     BaseNodeGuid: 435452702222f9344b33cd833e2b410e
     PortName: Right
     TargetNodeGuid: 516f997ff8c16e34c91d9534926141ed
-  - readableID: CityHall-CityCenter
+  - readableID: CityHall-Harbor
     BaseNodeGuid: 319198f1ad8492a43b965d401c8884b5
     PortName: Right
-    TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
-  - readableID: GovernmentOfficeBuilding-SolHQ
-    BaseNodeGuid: 516f997ff8c16e34c91d9534926141ed
+    TargetNodeGuid: bca2ecf53f57d724abe75d786eea6d75
+  - readableID: MeatPackingDistrict-SolHQ
+    BaseNodeGuid: 20888d9701a6e1c4294784294f939b28
     PortName: Right
     TargetNodeGuid: 7c688bb0005018d4d91f534c23b4b438
   - readableID: College-Harbor
@@ -64,25 +64,25 @@ MonoBehaviour:
   - readableID: Subway-NimbyStreet
     BaseNodeGuid: 1cd0a89b6bcb6c14bbe4f0808cdba578
     PortName: Right
-    TargetNodeGuid: 20888d9701a6e1c4294784294f939b28
+    TargetNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
   - readableID: FinancialDistrict-PowerStation
     BaseNodeGuid: 07d7f6ea6aaedf04b982db947277082b
     PortName: Right
     TargetNodeGuid: 83ad669713d871b4787ab3e441764e13
-  - readableID: Nightclub-Penthouse
+  - readableID: Nightclub-SolHQ
     BaseNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
     PortName: Right
-    TargetNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
+    TargetNodeGuid: 7c688bb0005018d4d91f534c23b4b438
   - readableID: College-CityCenter
     BaseNodeGuid: 5b5dd699f62d6d2409c9d390202a506e
     PortName: Right
     TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
-  - readableID: Museum-Nightclub
-    BaseNodeGuid: 4a3482616f144e746ae7a842a43bdeef
+  - readableID: CommerceCenter-Nightclub
+    BaseNodeGuid: 9280bee4b8e1f424696c95a89e668418
     PortName: Right
     TargetNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
-  - readableID: CityCenter-Nightclub
-    BaseNodeGuid: 9280bee4b8e1f424696c95a89e668418
+  - readableID: GovernmentOfficeBuilding-Nightclub
+    BaseNodeGuid: 516f997ff8c16e34c91d9534926141ed
     PortName: Right
     TargetNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
   - readableID: Skybridge-FinancialDistrict
@@ -97,10 +97,10 @@ MonoBehaviour:
     BaseNodeGuid: 7c688bb0005018d4d91f534c23b4b438
     PortName: Right
     TargetNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
-  - readableID: Penthouse-ConventionCenter
+  - readableID: Penthouse-GovernmentOfficeBuilding
     BaseNodeGuid: c39ce560d0ce07e498aa32e6a39a865f
     PortName: Right
-    TargetNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+    TargetNodeGuid: 516f997ff8c16e34c91d9534926141ed
   - readableID: PreservationZone-Museum
     BaseNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
     PortName: Right
@@ -109,20 +109,30 @@ MonoBehaviour:
     BaseNodeGuid: 83ad669713d871b4787ab3e441764e13
     PortName: Right
     TargetNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
-  - readableID: Nightclub-ConventionCenter
-    BaseNodeGuid: fcff9c39b002b4c438a07eb25e1a1fe2
+  - readableID: CommerceCenter-ConventionCenter
+    BaseNodeGuid: 9280bee4b8e1f424696c95a89e668418
     PortName: Right
     TargetNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
-  - readableID: Harbor-CityCenter
+  - readableID: Harbor-ConventionCenter
     BaseNodeGuid: bca2ecf53f57d724abe75d786eea6d75
     PortName: Right
-    TargetNodeGuid: 9280bee4b8e1f424696c95a89e668418
+    TargetNodeGuid: 4ce0d0c15420f7d4cb53747c94795e9e
+  - readableID: CityHall-Museum
+    BaseNodeGuid: 319198f1ad8492a43b965d401c8884b5
+    PortName: Right
+    TargetNodeGuid: 4a3482616f144e746ae7a842a43bdeef
+  - readableID: CommerceCenter-Museum
+    BaseNodeGuid: 9280bee4b8e1f424696c95a89e668418
+    PortName: Right
+    TargetNodeGuid: 4a3482616f144e746ae7a842a43bdeef
   NodeData:
   - NodeID: 516f997ff8c16e34c91d9534926141ed
     connectionIDs:
     - 4a3482616f144e746ae7a842a43bdeef
     - 435452702222f9344b33cd833e2b410e
     - 7c688bb0005018d4d91f534c23b4b438
+    - c39ce560d0ce07e498aa32e6a39a865f
+    - fcff9c39b002b4c438a07eb25e1a1fe2
     Mobs: []
     ZoneName: com.mccoy.cityzone.governmentofficebuilding
   - NodeID: 435452702222f9344b33cd833e2b410e
@@ -135,6 +145,9 @@ MonoBehaviour:
     connectionIDs:
     - 20888d9701a6e1c4294784294f939b28
     - 83ad669713d871b4787ab3e441764e13
+    - 36e23897c1d8e5e459aa1500cefa8d44
+    - 1cd0a89b6bcb6c14bbe4f0808cdba578
+    - 7c688bb0005018d4d91f534c23b4b438
     Mobs: []
     ZoneName: com.mccoy.cityzone.meatpackingdistrict
   - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
@@ -142,6 +155,8 @@ MonoBehaviour:
     - 36e23897c1d8e5e459aa1500cefa8d44
     - 83ad669713d871b4787ab3e441764e13
     - 1cd0a89b6bcb6c14bbe4f0808cdba578
+    - 20888d9701a6e1c4294784294f939b28
+    - 7c688bb0005018d4d91f534c23b4b438
     Mobs: []
     ZoneName: com.mccoy.cityzone.nimbystreet
   - NodeID: 83ad669713d871b4787ab3e441764e13
@@ -163,6 +178,8 @@ MonoBehaviour:
     - 5b5dd699f62d6d2409c9d390202a506e
     - aed39e83bff372045a0d9c263b13f4d7
     - 9280bee4b8e1f424696c95a89e668418
+    - 319198f1ad8492a43b965d401c8884b5
+    - 4ce0d0c15420f7d4cb53747c94795e9e
     Mobs: []
     ZoneName: com.mccoy.cityzone.harbor
   - NodeID: 7561d6c4bbfed7747a0affa4400cd38e
@@ -178,6 +195,8 @@ MonoBehaviour:
     - 83ad669713d871b4787ab3e441764e13
     - c39ce560d0ce07e498aa32e6a39a865f
     - fcff9c39b002b4c438a07eb25e1a1fe2
+    - 9280bee4b8e1f424696c95a89e668418
+    - bca2ecf53f57d724abe75d786eea6d75
     Mobs: []
     ZoneName: com.mccoy.cityzone.conventioncenter
   - NodeID: 4a3482616f144e746ae7a842a43bdeef
@@ -185,6 +204,8 @@ MonoBehaviour:
     - 516f997ff8c16e34c91d9534926141ed
     - fcff9c39b002b4c438a07eb25e1a1fe2
     - 7561d6c4bbfed7747a0affa4400cd38e
+    - 319198f1ad8492a43b965d401c8884b5
+    - 9280bee4b8e1f424696c95a89e668418
     Mobs: []
     ZoneName: com.mccoy.cityzone.museum
   - NodeID: 9280bee4b8e1f424696c95a89e668418
@@ -193,6 +214,8 @@ MonoBehaviour:
     - 5b5dd699f62d6d2409c9d390202a506e
     - fcff9c39b002b4c438a07eb25e1a1fe2
     - bca2ecf53f57d724abe75d786eea6d75
+    - 4ce0d0c15420f7d4cb53747c94795e9e
+    - 4a3482616f144e746ae7a842a43bdeef
     Mobs: []
     ZoneName: com.mccoy.cityzone.commerceplaza
   - NodeID: aed39e83bff372045a0d9c263b13f4d7
@@ -205,6 +228,8 @@ MonoBehaviour:
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 9280bee4b8e1f424696c95a89e668418
+    - bca2ecf53f57d724abe75d786eea6d75
+    - 4a3482616f144e746ae7a842a43bdeef
     Mobs: []
     ZoneName: com.mccoy.cityzone.cityhall
   - NodeID: fcff9c39b002b4c438a07eb25e1a1fe2
@@ -213,12 +238,15 @@ MonoBehaviour:
     - 4a3482616f144e746ae7a842a43bdeef
     - 9280bee4b8e1f424696c95a89e668418
     - 4ce0d0c15420f7d4cb53747c94795e9e
+    - 516f997ff8c16e34c91d9534926141ed
+    - 7c688bb0005018d4d91f534c23b4b438
     Mobs: []
     ZoneName: com.mccoy.cityzone.nightclub
   - NodeID: 1cd0a89b6bcb6c14bbe4f0808cdba578
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 20888d9701a6e1c4294784294f939b28
+    - 36e23897c1d8e5e459aa1500cefa8d44
     Mobs: []
     ZoneName: com.mccoy.cityzone.subway
   - NodeID: 07d7f6ea6aaedf04b982db947277082b
@@ -234,11 +262,15 @@ MonoBehaviour:
     - 07d7f6ea6aaedf04b982db947277082b
     - 7c688bb0005018d4d91f534c23b4b438
     - 4ce0d0c15420f7d4cb53747c94795e9e
+    - 516f997ff8c16e34c91d9534926141ed
     Mobs: []
     ZoneName: com.mccoy.cityzone.penthouse
   - NodeID: 7c688bb0005018d4d91f534c23b4b438
     connectionIDs:
     - 516f997ff8c16e34c91d9534926141ed
     - c39ce560d0ce07e498aa32e6a39a865f
+    - 36e23897c1d8e5e459aa1500cefa8d44
+    - 20888d9701a6e1c4294784294f939b28
+    - fcff9c39b002b4c438a07eb25e1a1fe2
     Mobs: []
     ZoneName: com.mccoy.cityzone.solhq
