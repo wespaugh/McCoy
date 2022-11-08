@@ -335,7 +335,7 @@ RectTransform:
   - {fileID: 5581076573642578464}
   - {fileID: 3892086275422703380}
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -609,7 +609,7 @@ RectTransform:
   m_Children:
   - {fileID: 1459420652378727409}
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -743,12 +743,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -240, y: -40}
-  m_SizeDelta: {x: 418, y: 120}
+  m_AnchoredPosition: {x: -240, y: -20}
+  m_SizeDelta: {x: 600, y: 120}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6821063896400762172
 CanvasRenderer:
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.05
+  m_fontSize: 72
   m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2094,7 +2094,7 @@ RectTransform:
   - {fileID: 5012232109734063813}
   - {fileID: 8144929115948415101}
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2498,10 +2498,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8284668372939645776}
   - {fileID: 5719881967863726016}
   - {fileID: 5257884428344073717}
   - {fileID: 3562974839896112496}
+  - {fileID: 8284668372939645776}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

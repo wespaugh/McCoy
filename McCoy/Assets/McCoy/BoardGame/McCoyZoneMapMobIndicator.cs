@@ -16,22 +16,16 @@ namespace Assets.McCoy.BoardGame
     Animator mageObject = null;
     [SerializeField]
     TMP_Text mageText = null;
-    [SerializeField]
-    McCoyProgressBar mageHealthBar = null;
 
     [SerializeField]
     Animator minotaurObject = null;
     [SerializeField]
     TMP_Text minotaurText = null;
-    [SerializeField]
-    McCoyProgressBar minotaurHealthBar = null;
 
     [SerializeField]
     Animator militiaObject = null;
     [SerializeField]
     TMP_Text militiaText = null;
-    [SerializeField]
-    McCoyProgressBar militiaHealthBar = null;
 
     [SerializeField]
     SpriteRenderer wolfIndicator = null;
@@ -144,9 +138,9 @@ namespace Assets.McCoy.BoardGame
           strongestMob = m;
         }
       }
-      initMob(mageObject, mage, 2, mageText, mageHealthBar);
-      initMob(militiaObject, militia, 3, militiaText, militiaHealthBar);
-      initMob(minotaurObject, minotaur, 4, minotaurText, minotaurHealthBar);
+      initMob(mageObject, mage, 2, mageText);
+      initMob(militiaObject, militia, 3, militiaText);
+      initMob(minotaurObject, minotaur, 4, minotaurText);
 
       Color highlightColor = Color.white;
       if (playerNum > 0)
@@ -188,25 +182,18 @@ namespace Assets.McCoy.BoardGame
       }
     }
 
-    private void initMob(Animator anim, McCoyMobData m, int factionIndex, TMP_Text text, McCoyProgressBar healthBar)
+    private void initMob(Animator anim, McCoyMobData m, int factionIndex, TMP_Text text)
     {
       anim.gameObject.SetActive(m != null);
       anim.SetInteger(factionAnimatorParam, factionIndex);
       if (m != null)
       {
         text.gameObject.SetActive(true);
-        text.SetText($"{m.StrengthForXP()}<sprite name=\"stat_indicator_icons_1\">\n{m.Health}<sprite name=\"stat_indicator_icons_0\">");
-        healthBar.gameObject.SetActive(false);
-        /*
-        healthBar.Initialize(m.MaxHealth+3, m.MaxHealth+3);
-        healthBar.SetFill(m.Health+2);
-        healthBar.gameObject.SetActive(true);
-        */
+        text.SetText($"{m.StrengthForXP()}<sprite name=\"stat_indicator_icons_1\">{m.Health}<sprite name=\"stat_indicator_icons_0\">");
       }
       else
       {
         text.gameObject.SetActive(false);
-        healthBar.gameObject.SetActive(false);
       }
     }
 
