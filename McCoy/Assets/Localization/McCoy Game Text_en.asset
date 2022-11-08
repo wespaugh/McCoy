@@ -90,6 +90,20 @@ MonoBehaviour:
     m_Localized: Sol HQ
     m_Metadata:
       m_Items: []
+  - m_Id: 1995778348208128
+    m_Localized: A local butcher has requested short-term help filling an unprecedented
+      order.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1995914696642560
+    m_Localized: "\u201CMust be comfortable working with pigs blood\u201D the Help
+      Wanted ad read, and it reeked of mysticism or weird sex stuff. Either way the
+      Techno-Mages were surely involved.\r\n\r\nAs you approach the smelly end of
+      this otherwise trendy part of town, you spot the crowds of epecurian willworkers,
+      hungry for meant, thirsty for blood, and ready as ever for a fight. At least
+      you didn\u2019t wear white tonight\u2026 "
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

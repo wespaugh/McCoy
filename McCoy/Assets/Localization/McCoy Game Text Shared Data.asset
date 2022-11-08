@@ -87,6 +87,18 @@ MonoBehaviour:
     m_Key: com.mccoy.cityzone.solhq
     m_Metadata:
       m_Items: []
+  - m_Id: 1995778348208128
+    m_Key: com.mccoy.quests.world.1.summary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1995914696642560
+    m_Key: com.mccoy.quests.world.1.intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1996032258789376
+    m_Key: com.mccoy.quests.world.1.exit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
