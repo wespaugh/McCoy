@@ -5,6 +5,6 @@ namespace Assets.McCoy.RPG
 {
   public class McCoyQuestListData : ScriptableObject
   {
-    public List<McCoyQuestData> quests;
+    public McCoyQuestData[] quests = new McCoyQuestData[0];
   }
 }

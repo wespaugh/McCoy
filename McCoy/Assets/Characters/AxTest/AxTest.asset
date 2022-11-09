@@ -218,7 +218,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -745,7 +745,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       jumpStraight:
         animMap:
@@ -3373,7 +3373,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -4110,7 +4110,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:
@@ -5531,9 +5531,9 @@ MonoBehaviour:
       landingDelay: 7
       _groundCollisionMass:
         _serializedValue: 8589934592
-    enabledBasicMovesToggle: 1
-    basicMovesToggle: 1
-    attackMovesToggle: 1
+    enabledBasicMovesToggle: 0
+    basicMovesToggle: 0
+    attackMovesToggle: 0
   - combatStance: 0
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}
@@ -10949,8 +10949,8 @@ MonoBehaviour:
       _groundCollisionMass:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
-    basicMovesToggle: 1
-    attackMovesToggle: 1
+    basicMovesToggle: 0
+    attackMovesToggle: 0
   - combatStance: 2
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}

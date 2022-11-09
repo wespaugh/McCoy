@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.Brawler.Stages;
+using Assets.McCoy.RPG;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Assets.McCoy.Editor
     [MenuItem("Assets/Create/McCoy/Quest List")]
     public static void CreateAsset()
     {
-      ScriptableObjectUtility.CreateAsset<UFE3D.CharacterInfo>();
+      ScriptableObjectUtility.CreateAsset<McCoyQuestListData>();
     }
   }
 }

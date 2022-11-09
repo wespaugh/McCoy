@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.McCoy.RPG;
 using UnityEditor;
-using Assets.McCoy.RPG;
+using UnityEngine;
 
 [CustomEditor(typeof(McCoyQuestListData))]
 public class QuestListEditor : Editor
@@ -8,7 +8,7 @@ public class QuestListEditor : Editor
   public override void OnInspectorGUI()
   {
 	if (GUILayout.Button("Open Quest List Editor"))
-	  CharacterEditorWindow.Init();
+	  QuestListEditorWindow.Init();
 
   }
 }
