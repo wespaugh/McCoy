@@ -141,26 +141,7 @@ public class QuestListEditorWindow : EditorWindow
 
     scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
     {
-      EditorGUILayout.BeginVertical(rootGroupStyle);
-      {
-        EditorGUIUtility.labelWidth = 200;
-        GUILayout.Label("Description:");
-        Rect rect = GUILayoutUtility.GetRect(50, 90);
-        EditorStyles.textField.wordWrap = true;
-        // questInfo.characterDescription = EditorGUI.TextArea(rect, questInfo.characterDescription);
-
-        EditorGUILayout.Space();
-        EditorGUIUtility.labelWidth = 150;
-
-        EditorGUILayout.Space();
-      }
-      EditorGUILayout.EndVertical();
-
-
-
-
-
-      // Move Sets
+      // The Quests
       EditorGUILayout.BeginVertical(rootGroupStyle);
       {
         EditorGUILayout.BeginHorizontal();
@@ -185,8 +166,10 @@ public class QuestListEditorWindow : EditorWindow
               QuestBlock(questInfo.quests[i]);
             }
 
-            if (StyledButton("New Stance"))
+            if (StyledButton("New Quest"))
+            {
               questInfo.quests = AddElement<McCoyQuestData>(questInfo.quests, new McCoyQuestData());
+            }
 
             EditorGUI.indentLevel -= 1;
           }
@@ -244,12 +227,60 @@ public class QuestListEditorWindow : EditorWindow
     EditorGUILayout.BeginVertical(resource ? subArrayElementStyle : arrayElementStyle);
     {
       EditorGUILayout.Space();
-      EditorGUILayout.BeginHorizontal();
+      EditorGUILayout.LabelField("Uuid");
+      quest.uuid = EditorGUILayout.TextField(quest.uuid, GUILayout.Width(500));
+      EditorGUILayout.LabelField("summary");
+      quest.summary = EditorGUILayout.TextField(quest.summary, GUILayout.Width(500));
+      quest.firstWeekAvailable = EditorGUILayout.IntSlider("First Available Week:", quest.firstWeekAvailable, 1, 50);
+      quest.lastWeekAvailable = EditorGUILayout.IntSlider("Last Available Week:", quest.lastWeekAvailable, 1, 50);
+      quest.worldDurationInGlobalTurns = EditorGUILayout.IntSlider("Duration:", quest.worldDurationInGlobalTurns, 1, 10);
+
+      EditorGUILayout.LabelField("Intro Text");
+      quest.introText = EditorGUILayout.TextField(quest.introText, GUILayout.Width(500));
+      EditorGUILayout.LabelField("Exit Text");
+      quest.exitText = EditorGUILayout.TextField(quest.exitText, GUILayout.Width(500));
+
+      var prereqs = quest.prerequisiteQuestFlags;
+      int newCount = Mathf.Max(0, EditorGUILayout.IntField("Num Prereqs", prereqs.Count));
+      while (newCount < prereqs.Count)
+        prereqs.RemoveAt(prereqs.Count - 1);
+      while (newCount > prereqs.Count)
+        prereqs.Add(null);
+
+      for (int i = 0; i < prereqs.Count; i++)
       {
-        EditorGUILayout.LabelField("Uuid");
-        quest.uuid = EditorGUILayout.TextField(quest.uuid, GUILayout.Width(100));
+        prereqs[i] = (string)EditorGUILayout.TextField("ID: ", prereqs[i]);
       }
-      EditorGUILayout.EndHorizontal();
+      quest.prerequisiteQuestFlags = prereqs;
+
+      var locs = quest.possibleLocations;
+      int locationCount = Mathf.Max(0, EditorGUILayout.IntField("Locations", locs.Count));
+      while (locationCount < locs.Count)
+        locs.RemoveAt(locs.Count - 1);
+      while (locationCount > locs.Count)
+        locs.Add(null);
+
+      for (int i = 0; i < locs.Count; i++)
+      {
+        locs[i] = (string)EditorGUILayout.TextField("Location Uuid: ", locs[i]);
+      }
+      quest.possibleLocations = locs;
+
+      var exitChoices = quest.exitChoices;
+      int choiceCount = Mathf.Max(0, EditorGUILayout.IntField("Num Exit Options", exitChoices.Count));
+      while (choiceCount < exitChoices.Count)
+        exitChoices.RemoveAt(exitChoices.Count - 1);
+      while (choiceCount > exitChoices.Count)
+        exitChoices.Add(new McCoyQuestChoice());
+
+      for (int i = 0; i < exitChoices.Count; i++)
+      {
+        EditorGUILayout.LabelField("Choice " + (i+1));
+        string flag = (string)EditorGUILayout.TextField("Choice Flag: ", exitChoices[i].uuid);
+        string displayText = (string)EditorGUILayout.TextField("Display Text: ", exitChoices[i].displayText);
+        exitChoices[i] = new McCoyQuestChoice() { displayText = displayText, uuid = flag };
+      }
+      quest.exitChoices = exitChoices;
     }
 
     EditorGUILayout.EndVertical();

@@ -99,6 +99,34 @@ MonoBehaviour:
     m_Key: com.mccoy.quests.world.1.exit
     m_Metadata:
       m_Items: []
+  - m_Id: 1996495087652864
+    m_Key: com.mccoy.quests.world.1.choice1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1996540621017088
+    m_Key: com.mccoy.quests.world.1.choice2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2356778729656320
+    m_Key: com.mccoy.quests.rex.1.summary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2356835805745152
+    m_Key: com.mccoy.quests.rex.1.intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2361527281569792
+    m_Key: com.mccoy.quests.rex.1.exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2362004714999808
+    m_Key: com.mccoy.quests.rex.1.choice1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2362056082640896
+    m_Key: com.mccoy.quests.rex.1.choice2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

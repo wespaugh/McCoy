@@ -1438,8 +1438,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6659534624112935052}
   - component: {fileID: 1310345685121489679}
+  - component: {fileID: 6002407273528808421}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: QuestIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,6 +1513,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6002407273528808421
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697186379155241956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 684e59ff82fb12f439a9b35d39a9e83f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9071596647962945165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1696,7 @@ MonoBehaviour:
   deselectAlpha: 0.2
   selectAlphaMin: 0.5
   selectAlphaMax: 0.8
+  QuestIndicator: {fileID: 6002407273528808421}
 --- !u!1 &9071596649962316485
 GameObject:
   m_ObjectHideFlags: 0

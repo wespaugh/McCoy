@@ -33,6 +33,12 @@ namespace Assets.McCoy.BoardGame
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
     Dictionary<PlayerCharacter, string> playerLocations = new Dictionary<PlayerCharacter, string>();
 
+    // uuids of all quests that have spawned at some point
+    public List<string> questsSpawned = new List<string>();
+    public List<McCoyQuestData> currentQuests = new List<McCoyQuestData>();
+    // flags set as quests are completed and choices are made
+    public List<string> questFlags = new List<string>();
+
     string antikytheraMechanismLocation;
     public string AntikytheraMechanismLocation
     {
@@ -94,6 +100,12 @@ namespace Assets.McCoy.BoardGame
         */
         playerCharacters[pc] = new McCoyPlayerCharacter() { Player = pc };// pcData.Clone() as McCoyPlayerCharacter;
       }
+    }
+
+    public void StartQuest(McCoyQuestData quest)
+    {
+      questsSpawned.Add(quest.uuid);
+      currentQuests.Add(quest);
     }
 
     public void UpdateSearchData(List<MapNodeSearchData> searchData)

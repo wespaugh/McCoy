@@ -55,7 +55,8 @@ namespace Assets.McCoy
       Rex = 0,
       Vicki,
       Avalon,
-      Penelope
+      Penelope,
+      None
     }
 
     public static PlayerCharacter[] PlayerCharacters = { PlayerCharacter.Rex, PlayerCharacter.Vicki, PlayerCharacter.Avalon, PlayerCharacter.Penelope };
@@ -296,7 +297,7 @@ namespace Assets.McCoy
             break;
           }
         }
-        Debug.Log("Adding skill " + values[0] + " " + level + "/" + maxLevel);
+        // Debug.Log("Adding skill " + values[0] + " " + level + "/" + maxLevel);
         retVal.Add(new McCoySkill(name : values[0], level : level, maxLevel : maxLevel));
         cdr = cdr.Substring(skillEndIdx);
       }

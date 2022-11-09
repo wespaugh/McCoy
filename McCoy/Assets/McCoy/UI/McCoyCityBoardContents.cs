@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.RPG;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -172,6 +173,7 @@ namespace Assets.McCoy.UI
       stinger.RunStinger(stingerType);
     }
 
+    #region Weekend
     public void Weekend(Action callback)
     {
       weekendFinishedCallback = callback;
@@ -460,6 +462,7 @@ namespace Assets.McCoy.UI
     {
       return cityZoneLookup[end.NodeID].transform.position - cityZoneLookup[start.NodeID].transform.position;
     }
+    #endregion
 
     private void initMapCache()
     {
@@ -510,7 +513,7 @@ namespace Assets.McCoy.UI
       foreach(var node in nodes)
       {
         cityZoneLookup[node.NodeId] = node.gameObject;
-        Debug.Log($"{node.NodeId}: " + node.gameObject.name);
+        // Debug.Log($"{node.NodeId}: " + node.gameObject.name);
         mobIndicatorLookup[node.NodeId] = node.gameObject.GetComponentInChildren<McCoyZoneMapMobIndicator>();
       }
       initConnectionLines(nodes);
@@ -607,6 +610,14 @@ namespace Assets.McCoy.UI
     public void AnimateMobCombat(MapNode location, ProjectConstants.Factions faction)
     {
       mobIndicatorLookup[location.NodeID].AnimateCombat(faction);
+    }
+
+    public void LoadQuests(List<McCoyQuestData> currentQuests)
+    {
+      foreach(var quest in currentQuests)
+      {
+        mobIndicatorLookup[quest.possibleLocations[0]].ShowQuest(quest);
+      }
     }
 
     private void centerCameraOnNode(GameObject node)

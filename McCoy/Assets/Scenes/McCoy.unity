@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 1944363959}
   - component: {fileID: 1944363960}
   - component: {fileID: 1944363961}
+  - component: {fileID: 1944363962}
   m_Layer: 0
   m_Name: UFE Manager
   m_TagString: Untagged
@@ -559,6 +560,8 @@ MonoBehaviour:
   levelAllPlayersEvenly: 0
   cityScene: {fileID: 7717615156766846426, guid: 5f1902f4f1fb8654aa90363b8de84b63,
     type: 3}
+  gameState:
+    questsSpawned: []
 --- !u!114 &1944363960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,5 +610,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b95fef153a994f04fac2b332755fe296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1944363962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944363956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55acce8ad7d7ea747a5e3adfd57353db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

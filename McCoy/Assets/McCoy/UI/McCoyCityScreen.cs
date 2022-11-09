@@ -80,7 +80,6 @@ namespace Assets.McCoy.UI
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
 
     private McCoyStageData stageDataToLoad = null;
-
     bool loadingStage;
 
     bool mobRouting = false;
@@ -233,6 +232,7 @@ namespace Assets.McCoy.UI
     {
       initPlayerStartLocations();
       initMapPanels();
+      initQuests();
       saveCity();
       checkForMobRouting();
 
@@ -274,6 +274,12 @@ namespace Assets.McCoy.UI
 
       initSelectedCharacter();
       saveCity();
+    }
+
+    private void initQuests()
+    {
+      McCoyQuestManager.GetInstance().CityLoaded();
+      board.LoadQuests(McCoy.GetInstance().gameState.currentQuests);
     }
 
     public void DebugEndWeek()
@@ -573,89 +579,7 @@ namespace Assets.McCoy.UI
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
     {
-      {
-        bool xIsConnected = false;
-        bool yIsConnected = false;
-        foreach (var connection in playerLoc.GetConnectedNodes())
-        {
-          if (x.NodeID == connection.NodeID)
-          {
-            xIsConnected = true;
-          }
-          if (y.NodeID == connection.NodeID)
-          {
-            yIsConnected = true;
-          }
-        }
-        bool xIsCloseEnough = !mechanismFound || x.DistanceToMechanism <= minDistanceToMechanism;
-        bool yIsCloseEnough = !mechanismFound || y.DistanceToMechanism <= minDistanceToMechanism;
-        if (xIsConnected)
-        {
-          // x is connected and close enough. best case
-          if (xIsCloseEnough)
-          {
-            if (yIsConnected && yIsCloseEnough)
-            {
-              return 0;
-            }
-            return -1;
-          }
-          // x is connected but not close enough
-          else
-          {
-            // y not connected, x has priority
-            if (!yIsConnected)
-            {
-              return -1;
-            }
-            // y is connected, but not close enough. same as X
-            if (!yIsCloseEnough)
-            {
-              return 0;
-            }
-            // y is connected and close enough. y has priority
-            return 1;
-          }
-        }
-        // x is not connected
-        else
-        {
-          // y is connected, y has priority
-          if (yIsConnected)
-          {
-            return 1;
-          }
-          // neither y or x is connected,
-          // x is close enough
-          if (xIsCloseEnough)
-          {
-            // y close enough, equivalent
-            if (yIsCloseEnough)
-            {
-              return 0;
-            }
-            // x close enough, y not close enough, x has priority
-            else
-            {
-              return -1;
-            }
-          }
-          // x not close enough
-          else
-          {
-            // x not close enough, y close enough, y has priority
-            if (yIsCloseEnough)
-            {
-              return 1;
-            }
-            else
-            {
-              // x not close enough, y not close enough, equivalent
-              return 0;
-            }
-          }
-        }
-      }
+      return MapNode.Compare(x, y, playerLoc, mechanismFound, minDistanceToMechanism);
     }
 
     private void initPlayerStartLocations()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.McCoy.RPG;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -32,6 +33,7 @@ namespace Assets.McCoy.UI
         }
       }
       updateMenuItems();
+      McCoyQuestManager.GetInstance().ClearQuestData();
     }
 
     public override void DoFixedUpdate(
@@ -46,6 +48,7 @@ namespace Assets.McCoy.UI
 
       public void StartCityScene()
     {
+      McCoyQuestManager.GetInstance().GameLoaded();
       game.LoadScene(McCoy.McCoyScenes.CityMap);
     }
     public void LoadGame()

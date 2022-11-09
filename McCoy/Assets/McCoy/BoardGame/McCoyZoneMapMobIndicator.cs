@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.UI;
+﻿using Assets.McCoy.RPG;
+using Assets.McCoy.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,6 +65,9 @@ namespace Assets.McCoy.BoardGame
 
     [SerializeField]
     float selectAlphaMax = .8f;
+
+    [SerializeField]
+    Animator QuestIndicator = null;
 
     bool selected = false;
 
@@ -353,6 +357,28 @@ namespace Assets.McCoy.BoardGame
       {
         werewolf.SetTrigger("FIGHT");
       }
+    }
+
+    public void ShowQuest(McCoyQuestData quest)
+    {
+      QuestIndicator.gameObject.SetActive(true);
+      string animKey = "WorldQuest";
+      switch(quest.characterRestriction)
+      {
+        case PlayerCharacter.Rex:
+          animKey = "RexQuest";
+          break;
+        case PlayerCharacter.Vicki:
+          animKey = "VickiQuest";
+          break;
+        case PlayerCharacter.Avalon:
+          animKey = "AvalonQuest";
+          break;
+        case PlayerCharacter.Penelope:
+          animKey = "PenelopeQuest";
+          break;
+      }
+      QuestIndicator.SetTrigger(animKey);
     }
   }
 }

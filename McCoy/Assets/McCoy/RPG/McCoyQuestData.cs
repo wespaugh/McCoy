@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.RPG
 {
-  public class McCoyQuestData : ScriptableObject
+  [Serializable]
+  public class McCoyQuestData
   {
     // unique ID
     public string uuid;
@@ -16,13 +15,17 @@ namespace Assets.McCoy.RPG
     public string summary;
 
     // global turns where the quest might spawn
-    public Range weekAvailability;
+    public int firstWeekAvailable;
+    public int lastWeekAvailable;
 
     // length of time before the quest disappears
     public int worldDurationInGlobalTurns;
 
+    // quests flags that must have been set before this quest becomes available
+    public List<string> prerequisiteQuestFlags = new List<string>();
+
     // quests that must have been completed before this quest becomes available
-    List<string> prerequisiteQuestIds = new List<string>();
+    public List<string> possibleLocations = new List<string>();
 
     /// OBJECTIVE LIST?
     /// 
@@ -31,9 +34,10 @@ namespace Assets.McCoy.RPG
     public string introText;
 
     // displayed in level when the final objective is completed
-    string exitText;
+    public string exitText;
 
     // options given to the player about how to complete the quest
-    List<string> exitChoices = new List<string>();
+    public List<McCoyQuestChoice> exitChoices = new List<McCoyQuestChoice>();
+    public PlayerCharacter characterRestriction { get; set; }
   }
 }

@@ -13,5 +13,19 @@ MonoBehaviour:
   m_Name: World Quests
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 0}
-  - {fileID: 0}
+  - uuid: b4c83862-5a62-439d-b8a8-c4d5ad8e71c3
+    summary: com.mccoy.quests.world.1.summary
+    firstWeekAvailable: 1
+    lastWeekAvailable: 50
+    worldDurationInGlobalTurns: 3
+    prerequisiteQuestFlags:
+    - 7b361a02-c40d-4b4e-95cc-b826330c04c8
+    possibleLocations:
+    - 36e23897c1d8e5e459aa1500cefa8d44
+    introText: com.mccoy.quests.world.1.intro
+    exitText: com.mccoy.quests.world.1.exit
+    exitChoices:
+    - displayText: com.mccoy.quests.world.1.choice1
+      uuid: nolanKnowsAboutFirstChanges
+    - displayText: com.mccoy.quests.world.1.choice2
+      uuid: nolanDoesntKnowAboutFirstChanges

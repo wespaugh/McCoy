@@ -98,10 +98,97 @@ MonoBehaviour:
   - m_Id: 1995914696642560
     m_Localized: "\u201CMust be comfortable working with pigs blood\u201D the Help
       Wanted ad read, and it reeked of mysticism or weird sex stuff. Either way the
-      Techno-Mages were surely involved.\r\n\r\nAs you approach the smelly end of
-      this otherwise trendy part of town, you spot the crowds of epecurian willworkers,
+      Techno-Mages were surely involved.\n\nAs you approach the smelly end of this
+      otherwise trendy part of town, you spot the crowds of epicurean willworkers,
       hungry for meant, thirsty for blood, and ready as ever for a fight. At least
-      you didn\u2019t wear white tonight\u2026 "
+      you didn\u2019t wear white tonight\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1996032258789376
+    m_Localized: "As you wipe some of the blood and viscera out of your clothes,
+      one of the bodies left behind snaps at attention, bending upright at the waist
+      and letting a groan. The legs remain uncannily still. Perhaps the nerves were
+      completely severed. \u201CI hope you realize you\u2019ve ruined a perfectly
+      spectacular barbecue.\u201D\n\nThe flash of recognition hits, but this is impossible.
+      \u201CNolan? From the Museum. You were dead. You choked on your own liver!\u201D\n\n\u201DYes,
+      and I\u2019m afraid it really does need the nice Chianti to pair. And the server!
+      Such a rush to get me to leave.\u201D\n\n\u201CHow are you-\u201D\n\u201DAlive?
+      You don\u2019t really think we use our reality-cheating powers just to make
+      keytar lasers and autotune did you? Don\u2019t look so confused. Why don\u2019t
+      we see if your deal-making powers are any better. I can\u2019t tell you how
+      I\u2019m alive, but I\u2019ll tell you how to find out for yourself. And in
+      return, you\u2019ll tell me why I only started seeing you around town so long
+      after the aliens arrived\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1996495087652864
+    m_Localized: "Tell Him about your first change: \u201CYou mean it\u2019s not
+      tied to the full moon at all? Just the eclipse that transferred the power to
+      you? So, you won\u2019t be making any more of your kind soon, then, will you.\u201D 
+      In truth, {Name} had no idea if it was even possible to make more werewolves,
+      but they stayed silence. Nolan looked genuinely puzzled for a moment, before
+      lying back down into the bloodstained streets. \u201CYou\u2019re being more
+      informative than I\u2019d expected. Thank you for that. Now you can run along,
+      I\u2019ll send along the details of how I\u2019m not dead soon. If I\u2019m
+      lying, at least you know where to find me.Nolan simply chuckles to himself
+      as you leave the area, sirens sounding in the distance."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1996540621017088
+    m_Localized: "Refuse: \u201CFine, don\u2019t tell me. I do have my other ways,
+      but what can I say, you interest me. I\u2019d rather learn what I can until
+      I see where the chips will fall. You\u2019ve given me plenty to think about,
+      though. Which is good,\u201D Nolan continued, lying back down into the bloodstained
+      streets. \u201CBecause I don\u2019t think I\u2019ll be going anywhere for a
+      little while."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2356778729656320
+    m_Localized: "An important historical exhibit has been closed for the night without
+      reason. Something\u2019s not right\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2356835805745152
+    m_Localized: "Why is it that even werewolves are always just a little bit tired,
+      at Rex\u2019s age? I didn\u2019t seem fair. But Rex knew the beast inside him
+      was ready for the fight now that it was on him.\n\nHis sons let him know earlier
+      that day their field trip to the history exhibit had been canceled. Rex\u2019s
+      suspicions were raised knowing the exhibit focused on the Deadlock Wars. Baltur
+      Militech would have every reason to intervene, and sure enough, he recognized
+      one or two of their talking heads from propaganda news \u201Cdebates\u201D.\n\nThe
+      meal of the night seemed to be a bubbly elixir made out of pure light, and
+      a fishy smelling puree the general public was told was extinct. Shame."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2361527281569792
+    m_Localized: "\u201CNow now, I respect your dedication to preserving our history,
+      but there\u2019s no need for hysterics, Mister\u2026\u201D Nolan was evidently
+      quite practiced at keeping cool and negotiating while in severe mortal peril,
+      but Rex\u2019s wolf senses smelled the sweaty temple, the growing pitstain,
+      even the barely held bladder.\n\n\u201CLeave,\u201D Rex gruffed. \u201CAnd
+      if the exhibit isn\u2019t open tomorrow, I will find you. In your home.\u201D\n\n\u201CJeez!
+      I\u2019m only trying to offer you a deal here. And one with a considerably
+      better outcome for you than meeting my home security detail, I promise.\n\n\u201CI\u2019ll
+      move our party elsewhere for the rest of the week. The exhibit will reopen.
+      Maybe not tomorrow, with all the mess you made. And in exchange, you tell me
+      who made you what you are. That\u2019s all, one simple question. And then you
+      can tear me apart, if you must. You know I\u2019ll be back. And I bet the pains
+      is\u2026 exquisite.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2362004714999808
+    m_Localized: "Tell Nolan: \u201CJade Claws? That\u2019s quite a name. Not the
+      first time I\u2019ve heard it, either. They think we aren\u2019t listening,
+      but I hear things. Very interesting things\u2026 Now let\u2019s get on with
+      this. I\u2019ve been craving liver and onions. Maybe you\u2019ll feed me mine
+      before the lights go out?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2362056082640896
+    m_Localized: "Refuse: \u201CDon\u2019t trust me? I don\u2019t blame you. Maybe
+      you\u2019ll reconsider when we meet again. Now let\u2019s get on with this.
+      I\u2019ve been craving liver and onions. Maybe you\u2019ll feed me mine before
+      the lights go out?\u201D"
     m_Metadata:
       m_Items: []
   references:
