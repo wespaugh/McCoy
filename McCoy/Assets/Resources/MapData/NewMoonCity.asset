@@ -22,10 +22,10 @@ MonoBehaviour:
     PortName: Right
     TargetNodeGuid: 7561d6c4bbfed7747a0affa4400cd38e
   - readableID: MeatPackingDistrict-NimbyStreet
-    BaseNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
+    BaseNodeGuid: 20888d9701a6e1c4294784294f939b28
     PortName: Right
-    TargetNodeGuid: 20888d9701a6e1c4294784294f939b28
-  - readableID: NimbyStreet-PowerStation
+    TargetNodeGuid: 36e23897c1d8e5e459aa1500cefa8d44
+  - readableID: MeatPackingDistrict-PowerStation
     BaseNodeGuid: 20888d9701a6e1c4294784294f939b28
     PortName: Right
     TargetNodeGuid: 83ad669713d871b4787ab3e441764e13

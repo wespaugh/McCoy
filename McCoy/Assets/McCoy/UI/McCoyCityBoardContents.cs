@@ -476,15 +476,33 @@ namespace Assets.McCoy.UI
       foreach (var assetNode in mapCache.NodeData)
       {
         mapNodes.Add(assetNode);
+        assetNode.connectionIDs.Clear();
+        assetNode.Mobs.Clear();
         mapNodeLookup.Add(assetNode.NodeID, assetNode);
         assetNode.SearchData.ZoneName = assetNode.ZoneName;
         assetNode.SearchData.NodeID = assetNode.NodeID;
       }
 
+      Debug.Log("There are " + mapCache.NodeLinks.Count + " node links");
       foreach(var assetLink in mapCache.NodeLinks)
       {
         var baseNode = mapNodeLookup[assetLink.BaseNodeGuid];
         var targetNode = mapNodeLookup[assetLink.TargetNodeGuid];
+
+        var nameComps = baseNode.ZoneName.Split(".");
+        string baseName = nameComps[nameComps.Length - 1];
+        nameComps = targetNode.ZoneName.Split(".");
+        string targetName = nameComps[nameComps.Length - 1];
+        
+
+        if(baseName.Contains("nimbystreet") || targetName.Contains("nimbystreet"))
+        {
+          Debug.Log($"Link Between {baseName}-{targetName}");
+        }
+        if (baseName.Contains("governmentofficebuilding") || targetName.Contains("governmentofficebuilding"))
+        {
+          Debug.Log($"Link Between {baseName}-{targetName}");
+        }
 
         // weird thing here. Resources.Load seems to be cacheing the loaded objects,
         // meaning making a second board will already have map nodes connected. we can skip that part, if so
