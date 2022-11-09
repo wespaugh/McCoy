@@ -87,10 +87,20 @@ namespace Assets.McCoy.RPG
           bool canAdd = true;
           foreach(var prereq in quest.prerequisiteQuestFlags)
           {
+            // if there is a prereq that hasn't be satisfied, we can't add the quest
             if(!McCoy.GetInstance().gameState.questFlags.Contains(prereq))
             {
               canAdd = false;
               break;
+            }
+            // if there's already a quest active at this quest's location, we can't add it (max one quest per location)
+            foreach(var activeQuest in McCoy.GetInstance().gameState.availableQuests)
+            {
+              if(activeQuest.possibleLocations[0] == quest.possibleLocations[0])
+              {
+                canAdd = false;
+                break;
+              }
             }
           }
           if(canAdd)

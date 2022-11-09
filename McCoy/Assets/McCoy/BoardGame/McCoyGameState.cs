@@ -35,7 +35,9 @@ namespace Assets.McCoy.BoardGame
 
     // uuids of all quests that have spawned at some point
     public List<string> questsSpawned = new List<string>();
-    public List<McCoyQuestData> currentQuests = new List<McCoyQuestData>();
+    public List<McCoyQuestData> availableQuests = new List<McCoyQuestData>();
+    public McCoyQuestData activeQuest { get; set; }
+
     // flags set as quests are completed and choices are made
     public List<string> questFlags = new List<string>();
 
@@ -105,7 +107,7 @@ namespace Assets.McCoy.BoardGame
     public void StartQuest(McCoyQuestData quest)
     {
       questsSpawned.Add(quest.uuid);
-      currentQuests.Add(quest);
+      availableQuests.Add(quest);
     }
 
     public void UpdateSearchData(List<MapNodeSearchData> searchData)

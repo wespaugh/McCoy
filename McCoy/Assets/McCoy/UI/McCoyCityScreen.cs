@@ -278,8 +278,9 @@ namespace Assets.McCoy.UI
 
     private void initQuests()
     {
+      McCoy.GetInstance().gameState.activeQuest = null;
       McCoyQuestManager.GetInstance().CityLoaded();
-      board.LoadQuests(McCoy.GetInstance().gameState.currentQuests);
+      board.LoadQuests(McCoy.GetInstance().gameState.availableQuests);
     }
 
     public void DebugEndWeek()
@@ -643,6 +644,15 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
+      // look for a quest at the zone we're heading to. if it's there, tee up the quest for the zone
+      foreach(var quest in McCoy.GetInstance().gameState.availableQuests)
+      {
+        if(quest.possibleLocations[0] == node.NodeID)
+        {
+          McCoy.GetInstance().gameState.activeQuest = quest;
+          break;
+        }
+      }
       board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
       MapNode initialLocation = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
