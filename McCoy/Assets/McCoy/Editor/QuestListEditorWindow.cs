@@ -229,6 +229,8 @@ public class QuestListEditorWindow : EditorWindow
       EditorGUILayout.Space();
       EditorGUILayout.LabelField("Uuid");
       quest.uuid = EditorGUILayout.TextField(quest.uuid, GUILayout.Width(500));
+      EditorGUILayout.LabelField("Title");
+      quest.title = EditorGUILayout.TextField(quest.title, GUILayout.Width(500));
       EditorGUILayout.LabelField("summary");
       quest.summary = EditorGUILayout.TextField(quest.summary, GUILayout.Width(500));
       quest.firstWeekAvailable = EditorGUILayout.IntSlider("First Available Week:", quest.firstWeekAvailable, 1, 50);

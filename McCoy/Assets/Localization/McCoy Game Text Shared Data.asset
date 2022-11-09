@@ -127,6 +127,18 @@ MonoBehaviour:
     m_Key: com.mccoy.quests.rex.1.choice2
     m_Metadata:
       m_Items: []
+  - m_Id: 2470221046534144
+    m_Key: com.mccoy.ui.quest.close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2475259999473664
+    m_Key: com.mccoy.quests.rex.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2475370741682176
+    m_Key: com.mccoy.quests.world.1.title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

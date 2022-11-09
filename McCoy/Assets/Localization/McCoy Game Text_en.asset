@@ -191,6 +191,18 @@ MonoBehaviour:
       the lights go out?\u201D"
     m_Metadata:
       m_Items: []
+  - m_Id: 2470221046534144
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2475259999473664
+    m_Localized: Museum Dues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2475370741682176
+    m_Localized: Barbecue Lifts My Spirit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

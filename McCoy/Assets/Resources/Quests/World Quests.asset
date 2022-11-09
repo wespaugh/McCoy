@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - uuid: b4c83862-5a62-439d-b8a8-c4d5ad8e71c3
+    title: com.mccoy.quests.world.1.title
     summary: com.mccoy.quests.world.1.summary
     firstWeekAvailable: 1
     lastWeekAvailable: 50

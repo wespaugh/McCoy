@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - uuid: 7b361a02-c40d-4b4e-95cc-b826330c04c8
+    title: com.mccoy.quests.rex.1.title
     summary: com.mccoy.quests.rex.1.summary
     firstWeekAvailable: 1
     lastWeekAvailable: 50
     worldDurationInGlobalTurns: 10
-    prerequisiteQuestIDs: []
+    prerequisiteQuestFlags: []
     possibleLocations:
     - 4ce0d0c15420f7d4cb53747c94795e9e
     introText: com.mccoy.quests.rex.1.intro

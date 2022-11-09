@@ -11,6 +11,9 @@ namespace Assets.McCoy.RPG
     // unique ID
     public string uuid;
 
+    // quest name
+    public string title;
+
     // brief overview seen from the world map
     public string summary;
 
