@@ -94,6 +94,7 @@
     <Compile Include="Assets\McCoy\Brawler\McCoyCombatZoneTrigger.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyMobRoutingDestination.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentRespecScript.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyQuestManager.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cKeys.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInput.cs" />
     <Compile Include="Assets\McCoy\UI\Menus\McCoyMainMenuInput.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineWithTreeRespec.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNode.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusAutoEnableRoots.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyQuestTextUI.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInputGUI.cs" />
     <Compile Include="Assets\McCoy\Brawler\IMobChangeDelegate.cs" />
@@ -197,8 +199,6 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyQuestManager.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyQuestTextUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

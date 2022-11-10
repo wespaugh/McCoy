@@ -59,6 +59,8 @@ namespace Assets.McCoy.UI
 
     Action weekendFinishedCallback = null;
 
+    bool runningIntro = true;
+
     public List<MapNode> MapNodes
     {
       get
@@ -131,6 +133,10 @@ namespace Assets.McCoy.UI
 
     public void ToggleLines()
     {
+      if(runningIntro)
+      {
+        return;
+      }
       showUnnecessaryLines = !showUnnecessaryLines;
       updateUnnecessaryLinesState();
     }
@@ -142,6 +148,10 @@ namespace Assets.McCoy.UI
 
     public void ToggleZoom(bool isZoomed)
     {
+      if (runningIntro)
+      {
+        return;
+      }
       if (zoomed != isZoomed)
       {
         zoomed = isZoomed;
@@ -304,6 +314,11 @@ namespace Assets.McCoy.UI
       {
         VoluntaryMovementPhase();
       }
+    }
+
+    public void IntroFinished()
+    {
+      runningIntro = false;
     }
 
     private void WeekendMobRouted()

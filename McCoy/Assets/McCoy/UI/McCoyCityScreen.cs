@@ -245,15 +245,9 @@ namespace Assets.McCoy.UI
         yield return null;
       }
 
-      float stingerTime;
       if(mobRouting)
       {
-        board.showStinger(McCoyStinger.StingerTypes.EnemiesRouted);
-        stingerTime = Time.time;
-        while (Time.time < stingerTime + stingerDuration)
-        {
-          yield return null;
-        }
+        yield return RunStinger(McCoyStinger.StingerTypes.EnemiesRouted);
       }
 
       while(mobRouting)
@@ -261,23 +255,22 @@ namespace Assets.McCoy.UI
         yield return null;
       }
 
-      if (McCoy.GetInstance().gameState.IsEndOfWeek)
-      {
-        board.showStinger(McCoyStinger.StingerTypes.WeekEnded);
-      }
-      else
-      {
-        board.showStinger(McCoyStinger.StingerTypes.SelectZone);
-      }
       board.SelectMapNode(null, null);
-      stingerTime = Time.time;
-      while (Time.time < stingerTime + stingerDuration)
-      {
-        yield return null;
-      }
+      yield return RunStinger(McCoy.GetInstance().gameState.IsEndOfWeek ? McCoyStinger.StingerTypes.WeekEnded : McCoyStinger.StingerTypes.SelectZone);
 
       initSelectedCharacter();
       saveCity();
+      board.IntroFinished();
+    }
+
+    private IEnumerator RunStinger(McCoyStinger.StingerTypes type)
+    {
+      float stingerTime = Time.time;
+      board.showStinger(type);
+      while(Time.time < stingerTime + stingerDuration)
+      {
+        yield return null;
+      }
     }
 
     private void initQuests()
