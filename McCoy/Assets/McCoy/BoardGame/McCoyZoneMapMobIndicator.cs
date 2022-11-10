@@ -58,13 +58,13 @@ namespace Assets.McCoy.BoardGame
     SpriteRenderer selectionHighlight = null;
 
     [SerializeField]
-    float deselectAlpha = .2f;
+    float deselectAlpha = .85f;
 
     [SerializeField]
-    float selectAlphaMin = .5f;
+    float selectAlphaMin = .6f;
 
     [SerializeField]
-    float selectAlphaMax = .8f;
+    float selectAlphaMax = 1f;
 
     [SerializeField]
     Animator QuestIndicator = null;
@@ -73,6 +73,7 @@ namespace Assets.McCoy.BoardGame
 
     bool pulsing = false;
     float pulseStart = 0f;
+    private bool playerColorOverridesMobColor = false;
 
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {
@@ -104,7 +105,7 @@ namespace Assets.McCoy.BoardGame
           wolfIndicator.color = Color.red;
           break;
         case 3:
-          wolfIndicator.color = Color.yellow;
+          wolfIndicator.color = new Color(1f, .64f, 0f);
           break;
         case 4:
           wolfIndicator.color = Color.cyan;
@@ -147,7 +148,7 @@ namespace Assets.McCoy.BoardGame
       initMob(minotaurObject, minotaur, 4, minotaurText);
 
       Color highlightColor = Color.white;
-      if (playerNum > 0)
+      if (playerNum > 0 && playerColorOverridesMobColor)
       {
         highlightColor = wolfIndicator.color;
       }
@@ -156,13 +157,13 @@ namespace Assets.McCoy.BoardGame
         switch (strongestMob.Faction)
         {
           case Factions.Mages:
-            highlightColor = ProjectConstants.PINK;
+            highlightColor = Color.red;
             break;
           case Factions.CyberMinotaurs:
-            highlightColor = ProjectConstants.BLUE;
+            highlightColor = Color.cyan;
             break;
           case Factions.AngelMilitia:
-            highlightColor = ProjectConstants.GREEN;
+            highlightColor = Color.yellow;
             break;
         }
       }
