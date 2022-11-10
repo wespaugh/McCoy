@@ -437,9 +437,7 @@ namespace Assets.McCoy.UI
       }
       foreach(var m in board.MapNodes)
       {
-        m.SearchData = McCoy.GetInstance().gameState.GetSearchData(m.NodeID);
-        m.SearchData.NodeID = m.NodeID;
-        m.SearchData.ZoneName = m.ZoneName;
+        m.LoadSearchData(McCoy.GetInstance().gameState.GetSearchData(m.NodeID));
         foreach (string conn in m.connectionIDs)
         {
           m.AddConnectedNode(board.NodeWithID(conn));

@@ -70,6 +70,13 @@ namespace Assets.McCoy.BoardGame
         SearchData.bonusValue = value;
       }
     }
+    public void LoadSearchData(MapNodeSearchData mapNodeSearchData)
+    {
+      SearchData = mapNodeSearchData;
+      SearchData.NodeID = NodeID;
+      SearchData.ZoneName = ZoneName;
+    }
+
     public void Search(int strongestMobStrength, int strongestMobHealth)
     {
       int totalBonuses = bonusSearchDice + Math.Max(0, McCoy.GetInstance().gameState.Week - 5);
