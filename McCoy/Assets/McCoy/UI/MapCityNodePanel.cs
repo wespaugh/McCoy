@@ -1,6 +1,8 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.Brawler;
 using Assets.McCoy.Localization;
+using Assets.McCoy.RPG;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D.Brawler;
@@ -30,6 +32,12 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Image selectionIcon = null;
 
+    [SerializeField]
+    McCoyLocalizedText questTitle = null;
+
+    [SerializeField]
+    McCoyLocalizedText questSummary = null;
+
     protected ScrollRect scrollRect;
     protected RectTransform contentPanel;
 
@@ -39,6 +47,8 @@ namespace Assets.McCoy.UI
     List<GameObject> mobObjects = new List<GameObject>();
 
     McCoyCityScreen uiRoot = null;
+
+    McCoyQuestData quest = null;
 
     bool canConnect = false;
     bool isSelected = false;
@@ -134,6 +144,39 @@ namespace Assets.McCoy.UI
         this.mobs.Add(mobData);
         mobObjects.Add(mob.gameObject);
       }
+
+      McCoyQuestData quest = null;
+      foreach(var q in McCoy.GetInstance().gameState.availableQuests)
+      {
+        if(q.possibleLocations[0] == node.NodeID)
+        {
+          quest = q;
+          break;
+        }
+      }
+      SetQuest(quest, screen);
+    }
+
+    private void SetQuest(McCoyQuestData q, McCoyCityScreen screen)
+    {
+      quest = q;
+      questTitle.gameObject.SetActive(q != null);
+      questSummary.gameObject.SetActive(q != null);
+      if (q == null)
+      {
+        return;
+      }
+
+      questTitle.SetText(q.title, finalizeTitle);
+      questSummary.SetText(q.summary);
+    }
+
+    private void finalizeTitle(string text)
+    {
+      Debug.Log("Finalize Title!!!!");
+      PlayerCharacter pc = uiRoot.SelectedPlayer;
+      string restriction = text + $" ({PlayerName(pc)} only)";
+      questTitle.SetTextDirectly(restriction);
     }
 
     public void ZoneClicked()
@@ -146,7 +189,7 @@ namespace Assets.McCoy.UI
       if(mobs.Count == 0)
       {
         Factions f;
-        switch(Random.Range(1,4))
+        switch(UnityEngine.Random.Range(1,4))
         {
           case 1:
             f = Factions.Mages;

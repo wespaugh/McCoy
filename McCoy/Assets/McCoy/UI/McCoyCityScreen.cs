@@ -65,6 +65,10 @@ namespace Assets.McCoy.UI
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
     PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
+    public PlayerCharacter SelectedPlayer
+    {
+      get => selectedPlayer;
+    }
 
     McCoyCityBoardContents board = null;
     McCoySkillTreeMenu talentDelegate = null;
@@ -231,8 +235,8 @@ namespace Assets.McCoy.UI
     private IEnumerator cityBooySequence()
     {
       initPlayerStartLocations();
-      initMapPanels();
       initQuests();
+      initMapPanels();
       saveCity();
       checkForMobRouting();
 

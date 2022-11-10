@@ -37,9 +37,9 @@ namespace Assets.McCoy.Localization
 
     public void SetText(string key, Action<string> callback = null)
     {
+      this.callback = callback;
       text.StringReference.TableEntryReference = key;
       text.RefreshString();
-      this.callback = callback;
     }
     public void SetTextDirectly(string s)
     {
@@ -48,7 +48,10 @@ namespace Assets.McCoy.Localization
 
     public void TextLoaded(string text)
     {
-      Debug.Log("text Loaded: " + text);
+      if (text == "Museum Dues")
+      {
+        Debug.Log("text Loaded: " + text);
+      }
       if(callback != null)
       {
         callback(text);
