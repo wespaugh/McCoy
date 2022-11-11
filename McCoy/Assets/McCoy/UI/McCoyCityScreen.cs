@@ -553,7 +553,7 @@ namespace Assets.McCoy.UI
           sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
         }
         var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
-        nodePanel.SetInteractable(isConnected);
+        nodePanel.SetInteractable(isConnected || McCoy.GetInstance().Debug);
         nodePanel.PlayerChanged();
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
         

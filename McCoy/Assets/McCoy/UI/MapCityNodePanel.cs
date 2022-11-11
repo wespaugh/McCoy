@@ -148,7 +148,7 @@ namespace Assets.McCoy.UI
             break;
         }
         mobString += "\">";
-        mobString += $"<sprite name=\"strength\">{mobData.StrengthForXP()}<sprite name=\"health\">{mobData.Health}  ";
+        mobString += $"<sprite name=\"strength\">{mobData.StrengthForXP()}<sprite name=\"health\">{mobData.Health}\n";
         this.mobs.Add(mobData);
       }
       MobText.text = mobString;
