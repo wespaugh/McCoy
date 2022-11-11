@@ -43,45 +43,108 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: scifi_icon_atlas_0
-    m_HashCode: -1389183623
+    m_Name: strength
+    m_HashCode: -311902043
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 1
+    m_GlyphIndex: 2
     m_Scale: 1
-    m_Name: scifi_icon_atlas_health
-    m_HashCode: -428938603
+    m_Name: health
+    m_HashCode: -331737412
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: minotaur
+    m_HashCode: -327617385
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 4
+    m_Scale: 1
+    m_Name: mage
+    m_HashCode: 4017294
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 5
+    m_Scale: 1
+    m_Name: militia
+    m_HashCode: -1959876963
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 128
-      m_Height: 128
-      m_HorizontalBearingX: 6
-      m_HorizontalBearingY: 100
-      m_HorizontalAdvance: 128
+      m_Width: 64
+      m_Height: 64
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 56
+      m_HorizontalAdvance: 64
     m_GlyphRect:
-      m_X: 128
-      m_Y: 128
-      m_Width: 128
-      m_Height: 128
+      m_X: 0
+      m_Y: 192
+      m_Width: 64
+      m_Height: 64
     m_Scale: 1
     m_AtlasIndex: 0
     sprite: {fileID: 637111387, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
-  - m_Index: 1
+  - m_Index: 2
     m_Metrics:
-      m_Width: 128
-      m_Height: 128
-      m_HorizontalBearingX: 6
-      m_HorizontalBearingY: 100
-      m_HorizontalAdvance: 128
+      m_Width: 64
+      m_Height: 64
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 56
+      m_HorizontalAdvance: 64
     m_GlyphRect:
-      m_X: 0
-      m_Y: 128
-      m_Width: 128
-      m_Height: 128
+      m_X: 64
+      m_Y: 192
+      m_Width: 64
+      m_Height: 64
     m_Scale: 1
     m_AtlasIndex: 0
-    sprite: {fileID: 891009791, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
+    sprite: {fileID: -1091956230, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 64
+      m_Height: 64
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 56
+      m_HorizontalAdvance: 64
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 1548161406, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 64
+      m_Height: 64
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 56
+      m_HorizontalAdvance: 64
+    m_GlyphRect:
+      m_X: 64
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 1982317461, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 64
+      m_Height: 64
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 56
+      m_HorizontalAdvance: 64
+    m_GlyphRect:
+      m_X: 128
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -1075932368, guid: 240aa8b8a53c8fc4886afd637644a568, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
 --- !u!21 &5406660976775268938

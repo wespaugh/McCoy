@@ -111,8 +111,6 @@ namespace Assets.McCoy.BoardGame
           wolfIndicator.color = Color.cyan;
           break;
       }
-      baseMesh.material.color = playerNum > 0 ? wolfIndicator.color : Color.black;
-      //zoneIcon.gameObject.SetActive(false);
 
       McCoyMobData strongestMob = null;
 
@@ -147,7 +145,7 @@ namespace Assets.McCoy.BoardGame
       initMob(militiaObject, militia, 3, militiaText);
       initMob(minotaurObject, minotaur, 4, minotaurText);
 
-      Color highlightColor = Color.white;
+      Color highlightColor = Color.black;
       if (playerNum > 0 && playerColorOverridesMobColor)
       {
         highlightColor = wolfIndicator.color;
@@ -171,6 +169,11 @@ namespace Assets.McCoy.BoardGame
       if (selectionHighlight != null)
       {
         selectionHighlight.color = highlightColor;
+      }
+      else
+      {
+        baseMesh.material.color = highlightColor;
+        baseMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.black;
       }
       SetSelected(false);
 

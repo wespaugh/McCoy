@@ -27,7 +27,7 @@ namespace Assets.McCoy.UI
     GameObject MobNodeContainer = null;
 
     [SerializeField]
-    GameObject MobPanelPrefab = null;
+    TMP_Text MobText = null;
 
     [SerializeField]
     Image selectionIcon = null;
@@ -44,11 +44,12 @@ namespace Assets.McCoy.UI
     MapNode node = null;
 
     List<McCoyMobData> mobs = new List<McCoyMobData>();
-    List<GameObject> mobObjects = new List<GameObject>();
 
     McCoyCityScreen uiRoot = null;
 
     McCoyQuestData quest = null;
+
+    string titleText = "";
 
     bool canConnect = false;
     bool isSelected = false;
@@ -128,22 +129,29 @@ namespace Assets.McCoy.UI
 
       selectionIcon.gameObject.SetActive(canConnect);
 
-      while(this.mobObjects.Count > 0)
-      {
-        var next = this.mobObjects[0];
-        mobObjects.RemoveAt(0);
-        Destroy(next);
-      }
-      mobObjects.Clear();
       this.mobs.Clear();
 
+      string mobString = "";
       foreach(var mobData in node.Mobs)
       {
-        MapCityNodePanelMob mob = Instantiate(MobPanelPrefab, MobNodeContainer.transform).GetComponent<MapCityNodePanelMob>();
-        mob.Initialize(mobData);
+        mobString += "<sprite name=\"";
+        switch (mobData.Faction)
+        {
+          case Factions.Mages:
+            mobString += "mage";
+            break;
+          case Factions.CyberMinotaurs:
+            mobString += "minotaur";
+            break;
+          case Factions.AngelMilitia:
+            mobString += "militia";
+            break;
+        }
+        mobString += "\">";
+        mobString += $"<sprite name=\"strength\">{mobData.StrengthForXP()}<sprite name=\"health\">{mobData.Health}  ";
         this.mobs.Add(mobData);
-        mobObjects.Add(mob.gameObject);
       }
+      MobText.text = mobString;
 
       McCoyQuestData quest = null;
       foreach(var q in McCoy.GetInstance().gameState.availableQuests)
@@ -171,11 +179,23 @@ namespace Assets.McCoy.UI
       questSummary.SetText(q.summary);
     }
 
+    public void PlayerChanged()
+    {
+      finalizeTitle(null);
+    }
+
     private void finalizeTitle(string text)
     {
-      Debug.Log("Finalize Title!!!!");
-      PlayerCharacter pc = uiRoot.SelectedPlayer;
-      string restriction = text + $" ({PlayerName(pc)} only)";
+      if(quest == null)
+      {
+        return;
+      }
+      if(string.IsNullOrEmpty(titleText))
+      {
+        titleText = text;
+      }
+      string restrictionColor = uiRoot.SelectedPlayer != quest.characterRestriction ? "red" : "green";
+      string restriction = titleText + $" <color=\"{restrictionColor}\">({PlayerName(quest.characterRestriction)} only)</color>";
       questTitle.SetTextDirectly(restriction);
     }
 

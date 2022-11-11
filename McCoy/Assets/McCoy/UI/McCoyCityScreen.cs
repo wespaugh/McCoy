@@ -552,7 +552,9 @@ namespace Assets.McCoy.UI
           iteratingThroughConnectedNodes = false;
           sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
         }
-        zonePanels[node].GetComponent<MapCityNodePanel>().SetInteractable(isConnected);
+        var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
+        nodePanel.SetInteractable(isConnected);
+        nodePanel.PlayerChanged();
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
         
         // select the first node in the list

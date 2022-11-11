@@ -562,6 +562,8 @@ MonoBehaviour:
     type: 3}
   gameState:
     questsSpawned: []
+    availableQuests: []
+    questFlags: []
 --- !u!114 &1944363960
 MonoBehaviour:
   m_ObjectHideFlags: 0
