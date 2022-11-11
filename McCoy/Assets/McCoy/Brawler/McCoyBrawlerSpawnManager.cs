@@ -29,7 +29,7 @@ namespace Assets.McCoy.Brawler
     // Faction -> avgEnemiesAtOnce
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
 
-    bool debugSpawnsOnly => McCoy.GetInstance().Debug;
+    bool debugSpawnsOnly => false;// McCoy.GetInstance().Debug;
 
     const float bossXOffset = 3.5f;
 

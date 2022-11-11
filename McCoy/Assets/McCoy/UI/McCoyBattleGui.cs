@@ -35,6 +35,8 @@ namespace Assets.McCoy.UI
     [SerializeField] int playerSortOrder;
     [SerializeField] McCoyBrawlerMobStatusLabel mobStatusLabel = null;
 
+    [SerializeField] McCoyQuestTextUI questUI = null;
+
     McCoyStageData currentStage;
 
     bool debug => McCoy.GetInstance().Debug;
@@ -60,6 +62,13 @@ namespace Assets.McCoy.UI
         initSpawner();
       }
       worldUI.StageBegan();
+
+      McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
+      if ( activeQuest != null)
+      {
+        questUI.gameObject.SetActive(true);
+        questUI.BeginQuest(activeQuest);
+      }
     }
 
     protected override void OnGameEnd(ControlsScript winner, ControlsScript loser)
@@ -238,6 +247,15 @@ namespace Assets.McCoy.UI
           }
         }
         debuggerText.text = sb;
+      }
+    }
+
+    protected override void OnButtonPress(ButtonPress buttonPress, ControlsScript player)
+    {
+      base.OnButtonPress(buttonPress, player);
+      if (UFE.isPaused())
+      {
+        Debug.Log($"OnButtonPress: {buttonPress}, {player}");
       }
     }
 
