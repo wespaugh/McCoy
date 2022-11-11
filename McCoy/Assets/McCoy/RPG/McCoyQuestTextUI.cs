@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.Localization;
+﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.Localization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Assets.McCoy.RPG
 
     public void BeginQuest(McCoyQuestData quest)
     {
+      this.quest = quest;
       StartCoroutine(yieldThenPause());
       questTitle.SetText(quest.title);
       questText.SetText(quest.introText);
@@ -53,6 +55,8 @@ namespace Assets.McCoy.RPG
 
     public void QuestEnded()
     {
+      Debug.Log("quest ended");
+      gameObject.SetActive(true);
       questTitle.SetText(quest.title);
       questText.SetText(quest.exitText);
       if (quest.exitChoices.Count == 0)
@@ -69,7 +73,7 @@ namespace Assets.McCoy.RPG
         int i = 0;
         for (; i < quest.exitChoices.Count; ++i)
         {
-          buttons[i].gameObject.SetActive(true);
+          buttons[i].transform.parent.gameObject.SetActive(true);
           McCoyLocalizedText buttonText = buttons[i].GetComponent<McCoyLocalizedText>();
           buttonText.SetText(quest.exitChoices[i].displayText, (text) => {
             string[] components = text.Split(":");
@@ -91,8 +95,7 @@ namespace Assets.McCoy.RPG
               buttons[0].onClick.RemoveAllListeners();
               buttons[0].onClick.AddListener(() =>
               {
-                UFE.timeScale = 1f;
-                gameObject.SetActive(false);
+                closeQuestEnded();
               });
               for(int i = 1; i < buttons.Count; ++i)
               {
@@ -106,6 +109,15 @@ namespace Assets.McCoy.RPG
           buttons[i].transform.parent.gameObject.SetActive(false);
         }
       }
+    }
+
+    private void closeQuestEnded()
+    {
+      UFE.timeScale = 1f;
+      gameObject.SetActive(false);
+      McCoyGameState gameState = McCoy.GetInstance().gameState;
+      gameState.playerCharacters[gameState.selectedPlayer].GainXP(100);
+      gameState.activeQuest = null;
     }
   }
 }

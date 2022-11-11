@@ -2,6 +2,7 @@
 using Assets.McCoy.Brawler.Stages;
 using FPLibrary;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -53,6 +54,12 @@ namespace Assets.McCoy.Brawler
     ControlsScript boss = null;
     IBossSpawnListener bossSpawnListener = null;
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
+
+    public bool lastStage 
+    {
+      get => UFE.config.currentRound == UFE.config.selectedStage.stageInfo.substages.Count; 
+    }
+
     // spawners within a stage
     List<McCoySpawnData> spawners = null;
     // spawners based on mobs
@@ -63,6 +70,7 @@ namespace Assets.McCoy.Brawler
     bool allEnemiesDefeated = false;
     bool bossRemains = false;
     string bossName;
+    bool waitingForQuestUI = false;
     SubstageExitCondition endCondition;
 
     public static void SetTeam(int id, Factions f)
@@ -148,8 +156,34 @@ namespace Assets.McCoy.Brawler
         {
           endCondition = allEnemiesDefeated ? SubstageExitCondition.AllEnemiesDefeated : SubstageExitCondition.Escaped;
         }
-        fireWon(endCondition);
+        if (McCoy.GetInstance().gameState.activeQuest != null)
+        {
+          // active quests must be finished before allowing transition out
+          if (!allEnemiesDefeated || transitioning || waitingForQuestUI) return;
+          StartCoroutine(waitForQuestEndUI());
+        }
+        else
+        {
+          fireWon(endCondition);
+        }
       }
+    }
+
+    private IEnumerator waitForQuestEndUI()
+    {
+      // on the last stage, show the quest end UI
+      if (lastStage)
+      {
+        UFE.FireAlert("QuestComplete", null);
+        waitingForQuestUI = true;
+        McCoyGameState state = McCoy.GetInstance().gameState;
+        while (state.activeQuest != null)
+        {
+          yield return null;
+        }
+        waitingForQuestUI = false;
+      }
+      fireWon(endCondition);
     }
 
     public void ActorKilled(ControlsScript monster)
@@ -491,7 +525,7 @@ namespace Assets.McCoy.Brawler
       UFE.FireAlert(message, null);
 
       float transitionTime = 4.0f; // total time before scene switches
-      if (UFE.config.currentRound != UFE.config.selectedStage.stageInfo.substages.Count)
+      if (!lastStage)
       {
         float fadeTime = .40f; // fade out time
         float fadeDelay = 1.0f; // time to wait before fading out

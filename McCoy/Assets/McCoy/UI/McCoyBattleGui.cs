@@ -153,6 +153,10 @@ namespace Assets.McCoy.UI
       {
         worldUI.StageEnded(McCoyStinger.StingerTypes.StageCleared);
       }
+      else if(msg == "QuestComplete")
+      {
+        questUI.QuestEnded();
+      }
       return;
       //alertText.text = msg;
       //UFE.DelaySynchronizedAction(hideAlertText, 2.0f);

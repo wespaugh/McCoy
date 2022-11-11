@@ -1819,7 +1819,7 @@ public class ControlsScript : MonoBehaviour
         else
         {
           if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
-            Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+            Debug.LogError($"{myMoveSetScript.name} Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
 
           if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
           {
