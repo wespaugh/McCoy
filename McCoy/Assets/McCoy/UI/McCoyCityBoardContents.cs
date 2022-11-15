@@ -492,7 +492,6 @@ namespace Assets.McCoy.UI
       {
         mapNodes.Add(assetNode);
         assetNode.connectionIDs.Clear();
-        assetNode.Mobs.Clear();
         mapNodeLookup.Add(assetNode.NodeID, assetNode);
         assetNode.SearchData.ZoneName = assetNode.ZoneName;
         assetNode.SearchData.NodeID = assetNode.NodeID;

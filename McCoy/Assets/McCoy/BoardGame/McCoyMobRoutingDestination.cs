@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.UI;
+﻿using Assets.McCoy.Localization;
+using Assets.McCoy.UI;
 using System;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Assets.McCoy.BoardGame
   public class McCoyMobRoutingDestination : MonoBehaviour
   {
     [SerializeField]
-    TMP_Text zoneLabel = null;
+    McCoyLocalizedText zoneLabel = null;
 
     McCoyMobData mob;
     MapNode originalNode;
@@ -18,7 +19,7 @@ namespace Assets.McCoy.BoardGame
 
     public void Initialize(MapNode originalNode, MapNode destinationNode, McCoyMobData mob, Action<MapNode, MapNode, McCoyMobData> selectCallback)
     {
-      zoneLabel.text = destinationNode.ZoneName;
+      zoneLabel.SetText( destinationNode.ZoneName );
       this.destinationNode = destinationNode;
       this.mob = mob;
       this.originalNode = originalNode;
