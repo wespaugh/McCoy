@@ -58,7 +58,7 @@ namespace UFE3D
 			{
 				if (this.restOnLocation) fuzzyRules = addDistanceReaction(fuzzyRules, this.preferableCombatDistance, AIReaction.Idle, this.moveFrequency);
 				fuzzyRules = addSystematicRules(fuzzyRules, this.preferableCombatDistance, AIReaction.MoveForward, 1, this.moveFrequency);
-				fuzzyRules = addSystematicRules(fuzzyRules, this.preferableCombatDistance, AIReaction.MoveBackward, 1, this.moveFrequency);
+				fuzzyRules = addSystematicRules(fuzzyRules, this.preferableCombatDistance, AIReaction.MoveBackward, -1, this.moveFrequency);
 
 				if (this.autoJump)
 				{

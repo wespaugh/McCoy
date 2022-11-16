@@ -97,10 +97,7 @@ namespace Assets.McCoy.Brawler
       charInfo = null;
       faction = Factions.None;
 
-      if(mageLookup == null)
-      {
-        initLookups();
-      }
+      initLookups();
       if(mageLookup.ContainsKey(enemyName))
       {
         charInfo = mageLookup[enemyName].Item2;
@@ -120,6 +117,10 @@ namespace Assets.McCoy.Brawler
 
     private void initLookups()
     {
+      if(mageLookup != null)
+      {
+        return;
+      }
       mageLookup = new Dictionary<string, Tuple<int, UFE3D.CharacterInfo>>();
       populateLookup(mageLookup, mageLookup1, 1);
       populateLookup(mageLookup, mageLookup2, 2);
@@ -201,6 +202,7 @@ namespace Assets.McCoy.Brawler
 
     public int XPForMonster(string monsterName)
     {
+      initLookups();
       int retVal = 0;
       if(mageLookup.ContainsKey(monsterName))
       {

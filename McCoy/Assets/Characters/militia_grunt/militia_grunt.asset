@@ -329,8 +329,8 @@ MonoBehaviour:
       moveBack:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 63bd1f68d946a1e4b902dbe743d69c2f, type: 2}
-          customHitBoxDefinition: {fileID: 11400000, guid: d2eaea600b06d9e45a73e4ec6a46299c,
+          clip: {fileID: 7400000, guid: f9c9c7c03d52ed64eb9f9de9a0b66497, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 0644d099473fe1e41a30f8b68917d826,
             type: 2}
           length:
             _serializedValue: 4366550016
@@ -430,7 +430,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveSideways:
         animMap:

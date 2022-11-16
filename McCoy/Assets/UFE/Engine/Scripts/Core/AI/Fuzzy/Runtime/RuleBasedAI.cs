@@ -1610,7 +1610,8 @@ public class RuleBasedAI : RandomAI{
 			this.inferenceEngine.SetInput(AICondition.Attacking_FrameData_Self, attackFrameDataSelf);
 			this.inferenceEngine.SetInput(AICondition.Attacking_PreferableDistance_Self, attackPreferableDistanceSelf);
 			this.inferenceEngine.SetInput(AICondition.Blocking_Self, characterBlockingSelf);
-			this.inferenceEngine.SetInput(AICondition.VerticalDistance_Self, verticalDistanceSelf);
+			this.inferenceEngine.SetInput(AICondition.Distance_Self, characterDistanceSelf);
+	  this.inferenceEngine.SetInput(AICondition.VerticalDistance_Self, verticalDistanceSelf);
 			this.inferenceEngine.SetInput(AICondition.Down_Self, characterDownSelf);
 			this.inferenceEngine.SetInput(AICondition.Gauge_Self, characterGaugeSelf);
 			this.inferenceEngine.SetInput(AICondition.Health_Self, characterHealthSelf);

@@ -1042,7 +1042,7 @@ namespace UFE3D
             inferenceSystem.AddInputVariable(this.DefineJumpArcVariable(AICondition.JumpArc_Self));
             inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.Stunned_Self));
             inferenceSystem.AddInputVariable(this.DefineVerticalMovementVariable(AICondition.VerticalMovement_Self));
-	  inferenceSystem.AddInputVariable(this.DefineDistanceVariable(AICondition.VerticalDistance_Self));
+	  inferenceSystem.AddInputVariable(this.DefineDepthDistanceVariable(AICondition.VerticalDistance_Self));
 
 
             inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.Attacking_Opponent));
@@ -1354,6 +1354,17 @@ namespace UFE3D
 
             return varDamage;
         }
+
+	protected LinguisticVariable DefineDepthDistanceVariable(string name)
+    {
+	  LinguisticVariable retVal = new LinguisticVariable(name, -.1f, 5);
+	  retVal.AddLabel(new FuzzySet(CharacterDistance.VeryClose.ToString(), new TrapezoidalFunction(-.1f, 0.125f, 1.25f)));
+	  retVal.AddLabel(new FuzzySet(CharacterDistance.Close.ToString(), new TrapezoidalFunction(1.25f, 2f, 1.5f)));
+	  retVal.AddLabel(new FuzzySet(CharacterDistance.Mid.ToString(), new TrapezoidalFunction(1.5f, 3f, 3.5f)));
+	  retVal.AddLabel(new FuzzySet(CharacterDistance.Far.ToString(), new TrapezoidalFunction(3.5f, 4f, 4.5f)));
+	  retVal.AddLabel(new FuzzySet(CharacterDistance.VeryFar.ToString(), new TrapezoidalFunction(4.5f, 4.75f, 5f)));
+	  return retVal;
+    }
 
         protected LinguisticVariable DefineDistanceVariable(string name, float start = 0f, float end = 1f)
         {

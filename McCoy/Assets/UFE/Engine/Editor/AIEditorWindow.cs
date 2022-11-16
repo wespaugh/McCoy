@@ -170,7 +170,7 @@ public class AIEditorWindow : EditorWindow {
 							aiInfo.rulesGenerator.preferableCombatDistance = (CharacterDistance)EditorGUILayout.EnumPopup("Preferable Distance:", aiInfo.rulesGenerator.preferableCombatDistance, enumStyle);
 							if (aiInfo.rulesGenerator.preferableCombatDistance == CharacterDistance.Any) aiInfo.rulesGenerator.preferableCombatDistance = CharacterDistance.VeryClose;
 							
-							aiInfo.rulesGenerator.moveFrequency = EditorGUILayout.IntSlider("Move Frequency:", aiInfo.rulesGenerator.moveFrequency, 0, 6);
+							aiInfo.rulesGenerator.moveFrequency = EditorGUILayout.IntSlider("Move Frequency:", aiInfo.rulesGenerator.moveFrequency, 0, 60);
 							EditorGUI.indentLevel -= 1;
 						}EditorGUI.EndDisabledGroup();
 						

@@ -16,8 +16,8 @@ MonoBehaviour:
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
-    timeBetweenDecisions: 0
-    timeBetweenActions: 0.05
+    timeBetweenDecisions: 0.2
+    timeBetweenActions: 0.25
     aggressiveness: 0.5
     ruleCompliance: 0.9
     comboEfficiency: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
     attacksAtPreferableDistance: 5
     autoMove: 1
     restOnLocation: 1
-    moveFrequency: 4
+    moveFrequency: 60
     autoJump: 0
     jumpBackFrequency: 1
     jumpStraightFrequency: 2
@@ -121,11 +121,11 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.2
-      close: 0.25
-      mid: 0.32
-      far: 0.4
-      veryFar: 0.5
+      veryClose: 0.8
+      close: 0.85
+      mid: 0.9
+      far: 0.95
+      veryFar: 1
     desirability:
       theWorstOption: 0
       veryUndesirable: 0.15
@@ -137,11 +137,11 @@ MonoBehaviour:
     health:
       healthy: 1
       scratched: 0.9
-      lightlyWounded: 0.8
-      moderatelyWounded: 0.6
-      seriouslyWounded: 0.4
-      criticallyWounded: 0.2
-      almostDead: 0.1
+      lightlyWounded: 0.79999995
+      moderatelyWounded: 0.59999996
+      seriouslyWounded: 0.39999998
+      criticallyWounded: 0.19999999
+      almostDead: 0.099999994
       dead: 0
     speed:
       verySlow: 0.5
