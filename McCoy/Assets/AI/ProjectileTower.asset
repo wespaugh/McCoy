@@ -75,6 +75,7 @@ MonoBehaviour:
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 3
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:
@@ -127,6 +128,7 @@ MonoBehaviour:
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 0
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:

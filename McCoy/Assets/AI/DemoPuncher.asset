@@ -58,7 +58,7 @@ MonoBehaviour:
     autoAttack: 0
     obeyPreferableDistances: 1
     attackFrequency: 3
-    debugToggle: 0
+    debugToggle: 1
   aiRules:
   - ruleName: Manual Attack
     events:
@@ -68,13 +68,14 @@ MonoBehaviour:
       - enabled: 1
         boolean: 0
         targetCharacter: 0
-        conditionType: 5
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 2
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:
@@ -111,7 +112,7 @@ MonoBehaviour:
       desirability: 5
     debugToggle: 1
     eventsToggle: 1
-    reactionsToggle: 0
+    reactionsToggle: 1
   - ruleName: Movement
     events:
     - enabled: 1
@@ -120,13 +121,14 @@ MonoBehaviour:
       - enabled: 1
         boolean: 1
         targetCharacter: 0
-        conditionType: 5
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 2
+        verticalDistance: 4
         jumping: 0
         blocking: 1
         moveClassification:
@@ -145,13 +147,14 @@ MonoBehaviour:
       - enabled: 1
         boolean: 1
         targetCharacter: 0
-        conditionType: 5
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 1
+        verticalDistance: 5
         jumping: 0
         blocking: 1
         moveClassification:
@@ -197,13 +200,14 @@ MonoBehaviour:
       - enabled: 1
         boolean: 0
         targetCharacter: 0
-        conditionType: 5
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 1
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:

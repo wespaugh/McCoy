@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e87d7c439487834c82e9d4aa521a1ed, type: 3}
-  m_Name: RangedBruiser
+  m_Name: RandomWanderer
   m_EditorClassIdentifier: 
-  instructionsName: RangedBruiser
+  instructionsName: Random Wanderer
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
-    timeBetweenDecisions: 0.2
-    timeBetweenActions: 0.25
+    timeBetweenDecisions: 2.5
+    timeBetweenActions: 5
     aggressiveness: 0.5
     ruleCompliance: 0.9
     comboEfficiency: 1
-    movementDuration: 0.1
+    movementDuration: 2
     buttonSequenceInterval: 1
     attackDesirabilityCalculation: 2
     defaultDesirability: 0
@@ -41,11 +41,11 @@ MonoBehaviour:
       enableAttackSpeedFilter: 0
       enableHitTypeFilter: 1
   rulesGenerator:
-    preferableCombatDistance: 2
+    preferableCombatDistance: 1
     attacksAtPreferableDistance: 5
     autoMove: 0
     restOnLocation: 1
-    moveFrequency: 60
+    moveFrequency: 4
     autoJump: 0
     jumpBackFrequency: 1
     jumpStraightFrequency: 2
@@ -60,113 +60,7 @@ MonoBehaviour:
     attackFrequency: 5
     debugToggle: 0
   aiRules:
-  - ruleName: SHOOT HER
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 0
-        conditionType: 3
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        verticalDistance: 1
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 1
-    reactions:
-    - reactionType: 10
-      moveClassification:
-        attackType: 6
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 0
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 6
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Idling is cool
-    events:
-    - enabled: 1
-      boolean: 0
-      conditions:
-      - enabled: 1
-        boolean: 0
-        targetCharacter: 0
-        conditionType: 6
-        horizontalMovement: 1
-        verticalMovement: 1
-        movementSpeed: 0
-        healthStatus: 0
-        gaugeStatus: 0
-        playerDistance: 3
-        verticalDistance: 3
-        jumping: 0
-        blocking: 1
-        moveClassification:
-          attackType: 0
-          hitType: 0
-          startupSpeed: 0
-          recoverySpeed: 0
-          hitConfirmType: 0
-          preferableDistance: 0
-          gaugeUsage: 0
-          anyAttackType: 1
-          anyHitType: 1
-          anyHitConfirmType: 1
-        moveFrameData: 0
-        moveDamage: 0
-      conditionsToggle: 1
-    reactions:
-    - reactionType: 0
-      moveClassification:
-        attackType: 0
-        hitType: 0
-        startupSpeed: 0
-        recoverySpeed: 0
-        hitConfirmType: 0
-        preferableDistance: 0
-        gaugeUsage: 0
-        anyAttackType: 1
-        anyHitType: 1
-        anyHitConfirmType: 1
-      moveDamage: 0
-      specificMove: {fileID: 0}
-      buttonPress: 4
-      behavior: 0
-      desirability: 4
-    debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
-  - ruleName: Create Distance
+  - ruleName: Move Away
     events:
     - enabled: 1
       boolean: 0
@@ -267,11 +161,11 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 5
+      desirability: 4
     debugToggle: 0
     eventsToggle: 0
     reactionsToggle: 0
-  - ruleName: Line Up Shots
+  - ruleName: Move Random
     events:
     - enabled: 1
       boolean: 0
@@ -279,14 +173,14 @@ MonoBehaviour:
       - enabled: 1
         boolean: 1
         targetCharacter: 0
-        conditionType: 3
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
-        playerDistance: 3
-        verticalDistance: 1
+        playerDistance: 5
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:
@@ -305,14 +199,163 @@ MonoBehaviour:
       - enabled: 1
         boolean: 1
         targetCharacter: 0
-        conditionType: 3
+        conditionType: 6
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
+        playerDistance: 1
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 2
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 0
+    reactions:
+    - reactionType: 1
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 4
+    - reactionType: 2
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 4
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Get Violent
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 4
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 3
+        gaugeStatus: 0
         playerDistance: 3
-        verticalDistance: 2
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 11
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 5
+      desirability: 6
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Stay On The Field
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 5
+        verticalDistance: 3
         jumping: 0
         blocking: 1
         moveClassification:
@@ -346,7 +389,113 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
+      desirability: 6
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Hang Out
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 0
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
       desirability: 4
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Take the opportunity
+    events:
+    - enabled: 0
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 1
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 11
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 5
+      desirability: 6
     debugToggle: 0
     eventsToggle: 1
     reactionsToggle: 1
@@ -358,11 +507,11 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.4
-      close: 0.42
-      mid: 0.48
-      far: 0.51
-      veryFar: 0.55
+      veryClose: 0.05
+      close: 1
+      mid: 0.2
+      far: 0.3
+      veryFar: 0.6
     desirability:
       theWorstOption: 0
       veryUndesirable: 0.15
@@ -374,11 +523,11 @@ MonoBehaviour:
     health:
       healthy: 1
       scratched: 0.9
-      lightlyWounded: 0.79999995
-      moderatelyWounded: 0.59999996
-      seriouslyWounded: 0.39999998
-      criticallyWounded: 0.19999999
-      almostDead: 0.099999994
+      lightlyWounded: 0.8
+      moderatelyWounded: 0.6
+      seriouslyWounded: 0.4
+      criticallyWounded: 0.2
+      almostDead: 0.1
       dead: 0
     speed:
       verySlow: 0.5

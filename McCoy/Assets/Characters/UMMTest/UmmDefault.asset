@@ -5486,9 +5486,43 @@ MonoBehaviour:
     attackMoves:
     - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
     - {fileID: 11400000, guid: f6365bc5527919341831550ebbe64e33, type: 2}
+    physics:
+      _moveForwardSpeed:
+        _serializedValue: 17179869184
+      _moveBackSpeed:
+        _serializedValue: 15032385536
+      _moveSidewaysSpeed:
+        _serializedValue: 17179869184
+      highMovingFriction: 1
+      _friction:
+        _serializedValue: 128849018880
+      canCrouch: 1
+      crouchDelay: 2
+      standingDelay: 2
+      canJump: 1
+      pressureSensitiveJump: 0
+      _jumpForce:
+        _serializedValue: 171798691840
+      _minJumpForce:
+        _serializedValue: 128849018880
+      minJumpDelay: 4
+      _jumpDistance:
+        _serializedValue: 34359738368
+      _jumpBackDistance:
+        _serializedValue: 34359738368
+      cumulativeForce: 1
+      multiJumps: 1
+      _weight:
+        _serializedValue: 751619276800
+      jumpDelay: 8
+      landingDelay: 7
+      _groundCollisionMass:
+        _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
     attackMovesToggle: 0
   aiInstructionsSet:
-  - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
+  - aiInfo: {fileID: 11400000, guid: 457a5cbe1dff85548bce15726dafbf85, type: 2}
     behavior: 1
+  - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
+    behavior: 5

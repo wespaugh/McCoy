@@ -1045,7 +1045,7 @@ MonoBehaviour:
   PanX: -118
   PanY: 52
   mouseOverProperties: 0
-  propertyWidth: 169.5
+  propertyWidth: 330.16666
   PointsToAssign: 6
 --- !u!114 &153035075456938266
 MonoBehaviour:
