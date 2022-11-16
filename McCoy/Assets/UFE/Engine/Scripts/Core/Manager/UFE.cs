@@ -4274,7 +4274,7 @@ public class UFE : MonoBehaviour, UFEInterface
     SceneManager.SetActiveScene(stageScene);
   }
 
-  public static ControlsScript CreateRandomMonster(UFE3D.CharacterInfo character = null, float? posX = null, float? posZ = null)
+  public static ControlsScript CreateRandomMonster(UFE3D.CharacterInfo character = null, float? posX = null, float? posZ = null, bool debug = false)
   {
     UFE3D.CharacterInfo toSpawn = character == null ? config.player2Character : character;
 
@@ -4292,6 +4292,7 @@ public class UFE : MonoBehaviour, UFEInterface
     }
 
     var cScript = SpawnCharacter(toSpawn, newId, -1, pos, false, null, null, -1);
+    cScript.debugOn = debug;
     brawlerEntityManager.SetControlsScript(cScript, newId);
     cScript.opControlsScript = p1ControlsScript;
     

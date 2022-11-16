@@ -52,6 +52,7 @@ public class ControlsScript : MonoBehaviour
   public UFE3D.CharacterInfo myInfo;
   public int mirror;
   public Fix64 normalizedDistance;
+  public Fix64 targetVerticalOffset;
   public Fix64 normalizedJumpArc;
   public bool outroPlayed;
   public bool potentialBlock;
@@ -711,6 +712,7 @@ public class ControlsScript : MonoBehaviour
 
     // Character colliders based on collision mass and body colliders
     normalizedDistance = FPMath.Clamp(FPVector.Distance(opControlsScript.worldTransform.position, worldTransform.position) / UFE.config.cameraOptions._maxDistance, 0, 1);
+    targetVerticalOffset = FPMath.Abs(opControlsScript.worldTransform.position.z - worldTransform.position.z);
     if (UFE.config.selectedMatchType != MatchType.Singles)
     {
       foreach (ControlsScript cScript in UFE.GetControlsScriptTeam(opControlsScript.playerNum))

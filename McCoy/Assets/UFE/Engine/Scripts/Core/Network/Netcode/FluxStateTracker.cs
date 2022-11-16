@@ -498,6 +498,7 @@ public class FluxStateTracker {
                 controlsScript.lockZMotion = state.lockZMotion;
                 controlsScript.mirror = state.mirror;
                 controlsScript.normalizedDistance = state.normalizedDistance;
+        controlsScript.targetVerticalOffset = state.targetVerticalOffset;
                 controlsScript.normalizedJumpArc = state.normalizedJumpArc;
                 controlsScript.outroPlayed = state.outroPlayed;
                 controlsScript.potentialBlock = state.potentialBlock;
@@ -793,6 +794,7 @@ public class FluxStateTracker {
             state.lockZMotion = controlsScript.lockZMotion;
             state.mirror = controlsScript.mirror;
             state.normalizedDistance = controlsScript.normalizedDistance;
+      state.targetVerticalOffset = controlsScript.targetVerticalOffset;
             state.normalizedJumpArc = controlsScript.normalizedJumpArc;
             state.outroPlayed = controlsScript.outroPlayed;
             state.potentialBlock = controlsScript.potentialBlock;

@@ -128,6 +128,7 @@ public enum AIConditionType {
 	Idle,
 	HorizontalMovement,
 	VerticalMovement,
+	VerticalDistance,
 	HealthStatus,
 	GaugeStatus,
 	Distance,
@@ -272,8 +273,10 @@ public class AICondition:ICloneable {
 	public static readonly string VerticalMovement_Self = "038_" + AIConditionType.VerticalMovement + "_" + TargetCharacter.Self;
 	public static readonly string VerticalMovement_Opponent = "039_" + AIConditionType.VerticalMovement + "_" + TargetCharacter.Opponent;
 
-	// Public instance properties
-	public bool enabled = true;
+  public static readonly string VerticalDistance_Self = "040_" + AIConditionType.VerticalDistance + "_" + TargetCharacter.Self;
+
+  // Public instance properties
+  public bool enabled = true;
 	public AIBoolean boolean = AIBoolean.TRUE;
 
 	public TargetCharacter targetCharacter = TargetCharacter.Self;
@@ -284,6 +287,7 @@ public class AICondition:ICloneable {
 	public HealthStatus healthStatus = HealthStatus.Healthy;
 	public GaugeUsage gaugeStatus = GaugeUsage.Any;
 	public CharacterDistance playerDistance = CharacterDistance.Mid;
+  public CharacterDistance verticalDistance = CharacterDistance.Mid;
 	public JumpArc jumping = global::JumpArc.Any;
 	public AIBlocking blocking = AIBlocking.High;
 	public MoveClassification moveClassification;
@@ -500,7 +504,19 @@ public class AIRule: System.ICloneable {
 									}
 									sb3.Append(condition.playerDistance.ToString());
 								}
-
+							}else if(condition.conditionType == AIConditionType.VerticalDistance) {
+				if(condition.verticalDistance != CharacterDistance.Any && condition.playerDistance != CharacterDistance.Other) {
+				  if(target == TargetCharacter.Opponent)
+                  {
+					Debug.LogWarning("Warning: Vertical Distance not configured for opponent!");
+                  }
+				  sb3.Append(AICondition.VerticalDistance_Self).Append(AIRule.Rule_IS);
+				  if(condition.boolean == AIBoolean.FALSE)
+                  {
+					sb3.Append(AIRule.Rule_NOT);
+                  }
+				  sb3.Append(condition.verticalDistance.ToString());
+				}
 							}else if (condition.conditionType == AIConditionType.Attacking){
 								// Define the attack information
 								if (condition.boolean == AIBoolean.FALSE){
@@ -1026,6 +1042,7 @@ namespace UFE3D
             inferenceSystem.AddInputVariable(this.DefineJumpArcVariable(AICondition.JumpArc_Self));
             inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.Stunned_Self));
             inferenceSystem.AddInputVariable(this.DefineVerticalMovementVariable(AICondition.VerticalMovement_Self));
+	  inferenceSystem.AddInputVariable(this.DefineDistanceVariable(AICondition.VerticalDistance_Self));
 
 
             inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.Attacking_Opponent));

@@ -353,6 +353,9 @@ public class AIEditorWindow : EditorWindow {
 																		
 																	}else if (aiInfo.aiRules[i].events[j].conditions[m].conditionType == AIConditionType.Distance){
 																		aiInfo.aiRules[i].events[j].conditions[m].playerDistance = (CharacterDistance)EditorGUILayout.EnumPopup("Proximity:", aiInfo.aiRules[i].events[j].conditions[m].playerDistance, enumStyle);
+									} else if(aiInfo.aiRules[i].events[j].conditions[m].conditionType == AIConditionType.VerticalDistance)
+                                  {
+									aiInfo.aiRules[i].events[j].conditions[m].verticalDistance = (CharacterDistance)EditorGUILayout.EnumPopup("Vertical Offset:", aiInfo.aiRules[i].events[j].conditions[m].verticalDistance, enumStyle);
 																		
 																	}else if (aiInfo.aiRules[i].events[j].conditions[m].conditionType == AIConditionType.Blocking){
 																		aiInfo.aiRules[i].events[j].conditions[m].blocking = (AIBlocking)EditorGUILayout.EnumPopup("Blocking State:", aiInfo.aiRules[i].events[j].conditions[m].blocking, enumStyle);

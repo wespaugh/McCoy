@@ -96,7 +96,7 @@ namespace Assets.McCoy.UI
               break;
             }
           }
-          UFE.CreateRandomMonster(m, x, z);
+          UFE.CreateRandomMonster(m, x, z, debug: true);
         });
       }
       var camera2 = GameObject.Find("BattleUI Camera");

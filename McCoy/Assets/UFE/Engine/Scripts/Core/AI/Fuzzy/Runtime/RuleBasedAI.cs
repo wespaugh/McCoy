@@ -614,7 +614,8 @@ public class RuleBasedAI : RandomAI{
 						self.aiDebugger = "-----AI Reaction Weights-----\n";
 						StringBuilder sb = new StringBuilder();
 						sb.Append("Instruction Set: ").Append(ai.instructionsName).AppendLine();
-						
+			sb.Append("Distance: ").Append(self.normalizedDistance).AppendLine();
+			sb.Append("Vertical Dist: ").Append(self.targetVerticalOffset).AppendLine();
 						foreach(MovementInfo mInfo in this.movements){
 							sb.Append(mInfo.name).Append(" = ").Append(mInfo.weight).AppendLine();
 						}
@@ -1488,6 +1489,7 @@ public class RuleBasedAI : RandomAI{
 			float attackPreferableDistanceSelf = float.MinValue;
 			float characterBlockingSelf = (float)((int)(self.isBlocking ? AIBoolean.TRUE : AIBoolean.FALSE));
             float characterDistanceSelf = (float)self.normalizedDistance;
+	  float verticalDistanceSelf = (float)self.targetVerticalOffset;
 			float characterDownSelf = (float)((int)(self.currentState == PossibleStates.Down ? AIBoolean.TRUE : AIBoolean.FALSE));
 			float characterGaugeSelf = (float)self.currentGaugesPoints[0] / (float)(self.myInfo.maxGaugePoints);
             float characterHealthSelf = (float)self.currentLifePoints / (float)(self.myInfo.lifePoints);
@@ -1608,7 +1610,7 @@ public class RuleBasedAI : RandomAI{
 			this.inferenceEngine.SetInput(AICondition.Attacking_FrameData_Self, attackFrameDataSelf);
 			this.inferenceEngine.SetInput(AICondition.Attacking_PreferableDistance_Self, attackPreferableDistanceSelf);
 			this.inferenceEngine.SetInput(AICondition.Blocking_Self, characterBlockingSelf);
-			this.inferenceEngine.SetInput(AICondition.Distance_Self, characterDistanceSelf);
+			this.inferenceEngine.SetInput(AICondition.VerticalDistance_Self, verticalDistanceSelf);
 			this.inferenceEngine.SetInput(AICondition.Down_Self, characterDownSelf);
 			this.inferenceEngine.SetInput(AICondition.Gauge_Self, characterGaugeSelf);
 			this.inferenceEngine.SetInput(AICondition.Health_Self, characterHealthSelf);

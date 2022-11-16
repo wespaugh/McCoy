@@ -141,6 +141,7 @@ public struct FluxStates : UFEInterface {
         public bool lockZMotion;
         public int mirror;
         public Fix64 normalizedDistance;
+    public Fix64 targetVerticalOffset;
         public Fix64 normalizedJumpArc;
         public bool outroPlayed;
         public bool potentialBlock;
