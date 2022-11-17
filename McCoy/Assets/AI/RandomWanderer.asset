@@ -16,10 +16,10 @@ MonoBehaviour:
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
-    timeBetweenDecisions: 2.5
-    timeBetweenActions: 5
+    timeBetweenDecisions: 1
+    timeBetweenActions: 0.5
     aggressiveness: 0.5
-    ruleCompliance: 0.9
+    ruleCompliance: 0.5
     comboEfficiency: 1
     movementDuration: 2
     buttonSequenceInterval: 1
@@ -161,7 +161,7 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 4
+      desirability: 3
     debugToggle: 0
     eventsToggle: 0
     reactionsToggle: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
-        healthStatus: 3
+        healthStatus: 1
         gaugeStatus: 0
         playerDistance: 3
         verticalDistance: 3
@@ -399,7 +399,7 @@ MonoBehaviour:
       boolean: 0
       conditions:
       - enabled: 1
-        boolean: 0
+        boolean: 1
         targetCharacter: 0
         conditionType: 6
         horizontalMovement: 1
@@ -407,7 +407,7 @@ MonoBehaviour:
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
-        playerDistance: 3
+        playerDistance: 5
         verticalDistance: 3
         jumping: 0
         blocking: 1
@@ -424,7 +424,33 @@ MonoBehaviour:
           anyHitConfirmType: 1
         moveFrameData: 0
         moveDamage: 0
-      conditionsToggle: 1
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 4
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 0
     reactions:
     - reactionType: 0
       moveClassification:
@@ -445,10 +471,10 @@ MonoBehaviour:
       desirability: 4
     debugToggle: 0
     eventsToggle: 0
-    reactionsToggle: 0
+    reactionsToggle: 1
   - ruleName: Take the opportunity
     events:
-    - enabled: 0
+    - enabled: 1
       boolean: 0
       conditions:
       - enabled: 1
@@ -495,7 +521,7 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 5
-      desirability: 6
+      desirability: 5
     debugToggle: 0
     eventsToggle: 1
     reactionsToggle: 1
