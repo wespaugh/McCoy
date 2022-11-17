@@ -937,8 +937,9 @@ public class ControlsScript : MonoBehaviour
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
     // TODO: This code's still good! it does push the player away... HARD, at the start of each level, so fix that before committing. but I prefer this feel
-    /*
+    
     if (opControlsScript == null
+      || opControlsScript == this
         || !opControlsScript.GetActive()
         || opControlsScript.HitBoxes == null
         || ignoreCollisionMass
@@ -1007,7 +1008,6 @@ public class ControlsScript : MonoBehaviour
         worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, .5 * pushForce);
       }
     }
-    */
   }
 
   private bool testMoveExecution(ButtonPress buttonPress)
