@@ -1382,7 +1382,7 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.SetPlayer(1, characters[0]);
     // vincible umm
     UFE.SetPlayer(2, characters[1]);
-    UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-1];
+    UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-2];
 
     UFE.StartLoadingBattleScreen();
   }

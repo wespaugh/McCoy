@@ -46,11 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
-  unitWidth: 19.2
+  unitSize: 19.2
   speed: 0.5
+  autoScrollSpeed: 0
   cameraPos: {x: 0, y: 0, z: 0}
-  camMinX: 0
-  camMaxX: 0
+  chunkIndex: 0
+  horizontal: 1
+  camMinPos: 0
+  firstPosition: 0
+  autoScrollOffset: 0
   sprites:
   - {fileID: 21300000, guid: fabddc01fdfbe48ab8d2029c16654b69, type: 3}
 --- !u!1 &3131759690115057030
@@ -132,10 +136,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
-  unitWidth: 19.2
+  unitSize: 19.2
   speed: 1
+  autoScrollSpeed: 0
   cameraPos: {x: 0, y: 0, z: 0}
-  camMinX: 0
-  camMaxX: 0
+  chunkIndex: 0
+  horizontal: 1
+  camMinPos: 0
+  firstPosition: 0
+  autoScrollOffset: 0
   sprites:
   - {fileID: 21300000, guid: 9c7ab5ca8f27c4d27a83093f7cb461c6, type: 3}

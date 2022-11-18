@@ -130,6 +130,7 @@ namespace Assets.McCoy.Brawler
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
       player = UFE.brawlerEntityManager.GetControlsScript(1);
+      playerStartX = ((float)player.worldTransform.position.x);
       this.bossSpawnListener = bossSpawnListener;
 
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
@@ -277,7 +278,7 @@ namespace Assets.McCoy.Brawler
         spawners = new List<McCoySpawnData>();
         UFE.DelaySynchronizedAction(stageBegan, 0.5f);
       }
-      playerStartX = ((float)player.worldTransform.position.x);
+
       if(spawners == null || spawners.Count == 0 || debugSpawnsOnly)
       {
         return;
@@ -546,11 +547,16 @@ namespace Assets.McCoy.Brawler
             }
           }
 
+          Debug.Log("nextBrawlerStage");
+          Debug.Log("SKIP!");
           UFE.NextBrawlerStage();
-          Initialize(spawnData, bossSpawnListener, false);
-          player.worldTransform.position = FPVector.zero;
-          UFE.cameraScript.MoveCameraToLocation(player.worldTransform.position.ToVector(), Vector3.zero, UFE.cameraScript.targetFieldOfView, 1000, player.gameObject);
-          UFE.DelaySynchronizedAction(() => UFE.cameraScript.ReleaseCam(), .5f);
+          if (false)
+          {
+            Initialize(spawnData, bossSpawnListener, false);
+            player.worldTransform.position = FPVector.zero;
+            UFE.cameraScript.MoveCameraToLocation(player.worldTransform.position.ToVector(), Vector3.zero, UFE.cameraScript.targetFieldOfView, 1000, player.gameObject);
+            UFE.DelaySynchronizedAction(() => UFE.cameraScript.ReleaseCam(), .5f);
+          }
         }, fadeTime + fadeDelay);
 
         float buffer = .5f; // time to wait after scene switch
@@ -581,6 +587,7 @@ namespace Assets.McCoy.Brawler
     {
       UFE.DelaySynchronizedAction(() =>
       {
+        Debug.Log("FADE IN BEGIN!");
         CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, time);
       }, time);
     }
