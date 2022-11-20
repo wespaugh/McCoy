@@ -55,7 +55,6 @@ namespace Assets.McCoy.RPG
 
     public void QuestEnded()
     {
-      Debug.Log("quest ended");
       gameObject.SetActive(true);
       questTitle.SetText(quest.title);
       questText.SetText(quest.exitText);
