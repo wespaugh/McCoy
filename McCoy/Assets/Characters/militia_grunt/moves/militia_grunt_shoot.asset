@@ -19,7 +19,7 @@ MonoBehaviour:
     customHitBoxDefinition: {fileID: 11400000, guid: 9ec3c06d246a26144835a323db2ebe39,
       type: 2}
     length:
-      _serializedValue: 21546420224
+      _serializedValue: 10809000960
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
@@ -45,7 +45,7 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 301
+  totalFrames: 151
   startUpFrames: 0
   activeFrames: 1
   recoveryFrames: 2

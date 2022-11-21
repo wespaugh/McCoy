@@ -58,6 +58,11 @@ namespace Assets.McCoy.Brawler.Stages
       {
         cameraSize = cameraSize / Camera.main.aspect; // cameraSize/aspect = height
       }
+      if(unitSize == 0)
+      {
+        Debug.LogError("Parallax Item Cannot Be 0 units wide");
+        return;
+      }
       int numInstancesNeeded = ((int)(cameraSize / unitSize)) + 3;
 
       for (int i = 0; i < numInstancesNeeded; ++i)
