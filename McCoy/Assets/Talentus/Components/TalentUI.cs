@@ -62,7 +62,8 @@ namespace com.cygnusprojects.TalentTree
         }
     public void ForceUpdate() { UpdateUI(); }
         void UpdateUI()
-        {            
+        {
+      Debug.Log("UPDATE THE UI AND RUIN EVERYTHING");
             if (Talent != null)
             {               
                 if (NameLabel != null)

@@ -36,5 +36,9 @@ namespace Assets.McCoy.RPG
         levelIndicator.text = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";
       }
     }
+    public void OnEnable()
+    {
+      StartCoroutine(oneFrameDelay());
+    }
   }
 }
