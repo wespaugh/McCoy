@@ -647,8 +647,8 @@ MonoBehaviour:
   IconField: {fileID: 7929905841559450051}
   TierIndicator: {fileID: 7930744510147339763}
   TalentBackground: {fileID: 7926623905125217227}
-  EnabledColor: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}
-  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  EnabledColor: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 0}
+  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
   buyButton: {fileID: 6102110804187333806}
   revertButton: {fileID: 355371614957231582}
 --- !u!114 &424740999223680498
