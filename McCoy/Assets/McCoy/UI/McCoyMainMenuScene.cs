@@ -19,6 +19,11 @@ namespace Assets.McCoy.UI
     [SerializeField]
     Button deleteSavesButton = null;
 
+    [SerializeField]
+    GameObject mainMenuBuildingsPrefab = null;
+
+    GameObject buildings = null;
+
     McCoy game;
     public void Awake()
     {
@@ -34,6 +39,12 @@ namespace Assets.McCoy.UI
       }
       updateMenuItems();
       McCoyQuestManager.GetInstance().ClearQuestData();
+      buildings = Instantiate(mainMenuBuildingsPrefab);
+    }
+
+    private void OnDestroy()
+    {
+      Destroy(buildings);
     }
 
     public override void DoFixedUpdate(

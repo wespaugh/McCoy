@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3691732882776570366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7616241098451986901}
+  - component: {fileID: 6248848334731392232}
+  m_Layer: 5
+  m_Name: Buildings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7616241098451986901
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691732882776570366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6248848334731392232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691732882776570366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798b03403186a7b419acee6e042c1c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
+    type: 3}
+  unitSize: 2.56
+  speed: 1
+  autoScrollSpeed: 5
+  cameraPos: {x: 0, y: 0, z: 0}
+  chunkIndex: 0
+  horizontal: 1
+  camMinPos: 0
+  firstPosition: 0
+  autoScrollOffset: 0
+  sprites:
+  - {fileID: 21300000, guid: 660e44dd83e45ed4baabcb644731f925, type: 3}
+  - {fileID: 21300000, guid: 4b0e5883d41f11c44807e2d3f85b3ebb, type: 3}
+  - {fileID: 21300000, guid: e3fce16fb6b22f449b4b4cfbef5fc7fb, type: 3}
