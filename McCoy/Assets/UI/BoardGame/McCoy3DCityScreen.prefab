@@ -2617,7 +2617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle Routes   <sprite name="controller_buttons_ps4_5">
+  m_text: Toggle Routes   <sprite name="controller_buttons_ps4_0">
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0191162341c3d2147abc7e629e9cbab6, type: 2}
   m_sharedMaterial: {fileID: -5721515438913031097, guid: 0191162341c3d2147abc7e629e9cbab6,

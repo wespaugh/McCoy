@@ -83,6 +83,8 @@ namespace Assets.McCoy.UI
 
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
 
+    MapNode selectedZone = null;
+
     private McCoyStageData stageDataToLoad = null;
     bool loadingStage;
 
@@ -124,9 +126,13 @@ namespace Assets.McCoy.UI
       bool previousToggleZoom = false;
       bool currentToggleZoom = false;
 
-      ButtonPress ToggleConnections = ButtonPress.Button2;
+      ButtonPress ToggleConnections = ButtonPress.Button1;
       bool previousToggleConnections = false;
       bool currentToggleConnections = false;
+
+      ButtonPress enterZone = ButtonPress.Button2;
+      bool previousEnterZone = false;
+      bool currentEnterZone = false;
 
       foreach (KeyValuePair<InputReferences, InputEvents> pair in player1PreviousInputs)
       {
@@ -151,6 +157,10 @@ namespace Assets.McCoy.UI
           else if(pair.Key.engineRelatedButton == toggleZoom)
           {
             previousToggleZoom = true;
+          }
+          else if(pair.Key.engineRelatedButton == enterZone)
+          {
+            previousEnterZone = true;
           }
         }
       }
@@ -182,6 +192,10 @@ namespace Assets.McCoy.UI
           {
             currentToggleZoom = true;
           }
+          else if(pair.Key.engineRelatedButton == enterZone)
+          {
+            currentEnterZone = true;
+          }
         }
       }
 
@@ -206,6 +220,10 @@ namespace Assets.McCoy.UI
         else if(!previousToggleZoom && currentToggleZoom)
         {
           ToggleZoom();
+        }
+        else if(currentEnterZone)
+        {
+          selectedZonePanel?.ZoneClicked();
         }
       }
 
@@ -315,6 +333,14 @@ namespace Assets.McCoy.UI
       {
         board.ToggleZoom();
       }
+    }
+
+    public void ZoneHighlighted(MapCityNodePanel panel, MapNode node)
+    {
+      this.selectedZonePanel = panel;
+      Board.SelectMapNode(node, null, false);
+      Board.ToggleZoom(true);
+      Board.SetHoverNode(node);
     }
 
     private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
@@ -641,6 +667,7 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
+      Debug.Log("Load Stage");
       // look for a quest at the zone we're heading to. if it's there, tee up the quest for the zone
       foreach(var quest in McCoy.GetInstance().gameState.availableQuests)
       {

@@ -233,9 +233,8 @@ namespace Assets.McCoy.UI
 
     public void ZoneHighlighted()
     {
-      uiRoot.Board.SelectMapNode(node, null, false);
-      uiRoot.Board.ToggleZoom(true);
-      uiRoot.Board.SetHoverNode(node);
+      Debug.Log("Zone Highlighted: " + node.ZoneName);
+      uiRoot.ZoneHighlighted(this, node);
     }
 
     public void SetInteractable(bool isConnected)
