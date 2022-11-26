@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.RPG;
+﻿using Assets.McCoy.Brawler.Stages;
+using Assets.McCoy.RPG;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,8 +22,10 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     GameObject mainMenuBuildingsPrefab = null;
+    [SerializeField]
+    GameObject imageBackground = null;
 
-    GameObject buildings = null;
+    List<GameObject> buildings = null;
 
     McCoy game;
     public void Awake()
@@ -39,12 +42,34 @@ namespace Assets.McCoy.UI
       }
       updateMenuItems();
       McCoyQuestManager.GetInstance().ClearQuestData();
-      buildings = Instantiate(mainMenuBuildingsPrefab);
+      buildings = new List<GameObject>();
+      var bg = Instantiate(imageBackground);
+      bg.transform.position = new Vector3(-.5f, -6, 20f);
+      buildings.Add(bg);
+      for (int i = 0; i < 3; ++i)
+      {
+        var building = Instantiate(mainMenuBuildingsPrefab);
+        // building.GetComponent<SpriteRenderer>().enabled = i == 2;
+        foreach (var sprite in building.GetComponentsInChildren<SpriteRenderer>())
+        {
+          sprite.sortingOrder = -i;
+          sprite.color = new Color(.4f + (.3f * i), .4f + (.3f * i), .4f + (.3f * i));
+          sprite.transform.position = new Vector3(-.5f, 2 + (.2f * i), 20f);
+          sprite.transform.localScale = new Vector3(1f + (.1f * i), 1f + (.1f * i), 1f + (.1f * i));
+        }
+        float scrollSpeed = i == 0 ? 2f : (i == 1 ? 1.6f : .8f);
+        building.GetComponent<McCoyRandomSpriteParallaxItem>().autoScrollSpeed = scrollSpeed;
+      }
     }
 
     private void OnDestroy()
     {
-      Destroy(buildings);
+      while(buildings.Count > 0)
+      {
+        var b = buildings[0];
+        buildings.RemoveAt(0);
+        Destroy(b);
+      }
     }
 
     public override void DoFixedUpdate(

@@ -109,6 +109,8 @@ MonoBehaviour:
   deleteSavesButton: {fileID: 5618241895130467384}
   mainMenuBuildingsPrefab: {fileID: 3691732882776570366, guid: c3529a5e12d121b4abde80e1fc2ac6fa,
     type: 3}
+  imageBackground: {fileID: 985691147436796611, guid: 2192899b4d75594458b319851f7514f2,
+    type: 3}
 --- !u!1 &1637789616172082689
 GameObject:
   m_ObjectHideFlags: 0

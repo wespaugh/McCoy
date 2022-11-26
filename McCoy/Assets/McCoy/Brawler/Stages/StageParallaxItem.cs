@@ -19,7 +19,7 @@ namespace Assets.McCoy.Brawler.Stages
     float speed = 1.0f;
 
     [SerializeField]
-    float autoScrollSpeed = 0.0f;
+    public float autoScrollSpeed = 0.0f;
 
     [SerializeField]
     Vector3 cameraPos;
@@ -97,7 +97,7 @@ namespace Assets.McCoy.Brawler.Stages
       }
       else
       {
-        firstPosition = camMinPos * (1.0f - speed);
+        firstPosition = camMinPos * (1.0f - speed) - (autoScrollSpeed * (Time.time - scrollStartTime));
       }
       chunkIndex = 0;
 
