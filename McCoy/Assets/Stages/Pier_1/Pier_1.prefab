@@ -293,7 +293,7 @@ MonoBehaviour:
     type: 3}
   unitSize: 4
   speed: 0.3
-  autoScrollSpeed: 5
+  autoScrollSpeed: 1
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
   horizontal: 1
@@ -499,8 +499,8 @@ MonoBehaviour:
   contents: {fileID: 6520915763857439236, guid: 0eeb23636ee0fae45b60269ee3d5b356,
     type: 3}
   unitSize: 14.62857
-  speed: 0.1
-  autoScrollSpeed: 5
+  speed: 0
+  autoScrollSpeed: 0
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
   horizontal: 1
@@ -923,7 +923,7 @@ MonoBehaviour:
     type: 3}
   unitSize: 4
   speed: 0.6
-  autoScrollSpeed: 5
+  autoScrollSpeed: 1.6
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
   horizontal: 1

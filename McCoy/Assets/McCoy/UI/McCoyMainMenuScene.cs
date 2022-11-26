@@ -44,21 +44,24 @@ namespace Assets.McCoy.UI
       McCoyQuestManager.GetInstance().ClearQuestData();
       buildings = new List<GameObject>();
       var bg = Instantiate(imageBackground);
-      bg.transform.position = new Vector3(-.5f, -6, 20f);
+      bg.transform.position = new Vector3(18f, 3.6f, 20f);
       buildings.Add(bg);
-      for (int i = 0; i < 3; ++i)
+      for (int i = 0; i < 4; ++i)
       {
         var building = Instantiate(mainMenuBuildingsPrefab);
         // building.GetComponent<SpriteRenderer>().enabled = i == 2;
         foreach (var sprite in building.GetComponentsInChildren<SpriteRenderer>())
         {
           sprite.sortingOrder = -i;
-          sprite.color = new Color(.4f + (.3f * i), .4f + (.3f * i), .4f + (.3f * i));
-          sprite.transform.position = new Vector3(-.5f, 2 + (.2f * i), 20f);
-          sprite.transform.localScale = new Vector3(1f + (.1f * i), 1f + (.1f * i), 1f + (.1f * i));
+          float color = .2f + (.2f * (2 - i));
+          sprite.color = new Color(color, color, color);
+          sprite.transform.position = new Vector3(-.5f, (.7f * i), 20f);
+          sprite.transform.localScale = new Vector3(2f + (.1f * i), 2f + (.1f * i), 2f + (.1f * i));
         }
-        float scrollSpeed = i == 0 ? 2f : (i == 1 ? 1.6f : .8f);
+        float scrollSpeed = i == 0 ? 1f : (i == 1 ? .8f : (i == 2 ? 0.6f : .4f));
+        // scrollSpeed *= -1;
         building.GetComponent<McCoyRandomSpriteParallaxItem>().autoScrollSpeed = scrollSpeed;
+        buildings.Add(building);
       }
     }
 
