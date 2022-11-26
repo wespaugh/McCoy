@@ -91,6 +91,9 @@ namespace Assets.McCoy.UI
     bool mobRouting = false;
     bool mobDying = false;
 
+    float currentInputLag = 0f;
+    float inputLag = .2f;
+
     private void Awake()
     {
       loadingStage = false;
@@ -106,7 +109,6 @@ namespace Assets.McCoy.UI
       UFE.PlayMusic(mapMusic);
     }
 
-
     public override void DoFixedUpdate(
         IDictionary<InputReferences, InputEvents> player1PreviousInputs,
         IDictionary<InputReferences, InputEvents> player1CurrentInputs,
@@ -114,6 +116,11 @@ namespace Assets.McCoy.UI
         IDictionary<InputReferences, InputEvents> player2CurrentInputs
       )
     {
+      if(currentInputLag > 0f)
+      {
+        currentInputLag -= Time.deltaTime;
+        return;
+      }
       bool previousSkillButton = false;
       ButtonPress skillButton = ButtonPress.Button4;
 
@@ -168,10 +175,17 @@ namespace Assets.McCoy.UI
       bool currentSkillButton = false;
       bool currentCycleCharacterForward = false;
       bool currentCycleCharacterBackward = false;
+
+      bool pushedAButton = false;
       foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
       {
+        if(pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0)
+        {
+          pushedAButton = true;
+        }
         if (pair.Key.inputType == InputType.Button && pair.Value.button)
         {
+          bool pushedSomething = true;
           if (pair.Key.engineRelatedButton == skillButton)
           {
             currentSkillButton = true;
@@ -196,6 +210,11 @@ namespace Assets.McCoy.UI
           {
             currentEnterZone = true;
           }
+          else
+          {
+            pushedSomething = false;
+          }
+          pushedAButton |= pushedSomething;
         }
       }
 
@@ -227,16 +246,21 @@ namespace Assets.McCoy.UI
         }
       }
 
-      this.DefaultNavigationSystem(
-          player1PreviousInputs,
-          player1CurrentInputs,
-          player2PreviousInputs,
-          player2CurrentInputs,
-          this.moveCursorSound,
-          this.selectSound,
-          null,
-          null
-      );
+      if (pushedAButton)
+      {
+        currentInputLag = inputLag;
+
+        this.DefaultNavigationSystem(
+            player1PreviousInputs,
+            player1CurrentInputs,
+            player2PreviousInputs,
+            player2CurrentInputs,
+            this.moveCursorSound,
+            this.selectSound,
+            null,
+            null
+        );
+      }
     }
 
     private void saveCity()
@@ -537,7 +561,7 @@ namespace Assets.McCoy.UI
       updateWeekText();
       updateAvailableSkillPointsText();
 
-      selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
+      // selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
 
       bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
 

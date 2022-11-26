@@ -711,7 +711,14 @@ public class ControlsScript : MonoBehaviour
 
 
     // Character colliders based on collision mass and body colliders
-    normalizedDistance = FPMath.Clamp(FPVector.Distance(opControlsScript.worldTransform.position, worldTransform.position) / UFE.config.cameraOptions._maxDistance, 0, 1);
+    if(useHorizontalDistanceForAI)
+    {
+      normalizedDistance = FPMath.Clamp(FPMath.Abs((opControlsScript.worldTransform.position.x - worldTransform.position.x) / UFE.config.cameraOptions._maxDistance),0,1);
+    }
+    else
+    {
+      normalizedDistance = FPMath.Clamp(FPVector.Distance(opControlsScript.worldTransform.position, worldTransform.position) / UFE.config.cameraOptions._maxDistance, 0, 1);
+    }
     targetVerticalOffset = FPMath.Abs(opControlsScript.worldTransform.position.z - worldTransform.position.z);
     if (UFE.config.selectedMatchType != MatchType.Singles)
     {
@@ -4241,6 +4248,7 @@ public class ControlsScript : MonoBehaviour
   }
 
   bool blinkVisible = true;
+  bool useHorizontalDistanceForAI = true;
 
   private void RunBlink()
   {

@@ -533,9 +533,9 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.05
-      close: 1
-      mid: 0.2
+      veryClose: 0.2
+      close: 0.231
+      mid: 0.253
       far: 0.3
       veryFar: 0.6
     desirability:
