@@ -1371,7 +1371,7 @@ public class UFE : MonoBehaviour, UFEInterface
     }
   }
 
-  public static void StartBrawlerMode()
+  public static void StartBrawlerMode(string stageName)
   {
     p1ControlsScript = null;
 
@@ -1382,7 +1382,21 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.SetPlayer(1, characters[0]);
     // vincible umm
     UFE.SetPlayer(2, characters[1]);
-    UFE.config.selectedStage = UFE.config.stages[UFE.config.stages.Length-1];
+    UFE.config.selectedStage = null;
+    foreach (var stage in UFE.config.stages)
+    {
+      if (stage.stageName == stageName)
+      {
+        UFE.config.selectedStage = stage;
+        break;
+      }
+    }
+    if(UFE.config.selectedStage == null)
+    {
+      Debug.Log("Warning: No stage named " + stageName + " exists yet");
+      int index = stageName.Length % 2 == 0 ? UFE.config.stages.Length - 1 : UFE.config.stages.Length - 2;
+      UFE.config.selectedStage = UFE.config.stages[index];
+    }
 
     UFE.StartLoadingBattleScreen();
   }

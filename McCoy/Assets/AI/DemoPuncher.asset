@@ -21,7 +21,7 @@ MonoBehaviour:
     aggressiveness: 0.5
     ruleCompliance: 1
     comboEfficiency: 0.9
-    movementDuration: 0.1
+    movementDuration: 0.06
     buttonSequenceInterval: 2
     attackDesirabilityCalculation: 2
     defaultDesirability: 0
@@ -76,6 +76,32 @@ MonoBehaviour:
         gaugeStatus: 0
         playerDistance: 2
         verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 3
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 1
         jumping: 0
         blocking: 1
         moveClassification:
@@ -170,6 +196,36 @@ MonoBehaviour:
           anyHitConfirmType: 1
         moveFrameData: 0
         moveDamage: 0
+      conditionsToggle: 0
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 3
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 1
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
       conditionsToggle: 1
     reactions:
     - reactionType: 1
@@ -190,8 +246,8 @@ MonoBehaviour:
       behavior: 0
       desirability: 6
     debugToggle: 1
-    eventsToggle: 0
-    reactionsToggle: 0
+    eventsToggle: 1
+    reactionsToggle: 1
   - ruleName: Stop Moving
     events:
     - enabled: 1
@@ -244,7 +300,7 @@ MonoBehaviour:
       desirability: 0
     debugToggle: 1
     eventsToggle: 0
-    reactionsToggle: 1
+    reactionsToggle: 0
   aiDefinitions:
     damage:
       veryWeak: 0.05
@@ -253,8 +309,8 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.04
-      close: 0.1
+      veryClose: 0.049
+      close: 0.125
       mid: 0.15
       far: 0.225
       veryFar: 0.8

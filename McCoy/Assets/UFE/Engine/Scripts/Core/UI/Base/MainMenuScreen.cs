@@ -20,9 +20,9 @@ namespace UFE3D
 			UFE.StartSearchMatchScreen();
 		}
 
-	public virtual void StartBrawlerStage()
+	public virtual void StartBrawlerStage(string stageName)
     {
-	  UFE.StartBrawlerMode();
+	  UFE.StartBrawlerMode(stageName);
     }
 
 		public virtual void GoToStoryModeScreen()
