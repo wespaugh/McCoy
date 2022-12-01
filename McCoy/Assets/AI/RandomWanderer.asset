@@ -21,7 +21,7 @@ MonoBehaviour:
     aggressiveness: 0.5
     ruleCompliance: 0.5
     comboEfficiency: 1
-    movementDuration: 2
+    movementDuration: 0.06
     buttonSequenceInterval: 1
     attackDesirabilityCalculation: 2
     defaultDesirability: 0
@@ -285,8 +285,8 @@ MonoBehaviour:
       behavior: 0
       desirability: 4
     debugToggle: 0
-    eventsToggle: 0
-    reactionsToggle: 0
+    eventsToggle: 1
+    reactionsToggle: 1
   - ruleName: Get Violent
     events:
     - enabled: 1
@@ -468,9 +468,9 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 4
+      desirability: 5
     debugToggle: 0
-    eventsToggle: 0
+    eventsToggle: 1
     reactionsToggle: 1
   - ruleName: Take the opportunity
     events:
@@ -523,7 +523,7 @@ MonoBehaviour:
       behavior: 5
       desirability: 5
     debugToggle: 0
-    eventsToggle: 1
+    eventsToggle: 0
     reactionsToggle: 1
   aiDefinitions:
     damage:
@@ -533,9 +533,9 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.05
-      close: 1
-      mid: 0.2
+      veryClose: 0.2
+      close: 0.231
+      mid: 0.253
       far: 0.3
       veryFar: 0.6
     desirability:

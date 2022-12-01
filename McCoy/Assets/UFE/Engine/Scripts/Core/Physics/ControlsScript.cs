@@ -711,7 +711,14 @@ public class ControlsScript : MonoBehaviour
 
 
     // Character colliders based on collision mass and body colliders
-    normalizedDistance = FPMath.Clamp(FPVector.Distance(opControlsScript.worldTransform.position, worldTransform.position) / UFE.config.cameraOptions._maxDistance, 0, 1);
+    if(useHorizontalDistanceForAI)
+    {
+      normalizedDistance = FPMath.Clamp(FPMath.Abs((opControlsScript.worldTransform.position.x - worldTransform.position.x) / UFE.config.cameraOptions._maxDistance),0,1);
+    }
+    else
+    {
+      normalizedDistance = FPMath.Clamp(FPVector.Distance(opControlsScript.worldTransform.position, worldTransform.position) / UFE.config.cameraOptions._maxDistance, 0, 1);
+    }
     targetVerticalOffset = FPMath.Abs(opControlsScript.worldTransform.position.z - worldTransform.position.z);
     if (UFE.config.selectedMatchType != MatchType.Singles)
     {
@@ -937,13 +944,14 @@ public class ControlsScript : MonoBehaviour
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
     // TODO: This code's still good! it does push the player away... HARD, at the start of each level, so fix that before committing. but I prefer this feel
-    
     if (opControlsScript == null
       || opControlsScript == this
         || !opControlsScript.GetActive()
         || opControlsScript.HitBoxes == null
         || ignoreCollisionMass
-        || opControlsScript.ignoreCollisionMass) return;
+        || opControlsScript.ignoreCollisionMass
+        || isDead
+        || opControlsScript.isDead) return;
 
 
     // Set target in case its a 3D fighter
@@ -4241,6 +4249,7 @@ public class ControlsScript : MonoBehaviour
   }
 
   bool blinkVisible = true;
+  bool useHorizontalDistanceForAI = true;
 
   private void RunBlink()
   {
