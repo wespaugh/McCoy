@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 5257884428344073717}
   - component: {fileID: 365268399058986066}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UIRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,9 +333,11 @@ RectTransform:
   m_Children:
   - {fileID: 5526424925289412127}
   - {fileID: 5581076573642578464}
+  - {fileID: 5719881967863726016}
+  - {fileID: 8284668372939645776}
   - {fileID: 3892086275422703380}
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -609,7 +611,7 @@ RectTransform:
   m_Children:
   - {fileID: 1459420652378727409}
   m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -742,7 +744,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8023775330048233695}
+  m_Father: {fileID: 5257884428344073717}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -1612,7 +1614,7 @@ RectTransform:
   - {fileID: 6076724832148069559}
   - {fileID: 1610736372740354307}
   m_Father: {fileID: 5257884428344073717}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2085,7 +2087,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6762451373546365189}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2093,8 +2095,8 @@ RectTransform:
   - {fileID: 5601109791118155925}
   - {fileID: 5012232109734063813}
   - {fileID: 8144929115948415101}
-  m_Father: {fileID: 8023775330048233695}
-  m_RootOrder: 0
+  m_Father: {fileID: 5257884428344073717}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2498,10 +2500,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5719881967863726016}
   - {fileID: 5257884428344073717}
   - {fileID: 3562974839896112496}
-  - {fileID: 8284668372939645776}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2532,6 +2532,8 @@ MonoBehaviour:
   cityPanelsRoot: {fileID: 4612381090610668291}
   boardContents: {fileID: 7263689708247425655, guid: 6677ff728c45a1e4e97592c7764d4515,
     type: 3}
+  uiRoot: {fileID: 880316233510457918}
+  firesidePrefab: {fileID: 1028150572, guid: 476be8c118d575545bc92631c2bf69c8, type: 3}
   selectedZonePanel: {fileID: 4719032487824798012}
   currentZoneText: {fileID: 8227674589946926779}
   currentWeekText: {fileID: 2959108332844797634}
