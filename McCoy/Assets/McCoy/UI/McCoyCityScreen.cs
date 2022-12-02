@@ -13,7 +13,7 @@ using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
 {
-  public class McCoyCityScreen : UFEScreen
+  public class McCoyCityScreen : UFEScreen, IMcCoyInputManager
   {
     float stingerDuration = 2.0f;
 
@@ -25,6 +25,12 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     McCoyCityBoardContents boardContents = null;
+
+    [SerializeField]
+    GameObject uiRoot = null;
+
+    [SerializeField]
+    McCoyFiresideScene firesidePrefab = null;
 
     [SerializeField]
     MapCityNodePanel selectedZonePanel = null;
@@ -62,6 +68,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     AudioClip moveCursorSound = null;
 
+    McCoyInputManager inputManager;
+    bool inputInitialized = false;
+
     List<McCoyMapPanelListSectionHeader> sectionHeaders = new List<McCoyMapPanelListSectionHeader>();
 
     PlayerCharacter selectedPlayer = PlayerCharacter.Rex;
@@ -69,6 +78,8 @@ namespace Assets.McCoy.UI
     {
       get => selectedPlayer;
     }
+
+    McCoyFiresideScene fireside = null;
 
     McCoyCityBoardContents board = null;
     McCoySkillTreeMenu talentDelegate = null;
@@ -83,16 +94,12 @@ namespace Assets.McCoy.UI
 
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
 
-    MapNode selectedZone = null;
-
     private McCoyStageData stageDataToLoad = null;
     bool loadingStage;
 
     bool mobRouting = false;
     bool mobDying = false;
 
-    float currentInputLag = 0f;
-    float inputLag = .2f;
 
     private void Awake()
     {
@@ -116,140 +123,39 @@ namespace Assets.McCoy.UI
         IDictionary<InputReferences, InputEvents> player2CurrentInputs
       )
     {
-      if(currentInputLag > 0f)
+      CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+    }
+
+    public bool CheckInputs(
+      IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+      IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+      IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+      IDictionary<InputReferences, InputEvents> player2CurrentInputs
+    )
+    {
+
+       if (!inputInitialized)
       {
-        currentInputLag -= Time.deltaTime;
-        return;
-      }
-      bool previousSkillButton = false;
-      ButtonPress skillButton = ButtonPress.Button4;
-
-      ButtonPress charForwardButton = ButtonPress.Button5;
-      ButtonPress charBackwardButton = ButtonPress.Button6;
-      bool previousCycleCharacterForward = false;
-      bool previousCycleCharacterBackward = false;
-
-      ButtonPress toggleZoom = ButtonPress.Button3;
-      bool previousToggleZoom = false;
-      bool currentToggleZoom = false;
-
-      ButtonPress ToggleConnections = ButtonPress.Button1;
-      bool previousToggleConnections = false;
-      bool currentToggleConnections = false;
-
-      ButtonPress enterZone = ButtonPress.Button2;
-      bool previousEnterZone = false;
-      bool currentEnterZone = false;
-
-      foreach (KeyValuePair<InputReferences, InputEvents> pair in player1PreviousInputs)
-      {
-        if (pair.Key.inputType == InputType.Button && pair.Value.button)
-        {
-          if (pair.Key.engineRelatedButton == skillButton)
-          {
-            previousSkillButton = true;
-          }
-          else if (pair.Key.engineRelatedButton == charForwardButton)
-          {
-            previousCycleCharacterForward = true;
-          }
-          else if (pair.Key.engineRelatedButton == charBackwardButton)
-          {
-            previousCycleCharacterBackward = true;
-          }
-          else if(pair.Key.engineRelatedButton == ToggleConnections)
-          {
-            previousToggleConnections = true;
-          }
-          else if(pair.Key.engineRelatedButton == toggleZoom)
-          {
-            previousToggleZoom = true;
-          }
-          else if(pair.Key.engineRelatedButton == enterZone)
-          {
-            previousEnterZone = true;
-          }
-        }
+        inputManager = new McCoyInputManager();
+        inputInitialized = true;
+        inputManager.RegisterButtonListener(ButtonPress.Button4, OpenSkillTree);
+        inputManager.RegisterButtonListener(ButtonPress.Button5, NextPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Button6, PreviousPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Button3, ToggleZoom);
+        inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
+        inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
       }
 
-      bool currentSkillButton = false;
-      bool currentCycleCharacterForward = false;
-      bool currentCycleCharacterBackward = false;
-
-      bool pushedAButton = false;
-      foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
+      if (talentDelegate != null) return false;
+      if(fireside.gameObject.activeInHierarchy)
       {
-        if(pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0)
-        {
-          pushedAButton = true;
-        }
-        if (pair.Key.inputType == InputType.Button && pair.Value.button)
-        {
-          bool pushedSomething = true;
-          if (pair.Key.engineRelatedButton == skillButton)
-          {
-            currentSkillButton = true;
-          }
-          else if (pair.Key.engineRelatedButton == charForwardButton)
-          {
-            currentCycleCharacterForward = true;
-          }
-          else if (pair.Key.engineRelatedButton == charBackwardButton)
-          {
-            currentCycleCharacterBackward = true;
-          }
-          else if( pair.Key.engineRelatedButton == ToggleConnections)
-          {
-            currentToggleConnections = true;
-          }
-          else if(pair.Key.engineRelatedButton == toggleZoom)
-          {
-            currentToggleZoom = true;
-          }
-          else if(pair.Key.engineRelatedButton == enterZone)
-          {
-            currentEnterZone = true;
-          }
-          else
-          {
-            pushedSomething = false;
-          }
-          pushedAButton |= pushedSomething;
-        }
+        return fireside.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       }
 
-      if (!previousSkillButton && currentSkillButton)
-      {
-        OpenSkillTree();
-      }
-      else if(talentDelegate == null)
-      {
-        if (!previousCycleCharacterBackward && currentCycleCharacterBackward)
-        {
-          PreviousPlayer();
-        }
-        else if (!previousCycleCharacterForward && currentCycleCharacterForward)
-        {
-          NextPlayer();
-        }
-        else if(!previousToggleConnections && currentToggleConnections)
-        {
-          ToggleLines();
-        }
-        else if(!previousToggleZoom && currentToggleZoom)
-        {
-          ToggleZoom();
-        }
-        else if(currentEnterZone)
-        {
-          selectedZonePanel?.ZoneClicked();
-        }
-      }
+      bool pushedAButton = inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
 
       if (pushedAButton)
       {
-        currentInputLag = inputLag;
-
         this.DefaultNavigationSystem(
             player1PreviousInputs,
             player1CurrentInputs,
@@ -261,6 +167,12 @@ namespace Assets.McCoy.UI
             null
         );
       }
+      return pushedAButton;
+    }
+
+    void enterCurrentZone()
+    {
+      selectedZonePanel?.ZoneClicked();
     }
 
     private void saveCity()
@@ -281,6 +193,7 @@ namespace Assets.McCoy.UI
       initMapPanels();
       saveCity();
       checkForMobRouting();
+      initFiresideScene();
 
       while(mobDying)
       {
@@ -303,6 +216,37 @@ namespace Assets.McCoy.UI
       initSelectedCharacter();
       saveCity();
       board.IntroFinished();
+    }
+
+    private void initFiresideScene()
+    {
+      fireside = Instantiate(firesidePrefab, board.CameraAnchor.transform);
+      fireside.transform.localPosition = new Vector3(0, 0, 8);
+      fireside.gameObject.SetActive(false);
+      ShowFireside();
+    }
+
+    private void ShowFireside()
+    {
+      fireside.gameObject.SetActive(true);
+      uiRoot.gameObject.SetActive(false);
+      Dictionary<string, List<PlayerCharacter>> pcGroups = new Dictionary<string, List<PlayerCharacter>>();
+      foreach(var pc in PlayerCharacters)
+      {
+        string zoneId = McCoy.GetInstance().gameState.PlayerLocation(pc);
+        if(!pcGroups.ContainsKey(zoneId))
+        {
+          pcGroups[zoneId] = new List<PlayerCharacter>();
+        }
+        pcGroups[zoneId].Add(pc);
+      }
+      fireside.UpdateWithPCGroups(this, pcGroups);
+    }
+
+    public void CloseFireside()
+    {
+      fireside.gameObject.SetActive(false);
+      uiRoot.gameObject.SetActive(true);
     }
 
     private IEnumerator RunStinger(McCoyStinger.StingerTypes type)
@@ -561,8 +505,6 @@ namespace Assets.McCoy.UI
       updateWeekText();
       updateAvailableSkillPointsText();
 
-      // selectedZonePanel.Initialize(playerLoc, null, antikytheraMechanismLocation);
-
       bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
 
       int minDistanceToMechanism = -1;
@@ -691,7 +633,6 @@ namespace Assets.McCoy.UI
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
     {
-      Debug.Log("Load Stage");
       // look for a quest at the zone we're heading to. if it's there, tee up the quest for the zone
       foreach(var quest in McCoy.GetInstance().gameState.availableQuests)
       {

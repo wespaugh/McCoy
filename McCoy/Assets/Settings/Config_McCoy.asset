@@ -36,7 +36,7 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: -34359738368
     _rightBoundary:
-      _serializedValue: 214748364800
+      _serializedValue: 60129542144
     tempLeftBoundary:
       _serializedValue: -42949672960
     tempRightBoundary:
@@ -1258,7 +1258,7 @@ MonoBehaviour:
     _leftBoundary:
       _serializedValue: -34359738368
     _rightBoundary:
-      _serializedValue: 214748364800
+      _serializedValue: 60129542144
     tempLeftBoundary:
       _serializedValue: -42949672960
     tempRightBoundary:

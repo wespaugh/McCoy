@@ -27,6 +27,7 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     GameObject cameraAnchor = null;
+    public Transform CameraAnchor => cameraAnchor.transform;
 
     [SerializeField]
     const float CAMERA_CITY_FIELD_OF_VIEW = 37.0f;
