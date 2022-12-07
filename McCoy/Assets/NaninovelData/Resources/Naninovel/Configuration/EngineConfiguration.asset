@@ -22,7 +22,7 @@ MonoBehaviour:
   - Elringus.Naninovel.Runtime
   - Elringus.Naninovel.Editor
   InitializeOnApplicationLoad: 1
-  SceneIndependent: 1
+  SceneIndependent: 0
   ShowInitializationUI: 1
   CustomInitializationUI: {fileID: 0}
   ShowTitleUI: 0

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UFE3D;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Assets.McCoy
 {
@@ -106,6 +107,9 @@ namespace Assets.McCoy
 
     public void SetNaniCam(Camera c)
     {
+      var cameraData = Camera.main.GetUniversalAdditionalCameraData();
+      cameraData.cameraStack.Add(c);
+
       naniCam = c;
       // inactive by default
       naniCam.gameObject.SetActive(false);
@@ -116,21 +120,24 @@ namespace Assets.McCoy
       await player.PreloadAndPlayAsync(scriptName);
 
       naniCam.gameObject.SetActive(true);
+      player.OnStop += HideCutsceneAsync;
     }
-    public async Task HideCutsceneAsync()
+    public async void HideCutsceneAsync(Script cutscene)
     {
+      UnityEngine.Debug.Log("Hide Cutscene!");
       // 1. Disable Naninovel input.
-
       // 2. Stop script player.
-      var scriptPlayer = Engine.GetService<IScriptPlayer>();
-      scriptPlayer.Stop();
+      // var scriptPlayer = Engine.GetService<IScriptPlayer>();
+      // scriptPlayer.Stop();
 
+      /*
       // 3. Reset state.
       var stateManager = Engine.GetService<IStateManager>();
       await stateManager.ResetStateAsync();
+      */
 
       // 4. Switch cameras.
-      naniCam.enabled = false;
+      naniCam.gameObject.SetActive(false);
     }
   }
 }

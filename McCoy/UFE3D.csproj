@@ -268,8 +268,8 @@
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\PullIn.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\FPLibrary\FPRandom.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\PossibleMoveStates.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\Core\Brawler\BrawlerSpawnedEntityManager.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\HitTypeOptions.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\Core\Brawler\BrawlerSpawnedEntityManager.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\Enums\GameplayType.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\MoveInfo.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Animation\SpriteSortingScript.cs" />
