@@ -9,6 +9,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Naninovel;
+using System.Collections;
 
 namespace Assets.McCoy.UI
 {
@@ -40,6 +42,7 @@ namespace Assets.McCoy.UI
           // StartCityScene();
         }
       }
+      StartCoroutine(initializeNaniNovel());
       updateMenuItems();
       McCoyQuestManager.GetInstance().ClearQuestData();
       buildings = new List<GameObject>();
@@ -67,12 +70,21 @@ namespace Assets.McCoy.UI
 
     private void OnDestroy()
     {
-      while(buildings.Count > 0)
+      while (buildings.Count > 0)
       {
         var b = buildings[0];
         buildings.RemoveAt(0);
         Destroy(b);
       }
+    }
+
+    private IEnumerator initializeNaniNovel()
+    {
+      while(!Engine.Initialized)
+      {
+        yield return null;
+      }
+      McCoy.GetInstance().SetNaniCam(GameObject.Find("NaniCam(Clone)").GetComponent<Camera>());
     }
 
     public override void DoFixedUpdate(

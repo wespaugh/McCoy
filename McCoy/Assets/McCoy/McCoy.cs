@@ -16,6 +16,8 @@ namespace Assets.McCoy
     public bool debugCheatWin = false;
     public bool levelAllPlayersEvenly = false;
     public UFEScreen cityScene;
+    private Camera naniCam;
+
     public enum McCoyScenes
     {
       CityMap,
@@ -98,6 +100,21 @@ namespace Assets.McCoy
           break;
       }
       CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, fadeTime);
+    }
+
+    public void SetNaniCam(Camera c)
+    {
+      naniCam = c;
+      // inactive by default
+      naniCam.gameObject.SetActive(false);
+    }
+    public void ShowCutscene(string scriptName)
+    {
+      naniCam.gameObject.SetActive(true);
+    }
+    public void HideCutscene()
+    {
+      naniCam.gameObject.SetActive(false);
     }
   }
 }

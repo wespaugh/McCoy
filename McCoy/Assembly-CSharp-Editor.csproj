@@ -388,6 +388,9 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
+    <Reference Include="Naninovel.Common">
+      <HintPath>Assets\Naninovel\Plugins\Naninovel.Common.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
@@ -1187,6 +1190,14 @@
     <ProjectReference Include="UFE3D.csproj">
       <Project>{957048F3-BAFC-4A8F-9C4E-2AD03928B8C2}</Project>
       <Name>UFE3D</Name>
+    </ProjectReference>
+    <ProjectReference Include="Elringus.Naninovel.Editor.csproj">
+      <Project>{DCED97DF-AFBE-3DB0-7E08-3E6E3471A691}</Project>
+      <Name>Elringus.Naninovel.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Elringus.Naninovel.Runtime.csproj">
+      <Project>{11B53EBA-AFC5-C1AE-5D47-383BD5C7475C}</Project>
+      <Name>Elringus.Naninovel.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

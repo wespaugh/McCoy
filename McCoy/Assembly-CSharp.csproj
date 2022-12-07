@@ -83,6 +83,7 @@
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineExtended.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapData.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothGameScreen.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyFiresideScene.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultHostGameScreen.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeCost.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoPlanes.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cKeys.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInput.cs" />
     <Compile Include="Assets\McCoy\UI\Menus\McCoyMainMenuInput.cs" />
+    <Compile Include="Assets\McCoy\UI\McCoyInputManager.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyStageData.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerCharacterAnimator.cs" />
     <Compile Include="Assets\Talentus\Components\TalentUI.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Assets\McCoy\Brawler\McCoyLoadingBattleScreen.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyWorldUI.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoSetup.cs" />
+    <Compile Include="Assets\McCoy\UI\IMcCoyInputManager.cs" />
     <Compile Include="Assets\McCoy\ProjectConstants.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />
     <Compile Include="Assets\McCoy\Localization\McCoyLocalizedText.cs" />
@@ -199,9 +202,6 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyFiresideScene.cs" />
-    <Compile Include="Assets\McCoy\UI\McCoyInputManager.cs" />
-    <Compile Include="Assets\McCoy\UI\IMcCoyInputManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />
@@ -209,42 +209,72 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\OpenGameArt\bulkhead-walls-files\license.txt" />
     <None Include="Assets\SciFiFlatSkills\ReadMe.txt" />
+    <None Include="Assets\Naninovel\ThirdParty\NLayer\NLayer.dll" />
     <None Include="Assets\cMonkeys\cInput\Documentation\changelog.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\RevealableText.shader" />
     <None Include="Assets\Shaders\SpriteGradient.shader" />
+    <None Include="Assets\Naninovel\Fonts\LICENSE.txt" />
     <None Include="Assets\cMonkeys\cInput\Example\Materials &amp; Textures\prototype_textures\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\BlurFilter.shader" />
     <None Include="Assets\cMonkeys\cInput\Example\AbstractModels\README.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldComposition.cginc" />
     <None Include="Assets\cMonkeys\cInput\Documentation\readme (seriously).txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\NaninovelData\Metadata.xml" />
+    <None Include="Assets\Naninovel\ThirdParty\WebSocketSharp\Naninovel.WebSocketSharp.dll" />
+    <None Include="Assets\Naninovel\Plugins\Naninovel.Common.xml" />
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\AI4Unity.Fuzzy.dll" />
     <None Include="Assets\UFE\Readme.txt" />
     <None Include="Assets\FX_Ui_ProgressBar\ReadMe.txt" />
     <None Include="Assets\UFE\Demos\Shared_Assets\GUI\Shaders\GUI Alpha Enabled.shader" />
     <None Include="Assets\FX_Ui_ProgressBar\Shaders\SHDR_ProgressBar_BorderNoise.shader" />
+    <None Include="Assets\Naninovel\ThirdParty\WebSocketSharp\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldDiskBlur.cginc" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\RevealableTMProTextExtra.shader" />
     <None Include="Assets\UFE\Demos\Shared_Assets\Sounds\Music\license.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthMask.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\TransitionalUI.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfField.shader" />
+    <None Include="Assets\Naninovel\ThirdParty\NLayer\LICENSE.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\NaninovelCG.cginc" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldDiskKernel.cginc" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldCommon.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\RevealableTMProSprite.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\Transparent.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Naninovel\ThirdParty\NCalc\Naninovel.NCalc.dll" />
+    <None Include="Assets\Naninovel\Plugins\Naninovel.Common.dll" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\TransitionalTexture.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\FX_Ui_ProgressBar\Shaders\SHDR_progress_sine.shader" />
+    <None Include="Assets\UI\BoardGame\LobbyingUI\Lobbying Causes List.txt" />
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\lgpl-3.0.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\RevealableTMProTextRTL.shader" />
     <None Include="Assets\UFE\Demos\Shared_Assets\Particles\Shaders\Distortion.shader" />
     <None Include="Assets\cMonkeys\cInput\Example\Font\Blue Vinyl License.txt" />
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\AForge.Core.dll" />
+    <None Include="Assets\Naninovel\ThirdParty\NCalc\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DigitalGlitch.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\RevealableTMProText.shader" />
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\AForge.Fuzzy.dll" />
     <None Include="Assets\Generic Backgrounds\Ocean-Background-Pack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\TransitionEffects.cginc" />
     <None Include="Assets\UFE\Demos\Shared_Assets\Stages\TrainingRoom3D\Skybox\README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldPrefilter.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
@@ -530,6 +560,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Naninovel.Common">
+      <HintPath>Assets\Naninovel\Plugins\Naninovel.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Unity\2021.3.0f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -1083,6 +1116,14 @@
     <ProjectReference Include="UFE3D.csproj">
       <Project>{957048F3-BAFC-4A8F-9C4E-2AD03928B8C2}</Project>
       <Name>UFE3D</Name>
+    </ProjectReference>
+    <ProjectReference Include="Elringus.Naninovel.Editor.csproj">
+      <Project>{DCED97DF-AFBE-3DB0-7E08-3E6E3471A691}</Project>
+      <Name>Elringus.Naninovel.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Elringus.Naninovel.Runtime.csproj">
+      <Project>{11B53EBA-AFC5-C1AE-5D47-383BD5C7475C}</Project>
+      <Name>Elringus.Naninovel.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
