@@ -1,5 +1,6 @@
 Tobias.Default: …Dad?
-@char Rex look:Left
+@char Tobias look:Right wait:false
+@char Rex look:Left wait:false
 Rex.Default: There you are, son! How was school?
 Tobias: School sucked? Our field trip got canceled because of a “scheduling conflict”
 
@@ -9,6 +10,8 @@ Rex: I’ll talk to your teachers tomorrow, after I talk to these silver spoons 
 Tobias: If you say so.
 Rex.Arbiter_Rage: I do. Now go put your brother on and start getting ready for bed.
 @hide Tobias
+@char West look:Right wait:false
+@char Rex look:Left wait:false
 West.Default: Hey dad, what’s up?
 Rex.Default: Just checking in. Did your pops get you your allowance?
 West: Yeah.
