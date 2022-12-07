@@ -168,17 +168,17 @@ MonoBehaviour:
       guid: dd85ce99288c2f8488447fa511b1c0d6
   - Id: Characters/9d13404e-3694-4a57-af4e-6e0371973556
     Resources:
-    - name: Arbiter_Rage
+    - name: Default
       pathPrefix: Characters/Rex
       guid: e4e3fcb392d92a84f94ee4ab79eb6f5c
-    - name: Default
+    - name: Arbiter_Rage
       pathPrefix: Characters/Rex
       guid: 19fd864be5f7b9446815424c2445730c
   - Id: Characters/3cb1abe8-88dd-4198-afa0-9965af1e9b31
     Resources:
     - name: Default
       pathPrefix: Characters/Nolan
-      guid: ea4a1a7d26c9bb6479c2c12d4c433a7d
+      guid: 441a012f3ebee89428b0ea55c6f454ba
   - Id: Audio
     Resources: []
   - Id: Scripts
@@ -186,3 +186,13 @@ MonoBehaviour:
     - name: Rex_01_Intro
       pathPrefix: Scripts
       guid: 5d23a6c1cc032514496839f36687e93c
+  - Id: Characters/6bd06355-2d47-4ee4-8640-7ef416817020
+    Resources:
+    - name: Default
+      pathPrefix: Characters/Tobias
+      guid: 441a012f3ebee89428b0ea55c6f454ba
+  - Id: Characters/257a9e6c-a02e-45f5-bf11-239e8adc14e8
+    Resources:
+    - name: Default
+      pathPrefix: Characters/West
+      guid: 441a012f3ebee89428b0ea55c6f454ba

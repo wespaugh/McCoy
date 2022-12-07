@@ -2,8 +2,10 @@
 using Assets.McCoy.Brawler;
 using Assets.McCoy.RPG;
 using FPLibrary;
+using Naninovel;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UFE3D;
 using UnityEditor;
 using UnityEngine;
@@ -108,13 +110,27 @@ namespace Assets.McCoy
       // inactive by default
       naniCam.gameObject.SetActive(false);
     }
-    public void ShowCutscene(string scriptName)
+    public async Task ShowCutsceneAsync(string scriptName)
     {
+      var player = Engine.GetService<IScriptPlayer>();
+      await player.PreloadAndPlayAsync(scriptName);
+
       naniCam.gameObject.SetActive(true);
     }
-    public void HideCutscene()
+    public async Task HideCutsceneAsync()
     {
-      naniCam.gameObject.SetActive(false);
+      // 1. Disable Naninovel input.
+
+      // 2. Stop script player.
+      var scriptPlayer = Engine.GetService<IScriptPlayer>();
+      scriptPlayer.Stop();
+
+      // 3. Reset state.
+      var stateManager = Engine.GetService<IStateManager>();
+      await stateManager.ResetStateAsync();
+
+      // 4. Switch cameras.
+      naniCam.enabled = false;
     }
   }
 }
