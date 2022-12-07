@@ -1,0 +1,27 @@
+Tobias.Default: …Dad?
+@char Tobias look:Right wait:false
+@char Rex look:Left wait:false
+Rex.Default: There you are, son! How was school?
+Tobias: School sucked? Our field trip got canceled because of a “scheduling conflict”
+
+Rex: Yeah, your pops told me earlier today. I just got to the Museum to have a word.
+Tobias: Dad, the field trip got canceled. They’re not gonna reschedule it.
+Rex: I’ll talk to your teachers tomorrow, after I talk to these silver spoons about the importance of your education. This exhibit is too important to miss. 
+Tobias: If you say so.
+Rex.Arbiter_Rage: I do. Now go put your brother on and start getting ready for bed.
+@hide Tobias
+@char West look:Right wait:false
+@char Rex look:Left wait:false
+West.Default: Hey dad, what’s up?
+Rex.Default: Just checking in. Did your pops get you your allowance?
+West: Yeah.
+Rex: Good. You should think about doing something fun with your brother. Have they finished that new playground off of Nimby Street?
+West: …a playground?
+Rex: Why not? I wish *I* could go to a playground.
+West: I don’t think that’s gonna happen, dad.
+Rex: Well think of something. And go and get ready for bed, it’s late. Love you boys.
+West: You too.
+@hide West
+Rex surveyed the gala laid out across the Museum, interrupting his son’s education. No doubt Militia Mercs took the opportunity to intervene with an exhibit on the Deadlock Wars, and sure enough, he recognized one or two of their talking heads from propaganda news “debates.”
+The meal of the night seemed to be a bubbly elixir made out of pure light, graciously provided by the Techno-Mages, along with a fishy smelling puree the general public was told was extinct. Shame.
+@stop

@@ -17,7 +17,7 @@ MonoBehaviour:
     Resources:
     - name: Dialogue
       pathPrefix: TextPrinters
-      guid: 1bc08ccd31adff6439e97161aa6e1d8b
+      guid: 2bafc50be8678e947b5672ab3efd8ac4
   - Id: TextPrinters/346ed89d-3347-4618-a68d-12d8d2444cfe
     Resources:
     - name: Fullscreen
@@ -186,6 +186,9 @@ MonoBehaviour:
     - name: Rex_01_Intro
       pathPrefix: Scripts
       guid: 5d23a6c1cc032514496839f36687e93c
+    - name: Vicki_01_Intro
+      pathPrefix: Scripts
+      guid: 74f4f2164365d094288850003b03b46a
   - Id: Characters/6bd06355-2d47-4ee4-8640-7ef416817020
     Resources:
     - name: Default
@@ -196,3 +199,16 @@ MonoBehaviour:
     - name: Default
       pathPrefix: Characters/West
       guid: 20cc3d61888d6824087946602c03ae15
+  - Id: Characters/983bcb83-f5b5-42ec-a309-462f7d7b7ebf
+    Resources:
+    - name: Default
+      pathPrefix: Characters/Vicki
+      guid: d8136c9b00a92784991d499b2a7205fb
+    - name: Vicki_Arbiter
+      pathPrefix: Characters/Vicki
+      guid: 96f20dcbb25739840a06a123a422a41f
+  - Id: Characters/47fd1dfa-6efb-4870-aaf2-ac7fa5ccd659
+    Resources:
+    - name: Default
+      pathPrefix: Characters/Vivien
+      guid: b6c8132efcacc154886a04069561c056

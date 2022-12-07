@@ -238,7 +238,7 @@ public class QuestListEditorWindow : EditorWindow
       quest.worldDurationInGlobalTurns = EditorGUILayout.IntSlider("Duration:", quest.worldDurationInGlobalTurns, 1, 10);
 
       EditorGUILayout.LabelField("Intro Text");
-      quest.introText = EditorGUILayout.TextField(quest.introText, GUILayout.Width(500));
+      quest.introCutscene = EditorGUILayout.TextField(quest.introCutscene, GUILayout.Width(500));
       EditorGUILayout.LabelField("Exit Text");
       quest.exitText = EditorGUILayout.TextField(quest.exitText, GUILayout.Width(500));
 

@@ -34,7 +34,7 @@ namespace Assets.McCoy.RPG
     /// 
 
     // displayed in-level when the quest starts
-    public string introText;
+    public string introCutscene;
 
     // displayed in level when the final objective is completed
     public string exitText;

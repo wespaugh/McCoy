@@ -28,7 +28,7 @@ namespace Assets.McCoy.RPG
       this.quest = quest;
       StartCoroutine(yieldThenPause());
       questTitle.SetText(quest.title);
-      questText.SetText(quest.introText);
+      questText.SetText(quest.introCutscene);
       buttons[0].GetComponent<McCoyLocalizedText>().SetText(questClose);
       buttons[0].gameObject.SetActive(true);
       buttons[0].onClick.RemoveAllListeners();

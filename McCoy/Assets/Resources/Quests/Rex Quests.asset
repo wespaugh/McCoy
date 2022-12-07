@@ -22,7 +22,7 @@ MonoBehaviour:
     prerequisiteQuestFlags: []
     possibleLocations:
     - 4ce0d0c15420f7d4cb53747c94795e9e
-    introText: com.mccoy.quests.rex.1.intro
+    introCutscene: Rex_01_Intro
     exitText: com.mccoy.quests.rex.1.exit
     exitChoices:
     - displayText: com.mccoy.quests.rex.1.choice1

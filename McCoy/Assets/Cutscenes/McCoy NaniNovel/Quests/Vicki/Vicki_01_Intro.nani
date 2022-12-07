@@ -1,0 +1,25 @@
+@char Vicki wait:false
+@char Vivien look:Left wait:false
+Vicki: So unfortunately, I saw no other possibility with the artifact.
+Vivien: You have done more than well enough. Though I cannot deny it would have been advantageous to examine the item in relation to its original owner.
+
+Vicki: If there is one, there should certainly be more. Perhaps even one of the mages has found a means of steady production.
+Vivien: *spits* There is no such thing. Even were it possible to “mass produce” uniquely imbued items of power as such, the mind of the mages have been clouded with all that… manufactured junk they poison themselves with.
+Vicki: It is possible there are exceptions, especially now that they have outside assistance.
+Vivien: The ability to fart out an ethereal bolt now and then does not imply the purity or spirit required for such craftmanship.
+Vicki: Yes, mother.
+Vivien: Do not worry, child. My time in this vessel nears its end. When I merge my essence into yours, you will gain the wisdom of the ages as well as my memories.
+Vicki: I rather like keeping you where you are as long as possible, thanks.
+The raven swoops down to sit atop Vivien’s shoulder. She leans closer to the small campfire to discuss her findings with her student.
+Vivien/Raven: Hello, Mercurio, tell me what clues you’ve gathered above the watchful eyes of our enemies.
+Vivien/Mercurio: *GRAWNK CRAWNK*
+Vicki: A bonfire near one of the hangars? But that could be anything from ritual sacrifice to a marshmallow roasting.
+The raven ruffles its feathers and a cloud of soot shakes loose of its feathers.
+Vivien/Raven: Oh, look what you brought us! My good little boy must have rolled in the ashes for us. Such a smart, special boy.
+Vicki: It just smells like tobacco to me.
+Vivien: That alone could be enough! Tobacco has been used to commune with the beyond for centuries, but its purpose here is twofold. First, it throws off people unacquainted with mysticism. Second, it masks the true active ingredient at work here. Take another sniff.
+Vicki: Strychnine!
+Vivien: Well detected. Potent stuff. Easy to use for a poison, but could be tweaked to cause boils, trade power with the spirits, or indeed manufacture magical items like you found.
+Vicki: I will go at once. There could be insights only hands may unearth. No offense, Merc.
+Vivien/Mercurio: *GRAWK*
+@stop

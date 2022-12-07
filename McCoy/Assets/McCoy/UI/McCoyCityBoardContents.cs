@@ -546,7 +546,7 @@ namespace Assets.McCoy.UI
     {
       GameObject connections = new GameObject();
       connections.transform.SetParent(transform);
-      Material lineMaterial = new Material(Shader.Find("Particles/Standard Unlit"));
+      Material lineMaterial = new Material(Shader.Find("Universal Render Pipeline/2D/Sprite-Lit-Default"));
       bool log = false;
       foreach (var assetLink in mapCache.NodeLinks)
       {

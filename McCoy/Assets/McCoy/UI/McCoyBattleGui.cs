@@ -66,8 +66,11 @@ namespace Assets.McCoy.UI
       McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
       if ( activeQuest != null)
       {
+        var _ = McCoy.GetInstance().ShowCutsceneAsync(activeQuest.introCutscene);
+        /*
         questUI.gameObject.SetActive(true);
         questUI.BeginQuest(activeQuest);
+        */
       }
     }
 
