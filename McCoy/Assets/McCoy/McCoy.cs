@@ -116,28 +116,19 @@ namespace Assets.McCoy
     }
     public async Task ShowCutsceneAsync(string scriptName)
     {
+
       var player = Engine.GetService<IScriptPlayer>();
       await player.PreloadAndPlayAsync(scriptName);
 
       naniCam.gameObject.SetActive(true);
-      player.OnStop += HideCutsceneAsync;
+
+      var inputManager = Engine.GetService<IInputManager>();
+      inputManager.ProcessInput = true;
     }
-    public async void HideCutsceneAsync(Script cutscene)
+    public void HideCutsceneAsync()
     {
-      UnityEngine.Debug.Log("Hide Cutscene!");
-      // 1. Disable Naninovel input.
-      // 2. Stop script player.
-      // var scriptPlayer = Engine.GetService<IScriptPlayer>();
-      // scriptPlayer.Stop();
-
-      /*
-      // 3. Reset state.
-      var stateManager = Engine.GetService<IStateManager>();
-      await stateManager.ResetStateAsync();
-      */
-
-      // 4. Switch cameras.
       naniCam.gameObject.SetActive(false);
+      UFE.FireAlert(ProjectConstants.CUTSCENE_FINISHED, null);
     }
   }
 }

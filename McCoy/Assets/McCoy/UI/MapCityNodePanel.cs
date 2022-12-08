@@ -186,7 +186,7 @@ namespace Assets.McCoy.UI
 
     private void finalizeTitle(string text)
     {
-      if(quest == null)
+      if(quest == null || quest.characterRestriction == PlayerCharacter.None)
       {
         return;
       }

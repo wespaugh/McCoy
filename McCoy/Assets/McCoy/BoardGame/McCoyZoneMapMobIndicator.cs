@@ -365,6 +365,10 @@ namespace Assets.McCoy.BoardGame
 
     public void ShowQuest(McCoyQuestData quest)
     {
+      if(quest.Complete)
+      {
+        return;
+      }
       QuestIndicator.gameObject.SetActive(true);
       string animKey = "WorldQuest";
       switch(quest.characterRestriction)

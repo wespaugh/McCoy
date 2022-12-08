@@ -10,23 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d121ffabf45ae4cb08a7465d585007, type: 3}
-  m_Name: Rex Quests
+  m_Name: Vicki Quests
   m_EditorClassIdentifier: 
   quests:
-  - uuid: 7b361a02-c40d-4b4e-95cc-b826330c04c8
-    title: com.mccoy.quests.rex.1.title
-    summary: com.mccoy.quests.rex.1.summary
+  - uuid: c2e44463-f68a-499e-82c3-0fae0b1ea65f
+    title: com.mccoy.quests.vicki.1.title
+    summary: com.mccoy.quests.vicki.1.summary
     firstWeekAvailable: 1
     lastWeekAvailable: 50
     worldDurationInGlobalTurns: 10
     prerequisiteQuestFlags: []
     possibleLocations:
-    - 4a3482616f144e746ae7a842a43bdeef
-    introCutscene: Rex_01_Intro
-    exitText: com.mccoy.quests.rex.1.exit
-    Complete: 1
-    exitChoices:
-    - displayText: com.mccoy.quests.rex.1.choice1
-      uuid: nolanKnowsAboutJadeClaws
-    - displayText: com.mccoy.quests.rex.1.choice2
-      uuid: nolanDoesntKnowAboutJadeClaws
+    - 435452702222f9344b33cd833e2b410e
+    introCutscene: Vicki_01_Intro
+    exitText: 
+    exitChoices: []

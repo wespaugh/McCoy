@@ -223,7 +223,7 @@ namespace Assets.McCoy.UI
       fireside = Instantiate(firesidePrefab, board.CameraAnchor.transform);
       fireside.transform.localPosition = new Vector3(0, 0, 8);
       fireside.gameObject.SetActive(false);
-      ShowFireside();
+      // ShowFireside();
     }
 
     private void ShowFireside()
@@ -261,7 +261,6 @@ namespace Assets.McCoy.UI
 
     private void initQuests()
     {
-      McCoy.GetInstance().gameState.activeQuest = null;
       McCoyQuestManager.GetInstance().CityLoaded();
       board.LoadQuests(McCoy.GetInstance().gameState.availableQuests);
     }

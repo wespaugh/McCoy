@@ -1,0 +1,15 @@
+@char Rex wait:false
+@char Nolan wait:false
+Nolan stands firm as Rex flays the last remaining guest. 
+Nolan: Now now, I respect your dedication to preserving our history, but there’s no need for hysterics, Mister…
+Nolan was evidently quite practiced at keeping cool and negotiating while in severe mortal peril, but Rex’s wolf senses smelled the sweaty temple, the growing pit stain, even the barely held bladder.
+Rex: Leave. And if the exhibit isn’t open tomorrow, I will find you.
+Rex: In your home.
+Nolan: Jeez! I’m only trying to offer you a deal here. And one with a considerably better outcome for you than meeting my personal security detail at home, I promise.
+Rex: I’m not interested.
+Nolan: Obviously the party is canceled for the week, on account of the attendants being disemboweled. So if the exhibit doesn’t reopen, you have only yourself to blame for the mess of it you’ve made.
+Rex: If you're not going to help...
+Nolan: Now, I’ve already paid your price with our lives, so in exchange, why don’t you tell me who made you what you are. That’s all, one simple question. And then you can tear me apart, if you must. I bet the pain is… exquisite.”
+@choice "Tell Him" goto:Rex_01_Choice1
+@choice "Refuse" goto:Rex_01_Choice2
+@stop

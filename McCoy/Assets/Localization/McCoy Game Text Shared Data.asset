@@ -139,6 +139,14 @@ MonoBehaviour:
     m_Key: com.mccoy.quests.world.1.title
     m_Metadata:
       m_Items: []
+  - m_Id: 12735238740299776
+    m_Key: com.mccoy.quests.vicki.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12735936747982848
+    m_Key: com.mccoy.quests.vicki.1.summary
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

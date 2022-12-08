@@ -42,7 +42,7 @@ namespace Assets.McCoy.RPG
       {
         lobbyingUI = Instantiate(LobbyingUIPrefab);
       }
-      lobbyingUI.transform.parent = root.transform;
+      lobbyingUI.transform.SetParent(root.transform);
 
       pcGroups = characterGroups;
       selectedPCGroupIndex = 0;

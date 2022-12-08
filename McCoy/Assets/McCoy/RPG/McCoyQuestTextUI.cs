@@ -116,7 +116,7 @@ namespace Assets.McCoy.RPG
       gameObject.SetActive(false);
       McCoyGameState gameState = McCoy.GetInstance().gameState;
       gameState.playerCharacters[gameState.selectedPlayer].GainXP(100);
-      gameState.activeQuest = null;
+      gameState.CompleteQuest();
     }
   }
 }

@@ -119,6 +119,14 @@ namespace Assets.McCoy.BoardGame
       }
     }
 
+    public void CompleteQuest()
+    {
+      activeQuest.Complete = true;
+      McCoy.GetInstance().gameState.questFlags.Add(activeQuest.uuid);
+      availableQuests.Remove(activeQuest);
+      activeQuest = null;
+    }
+
     public MapNodeSearchData GetSearchData(string nodeID)
     {
       if(string.IsNullOrEmpty(nodeID) || !nodeSearchData.ContainsKey(nodeID))

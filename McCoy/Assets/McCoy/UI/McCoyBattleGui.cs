@@ -1,9 +1,8 @@
 ﻿using Assets.McCoy.Brawler;
 using Assets.McCoy.RPG;
-using System;
+using Assets.McCoy;
 using TMPro;
 using UFE3D;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,6 +66,8 @@ namespace Assets.McCoy.UI
       if ( activeQuest != null)
       {
         var _ = McCoy.GetInstance().ShowCutsceneAsync(activeQuest.introCutscene);
+        worldUI.gameObject.SetActive(false);
+        uiRoot.gameObject.SetActive(false);
         /*
         questUI.gameObject.SetActive(true);
         questUI.BeginQuest(activeQuest);
@@ -144,21 +145,26 @@ namespace Assets.McCoy.UI
 
     protected override void SetAlertMessage(string msg)
     {
-      if(msg == "stinger_stageover_escaped")
+      if(msg == ProjectConstants.STINGER_STAGE_ESCAPED)
       {
         worldUI.StageEnded(McCoyStinger.StingerTypes.Escaped);
       }
-      else if(msg == "stinger_stageover_bossdefeated")
+      else if(msg == ProjectConstants.STINGER_BOSS_DEFEATED)
       {
         worldUI.StageEnded(McCoyStinger.StingerTypes.BossDefeated);
       }
-      else if(msg == "stinger_stageover_stagecleared")
+      else if(msg == ProjectConstants.STINGER_STAGE_CLEARED)
       {
         worldUI.StageEnded(McCoyStinger.StingerTypes.StageCleared);
       }
-      else if(msg == "QuestComplete")
+      else if(msg == ProjectConstants.QUEST_COMPLETE)
       {
         questUI.QuestEnded();
+      }
+      else if(msg == ProjectConstants.CUTSCENE_FINISHED)
+      {
+        worldUI.gameObject.SetActive(true);
+        uiRoot.gameObject.SetActive(true);
       }
       return;
       //alertText.text = msg;
@@ -282,6 +288,10 @@ namespace Assets.McCoy.UI
     public void CheatWin()
     {
       McCoy.GetInstance().debugCheatWin = true;
+      if (McCoy.GetInstance().gameState.activeQuest != null)
+      {
+        McCoy.GetInstance().gameState.CompleteQuest();
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using Assets.McCoy.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,13 +40,17 @@ namespace Assets.McCoy.RPG
     }
     IEnumerator loadQuests()
     {
-      ResourceRequest worldRequest = Resources.LoadAsync<McCoyQuestListData>("Quests/World Quests");
-      yield return worldRequest;
-      theQuests[PlayerCharacter.None] = worldRequest.asset as McCoyQuestListData;
+      List<Tuple<string, PlayerCharacter>> questsResources = new List<Tuple<string, PlayerCharacter>>();
+      questsResources.Add(new Tuple<string, PlayerCharacter>("World Quests", PlayerCharacter.None));
+      questsResources.Add(new Tuple<string, PlayerCharacter>("Rex Quests", PlayerCharacter.Rex));
+      questsResources.Add(new Tuple<string, PlayerCharacter>("Vicki Quests", PlayerCharacter.Vicki));
 
-      ResourceRequest rexRequest = Resources.LoadAsync<McCoyQuestListData>("Quests/Rex Quests");
-      yield return rexRequest;
-      theQuests[PlayerCharacter.Rex] = rexRequest.asset as McCoyQuestListData;
+      foreach(var resource in questsResources)
+      {
+        ResourceRequest req = Resources.LoadAsync<McCoyQuestListData>($"Quests/{resource.Item1}");
+        yield return req;
+        theQuests[resource.Item2] = req.asset as McCoyQuestListData;
+      }
     }
 
     public void ClearQuestData()
@@ -61,7 +66,7 @@ namespace Assets.McCoy.RPG
         foreach (var q in questList.Value.quests)
         {
           q.characterRestriction = questList.Key;
-          availableQuests.Add(q.uuid, q);
+          availableQuests.Add(q.uuid, q.Clone() as McCoyQuestData);
         }
       }
       foreach(var previousQuest in McCoy.GetInstance().gameState.questsSpawned)
@@ -111,7 +116,7 @@ namespace Assets.McCoy.RPG
       }
       if(possibleQuests.Count > 0)
       {
-        int idx = Random.Range(0, possibleQuests.Count);
+        int idx = UnityEngine.Random.Range(0, possibleQuests.Count);
         McCoyQuestData randomQuest = possibleQuests[idx];
         McCoy.GetInstance().gameState.StartQuest(randomQuest);
         availableQuests.Remove(randomQuest.uuid);

@@ -30,7 +30,7 @@ namespace Assets.McCoy.Brawler
     // Faction -> avgEnemiesAtOnce
     Dictionary<Factions, int> avgSpawnNumbers = new Dictionary<Factions, int>();
 
-    bool debugSpawnsOnly => McCoy.GetInstance().Debug;
+    bool debugSpawnsOnly => McCoy.GetInstance().Debug && false;
 
     const float bossXOffset = 3.5f;
 
@@ -175,7 +175,7 @@ namespace Assets.McCoy.Brawler
       // on the last stage, show the quest end UI
       if (lastStage)
       {
-        UFE.FireAlert("QuestComplete", null);
+        UFE.FireAlert(QUEST_COMPLETE, null);
         waitingForQuestUI = true;
         McCoyGameState state = McCoy.GetInstance().gameState;
         while (state.activeQuest != null)
@@ -509,14 +509,14 @@ namespace Assets.McCoy.Brawler
 
       commitStageResultsToMobs();
 
-      string message = "stinger_stageover_stagecleared";
+      string message = STINGER_STAGE_CLEARED;
       switch(endCondition)
       {
         case SubstageExitCondition.BossDefeated:
-          message = $"stinger_stageover_bossdefeated";
+          message = STINGER_BOSS_DEFEATED;
           break;
         case SubstageExitCondition.Escaped:
-          message = $"stinger_stageover_escaped";
+          message = STINGER_STAGE_ESCAPED;
           break;
         case SubstageExitCondition.Cheat:
           message = $"Levelskip";

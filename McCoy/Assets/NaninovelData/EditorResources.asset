@@ -189,6 +189,15 @@ MonoBehaviour:
     - name: Vicki_01_Intro
       pathPrefix: Scripts
       guid: 74f4f2164365d094288850003b03b46a
+    - name: Rex_01_Outro
+      pathPrefix: Scripts
+      guid: 213a8cf71e4442844bf569d4dff7f73f
+    - name: Rex_01_Choice1
+      pathPrefix: Scripts
+      guid: 30d77a70a3dc58742b1894130927dff3
+    - name: Rex_01_Choice2
+      pathPrefix: Scripts
+      guid: a22969bd549dc974797726ea863cc9d5
   - Id: Characters/6bd06355-2d47-4ee4-8640-7ef416817020
     Resources:
     - name: Default

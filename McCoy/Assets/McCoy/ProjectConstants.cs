@@ -95,6 +95,14 @@ namespace Assets.McCoy
     public const string PLAYER_3_NAME = "Avalon";
     public const string PLAYER_4_NAME = "Penelope";
 
+    #region Alerts
+    public const string STINGER_STAGE_ESCAPED = "stinger_stageover_escaped";
+    public const string STINGER_BOSS_DEFEATED = "stinger_stageover_bossdefeated";
+    public const string STINGER_STAGE_CLEARED = "stinger_stageover_stagecleared";
+    public const string QUEST_COMPLETE = "questComplete";
+    public const string CUTSCENE_FINISHED = "cutsceneFinished";
+    #endregion
+
     public static string PlayerName(PlayerCharacter player)
     {
       switch(player)

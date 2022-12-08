@@ -6,7 +6,7 @@ using static Assets.McCoy.ProjectConstants;
 namespace Assets.McCoy.RPG
 {
   [Serializable]
-  public class McCoyQuestData
+  public class McCoyQuestData : ICloneable
   {
     // unique ID
     public string uuid;
@@ -39,8 +39,18 @@ namespace Assets.McCoy.RPG
     // displayed in level when the final objective is completed
     public string exitText;
 
+    // flagged when completion conditions are fulfilled (TODO: PROBABLY NOT NEEDED ANYMORE)
+    public bool Complete;
+
     // options given to the player about how to complete the quest
     public List<McCoyQuestChoice> exitChoices = new List<McCoyQuestChoice>();
     public PlayerCharacter characterRestriction { get; set; }
+
+    public object Clone()
+    {
+      object retVal = this.MemberwiseClone();
+      ((McCoyQuestData)retVal).Complete = false;
+      return retVal;
+    }
   }
 }
