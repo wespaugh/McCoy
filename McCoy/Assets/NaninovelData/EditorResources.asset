@@ -198,6 +198,21 @@ MonoBehaviour:
     - name: Rex_01_Choice2
       pathPrefix: Scripts
       guid: a22969bd549dc974797726ea863cc9d5
+    - name: Vicki_01_Outro
+      pathPrefix: Scripts
+      guid: 260b5a05f83d140488090c30ff5345aa
+    - name: Vicki_01_Choice1
+      pathPrefix: Scripts
+      guid: 6fcd5d5dd5d6b3746bc45d10d2665a32
+    - name: Vicki_01_Choice2
+      pathPrefix: Scripts
+      guid: 07aeb177ab7c78f499933648ffeee889
+    - name: World_01_Intro
+      pathPrefix: Scripts
+      guid: 1173ae6eea40a8b4985bb86a69dfcea5
+    - name: World_01_Outro
+      pathPrefix: Scripts
+      guid: beeb334535badf946897b3d469837ff3
   - Id: Characters/6bd06355-2d47-4ee4-8640-7ef416817020
     Resources:
     - name: Default

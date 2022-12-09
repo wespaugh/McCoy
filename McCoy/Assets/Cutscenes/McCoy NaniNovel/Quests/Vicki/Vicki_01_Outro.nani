@@ -1,0 +1,6 @@
+Even half ash, examining the pile of logs remaining under the ritual fire requires the strength of the Vicki’s Arbiter form. Etched into the asphalt is a series of sigils, many of which Vicki recognizes as assuring safe transport.
+The markings provide enough insight into the Mage's goals, and Vivien will be able to provide more specifics.
+Vicki could return directly to her mentor to inform her of the findings, or take the opportunity to look around the Hangars for any further information.
+@choice Investigate goto:Vicki_01_Choice1
+@choice Return goto:Vicki_01_Choice2
+@stop

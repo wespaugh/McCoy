@@ -1,0 +1,12 @@
+As {Name} wipes some of the blood and viscera out of their clothes, one of the bodies left behind snaps at attention, bending upright at the waist and letting out a groan. The legs remain uncannily still. Perhaps the nerves were completely severed.
+Nolan: I hope you realize you’ve ruined a perfectly spectacular barbacoa feast.
+The flash of recognition hits, but this is impossible.
+{Name}: Nolan? From the Museum. You were dead. You choked on your own liver!
+Nolan: Yes, and I’m afraid it really does need the nice Chianti to pair. And the server! Such a rush to get me to leave.
+{Name}: How are you-
+Nolan: Alive? You don’t really think we use our reality-cheating powers just to make keytar lasers and autotune, do you? Don’t look so confused. Why don’t we see if your deal-making powers are any better. 
+{Name}: Save it!
+Nolan: I can’t tell you how I’m alive, but I’ll tell you how to find out for yourself. And in return, you’ll tell me why I only started seeing you around town so long after the aliens arrived
+@choice "Tell him about the first change" goto:World_01_Choice1
+@choice "Refuse" goto:World_01_Choice2
+@stop
