@@ -21,6 +21,12 @@ namespace Assets.McCoy.BoardGame
       get => weekNumber;
     }
 
+    private int credits = 500;
+    public int Credits
+    {
+      get => credits;
+    }
+
     public static McCoyGameState Instance()
     {
       return McCoy.GetInstance().gameState;
@@ -45,6 +51,7 @@ namespace Assets.McCoy.BoardGame
 
     // flags set as quests are completed and choices are made
     public List<string> questFlags = new List<string>();
+    public List<McCoyLobbyingCause.LobbyingCause> causesLobbiedFor = new List<McCoyLobbyingCause.LobbyingCause>();
 
     string antikytheraMechanismLocation;
     public string AntikytheraMechanismLocation
@@ -92,6 +99,8 @@ namespace Assets.McCoy.BoardGame
       playerLocations = save.playerLocations;
       playerCharacters = save.playerCharacters;
       nodeSearchData = save.nodeSearchData;
+      credits = save.credits;
+      causesLobbiedFor = save.causesLobbiedFor;
     }
 
     public void Initialize()
@@ -182,6 +191,15 @@ namespace Assets.McCoy.BoardGame
           retVal &= p == 0;
         }
         return retVal;
+      }
+    }
+
+    public void Spend(int credits)
+    {
+      credits -= credits;
+      if(credits < 0)
+      {
+        Debug.LogWarning("You have spent too much!");
       }
     }
 

@@ -33,9 +33,9 @@ namespace Assets.McCoy.UI
     const float CAMERA_CITY_FIELD_OF_VIEW = 37.0f;
 
     [SerializeField]
-    float lineStartWidth = .25f;
+    float lineStartWidth = 1f;
     [SerializeField]
-    float lineEndWidth = .05f;
+    float lineEndWidth = 1f;
 
     [SerializeField]
     MeshRenderer map = null;
@@ -486,11 +486,13 @@ namespace Assets.McCoy.UI
       {
         return;
       }
-      var mapCacheObj = Resources.Load($"{ProjectConstants.MAPDATA_DIRECTORY}/{dataFile}");
+      var mapCacheObj = Resources.Load($"{MAPDATA_DIRECTORY}/{dataFile}");
       _mapCache = mapCacheObj as MapGraphNodeContainer;
 
-      foreach (var assetNode in mapCache.NodeData)
+      foreach (var assetNodeData in mapCache.NodeData)
       {
+        assetNodeData.ClearConnectedNodes();
+        MapNode assetNode = (MapNode)assetNodeData.Clone();
         mapNodes.Add(assetNode);
         assetNode.connectionIDs.Clear();
         mapNodeLookup.Add(assetNode.NodeID, assetNode);
@@ -503,10 +505,10 @@ namespace Assets.McCoy.UI
         var baseNode = mapNodeLookup[assetLink.BaseNodeGuid];
         var targetNode = mapNodeLookup[assetLink.TargetNodeGuid];
 
-        var nameComps = baseNode.ZoneName.Split(".");
-        string baseName = nameComps[nameComps.Length - 1];
-        nameComps = targetNode.ZoneName.Split(".");
-        string targetName = nameComps[nameComps.Length - 1];
+        //var nameComps = baseNode.ZoneName.Split(".");
+        //string baseName = nameComps[nameComps.Length - 1];
+        //nameComps = targetNode.ZoneName.Split(".");
+        //string targetName = nameComps[nameComps.Length - 1];
 
         // weird thing here. Resources.Load seems to be cacheing the loaded objects,
         // meaning making a second board will already have map nodes connected. we can skip that part, if so
@@ -541,6 +543,17 @@ namespace Assets.McCoy.UI
       initConnectionLines(nodes);
     }
 
+    private void redrawLines()
+    {
+      McCoyCityZonePlacementNode[] nodes = NodeParent.GetComponentsInChildren<McCoyCityZonePlacementNode>();
+      List<string> lineLookupKeys = new List<string>(lineLookup.Keys);
+      foreach(var key in lineLookupKeys)
+      {
+        LineRenderer r = lineLookup[key];
+        Destroy(r);
+      }
+      initConnectionLines(nodes);
+    }
 
     private void initConnectionLines(McCoyCityZonePlacementNode[] nodes)
     {
@@ -551,12 +564,18 @@ namespace Assets.McCoy.UI
       foreach (var assetLink in mapCache.NodeLinks)
       {
         var fromID = assetLink.BaseNodeGuid;
+        var toID = assetLink.TargetNodeGuid;
+
+        if(mapNodeLookup[fromID].Disabled || mapNodeLookup[toID].Disabled)
+        {
+          continue;
+        }
+
         List<McCoyCityZonePlacementNode> sourceNodes = nodes.Where(x => x.NodeId == fromID).ToList();
         int fromIdx = -1;
         for (int i = 0; i < nodes.Length; ++i) if (nodes[i] == sourceNodes[0]) { fromIdx = i; break; }
         if (sourceNodes == null || sourceNodes.Count == 0) Debug.LogWarning("Found no source node connected to link for ID" + fromID);
 
-        var toID = assetLink.TargetNodeGuid;
         List<McCoyCityZonePlacementNode> destNodes = nodes.Where(x => x.NodeId == toID).ToList();
         int toIdx = -1;
         for (int i = 0; i < nodes.Length; ++i) if (nodes[i] == destNodes[0]) { toIdx = i; break; }
@@ -569,6 +588,7 @@ namespace Assets.McCoy.UI
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
         lineRenderer.startWidth = lineStartWidth;
+        lineRenderer.sortingOrder = 100;
         lineRenderer.endWidth = lineEndWidth;
         lineRenderer.material = lineMaterial;
 
@@ -701,13 +721,14 @@ namespace Assets.McCoy.UI
           }
           isSelectedNow &= foundOtherEnd;
         }
+        isSelectedNow = true;
         Color deselectColor = new Color(227f/255f, 99f/255f, 151f/255f, 0f);
         Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f, 128f/255f);
         if(!isSelectedNow)
         {
           inactiveConnectionLines.Add(entry.Value);
         }
-        entry.Value.startColor = isSelectedNow ? selectColor : deselectColor;// Color.grey;
+        entry.Value.startColor =  isSelectedNow ? selectColor : deselectColor;// Color.grey;
         entry.Value.endColor = isSelectedNow ? selectColor : deselectColor; // Color.grey;
       }
 
@@ -747,6 +768,13 @@ namespace Assets.McCoy.UI
       return mapNodeLookup[ID];
     }
 
+    public void UnlockZone(string id)
+    {
+      mapNodeLookup[id].Disabled = false;
+      redrawLines();
+      UpdateNodes();
+    }
+
     public void UpdateNodes()
     {
       Dictionary<string, int> playerLocs = new Dictionary<string, int>();
@@ -756,6 +784,11 @@ namespace Assets.McCoy.UI
       }
       foreach(var node in mapNodes)
       {
+        mobIndicatorLookup[node.NodeID].gameObject.SetActive(!node.Disabled);
+        if (node.Disabled)
+        {
+          continue;
+        }
         int playerNum = playerLocs.ContainsKey(node.NodeID) ? playerLocs[node.NodeID] : -1;
         MapNode mechanismLocation = NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
         bool showMechanism = mechanismLocation != null && mechanismLocation.MechanismFoundHere && mechanismLocation.NodeID == node.NodeID;

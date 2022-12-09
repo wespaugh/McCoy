@@ -22,6 +22,9 @@ namespace Assets.McCoy
       Neutral
     }
 
+    public static string SUBWAY_ID = "1cd0a89b6bcb6c14bbe4f0808cdba578";
+    public static string SKYBRIDGE_ID = "aed39e83bff372045a0d9c263b13f4d7";
+
     public static float MOB_ROUTING_HEALTH_THRESHOLD = 0.5f;
 
     public static float PC_TIME_PER_WEEK = 420f;

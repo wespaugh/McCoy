@@ -77,6 +77,7 @@ namespace Assets.McCoy.BoardGame
 
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {
+
       wolfIndicator.gameObject.SetActive(playerNum > 0);
       wolfIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
       wolfIndicator.GetComponent<Animator>().SetInteger(factionAnimatorParam, 1);
@@ -297,7 +298,10 @@ namespace Assets.McCoy.BoardGame
       }
       if(select && ! selected && ! pulsing)
       {
-        StartCoroutine(pulse());
+        if (gameObject.activeInHierarchy)
+        {
+          StartCoroutine(pulse());
+        }
       }
       selected = select;
     }

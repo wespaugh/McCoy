@@ -28,9 +28,9 @@ public class LobbyingCauseListEditorWindow : EditorWindow
   private string foldStyle;
   private string enumStyle;
 
-  private bool questListFoldout;
+  private bool lobbyingCauseListFoldout;
 
-  [MenuItem("Window/McCoy/Quest List Editor")]
+  [MenuItem("Window/McCoy/Lobbying Cause List Editor")]
   public static void Init()
   {
     lobbyingCauseEditorWindow = EditorWindow.GetWindow<LobbyingCauseListEditorWindow>(false, "Lobbying Cause List", true);
@@ -91,7 +91,7 @@ public class LobbyingCauseListEditorWindow : EditorWindow
 
   void Populate()
   {
-    this.titleContent = new GUIContent("Quest", (Texture)Resources.Load("Icons/Character"));
+    this.titleContent = new GUIContent("Lobbying Causes", (Texture)Resources.Load("Icons/Character"));
 
     // Style Definitions
     titleStyle = "MeTransOffRight";
@@ -147,11 +147,11 @@ public class LobbyingCauseListEditorWindow : EditorWindow
       {
         EditorGUILayout.BeginHorizontal();
         {
-          questListFoldout = EditorGUILayout.Foldout(questListFoldout, "Lobbying Causes (" + lobbyingCauseList.causes.Length + ")", foldStyle);
+          lobbyingCauseListFoldout = EditorGUILayout.Foldout(lobbyingCauseListFoldout, "Lobbying Causes (" + lobbyingCauseList.causes.Length + ")", foldStyle);
         }
         EditorGUILayout.EndHorizontal();
 
-        if (questListFoldout)
+        if (lobbyingCauseListFoldout)
         {
           EditorGUILayout.BeginVertical(subGroupStyle);
           {

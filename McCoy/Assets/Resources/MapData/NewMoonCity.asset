@@ -128,123 +128,159 @@ MonoBehaviour:
     - 435452702222f9344b33cd833e2b410e
     - fcff9c39b002b4c438a07eb25e1a1fe2
     - c39ce560d0ce07e498aa32e6a39a865f
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.governmentofficebuilding
+    LobbyingAvailable: 0
   - NodeID: 435452702222f9344b33cd833e2b410e
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 516f997ff8c16e34c91d9534926141ed
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.airfield
+    LobbyingAvailable: 0
   - NodeID: 20888d9701a6e1c4294784294f939b28
     connectionIDs:
     - 36e23897c1d8e5e459aa1500cefa8d44
     - 83ad669713d871b4787ab3e441764e13
     - 7c688bb0005018d4d91f534c23b4b438
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.meatpackingdistrict
+    LobbyingAvailable: 0
   - NodeID: 36e23897c1d8e5e459aa1500cefa8d44
     connectionIDs:
     - 20888d9701a6e1c4294784294f939b28
     - 1cd0a89b6bcb6c14bbe4f0808cdba578
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.nimbystreet
+    LobbyingAvailable: 0
   - NodeID: 83ad669713d871b4787ab3e441764e13
     connectionIDs:
     - 20888d9701a6e1c4294784294f939b28
     - 4ce0d0c15420f7d4cb53747c94795e9e
     - 07d7f6ea6aaedf04b982db947277082b
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.powerstation
+    LobbyingAvailable: 0
   - NodeID: 5b5dd699f62d6d2409c9d390202a506e
     connectionIDs:
     - bca2ecf53f57d724abe75d786eea6d75
     - 9280bee4b8e1f424696c95a89e668418
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.college
+    LobbyingAvailable: 0
   - NodeID: bca2ecf53f57d724abe75d786eea6d75
     connectionIDs:
     - 319198f1ad8492a43b965d401c8884b5
     - 5b5dd699f62d6d2409c9d390202a506e
     - aed39e83bff372045a0d9c263b13f4d7
     - 4ce0d0c15420f7d4cb53747c94795e9e
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.harbor
+    LobbyingAvailable: 0
   - NodeID: 7561d6c4bbfed7747a0affa4400cd38e
     connectionIDs:
     - 319198f1ad8492a43b965d401c8884b5
     - 435452702222f9344b33cd833e2b410e
     - 1cd0a89b6bcb6c14bbe4f0808cdba578
     - 4a3482616f144e746ae7a842a43bdeef
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.preservationzone
+    LobbyingAvailable: 0
   - NodeID: 4ce0d0c15420f7d4cb53747c94795e9e
     connectionIDs:
     - 83ad669713d871b4787ab3e441764e13
     - 9280bee4b8e1f424696c95a89e668418
     - bca2ecf53f57d724abe75d786eea6d75
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.conventioncenter
+    LobbyingAvailable: 0
   - NodeID: 4a3482616f144e746ae7a842a43bdeef
     connectionIDs:
     - 516f997ff8c16e34c91d9534926141ed
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 319198f1ad8492a43b965d401c8884b5
     - 9280bee4b8e1f424696c95a89e668418
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.museum
+    LobbyingAvailable: 0
   - NodeID: 9280bee4b8e1f424696c95a89e668418
     connectionIDs:
     - 5b5dd699f62d6d2409c9d390202a506e
     - fcff9c39b002b4c438a07eb25e1a1fe2
     - 4ce0d0c15420f7d4cb53747c94795e9e
     - 4a3482616f144e746ae7a842a43bdeef
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.commerceplaza
+    LobbyingAvailable: 0
   - NodeID: aed39e83bff372045a0d9c263b13f4d7
     connectionIDs:
     - bca2ecf53f57d724abe75d786eea6d75
     - 07d7f6ea6aaedf04b982db947277082b
+    Disabled: 1
     Mobs: []
     ZoneName: com.mccoy.cityzone.skybridge
+    LobbyingAvailable: 0
   - NodeID: 319198f1ad8492a43b965d401c8884b5
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - bca2ecf53f57d724abe75d786eea6d75
     - 4a3482616f144e746ae7a842a43bdeef
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.cityhall
+    LobbyingAvailable: 1
   - NodeID: fcff9c39b002b4c438a07eb25e1a1fe2
     connectionIDs:
     - 7c688bb0005018d4d91f534c23b4b438
     - 9280bee4b8e1f424696c95a89e668418
     - 516f997ff8c16e34c91d9534926141ed
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.nightclub
+    LobbyingAvailable: 0
   - NodeID: 1cd0a89b6bcb6c14bbe4f0808cdba578
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 36e23897c1d8e5e459aa1500cefa8d44
+    Disabled: 1
     Mobs: []
     ZoneName: com.mccoy.cityzone.subway
+    LobbyingAvailable: 0
   - NodeID: 07d7f6ea6aaedf04b982db947277082b
     connectionIDs:
     - 83ad669713d871b4787ab3e441764e13
     - aed39e83bff372045a0d9c263b13f4d7
     - c39ce560d0ce07e498aa32e6a39a865f
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.financialdistrict
+    LobbyingAvailable: 0
   - NodeID: c39ce560d0ce07e498aa32e6a39a865f
     connectionIDs:
     - 07d7f6ea6aaedf04b982db947277082b
     - 7c688bb0005018d4d91f534c23b4b438
     - 516f997ff8c16e34c91d9534926141ed
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.penthouse
+    LobbyingAvailable: 0
   - NodeID: 7c688bb0005018d4d91f534c23b4b438
     connectionIDs:
     - 20888d9701a6e1c4294784294f939b28
     - fcff9c39b002b4c438a07eb25e1a1fe2
     - c39ce560d0ce07e498aa32e6a39a865f
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.solhq
+    LobbyingAvailable: 0

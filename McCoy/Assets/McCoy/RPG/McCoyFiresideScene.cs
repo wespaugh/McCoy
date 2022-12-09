@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.UI;
+﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +42,10 @@ namespace Assets.McCoy.RPG
       if (lobbyingUI == null)
       {
         lobbyingUI = Instantiate(LobbyingUIPrefab);
+        lobbyingUI.GetComponent<McCoyLobbyingListUI>().Initialize(root);
       }
       lobbyingUI.transform.SetParent(root.transform);
+      lobbyingUI.gameObject.SetActive(false);
 
       pcGroups = characterGroups;
       selectedPCGroupIndex = 0;
@@ -90,10 +93,12 @@ namespace Assets.McCoy.RPG
         ++selectedPCGroupIndex;
       }
 
-      foreach(var pc in PlayerCharacters)
+      bool canLobby = root.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
+      lobbyingUI.gameObject.SetActive(canLobby);
+
+      foreach (var pc in PlayerCharacters)
       {
         spriteForPC(pc).transform.localScale = pc == PlayerCharacters[selectedCharacter] ? new Vector3(1.2f,1.2f,1.2f) : Vector3.one;
-
       }
 
       int i = 0;

@@ -19,11 +19,24 @@ namespace Assets.McCoy.BoardGame
     public int distanceToMechanism;
   }
   [Serializable]
-  public class MapNode : SearchableNode
+  public class MapNode : SearchableNode, ICloneable
   {
     public List<McCoyMobData> Mobs = new List<McCoyMobData>();
 
     MapNodeSearchData searchData = null;
+
+    public string ZoneName;
+
+    public bool LobbyingAvailable;
+
+    [NonSerialized]
+    public Vector2 Position;
+
+    public object Clone()
+    {
+      return this.MemberwiseClone();
+    }
+
     public MapNodeSearchData SearchData
     {
       get
@@ -48,11 +61,6 @@ namespace Assets.McCoy.BoardGame
       }
     }
 
-    public string ZoneName;
-
-    [NonSerialized]
-    public Vector2 Position;
-
     int bonusSearchDice
     {
       get => SearchData.bonusSearchDice;
@@ -70,6 +78,7 @@ namespace Assets.McCoy.BoardGame
         SearchData.bonusValue = value;
       }
     }
+
     public void LoadSearchData(MapNodeSearchData mapNodeSearchData)
     {
       SearchData = mapNodeSearchData;

@@ -87,6 +87,7 @@ namespace Assets.McCoy.UI
     {
       get => board;
     }
+    // TODO: Get rid of this, right? Right?
     public PlayerCharacter Rex { get; private set; }
 
     [SerializeField]
@@ -138,7 +139,7 @@ namespace Assets.McCoy.UI
       {
         inputManager = new McCoyInputManager();
         inputInitialized = true;
-        inputManager.RegisterButtonListener(ButtonPress.Button4, OpenSkillTree);
+        inputManager.RegisterButtonListener(ButtonPress.Button4, ShowFireside);
         inputManager.RegisterButtonListener(ButtonPress.Button5, NextPlayer);
         inputManager.RegisterButtonListener(ButtonPress.Button6, PreviousPlayer);
         inputManager.RegisterButtonListener(ButtonPress.Button3, ToggleZoom);
@@ -347,6 +348,12 @@ namespace Assets.McCoy.UI
           talentDelegate.LoadSkills(skillTreeString, loadSkills);
         }
       }
+    }
+
+    public void UnlockZone(string id)
+    {
+      board.UnlockZone(id);
+      refreshBoardAndPanels();
     }
 
     private void endWeek()

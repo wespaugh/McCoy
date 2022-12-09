@@ -179,6 +179,106 @@ MonoBehaviour:
     m_Key: com.mccoy.boardgame.Sunday
     m_Metadata:
       m_Items: []
+  - m_Id: 13303378704519168
+    m_Key: com.mccoy.boardgame.availablelobbyingcauses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321586744414208
+    m_Key: com.mccoy.boardgame.afterschoolprograms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321723633913856
+    m_Key: com.mccoy.boardgame.summaryunknown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321886985277440
+    m_Key: com.mccoy.boardgame.automaticweaponsban
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321946410176512
+    m_Key: com.mccoy.boardgame.automaticweaponsbansummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322037875363840
+    m_Key: com.mccoy.boardgame.consumptionsites
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322106112495616
+    m_Key: com.mccoy.boardgame.universalhealthcare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322169157079040
+    m_Key: com.mccoy.boardgame.universalhealthcaresummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322224576417792
+    m_Key: com.mccoy.boardgame.loanforgiveness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322304024924160
+    m_Key: com.mccoy.boardgame.loanforgivenesssummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322343405244416
+    m_Key: com.mccoy.boardgame.prisonreform
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322434631356416
+    m_Key: com.mccoy.boardgame.raiseminimumwage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322496505729024
+    m_Key: com.mccoy.boardgame.removeantihomelessarchitecture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322567511101440
+    m_Key: com.mccoy.boardgame.removeantihomelessarchitecturesummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322638906544128
+    m_Key: com.mccoy.boardgame.rentcontrol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322692832710656
+    m_Key: com.mccoy.boardgame.skybridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322750600859648
+    m_Key: com.mccoy.boardgame.skybridgesummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322824634519552
+    m_Key: com.mccoy.boardgame.socialworkers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322873653350400
+    m_Key: com.mccoy.boardgame.subway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322931534745600
+    m_Key: com.mccoy.boardgame.subwaysummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322936546938880
+    m_Key: com.mccoy.boardgame.statemedia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13323049105281024
+    m_Key: com.mccoy.boardgame.statemediasummary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13323875211202560
+    m_Key: com.mccoy.boardgame.lobbyingcost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13325495605055488
+    m_Key: com.mccoy.boardgame.lobbybuttonlabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13326011236012032
+    m_Key: com.mccoy.boardgame.raiseminimumwagesummary
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 1944363960}
   - component: {fileID: 1944363961}
   - component: {fileID: 1944363962}
+  - component: {fileID: 1944363963}
   m_Layer: 0
   m_Name: UFE Manager
   m_TagString: Untagged
@@ -692,5 +693,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55acce8ad7d7ea747a5e3adfd57353db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1944363963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944363956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25572493d797f2f469a12b1ba4a03d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

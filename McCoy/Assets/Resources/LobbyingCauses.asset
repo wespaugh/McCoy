@@ -14,55 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Assets.McCoy.BoardGame:McCoyLobbyingCauseListData
   causes:
   - lobbyingCause: 0
-    title: After School Programs
-    summary: Keep kids off the street to lower gang recruitment numbers
+    title: com.mccoy.boardgame.afterschoolprograms
+    summary: com.mccoy.boardgame.summaryunknown
     cost: 1000
   - lobbyingCause: 1
-    title: Automatic Weapons Ban
-    summary: Fewer enemies will be able to afford high-powered weaponry at black
-      market prices.
+    title: com.mccoy.boardgame.automaticweaponsban
+    summary: com.mccoy.boardgame.automaticweaponsbansummary
     cost: 2000
   - lobbyingCause: 2
-    title: Open Consumption Sites
-    summary: ???
-    cost: 2001
-  - lobbyingCause: 3
-    title: Healthcare
-    summary: Affordable and easily accessible
-    cost: 300
-  - lobbyingCause: 4
-    title: Loan Forgiveness
-    summary: Sol Corp employment drops (???)
-    cost: 2002
-  - lobbyingCause: 5
-    title: Prison Reform
-    summary: ???
-    cost: 2003
-  - lobbyingCause: 6
-    title: Raise Minimum Wage
-    summary: Service industries thrive
+    title: com.mccoy.boardgame.consumptionsites
+    summary: com.mccoy.boardgame.summaryunknown
     cost: 3000
+  - lobbyingCause: 3
+    title: com.mccoy.boardgame.universalhealthcare
+    summary: com.mccoy.boardgame.universalhealthcaresummary
+    cost: 4000
+  - lobbyingCause: 4
+    title: com.mccoy.boardgame.loanforgiveness
+    summary: com.mccoy.boardgame.loanforgivenesssummary
+    cost: 5000
+  - lobbyingCause: 5
+    title: com.mccoy.boardgame.prisonreform
+    summary: com.mccoy.boardgame.summaryunknown
+    cost: 6000
+  - lobbyingCause: 6
+    title: com.mccoy.boardgame.raiseminimumwage
+    summary: com.mccoy.boardgame.raiseminimumwagesummary
+    cost: 7000
   - lobbyingCause: 7
-    title: Remove Anti-homelessness Architecture
-    summary: Dismantle oppressive architecture
-    cost: 500
+    title: com.mccoy.boardgame.removeantihomelessarchitecture
+    summary: com.mccoy.boardgame.removeantihomelessarchitecturesummary
+    cost: 8000
   - lobbyingCause: 8
-    title: Rent Control
-    summary: (???)
-    cost: 3001
+    title: com.mccoy.boardgame.rentcontrol
+    summary: com.mccoy.boardgame.summaryunknown
+    cost: 8000
   - lobbyingCause: 9
-    title: Skybridge
-    summary: Re-open the Skybridge
+    title: com.mccoy.boardgame.skybridge
+    summary: com.mccoy.boardgame.skybridgesummary
     cost: 100
   - lobbyingCause: 10
-    title: Social Workers
-    summary: (???)
-    cost: 3002
+    title: com.mccoy.boardgame.socialworkers
+    summary: com.mccoy.boardgame.summaryunknown
+    cost: 9000
   - lobbyingCause: 11
-    title: Subway
-    summary: Re-open the Subway
-    cost: 3002
-  - lobbyingCause: 12
-    title: State Media
-    summary: Keep the public informed
+    title: com.mccoy.boardgame.subway
+    summary: com.mccoy.boardgame.subwaysummary
     cost: 200
+  - lobbyingCause: 12
+    title: com.mccoy.boardgame.statemedia
+    summary: com.mccoy.boardgame.statemediasummary
+    cost: 10000

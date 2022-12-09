@@ -3,12 +3,12 @@ using Assets.McCoy.RPG;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(McCoyLobbyingCause))]
+[CustomEditor(typeof(McCoyLobbyingCauseListData))]
 public class LobbyingCauseEditor : Editor
 {
   public override void OnInspectorGUI()
   {
-    if (GUILayout.Button("Open Quest List Editor"))
+    if (GUILayout.Button("Open Lobbying Cause List Editor"))
       LobbyingCauseListEditorWindow.Init();
 
   }

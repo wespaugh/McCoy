@@ -243,6 +243,106 @@ MonoBehaviour:
     m_Localized: Sunday
     m_Metadata:
       m_Items: []
+  - m_Id: 13303378704519168
+    m_Localized: Available Lobbying Causes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321586744414208
+    m_Localized: After-School Programs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321723633913856
+    m_Localized: (???)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321886985277440
+    m_Localized: Automatic Weapons Ban
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13321946410176512
+    m_Localized: Fewer enemies can afford black market prices for high-powered weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322037875363840
+    m_Localized: Consumption Sites
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322106112495616
+    m_Localized: Universal Healthcare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322169157079040
+    m_Localized: Affordable and freely available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322224576417792
+    m_Localized: Loan Forgiveness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322304024924160
+    m_Localized: Startups thrive as Sol Corp has fewer employees (???)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322343405244416
+    m_Localized: Prison Reform
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322434631356416
+    m_Localized: Raise Minimum Wage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322496505729024
+    m_Localized: Remove Anti-Homeless Architecture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322567511101440
+    m_Localized: Dismantle oppressive installations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322638906544128
+    m_Localized: Rent Control
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322692832710656
+    m_Localized: SkyBridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322750600859648
+    m_Localized: Re-open the SkyBridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322824634519552
+    m_Localized: Social Workers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322873653350400
+    m_Localized: Subway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322931534745600
+    m_Localized: Re-open the Subway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13322936546938880
+    m_Localized: State Media
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13323049105281024
+    m_Localized: Keep the public informed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13323875211202560
+    m_Localized: Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13325495605055488
+    m_Localized: Lobby!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13326011236012032
+    m_Localized: Service Industries boom as people want to work
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

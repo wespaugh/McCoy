@@ -17,9 +17,25 @@ namespace Assets.McCoy.BoardGame
     [NonSerialized]
     List<SearchableNode> connectedNodes = new List<SearchableNode>();
 
+    // skybridge and subway are initially disabled
+    public bool Disabled;
+
     public List<SearchableNode> GetConnectedNodes()
     {
-      return new List<SearchableNode>(connectedNodes);
+      List<SearchableNode> retVal = new List<SearchableNode>();
+      foreach(var node in connectedNodes)
+      {
+        if(!node.Disabled)
+        {
+          retVal.Add(node);
+        }
+      }
+      return (retVal);
+    }
+
+    public void ClearConnectedNodes()
+    {
+      connectedNodes.Clear();
     }
 
     public bool ConnectedToNode(SearchableNode other)
@@ -89,7 +105,7 @@ namespace Assets.McCoy.BoardGame
           return;
         }
         branchesInitialized = true;
-        foreach (var connection in node.connectedNodes)
+        foreach (var connection in node.GetConnectedNodes())
         {
           SearchState ancestor = this;
           bool alreadySearched = false;
