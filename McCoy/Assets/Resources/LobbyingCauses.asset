@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: LobbyingCauses
+  m_EditorClassIdentifier: Assembly-CSharp:Assets.McCoy.BoardGame:McCoyLobbyingCauseListData
+  causes:
+  - lobbyingCause: 0
+    title: After School Programs
+    summary: Keep kids off the street to lower gang recruitment numbers
+    cost: 1000
+  - lobbyingCause: 1
+    title: Automatic Weapons Ban
+    summary: Fewer enemies will be able to afford high-powered weaponry at black
+      market prices.
+    cost: 2000
+  - lobbyingCause: 2
+    title: Open Consumption Sites
+    summary: ???
+    cost: 2001
+  - lobbyingCause: 3
+    title: Healthcare
+    summary: Affordable and easily accessible
+    cost: 300
+  - lobbyingCause: 4
+    title: Loan Forgiveness
+    summary: Sol Corp employment drops (???)
+    cost: 2002
+  - lobbyingCause: 5
+    title: Prison Reform
+    summary: ???
+    cost: 2003
+  - lobbyingCause: 6
+    title: Raise Minimum Wage
+    summary: Service industries thrive
+    cost: 3000
+  - lobbyingCause: 7
+    title: Remove Anti-homelessness Architecture
+    summary: Dismantle oppressive architecture
+    cost: 500
+  - lobbyingCause: 8
+    title: Rent Control
+    summary: (???)
+    cost: 3001
+  - lobbyingCause: 9
+    title: Skybridge
+    summary: Re-open the Skybridge
+    cost: 100
+  - lobbyingCause: 10
+    title: Social Workers
+    summary: (???)
+    cost: 3002
+  - lobbyingCause: 11
+    title: Subway
+    summary: Re-open the Subway
+    cost: 3002
+  - lobbyingCause: 12
+    title: State Media
+    summary: Keep the public informed
+    cost: 200
