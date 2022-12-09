@@ -499,7 +499,15 @@ namespace Assets.McCoy.UI
 
       MapNode playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
 
-      currentZoneText.SetText(playerLoc.ZoneName);
+      string dayKey = DayForSecondsRemaining(McCoy.GetInstance().gameState.TurnTimeRemaining(selectedPlayer));
+      Localize(dayKey, (day) => 
+      {
+        Debug.Log("result was " + day);
+        Localize(playerLoc.ZoneName, (zone) =>
+        {
+          currentZoneText.SetTextDirectly(zone + "\n" + day);
+        });
+      });
 
       updateWeekText();
       updateAvailableSkillPointsText();
@@ -649,7 +657,6 @@ namespace Assets.McCoy.UI
     }
     public void LoadStageCallback()
     {
-      McCoy.GetInstance().gameState.PlayerTakingTurn(selectedPlayer);
       if (!loadingStage)
       {
         loadingStage = true;

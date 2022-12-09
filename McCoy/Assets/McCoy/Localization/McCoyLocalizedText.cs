@@ -48,10 +48,6 @@ namespace Assets.McCoy.Localization
 
     public void TextLoaded(string text)
     {
-      if (text == "Museum Dues")
-      {
-        Debug.Log("text Loaded: " + text);
-      }
       if(callback != null)
       {
         callback(text);

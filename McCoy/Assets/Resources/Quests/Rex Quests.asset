@@ -23,7 +23,7 @@ MonoBehaviour:
     possibleLocations:
     - 4a3482616f144e746ae7a842a43bdeef
     introCutscene: Rex_01_Intro
-    exitText: com.mccoy.quests.rex.1.exit
+    exitText: Rex_01_Outro
     Complete: 1
     exitChoices:
     - displayText: com.mccoy.quests.rex.1.choice1

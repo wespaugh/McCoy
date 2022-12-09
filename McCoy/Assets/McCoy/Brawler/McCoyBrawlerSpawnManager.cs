@@ -157,7 +157,7 @@ namespace Assets.McCoy.Brawler
         {
           endCondition = allEnemiesDefeated ? SubstageExitCondition.AllEnemiesDefeated : SubstageExitCondition.Escaped;
         }
-        if (McCoy.GetInstance().gameState.activeQuest != null)
+        if (McCoy.GetInstance().gameState.activeQuest != null && lastStage)
         {
           // active quests must be finished before allowing transition out
           if (!allEnemiesDefeated || transitioning || waitingForQuestUI) return;
@@ -547,16 +547,7 @@ namespace Assets.McCoy.Brawler
             }
           }
 
-          Debug.Log("nextBrawlerStage");
-          Debug.Log("SKIP!");
           UFE.NextBrawlerStage();
-          if (false)
-          {
-            Initialize(spawnData, bossSpawnListener, false);
-            player.worldTransform.position = FPVector.zero;
-            UFE.cameraScript.MoveCameraToLocation(player.worldTransform.position.ToVector(), Vector3.zero, UFE.cameraScript.targetFieldOfView, 1000, player.gameObject);
-            UFE.DelaySynchronizedAction(() => UFE.cameraScript.ReleaseCam(), .5f);
-          }
         }, fadeTime + fadeDelay);
 
         float buffer = .5f; // time to wait after scene switch
@@ -589,7 +580,17 @@ namespace Assets.McCoy.Brawler
       {
         Debug.Log("FADE IN BEGIN!");
         CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, time);
+        UFE.DelaySynchronizedAction(() => 
+        {
+          substageBegan();
+        }, time);
       }, time);
+    }
+
+    private void substageBegan()
+    {
+      transitioning = false;
+      monstersSpawned = 0;
     }
 
     private void fireLose()

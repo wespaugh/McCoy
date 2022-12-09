@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace Assets.McCoy
 {
@@ -22,6 +23,8 @@ namespace Assets.McCoy
     }
 
     public static float MOB_ROUTING_HEALTH_THRESHOLD = 0.5f;
+
+    public static float PC_TIME_PER_WEEK = 420f;
 
     public static Color PURPLE = new Color(122f / 255f, 66f / 255f, 191f / 255f);
     public static Color DARK_PURPLE = new Color(63f / 255f, 0f / 255f, 140f / 255f);
@@ -116,6 +119,29 @@ namespace Assets.McCoy
         default:
           return PLAYER_4_NAME;
       }
+    }
+
+    public static void Localize(string key, Action<string> resultAction)
+    {
+      var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("McCoy Game Text", key);
+      if (op.IsDone)
+        resultAction(op.Result);
+      else
+        op.Completed += (op) => resultAction(op.Result);
+    }
+
+    public static string DayForSecondsRemaining(float seconds)
+    {
+      int day = (int) (seconds / 60f);
+      string retVal;
+      if (day <= 1) retVal =  "com.mccoy.boardgame.Monday";
+      else if (day <= 2) retVal = "com.mccoy.boardgame.Tuesday";
+      else if (day <= 3) retVal = "com.mccoy.boardgame.Wednesday";
+      else if (day <= 4) retVal = "com.mccoy.boardgame.Thursday";
+      else if (day <= 5) retVal = "com.mccoy.boardgame.Friday";
+      else if (day <= 6) retVal = "com.mccoy.boardgame.Saturday";
+      retVal = "com.mccoy.boardgame.Sunday";
+      return retVal;
     }
 
     public static Vector3 CalculateArcMidpointBetweenPoints(Vector3 p0, Vector3 p2)

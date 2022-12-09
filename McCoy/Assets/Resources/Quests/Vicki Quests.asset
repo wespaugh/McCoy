@@ -23,5 +23,6 @@ MonoBehaviour:
     possibleLocations:
     - 435452702222f9344b33cd833e2b410e
     introCutscene: Vicki_01_Intro
-    exitText: 
+    exitText: Vicki_01_Outro
+    Complete: 1
     exitChoices: []

@@ -147,6 +147,38 @@ MonoBehaviour:
     m_Key: com.mccoy.quests.vicki.1.summary
     m_Metadata:
       m_Items: []
+  - m_Id: 13235347458543616
+    m_Key: com.mccoy.boardgame.timeRemaining
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235473337995264
+    m_Key: com.mccoy.boardgame.Monday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235491771961344
+    m_Key: com.mccoy.boardgame.Tuesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235537519235072
+    m_Key: "com.mccoy.boardgame.Wednesday\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235573632192512
+    m_Key: com.mccoy.boardgame.Thursday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235609782898688
+    m_Key: com.mccoy.boardgame.Friday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235653047144448
+    m_Key: com.mccoy.boardgame.Saturday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235692091920384
+    m_Key: com.mccoy.boardgame.Sunday
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -211,6 +211,38 @@ MonoBehaviour:
     m_Localized: Signs of nefarious will-working have been discovered near the airfield.
     m_Metadata:
       m_Items: []
+  - m_Id: 13235347458543616
+    m_Localized: 'Time Remaining:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235473337995264
+    m_Localized: Monday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235491771961344
+    m_Localized: Tuesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235537519235072
+    m_Localized: Wednesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235573632192512
+    m_Localized: Thursday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235609782898688
+    m_Localized: Friday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235653047144448
+    m_Localized: Saturday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13235692091920384
+    m_Localized: Sunday
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

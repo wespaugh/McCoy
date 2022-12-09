@@ -23,8 +23,9 @@ MonoBehaviour:
     - 7b361a02-c40d-4b4e-95cc-b826330c04c8
     possibleLocations:
     - 36e23897c1d8e5e459aa1500cefa8d44
-    introText: com.mccoy.quests.world.1.intro
-    exitText: com.mccoy.quests.world.1.exit
+    introCutscene: World_01_Intro
+    exitText: World_01_Outro
+    Complete: 0
     exitChoices:
     - displayText: com.mccoy.quests.world.1.choice1
       uuid: nolanKnowsAboutFirstChanges

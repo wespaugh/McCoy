@@ -5,6 +5,9 @@ using TMPro;
 using UFE3D;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using static Assets.McCoy.ProjectConstants;
+using Assets.McCoy.BoardGame;
 
 namespace Assets.McCoy.UI
 {
@@ -26,6 +29,7 @@ namespace Assets.McCoy.UI
     [SerializeField] TMP_InputField xInput = null;
     [SerializeField] TMP_InputField yInput = null;
     [SerializeField] TMP_InputField nameInput = null;
+    [SerializeField] Toggle endPlayerTimer = null;
 
     [SerializeField] TMP_Text tmpNameText = null;
     [SerializeField] TMP_Text enemyName = null;
@@ -35,6 +39,7 @@ namespace Assets.McCoy.UI
     [SerializeField] McCoyBrawlerMobStatusLabel mobStatusLabel = null;
 
     [SerializeField] McCoyQuestTextUI questUI = null;
+    [SerializeField] TMP_Text playerTimer = null;
 
     McCoyStageData currentStage;
 
@@ -43,15 +48,22 @@ namespace Assets.McCoy.UI
     bool spawnerInitialized = false;
     private McCoyBrawlerSpawnManager spawner;
     private int xpCache;
+    private bool questCompleted;
+    private bool levelBegan = false;
+    private float elapsedTime;
+    private PlayerCharacter selectedPlayer;
+    string timeRemainingString = null;
 
     protected override void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
     {
       base.OnGameBegin(player1, player2, stage);
+      levelBegan = true;
 
       tmpNameText.text = player1.myInfo.characterName;
 
-      McCoyPlayerCharacter rex =  McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.selectedPlayer];
-      McCoySkillUnlockManager.PlayerSpawned(player1, rex.Skills);
+      var pc = McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.selectedPlayer];
+      selectedPlayer =  pc.Player;
+      McCoySkillUnlockManager.PlayerSpawned(player1, pc.Skills);
 
       updateXP(true);
 
@@ -65,9 +77,7 @@ namespace Assets.McCoy.UI
       McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
       if ( activeQuest != null)
       {
-        var _ = McCoy.GetInstance().ShowCutsceneAsync(activeQuest.introCutscene);
-        worldUI.gameObject.SetActive(false);
-        uiRoot.gameObject.SetActive(false);
+        startCutscene(activeQuest.introCutscene);
         /*
         questUI.gameObject.SetActive(true);
         questUI.BeginQuest(activeQuest);
@@ -77,6 +87,7 @@ namespace Assets.McCoy.UI
 
     protected override void OnGameEnd(ControlsScript winner, ControlsScript loser)
     {
+      McCoy.GetInstance().gameState.UpdatePlayerTimeRemaining(selectedPlayer, elapsedTime);
       //worldUI.StageEnded();
     }
 
@@ -85,7 +96,9 @@ namespace Assets.McCoy.UI
       Camera.main.orthographic = true;
       toggleDebug();
 
-      if(spawnButton != null)
+      Localize("com.mccoy.boardgame.timeRemaining", (s) => timeRemainingString = s);
+
+      if (spawnButton != null)
       {
         spawnButton.onClick.AddListener(() =>
         {
@@ -128,6 +141,7 @@ namespace Assets.McCoy.UI
       xInput.gameObject.SetActive(debug);
       yInput.gameObject.SetActive(debug);
       nameInput.gameObject.SetActive(debug);
+      endPlayerTimer.gameObject.SetActive(debug);
     }
 
     private void initSpawner()
@@ -159,16 +173,43 @@ namespace Assets.McCoy.UI
       }
       else if(msg == ProjectConstants.QUEST_COMPLETE)
       {
-        questUI.QuestEnded();
+        startCutscene(McCoy.GetInstance().gameState.activeQuest.exitText, true);
+        // questUI.QuestEnded();
       }
       else if(msg == ProjectConstants.CUTSCENE_FINISHED)
       {
-        worldUI.gameObject.SetActive(true);
-        uiRoot.gameObject.SetActive(true);
+        UFE.PauseGame(false);
+        if (!questCompleted)
+        {
+          worldUI.gameObject.SetActive(true);
+          uiRoot.gameObject.SetActive(true);
+        }
+        else
+        {
+          McCoy.GetInstance().gameState.CompleteQuest();
+        }
       }
       return;
       //alertText.text = msg;
       //UFE.DelaySynchronizedAction(hideAlertText, 2.0f);
+    }
+
+    private void startCutscene(string name, bool questComplete = false)
+    {
+      StartCoroutine(yieldThenPause());
+      var _ = McCoy.GetInstance().ShowCutsceneAsync(name);
+      worldUI.gameObject.SetActive(false);
+      uiRoot.gameObject.SetActive(false);
+      questCompleted = questComplete;
+    }
+    IEnumerator yieldThenPause()
+    {
+      float start = Time.time;
+      while (Time.time < start + 3.0f)
+      {
+        yield return null;
+      }
+      UFE.timeScale = 0f;
     }
 
     private void hideAlertText()
@@ -249,6 +290,15 @@ namespace Assets.McCoy.UI
       {
         playerSortOrder = UFE.GetPlayer1ControlsScript().mySpriteRenderer.sortingOrder;
       }
+
+      if(levelBegan)
+      {
+        elapsedTime += (float)(UFE.timeScale * Time.deltaTime);
+        int timeRemaining = (int)(McCoyGameState.Instance().TurnTimeRemaining(selectedPlayer) - elapsedTime);
+        timeRemaining = Mathf.Max(0,timeRemaining);
+        playerTimer.text = timeRemainingString + timeRemaining;
+      }
+
       if (UFE.config.debugOptions.debugMode)
       {
         string sb = "";
@@ -288,6 +338,10 @@ namespace Assets.McCoy.UI
     public void CheatWin()
     {
       McCoy.GetInstance().debugCheatWin = true;
+      if(endPlayerTimer.isOn)
+      {
+        McCoyGameState.Instance().UpdatePlayerTimeRemaining(selectedPlayer, 1000000);
+      }
       if (McCoy.GetInstance().gameState.activeQuest != null)
       {
         McCoy.GetInstance().gameState.CompleteQuest();

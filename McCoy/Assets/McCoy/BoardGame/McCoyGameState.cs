@@ -21,9 +21,14 @@ namespace Assets.McCoy.BoardGame
       get => weekNumber;
     }
 
-    // as the player takes each PC turn, these are flipped false
-    // once all four are flipped false, a Week ends
-    bool[] playerTurns = { true, true, true, true };
+    public static McCoyGameState Instance()
+    {
+      return McCoy.GetInstance().gameState;
+    }
+
+    // as the player takes each PC turn, these timers tick down
+    // once all four are at 0, a Week ends
+    float[] playerTurns = { PC_TIME_PER_WEEK, PC_TIME_PER_WEEK, PC_TIME_PER_WEEK, PC_TIME_PER_WEEK };
 
     [NonSerialized]
     public PlayerCharacter selectedPlayer;
@@ -174,7 +179,7 @@ namespace Assets.McCoy.BoardGame
         // it's only the end of the week if all 4 players do NOT have a turn left
         foreach(var p in playerTurns)
         {
-          retVal &= !p;
+          retVal &= p == 0;
         }
         return retVal;
       }
@@ -188,25 +193,26 @@ namespace Assets.McCoy.BoardGame
 
     public bool CanPlayerTakeTurn(PlayerCharacter player)
     {
-      return playerTurns[(int)player];
-    }
-    public void PlayerTakingTurn(PlayerCharacter player)
-    {
-      selectedPlayer = player;
-      SetPlayerTookTurn(player);
+      return playerTurns[(int)player] > 0;
     }
 
-    private void SetPlayerTookTurn(PlayerCharacter player)
+    public void UpdatePlayerTimeRemaining(PlayerCharacter player, float time)
     {
-      playerTurns[(int)player] = false;
+      playerTurns[(int)player] = Mathf.Max(playerTurns[(int)player]- time,0f);
+      Debug.Log("updated player time remaining. " + player + " now has " + playerTurns[(int)player] + " seconds left");
     }
     public void EndWeek()
     {
       for(int i = 0; i < playerTurns.Length; ++i)
       {
-        playerTurns[i] = true;
+        playerTurns[i] = PC_TIME_PER_WEEK;
       }
       ++weekNumber;
+    }
+
+    public float TurnTimeRemaining(PlayerCharacter selectedPlayer)
+    {
+      return playerTurns[(int)selectedPlayer];
     }
   }
 }
