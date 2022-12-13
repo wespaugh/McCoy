@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 1}
+  m_SizeDelta: {x: 700, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2891988526397320802
 CanvasRenderer:
@@ -116,8 +116,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 281.5, y: 0}
-  m_SizeDelta: {x: 563, y: 160}
+  m_AnchoredPosition: {x: 381, y: 0}
+  m_SizeDelta: {x: 740, y: 160}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4301203074550277993
 CanvasRenderer:
@@ -359,12 +359,12 @@ PrefabInstance:
     - target: {fileID: 7183933027711203601, guid: eb36b5e74495b8c49957d394bdc9eb2a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 440
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 7183933027711203601, guid: eb36b5e74495b8c49957d394bdc9eb2a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7183933027711203601, guid: eb36b5e74495b8c49957d394bdc9eb2a,
         type: 3}
@@ -466,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 740
       objectReference: {fileID: 0}
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}
@@ -613,7 +613,7 @@ PrefabInstance:
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 740
       objectReference: {fileID: 0}
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}
@@ -760,7 +760,7 @@ PrefabInstance:
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 740
       objectReference: {fileID: 0}
     - target: {fileID: 1528812387903127508, guid: a5b73ec11a5d6824ba6d65fe2d02b190,
         type: 3}

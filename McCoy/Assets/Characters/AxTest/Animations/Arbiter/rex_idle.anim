@@ -20,19 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 05eca28bcbb7b814a88df8a8b9442fd4, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: a8271b5013a51a44883fcaa1d5d68bf1, type: 3}
-    - time: 0.6
-      value: {fileID: 21300000, guid: e91a6a8ed4b6d4645afe95442ec766d1, type: 3}
-    - time: 0.9
-      value: {fileID: 21300000, guid: 3ab8d6ea592c6444db18e64159dcb20f, type: 3}
-    - time: 1.2
-      value: {fileID: 21300000, guid: 51df81d45017dea4ea69f9a525c7c147, type: 3}
-    - time: 1.5
-      value: {fileID: 21300000, guid: 57b4c3a0c9aba06469b18af82d1730d3, type: 3}
+      value: {fileID: 21300000, guid: bc5a2e28a41546845afd26106cf77c2c, type: 3}
     - time: 1.7666667
-      value: {fileID: 21300000, guid: 57b4c3a0c9aba06469b18af82d1730d3, type: 3}
+      value: {fileID: 21300000, guid: bc5a2e28a41546845afd26106cf77c2c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,13 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 05eca28bcbb7b814a88df8a8b9442fd4, type: 3}
-    - {fileID: 21300000, guid: a8271b5013a51a44883fcaa1d5d68bf1, type: 3}
-    - {fileID: 21300000, guid: e91a6a8ed4b6d4645afe95442ec766d1, type: 3}
-    - {fileID: 21300000, guid: 3ab8d6ea592c6444db18e64159dcb20f, type: 3}
-    - {fileID: 21300000, guid: 51df81d45017dea4ea69f9a525c7c147, type: 3}
-    - {fileID: 21300000, guid: 57b4c3a0c9aba06469b18af82d1730d3, type: 3}
-    - {fileID: 21300000, guid: 57b4c3a0c9aba06469b18af82d1730d3, type: 3}
+    - {fileID: 21300000, guid: bc5a2e28a41546845afd26106cf77c2c, type: 3}
+    - {fileID: 21300000, guid: bc5a2e28a41546845afd26106cf77c2c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -83,4 +68,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: PlayLimbAnimation
+    data: RearArm:bgarm_idle,torso:torso_idle,foreground_arm:fgarm_idle,head:head_idle
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

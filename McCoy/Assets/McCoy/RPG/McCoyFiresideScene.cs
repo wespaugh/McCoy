@@ -42,9 +42,16 @@ namespace Assets.McCoy.RPG
       if (lobbyingUI == null)
       {
         lobbyingUI = Instantiate(LobbyingUIPrefab);
-        lobbyingUI.GetComponent<McCoyLobbyingListUI>().Initialize(root);
+        lobbyingUI.GetComponentInChildren<McCoyLobbyingListUI>().Initialize(root);
       }
       lobbyingUI.transform.SetParent(root.transform);
+
+      var rect = lobbyingUI.GetComponent<RectTransform>();
+      rect.offsetMin = new Vector2(0, rect.offsetMin.y); // left
+      rect.offsetMax = new Vector2(0, rect.offsetMax.y); // right
+      rect.offsetMax = new Vector2(rect.offsetMax.x, 0); // top
+      rect.offsetMin = new Vector2(rect.offsetMin.x, 0); // bottom
+
       lobbyingUI.gameObject.SetActive(false);
 
       pcGroups = characterGroups;

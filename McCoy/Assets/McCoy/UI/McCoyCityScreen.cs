@@ -111,7 +111,7 @@ namespace Assets.McCoy.UI
         board = Instantiate(boardContents);
         updateWeekText();
 
-        StartCoroutine(cityBooySequence());
+        StartCoroutine(cityBootSequence());
         Camera.main.orthographic = false;
       }
       UFE.PlayMusic(mapMusic);
@@ -187,13 +187,14 @@ namespace Assets.McCoy.UI
       McCoy.GetInstance().gameState.Save();
     }
 
-    private IEnumerator cityBooySequence()
+    private IEnumerator cityBootSequence()
     {
       initPlayerStartLocations();
       initQuests();
       initMapPanels();
       saveCity();
       checkForMobRouting();
+      applyCauses();
       initFiresideScene();
 
       while(mobDying)
@@ -347,6 +348,14 @@ namespace Assets.McCoy.UI
         {
           talentDelegate.LoadSkills(skillTreeString, loadSkills);
         }
+      }
+    }
+
+    private void applyCauses()
+    {
+      foreach(McCoyLobbyingCause.LobbyingCause cause in McCoyGameState.Instance().causesLobbiedFor)
+      {
+        McCoyLobbyingCauseManager.GetInstance().ApplyCause(cause, this);
       }
     }
 

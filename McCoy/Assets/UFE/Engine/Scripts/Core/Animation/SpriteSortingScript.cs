@@ -32,8 +32,12 @@ namespace UFE3D
 
     public void PlayLimbAnimation(string animCmd)
     {
-      string[] animatorKeys = animCmd.Split(':');
-      animators[animatorKeys[0]].SetTrigger(bodySprite.flipX ? animatorKeys[1]+"_flip" : animatorKeys[1]);
+      string[] commands = animCmd.Split(',');
+      foreach (var cmd in commands)
+      {
+        string[] animatorKeys = cmd.Split(':');
+        animators[animatorKeys[0]].SetTrigger(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
+      }
     }
 
     public void UpdateSortOrders(int sceneIndex)
