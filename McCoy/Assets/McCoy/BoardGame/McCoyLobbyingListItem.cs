@@ -47,18 +47,9 @@ namespace Assets.McCoy.BoardGame
 
     public void LobbyForCause()
     {
-      McCoyGameState.Instance().causesLobbiedFor.Add(cause);
+      McCoyLobbyingCauseManager.GetInstance().ApplyCause(cause, root);
       lobbyButton.enabled = false;
       McCoyGameState.Instance().Spend(cost);
-      switch (cause)
-      {
-        case McCoyLobbyingCause.LobbyingCause.SkyBridge:
-          root.UnlockZone(ProjectConstants.SKYBRIDGE_ID);
-          break;
-        case McCoyLobbyingCause.LobbyingCause.Subway:
-          root.UnlockZone(ProjectConstants.SUBWAY_ID);
-          break;
-      }
     }
   }
 }

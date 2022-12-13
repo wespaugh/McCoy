@@ -71,7 +71,8 @@ namespace Assets.McCoy
     {
       currentStage = stageData;
       UFE.config.currentRound = 1;
-      UFE.StartBrawlerMode(stageData.Name);
+      var components = stageData.Name.Split('.');
+      UFE.StartBrawlerMode(components[components.Length-1]);
     }
 
     public void LoadScene( McCoyScenes scene, float fadeTime = 2.0f)
