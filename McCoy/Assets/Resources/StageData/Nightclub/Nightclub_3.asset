@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98cd6ca1bdee840a9f245fe62ca326, type: 3}
   m_Name: Nightclub_3
   m_EditorClassIdentifier: 
-  substageName: 
-  stagePrefab: {fileID: 0}
-  boundaries: []
+  substageName: Bathroom
+  stagePrefab: {fileID: 7216622014955884370, guid: cce48fa0de8f32047904118cc04242d3,
+    type: 3}
+  boundaries:
+  - unitXStart: 0
+    upperBound:
+      slope: 0
+      yIntercept: 8
+    lowerBound:
+      slope: 0
+      yIntercept: 0
   holes: []
   leftBoundary: 0
   rightBoundary: 0
