@@ -218,6 +218,7 @@ namespace Assets.McCoy.UI
       initSelectedCharacter();
       saveCity();
       board.IntroFinished();
+      McCoy.GetInstance().Loading = false;
     }
 
     private void initFiresideScene()
@@ -263,7 +264,10 @@ namespace Assets.McCoy.UI
 
     private void initQuests()
     {
-      McCoyQuestManager.GetInstance().CityLoaded();
+      if (!McCoy.GetInstance().Loading)
+      {
+        McCoyQuestManager.GetInstance().CityLoaded();
+      }
       board.LoadQuests(McCoy.GetInstance().gameState.availableQuests);
     }
 

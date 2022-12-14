@@ -106,6 +106,7 @@ namespace Assets.McCoy.UI
     public void LoadGame()
     {
       McCoy.GetInstance().gameState.Load();
+      McCoy.GetInstance().Loading = true;
       StartCityScene();
     }
 

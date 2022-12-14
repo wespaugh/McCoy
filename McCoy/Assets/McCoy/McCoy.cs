@@ -55,6 +55,8 @@ namespace Assets.McCoy
       }
     }
 
+    public bool Loading { get; set; }
+
     public McCoyStageData currentStage = null;
     public McCoyGameState gameState = null;
 
