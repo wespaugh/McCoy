@@ -36,6 +36,8 @@ namespace UFE3D
       foreach (var cmd in commands)
       {
         string[] animatorKeys = cmd.Split(':');
+        bool hide = animatorKeys.Length == 0 || animatorKeys[1] == "";
+        animators[animatorKeys[0]].gameObject.SetActive(!hide);
         animators[animatorKeys[0]].SetTrigger(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
       }
     }
