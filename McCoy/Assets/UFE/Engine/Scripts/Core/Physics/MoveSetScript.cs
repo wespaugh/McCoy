@@ -640,7 +640,7 @@ public class MoveSetScript : MonoBehaviour
     }
 
     if (IsAnimationPlaying(clipName) && !replay) return;
-
+    
     // Play animation
     PlayAnimation(clipName, blendingTime);
 
