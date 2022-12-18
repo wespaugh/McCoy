@@ -61,7 +61,7 @@ namespace Assets.McCoy.UI
 
       tmpNameText.text = player1.myInfo.characterName;
 
-      var pc = McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.selectedPlayer];
+      var pc = McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.SelectedPlayer];
       selectedPlayer =  pc.Player;
       McCoySkillUnlockManager.PlayerSpawned(player1, pc.Skills);
 
@@ -227,7 +227,7 @@ namespace Assets.McCoy.UI
       {
         McCoy.GetInstance().BuffManager.ClearPlayer(player.playerNum);
         var gameState = McCoy.GetInstance().gameState;
-        var selectedPlayer = gameState.playerCharacters[gameState.selectedPlayer];
+        var selectedPlayer = gameState.playerCharacters[gameState.SelectedPlayer];
         int skillPointsBefore = selectedPlayer.AvailableSkillPoints;
         spawner.ActorKilled(player);
         // if #skillpoints changed, we leveled up. if we leveled up, #skillpoints changed
@@ -238,8 +238,8 @@ namespace Assets.McCoy.UI
     private void updateXP(bool initialize)
     {
       var gameState = McCoy.GetInstance().gameState;
-      int XP = McCoy.GetInstance().gameState.playerCharacters[gameState.selectedPlayer].XP;
-      var selectedPlayer = gameState.playerCharacters[gameState.selectedPlayer];
+      int XP = McCoy.GetInstance().gameState.playerCharacters[gameState.SelectedPlayer].XP;
+      var selectedPlayer = gameState.playerCharacters[gameState.SelectedPlayer];
       int xpFloor = 0;
       int xpCeiling = 0;
       for (int i = 0; i < selectedPlayer.XpThreshholds.Length; ++i)

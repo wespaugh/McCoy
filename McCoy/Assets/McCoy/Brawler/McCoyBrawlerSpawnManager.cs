@@ -192,7 +192,7 @@ namespace Assets.McCoy.Brawler
       int XP = McCoyFactionLookup.GetInstance().XPForMonster(monster.myInfo.characterName);
       foreach(var player in McCoy.GetInstance().gameState.playerCharacters)
       {
-        if (player.Value.Player == McCoy.GetInstance().gameState.selectedPlayer || McCoy.GetInstance().levelAllPlayersEvenly)
+        if (player.Value.Player == McCoy.GetInstance().gameState.SelectedPlayer || McCoy.GetInstance().levelAllPlayersEvenly)
         {
           player.Value.GainXP(XP);
         }

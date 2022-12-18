@@ -115,7 +115,7 @@ namespace Assets.McCoy.RPG
       UFE.timeScale = 1f;
       gameObject.SetActive(false);
       McCoyGameState gameState = McCoy.GetInstance().gameState;
-      gameState.playerCharacters[gameState.selectedPlayer].GainXP(100);
+      gameState.playerCharacters[gameState.SelectedPlayer].GainXP(100);
       gameState.CompleteQuest();
     }
   }

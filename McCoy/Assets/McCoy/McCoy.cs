@@ -55,6 +55,12 @@ namespace Assets.McCoy
       }
     }
 
+    public void QuestReward(int rewardCredits, int rewardTime)
+    {
+      gameState.ReceiveCredits(rewardCredits);
+      gameState.UpdatePlayerTimeRemaining(gameState.SelectedPlayer, -rewardTime);
+    }
+
     public bool Loading { get; set; }
 
     public McCoyStageData currentStage = null;

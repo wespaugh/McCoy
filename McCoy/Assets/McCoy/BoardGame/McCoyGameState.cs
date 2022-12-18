@@ -36,13 +36,17 @@ namespace Assets.McCoy.BoardGame
     // once all four are at 0, a Week ends
     float[] playerTurns = { PC_TIME_PER_WEEK, PC_TIME_PER_WEEK, PC_TIME_PER_WEEK, PC_TIME_PER_WEEK };
 
-    [NonSerialized]
-    public PlayerCharacter selectedPlayer;
+    public PlayerCharacter SelectedPlayer;
 
     public Dictionary<PlayerCharacter, McCoyPlayerCharacter> playerCharacters = new Dictionary<PlayerCharacter, McCoyPlayerCharacter>();
 
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
     Dictionary<PlayerCharacter, string> playerLocations = new Dictionary<PlayerCharacter, string>();
+
+    public void ReceiveCredits(int rewardCredits)
+    {
+      credits += rewardCredits;
+    }
 
     // uuids of all quests that have spawned at some point
     public List<string> questsSpawned = new List<string>();
@@ -101,6 +105,7 @@ namespace Assets.McCoy.BoardGame
       nodeSearchData = save.nodeSearchData;
       credits = save.credits;
       causesLobbiedFor = save.causesLobbiedFor;
+      SelectedPlayer = save.SelectedPlayer;
     }
 
     public void Initialize()
@@ -214,9 +219,9 @@ namespace Assets.McCoy.BoardGame
       return playerTurns[(int)player] > 0;
     }
 
-    public void UpdatePlayerTimeRemaining(PlayerCharacter player, float time)
+    public void UpdatePlayerTimeRemaining(PlayerCharacter player, float timeElapsed)
     {
-      playerTurns[(int)player] = Mathf.Max(playerTurns[(int)player]- time,0f);
+      playerTurns[(int)player] = Mathf.Max(playerTurns[(int)player]- timeElapsed,0f);
       Debug.Log("updated player time remaining. " + player + " now has " + playerTurns[(int)player] + " seconds left");
     }
     public void EndWeek()
