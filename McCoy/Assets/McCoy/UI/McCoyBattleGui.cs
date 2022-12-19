@@ -61,7 +61,7 @@ namespace Assets.McCoy.UI
 
       tmpNameText.text = player1.myInfo.characterName;
 
-      var pc = McCoy.GetInstance().gameState.playerCharacters[McCoy.GetInstance().gameState.SelectedPlayer];
+      var pc = McCoyGameState.GetPlayer(McCoyGameState.Instance().SelectedPlayer);
       selectedPlayer =  pc.Player;
       McCoySkillUnlockManager.PlayerSpawned(player1, pc.Skills);
 
@@ -238,8 +238,8 @@ namespace Assets.McCoy.UI
     private void updateXP(bool initialize)
     {
       var gameState = McCoy.GetInstance().gameState;
-      int XP = McCoy.GetInstance().gameState.playerCharacters[gameState.SelectedPlayer].XP;
-      var selectedPlayer = gameState.playerCharacters[gameState.SelectedPlayer];
+      int XP = gameState.GetPlayerCharacter(gameState.SelectedPlayer).XP;
+      var selectedPlayer = gameState.GetPlayerCharacter(gameState.SelectedPlayer);
       int xpFloor = 0;
       int xpCeiling = 0;
       for (int i = 0; i < selectedPlayer.XpThreshholds.Length; ++i)

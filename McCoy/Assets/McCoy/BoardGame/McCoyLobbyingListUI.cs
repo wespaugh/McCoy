@@ -14,15 +14,15 @@ namespace Assets.McCoy.BoardGame
 
     List<GameObject> listItems = new List<GameObject>();
 
-    McCoyCityScreen root;
+    McCoyCityScreen city;
     public void Initialize(McCoyCityScreen cityScreen)
     {
-      this.root = cityScreen;
+      city = cityScreen;
       while(listItems.Count > 0)
       {
         var item1 = listItems[0];
         listItems.RemoveAt(0);
-        GameObject.Destroy(item1);
+        Destroy(item1);
       }
       var causes = McCoyLobbyingCauseManager.GetInstance().LobbyingCauses;
       causes.Sort((x, y) =>
@@ -31,7 +31,7 @@ namespace Assets.McCoy.BoardGame
       });
       foreach(var cause in causes)
       {
-        Instantiate(lobbyingListItemPrefab,lobbyingContent).GetComponent<McCoyLobbyingListItem>().Initialize(cause, root);
+        Instantiate(lobbyingListItemPrefab,lobbyingContent).GetComponent<McCoyLobbyingListItem>().Initialize(cause, city);
       }
     }
   }

@@ -21,6 +21,11 @@ namespace Assets.McCoy.UI
     List<MapNode> mapNodes = new List<MapNode>();
     Dictionary<string, LineRenderer> lineLookup = new Dictionary<string, LineRenderer>();
 
+    public string NameForNode(string id)
+    {
+      return mapNodeLookup[id].ZoneName;
+    }
+
     // mob routing caches
     Dictionary<MapNode, List<McCoyMobData>> toRoute = new Dictionary<MapNode, List<McCoyMobData>>();
     int mobsMoving = 0;
@@ -54,6 +59,9 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     AudioClip mobCombatSound = null;
+
+    [SerializeField]
+    Vector3 hidePosition = new Vector3(0, 15, 18);
 
     List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
     bool showUnnecessaryLines = false;
@@ -103,6 +111,7 @@ namespace Assets.McCoy.UI
     private bool lerpingCamera;
     private float cameraStartTime;
     private bool zoomed = false;
+    private bool hidden = false;
 
     private void OnDestroy()
     {
@@ -176,6 +185,49 @@ namespace Assets.McCoy.UI
           }
         }
       }
+    }
+
+    public bool Hide()
+    {
+      if(hidden)
+      {
+        Debug.LogWarning("double hide");
+        return false;
+      }
+      if(zoomed)
+      {
+        ToggleZoom();
+      }
+      StartCoroutine(lerpBoard(hidePosition, true));
+      return true;
+    }
+
+    public bool Show()
+    {
+      if(!hidden)
+      {
+        Debug.LogWarning("double show");
+        return false;
+      }
+      StartCoroutine(lerpBoard(Vector3.zero, false));
+      return true;
+    }
+
+    private IEnumerator lerpBoard(Vector3 target, bool hiding, float travelTime = .6f)
+    {
+      Vector3 origin = transform.position;
+      float startTime = Time.time;
+      while (transform.position != target)
+      {
+        float currentTime = ((Time.time - startTime) / travelTime);
+        currentTime = 1f - (float)Math.Pow(1f - currentTime, 3f);
+        transform.position = new Vector3(
+          Mathf.Lerp(origin.x, target.x, currentTime),
+          Mathf.Lerp(origin.y, target.y, currentTime),
+          Mathf.Lerp(origin.z, target.z, currentTime));
+        yield return null;
+      }
+      hidden = hiding;
     }
 
     public void showStinger(McCoyStinger.StingerTypes stingerType)

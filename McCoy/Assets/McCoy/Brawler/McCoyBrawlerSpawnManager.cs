@@ -190,11 +190,12 @@ namespace Assets.McCoy.Brawler
     public void ActorKilled(ControlsScript monster)
     {
       int XP = McCoyFactionLookup.GetInstance().XPForMonster(monster.myInfo.characterName);
-      foreach(var player in McCoy.GetInstance().gameState.playerCharacters)
+      foreach(var pc in PlayerCharacters)
       {
-        if (player.Value.Player == McCoy.GetInstance().gameState.SelectedPlayer || McCoy.GetInstance().levelAllPlayersEvenly)
+        var player = McCoyGameState.GetPlayer(pc);
+        if (player.Player == McCoy.GetInstance().gameState.SelectedPlayer || McCoy.GetInstance().levelAllPlayersEvenly)
         {
-          player.Value.GainXP(XP);
+          player.GainXP(XP);
         }
       }
     }

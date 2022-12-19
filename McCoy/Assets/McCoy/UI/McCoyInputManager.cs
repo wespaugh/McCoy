@@ -32,14 +32,11 @@ namespace Assets.McCoy.UI
 
       bool retVal = false;
       // detect axis inputs for the purpose of lag detection and falling back onto default input
-      if (!retVal)
+      foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
       {
-        foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
+        if ((pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0) || (pair.Key.inputType == InputType.HorizontalAxis && pair.Value.axisRaw != 0) )
         {
-          if (pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0)
-          {
-            retVal = true;
-          }
+          retVal = true;
         }
       }
 
@@ -48,7 +45,25 @@ namespace Assets.McCoy.UI
         bool alreadyPressed = false;
         foreach (KeyValuePair<InputReferences, InputEvents> pair in player1PreviousInputs)
         {
-          if (pair.Key.inputType == InputType.Button && pair.Value.button && pair.Key.engineRelatedButton == listener.Key)
+          ButtonPress bp = ButtonPress.Start;
+          bool buttonPressed = true;
+          if(pair.Key.inputType == InputType.Button && pair.Value.button)
+          {
+            bp = pair.Key.engineRelatedButton;
+          }
+          else if(pair.Key.inputType == InputType.HorizontalAxis && pair.Value.axisRaw != 0f)
+          {
+            bp = pair.Value.axisRaw >= 0 ? ButtonPress.Forward : ButtonPress.Back;
+          }
+          else if (pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0f)
+          {
+            bp = pair.Value.axisRaw >= 0 ? ButtonPress.Up : ButtonPress.Down;
+          }
+          else
+          { 
+            buttonPressed = false;
+          }
+          if (buttonPressed && bp == listener.Key)
           {
             alreadyPressed = true;
             break;
@@ -57,7 +72,25 @@ namespace Assets.McCoy.UI
         bool currentlyPressed = false;
         foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
         {
-          if (pair.Key.inputType == InputType.Button && pair.Value.button && pair.Key.engineRelatedButton == listener.Key)
+          ButtonPress bp = ButtonPress.Start;
+          bool buttonPressed = true;
+          if (pair.Key.inputType == InputType.Button && pair.Value.button)
+          {
+            bp = pair.Key.engineRelatedButton;
+          }
+          else if (pair.Key.inputType == InputType.HorizontalAxis && pair.Value.axisRaw != 0f)
+          {
+            bp = pair.Value.axisRaw >= 0 ? ButtonPress.Forward : ButtonPress.Back;
+          }
+          else if (pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0f)
+          {
+            bp = pair.Value.axisRaw >= 0 ? ButtonPress.Up : ButtonPress.Down;
+          }
+          else
+          {
+            buttonPressed = false;
+          }
+          if (buttonPressed && bp == listener.Key)
           {
             currentlyPressed = true;
             break;
