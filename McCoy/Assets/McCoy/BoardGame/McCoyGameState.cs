@@ -39,6 +39,14 @@ namespace Assets.McCoy.BoardGame
     public PlayerCharacter SelectedPlayer;
 
     public Dictionary<PlayerCharacter, McCoyPlayerCharacter> playerCharacters = new Dictionary<PlayerCharacter, McCoyPlayerCharacter>();
+    public static McCoyPlayerCharacter GetPlayer(PlayerCharacter pc)
+    {
+      return Instance().GetPlayerCharacter(pc);
+    }
+    public McCoyPlayerCharacter GetPlayerCharacter(PlayerCharacter pc)
+    {
+      return playerCharacters[pc];
+    }
 
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
     Dictionary<PlayerCharacter, string> playerLocations = new Dictionary<PlayerCharacter, string>();

@@ -82,7 +82,6 @@ namespace Assets.McCoy.UI
     McCoyFiresideScene fireside = null;
 
     McCoyCityBoardContents board = null;
-    McCoySkillTreeMenu talentDelegate = null;
     public McCoyCityBoardContents Board
     {
       get => board;
@@ -147,7 +146,6 @@ namespace Assets.McCoy.UI
         inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
       }
 
-      if (talentDelegate != null) return false;
       if(fireside.gameObject.activeInHierarchy)
       {
         return fireside.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
@@ -224,13 +222,17 @@ namespace Assets.McCoy.UI
     private void initFiresideScene()
     {
       fireside = Instantiate(firesidePrefab, board.CameraAnchor.transform);
-      fireside.transform.localPosition = new Vector3(0, 0, 8);
+      fireside.transform.localPosition = new Vector3(0f, -22.9f, 12.8f);
       fireside.gameObject.SetActive(false);
-      // ShowFireside();
+      ShowFireside();
     }
 
     private void ShowFireside()
     {
+      if(fireside.gameObject.activeInHierarchy || ! board.Hide())
+      {
+        return;
+      }
       fireside.gameObject.SetActive(true);
       uiRoot.gameObject.SetActive(false);
       Dictionary<string, List<PlayerCharacter>> pcGroups = new Dictionary<string, List<PlayerCharacter>>();
@@ -248,6 +250,10 @@ namespace Assets.McCoy.UI
 
     public void CloseFireside()
     {
+      if (!fireside.gameObject.activeInHierarchy || ! board.Show())
+      {
+        return;
+      }
       fireside.gameObject.SetActive(false);
       uiRoot.gameObject.SetActive(true);
     }
@@ -314,45 +320,6 @@ namespace Assets.McCoy.UI
       Board.SelectMapNode(node, null, false);
       Board.ToggleZoom(true);
       Board.SetHoverNode(node);
-    }
-
-    private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
-    {
-      talentDelegate = null;
-      McCoy.GetInstance().gameState.playerCharacters[pc].AvailableSkillPoints = availablePoints;
-      updateAvailableSkillPointsText();
-      McCoy.GetInstance().gameState.UpdateSkills(pc, serializedSkills, availablePoints);
-    }
-
-    public void OpenSkillTree()
-    {
-      if(talentDelegate != null)
-      {
-        return;
-      }
-      string skillTreeString = "";
-      int availableSkillPoints = 0;
-      McCoyPlayerCharacter playerData = null;
-      switch (selectedPlayer)
-      {
-        case PlayerCharacter.Rex:
-          talentDelegate = Instantiate(RexSkillTree, transform.parent).GetComponent<McCoySkillTreeMenu>();
-          playerData = McCoy.GetInstance().gameState.playerCharacters[PlayerCharacter.Rex];
-          break;
-      }
-      if(playerData != null)
-      {
-        availableSkillPoints = playerData.AvailableSkillPoints;
-        skillTreeString = playerData.SkillTreeString;
-      }
-      if(talentDelegate != null)
-      {
-        talentDelegate.SetAvailableSkillPoints(availableSkillPoints);
-        if(!string.IsNullOrEmpty(skillTreeString))
-        {
-          talentDelegate.LoadSkills(skillTreeString, loadSkills);
-        }
-      }
     }
 
     private void applyCauses()
@@ -425,9 +392,6 @@ namespace Assets.McCoy.UI
         McCoy.GetInstance().gameState.SetMobs(mapNode.NodeID, mobData);
       }
       McCoy.GetInstance().gameState.Initialize();
-      string skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
-      skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
-      loadSkills(McCoy.GetInstance().gameState.playerCharacters[PlayerCharacter.Rex].AvailableSkillPoints, skillString, Rex);
     }
 
     private void loadBoardState()
@@ -522,7 +486,6 @@ namespace Assets.McCoy.UI
       string dayKey = DayForSecondsRemaining(McCoy.GetInstance().gameState.TurnTimeRemaining(selectedPlayer));
       Localize(dayKey, (day) => 
       {
-        Debug.Log("result was " + day);
         Localize(playerLoc.ZoneName, (zone) =>
         {
           currentZoneText.SetTextDirectly(zone + "\n" + day);
@@ -530,7 +493,6 @@ namespace Assets.McCoy.UI
       });
 
       updateWeekText();
-      updateAvailableSkillPointsText();
 
       bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
 
@@ -588,12 +550,6 @@ namespace Assets.McCoy.UI
       board.SetHoverNode(null);
     }
 
-    private void updateAvailableSkillPointsText()
-    {
-      int value = McCoy.GetInstance().gameState.playerCharacters[selectedPlayer].AvailableSkillPoints;
-      availableSkillPointsText.text = $"Buy Skills ({value})   <sprite name=\"controller_buttons_ps4_1\">";
-    }
-
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)
     {
       return MapNode.Compare(x, y, playerLoc, mechanismFound, minDistanceToMechanism);
@@ -624,10 +580,10 @@ namespace Assets.McCoy.UI
 
     public void NextPlayer()
     {
-      changePlayer(1);
+      ChangePlayer(1);
     }
 
-    private void changePlayer(int direction)
+    public void ChangePlayer(int direction, bool updateMap = true)
     {
       if (selectedPlayer == PlayerCharacter.Penelope && direction == 1)
       {
@@ -642,11 +598,7 @@ namespace Assets.McCoy.UI
         selectedPlayer += direction;
       }
 
-      if (!McCoy.GetInstance().gameState.CanPlayerTakeTurn(selectedPlayer))
-      {
-        changePlayer(direction);
-      }
-      else
+      if (updateMap)
       {
         board.ToggleZoom(true);
         selectedCharacterChanged();
@@ -655,7 +607,7 @@ namespace Assets.McCoy.UI
 
     public void PreviousPlayer()
     {
-      changePlayer(-1);
+      ChangePlayer(-1);
     }
 
     public void LoadStage(MapNode node, McCoyStageData stageData)

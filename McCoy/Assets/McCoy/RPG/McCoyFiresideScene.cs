@@ -1,5 +1,6 @@
 ﻿using Assets.McCoy.BoardGame;
 using Assets.McCoy.UI;
+using com.cygnusprojects.TalentTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,16 @@ namespace Assets.McCoy.RPG
     [SerializeField]
     GameObject LobbyingUIPrefab = null;
 
-    McCoyCityScreen root = null;
-    GameObject lobbyingUI = null;
+    [SerializeField]
+    GameObject RexSkillTree = null;
+
+    McCoyCityScreen city = null;
+    McCoyFiresideUI uiPanel = null;
 
     McCoyInputManager input = null;
     bool inputInitialized = false;
+
+    McCoySkillTreeMenu talentDelegate = null;
 
     Dictionary<string, List<PlayerCharacter>> pcGroups = null;
     int selectedPCGroupIndex = 0;
@@ -38,24 +44,21 @@ namespace Assets.McCoy.RPG
 
     public void UpdateWithPCGroups(McCoyCityScreen root, Dictionary<string, List<PlayerCharacter>> characterGroups)
     {
-      this.root = root;
-      if (lobbyingUI == null)
+      this.city = root;
+      if (uiPanel == null)
       {
-        lobbyingUI = Instantiate(LobbyingUIPrefab);
-        lobbyingUI.GetComponentInChildren<McCoyLobbyingListUI>().Initialize(root);
+        uiPanel = Instantiate(LobbyingUIPrefab).GetComponent<McCoyFiresideUI>();
       }
-      lobbyingUI.transform.SetParent(root.transform);
-
-      var rect = lobbyingUI.GetComponent<RectTransform>();
-      rect.offsetMin = new Vector2(0, rect.offsetMin.y); // left
-      rect.offsetMax = new Vector2(0, rect.offsetMax.y); // right
-      rect.offsetMax = new Vector2(rect.offsetMax.x, 0); // top
-      rect.offsetMin = new Vector2(rect.offsetMin.x, 0); // bottom
-
-      lobbyingUI.gameObject.SetActive(false);
+      uiPanel.transform.SetParent(root.transform);
 
       pcGroups = characterGroups;
       selectedPCGroupIndex = 0;
+
+      string skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
+      skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
+      loadSkills(McCoyGameState.GetPlayer(PlayerCharacter.Rex).AvailableSkillPoints, skillString, PlayerCharacter.Rex);
+
+      // ToggleLobbying(false);
       refresh();
     }
 
@@ -66,6 +69,7 @@ namespace Assets.McCoy.RPG
       {
         selectedCharacter = 0;
       }
+      city.ChangePlayer(1, false);
       refresh();
     }
 
@@ -76,6 +80,7 @@ namespace Assets.McCoy.RPG
       {
         selectedCharacter = PlayerCharacters.Length - 1;
       }
+      city.ChangePlayer(-1, false);
       refresh();
     }
 
@@ -100,8 +105,8 @@ namespace Assets.McCoy.RPG
         ++selectedPCGroupIndex;
       }
 
-      bool canLobby = root.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
-      lobbyingUI.gameObject.SetActive(canLobby);
+      bool canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
+      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board);
 
       foreach (var pc in PlayerCharacters)
       {
@@ -141,19 +146,102 @@ namespace Assets.McCoy.RPG
       {
         inputInitialized = true;
         input = new McCoyInputManager();
+        input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
+        input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
         input.RegisterButtonListener(ButtonPress.Button6, NextPlayer);
         input.RegisterButtonListener(ButtonPress.Button5, PreviousPlayer);
-        input.RegisterButtonListener(ButtonPress.Button3, ReturnToMap);
+        input.RegisterButtonListener(ButtonPress.Button4, ReturnToMap);
       }
-
+      if (talentDelegate != null) return false;
       return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
     
+    void toggleLobbying()
+    {
+      if(uiPanel == null)
+      {
+        return;
+      }
+    }
+
+    public void ToggleLobbying()
+    {
+      /*
+      var rect = lobbyingUI.GetComponent<RectTransform>();
+      rect.offsetMin = new Vector2(0, rect.offsetMin.y); // left
+      rect.offsetMax = new Vector2(0, rect.offsetMax.y); // right
+      rect.offsetMax = new Vector2(rect.offsetMax.x, 0); // top
+      rect.offsetMin = new Vector2(rect.offsetMin.x, 0); // bottom
+      lobbyingUI.GetComponent<McCoyLobbyingListUI>().Initialize(city);
+      lobbyingUI.SetActive(!lobbyingUI.activeInHierarchy);
+      */
+    }
+
+    void toggleSkills()
+    {
+      OpenSkillTree();
+    }
+
+    void closeMenu()
+    {
+      if(talentDelegate != null)
+      {
+        Destroy(talentDelegate.gameObject);
+        talentDelegate = null;
+      }
+    }
+
+    private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
+    {
+      talentDelegate = null;
+      McCoyGameState.GetPlayer(pc).AvailableSkillPoints = availablePoints;
+      refresh();
+      McCoy.GetInstance().gameState.UpdateSkills(pc, serializedSkills, availablePoints);
+    }
+
+    public void OpenSkillTree()
+    {
+      if (talentDelegate != null)
+      {
+        return;
+      }
+      PlayerCharacter selectedPlayer = PlayerCharacters[selectedCharacter];
+      string skillTreeString = "";
+      int availableSkillPoints = 0;
+      McCoyPlayerCharacter playerData = null;
+      switch (selectedPlayer)
+      {
+        case PlayerCharacter.Rex:
+        default:
+          talentDelegate = Instantiate(RexSkillTree, uiPanel.transform.parent).GetComponent<McCoySkillTreeMenu>();
+          playerData = McCoyGameState.GetPlayer(PlayerCharacter.Rex);
+          break;
+      }
+      if (playerData != null)
+      {
+        availableSkillPoints = playerData.AvailableSkillPoints;
+        skillTreeString = playerData.SkillTreeString;
+      }
+      if (talentDelegate != null)
+      {
+        talentDelegate.SetAvailableSkillPoints(availableSkillPoints);
+        if (!string.IsNullOrEmpty(skillTreeString))
+        {
+          talentDelegate.LoadSkills(skillTreeString, loadSkills);
+        }
+      }
+    }
+
     void ReturnToMap()
     {
-      root.CloseFireside();
-      Destroy(lobbyingUI);
-      lobbyingUI = null;
+      if (uiPanel != null)
+      {
+        Destroy(uiPanel.gameObject);
+      }
+      // force a player / map / ui update for selected player
+      city.ChangePlayer(0);
+      city.CloseFireside();
+      uiPanel = null;
     }
   }
 }

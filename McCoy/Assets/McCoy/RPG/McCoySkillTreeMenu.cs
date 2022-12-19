@@ -104,7 +104,7 @@ namespace Assets.McCoy.RPG
     public void Close()
     {
       applyCallback(Engine.TalentTree.PointsToAssign, Engine.SaveToString(), player);
-      Destroy(gameObject);
+      // Destroy(gameObject);
     }
 
     public void TabChanged()

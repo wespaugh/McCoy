@@ -343,6 +343,38 @@ MonoBehaviour:
     m_Localized: Service Industries boom as people want to work
     m_Metadata:
       m_Items: []
+  - m_Id: 16934264247341056
+    m_Localized: Time Remaining
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16934413589729280
+    m_Localized: Skill Points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16934807799779328
+    m_Localized: Current Location
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16944748824547328
+    m_Localized: Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16944818194141184
+    m_Localized: Skills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16944920107339776
+    m_Localized: Change Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16945218192330752
+    m_Localized: Lobbying (City Hall Only)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16987698786914304
+    m_Localized: Available Funds
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
