@@ -152,7 +152,7 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Button5, PreviousPlayer);
         input.RegisterButtonListener(ButtonPress.Button4, ReturnToMap);
       }
-      if (talentDelegate != null) return false;
+      // if (talentDelegate != null) return false;
       return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
     

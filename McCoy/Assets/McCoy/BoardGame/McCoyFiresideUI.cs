@@ -67,7 +67,7 @@ namespace Assets.McCoy.BoardGame
           {
             Localize("com.mccoy.boardgame.map", (mapLabel) =>
             {
-              controls.SetTextDirectly($"{mapLabel}:    <sprite name=\"controller_buttons_ps4_1\">    {skillsLabel}:    <sprite name=\"controller_buttons_ps4_0\">    {changePlayerLabel}:    <sprite name=\"controller_buttons_ps4_2\">   /   <sprite name=\"controller_buttons_ps4_3\">");
+              controls.SetTextDirectly($"{mapLabel}:    <sprite name=\"controller_buttons_ps4_1\">    {skillsLabel}:    <sprite name=\"controller_buttons_ps4_0\">    {changePlayerLabel}:    <sprite name=\"controller_buttons_ps4_2\"> /   <sprite name=\"controller_buttons_ps4_3\">");
             });
           });
         });
