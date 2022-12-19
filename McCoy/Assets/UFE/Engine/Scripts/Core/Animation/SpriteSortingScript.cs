@@ -18,6 +18,9 @@ namespace UFE3D
     [SerializeField]
     SpriteRenderer bodySprite = null;
 
+    bool cachedFlip = false;
+    string cachedCommand = "";
+
     public void Awake()
     {
       foreach(var bgSprite in backgroundSprites)
@@ -32,12 +35,16 @@ namespace UFE3D
 
     public void PlayLimbAnimation(string animCmd)
     {
+      cachedFlip = bodySprite.flipX;
+      cachedCommand = animCmd;
+      Debug.Log("play limb animation: " + animCmd);
       string[] commands = animCmd.Split(',');
       foreach (var cmd in commands)
       {
         string[] animatorKeys = cmd.Split(':');
         bool hide = animatorKeys.Length == 0 || animatorKeys[1] == "";
         animators[animatorKeys[0]].gameObject.SetActive(!hide);
+        // animators[animatorKeys[0]].Play(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
         animators[animatorKeys[0]].SetTrigger(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
       }
     }
@@ -47,6 +54,10 @@ namespace UFE3D
       if(bodySprite == null)
       {
         bodySprite = GetComponent<SpriteRenderer>();
+      }
+      if(bodySprite.flipX != cachedFlip && !string.IsNullOrEmpty(cachedCommand))
+      {
+        PlayLimbAnimation(cachedCommand);
       }
       bodySprite.sortingOrder = sceneIndex;
 
