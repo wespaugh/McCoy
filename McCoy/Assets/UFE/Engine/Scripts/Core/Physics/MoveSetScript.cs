@@ -813,7 +813,7 @@ public class MoveSetScript : MonoBehaviour
   public bool CompareBlockButtons(ButtonPress button)
   {
     if (button == ButtonPress.Button1 && UFE.config.blockOptions.blockType == BlockType.HoldButton1) return true;
-    if (button == ButtonPress.Button2 && UFE.config.blockOptions.blockType == BlockType.HoldButton2) return true;
+    if (button == ButtonPress.Button3 && UFE.config.blockOptions.blockType == BlockType.HoldButton2) return true;
     if (button == ButtonPress.Button3 && UFE.config.blockOptions.blockType == BlockType.HoldButton3) return true;
     if (button == ButtonPress.Button4 && UFE.config.blockOptions.blockType == BlockType.HoldButton4) return true;
     if (button == ButtonPress.Button5 && UFE.config.blockOptions.blockType == BlockType.HoldButton5) return true;
@@ -830,7 +830,7 @@ public class MoveSetScript : MonoBehaviour
   public bool CompareParryButtons(ButtonPress button)
   {
     if (button == ButtonPress.Button1 && UFE.config.blockOptions.parryType == ParryType.TapButton1) return true;
-    if (button == ButtonPress.Button2 && UFE.config.blockOptions.parryType == ParryType.TapButton2) return true;
+    if (button == ButtonPress.Button3 && UFE.config.blockOptions.parryType == ParryType.TapButton2) return true;
     if (button == ButtonPress.Button3 && UFE.config.blockOptions.parryType == ParryType.TapButton3) return true;
     if (button == ButtonPress.Button4 && UFE.config.blockOptions.parryType == ParryType.TapButton4) return true;
     if (button == ButtonPress.Button5 && UFE.config.blockOptions.parryType == ParryType.TapButton5) return true;

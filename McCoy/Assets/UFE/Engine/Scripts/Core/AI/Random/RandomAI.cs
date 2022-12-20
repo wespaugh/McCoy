@@ -143,7 +143,7 @@ namespace UFE3D
 						{
 							return new InputEvents(Random.Range(0f, 1f) < behaviour.attackProbability);
 						}
-						else if (inputReference.engineRelatedButton == ButtonPress.Button2)
+						else if (inputReference.engineRelatedButton == ButtonPress.Button3)
 						{
 							return new InputEvents(Random.Range(0f, 1f) < behaviour.attackProbability);
 						}

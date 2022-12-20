@@ -35,7 +35,6 @@ namespace Assets.McCoy.BoardGame
       yield return req;
       var lobbyingCauses = req.asset as McCoyLobbyingCauseListData;
       this.lobbyingCauses = new List<McCoyLobbyingCause>();
-      yield break;
       foreach(var lobbyCause in lobbyingCauses.causes)
       {
         this.lobbyingCauses.Add(lobbyCause.Clone() as McCoyLobbyingCause);

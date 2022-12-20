@@ -403,6 +403,14 @@ MonoBehaviour:
     m_Key: com.mccoy.rpg.Rex_Wolf_Pounce
     m_Metadata:
       m_Items: []
+  - m_Id: 17229270543683584
+    m_Key: com.mccoy.boardgame.lobbyingavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17252761544347648
+    m_Key: com.mccoy.boardgame.availablefunds
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

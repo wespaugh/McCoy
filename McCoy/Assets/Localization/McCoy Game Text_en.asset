@@ -467,6 +467,14 @@ MonoBehaviour:
     m_Localized: Pounce
     m_Metadata:
       m_Items: []
+  - m_Id: 17229270543683584
+    m_Localized: Lobbying Available!    <sprite name=controller_buttons_ps4_3>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17252761544347648
+    m_Localized: Available Funds
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

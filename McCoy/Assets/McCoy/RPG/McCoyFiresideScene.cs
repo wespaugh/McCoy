@@ -24,10 +24,13 @@ namespace Assets.McCoy.RPG
     SpriteRenderer rexSprite = null;
 
     [SerializeField]
-    GameObject LobbyingUIPrefab = null;
+    GameObject FiresideStatsPrefab = null;
 
     [SerializeField]
     GameObject RexSkillTree = null;
+
+    [SerializeField]
+    GameObject LobbyingPrefab = null;
 
     McCoyCityScreen city = null;
     McCoyFiresideUI uiPanel = null;
@@ -36,18 +39,20 @@ namespace Assets.McCoy.RPG
     bool inputInitialized = false;
 
     McCoySkillTreeMenu talentDelegate = null;
+    McCoyLobbyingListUI lobbyingDelegate = null;
 
     Dictionary<string, List<PlayerCharacter>> pcGroups = null;
     int selectedPCGroupIndex = 0;
 
     int selectedCharacter = 0;
+    private bool canLobby;
 
     public void UpdateWithPCGroups(McCoyCityScreen root, Dictionary<string, List<PlayerCharacter>> characterGroups)
     {
       this.city = root;
       if (uiPanel == null)
       {
-        uiPanel = Instantiate(LobbyingUIPrefab).GetComponent<McCoyFiresideUI>();
+        uiPanel = Instantiate(FiresideStatsPrefab).GetComponent<McCoyFiresideUI>();
       }
       uiPanel.transform.SetParent(root.transform);
 
@@ -105,8 +110,8 @@ namespace Assets.McCoy.RPG
         ++selectedPCGroupIndex;
       }
 
-      bool canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
-      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board);
+      canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
+      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board, canLobby);
 
       foreach (var pc in PlayerCharacters)
       {
@@ -147,6 +152,7 @@ namespace Assets.McCoy.RPG
         inputInitialized = true;
         input = new McCoyInputManager();
         input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
+        input.RegisterButtonListener(ButtonPress.Button2, toggleLobbying);
         input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
         input.RegisterButtonListener(ButtonPress.Button6, NextPlayer);
         input.RegisterButtonListener(ButtonPress.Button5, PreviousPlayer);
@@ -157,28 +163,27 @@ namespace Assets.McCoy.RPG
         talentDelegate.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
         return true;
       };
+      if(lobbyingDelegate != null)
+      {
+        lobbyingDelegate.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+        return true;
+      }
       return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
     
     void toggleLobbying()
     {
-      if(uiPanel == null)
+      if(!canLobby)
       {
         return;
       }
+      lobbyingDelegate = Instantiate(LobbyingPrefab, uiPanel.transform.parent).GetComponent<McCoyLobbyingListUI>();
+      lobbyingDelegate.Initialize(city, closeLobbyingUI);
     }
 
-    public void ToggleLobbying()
+    public void closeLobbyingUI()
     {
-      /*
-      var rect = lobbyingUI.GetComponent<RectTransform>();
-      rect.offsetMin = new Vector2(0, rect.offsetMin.y); // left
-      rect.offsetMax = new Vector2(0, rect.offsetMax.y); // right
-      rect.offsetMax = new Vector2(rect.offsetMax.x, 0); // top
-      rect.offsetMin = new Vector2(rect.offsetMin.x, 0); // bottom
-      lobbyingUI.GetComponent<McCoyLobbyingListUI>().Initialize(city);
-      lobbyingUI.SetActive(!lobbyingUI.activeInHierarchy);
-      */
+      Destroy(lobbyingDelegate.gameObject);
     }
 
     void toggleSkills()
@@ -199,7 +204,6 @@ namespace Assets.McCoy.RPG
     {
       if (talentDelegate != null)
       {
-        Debug.Log("DESTROY");
         Destroy(talentDelegate.gameObject);
       }
       talentDelegate = null;

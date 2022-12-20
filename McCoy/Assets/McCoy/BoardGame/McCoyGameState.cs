@@ -209,7 +209,7 @@ namespace Assets.McCoy.BoardGame
 
     public void Spend(int credits)
     {
-      credits -= credits;
+      this.credits -= credits;
       if(credits < 0)
       {
         Debug.LogWarning("You have spent too much!");

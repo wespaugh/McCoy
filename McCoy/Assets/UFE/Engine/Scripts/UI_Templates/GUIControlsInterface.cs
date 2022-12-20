@@ -89,7 +89,7 @@ namespace UFE3D
                 { // Sends Button 1 Input Event
                     return new InputEvents(b1);
                 }
-                else if (inputReference.inputType == InputType.Button && inputReference.engineRelatedButton == ButtonPress.Button2)
+                else if (inputReference.inputType == InputType.Button && inputReference.engineRelatedButton == ButtonPress.Button3)
                 { // Sends Button 2 Input Event
                     return new InputEvents(b2);
                 }

@@ -84,7 +84,7 @@ namespace UFE3D
 				if ((buttonPresses & NetworkButtonPress.Back) != 0) list.Add(ButtonPress.Back);
 				if ((buttonPresses & NetworkButtonPress.Forward) != 0) list.Add(ButtonPress.Forward);
 				if ((buttonPresses & NetworkButtonPress.Button1) != 0) list.Add(ButtonPress.Button1);
-				if ((buttonPresses & NetworkButtonPress.Button2) != 0) list.Add(ButtonPress.Button2);
+				if ((buttonPresses & NetworkButtonPress.Button2) != 0) list.Add(ButtonPress.Button3);
 				if ((buttonPresses & NetworkButtonPress.Button3) != 0) list.Add(ButtonPress.Button3);
 				if ((buttonPresses & NetworkButtonPress.Button4) != 0) list.Add(ButtonPress.Button4);
 				if ((buttonPresses & NetworkButtonPress.Button5) != 0) list.Add(ButtonPress.Button5);

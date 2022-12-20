@@ -210,7 +210,7 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Up, MoveUp);
         input.RegisterButtonListener(ButtonPress.Down, MoveDown);
         input.RegisterButtonListener(ButtonPress.Button3, Back);
-        input.RegisterButtonListener(ButtonPress.Button2, Confirm);
+        input.RegisterButtonListener(ButtonPress.Button3, Confirm);
         input.RegisterButtonListener(ButtonPress.Button4, ResetSkill);
         input.RegisterButtonListener(ButtonPress.Button6, nextPage);
         input.RegisterButtonListener(ButtonPress.Button5, previousPage);

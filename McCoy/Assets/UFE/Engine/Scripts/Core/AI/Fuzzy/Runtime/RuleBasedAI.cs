@@ -1266,7 +1266,7 @@ public class RuleBasedAI : RandomAI{
 			switch (UFE.config.blockOptions.blockType){
 			case BlockType.HoldBack:		blockButton = ButtonPress.Back;		break;
 			case BlockType.HoldButton1:		blockButton = ButtonPress.Button1;	break;
-			case BlockType.HoldButton2:		blockButton = ButtonPress.Button2;	break;
+			case BlockType.HoldButton2:		blockButton = ButtonPress.Button3;	break;
 			case BlockType.HoldButton3:		blockButton = ButtonPress.Button3;	break;
 			case BlockType.HoldButton4:		blockButton = ButtonPress.Button4;	break;
 			case BlockType.HoldButton5:		blockButton = ButtonPress.Button5;	break;

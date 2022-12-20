@@ -385,9 +385,11 @@ MonoBehaviour:
   penelopeSprite: {fileID: 2017302418857889016}
   vickiSprite: {fileID: 2017302418991480829}
   rexSprite: {fileID: 2017302418644147195}
-  LobbyingUIPrefab: {fileID: 166778040883546289, guid: 5d0a773367a3abc4e90bc21c7c34151a,
+  FiresideStatsPrefab: {fileID: 166778040883546289, guid: 5d0a773367a3abc4e90bc21c7c34151a,
     type: 3}
   RexSkillTree: {fileID: 6167048755096446253, guid: 73f96539a6dd1404ca32b359fdd71468,
+    type: 3}
+  LobbyingPrefab: {fileID: 1982824854762990349, guid: a4d03b0ea7fe2df4b9ba9d15b07a5df8,
     type: 3}
 --- !u!1 &2017302419844801681
 GameObject:

@@ -18,8 +18,12 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     McCoyLocalizedText costLabel = null;
 
+    [SerializeField]
+    GameObject highlight = null;
+
     McCoyLobbyingCause.LobbyingCause cause;
     int cost;
+    public int Cost { get => cost; }
 
     [SerializeField]
     Button lobbyButton;
@@ -36,8 +40,21 @@ namespace Assets.McCoy.BoardGame
       summaryLabel.SetText(cause.summary);
       ProjectConstants.Localize("com.mccoy.boardgame.lobbyingcost", (costString) =>
       {
-        costLabel.SetTextDirectly($"{costString}: {cause.cost}");
+        int credits = McCoyGameState.Instance().Credits;
+        bool canBuy = Cost <= credits;
+        string text = $"{Cost}";
+        if (!canBuy)
+        {
+          text = $"<color=red>{text}</color>";
+        }
+        text = $"{costString}: {text}";
+        costLabel.SetTextDirectly(text);
       });
+    }
+
+    public void ToggleHighlight(bool on)
+    {
+      highlight.SetActive(on);
     }
 
     private void updateButtonEnabled()
@@ -49,7 +66,9 @@ namespace Assets.McCoy.BoardGame
     {
       McCoyLobbyingCauseManager.GetInstance().ApplyCause(cause, root);
       lobbyButton.enabled = false;
+      Debug.Log("Before: " + McCoyGameState.Instance().Credits);
       McCoyGameState.Instance().Spend(cost);
+      Debug.Log("After: " + McCoyGameState.Instance().Credits);
     }
   }
 }

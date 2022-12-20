@@ -21,11 +21,13 @@ namespace Assets.McCoy.BoardGame
     McCoyLocalizedText funds;
     [SerializeField]
     McCoyLocalizedText controls;
+    [SerializeField]
+    McCoyLocalizedText lobbyingText;
 
     [SerializeField]
     GameObject lobbyingUI = null;
 
-    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board)
+    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby)
     {
       playerName.SetTextDirectly(PlayerName(pc));
       currentLocation.SetText("com.mccoy.boardgame.currentlocation", (label) =>
@@ -72,6 +74,7 @@ namespace Assets.McCoy.BoardGame
           });
         });
       });
+      lobbyingText.gameObject.SetActive(canLobby);
     }
   }
 }
