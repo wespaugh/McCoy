@@ -266,10 +266,6 @@ namespace Assets.McCoy
       {
         return "Heavy Armor";
       }
-      else if (skillName == "Rex_Human_HeavyArmor")
-      {
-        return "Heavy Armor";
-      }
       else if (skillName == "Rex_Wolf_SpeedUp")
       {
         return "Speed+";

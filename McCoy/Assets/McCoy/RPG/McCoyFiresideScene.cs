@@ -236,7 +236,7 @@ namespace Assets.McCoy.RPG
         talentDelegate.SetAvailableSkillPoints(availableSkillPoints);
         if (!string.IsNullOrEmpty(skillTreeString))
         {
-          talentDelegate.LoadSkills(skillTreeString, loadSkills);
+          talentDelegate.LoadSkills(selectedPlayer, skillTreeString, loadSkills);
         }
       }
     }

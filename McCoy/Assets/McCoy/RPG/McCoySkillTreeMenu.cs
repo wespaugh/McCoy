@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.UI;
+﻿using Assets.McCoy.Localization;
+using Assets.McCoy.UI;
 using com.cygnusprojects.TalentTree;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,12 @@ namespace Assets.McCoy.RPG
 
     [SerializeField]
     Button cancelButton = null;
+
+    [SerializeField]
+    McCoyLocalizedText skillText = null;
+
+    [SerializeField]
+    McCoyLocalizedText title = null;
 
     Action<int, string, PlayerCharacter> applyCallback = null;
 
@@ -121,8 +128,13 @@ namespace Assets.McCoy.RPG
       availablePoints.text = $"{points}";
     }
 
-    public void LoadSkills(string skillString, Action<int, string, PlayerCharacter> loadSkills)
+    public void LoadSkills(PlayerCharacter pc, string skillString, Action<int, string, PlayerCharacter> loadSkills)
     {
+      player = pc;
+      Localize("com.mccoy.rpg.skills", (skills) =>
+      {
+        title.SetTextDirectly($"Rex's {skills}");
+      });
       applyCallback = loadSkills;
       Engine.LoadFromString(skillString);
     }
@@ -150,6 +162,8 @@ namespace Assets.McCoy.RPG
       {
         return;
       }
+      selectedSkill.ToggleHighlight(false);
+      selectedSkill = null;
       deselectButtons();
       getTabPage(currentPage).SetActive(false);
       currentPage = page;
@@ -165,7 +179,7 @@ namespace Assets.McCoy.RPG
       {
         if (skill.IsDefaultSelection)
         {
-          selectedSkill = skill;
+          selectSkill(skill);
           break;
         }
       }
@@ -189,7 +203,6 @@ namespace Assets.McCoy.RPG
     {
       if (!inputInitialized)
       {
-        Debug.Log("initializing input for skill menu");
         inputInitialized = true;
         input = new McCoyInputManager();
         input.RegisterButtonListener(ButtonPress.Forward, MoveRight);
@@ -242,13 +255,10 @@ namespace Assets.McCoy.RPG
 
     public void updateTabHighlight()
     {
-      Debug.Log("UpdateTabHighlight: " + currentPage);
       foreach (Toggle t in tabs.GetComponentsInChildren<Toggle>())
       {
-        Debug.Log($"checking {t.GetComponent<McCoySkillTreePageToggle>().Tab}");
         if (currentPage == t.GetComponent<McCoySkillTreePageToggle>().Tab)
         {
-          Debug.Log("Selecting tab " + currentPage);
           t.Select();
           break;
         }
@@ -267,13 +277,11 @@ namespace Assets.McCoy.RPG
     {
       if(buyHighlighted)
       {
-        Debug.Log("BUY");
         GetComponent<TalentusEngine>().Apply();
         return;
       }
       if(cancelHighlighted)
       {
-        Debug.Log("CANCEL!");
         Back();
       }
       if (selectedSkill != null)
@@ -318,6 +326,27 @@ namespace Assets.McCoy.RPG
       }
       selectedSkill = nextSkill;
       selectedSkill.ToggleHighlight(true);
+      skillText.SetTextDirectly("");
+
+      if (selectedSkill != null)
+      {
+        var talent = selectedSkill.GetComponent<TalentUI>();
+        Localize($"com.mccoy.rpg.{talent.Talent.name}", (skillName) =>
+        {
+          if (!talent.Talent.isValid)
+          {
+            Localize("com.mccoy.rpg.skillunavailable", (unavailable) =>
+            {
+              skillText.SetTextDirectly($"{skillName} <color=red>{unavailable}</color>");
+            });
+          }
+          else
+          {
+            skillText.SetTextDirectly(skillName);
+          }
+        });
+      }
+      
     }
 
     private void navigate(McCoyTalentusSkill.SkillNavDirection dir)

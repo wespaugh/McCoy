@@ -323,6 +323,86 @@ MonoBehaviour:
     m_Key: com.mccoy.rpg.arbiter
     m_Metadata:
       m_Items: []
+  - m_Id: 17107872584224768
+    m_Key: com.mccoy.rpg.skillunavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112745425948672
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Uppercut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112790091091968
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112858898649088
+    m_Key: com.mccoy.rpg.Rex_Arbiter_StrengthUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112939425091584
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Regeneration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112980969672704
+    m_Key: com.mccoy.rpg.Rex_Arbiter_HPUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113037710217216
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Ultimate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113098229829632
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Rage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113143847079936
+    m_Key: com.mccoy.rpg.Rex_Arbiter_Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113182896050176
+    m_Key: com.mccoy.rpg.Rex_Human_FireRateUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113223564021760
+    m_Key: com.mccoy.rpg.Rex_Human_WeaponSlot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113296322613248
+    m_Key: com.mccoy.rpg.Rex_Human_DodgeRoll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113342002778112
+    m_Key: com.mccoy.rpg.Rex_Human_DodgeBullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113392762245120
+    m_Key: com.mccoy.rpg.Rex_Human_AccessorySlot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113427021320192
+    m_Key: com.mccoy.rpg.Rex_Human_HeavyArmor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113472277860352
+    m_Key: com.mccoy.rpg.Rex_Wolf_SpeedUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113581753389056
+    m_Key: com.mccoy.rpg.Rex_Wolf_QuickShifter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113616348008448
+    m_Key: com.mccoy.rpg.Rex_Wolf_LeapingBite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113697310658560
+    m_Key: com.mccoy.rpg.Rex_Wolf_SlideDash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113755963805696
+    m_Key: com.mccoy.rpg.Rex_Wolf_Pounce
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

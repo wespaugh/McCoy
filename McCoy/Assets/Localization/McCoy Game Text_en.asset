@@ -387,6 +387,86 @@ MonoBehaviour:
     m_Localized: Human
     m_Metadata:
       m_Items: []
+  - m_Id: 17107872584224768
+    m_Localized: (Unavailable)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112745425948672
+    m_Localized: Uppercut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112790091091968
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112858898649088
+    m_Localized: Strength Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112939425091584
+    m_Localized: Regeneration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17112980969672704
+    m_Localized: HP Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113037710217216
+    m_Localized: Ultimate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113098229829632
+    m_Localized: Rage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113143847079936
+    m_Localized: Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113182896050176
+    m_Localized: Fire Rate Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113223564021760
+    m_Localized: Weapon Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113296322613248
+    m_Localized: Dodge Roll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113342002778112
+    m_Localized: Dodge Bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113392762245120
+    m_Localized: Accessory Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113427021320192
+    m_Localized: Heavy Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113472277860352
+    m_Localized: Speed Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113581753389056
+    m_Localized: Quick Shifter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113616348008448
+    m_Localized: Leaping Bite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113697310658560
+    m_Localized: Sliding Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17113755963805696
+    m_Localized: Pounce
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,10 +1,6 @@
 ﻿using com.cygnusprojects.TalentTree;
-using System;
+using static Assets.McCoy.ProjectConstants;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,18 +66,22 @@ namespace Assets.McCoy.RPG
       skillName.gameObject.SetActive(true);
       var talent = GetComponent<TalentUI>();
       string talentName = talent.Talent.Name;
-      string displayName = ProjectConstants.DisplayStringForSkillName(talentName);
-      skillName.text = displayName;
-      if (levelIndicator != null)
+      Localize($"com.mccoy.rpg.{talentName}", (displayName) =>
       {
-        string labelText = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";
-        if(!talent.Talent.isValid)
+        displayName = ProjectConstants.DisplayStringForSkillName(talentName);
+        skillName.text = displayName;
+        if (levelIndicator != null)
         {
-          labelText = $"<color=red>{labelText}</color>";
+          string labelText = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";
+          if (!talent.Talent.isValid)
+          {
+            labelText = $"<color=red>{labelText}</color>";
+          }
+          levelIndicator.text = labelText;
         }
-        levelIndicator.text = labelText;
-      }
+      });
     }
+
     public McCoyTalentusSkill Navigate(SkillNavDirection dir)
     {
       switch(dir)
