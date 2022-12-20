@@ -311,6 +311,18 @@ MonoBehaviour:
     m_Key: com.mccoy.boardgame.funds
     m_Metadata:
       m_Items: []
+  - m_Id: 17082005220937728
+    m_Key: com.mccoy.rpg.wolf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17082051014348800
+    m_Key: com.mccoy.rpg.human
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17082058727673856
+    m_Key: com.mccoy.rpg.arbiter
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -67,6 +67,8 @@ namespace Assets.McCoy.RPG
       humanPage.SetActive(false);
       wolfPage.SetActive(false);
       tabs.GetComponentsInChildren<Toggle>().First().Select();
+      buyButton.interactable = false;
+      cancelButton.interactable = false;
     }
 
     private void OnEnable()
@@ -101,6 +103,13 @@ namespace Assets.McCoy.RPG
     private void talentsUpdated(object sender, TalentTreeGraph.TreeEvaluatedEventArgs e)
     {
       availablePoints.text = $"{Engine.TalentTree.PointsToAssign}";
+      if (currentSkills != null)
+      {
+        foreach (var skill in currentSkills)
+        {
+          skill.Refresh();
+        }
+      }
     }
 
     public void SetAvailableSkillPoints(int points)
@@ -141,8 +150,7 @@ namespace Assets.McCoy.RPG
       {
         return;
       }
-      cancelHighlighted = false;
-      buyHighlighted = false;
+      deselectButtons();
       getTabPage(currentPage).SetActive(false);
       currentPage = page;
       var skillMenu = getTabPage(currentPage);
@@ -191,9 +199,60 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Button3, Back);
         input.RegisterButtonListener(ButtonPress.Button2, Confirm);
         input.RegisterButtonListener(ButtonPress.Button4, ResetSkill);
+        input.RegisterButtonListener(ButtonPress.Button6, nextPage);
+        input.RegisterButtonListener(ButtonPress.Button5, previousPage);
       }
       // if (talentDelegate != null) return false;
       return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+    }
+
+    private void nextPage()
+    {
+      switch(currentPage)
+      {
+        case SkillTreeTab.SkillTreeArbiter:
+          SwitchPage(SkillTreeTab.SkillTreeHuman);
+          break;
+        case SkillTreeTab.SkillTreeHuman:
+          SwitchPage(SkillTreeTab.SkillTreeWolf);
+          break;
+        case SkillTreeTab.SkillTreeWolf:
+          SwitchPage(SkillTreeTab.SkillTreeArbiter);
+          break;
+      }
+      updateTabHighlight();
+    }
+
+    private void previousPage()
+    {
+      switch (currentPage)
+      {
+        case SkillTreeTab.SkillTreeArbiter:
+          SwitchPage(SkillTreeTab.SkillTreeWolf);
+          break;
+        case SkillTreeTab.SkillTreeHuman:
+          SwitchPage(SkillTreeTab.SkillTreeArbiter);
+          break;
+        case SkillTreeTab.SkillTreeWolf:
+          SwitchPage(SkillTreeTab.SkillTreeHuman);
+          break;
+      }
+      updateTabHighlight();
+    }
+
+    public void updateTabHighlight()
+    {
+      Debug.Log("UpdateTabHighlight: " + currentPage);
+      foreach (Toggle t in tabs.GetComponentsInChildren<Toggle>())
+      {
+        Debug.Log($"checking {t.GetComponent<McCoySkillTreePageToggle>().Tab}");
+        if (currentPage == t.GetComponent<McCoySkillTreePageToggle>().Tab)
+        {
+          Debug.Log("Selecting tab " + currentPage);
+          t.Select();
+          break;
+        }
+      }
     }
 
     private void ResetSkill()
@@ -208,11 +267,13 @@ namespace Assets.McCoy.RPG
     {
       if(buyHighlighted)
       {
+        Debug.Log("BUY");
         GetComponent<TalentusEngine>().Apply();
         return;
       }
       if(cancelHighlighted)
       {
+        Debug.Log("CANCEL!");
         Back();
       }
       if (selectedSkill != null)
@@ -223,50 +284,47 @@ namespace Assets.McCoy.RPG
 
     private void Back()
     {
-      Debug.Log("Skills Menu Back!");
       GetComponent<TalentusEngine>().Revert();
       Close();
     }
 
     private void selectBuy()
     {
+      deselectButtons();
       //cancel may or may not be selected in this state
       buyHighlighted = true;
-      buyButton.enabled = true;
+      buyButton.interactable = true;
     }
     private void selectCancel()
     {
+      deselectButtons();
       cancelHighlighted = true;
-      cancelButton.enabled = true;
+      cancelButton.interactable = true;
     }
 
     private void deselectButtons()
     {
       buyHighlighted = false;
-      buyButton.enabled = false;
+      buyButton.interactable = false;
       cancelHighlighted = false;
-      cancelButton.enabled = false;
+      cancelButton.interactable = false;
     }
 
     private void selectSkill(McCoyTalentusSkill nextSkill)
     {
       if (selectedSkill != null)
       {
-        Debug.Log("There was already a selected skill called " + selectedSkill.name);
         selectedSkill.ToggleHighlight(false);
       }
       selectedSkill = nextSkill;
-      Debug.Log("There newly selected skill is called " + selectedSkill.name);
       selectedSkill.ToggleHighlight(true);
     }
 
     private void navigate(McCoyTalentusSkill.SkillNavDirection dir)
     {
-      Debug.Log("Navigate! " + dir);
       McCoyTalentusSkill nextSkill = null;
       if (cancelHighlighted || buyHighlighted)
       {
-        Debug.Log("Cancel or Buy!");
         if (dir == McCoyTalentusSkill.SkillNavDirection.Down || dir == McCoyTalentusSkill.SkillNavDirection.Up)
         {
           foreach (var skill in currentSkills)
@@ -290,6 +348,7 @@ namespace Assets.McCoy.RPG
           {
             selectCancel();
           }
+          return;
         }
       }
       else if(selectedSkill != null)
@@ -298,7 +357,10 @@ namespace Assets.McCoy.RPG
       }
       if (nextSkill == null)
       {
-        Debug.Log("No next skill to select");
+        if(selectedSkill != null)
+        {
+          selectedSkill.ToggleHighlight(false);
+        }
         selectedSkill = null;
         selectBuy();
       }

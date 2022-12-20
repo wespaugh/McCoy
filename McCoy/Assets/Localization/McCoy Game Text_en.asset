@@ -375,6 +375,18 @@ MonoBehaviour:
     m_Localized: Available Funds
     m_Metadata:
       m_Items: []
+  - m_Id: 17082005220937728
+    m_Localized: Wolf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17082058727673856
+    m_Localized: Arbiter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17082051014348800
+    m_Localized: Human
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

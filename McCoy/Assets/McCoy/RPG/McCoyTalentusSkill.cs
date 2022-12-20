@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.McCoy.RPG
 {
@@ -55,6 +56,14 @@ namespace Assets.McCoy.RPG
       highlight.SetActive(IsDefaultSelection);
       StartCoroutine(oneFrameDelay());
     }
+    public void Refresh()
+    {
+      if (levelIndicator != null)
+      {
+        levelIndicator.text = $"";
+      }
+      StartCoroutine(oneFrameDelay());
+    }
     public IEnumerator oneFrameDelay()
     {
       yield return null;
@@ -65,7 +74,12 @@ namespace Assets.McCoy.RPG
       skillName.text = displayName;
       if (levelIndicator != null)
       {
-        levelIndicator.text = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";
+        string labelText = $"{talent.Talent.Level}/{talent.Talent.MaxLevel}";
+        if(!talent.Talent.isValid)
+        {
+          labelText = $"<color=red>{labelText}</color>";
+        }
+        levelIndicator.text = labelText;
       }
     }
     public McCoyTalentusSkill Navigate(SkillNavDirection dir)
@@ -86,6 +100,10 @@ namespace Assets.McCoy.RPG
     public void ToggleHighlight(bool on)
     {
       highlight.SetActive(on);
+      if(on)
+      {
+        highlight.GetComponent<Image>().color = GetComponent<TalentUI>().Talent.isValid ? Color.white : Color.gray;
+      }
     }
 
     public void OnEnable()

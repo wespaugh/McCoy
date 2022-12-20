@@ -197,6 +197,11 @@ namespace Assets.McCoy.RPG
 
     private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
     {
+      if (talentDelegate != null)
+      {
+        Debug.Log("DESTROY");
+        Destroy(talentDelegate.gameObject);
+      }
       talentDelegate = null;
       McCoyGameState.GetPlayer(pc).AvailableSkillPoints = availablePoints;
       refresh();
