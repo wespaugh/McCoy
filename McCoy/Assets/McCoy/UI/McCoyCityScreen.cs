@@ -138,10 +138,10 @@ namespace Assets.McCoy.UI
       {
         inputManager = new McCoyInputManager();
         inputInitialized = true;
-        inputManager.RegisterButtonListener(ButtonPress.Button4, ShowFireside);
-        inputManager.RegisterButtonListener(ButtonPress.Button5, NextPlayer);
-        inputManager.RegisterButtonListener(ButtonPress.Button6, PreviousPlayer);
-        inputManager.RegisterButtonListener(ButtonPress.Button3, ToggleZoom);
+        inputManager.RegisterButtonListener(ButtonPress.Button3, ShowFireside);
+        inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
         inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
         inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
       }
@@ -251,6 +251,7 @@ namespace Assets.McCoy.UI
         pcGroups[zoneId].Add(pc);
       }
       fireside.UpdateWithPCGroups(this, pcGroups);
+      fireside.SelectPlayer(selectedPlayer);
     }
 
     public void CloseFireside()

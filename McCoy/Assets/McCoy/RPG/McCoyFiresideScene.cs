@@ -152,11 +152,11 @@ namespace Assets.McCoy.RPG
         inputInitialized = true;
         input = new McCoyInputManager();
         input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
-        input.RegisterButtonListener(ButtonPress.Button2, toggleLobbying);
+        input.RegisterButtonListener(ButtonPress.Button4, toggleLobbying);
         input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
-        input.RegisterButtonListener(ButtonPress.Button6, NextPlayer);
-        input.RegisterButtonListener(ButtonPress.Button5, PreviousPlayer);
-        input.RegisterButtonListener(ButtonPress.Button4, ReturnToMap);
+        input.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
+        input.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button2, ReturnToMap);
       }
       if (talentDelegate != null)
       {
@@ -184,6 +184,7 @@ namespace Assets.McCoy.RPG
     public void closeLobbyingUI()
     {
       Destroy(lobbyingDelegate.gameObject);
+      refresh();
     }
 
     void toggleSkills()
@@ -243,6 +244,19 @@ namespace Assets.McCoy.RPG
           talentDelegate.LoadSkills(selectedPlayer, skillTreeString, loadSkills);
         }
       }
+    }
+
+    public void SelectPlayer(PlayerCharacter selectedPlayer)
+    {
+      for(int i = 0; i < PlayerCharacters.Length; ++i)
+      {
+        if(PlayerCharacters[i] == selectedPlayer)
+        {
+          this.selectedCharacter = i;
+          break;
+        }
+      }
+      refresh();
     }
 
     void ReturnToMap()
