@@ -63,6 +63,7 @@ namespace Assets.McCoy.RPG
     private void Awake()
     {
       arbiterPage.SetActive(true);
+      updateCurrentSkills();
       humanPage.SetActive(false);
       wolfPage.SetActive(false);
       tabs.GetComponentsInChildren<Toggle>().First().Select();
@@ -136,7 +137,7 @@ namespace Assets.McCoy.RPG
 
     public void SwitchPage(SkillTreeTab page)
     {
-      if(currentPage == page)
+      if (currentPage == page)
       {
         return;
       }
@@ -146,7 +147,20 @@ namespace Assets.McCoy.RPG
       currentPage = page;
       var skillMenu = getTabPage(currentPage);
       skillMenu.SetActive(true);
-      currentSkills = skillMenu.GetComponentsInChildren<McCoyTalentusSkill>();
+      updateCurrentSkills();
+    }
+
+    private void updateCurrentSkills()
+    {
+      currentSkills = getTabPage(currentPage).GetComponentsInChildren<McCoyTalentusSkill>();
+      foreach (var skill in currentSkills)
+      {
+        if (skill.IsDefaultSelection)
+        {
+          selectedSkill = skill;
+          break;
+        }
+      }
     }
 
     private GameObject getTabPage(SkillTreeTab tab)
@@ -238,9 +252,11 @@ namespace Assets.McCoy.RPG
     {
       if (selectedSkill != null)
       {
+        Debug.Log("There was already a selected skill called " + selectedSkill.name);
         selectedSkill.ToggleHighlight(false);
       }
       selectedSkill = nextSkill;
+      Debug.Log("There newly selected skill is called " + selectedSkill.name);
       selectedSkill.ToggleHighlight(true);
     }
 
@@ -250,6 +266,7 @@ namespace Assets.McCoy.RPG
       McCoyTalentusSkill nextSkill = null;
       if (cancelHighlighted || buyHighlighted)
       {
+        Debug.Log("Cancel or Buy!");
         if (dir == McCoyTalentusSkill.SkillNavDirection.Down || dir == McCoyTalentusSkill.SkillNavDirection.Up)
         {
           foreach (var skill in currentSkills)
@@ -281,6 +298,7 @@ namespace Assets.McCoy.RPG
       }
       if (nextSkill == null)
       {
+        Debug.Log("No next skill to select");
         selectedSkill = null;
         selectBuy();
       }

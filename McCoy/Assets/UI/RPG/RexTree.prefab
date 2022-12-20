@@ -7045,7 +7045,7 @@ MonoBehaviour:
   NavLeft: {fileID: 1135461265491542390}
   NavRight: {fileID: 7670167281904246428}
   isDefaultSelection: 0
-  isBottomSkill: 0
+  isBottomSkill: 1
 --- !u!1 &3068596318006692362
 GameObject:
   m_ObjectHideFlags: 0
@@ -10289,7 +10289,7 @@ MonoBehaviour:
   NavLeft: {fileID: 1217891365466365773}
   NavRight: {fileID: 1217891365466365773}
   isDefaultSelection: 0
-  isBottomSkill: 0
+  isBottomSkill: 1
 --- !u!1 &4759220862955878943
 GameObject:
   m_ObjectHideFlags: 0
@@ -13738,7 +13738,7 @@ MonoBehaviour:
   NavLeft: {fileID: 8062339503706114928}
   NavRight: {fileID: 8912405334034636616}
   isDefaultSelection: 0
-  isBottomSkill: 0
+  isBottomSkill: 1
 --- !u!1 &6290803484315060346
 GameObject:
   m_ObjectHideFlags: 0
