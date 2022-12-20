@@ -750,22 +750,25 @@ namespace Assets.McCoy.UI
         }
       }
 
-      if(!refreshLines)
+      if (refreshLines)
       {
-        return;
+        this.refreshLines(m, validConnections);
       }
+    }
 
+    private void refreshLines(MapNode node, List<MapNode> validConnections = null)
+    {
       inactiveConnectionLines.Clear();
       foreach (var entry in lineLookup)
       {
-        bool isSelectedNow = m == null ? false : entry.Key.Contains(m.NodeID);
+        bool isSelectedNow = node == null ? false : entry.Key.Contains(node.NodeID);
 
         if (isSelectedNow && validConnections != null)
         {
           bool foundOtherEnd = false;
           foreach (var c in validConnections)
           {
-            if(entry.Key.Contains(c.NodeID))
+            if (entry.Key.Contains(c.NodeID))
             {
               foundOtherEnd = true;
               break;
@@ -773,14 +776,13 @@ namespace Assets.McCoy.UI
           }
           isSelectedNow &= foundOtherEnd;
         }
-        isSelectedNow = true;
-        Color deselectColor = new Color(227f/255f, 99f/255f, 151f/255f, 0f);
-        Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f, 128f/255f);
-        if(!isSelectedNow)
+        Color deselectColor = new Color(227f / 255f, 99f / 255f, 151f / 255f, 128f);
+        Color selectColor = new Color(130f / 255f, 209f / 255f, 115f / 255f, 255f / 255f);
+        if (!isSelectedNow)
         {
           inactiveConnectionLines.Add(entry.Value);
         }
-        entry.Value.startColor =  isSelectedNow ? selectColor : deselectColor;// Color.grey;
+        entry.Value.startColor = isSelectedNow ? selectColor : deselectColor;// Color.grey;
         entry.Value.endColor = isSelectedNow ? selectColor : deselectColor; // Color.grey;
       }
 

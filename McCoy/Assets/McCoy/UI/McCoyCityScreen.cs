@@ -577,10 +577,19 @@ namespace Assets.McCoy.UI
       PlayerCharacter[] players = PlayerCharacters;
       for (int i = 0; i < players.Length; ++i)
       {
-        int index = Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
-        int randomMapPoint = indices[index]; // the randomly picked number
-        McCoy.GetInstance().gameState.SetPlayerLocation(players[i],mapNodes[randomMapPoint]); // add the map node at the randomly picked number
-        indices.RemoveAt(index); // remove the index so the same map point isn't picked again
+        while (true)
+        {
+          int index = Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
+          int randomMapPoint = indices[index]; // the randomly picked number
+          MapNode startLoc = mapNodes[randomMapPoint];
+          if(startLoc.Disabled)
+          {
+            continue;
+          }
+          McCoy.GetInstance().gameState.SetPlayerLocation(players[i], mapNodes[randomMapPoint]); // add the map node at the randomly picked number
+          indices.RemoveAt(index); // remove the index so the same map point isn't picked again
+          break;
+        }
       }
     }
 
