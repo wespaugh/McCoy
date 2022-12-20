@@ -143,7 +143,7 @@ namespace Assets.McCoy.UI
         inputManager.RegisterButtonListener(ButtonPress.Button6, PreviousPlayer);
         inputManager.RegisterButtonListener(ButtonPress.Button3, ToggleZoom);
         inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
-        inputManager.RegisterButtonListener(ButtonPress.Button3, enterCurrentZone);
+        inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
       }
 
       if(fireside.gameObject.activeInHierarchy)

@@ -11,13 +11,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Naninovel;
 using System.Collections;
+using TMPro;
 
 namespace Assets.McCoy.UI
 {
-  public class McCoyMainMenuScene : DefaultMainMenuScreen
+  public class McCoyMainMenuScene : DefaultMainMenuScreen, IMcCoyInputManager
   {
     [SerializeField]
     Button continueButton = null;
+
+    [SerializeField]
+    Button newGameButton = null;
+
+    [SerializeField]
+    Button optionsButton = null;
+
+    [SerializeField]
+    Button exitButton = null;
 
     [SerializeField]
     Button deleteSavesButton = null;
@@ -29,7 +39,19 @@ namespace Assets.McCoy.UI
 
     List<GameObject> buildings = null;
 
+    enum MainMenuChoices
+    {
+      Continue,
+      NewGame,
+      Options,
+      Exit
+    }
+    MainMenuChoices currentSelection;
+
     McCoy game;
+    private bool inputInitialized;
+    private McCoyInputManager input;
+
     public void Awake()
     {
       if(game == null)
@@ -88,16 +110,6 @@ namespace Assets.McCoy.UI
       // _ = McCoy.GetInstance().ShowCutsceneAsync("Rex_01_Outro");
     }
 
-    public override void DoFixedUpdate(
-  IDictionary<InputReferences, InputEvents> player1PreviousInputs,
-  IDictionary<InputReferences, InputEvents> player1CurrentInputs,
-  IDictionary<InputReferences, InputEvents> player2PreviousInputs,
-  IDictionary<InputReferences, InputEvents> player2CurrentInputs
-)
-    {
-      base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-    }
-
       public void StartCityScene()
     {
       McCoyQuestManager.GetInstance().GameLoaded();
@@ -123,7 +135,113 @@ namespace Assets.McCoy.UI
     private void updateMenuItems()
     {
       bool continueAvailable = File.Exists(ProjectConstants.SaveFilename(1));
-      // continueButton.gameObject.SetActive(continueAvailable);
+      continueButton.gameObject.SetActive(continueAvailable);
+      currentSelection = continueAvailable ? MainMenuChoices.Continue : MainMenuChoices.NewGame;
+      updateButtons();
+    }
+
+    private void updateButtons()
+    {
+      switch (currentSelection)
+      {
+        case MainMenuChoices.Continue:
+          continueButton.Select();
+          break;
+        case MainMenuChoices.NewGame:
+          newGameButton.Select();
+          break;
+        case MainMenuChoices.Options:
+          optionsButton.Select();
+          break;
+        case MainMenuChoices.Exit:
+        default:
+          exitButton.Select();
+          break;
+      }
+      // buttonText.color = Color.green;
+    }
+
+    public override void DoFixedUpdate(
+    IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+    IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+    IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+    IDictionary<InputReferences, InputEvents> player2CurrentInputs
+      )
+    {
+      CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+    }
+
+      public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
+    {
+      if (!inputInitialized)
+      {
+        inputInitialized = true;
+        input = new McCoyInputManager();
+        input.RegisterButtonListener(ButtonPress.Button2, confirmMenuChoice);
+        input.RegisterButtonListener(ButtonPress.Up, navigateUp);
+        input.RegisterButtonListener(ButtonPress.Down, navigateDown);
+      }
+      return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+    }
+
+    private void navigateUp()
+    {
+      switch(currentSelection)
+      {
+        case MainMenuChoices.Continue:
+          currentSelection = MainMenuChoices.Exit;
+          break;
+        case MainMenuChoices.NewGame:
+          currentSelection = continueButton.gameObject.activeInHierarchy ? MainMenuChoices.Continue : MainMenuChoices.Exit;
+          break;
+        case MainMenuChoices.Options:
+          currentSelection = MainMenuChoices.NewGame;
+          break;
+        case MainMenuChoices.Exit:
+          currentSelection = MainMenuChoices.Options;
+          break;
+      }
+      updateButtons();
+    }
+
+    private void navigateDown()
+    {
+      switch (currentSelection)
+      {
+        case MainMenuChoices.Continue:
+          currentSelection = MainMenuChoices.NewGame;
+          break;
+        case MainMenuChoices.NewGame:
+          currentSelection = MainMenuChoices.Options;
+          break;
+        case MainMenuChoices.Options:
+          currentSelection = MainMenuChoices.Exit;
+          break;
+        case MainMenuChoices.Exit:
+          currentSelection = continueButton.gameObject.activeInHierarchy ? MainMenuChoices.Continue : MainMenuChoices.NewGame;
+          break;
+      }
+      updateButtons();
+    }
+
+    private void confirmMenuChoice()
+    {
+      switch (currentSelection)
+      {
+        case MainMenuChoices.Continue:
+          LoadGame();
+          break;
+        case MainMenuChoices.NewGame:
+          DeleteAllSaves();
+          StartCityScene();
+          break;
+        case MainMenuChoices.Options:
+          Debug.Log("Options!");
+          break;
+        case MainMenuChoices.Exit:
+          Debug.Log("Exit!");
+          break;
+      }
     }
   }
 }
