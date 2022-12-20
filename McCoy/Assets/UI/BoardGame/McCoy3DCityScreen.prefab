@@ -2538,7 +2538,7 @@ MonoBehaviour:
   currentZoneText: {fileID: 8227674589946926779}
   currentWeekText: {fileID: 2959108332844797634}
   availableSkillPointsText: {fileID: 2968736009682460008}
-  routingUI: {fileID: 3409928249251075460, guid: 893611170ad45fc45830d6498f4cb451,
+  routingUIPrefab: {fileID: 3409928249251075460, guid: 893611170ad45fc45830d6498f4cb451,
     type: 3}
   debugEndWeekButton: {fileID: 1578927419627850848}
   sectionHeaderPrefab: {fileID: 9129317705743122466, guid: c802d1c574d8be6408b03b869b36797e,

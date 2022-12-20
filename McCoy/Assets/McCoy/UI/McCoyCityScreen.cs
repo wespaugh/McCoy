@@ -45,7 +45,7 @@ namespace Assets.McCoy.UI
     TMP_Text availableSkillPointsText = null;
 
     [SerializeField]
-    McCoyMobRoutingUI routingUI = null;
+    McCoyMobRoutingUI routingUIPrefab = null;
 
     [SerializeField]
     GameObject debugEndWeekButton = null;
@@ -99,7 +99,7 @@ namespace Assets.McCoy.UI
 
     bool mobRouting = false;
     bool mobDying = false;
-
+    private McCoyMobRoutingUI routeMenu;
 
     private void Awake()
     {
@@ -146,7 +146,11 @@ namespace Assets.McCoy.UI
         inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
       }
 
-      if(fireside.gameObject.activeInHierarchy)
+       if(routeMenu != null && routeMenu.gameObject.activeInHierarchy)
+      {
+        return routeMenu.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      }
+      else if(fireside.gameObject.activeInHierarchy)
       {
         return fireside.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       }
@@ -209,10 +213,12 @@ namespace Assets.McCoy.UI
       {
         yield return null;
       }
-
       board.SelectMapNode(null, null);
-      yield return RunStinger(McCoy.GetInstance().gameState.IsEndOfWeek ? McCoyStinger.StingerTypes.WeekEnded : McCoyStinger.StingerTypes.SelectZone);
-
+      if(McCoy.GetInstance().gameState.IsEndOfWeek)
+      {
+        yield return RunStinger(McCoyStinger.StingerTypes.WeekEnded);
+      }
+      ShowFireside();
       initSelectedCharacter();
       saveCity();
       board.IntroFinished();
@@ -224,7 +230,6 @@ namespace Assets.McCoy.UI
       fireside = Instantiate(firesidePrefab, board.CameraAnchor.transform);
       fireside.transform.localPosition = new Vector3(0f, -22.9f, 12.8f);
       fireside.gameObject.SetActive(false);
-      ShowFireside();
     }
 
     private void ShowFireside()
@@ -707,7 +712,7 @@ namespace Assets.McCoy.UI
         {
           toHide.SetActive(false);
         }
-        var routeMenu = Instantiate(routingUI, transform);
+        routeMenu = Instantiate(routingUIPrefab, transform);
         routeMenu.Initialize(routedMobsInMapNodes, routingFinished, board);
       }
     }
@@ -719,6 +724,7 @@ namespace Assets.McCoy.UI
       if(routingMenuClosed)
       {
         mobRouting = false;
+        routeMenu = null;
         foreach(GameObject toShow in bottomUIElements)
         {
           toShow.SetActive(true);

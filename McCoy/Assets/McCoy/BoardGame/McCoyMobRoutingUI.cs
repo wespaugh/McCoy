@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMPro;
+using UFE3D;
 using UnityEngine;
 using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
-  class McCoyMobRoutingUI : MonoBehaviour
+  class McCoyMobRoutingUI : MonoBehaviour, IMcCoyInputManager
   {
     const string factionAnimatorParam = "Faction";
     [SerializeField]
@@ -41,7 +42,7 @@ namespace Assets.McCoy.BoardGame
     List<Tuple<MapNode, McCoyMobData>> zoneMobs = new List<Tuple<MapNode, McCoyMobData>>();
     int zoneIndex = 0;
 
-    List<GameObject> zoneSelectObjects = new List<GameObject>();
+    List<McCoyMobRoutingDestination> zoneSelectObjects = new List<McCoyMobRoutingDestination>();
 
     McCoyCityBoardContents board;
 
@@ -49,6 +50,10 @@ namespace Assets.McCoy.BoardGame
     Dictionary<MapNode, Factions> pendingCombats = new Dictionary<MapNode, Factions>();
 
     Action<bool> routingFinishedCallback = null;
+    private bool inputInitialized;
+    private McCoyInputManager input;
+
+    int selectedZoneIndex = 0;
 
     public void Initialize(Dictionary<MapNode, List<McCoyMobData>> routedMobsInMapNodes, Action<bool> routingFinished, McCoyCityBoardContents board)
     {
@@ -83,7 +88,7 @@ namespace Assets.McCoy.BoardGame
       {
         var obj = zoneSelectObjects[0];
         zoneSelectObjects.RemoveAt(0);
-        Destroy(obj);
+        Destroy(obj.gameObject);
       }
 
       if (zoneMobs.Count <= 1)
@@ -117,13 +122,14 @@ namespace Assets.McCoy.BoardGame
           factionIconAnimator.SetInteger(factionAnimatorParam, 4);
           break;
       }
-
+      factionIconAnimator.SetTrigger("Reset");
       foreach(var mapNode in validConnections)
       {
         var zoneSelect = Instantiate(zoneSelectPrefab, zoneSelectRoot);
         zoneSelect.Initialize(zoneMobs[zoneIndex].Item1, mapNode as MapNode, zoneMobs[zoneIndex].Item2, mobRouted);
-        zoneSelectObjects.Add(zoneSelect.gameObject);
+        zoneSelectObjects.Add(zoneSelect);
       }
+      updateSelection();
     }
 
     private List<MapNode> validConnections()
@@ -308,6 +314,55 @@ namespace Assets.McCoy.BoardGame
         zoneIndex = zoneMobs.Count - 1;
       }
       updateZoneIndex();
+    }
+
+    public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
+    {
+      if (!inputInitialized)
+      {
+        inputInitialized = true;
+        input = new McCoyInputManager();
+        input.RegisterButtonListener(ButtonPress.Forward, navigateRight);
+        input.RegisterButtonListener(ButtonPress.Back, navigateLeft);
+        input.RegisterButtonListener(ButtonPress.Button6, NextMob);
+        input.RegisterButtonListener(ButtonPress.Button5, PreviousMob);
+        input.RegisterButtonListener(ButtonPress.Button2, ConfirmMob);
+      }
+      return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2PreviousInputs);
+    }
+
+    private void ConfirmMob()
+    {
+      zoneSelectObjects[selectedZoneIndex].ZoneSelected();
+    }
+
+    private void navigateLeft()
+    {
+      --selectedZoneIndex;
+      if(selectedZoneIndex < 0)
+      {
+        selectedZoneIndex = zoneSelectObjects.Count - 1;
+      }
+      updateSelection();
+    }
+
+    private void navigateRight()
+    {
+      ++selectedZoneIndex;
+      if(selectedZoneIndex >= zoneSelectObjects.Count)
+      {
+        selectedZoneIndex = 0;
+      }
+      updateSelection();
+    }
+
+    private void updateSelection()
+    {
+      foreach(var zoneObj in zoneSelectObjects)
+      {
+        zoneObj.ToggleHighlight(false);
+      }
+      zoneSelectObjects[selectedZoneIndex].ToggleHighlight(true);
     }
   }
 }

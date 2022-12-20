@@ -11,6 +11,9 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     McCoyLocalizedText zoneLabel = null;
 
+    [SerializeField]
+    GameObject highlight = null;
+
     McCoyMobData mob;
     MapNode originalNode;
     MapNode destinationNode;
@@ -24,6 +27,11 @@ namespace Assets.McCoy.BoardGame
       this.mob = mob;
       this.originalNode = originalNode;
       this.callback = selectCallback;
+    }
+
+    public void ToggleHighlight(bool on)
+    {
+      highlight.SetActive(on);
     }
 
     public void ZoneSelected()
