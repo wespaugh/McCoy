@@ -5533,7 +5533,7 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   - combatStance: 0
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}

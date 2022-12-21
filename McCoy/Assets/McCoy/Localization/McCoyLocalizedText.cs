@@ -1,7 +1,5 @@
 ﻿using System;
 using TMPro;
-using UnityEditor;
-using UnityEditor.Localization;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 

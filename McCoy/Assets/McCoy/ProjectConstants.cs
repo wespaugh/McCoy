@@ -93,6 +93,7 @@ namespace Assets.McCoy
     public const string MAPDATA_DIRECTORY = "MapData";
     public const string STAGEDATA_DIRECTORY = "StageData";
     public const string FACTIONLOOKUP_DIRECTORY = "FactionLookup";
+    public static string DEFAULT_FACTIONS_FILENAME = "FactionsLookup";
 
     public const string PLAYERCHARACTER_DIRECTORY = "PlayerCharacters";
 
@@ -156,7 +157,7 @@ namespace Assets.McCoy
     }
     public static float CalculateHeightBetweenPoints(Vector3 p0, Vector3 p2)
     {
-      return 3.0f + (Math.Abs(p0.x - p2.x) + Math.Abs(p0.z - p2.z)) / 5.0f;
+      return ((p0.y + p2.y)/2.0f) + 3.0f + (Math.Abs(p0.x - p2.x) + Math.Abs(p0.z - p2.z)) / 5.0f;
     }
 
     public static Vector3 CalculateQuadraticBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)

@@ -32,7 +32,6 @@ namespace Assets.McCoy.UI
     [SerializeField]
     McCoyFiresideScene firesidePrefab = null;
 
-    [SerializeField]
     MapCityNodePanel selectedZonePanel = null;
 
     [SerializeField]
@@ -99,6 +98,7 @@ namespace Assets.McCoy.UI
     bool loadingStage;
 
     bool mobRouting = false;
+    bool weekEnding = false;
     bool mobDying = false;
     private McCoyMobRoutingUI routeMenu;
 
@@ -193,6 +193,7 @@ namespace Assets.McCoy.UI
           selectionIdx = zonePanelList.Count - 1;
         }
       }
+      Debug.Log("navigating to panel");
       selectedZonePanel = zonePanelList[selectionIdx].GetComponent<MapCityNodePanel>();
       selectedZonePanel.Select();
     }
@@ -226,6 +227,7 @@ namespace Assets.McCoy.UI
     private IEnumerator cityBootSequence()
     {
       initPlayerStartLocations();
+      initSelectedCharacter();
       initQuests();
       initMapPanels();
       saveCity();
@@ -256,15 +258,19 @@ namespace Assets.McCoy.UI
       {
         delayFireside = true;
         yield return RunStinger(McCoyStinger.StingerTypes.WeekEnded);
+        endWeek();
+        while(weekEnding)
+        {
+          yield return null;
+        }
       }
 
       if(delayFireside)
       {
         yield return new WaitForSeconds(1.0f);
       }
-
+      yield return null;
       ShowFireside(!delayFireside);
-      initSelectedCharacter();
       saveCity();
       board.IntroFinished();
       McCoy.GetInstance().Loading = false;
@@ -341,11 +347,6 @@ namespace Assets.McCoy.UI
 
     private void initSelectedCharacter()
     {
-      if(McCoy.GetInstance().gameState.IsEndOfWeek)
-      {
-        endWeek();
-      }
-
       for(int i = 0; i < PlayerCharacters.Length; ++i)
       {
         if(McCoy.GetInstance().gameState.CanPlayerTakeTurn(PlayerCharacters[i]))
@@ -354,7 +355,6 @@ namespace Assets.McCoy.UI
           break;
         }
       }
-      selectedCharacterChanged();
     }
 
     public void ToggleLines()
@@ -372,17 +372,16 @@ namespace Assets.McCoy.UI
 
     public void ZoneHighlighted(MapCityNodePanel panel, MapNode node)
     {
-      this.selectedZonePanel = panel;
       Board.SelectMapNode(node, null, false);
       Board.ToggleZoom(true);
-      Board.SetHoverNode(node);
+      Board.SetHighlightedNode(node);
     }
 
     private void applyCauses()
     {
       foreach(McCoyLobbyingCause.LobbyingCause cause in McCoyGameState.Instance().causesLobbiedFor)
       {
-        McCoyLobbyingCauseManager.GetInstance().ApplyCause(cause, this);
+        McCoyLobbyingCauseManager.GetInstance().ApplyCause(cause, this, false);
       }
     }
 
@@ -394,6 +393,7 @@ namespace Assets.McCoy.UI
 
     private void endWeek()
     {
+      weekEnding = true;
       McCoy.GetInstance().gameState.EndWeek();
       board.Weekend(weekendAnimationsFinished);
     }
@@ -417,7 +417,7 @@ namespace Assets.McCoy.UI
       {
         board.ToggleZoom(true);
       }
-      saveCity();
+      weekEnding = false;
     }
 
     private void OnDestroy()
@@ -496,15 +496,6 @@ namespace Assets.McCoy.UI
 
     private void refreshBoardAndPanels()
     {
-      GameObject[] toDestroy = new GameObject[zonePanels.Count];
-      zonePanels.Values.CopyTo(toDestroy,0);
-      for(int i = 0; i < toDestroy.Length; ++i)
-      {
-        Destroy(toDestroy[i]);
-      }
-      zonePanels.Clear();
-      zonePanelList.Clear();
-
       MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
 
       if(antikytheraMechanismLocation == null)
@@ -517,21 +508,10 @@ namespace Assets.McCoy.UI
 
       foreach (var assetNode in board.MapNodes)
       {
-        if(assetNode.Disabled)
-        {
-          continue;
-        }
         assetNode.SetMechanismLocation(antikytheraMechanismLocation);
-
-        var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
-        zonePanels[assetNode] = nodePanel;
-        zonePanelList.Add(nodePanel);
-        var node = nodePanel.GetComponent<MapCityNodePanel>();
-        node.Initialize(assetNode, this, antikytheraMechanismLocation);
       }
 
       board.UpdateNodes();
-      // updates panel interactibility
       selectedCharacterChanged();
     }
 
@@ -541,12 +521,10 @@ namespace Assets.McCoy.UI
     }
     private void selectedCharacterChanged()
     {
-      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
-
       MapNode playerLoc = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
 
       string dayKey = DayForSecondsRemaining(McCoy.GetInstance().gameState.TurnTimeRemaining(selectedPlayer));
-      Localize(dayKey, (day) => 
+      Localize(dayKey, (day) =>
       {
         Localize(playerLoc.ZoneName, (zone) =>
         {
@@ -555,7 +533,12 @@ namespace Assets.McCoy.UI
       });
 
       updateWeekText();
+      refreshPanels(playerLoc);
+    }
 
+    private void refreshPanels(MapNode playerLoc)
+    {
+      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
       bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
 
       int minDistanceToMechanism = -1;
@@ -565,6 +548,23 @@ namespace Assets.McCoy.UI
         {
           minDistanceToMechanism = (v as MapNode).DistanceToMechanism;
         }
+      }
+
+      while(zonePanelList.Count > 0)
+      {
+        var toDestroy = zonePanelList[0];
+        zonePanelList.RemoveAt(0);
+        Destroy(toDestroy);
+      }
+      zonePanels.Clear();
+
+      foreach (var node in board.MapNodes)
+      {
+        if (node.Disabled)
+        {
+          continue;
+        }
+        zonePanels[node] = Instantiate(ZonePanelPrefab, cityPanelsRoot);
       }
 
       List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
@@ -578,8 +578,6 @@ namespace Assets.McCoy.UI
       sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
       bool iteratingThroughConnectedNodes = true;
       GameObject firstNode = null;
-
-      bool showDisconnectedNodes = false;
 
       foreach (MapNode node in sortedNodes)
       {
@@ -599,24 +597,33 @@ namespace Assets.McCoy.UI
           sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
         }
         var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
+        nodePanel.Initialize(node, this, antikytheraMechanismLocation);
+        zonePanelList.Add(nodePanel.gameObject);
         nodePanel.SetInteractable(isConnected || McCoy.GetInstance().Debug);
-        nodePanel.PlayerChanged();
-        zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
+        nodePanel.transform.SetSiblingIndex(siblingIndex++);
         // select the first node in the list
         if(firstNode == null)
         {
           firstNode = zonePanels[node];
-          firstNode.GetComponent<Button>().Select();
         }
       }
 
-      if(selectedZonePanel)
+      if(selectedZonePanel != null)
       {
         selectedZonePanel.Deselect();
       }
-      firstNode.GetComponent<MapCityNodePanel>().Select();
+      var firstPanel = firstNode.GetComponent<MapCityNodePanel>();
+      Debug.Log("initializing default panel");
+      selectedZonePanel = firstPanel;
+      StartCoroutine(selectZonePanelAfterDelay(playerLoc, validConnections));
+    }
+
+    private IEnumerator selectZonePanelAfterDelay(MapNode playerLoc, List<MapNode> validConnections)
+    {
+      yield return null;
+      selectedZonePanel.Select();
       board.SelectMapNode(playerLoc, validConnections);
-      board.SetHoverNode(null);
+      board.SetHighlightedNode(selectedZonePanel.Zone);
     }
 
     private int sortMapNodes(MapNode x, MapNode y, MapNode playerLoc, bool mechanismFound, int minDistanceToMechanism)

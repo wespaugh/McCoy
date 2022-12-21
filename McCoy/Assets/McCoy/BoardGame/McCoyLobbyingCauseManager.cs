@@ -40,9 +40,12 @@ namespace Assets.McCoy.BoardGame
         this.lobbyingCauses.Add(lobbyCause.Clone() as McCoyLobbyingCause);
       }
     }
-    public void ApplyCause(LobbyingCause cause, McCoyCityScreen city)
+    public void ApplyCause(LobbyingCause cause, McCoyCityScreen city, bool addToGameState = true)
     {
-      McCoyGameState.Instance().causesLobbiedFor.Add(cause);
+      if (addToGameState)
+      {
+        McCoyGameState.Instance().causesLobbiedFor.Add(cause);
+      }
       string zoneUnlock = "";
       switch (cause)
       {

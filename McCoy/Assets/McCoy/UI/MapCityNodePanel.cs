@@ -3,6 +3,7 @@ using Assets.McCoy.Brawler;
 using Assets.McCoy.Localization;
 using Assets.McCoy.RPG;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D.Brawler;
@@ -38,10 +39,25 @@ namespace Assets.McCoy.UI
     [SerializeField]
     McCoyLocalizedText questSummary = null;
 
-    protected ScrollRect scrollRect;
-    protected RectTransform contentPanel;
+    private ScrollRect scrollRect;
+    protected ScrollRect ScrollRect
+    {
+      get
+      {
+        if (scrollRect == null)
+        {
+          scrollRect = GetComponentInParent<ScrollRect>();
+        }
+        return scrollRect;
+      }
+    }
+    protected RectTransform contentPanel => transform.parent as RectTransform;
 
     MapNode node = null;
+    public MapNode Zone
+    {
+      get => node;
+    }
 
     List<McCoyMobData> mobs = new List<McCoyMobData>();
 
@@ -58,9 +74,11 @@ namespace Assets.McCoy.UI
 
     private void Awake()
     {
-      scrollRect = GetComponentInParent<ScrollRect>();
-      contentPanel = transform.parent as RectTransform;
       selectionIcon.gameObject.SetActive(false);
+      if(isSelected)
+      {
+        StartCoroutine(select());
+      }
       //bind();
     }
 
@@ -91,11 +109,31 @@ namespace Assets.McCoy.UI
     public void Select()
     {
       Canvas.ForceUpdateCanvases();
-
+      Debug.Log("Selecting " + node.ZoneName);
       isSelected = true;
+      if (gameObject.activeInHierarchy)
+      {
+        StartCoroutine(select());
+      }
+    }
+    private IEnumerator select()
+    {
       var anch = contentPanel.anchoredPosition;
-      var newPos = (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
-              - (Vector2)scrollRect.transform.InverseTransformPoint(transform.position);
+      Vector3 nodePosition = transform.GetSiblingIndex() == 1 ? transform.parent.GetChild(0).transform.position : transform.position;
+      while(ScrollRect == null)
+      {
+        yield return null;
+      }
+      while(contentPanel == null)
+      {
+        yield return null;
+      }
+      while(nodePosition == null)
+      {
+        yield return null;
+      }
+      var newPos = (Vector2)ScrollRect.transform.InverseTransformPoint(contentPanel.position)
+              - (Vector2)ScrollRect.transform.InverseTransformPoint(nodePosition);
       anch.y = newPos.y;
       contentPanel.anchoredPosition = anch;
       updateIcon();
@@ -110,6 +148,7 @@ namespace Assets.McCoy.UI
 
     public void Deselect()
     {
+      Debug.Log("DESelecting " + node?.ZoneName);
       isSelected = false;
       updateIcon();
     }
@@ -163,6 +202,7 @@ namespace Assets.McCoy.UI
         }
       }
       SetQuest(quest, screen);
+      PlayerChanged();
     }
 
     private void SetQuest(McCoyQuestData q, McCoyCityScreen screen)

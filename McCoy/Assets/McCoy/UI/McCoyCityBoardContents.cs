@@ -119,7 +119,7 @@ namespace Assets.McCoy.UI
       mapNodes.Clear();
     }
 
-    public void SetHoverNode(MapNode node)
+    public void SetHighlightedNode(MapNode node)
     {
       if(highlightedZone != null && highlightedZone != selectedPlayerZone)
       {
@@ -212,7 +212,6 @@ namespace Assets.McCoy.UI
     {
       if(!hidden)
       {
-        Debug.LogWarning("double show");
         return false;
       }
       StartCoroutine(lerpBoard(Vector3.zero, false));
@@ -222,16 +221,24 @@ namespace Assets.McCoy.UI
     private IEnumerator lerpBoard(Vector3 target, bool hiding, float travelTime = .6f)
     {
       Vector3 origin = transform.position;
-      float startTime = Time.time;
-      while (transform.position != target)
+      if (travelTime == 0f)
       {
-        float currentTime = ((Time.time - startTime) / travelTime);
-        currentTime = 1f - (float)Math.Pow(1f - currentTime, 3f);
-        transform.position = new Vector3(
-          Mathf.Lerp(origin.x, target.x, currentTime),
-          Mathf.Lerp(origin.y, target.y, currentTime),
-          Mathf.Lerp(origin.z, target.z, currentTime));
         yield return null;
+        transform.position = target;
+      }
+      else
+      {
+        float startTime = Time.time;
+        while (transform.position != target)
+        {
+          float currentTime = ((Time.time - startTime) / travelTime);
+          currentTime = 1f - (float)Math.Pow(1f - currentTime, 3f);
+          transform.position = new Vector3(
+            Mathf.Lerp(origin.x, target.x, currentTime),
+            Mathf.Lerp(origin.y, target.y, currentTime),
+            Mathf.Lerp(origin.z, target.z, currentTime));
+          yield return null;
+        }
       }
       hidden = hiding;
     }
@@ -608,7 +615,7 @@ namespace Assets.McCoy.UI
       foreach(var key in lineLookupKeys)
       {
         LineRenderer r = lineLookup[key];
-        Destroy(r);
+        Destroy(r.gameObject);
       }
       initConnectionLines(nodes);
     }
@@ -663,7 +670,7 @@ namespace Assets.McCoy.UI
       {
         Debug.Log($"drawing line from {p0} to {p2}");
       }
-      float segmentCount = 20.0f;
+      float segmentCount = 5.0f;
       for (int i = 0; i <= segmentCount; i++)
       {
         // float t = i / segmentCount;

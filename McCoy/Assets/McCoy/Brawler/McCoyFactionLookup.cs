@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UFE3D;
-using UnityEditor;
 using UnityEngine;
 using static Assets.McCoy.ProjectConstants;
 
@@ -10,7 +9,6 @@ namespace Assets.McCoy.Brawler
   [Serializable]
   public class McCoyFactionLookup : ScriptableObject, ICloneable
   {
-    public static string DEFAULT_FACTIONS_FILENAME = "FactionsLookup";
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> mageLookup1 = new List<UFE3D.CharacterInfo>();
@@ -70,19 +68,14 @@ namespace Assets.McCoy.Brawler
     private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> minotaurLookup;
     private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> militiaLookup;
 
-    [MenuItem("Assets/Create/McCoy/Faction Lookup")]
-    static void MakeFactionData()
-    {
-      AssetDatabase.CreateAsset(CreateInstance<McCoyFactionLookup>(), $"{ProjectConstants.RESOURCES_DIRECTORY}{ProjectConstants.FACTIONLOOKUP_DIRECTORY}/{DEFAULT_FACTIONS_FILENAME}.asset");
-      AssetDatabase.SaveAssets();
-    }
+
 
     static McCoyFactionLookup _instance;
     public static McCoyFactionLookup GetInstance()
     {
       if(_instance == null)
       {
-        _instance = Resources.Load<McCoyFactionLookup>($"{ProjectConstants.FACTIONLOOKUP_DIRECTORY}/{DEFAULT_FACTIONS_FILENAME}") as McCoyFactionLookup;
+        _instance = Resources.Load<McCoyFactionLookup>($"{FACTIONLOOKUP_DIRECTORY}/{DEFAULT_FACTIONS_FILENAME}") as McCoyFactionLookup;
       }
       return _instance;
     }
