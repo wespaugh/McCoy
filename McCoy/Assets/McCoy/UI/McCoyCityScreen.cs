@@ -93,6 +93,7 @@ namespace Assets.McCoy.UI
     List<GameObject> bottomUIElements = new List<GameObject>();
 
     Dictionary<MapNode, GameObject> zonePanels = new Dictionary<MapNode, GameObject>();
+    List<GameObject> zonePanelList = new List<GameObject>();
 
     private McCoyStageData stageDataToLoad = null;
     bool loadingStage;
@@ -144,6 +145,8 @@ namespace Assets.McCoy.UI
         inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
         inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
         inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
+        inputManager.RegisterButtonListener(ButtonPress.Up, NavigateUp);
+        inputManager.RegisterButtonListener(ButtonPress.Down, NavigateDown);
       }
 
        if(routeMenu != null && routeMenu.gameObject.activeInHierarchy)
@@ -171,6 +174,37 @@ namespace Assets.McCoy.UI
         );
       }
       return pushedAButton;
+    }
+
+    private void navigateZoneList(int dir)
+    {
+      int selectionIdx = 0;
+      if (selectedZonePanel != null)
+      {
+        selectedZonePanel.Deselect();
+        selectionIdx = zonePanelList.IndexOf(selectedZonePanel.gameObject);
+        selectionIdx += dir;
+        if(selectionIdx >= zonePanelList.Count)
+        {
+          selectionIdx = 0;
+        }
+        else if(selectionIdx < 0)
+        {
+          selectionIdx = zonePanelList.Count - 1;
+        }
+      }
+      selectedZonePanel = zonePanelList[selectionIdx].GetComponent<MapCityNodePanel>();
+      selectedZonePanel.Select();
+    }
+
+    private void NavigateDown()
+    {
+      navigateZoneList(1);
+    }
+
+    private void NavigateUp()
+    {
+      navigateZoneList(-1);
     }
 
     void enterCurrentZone()
@@ -469,6 +503,7 @@ namespace Assets.McCoy.UI
         Destroy(toDestroy[i]);
       }
       zonePanels.Clear();
+      zonePanelList.Clear();
 
       MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
 
@@ -490,6 +525,7 @@ namespace Assets.McCoy.UI
 
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         zonePanels[assetNode] = nodePanel;
+        zonePanelList.Add(nodePanel);
         var node = nodePanel.GetComponent<MapCityNodePanel>();
         node.Initialize(assetNode, this, antikytheraMechanismLocation);
       }
@@ -574,7 +610,11 @@ namespace Assets.McCoy.UI
         }
       }
 
-      firstNode.GetComponent<MapCityNodePanel>().OnSelect(null);
+      if(selectedZonePanel)
+      {
+        selectedZonePanel.Deselect();
+      }
+      firstNode.GetComponent<MapCityNodePanel>().Select();
       board.SelectMapNode(playerLoc, validConnections);
       board.SetHoverNode(null);
     }

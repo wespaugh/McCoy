@@ -15,7 +15,7 @@ using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
 {
-  public class MapCityNodePanel : MonoBehaviour, ISelectHandler, IDeselectHandler
+  public class MapCityNodePanel : MonoBehaviour
   {
     [SerializeField]
     TMP_Text NodeName = null;
@@ -88,7 +88,7 @@ namespace Assets.McCoy.UI
       Selection.selectionChanged -= selectionChanged;
     }
     */
-    public void OnSelect(BaseEventData eventData)
+    public void Select()
     {
       Canvas.ForceUpdateCanvases();
 
@@ -108,10 +108,10 @@ namespace Assets.McCoy.UI
       selectionIcon.color = canConnect ? ProjectConstants.GREEN : ProjectConstants.PINK;
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void Deselect()
     {
-      selectionIcon.gameObject.SetActive(false);
       isSelected = false;
+      updateIcon();
     }
 
     public void Initialize(MapNode node, McCoyCityScreen screen, MapNode mechanismLoc)
@@ -233,7 +233,6 @@ namespace Assets.McCoy.UI
 
     public void ZoneHighlighted()
     {
-      Debug.Log("Zone Highlighted: " + node.ZoneName);
       uiRoot.ZoneHighlighted(this, node);
     }
 
