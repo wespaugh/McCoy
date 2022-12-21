@@ -670,7 +670,7 @@ namespace Assets.McCoy.UI
       {
         Debug.Log($"drawing line from {p0} to {p2}");
       }
-      float segmentCount = 5.0f;
+      float segmentCount = 20.0f;
       for (int i = 0; i <= segmentCount; i++)
       {
         // float t = i / segmentCount;
