@@ -25,4 +25,4 @@ MonoBehaviour:
       yIntercept: 0
   holes: []
   leftBoundary: 0
-  rightBoundary: 0
+  rightBoundary: 50

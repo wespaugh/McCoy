@@ -138,7 +138,7 @@ namespace Assets.McCoy.UI
       {
         inputManager = new McCoyInputManager();
         inputInitialized = true;
-        inputManager.RegisterButtonListener(ButtonPress.Button3, ShowFireside);
+        inputManager.RegisterButtonListener(ButtonPress.Button3, TransitionToFireside);
         inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
         inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
         inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
@@ -199,26 +199,37 @@ namespace Assets.McCoy.UI
       applyCauses();
       initFiresideScene();
 
+      bool delayFireside = false;
       while(mobDying)
       {
+        delayFireside = true;
         yield return null;
       }
 
       if(mobRouting)
       {
+        delayFireside = true;
         yield return RunStinger(McCoyStinger.StingerTypes.EnemiesRouted);
       }
 
       while(mobRouting)
       {
+        delayFireside = true;
         yield return null;
       }
       board.SelectMapNode(null, null);
       if(McCoy.GetInstance().gameState.IsEndOfWeek)
       {
+        delayFireside = true;
         yield return RunStinger(McCoyStinger.StingerTypes.WeekEnded);
       }
-      ShowFireside();
+
+      if(delayFireside)
+      {
+        yield return new WaitForSeconds(1.0f);
+      }
+
+      ShowFireside(!delayFireside);
       initSelectedCharacter();
       saveCity();
       board.IntroFinished();
@@ -232,9 +243,14 @@ namespace Assets.McCoy.UI
       fireside.gameObject.SetActive(false);
     }
 
-    private void ShowFireside()
+    private void TransitionToFireside()
     {
-      if(fireside.gameObject.activeInHierarchy || ! board.Hide())
+      ShowFireside(false);
+    }
+
+    private void ShowFireside(bool cameraSnap=false)
+    {
+      if(fireside.gameObject.activeInHierarchy || ! board.Hide(cameraSnap))
       {
         return;
       }
@@ -466,6 +482,10 @@ namespace Assets.McCoy.UI
 
       foreach (var assetNode in board.MapNodes)
       {
+        if(assetNode.Disabled)
+        {
+          continue;
+        }
         assetNode.SetMechanismLocation(antikytheraMechanismLocation);
 
         var nodePanel = Instantiate(ZonePanelPrefab, cityPanelsRoot);
@@ -522,6 +542,9 @@ namespace Assets.McCoy.UI
       sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
       bool iteratingThroughConnectedNodes = true;
       GameObject firstNode = null;
+
+      bool showDisconnectedNodes = false;
+
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
@@ -543,7 +566,6 @@ namespace Assets.McCoy.UI
         nodePanel.SetInteractable(isConnected || McCoy.GetInstance().Debug);
         nodePanel.PlayerChanged();
         zonePanels[node].transform.SetSiblingIndex(siblingIndex++);
-        
         // select the first node in the list
         if(firstNode == null)
         {
@@ -552,6 +574,7 @@ namespace Assets.McCoy.UI
         }
       }
 
+      firstNode.GetComponent<MapCityNodePanel>().OnSelect(null);
       board.SelectMapNode(playerLoc, validConnections);
       board.SetHoverNode(null);
     }

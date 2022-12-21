@@ -187,18 +187,24 @@ namespace Assets.McCoy.UI
       }
     }
 
-    public bool Hide()
+    public bool Hide(bool cameraSnap = false)
     {
       if(hidden)
       {
-        Debug.LogWarning("double hide");
         return false;
       }
       if(zoomed)
       {
         ToggleZoom();
       }
-      StartCoroutine(lerpBoard(hidePosition, true));
+      if(cameraSnap)
+      {
+        StartCoroutine(lerpBoard(hidePosition, true, 0f));
+      }
+      else
+      {
+        StartCoroutine(lerpBoard(hidePosition, true));
+      }
       return true;
     }
 

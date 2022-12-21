@@ -29,12 +29,13 @@ namespace Assets.McCoy.UI
         currentInputLag -= Time.deltaTime;
         return false;
       }
+      float axisThreshold = .6f;
 
       bool retVal = false;
       // detect axis inputs for the purpose of lag detection and falling back onto default input
       foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
       {
-        if ((pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0) || (pair.Key.inputType == InputType.HorizontalAxis && pair.Value.axisRaw != 0) )
+        if ((pair.Key.inputType == InputType.VerticalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) || (pair.Key.inputType == InputType.HorizontalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) )
         {
           retVal = true;
         }
@@ -51,11 +52,11 @@ namespace Assets.McCoy.UI
           {
             bp = pair.Key.engineRelatedButton;
           }
-          else if(pair.Key.inputType == InputType.HorizontalAxis && pair.Value.axisRaw != 0f)
+          else if(pair.Key.inputType == InputType.HorizontalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold)
           {
             bp = pair.Value.axisRaw >= 0 ? ButtonPress.Forward : ButtonPress.Back;
           }
-          else if (pair.Key.inputType == InputType.VerticalAxis && pair.Value.axisRaw != 0f)
+          else if (pair.Key.inputType == InputType.VerticalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold)
           {
             bp = pair.Value.axisRaw >= 0 ? ButtonPress.Up : ButtonPress.Down;
           }
