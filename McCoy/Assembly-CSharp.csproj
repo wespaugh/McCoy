@@ -245,6 +245,7 @@
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthMask.shader" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\TransitionalUI.shader" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfField.shader" />
+    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\Naninovel\ThirdParty\NLayer\LICENSE.txt" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\NaninovelCG.cginc" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldDiskKernel.cginc" />
