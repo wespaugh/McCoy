@@ -37,7 +37,6 @@ namespace UFE3D
     {
       cachedFlip = bodySprite.flipX;
       cachedCommand = animCmd;
-      Debug.Log("play limb animation: " + animCmd);
       string[] commands = animCmd.Split(',');
       foreach (var cmd in commands)
       {

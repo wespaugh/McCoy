@@ -71,6 +71,7 @@ namespace Assets.McCoy.Brawler
         {
           foreach (var buff in skill.BuffsToAdd)
           {
+            Debug.Log("UNLOCKING BUFF: " + buff.Buff);
             buff.Init(controls);
             McCoy.GetInstance().BuffManager.AddBuff(buff, controls.playerNum);
           }

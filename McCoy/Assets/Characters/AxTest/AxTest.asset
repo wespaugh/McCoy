@@ -218,7 +218,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -324,7 +324,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveBack:
         animMap:
@@ -429,7 +429,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveSideways:
         animMap:
@@ -5532,8 +5532,8 @@ MonoBehaviour:
       _groundCollisionMass:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
-    basicMovesToggle: 1
-    attackMovesToggle: 1
+    basicMovesToggle: 0
+    attackMovesToggle: 0
   - combatStance: 0
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}
@@ -16329,9 +16329,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 85e12a0a3d1e3af49be7188661898b5b, type: 2}
     physics:
       _moveForwardSpeed:
-        _serializedValue: 51539607552
+        _serializedValue: 42949672960
       _moveBackSpeed:
-        _serializedValue: 51539607552
+        _serializedValue: 42949672960
       _moveSidewaysSpeed:
         _serializedValue: 34359738368
       highMovingFriction: 1

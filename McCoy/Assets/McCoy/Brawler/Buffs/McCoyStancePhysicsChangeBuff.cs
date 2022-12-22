@@ -12,7 +12,6 @@ namespace Assets.McCoy.Brawler.Buffs
     int amountDelta => intArgs[1];
 
 
-    // TODO:: these need to not modify the physics values directly as they will be modifying the RAW save data. made deltas alongside the raw data that get cleared at the start of each round.
     public override void Apply()
     {
       base.Apply();
@@ -25,6 +24,11 @@ namespace Assets.McCoy.Brawler.Buffs
 
         if(foundStance)
         {
+          UnityEngine.Debug.Log("Changing " + moveSetData.combatStance + " speed, " + moveSetData.physics._moveForwardSpeedBonus + "=>" + (moveSetData.physics._moveForwardSpeedBonus += amountDelta));
+          UnityEngine.Debug.Log("Changing " + moveSetData.combatStance + " speed, " + moveSetData.physics._moveForwardSpeedBonus + "=>" + (moveSetData.physics._moveForwardSpeedBonus += amountDelta));
+          UnityEngine.Debug.Log("Changing " + moveSetData.combatStance + " speed, " + moveSetData.physics._moveForwardSpeedBonus + "=>" + (moveSetData.physics._moveForwardSpeedBonus += amountDelta));
+          UnityEngine.Debug.Log("Changing " + moveSetData.combatStance + " speed, " + moveSetData.physics._moveForwardSpeedBonus + "=>" + (moveSetData.physics._moveForwardSpeedBonus += amountDelta));
+          UnityEngine.Debug.Log("Changing " + moveSetData.combatStance + " speed, " + moveSetData.physics._moveForwardSpeedBonus + "=>" + (moveSetData.physics._moveForwardSpeedBonus += amountDelta));
           moveSetData.physics._moveForwardSpeedBonus += amountDelta;
           moveSetData.physics._moveSidewaysSpeedBonus += amountDelta;
         }
