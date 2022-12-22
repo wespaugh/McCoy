@@ -206,20 +206,27 @@ namespace Assets.McCoy
       RexArbiterStrengthUp,
       RexWolfSpeedUp,
       RexHumanFireRateUp,
+      RexArbiterShoulderCharge,
       Invalid
     }
 
+    static string DISPLAYNAME_REX_ARBITER_UPPERCUT = "Rex_Arbiter_Uppercut";
+    static string DISPLAYNAME_REX_ARBITER_STRENGTHUP = "Rex_Arbiter_StrengthUp";
+    static string DISPLAYNAME_REX_ARBITER_DASH = "Rex_Arbiter_Dash";
+    static string DISPLAYNAME_REX_HUMAN_FIRERATEUP = "Rex_Human_FireRateUp";
+    static string DISPLAYNAME_REX_WOLF_SPEEDUP = "Rex_Wolf_SpeedUp";
+
     public static string DisplayStringForSkillName(string skillName)
     {
-      if (skillName == "Rex_Arbiter_Uppercut")
+      if (skillName == DISPLAYNAME_REX_ARBITER_UPPERCUT)
       {
         return "Uppercut";
       }
-      else if (skillName == "Rex_Arbiter_Dash")
+      else if (skillName == DISPLAYNAME_REX_ARBITER_DASH)
       {
         return "Dash Attack";
       }
-      else if (skillName == "Rex_Arbiter_StrengthUp")
+      else if (skillName == DISPLAYNAME_REX_ARBITER_STRENGTHUP)
       {
         return "STR+";
       }
@@ -243,7 +250,7 @@ namespace Assets.McCoy
       {
         return "Calm";
       }
-      else if (skillName == "Rex_Human_FireRateUp")
+      else if (skillName == DISPLAYNAME_REX_HUMAN_FIRERATEUP)
       {
         return "Fire Rate+";
       }
@@ -267,7 +274,7 @@ namespace Assets.McCoy
       {
         return "Heavy Armor";
       }
-      else if (skillName == "Rex_Wolf_SpeedUp")
+      else if (skillName == DISPLAYNAME_REX_WOLF_SPEEDUP)
       {
         return "Speed+";
       }
@@ -292,21 +299,25 @@ namespace Assets.McCoy
 
     public static PlayerSkills SkillForLabel(string label)
     {
-      if(label == "Rex_Arbiter_Uppercut")
+      if (label == DISPLAYNAME_REX_ARBITER_UPPERCUT)
       {
         return PlayerSkills.RexArbiterUppercut;
       }
-      else if (label == "Rex_Arbiter_StrengthUp")
+      else if (label == DISPLAYNAME_REX_ARBITER_STRENGTHUP)
       {
         return PlayerSkills.RexArbiterStrengthUp;
       }
-      else if (label == "Rex_Wolf_SpeedUp")
+      else if (label == DISPLAYNAME_REX_WOLF_SPEEDUP)
       {
         return PlayerSkills.RexWolfSpeedUp;
       }
-      else if (label == "Rex_Human_FireRateUp")
+      else if (label == DISPLAYNAME_REX_HUMAN_FIRERATEUP)
       {
         return PlayerSkills.RexHumanFireRateUp;
+      }
+      else if (label == DISPLAYNAME_REX_ARBITER_DASH)
+      {
+        return PlayerSkills.RexArbiterShoulderCharge;
       }
       return PlayerSkills.Invalid;
     }

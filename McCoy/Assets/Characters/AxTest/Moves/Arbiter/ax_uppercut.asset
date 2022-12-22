@@ -127,7 +127,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 1
+  locked: 0
   frameLinks: []
   gauges: []
   sortOrder: []
@@ -141,7 +141,7 @@ MonoBehaviour:
       x:
         _serializedValue: 0
       y:
-        _serializedValue: 107374182400
+        _serializedValue: 150323855360
       z:
         _serializedValue: 0
   slowMoEffects: []

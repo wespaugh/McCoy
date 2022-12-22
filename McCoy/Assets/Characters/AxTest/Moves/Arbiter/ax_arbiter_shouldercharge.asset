@@ -111,7 +111,7 @@ MonoBehaviour:
     recoverySpeed: 0
     hitConfirmType: 0
     preferableDistance: 0
-    gaugeUsage: 0
+    gaugeUsage: 1
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1

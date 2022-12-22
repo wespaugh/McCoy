@@ -59,8 +59,12 @@ namespace Assets.McCoy.RPG
       pcGroups = characterGroups;
       selectedPCGroupIndex = 0;
 
-      string skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
-      skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
+      var skillString = McCoyGameState.Instance().playerCharacters[PlayerCharacter.Rex].SkillTreeString;
+      if(string.IsNullOrEmpty(skillString))
+      {
+        skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
+        skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
+      }
       loadSkills(McCoyGameState.GetPlayer(PlayerCharacter.Rex).AvailableSkillPoints, skillString, PlayerCharacter.Rex);
 
       // ToggleLobbying(false);

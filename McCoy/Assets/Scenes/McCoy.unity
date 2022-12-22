@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731194, g: 0.38074005, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,7 +176,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 35
+  field of view: 1
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139062340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.596571, y: 4.000001, z: 12.585842}
+  m_LocalPosition: {x: 3.6938188, y: 3.9906673, z: -4.5083323}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,6 +652,9 @@ MonoBehaviour:
     moves:
     - {fileID: 11400000, guid: 7507771e81747b64c93c5e8f8ae012e4, type: 2}
     - {fileID: 11400000, guid: cafb242bac59d234ab9bb6896f72463a, type: 2}
+  - skill: 4
+    moves:
+    - {fileID: 11400000, guid: f29110ca21876e54089a1eb376023b83, type: 2}
   moveSwapLookup:
   - skill: 1
     MoveSwaps:
