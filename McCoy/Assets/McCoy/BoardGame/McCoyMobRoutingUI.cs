@@ -96,7 +96,7 @@ namespace Assets.McCoy.BoardGame
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(false);
       }
-
+      selectedZoneIndex = 0;
       alert.text = $"Mobs Routed out of {zoneMobs[zoneIndex].Item1.ZoneName}!";
       if (fromCombo)
       {
