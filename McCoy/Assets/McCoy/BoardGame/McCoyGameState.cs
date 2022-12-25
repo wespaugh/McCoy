@@ -48,13 +48,10 @@ namespace Assets.McCoy.BoardGame
       return playerCharacters[pc];
     }
 
+    public Dictionary<Factions, int> remainingMonstersInStage = new Dictionary<Factions, int>();
+
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
     Dictionary<PlayerCharacter, string> playerLocations = new Dictionary<PlayerCharacter, string>();
-
-    public void ReceiveCredits(int rewardCredits)
-    {
-      credits += rewardCredits;
-    }
 
     // uuids of all quests that have spawned at some point
     public List<string> questsSpawned = new List<string>();
@@ -205,6 +202,11 @@ namespace Assets.McCoy.BoardGame
         }
         return retVal;
       }
+    }
+
+    public void ReceiveCredits(int rewardCredits)
+    {
+      credits += rewardCredits;
     }
 
     public void Spend(int credits)

@@ -48,7 +48,7 @@ MonoBehaviour:
     type: 3}
   unitSize: 16
   speed: 1
-  autoScrollSpeed: 0.5
+  autoScrollSpeed: 0.8
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
   horizontal: 1
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6122809785663627303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -254,7 +254,7 @@ MonoBehaviour:
   contents: {fileID: 3446322728888571999, guid: 4ba6d240cbe99dc4c8a78e06cfa1ed59,
     type: 3}
   unitSize: 16
-  speed: 1
+  speed: 0.7
   autoScrollSpeed: 0
   cameraPos: {x: 0, y: 0, z: 0}
   chunkIndex: 0
