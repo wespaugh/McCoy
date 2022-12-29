@@ -88,7 +88,7 @@ namespace Assets.McCoy.BoardGame
     }
 
     int monstersPerSubstage;
-    public int MonstersPerSubstage
+    public int MonstersInMob
     {
       get => monstersPerSubstage;
       private set
@@ -108,14 +108,8 @@ namespace Assets.McCoy.BoardGame
     {
       XP = startingXP;
       Health = startingHealth;
+      MonstersInMob = (int)Health * monsterHealthScaleFactor;
       Faction = f;
-    }
-
-    public int StageBegan()
-    {
-      monstersKilledInStage = 0;
-      MonstersPerSubstage = (int)(CalculateNumberOfBrawlerEnemies() / (float)UFE.config.selectedStage.stageInfo.substages.Count);
-      return MonstersPerSubstage;
     }
 
     public void OffscreenCombat(int damage)
@@ -125,8 +119,8 @@ namespace Assets.McCoy.BoardGame
 
     public void StageEnded()
     {
-      float healthReduced = calculateHealthDelta(monstersKilledInStage, true);
-      changeHealth(healthReduced);
+      float newHealth = HealthPreview();
+      changeHealth(newHealth - Health);
     }
 
     public void FinishedRouting()
@@ -135,19 +129,14 @@ namespace Assets.McCoy.BoardGame
       RoutedLocations.Clear();
     }
 
-    public float HealthPreview(int monstersKilled)
+    public float HealthPreview(bool log = false)
     {
-      return Health + calculateHealthDelta(monstersKilled);
-    }
-
-    private float calculateHealthDelta(int monstersKilled, bool log = false)
-    {
-      float healthReduced = monstersKilled / monsterHealthScaleFactor;
+      float newHealth = MonstersInMob / monsterHealthScaleFactor;
       if (log)
       {
-        Debug.Log($"{monstersKilled} {Faction} killed. Health reduced from {Health} by {healthReduced}");
+        Debug.Log($"{Faction} health reduced from {Health} by {newHealth-Health}");
       }
-      return -healthReduced;
+      return newHealth;
     }
 
     private void changeHealth(float amount)

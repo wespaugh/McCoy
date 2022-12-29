@@ -48,8 +48,6 @@ namespace Assets.McCoy.BoardGame
       return playerCharacters[pc];
     }
 
-    public Dictionary<Factions, int> remainingMonstersInStage = new Dictionary<Factions, int>();
-
     Dictionary<string, List<McCoyMobData>> mobLocations = new Dictionary<string, List<McCoyMobData>>();
     Dictionary<PlayerCharacter, string> playerLocations = new Dictionary<PlayerCharacter, string>();
 

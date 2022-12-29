@@ -146,10 +146,6 @@ namespace Assets.McCoy.UI
 
     private void initSpawner()
     {
-      foreach (var factionSpawnData in currentStage.GetSpawnData())
-      {
-        McCoyGameState.Instance().remainingMonstersInStage[factionSpawnData.Key] = factionSpawnData.Value.StageBegan();
-      }
       spawner = gameObject.AddComponent<McCoyBrawlerSpawnManager>();
       spawner.Initialize(currentStage.GetSpawnData(), this);
       spawner.AddMobSpawnListener(mobStatusLabel);

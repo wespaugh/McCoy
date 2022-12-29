@@ -952,7 +952,7 @@ public class ControlsScript : MonoBehaviour
         || opControlsScript.ignoreCollisionMass
         || isDead
         || opControlsScript.isDead) return;
-
+    if (!this.IsGrounded() || !opControlsScript.IsGrounded()) return;
 
     // Set target in case its a 3D fighter
     FPVector target;
