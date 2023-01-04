@@ -615,7 +615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: 20, y: 20}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &1535392777508255901
@@ -2534,7 +2534,6 @@ MonoBehaviour:
     type: 3}
   uiRoot: {fileID: 880316233510457918}
   firesidePrefab: {fileID: 1028150572, guid: 476be8c118d575545bc92631c2bf69c8, type: 3}
-  selectedZonePanel: {fileID: 4719032487824798012}
   currentZoneText: {fileID: 8227674589946926779}
   currentWeekText: {fileID: 2959108332844797634}
   availableSkillPointsText: {fileID: 2968736009682460008}
@@ -3115,15 +3114,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 508494318263635564}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4719032487824798012 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5076638600607285072, guid: 67dadf46de4a4e145aa8f9ab769f57d7,
-    type: 3}
-  m_PrefabInstance: {fileID: 508494318263635564}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bb9524c7ba15743913a328d662a0d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
