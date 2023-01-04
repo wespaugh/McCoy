@@ -181,7 +181,7 @@ namespace Assets.McCoy.RPG
       {
         return;
       }
-      lobbyingDelegate = Instantiate(LobbyingPrefab, uiPanel.transform.parent).GetComponent<McCoyLobbyingListUI>();
+      lobbyingDelegate = Instantiate(LobbyingPrefab).GetComponent<McCoyLobbyingListUI>();
       lobbyingDelegate.Initialize(city, closeLobbyingUI);
     }
 
