@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 18
+  totalFrames: 34
   startUpFrames: 8
   activeFrames: 10
-  recoveryFrames: 0
+  recoveryFrames: 16
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -115,15 +115,15 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
+  locked: 1
   frameLinks:
   - linkType: 2
     allowBuffer: 1
     onStrike: 1
     onBlock: 1
     onParry: 1
-    activeFramesBegins: 9
-    activeFramesEnds: 17
+    activeFramesBegins: 16
+    activeFramesEnds: 26
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
