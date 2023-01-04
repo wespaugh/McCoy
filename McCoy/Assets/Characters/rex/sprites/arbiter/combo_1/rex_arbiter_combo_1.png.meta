@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 43f7dcc8f53431c4faa481fe08606147
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 60
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_frontarm1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 378
+        width: 162
+        height: 172
+      alignment: 9
+      pivot: {x: 1.2962962, y: 0.29651162}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c8d9f8e141f0e4492f2629b411decd
+      internalID: -2091237677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_frontarm2
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 201
+        width: 138
+        height: 175
+      alignment: 9
+      pivot: {x: 1.5217391, y: 0.32}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfdafe3f32d3c1f4191691d4a264c74a
+      internalID: 1947906797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_frontarm3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 25
+        width: 124
+        height: 174
+      alignment: 9
+      pivot: {x: 1.6935484, y: 0.3218391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72a914ca046320c4288296dda4e15cf4
+      internalID: 1617590547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_legs1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 896
+        width: 208
+        height: 127
+      alignment: 9
+      pivot: {x: 0.4471154, y: 0.07874016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b338922839699404492bd2bc01a40064
+      internalID: -1192803752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_legs2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 765
+        width: 207
+        height: 129
+      alignment: 9
+      pivot: {x: 0.4057971, y: 0.07751938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cf9f0728bc711b4c919d3682021cb21
+      internalID: -1790462563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_reararm1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 593
+        width: 236
+        height: 114
+      alignment: 9
+      pivot: {x: 0.118644066, y: 0.19298245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f612f88a6c14c4bb7d3cf9314fc0fa
+      internalID: -7916609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_reararm2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 709
+        width: 252
+        height: 96
+      alignment: 9
+      pivot: {x: 0.16666667, y: -0.33333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95e814dc5972654489347798e64785f
+      internalID: 1115186377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_reararm3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 552
+        width: 240
+        height: 211
+      alignment: 9
+      pivot: {x: 0.6041667, y: 0.46919432}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83f1cb1b99c245499fb294d6012333c
+      internalID: -914243364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_torso1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 436
+        width: 174
+        height: 155
+      alignment: 9
+      pivot: {x: 0.7873563, y: 0.27096775}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13631da5e4cb9904b8889a272e233bdc
+      internalID: -1718479986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_torso2
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 374
+        width: 163
+        height: 176
+      alignment: 9
+      pivot: {x: 0.9141104, y: 0.33522728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95c272a58ed9be4797470c8e0f45ce4
+      internalID: 284386388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_torso3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 215
+        width: 136
+        height: 157
+      alignment: 9
+      pivot: {x: 1.0735294, y: 0.1910828}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92688221e77f26544ab3931b095b754a
+      internalID: 988229215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_1_reararmslash3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 807
+        width: 277
+        height: 216
+      alignment: 9
+      pivot: {x: 0.5234657, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb384ebf77c7bb4e81595c75c5d5271
+      internalID: 1163103989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b4aa5751f1e41c344bd2518655926fd3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      rex_arbiter_combo_1_reararm3: -914243364
+      rex_arbiter_combo_1_reararmslash3: 1163103989
+      rex_arbiter_combo_1_torso3: 988229215
+      rex_arbiter_combo_1_reararm2: 1115186377
+      rex_arbiter_combo_1_reararm1: -7916609
+      rex_arbiter_combo_1_torso2: 284386388
+      rex_arbiter_combo_1_frontarm2: 1947906797
+      rex_arbiter_combo_1_legs2: -1790462563
+      rex_arbiter_combo_1_legs1: -1192803752
+      rex_arbiter_combo_1_torso1: -1718479986
+      rex_arbiter_combo_1_frontarm3: 1617590547
+      rex_arbiter_combo_1_frontarm1: -2091237677
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
