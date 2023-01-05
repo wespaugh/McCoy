@@ -15,11 +15,11 @@ MonoBehaviour:
   gameplayType: 0
   animMap:
     animationMaps: []
-    clip: {fileID: 7400000, guid: 07f73d02b7fc44040b3ca2a65c8bc02f, type: 2}
-    customHitBoxDefinition: {fileID: 11400000, guid: 15d2db8910ba8af459f3c642bcdebac2,
+    clip: {fileID: 7400000, guid: 5186cb6ef3b3f7e45831d0accee371f7, type: 2}
+    customHitBoxDefinition: {fileID: 11400000, guid: f98e1e52daa49ec4991d2175b9c08a2e,
       type: 2}
     length:
-      _serializedValue: 2433814784
+      _serializedValue: 2219066368
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 34
-  startUpFrames: 10
-  activeFrames: 11
-  recoveryFrames: 13
+  totalFrames: 31
+  startUpFrames: 12
+  activeFrames: 4
+  recoveryFrames: 15
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -128,15 +128,15 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
-  locked: 0
+  locked: 1
   frameLinks:
-  - linkType: 0
+  - linkType: 2
     allowBuffer: 1
     onStrike: 1
     onBlock: 1
     onParry: 1
     activeFramesBegins: 15
-    activeFramesEnds: 33
+    activeFramesEnds: 30
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -168,8 +168,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 10
-    activeFramesEnds: 20
+  - activeFramesBegin: 12
+    activeFramesEnds: 15
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}

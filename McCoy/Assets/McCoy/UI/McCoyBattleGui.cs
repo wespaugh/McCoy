@@ -129,7 +129,7 @@ namespace Assets.McCoy.UI
       }
 
       worldUI = Instantiate(worldSpacePrefab, uiRoot.transform);
-      // bonusUI.transform.position = new Vector3(0, 0, 2) + uiRoot.gameObject.transform.position;
+      worldUI.transform.position = new Vector3(-.2f, .15f, -9.5f);// + uiRoot.gameObject.transform.position;
 
       currentStage = McCoy.GetInstance().currentStage;
     }

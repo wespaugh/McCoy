@@ -104,241 +104,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rex_arbiter_combo_1_frontarm1
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 378
-        width: 162
-        height: 172
-      alignment: 9
-      pivot: {x: 1.2962962, y: 0.29651162}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8c8d9f8e141f0e4492f2629b411decd
-      internalID: -2091237677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_frontarm2
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 201
-        width: 138
-        height: 175
-      alignment: 9
-      pivot: {x: 1.5217391, y: 0.32}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfdafe3f32d3c1f4191691d4a264c74a
-      internalID: 1947906797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_frontarm3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 25
-        width: 124
-        height: 174
-      alignment: 9
-      pivot: {x: 1.6935484, y: 0.3218391}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72a914ca046320c4288296dda4e15cf4
-      internalID: 1617590547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_legs1
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 896
-        width: 208
-        height: 127
-      alignment: 9
-      pivot: {x: 0.4471154, y: 0.07874016}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b338922839699404492bd2bc01a40064
-      internalID: -1192803752
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_legs2
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 765
-        width: 207
-        height: 129
-      alignment: 9
-      pivot: {x: 0.4057971, y: 0.07751938}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7cf9f0728bc711b4c919d3682021cb21
-      internalID: -1790462563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_reararm1
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 593
-        width: 236
-        height: 114
-      alignment: 9
-      pivot: {x: 0.118644066, y: 0.19298245}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75f612f88a6c14c4bb7d3cf9314fc0fa
-      internalID: -7916609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_reararm2
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 709
-        width: 252
-        height: 96
-      alignment: 9
-      pivot: {x: 0.16666667, y: -0.33333334}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d95e814dc5972654489347798e64785f
-      internalID: 1115186377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_reararm3
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 552
-        width: 240
-        height: 211
-      alignment: 9
-      pivot: {x: 0.6041667, y: 0.46919432}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c83f1cb1b99c245499fb294d6012333c
-      internalID: -914243364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_torso1
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 436
-        width: 174
-        height: 155
-      alignment: 9
-      pivot: {x: 0.7873563, y: 0.27096775}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13631da5e4cb9904b8889a272e233bdc
-      internalID: -1718479986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_torso2
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 374
-        width: 163
-        height: 176
-      alignment: 9
-      pivot: {x: 0.9141104, y: 0.33522728}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c95c272a58ed9be4797470c8e0f45ce4
-      internalID: 284386388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rex_arbiter_combo_1_torso3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 215
-        width: 136
-        height: 157
-      alignment: 9
-      pivot: {x: 1.0735294, y: 0.1910828}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92688221e77f26544ab3931b095b754a
-      internalID: 988229215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: rex_arbiter_combo_1_reararmslash3
       rect:
         serializedVersion: 2
-        x: 1
+        x: 290
         y: 807
         width: 277
         height: 216
@@ -355,6 +124,363 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_frontarm1
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 311
+        width: 162
+        height: 203
+      alignment: 9
+      pivot: {x: 0.537037, y: 0.79802954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9538ade1a70b64698c87a7a424c613
+      internalID: 309073379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_frontarm2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 138
+        height: 170
+      alignment: 9
+      pivot: {x: 0.615942, y: 0.7705882}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a4765f738b0f4947a904e3fe35e40af
+      internalID: 1333922567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_frontarm3
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 588
+        width: 124
+        height: 174
+      alignment: 9
+      pivot: {x: 0.63709676, y: 0.7758621}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b4a84651bdbff4ca205cffb6c0b267
+      internalID: 857003243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_frontarm4
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 669
+        width: 227
+        height: 131
+      alignment: 9
+      pivot: {x: 0.8546255, y: 0.66412216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba9a18b276445444af959d8a62bda2a
+      internalID: 1392913677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_head4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 625
+        width: 228
+        height: 128
+      alignment: 9
+      pivot: {x: 0.46052632, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bb48706dd8d7b547b3950849e49a452
+      internalID: 1748464834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_legs1
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 764
+        width: 197
+        height: 128
+      alignment: 9
+      pivot: {x: 0.4111675, y: 0.0859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4feedde48c21dfd478dc7eadd56f341f
+      internalID: -513423838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_legs2
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 894
+        width: 207
+        height: 129
+      alignment: 9
+      pivot: {x: 0.39613527, y: 0.07751938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08db782c8ac825e49b5dbfe88c0eca82
+      internalID: 316887733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_legs3
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 764
+        width: 197
+        height: 128
+      alignment: 9
+      pivot: {x: 0.40609136, y: 0.1015625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e590e1f95706d44b64f647ba203cc0
+      internalID: 708677667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_legs4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 853
+        width: 287
+        height: 170
+      alignment: 9
+      pivot: {x: 0.28222996, y: 0.07647059}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df494a8779bc667419f67cb71934eabb
+      internalID: -1568582486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_reararm1
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 691
+        width: 236
+        height: 114
+      alignment: 9
+      pivot: {x: 0.13135593, y: 0.54385966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb8565e93cc447468e8e72d126cb268
+      internalID: 535349328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_reararm2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 755
+        width: 252
+        height: 96
+      alignment: 9
+      pivot: {x: 0.07539683, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1948c10c6d76ef479639c08feab988c
+      internalID: 2061461499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_reararm3
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 802
+        width: 240
+        height: 221
+      alignment: 9
+      pivot: {x: 0.56666666, y: 0.8325792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4880293fb6763e04eb03f1998484fc5b
+      internalID: 624427329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_reararm4
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 516
+        width: 195
+        height: 173
+      alignment: 9
+      pivot: {x: 0.6820513, y: 0.8265896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aade9cfe2ac2d5148998b77bf9494adf
+      internalID: 2011969575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_torso1
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 607
+        width: 174
+        height: 155
+      alignment: 9
+      pivot: {x: 0.7873563, y: 0.27096775}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a11ebf84a2af8459fc950a2f4bf2cf
+      internalID: 864975507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_torso2
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 491
+        width: 163
+        height: 176
+      alignment: 9
+      pivot: {x: 0.9141104, y: 0.33522728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68601bc57d630474b97dae8c7b8ecaf8
+      internalID: -1109245071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_torso3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 146
+        width: 132
+        height: 156
+      alignment: 9
+      pivot: {x: 1.0757576, y: 0.1923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34a7184604294e4589bf3c2af353eae
+      internalID: 669391905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_torso4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 476
+        width: 192
+        height: 147
+      alignment: 9
+      pivot: {x: 0.25520834, y: 0.19727892}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a254d9929916f4b41b8b4fcf6e083dab
+      internalID: 1165920272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -366,18 +492,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rex_arbiter_combo_1_reararm3: -914243364
+      rex_arbiter_combo_reararm1: 535349328
+      rex_arbiter_combo_torso4: 1165920272
+      rex_arbiter_combo_torso1: 864975507
       rex_arbiter_combo_1_reararmslash3: 1163103989
-      rex_arbiter_combo_1_torso3: 988229215
-      rex_arbiter_combo_1_reararm2: 1115186377
-      rex_arbiter_combo_1_reararm1: -7916609
-      rex_arbiter_combo_1_torso2: 284386388
-      rex_arbiter_combo_1_frontarm2: 1947906797
-      rex_arbiter_combo_1_legs2: -1790462563
-      rex_arbiter_combo_1_legs1: -1192803752
-      rex_arbiter_combo_1_torso1: -1718479986
-      rex_arbiter_combo_1_frontarm3: 1617590547
-      rex_arbiter_combo_1_frontarm1: -2091237677
+      rex_arbiter_combo_head4: 1748464834
+      rex_arbiter_combo_legs4: -1568582486
+      rex_arbiter_combo_frontarm4: 1392913677
+      rex_arbiter_combo_torso2: -1109245071
+      rex_arbiter_combo_frontarm3: 857003243
+      rex_arbiter_combo_reararm4: 2011969575
+      rex_arbiter_combo_reararm2: 2061461499
+      rex_arbiter_combo_legs3: 708677667
+      rex_arbiter_combo_legs2: 316887733
+      rex_arbiter_combo_reararm3: 624427329
+      rex_arbiter_combo_legs1: -513423838
+      rex_arbiter_combo_torso3: 669391905
+      rex_arbiter_combo_frontarm2: 1333922567
+      rex_arbiter_combo_frontarm1: 309073379
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
