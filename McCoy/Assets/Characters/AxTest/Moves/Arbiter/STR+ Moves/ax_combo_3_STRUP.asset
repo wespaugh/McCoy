@@ -19,7 +19,7 @@ MonoBehaviour:
     customHitBoxDefinition: {fileID: 11400000, guid: f98e1e52daa49ec4991d2175b9c08a2e,
       type: 2}
     length:
-      _serializedValue: 2219066368
+      _serializedValue: 1503238656
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   _animationSpeed:
@@ -45,10 +45,10 @@ MonoBehaviour:
   speedKeyFrameToggle: 0
   fixedSpeed: 1
   animSpeedKeyFrame: []
-  totalFrames: 31
-  startUpFrames: 12
-  activeFrames: 4
-  recoveryFrames: 15
+  totalFrames: 22
+  startUpFrames: 5
+  activeFrames: 3
+  recoveryFrames: 14
   applyRootMotion: 0
   lockXMotion: 0
   lockYMotion: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
     onStrike: 1
     onBlock: 1
     onParry: 1
-    activeFramesBegins: 15
-    activeFramesEnds: 30
+    activeFramesBegins: 8
+    activeFramesEnds: 15
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -168,8 +168,8 @@ MonoBehaviour:
   stanceChanges: []
   cameraMovements: []
   hits:
-  - activeFramesBegin: 12
-    activeFramesEnds: 15
+  - activeFramesBegin: 5
+    activeFramesEnds: 7
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
