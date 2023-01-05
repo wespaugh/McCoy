@@ -19,6 +19,10 @@ namespace Assets.McCoy.UI
     GameObject uiRoot = null;
 
     McCoyWorldUI worldUI = null;
+    [SerializeField]
+    LiquidBar healthBar = null;
+    [SerializeField]
+    LiquidBar xpBar = null;
 
     [SerializeField] TMP_Text alertText = null;
 
@@ -57,6 +61,10 @@ namespace Assets.McCoy.UI
     protected override void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
     {
       base.OnGameBegin(player1, player2, stage);
+
+      UFE.canvas.renderMode = RenderMode.ScreenSpaceCamera;
+      UFE.canvas.worldCamera = Camera.main;
+
       levelBegan = true;
 
       tmpNameText.text = player1.myInfo.characterName;
@@ -72,7 +80,7 @@ namespace Assets.McCoy.UI
         spawnerInitialized = true;
         initSpawner();
       }
-      worldUI.StageBegan();
+      // worldUI.StageBegan();
 
       McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
       if ( activeQuest != null)
@@ -94,6 +102,8 @@ namespace Assets.McCoy.UI
     private void Awake()
     {
       Camera.main.orthographic = true;
+      // fixes flickering issue
+      transform.localPosition = new Vector3(0f, 0f, -10f);
       toggleDebug();
 
       Localize("com.mccoy.boardgame.timeRemaining", (s) => timeRemainingString = s);
@@ -128,8 +138,10 @@ namespace Assets.McCoy.UI
         // uiRoot.transform.position = camera2.transform.position;
       }
 
+      /*
       worldUI = Instantiate(worldSpacePrefab, uiRoot.transform);
-      worldUI.transform.position = new Vector3(-.2f, .15f, -9.5f);// + uiRoot.gameObject.transform.position;
+      worldUI.transform.localPosition = new Vector3(-.65f, .26f, -8.75f);// + uiRoot.gameObject.transform.position;
+      */
 
       currentStage = McCoy.GetInstance().currentStage;
     }
@@ -161,15 +173,15 @@ namespace Assets.McCoy.UI
     {
       if(msg == ProjectConstants.STINGER_STAGE_ESCAPED)
       {
-        worldUI.StageEnded(McCoyStinger.StingerTypes.Escaped);
+        //worldUI.StageEnded(McCoyStinger.StingerTypes.Escaped);
       }
       else if(msg == ProjectConstants.STINGER_BOSS_DEFEATED)
       {
-        worldUI.StageEnded(McCoyStinger.StingerTypes.BossDefeated);
+        //worldUI.StageEnded(McCoyStinger.StingerTypes.BossDefeated);
       }
       else if(msg == ProjectConstants.STINGER_STAGE_CLEARED)
       {
-        worldUI.StageEnded(McCoyStinger.StingerTypes.StageCleared);
+        //worldUI.StageEnded(McCoyStinger.StingerTypes.StageCleared);
       }
       else if(msg == ProjectConstants.QUEST_COMPLETE)
       {
@@ -181,7 +193,7 @@ namespace Assets.McCoy.UI
         UFE.PauseGame(false);
         if (!questCompleted)
         {
-          worldUI.gameObject.SetActive(true);
+          //worldUI.gameObject.SetActive(true);
           uiRoot.gameObject.SetActive(true);
         }
         else
@@ -198,7 +210,7 @@ namespace Assets.McCoy.UI
     {
       StartCoroutine(yieldThenPause());
       var _ = McCoy.GetInstance().ShowCutsceneAsync(name);
-      worldUI.gameObject.SetActive(false);
+      //worldUI.gameObject.SetActive(false);
       uiRoot.gameObject.SetActive(false);
       questCompleted = questComplete;
     }
@@ -256,13 +268,15 @@ namespace Assets.McCoy.UI
       }
       int diff = xpCeiling - xpFloor;
       xpCache = XP - xpFloor;
-      worldUI.UpdatePlayerXP(xpCache, initialize, diff);
+      xpBar.targetFillAmount =(float) xpCache / (float)diff;
+      //worldUI.UpdatePlayerXP(xpCache, initialize, diff);
     }
 
     protected override void UpdatePlayerHealthBar(float percent)
     {
-      worldUI.UpdatePlayerHealth(percent);
-      worldUI.UpdatePlayerXP(xpCache, false);
+      healthBar.targetFillAmount = percent;
+      //worldUI.UpdatePlayerHealth(percent);
+      //worldUI.UpdatePlayerXP(xpCache, false);
     }
 
     protected override void OnLifePointsChange(float newFloat, ControlsScript player)
@@ -271,7 +285,7 @@ namespace Assets.McCoy.UI
       {
         enemyName.text = player.myInfo.characterName;
         enemyName.gameObject.SetActive(true);
-        worldUI.updateEnemyHealth(player, enemyUIHidden);
+        //worldUI.updateEnemyHealth(player, enemyUIHidden);
       }
     }
 
@@ -326,13 +340,13 @@ namespace Assets.McCoy.UI
     {
       bossName.gameObject.SetActive(true);
       bossName.text = boss.myInfo.characterName;
-      worldUI.BossSpawned(boss);
+      //worldUI.BossSpawned(boss);
     }
 
     public void BossDied(ControlsScript boss)
     {
       bossName.gameObject.SetActive(false);
-      worldUI.BossDied(boss);
+      //worldUI.BossDied(boss);
     }
 
     public void CheatWin()

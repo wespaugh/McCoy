@@ -24,23 +24,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: nightclub
+    stageName: powerstation
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: 6f549e04399d8b34691854153a43b911, type: 3}
-    prefab: {fileID: 7216622014955884370, guid: cce48fa0de8f32047904118cc04242d3,
+    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
+    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
       type: 3}
-    music: {fileID: 0}
+    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: 0
+      _serializedValue: -34359738368
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -42949672960
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 25769803776
     useTempBoundary: 0
     position:
       x:
@@ -49,8 +49,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/Nightclub/Nightclub
-    stageInfo: {fileID: 11400000, guid: 23acd35c736159641840589f316c3e07, type: 2}
+    advancedStageData: StageData/PowerStation/PowerStation
+    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -984,7 +984,7 @@ MonoBehaviour:
   player2_Inputs:
   - inputType: 0
     inputButtonName: P2KeyboardHorizontal
-    engineRelatedButton: 0
+    engineRelatedButton: 1
     joystickAxisName: P2JoystickHorizontal
     cInputPositiveKeyName: P2Right
     cInputPositiveDefaultKey: RightArrow
@@ -1738,9 +1738,9 @@ MonoBehaviour:
     synchronizationMessageFrequency: 0
     synchronizationAction: 0
   music: 1
-  musicVolume: 0.79999995
+  musicVolume: 1
   soundfx: 1
-  soundfxVolume: 0.5999999
+  soundfxVolume: 1
   colorStateOne: {r: 1, g: 0, b: 0, a: 1}
   colorIsHit: {r: 1, g: 0, b: 1, a: 1}
   colorBodyCollider: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
