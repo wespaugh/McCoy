@@ -943,7 +943,7 @@ public class ControlsScript : MonoBehaviour
 
   private void pushOpponentsAway(ControlsScript opControlsScript, IDictionary<InputReferences, InputEvents> currentInputs)
   {
-    // TODO: This code's still good! it does push the player away... HARD, at the start of each level, so fix that before committing. but I prefer this feel
+    return;
     if (opControlsScript == null
       || opControlsScript == this
         || !opControlsScript.GetActive()
