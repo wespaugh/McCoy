@@ -5501,11 +5501,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f29110ca21876e54089a1eb376023b83, type: 2}
     physics:
       _moveForwardSpeed:
-        _serializedValue: 19327352832
+        _serializedValue: 21474836480
       _moveBackSpeed:
-        _serializedValue: 19327352832
+        _serializedValue: 21474836480
       _moveSidewaysSpeed:
-        _serializedValue: 19327352832
+        _serializedValue: 21474836480
       highMovingFriction: 1
       _friction:
         _serializedValue: 128849018880

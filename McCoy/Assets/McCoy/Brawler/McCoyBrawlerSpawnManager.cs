@@ -158,12 +158,14 @@ namespace Assets.McCoy.Brawler
         totalSpawns += v.Value;
       }
 
+      /*
       for(int i = 0; i < totalSpawns; ++i)
       {
         var goal = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         goal.transform.position = getSpawnPoint(i);
         debugGoalposts.Add(goal);
       }
+      */
 
       for(int i = 0; i < 20; ++i)
       {
