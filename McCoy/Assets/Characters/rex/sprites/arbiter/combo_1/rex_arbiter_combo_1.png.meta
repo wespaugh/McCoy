@@ -128,8 +128,8 @@ TextureImporter:
       name: rex_arbiter_combo_frontarm1
       rect:
         serializedVersion: 2
-        x: 195
-        y: 311
+        x: 117
+        y: 132
         width: 162
         height: 203
       alignment: 9
@@ -149,8 +149,8 @@ TextureImporter:
       name: rex_arbiter_combo_frontarm2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 304
+        x: 585
+        y: 172
         width: 138
         height: 170
       alignment: 9
@@ -170,8 +170,8 @@ TextureImporter:
       name: rex_arbiter_combo_frontarm3
       rect:
         serializedVersion: 2
-        x: 898
-        y: 588
+        x: 585
+        y: 344
         width: 124
         height: 174
       alignment: 9
@@ -380,8 +380,8 @@ TextureImporter:
       name: rex_arbiter_combo_reararm4
       rect:
         serializedVersion: 2
-        x: 231
-        y: 516
+        x: 1
+        y: 337
         width: 195
         height: 173
       alignment: 9
@@ -401,8 +401,8 @@ TextureImporter:
       name: rex_arbiter_combo_torso1
       rect:
         serializedVersion: 2
-        x: 722
-        y: 607
+        x: 415
+        y: 11
         width: 174
         height: 155
       alignment: 9
@@ -422,8 +422,8 @@ TextureImporter:
       name: rex_arbiter_combo_torso2
       rect:
         serializedVersion: 2
-        x: 428
-        y: 491
+        x: 281
+        y: 168
         width: 163
         height: 176
       alignment: 9
@@ -443,8 +443,8 @@ TextureImporter:
       name: rex_arbiter_combo_torso3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 146
+        x: 281
+        y: 10
         width: 132
         height: 156
       alignment: 9
@@ -464,8 +464,8 @@ TextureImporter:
       name: rex_arbiter_combo_torso4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 476
+        x: 455
+        y: 520
         width: 192
         height: 147
       alignment: 9
@@ -477,6 +477,174 @@ TextureImporter:
       bones: []
       spriteID: a254d9929916f4b41b8b4fcf6e083dab
       internalID: 1165920272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_divekick_slash_1_legs
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 512
+        width: 214
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5, y: 0.045045044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca02d3ff986985f45b739d1d5996c7f4
+      internalID: 355518497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_divekick_slash_1_reararm
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 346
+        width: 125
+        height: 138
+      alignment: 9
+      pivot: {x: -0.68, y: 1.2391304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eae39243024ab74395522a3a144158b
+      internalID: -2033937009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_divekick_slash_2_reararm
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 512
+        width: 214
+        height: 111
+      alignment: 9
+      pivot: {x: 0.6448598, y: 1.8738738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3a9d4cf285c84f4d84052919b61d34c
+      internalID: -507809988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_divekick_spin
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 486
+        width: 222
+        height: 203
+      alignment: 9
+      pivot: {x: 0.9234234, y: 0.51724136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced7c4f35e759924095a876251af4816
+      internalID: 1049594820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_frontarm
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 19
+        width: 138
+        height: 151
+      alignment: 9
+      pivot: {x: 0.9057971, y: 0.78807944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7fcf1a1d676f146b0385d3e58faa74
+      internalID: 1015721434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_legs
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 580
+        width: 194
+        height: 182
+      alignment: 9
+      pivot: {x: 0.48969072, y: 0.13186814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a532c5d9cf217d9418a6bd2a8580f547
+      internalID: 1105144819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_reararm
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 112
+        width: 114
+        height: 223
+      alignment: 9
+      pivot: {x: -0.57894737, y: -0.14798206}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce576f92b96ac74fab72bbac0d941d8
+      internalID: -53331480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rex_arbiter_combo_uppercut_torso
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 309
+        width: 137
+        height: 175
+      alignment: 9
+      pivot: {x: -0.00729927, y: 0.40571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 932eba1832db75e4c8613dc0151a528e
+      internalID: 550758731
       vertices: []
       indices: 
       edges: []
@@ -498,16 +666,24 @@ TextureImporter:
       rex_arbiter_combo_1_reararmslash3: 1163103989
       rex_arbiter_combo_head4: 1748464834
       rex_arbiter_combo_legs4: -1568582486
+      rex_arbiter_combo_uppercut_torso: 550758731
+      rex_arbiter_combo_uppercut_divekick_spin: 1049594820
       rex_arbiter_combo_frontarm4: 1392913677
       rex_arbiter_combo_torso2: -1109245071
       rex_arbiter_combo_frontarm3: 857003243
       rex_arbiter_combo_reararm4: 2011969575
       rex_arbiter_combo_reararm2: 2061461499
       rex_arbiter_combo_legs3: 708677667
+      rex_arbiter_combo_uppercut_divekick_slash_1_reararm: -2033937009
       rex_arbiter_combo_legs2: 316887733
       rex_arbiter_combo_reararm3: 624427329
       rex_arbiter_combo_legs1: -513423838
       rex_arbiter_combo_torso3: 669391905
+      rex_arbiter_combo_uppercut_divekick_slash_1_legs: 355518497
+      rex_arbiter_combo_uppercut_divekick_slash_2_reararm: -507809988
+      rex_arbiter_combo_uppercut_frontarm: 1015721434
+      rex_arbiter_combo_uppercut_reararm: -53331480
+      rex_arbiter_combo_uppercut_legs: 1105144819
       rex_arbiter_combo_frontarm2: 1333922567
       rex_arbiter_combo_frontarm1: 309073379
   spritePackingTag: 
