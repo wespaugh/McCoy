@@ -1638,12 +1638,14 @@ public class ControlsScript : MonoBehaviour
         if (inputHeldDown[engineRelatedButton] < minJumpDelaySeconds)
         {
           Fix64 deltaDelaySeconds = minJumpDelaySeconds - inputHeldDown[engineRelatedButton];
+          Debug.Log("minjump");
           UFE.DelaySynchronizedAction(myPhysicsScript.MinJump, deltaDelaySeconds);
         }
         else
         {
           Fix64 jumpDelaySeconds = (Fix64)myInfo.physics.jumpDelay / UFE.config.fps;
           Fix64 pressurePercentage = FPMath.Min(inputHeldDown[engineRelatedButton] / jumpDelaySeconds, 1);
+          Debug.Log("pressure jump: " + myInfo.physics._jumpForce);
           Fix64 newJumpForce = myInfo.physics._jumpForce * pressurePercentage;
           if (newJumpForce < myInfo.physics._minJumpForce) newJumpForce = myInfo.physics._minJumpForce;
           myPhysicsScript.Jump(newJumpForce);
@@ -1656,7 +1658,10 @@ public class ControlsScript : MonoBehaviour
       {
         // Double/Multi Jumps
         if (inputHeldDown[engineRelatedButton] == UFE.fixedDeltaTime && !IsGrounded() && myInfo.physics.canJump && myInfo.physics.multiJumps > 1)
+        {
+          Debug.Log("combo jump: " + myInfo.physics._jumpForce);
           myPhysicsScript.Jump();
+        }
 
         // Standard Jump
         if (!myPhysicsScript.freeze
@@ -4504,6 +4509,7 @@ public class ControlsScript : MonoBehaviour
     myPhysicsScript.isTakingOff = false;
     myPhysicsScript.isLanding = false;
 
+    MoveSet.UpdateMoveSetPhysics();
     myPhysicsScript.ResetWeight();
     ToggleHeadLook(true);
   }

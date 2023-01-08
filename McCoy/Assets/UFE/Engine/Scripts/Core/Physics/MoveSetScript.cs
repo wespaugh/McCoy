@@ -54,6 +54,24 @@ public class MoveSetScript : MonoBehaviour
     ChangeMoveStances(CombatStances.Stance1);
   }
 
+  public void UpdateMoveSetPhysics()
+  {
+    foreach (MoveSetData moveSetData in controlsScript.loadedMoves)
+    {
+      if (moveSetData.combatStance == controlsScript.currentCombatStance)
+      {
+        updateMoveSetPhysics(moveSetData);
+        break;
+      }
+    }
+  }
+
+  void updateMoveSetPhysics(MoveSetData moveSetData)
+  {
+    controlsScript.myInfo.physics = moveSetData.physics;
+    Debug.Log($"updating physics for stance. Jump Force: {controlsScript.myInfo.physics._jumpForce}, weight:{controlsScript.myInfo.physics._weight}");
+    controlsScript.Physics.ResetWeight();
+  }
 
   public void ChangeMoveStances(CombatStances newStance)
   {
@@ -62,7 +80,7 @@ public class MoveSetScript : MonoBehaviour
     {
       if (moveSetData.combatStance == newStance)
       {
-        controlsScript.myInfo.physics = moveSetData.physics;
+        updateMoveSetPhysics(moveSetData);
         string currentClip = basicMoves != null ? GetCurrentClipName() : null;
         Fix64 currentNormalizedTime = basicMoves != null ? GetCurrentClipPosition() : 0;
         Fix64 currentSpeed = 0;

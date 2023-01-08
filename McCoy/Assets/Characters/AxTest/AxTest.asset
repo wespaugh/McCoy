@@ -5515,7 +5515,7 @@ MonoBehaviour:
       canJump: 1
       pressureSensitiveJump: 0
       _jumpForce:
-        _serializedValue: 171798691840
+        _serializedValue: 214748364800
       _minJumpForce:
         _serializedValue: 128849018880
       minJumpDelay: 4
@@ -5533,7 +5533,7 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
     basicMovesToggle: 0
-    attackMovesToggle: 1
+    attackMovesToggle: 0
   - combatStance: 0
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}
@@ -10950,7 +10950,7 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
     basicMovesToggle: 0
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   - combatStance: 2
     cinematicIntro: {fileID: 0}
     cinematicOutro: {fileID: 0}

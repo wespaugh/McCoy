@@ -192,6 +192,7 @@ public class PhysicsScript : MonoBehaviour
     activeForces.x = 0;
     activeForces.y = jumpForce;
     setVerticalData(jumpForce);
+    Debug.Log("vertical total force: " + verticalTotalForce);
   }
 
   /// <summary>
@@ -296,11 +297,20 @@ public class PhysicsScript : MonoBehaviour
 
   public void ApplyNewWeight(Fix64 newWeight)
   {
+    Debug.Log("Apply New Weight: " + newWeight);
     appliedGravity = newWeight * UFE.config._gravity;
   }
 
   public void ResetWeight()
   {
+    if (controlScript == null)
+    {
+      return;
+    }
+    if (controlScript.playerNum == 1)
+    {
+      Debug.Log("Resetting weight: " + controlScript?.myInfo.physics._weight);
+    }
     appliedGravity = controlScript.myInfo.physics._weight * UFE.config._gravity;
   }
 
@@ -583,6 +593,7 @@ public class PhysicsScript : MonoBehaviour
         if ((activeForces.y < 0 && !IsGrounded()) || activeForces.y > 0)
         {
           activeForces.y -= appliedGravity * UFE.fixedDeltaTime;
+          Debug.LogWarning("active forces is " + activeForces.y + ", because gravity was " + appliedGravity);
           if (UFE.config.gameplayType == GameplayType._2DFighter)
           {
             worldTransform.Translate(horizontalJumpForce * moveDirection * UFE.fixedDeltaTime, activeForces.y * UFE.fixedDeltaTime, 0);

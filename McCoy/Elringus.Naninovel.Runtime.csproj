@@ -292,8 +292,8 @@
     <Compile Include="Assets\Naninovel\Runtime\UI\CGGallery\CGGalleryPanel.cs" />
     <Compile Include="Assets\Naninovel\Runtime\ResourceProvider\ResourceProviderConfiguration.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Transition\TransitionUtils.cs" />
-    <Compile Include="Assets\Naninovel\Runtime\Audio\AudioManager.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Audio\VoiceOverlapPolicy.cs" />
+    <Compile Include="Assets\Naninovel\Runtime\Audio\AudioManager.cs" />
     <Compile Include="Assets\Naninovel\Runtime\UI\ImageCrossfader.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\ResourceProvider\IResourceProvider.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Command\ExitToTitle.cs" />

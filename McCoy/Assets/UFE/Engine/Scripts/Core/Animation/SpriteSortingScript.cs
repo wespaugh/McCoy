@@ -44,8 +44,12 @@ namespace UFE3D
         bool hide = animatorKeys.Length == 0 || animatorKeys[1] == "";
         animators[animatorKeys[0]].gameObject.SetActive(!hide);
         // animators[animatorKeys[0]].Play(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
-        animators[animatorKeys[0]].SetBool("flip", bodySprite.flipX);
-        animators[animatorKeys[0]].SetTrigger(animatorKeys[1]);
+        //animators[animatorKeys[0]].SetBool("flip", bodySprite.flipX);
+        //animators[animatorKeys[0]].SetTrigger(animatorKeys[1]);
+        if (!hide)
+        {
+          animators[animatorKeys[0]].Play(animatorKeys[1] + (bodySprite.flipX ? "_flip" : ""));
+        }
       }
     }
 
