@@ -297,7 +297,6 @@ public class PhysicsScript : MonoBehaviour
 
   public void ApplyNewWeight(Fix64 newWeight)
   {
-    Debug.Log("Apply New Weight: " + newWeight);
     appliedGravity = newWeight * UFE.config._gravity;
   }
 
@@ -307,10 +306,7 @@ public class PhysicsScript : MonoBehaviour
     {
       return;
     }
-    if (controlScript.playerNum == 1)
-    {
-      Debug.Log("Resetting weight: " + controlScript?.myInfo.physics._weight);
-    }
+
     appliedGravity = controlScript.myInfo.physics._weight * UFE.config._gravity;
   }
 
