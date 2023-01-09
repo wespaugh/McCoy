@@ -44,6 +44,7 @@ namespace Assets.McCoy.UI
 
     [SerializeField] McCoyQuestTextUI questUI = null;
     [SerializeField] TMP_Text playerTimer = null;
+    [SerializeField] LiquidBar enemyHPBar = null;
 
     McCoyStageData currentStage;
 
@@ -57,6 +58,11 @@ namespace Assets.McCoy.UI
     private float elapsedTime;
     private PlayerCharacter selectedPlayer;
     string timeRemainingString = null;
+
+    [SerializeField]
+    float enemyHPBarVisibleDuration = 2.5f;
+    float enemyHPDelayTimer = -1.0f;
+
 
     protected override void OnGameBegin(ControlsScript player1, ControlsScript player2, StageOptions stage)
     {
@@ -283,14 +289,42 @@ namespace Assets.McCoy.UI
     {
       if(UFE.GetController(player.playerNum).isCPU)
       {
+        float hpPercent = (float)player.currentLifePoints / player.myInfo.lifePoints;
         enemyName.text = player.myInfo.characterName;
+        enemyHPBar.targetFillAmount = hpPercent;
         enemyName.gameObject.SetActive(true);
-        //worldUI.updateEnemyHealth(player, enemyUIHidden);
+        switch ((Factions)player.Team)
+        {
+          case Factions.AngelMilitia:
+            enemyHPBar.barColor = GREEN;
+            break;
+          case Factions.CyberMinotaurs:
+            enemyHPBar.barColor = BLUE;
+            break;
+          case Factions.Mages:
+            enemyHPBar.barColor = PINK;
+            break;
+        }
+        if (enemyHPDelayTimer == -1f)
+        {
+          enemyHPDelayTimer = enemyHPBarVisibleDuration;
+          StartCoroutine(enemyUIHidden());
+        }
+        else
+        {
+          enemyHPDelayTimer = enemyHPBarVisibleDuration;
+        }
       }
     }
 
-    private void enemyUIHidden()
+    private IEnumerator enemyUIHidden()
     {
+      while(enemyHPDelayTimer > 0)
+      {
+        yield return null;
+        enemyHPDelayTimer -= Time.deltaTime;
+      }
+      enemyHPDelayTimer = -1;
       enemyName.gameObject.SetActive(false);
     }
 
