@@ -146,6 +146,66 @@ MonoBehaviour:
         moveFrameData: 0
         moveDamage: 0
       conditionsToggle: 1
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 5
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 4
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
     reactions:
     - reactionType: 11
       moveClassification:
@@ -164,7 +224,7 @@ MonoBehaviour:
       buttonPress: 4
       behavior: 4
       desirability: 5
-    debugToggle: 0
+    debugToggle: 1
     eventsToggle: 1
     reactionsToggle: 1
   - ruleName: Attack If Close
