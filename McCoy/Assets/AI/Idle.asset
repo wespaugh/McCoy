@@ -16,7 +16,7 @@ MonoBehaviour:
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
-    timeBetweenBehaviourChanges: 3
+    timeBetweenBehaviourChanges: 1.5
     timeBetweenDecisions: 0
     timeBetweenActions: 0.05
     aggressiveness: 0.5
@@ -437,10 +437,10 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 5
+      desirability: 6
     debugToggle: 0
     eventsToggle: 0
-    reactionsToggle: 0
+    reactionsToggle: 1
   - ruleName: Never Move
     events:
     - enabled: 1

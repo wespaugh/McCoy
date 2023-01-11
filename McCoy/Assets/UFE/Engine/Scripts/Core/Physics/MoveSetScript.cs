@@ -69,7 +69,6 @@ public class MoveSetScript : MonoBehaviour
   void updateMoveSetPhysics(MoveSetData moveSetData)
   {
     controlsScript.myInfo.physics = moveSetData.physics;
-    Debug.Log($"updating physics for stance. Jump Force: {controlsScript.myInfo.physics._jumpForce}, weight:{controlsScript.myInfo.physics._weight}");
     controlsScript.Physics.ResetWeight();
   }
 
