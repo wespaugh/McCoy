@@ -246,7 +246,7 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 5
+      desirability: 3
     debugToggle: 0
     eventsToggle: 1
     reactionsToggle: 1
@@ -299,7 +299,7 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 6
+      desirability: 5
     debugToggle: 1
     eventsToggle: 1
     reactionsToggle: 1
