@@ -68,7 +68,10 @@ namespace Assets.McCoy.UI
     {
       base.OnGameBegin(player1, player2, stage);
 
-      UFE.canvas.renderMode = RenderMode.ScreenSpaceCamera;
+      if (!McCoy.GetInstance().DebugUI)
+      {
+        UFE.canvas.renderMode = RenderMode.ScreenSpaceCamera;
+      }
       UFE.canvas.worldCamera = Camera.main;
 
       levelBegan = true;

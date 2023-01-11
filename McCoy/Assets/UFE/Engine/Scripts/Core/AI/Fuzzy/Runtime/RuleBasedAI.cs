@@ -618,7 +618,8 @@ public class RuleBasedAI : RandomAI{
 						self.aiDebugger = "-----AI Reaction Weights-----\n";
 						StringBuilder sb = new StringBuilder();
 						sb.Append("Instruction Set: ").Append(ai.instructionsName).AppendLine();
-			sb.Append("Distance: ").Append(self.normalizedDistance).AppendLine();
+            sb.Append("Behaviour Time: ").Append(Time.realtimeSinceStartup-timeLastBehaviourChange).AppendLine();
+            sb.Append("Distance: ").Append(self.normalizedDistance).AppendLine();
 			sb.Append("Vertical Dist: ").Append(self.targetVerticalOffset).AppendLine();
 						foreach(MovementInfo mInfo in this.movements){
 							sb.Append(mInfo.name).Append(" = ").Append(mInfo.weight).AppendLine();

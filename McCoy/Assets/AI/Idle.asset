@@ -20,7 +20,7 @@ MonoBehaviour:
     timeBetweenDecisions: 0
     timeBetweenActions: 0.05
     aggressiveness: 0.5
-    ruleCompliance: 0.9
+    ruleCompliance: 1
     comboEfficiency: 1
     movementDuration: 0.1
     buttonSequenceInterval: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
     attackFrequency: 5
     debugToggle: 0
   aiRules:
-  - ruleName: Idle
+  - ruleName: Idle During Cooldown
     events:
     - enabled: 1
       boolean: 0
@@ -110,11 +110,11 @@ MonoBehaviour:
       specificMove: {fileID: 0}
       buttonPress: 4
       behavior: 0
-      desirability: 5
+      desirability: 6
     debugToggle: 0
-    eventsToggle: 1
+    eventsToggle: 0
     reactionsToggle: 0
-  - ruleName: Change To Move
+  - ruleName: Idle After Cooldown
     events:
     - enabled: 1
       boolean: 0
@@ -129,6 +129,59 @@ MonoBehaviour:
         healthStatus: 0
         gaugeStatus: 0
         playerDistance: 3
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 0
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 5
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Change To Move
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 4
         verticalDistance: 3
         jumping: 0
         blocking: 1
@@ -182,13 +235,13 @@ MonoBehaviour:
       - enabled: 1
         boolean: 0
         targetCharacter: 0
-        conditionType: 6
+        conditionType: 11
         horizontalMovement: 1
         verticalMovement: 1
         movementSpeed: 0
         healthStatus: 0
         gaugeStatus: 0
-        playerDistance: 4
+        playerDistance: 3
         verticalDistance: 3
         jumping: 0
         blocking: 1
@@ -205,7 +258,89 @@ MonoBehaviour:
           anyHitConfirmType: 1
         moveFrameData: 0
         moveDamage: 0
-      conditionsToggle: 1
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 1
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 0
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 11
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      - enabled: 1
+        boolean: 1
+        targetCharacter: 0
+        conditionType: 3
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 1
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 0
     reactions:
     - reactionType: 11
       moveClassification:
@@ -224,9 +359,9 @@ MonoBehaviour:
       buttonPress: 4
       behavior: 4
       desirability: 5
-    debugToggle: 1
-    eventsToggle: 1
-    reactionsToggle: 1
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
   - ruleName: Attack If Close
     events:
     - enabled: 1
@@ -243,6 +378,32 @@ MonoBehaviour:
         gaugeStatus: 0
         playerDistance: 1
         verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 3
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 3
+        verticalDistance: 1
         jumping: 0
         blocking: 1
         moveClassification:
@@ -277,9 +438,79 @@ MonoBehaviour:
       buttonPress: 4
       behavior: 0
       desirability: 5
-    debugToggle: 1
-    eventsToggle: 1
-    reactionsToggle: 1
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
+  - ruleName: Never Move
+    events:
+    - enabled: 1
+      boolean: 0
+      conditions:
+      - enabled: 1
+        boolean: 0
+        targetCharacter: 0
+        conditionType: 6
+        horizontalMovement: 1
+        verticalMovement: 1
+        movementSpeed: 0
+        healthStatus: 0
+        gaugeStatus: 0
+        playerDistance: 1
+        verticalDistance: 3
+        jumping: 0
+        blocking: 1
+        moveClassification:
+          attackType: 0
+          hitType: 0
+          startupSpeed: 0
+          recoverySpeed: 0
+          hitConfirmType: 0
+          preferableDistance: 0
+          gaugeUsage: 0
+          anyAttackType: 1
+          anyHitType: 1
+          anyHitConfirmType: 1
+        moveFrameData: 0
+        moveDamage: 0
+      conditionsToggle: 1
+    reactions:
+    - reactionType: 1
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 0
+    - reactionType: 2
+      moveClassification:
+        attackType: 0
+        hitType: 0
+        startupSpeed: 0
+        recoverySpeed: 0
+        hitConfirmType: 0
+        preferableDistance: 0
+        gaugeUsage: 0
+        anyAttackType: 1
+        anyHitType: 1
+        anyHitConfirmType: 1
+      moveDamage: 0
+      specificMove: {fileID: 0}
+      buttonPress: 4
+      behavior: 0
+      desirability: 0
+    debugToggle: 0
+    eventsToggle: 0
+    reactionsToggle: 0
   aiDefinitions:
     damage:
       veryWeak: 0.05
@@ -288,14 +519,14 @@ MonoBehaviour:
       strong: 0.2
       veryStrong: 0.25
     distance:
-      veryClose: 0.05
-      close: 0.25
+      veryClose: 0.1
+      close: 0.15
       mid: 0.5
       far: 0.75
       veryFar: 0.95
     desirability:
-      theWorstOption: 0
-      veryUndesirable: 0.15
+      theWorstOption: 0.05
+      veryUndesirable: 0.1
       undesirable: 0.3
       notBad: 0.45
       desirable: 0.6
