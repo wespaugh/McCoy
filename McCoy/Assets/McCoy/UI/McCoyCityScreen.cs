@@ -105,7 +105,7 @@ namespace Assets.McCoy.UI
     private void Awake()
     {
       loadingStage = false;
-      debugEndWeekButton.SetActive(McCoy.GetInstance().Debug);
+      debugEndWeekButton.SetActive(McCoy.GetInstance().DebugUI);
       if (board == null)
       {
         board = Instantiate(boardContents);
@@ -599,7 +599,7 @@ namespace Assets.McCoy.UI
         var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
         nodePanel.Initialize(node, this, antikytheraMechanismLocation);
         zonePanelList.Add(nodePanel.gameObject);
-        nodePanel.SetInteractable(isConnected || McCoy.GetInstance().Debug);
+        nodePanel.SetInteractable(isConnected || McCoy.GetInstance().DebugUI);
         nodePanel.transform.SetSiblingIndex(siblingIndex++);
         // select the first node in the list
         if(firstNode == null)

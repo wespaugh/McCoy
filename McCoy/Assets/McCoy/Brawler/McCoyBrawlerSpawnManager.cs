@@ -35,7 +35,7 @@ namespace Assets.McCoy.Brawler
 
     List<GameObject> debugGoalposts = new List<GameObject>();
 
-    bool debugSpawnsOnly => McCoy.GetInstance().Debug && false;
+    bool debugSpawnsOnly => McCoy.GetInstance().DebugSpawnsOnly;
 
     const float bossXOffset = 3.5f;
 

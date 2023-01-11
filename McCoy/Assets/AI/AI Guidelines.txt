@@ -1,0 +1,4 @@
+Very Defensive: Move Randomly
+Defensive: Move Towards
+Balanced: Idle Only
+Aggressive: Attack

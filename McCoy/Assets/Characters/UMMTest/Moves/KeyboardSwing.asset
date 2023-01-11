@@ -123,11 +123,12 @@ MonoBehaviour:
     startupSpeed: 1
     recoverySpeed: 1
     hitConfirmType: 0
-    preferableDistance: 2
+    preferableDistance: 1
     gaugeUsage: 5
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
+  locked: 0
   frameLinks: []
   gauges:
   - castingFrame: 0

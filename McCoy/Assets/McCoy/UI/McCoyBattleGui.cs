@@ -48,7 +48,7 @@ namespace Assets.McCoy.UI
 
     McCoyStageData currentStage;
 
-    bool debug => McCoy.GetInstance().Debug;
+    bool debug => McCoy.GetInstance().DebugUI;
 
     bool spawnerInitialized = false;
     private McCoyBrawlerSpawnManager spawner;
@@ -113,25 +113,6 @@ namespace Assets.McCoy.UI
       toggleDebug();
 
       Localize("com.mccoy.boardgame.timeRemaining", (s) => timeRemainingString = s);
-
-      if (spawnButton != null)
-      {
-        spawnButton.onClick.AddListener(() =>
-        {
-          float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
-          float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
-          UFE3D.CharacterInfo m = null;
-          foreach(var name in UFE.config.characters)
-          {
-            if(name.characterName.ToLower() == nameInput.text.ToLower())
-            {
-              m = name;
-              break;
-            }
-          }
-          UFE.CreateRandomMonster(m, x, z, debug: true);
-        });
-      }
       var camera2 = GameObject.Find("BattleUI Camera");
       if(camera2.transform.childCount > 0)
       {
@@ -160,6 +141,24 @@ namespace Assets.McCoy.UI
       yInput.gameObject.SetActive(debug);
       nameInput.gameObject.SetActive(debug);
       endPlayerTimer.gameObject.SetActive(debug);
+    }
+
+    public void debugSpawn()
+    {
+      Debug.Log("SPAWN");
+      float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
+      float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
+      UFE3D.CharacterInfo m = null;
+      foreach (var name in UFE.config.characters)
+      {
+        if (name.characterName.ToLower() == nameInput.text.ToLower())
+        {
+          m = name;
+          break;
+        }
+      }
+      Debug.Log("creating random monster! ");
+      UFE.CreateRandomMonster(m, x, z, debug: true);
     }
 
     private void initSpawner()
@@ -385,6 +384,7 @@ namespace Assets.McCoy.UI
 
     public void CheatWin()
     {
+      Debug.Log("Cheat Win!");
       McCoy.GetInstance().debugCheatWin = true;
       if(endPlayerTimer.isOn)
       {

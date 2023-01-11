@@ -324,7 +324,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveBack:
         animMap:
@@ -850,7 +850,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -1166,7 +1166,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       fallBack:
         animMap:
@@ -5484,8 +5484,8 @@ MonoBehaviour:
       blockEnabled: 0
       parryEnabled: 0
     attackMoves:
-    - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
     - {fileID: 11400000, guid: f6365bc5527919341831550ebbe64e33, type: 2}
+    - {fileID: 11400000, guid: a94db3a8c3080b345800b01237346a53, type: 2}
     physics:
       _moveForwardSpeed:
         _serializedValue: 17179869184
@@ -5520,9 +5520,9 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   aiInstructionsSet:
-  - aiInfo: {fileID: 11400000, guid: 457a5cbe1dff85548bce15726dafbf85, type: 2}
-    behavior: 1
-  - aiInfo: {fileID: 11400000, guid: 0934d76b30cbb7a48b9f86b5898c41a6, type: 2}
-    behavior: 5
+  - aiInfo: {fileID: 11400000, guid: 8b3a892f293d39043967db1d42165c2e, type: 2}
+    behavior: 2
+  - aiInfo: {fileID: 11400000, guid: cb90b4920320c6240814633935373e3b, type: 2}
+    behavior: 4

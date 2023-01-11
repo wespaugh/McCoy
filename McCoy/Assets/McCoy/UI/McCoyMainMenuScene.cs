@@ -59,7 +59,7 @@ namespace Assets.McCoy.UI
         game = FindObjectOfType<McCoy>();
 
         // deleteSavesButton.gameObject.SetActive(game.Debug);
-        if (game.Debug)
+        if (game.DebugUI)
         {
           // StartCityScene();
         }

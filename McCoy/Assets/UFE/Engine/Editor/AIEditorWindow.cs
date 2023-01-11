@@ -638,6 +638,7 @@ public class AIEditorWindow : EditorWindow {
 						EditorGUI.indentLevel += 1;
 						SubGroupTitle("Intervals");
 						EditorGUIUtility.labelWidth = 200;
+			aiInfo.advancedOptions.timeBetweenBehaviourChanges = EditorGUILayout.Slider("Time Between Behaviour Changes", aiInfo.advancedOptions.timeBetweenBehaviourChanges, 0f, 60f);
 						aiInfo.advancedOptions.timeBetweenDecisions = EditorGUILayout.Slider("Time Between Decisions:", aiInfo.advancedOptions.timeBetweenDecisions, 0f, 5f);
 						aiInfo.advancedOptions.timeBetweenActions = EditorGUILayout.Slider("Time Between Actions:", aiInfo.advancedOptions.timeBetweenActions, 0f, 5f);
 						aiInfo.advancedOptions.movementDuration = EditorGUILayout.Slider("Directional Padding:", aiInfo.advancedOptions.movementDuration, 0f, 2f);

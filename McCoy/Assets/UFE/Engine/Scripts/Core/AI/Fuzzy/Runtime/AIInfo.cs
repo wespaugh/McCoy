@@ -59,6 +59,7 @@ public class HealthDefinitions{
 
 [Serializable]
 public class AIAdvancedOptions{
+  public float timeBetweenBehaviourChanges = 0;
 	public float timeBetweenDecisions = 0;
 	public float timeBetweenActions = 0.05f;
 	public float aggressiveness = 0.5f;
@@ -138,6 +139,7 @@ public enum AIConditionType {
 	Down,
 	//ProjectileDistance, // In front of or behind the character?
 	//ProjectileSpeed,
+	BehaviourCooldown
 }
 
 public enum AIBlocking {
@@ -274,6 +276,7 @@ public class AICondition:ICloneable {
 	public static readonly string VerticalMovement_Opponent = "039_" + AIConditionType.VerticalMovement + "_" + TargetCharacter.Opponent;
 
   public static readonly string VerticalDistance_Self = "040_" + AIConditionType.VerticalDistance + "_" + TargetCharacter.Self;
+  public static readonly string BehaviourCooldown = "041_" + AIConditionType.BehaviourCooldown + "_" + TargetCharacter.Self;
 
   // Public instance properties
   public bool enabled = true;
@@ -517,7 +520,13 @@ public class AIRule: System.ICloneable {
                   }
 				  sb3.Append(condition.verticalDistance.ToString());
 				}
-							}else if (condition.conditionType == AIConditionType.Attacking){
+							}else if(condition.conditionType == AIConditionType.BehaviourCooldown)
+			  {
+                sb3.Append(AICondition.BehaviourCooldown)
+                    .Append(AIRule.Rule_IS)
+                    .Append(condition.boolean);
+              }
+              else if (condition.conditionType == AIConditionType.Attacking){
 								// Define the attack information
 								if (condition.boolean == AIBoolean.FALSE){
 									sb3.Append(AIRule.Rule_NOT).Append(AIRule.Rule_Open_Parenthesis);
@@ -1065,6 +1074,7 @@ namespace UFE3D
             inferenceSystem.AddInputVariable(this.DefineJumpArcVariable(AICondition.JumpArc_Opponent));
             inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.Stunned_Opponent));
             inferenceSystem.AddInputVariable(this.DefineVerticalMovementVariable(AICondition.VerticalMovement_Opponent));
+	  inferenceSystem.AddInputVariable(this.DefineBooleanVariable(AICondition.BehaviourCooldown));
 
             // OUTPUT VARIABLES
             inferenceSystem.AddOutputVariable(this.DefineOutputVariable(AIReaction.Crouch));

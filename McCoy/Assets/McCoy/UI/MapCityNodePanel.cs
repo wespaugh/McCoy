@@ -241,7 +241,7 @@ namespace Assets.McCoy.UI
 
     public void ZoneClicked()
     {
-      if(uiRoot == null || (!canConnect && !McCoy.GetInstance().Debug))
+      if(uiRoot == null || (!canConnect && !McCoy.GetInstance().DebugUI))
       {
         return;
       }

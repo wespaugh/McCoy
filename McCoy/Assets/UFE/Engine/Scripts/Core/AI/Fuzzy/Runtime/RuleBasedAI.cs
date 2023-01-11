@@ -107,6 +107,8 @@ public class RuleBasedAI : RandomAI{
 	protected ButtonPress[][] movePosXNegZ = null;
 	protected ButtonPress[][] moveNegZ = null;
 	protected ButtonPress[][] moveNegXNegZ = null;
+
+  protected float timeLastBehaviourChange;
 	#endregion
 
 
@@ -140,6 +142,8 @@ public class RuleBasedAI : RandomAI{
 		}
 
 		base.Initialize (inputs);
+
+	this.timeLastBehaviourChange = Time.realtimeSinceStartup;
 	}
 
 	public override void DoFixedUpdate(){
@@ -1497,6 +1501,7 @@ public class RuleBasedAI : RandomAI{
 			float characterHorizontalMovementSpeedSelf;
             float characterJumpArcSelf = (float)self.normalizedJumpArc;
 			float characterStunnedSelf = (float)((int)(self.currentSubState == SubStates.Stunned ? AIBoolean.TRUE : AIBoolean.FALSE));
+	  float behaviourChangeCooledDown = (float)((int)(Time.realtimeSinceStartup - timeLastBehaviourChange >= this.ai.advancedOptions.timeBetweenBehaviourChanges ? AIBoolean.TRUE : AIBoolean.FALSE));
 			
 			float normalizedHorizontalSpeedSelf = speedSelf.x;
 			if (Mathf.Approximately(normalizedHorizontalSpeedSelf, 0f)){
@@ -1620,6 +1625,7 @@ public class RuleBasedAI : RandomAI{
 			this.inferenceEngine.SetInput(AICondition.JumpArc_Self, characterJumpArcSelf);
 			this.inferenceEngine.SetInput(AICondition.Stunned_Self, characterStunnedSelf);
 			this.inferenceEngine.SetInput(AICondition.VerticalMovement_Self, characterVerticalMovementSelf);
+	  this.inferenceEngine.SetInput(AICondition.BehaviourCooldown, behaviourChangeCooledDown);
 			
 			this.inferenceEngine.SetInput(AICondition.Attacking_Opponent, attackingOpponent);
 			this.inferenceEngine.SetInput(AICondition.Attacking_AttackType_Opponent, attackTypeOpponent);
