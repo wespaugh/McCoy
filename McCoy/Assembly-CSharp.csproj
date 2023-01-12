@@ -227,7 +227,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\BlurFilter.shader" />
     <None Include="Assets\cMonkeys\cInput\Example\AbstractModels\README.txt" />
-    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\Naninovel\Resources\Naninovel\Shaders\DepthOfFieldComposition.cginc" />
     <None Include="Assets\cMonkeys\cInput\Documentation\readme (seriously).txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
