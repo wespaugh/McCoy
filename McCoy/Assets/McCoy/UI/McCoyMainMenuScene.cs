@@ -69,7 +69,7 @@ namespace Assets.McCoy.UI
       McCoyQuestManager.GetInstance().ClearQuestData();
       buildings = new List<GameObject>();
       var bg = Instantiate(imageBackground);
-      bg.transform.position = new Vector3(0f, 3.6f, 20f);
+      bg.transform.position = new Vector3(18f, 3.6f, 20f);
       buildings.Add(bg);
       for (int i = 0; i < 4; ++i)
       {

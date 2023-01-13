@@ -1,14 +1,24 @@
 ﻿using Assets.McCoy.Localization;
+using Assets.McCoy.RPG;
 using Assets.McCoy.UI;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UFE3D;
 using UnityEngine;
 using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
-  public class McCoyFiresideUI : MonoBehaviour
+  public class McCoyFiresideUI : MonoBehaviour, IMcCoyInputManager
   {
+    enum FiresideMenus
+    {
+      Stats,
+      Equipment,
+      Skills
+    }
+
     [SerializeField]
     McCoyLocalizedText playerName;
     [SerializeField]
@@ -27,8 +37,83 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     GameObject lobbyingUI = null;
 
-    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby)
+    [SerializeField]
+    GameObject statsRoot = null;
+
+    [SerializeField]
+    McCoyEquipmentMenu equipmentMenu = null;
+    private bool inputInitialized;
+    private McCoyInputManager input;
+
+    FiresideMenus currentMenu = FiresideMenus.Stats;
+
+    void Awake()
     {
+      refreshMenu();
+    }
+
+    public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
+    {
+      if (!inputInitialized)
+      {
+        inputInitialized = true;
+        input = new McCoyInputManager();
+        input.RegisterButtonListener(ButtonPress.Button5, previousMenu);
+        input.RegisterButtonListener(ButtonPress.Button6, nextMenu);
+      }
+      bool retVal = false;
+
+      if (currentMenu == FiresideMenus.Equipment)
+      {
+        retVal |= equipmentMenu.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      }
+
+      retVal |= input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      if(retVal)
+      {
+        Debug.Log("stats page handled input");
+      }
+      return retVal;
+    }
+
+    private void previousMenu()
+    {
+      switch (currentMenu)
+      {
+        case FiresideMenus.Stats:
+          currentMenu = FiresideMenus.Equipment;
+          break;
+        case FiresideMenus.Equipment:
+          currentMenu = FiresideMenus.Stats;
+          break;
+      }
+      refreshMenu();
+    }
+
+    private void nextMenu()
+    {
+      switch(currentMenu)
+      {
+        case FiresideMenus.Stats:
+          currentMenu = FiresideMenus.Equipment; 
+          break;
+        case FiresideMenus.Equipment:
+          currentMenu = FiresideMenus.Stats;
+          break;
+      }
+      refreshMenu();
+    }
+
+    private void refreshMenu()
+    {
+      statsRoot.SetActive(currentMenu == FiresideMenus.Stats);
+      equipmentMenu.gameObject.SetActive(currentMenu == FiresideMenus.Equipment);
+    }
+
+    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby, Animator playerAnimator)
+    {
+      equipmentMenu.Initialize(playerAnimator);
+
       playerName.SetTextDirectly(PlayerName(pc));
       currentLocation.SetText("com.mccoy.boardgame.currentlocation", (label) =>
       {

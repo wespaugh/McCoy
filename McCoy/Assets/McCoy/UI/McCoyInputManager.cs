@@ -35,7 +35,9 @@ namespace Assets.McCoy.UI
       // detect axis inputs for the purpose of lag detection and falling back onto default input
       foreach (KeyValuePair<InputReferences, InputEvents> pair in player1CurrentInputs)
       {
-        if ((pair.Key.inputType == InputType.VerticalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) || (pair.Key.inputType == InputType.HorizontalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) )
+        if (
+          (pair.Key.inputType == InputType.VerticalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) || 
+          (pair.Key.inputType == InputType.HorizontalAxis && Mathf.Abs((float)pair.Value.axisRaw) > axisThreshold) )
         {
           retVal = true;
         }

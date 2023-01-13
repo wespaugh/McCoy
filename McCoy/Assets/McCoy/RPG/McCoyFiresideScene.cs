@@ -32,6 +32,9 @@ namespace Assets.McCoy.RPG
     [SerializeField]
     GameObject LobbyingPrefab = null;
 
+    [SerializeField]
+    Animator selectedCharacterAnimator = null;
+
     McCoyCityScreen city = null;
     McCoyFiresideUI uiPanel = null;
 
@@ -54,7 +57,7 @@ namespace Assets.McCoy.RPG
       {
         uiPanel = Instantiate(FiresideStatsPrefab).GetComponent<McCoyFiresideUI>();
       }
-      uiPanel.transform.SetParent(root.transform);
+      // uiPanel.transform.SetParent(root.transform);
 
       pcGroups = characterGroups;
       selectedPCGroupIndex = 0;
@@ -62,7 +65,7 @@ namespace Assets.McCoy.RPG
       var skillString = McCoyGameState.Instance().playerCharacters[PlayerCharacter.Rex].SkillTreeString;
       if(string.IsNullOrEmpty(skillString))
       {
-        skillString = RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
+        RexSkillTree.GetComponent<TalentusEngine>().SaveToString();
         skillString = RexSkillTree.GetComponent<TalentusEngine>().ResetSkillTree();
       }
       loadSkills(McCoyGameState.GetPlayer(PlayerCharacter.Rex).AvailableSkillPoints, skillString, PlayerCharacter.Rex);
@@ -73,6 +76,7 @@ namespace Assets.McCoy.RPG
 
     public void NextPlayer()
     {
+      Debug.Log("Next Player");
       ++selectedCharacter;
       if(selectedCharacter >= PlayerCharacters.Length)
       {
@@ -115,7 +119,7 @@ namespace Assets.McCoy.RPG
       }
 
       canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
-      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board, canLobby);
+      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board, canLobby, selectedCharacterAnimator);
 
       foreach (var pc in PlayerCharacters)
       {
@@ -158,20 +162,28 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
         input.RegisterButtonListener(ButtonPress.Button4, toggleLobbying);
         input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
-        input.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
-        input.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button7, NextPlayer);
+        input.RegisterButtonListener(ButtonPress.Button8, PreviousPlayer);
         input.RegisterButtonListener(ButtonPress.Button2, ReturnToMap);
       }
+      
       if (talentDelegate != null)
       {
         talentDelegate.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
         return true;
       };
+      
       if(lobbyingDelegate != null)
       {
         lobbyingDelegate.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
         return true;
       }
+
+      if(uiPanel.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      {
+        return true;
+      }
+
       return input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
     
