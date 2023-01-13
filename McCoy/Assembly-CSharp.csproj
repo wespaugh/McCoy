@@ -212,6 +212,8 @@
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyEquipmentMenu.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentItem.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentLoadout.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

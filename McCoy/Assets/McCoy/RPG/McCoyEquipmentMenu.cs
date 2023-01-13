@@ -19,7 +19,6 @@ namespace Assets.McCoy.RPG
     public void Initialize(Animator characterAnimator)
     {
       this.characterAnimator = characterAnimator;
-      Debug.Log("play rex idle");
       characterAnimator.Play("rex_idle");
       characterAnimator.GetComponent<SpriteSortingScript>().Mod = new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.PURPLE);
       equipmentLabel.SetText("com.mccoy.rpg.equipmentowner", arguments: new string[] { "Rex" });
@@ -37,10 +36,6 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Down, navDown);
       }
       bool retVal = input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-      if(retVal)
-      {
-        Debug.Log("equipment page handled input");
-      }
       return retVal;
     }
 

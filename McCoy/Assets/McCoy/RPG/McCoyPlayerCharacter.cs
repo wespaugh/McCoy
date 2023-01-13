@@ -17,6 +17,11 @@ namespace Assets.McCoy.RPG
     public List<McCoySkill> Skills;
 
     private string _skillTreeString;
+    private McCoyEquipmentLoadout equipment;
+    public McCoyEquipmentLoadout Equipment
+    {
+      get { return equipment; }
+    }
     public string SkillTreeString
     {
       get
@@ -65,5 +70,6 @@ namespace Assets.McCoy.RPG
       int levelsGained = idx - levelBefore;
       AvailableSkillPoints += levelsGained;
     }
+
   }
 }

@@ -102,7 +102,6 @@ namespace UFE3D
         animKey += (bodySprite.flipX ? "_flip" : "");
         if (!hide)
         {
-          Debug.Log("playing animation with state " + animKey);
           spriteData[spriteKey].animator.Play(animKey);
         }
       }

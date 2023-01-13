@@ -222,6 +222,11 @@ namespace Assets.McCoy.BoardGame
       playerCharacters[player].AvailableSkillPoints = availableSkillPoints;
     }
 
+    public McCoyEquipmentLoadout PlayerEquipment(PlayerCharacter player)
+    {
+      return playerCharacters[player].Equipment;
+    }
+
     public bool CanPlayerTakeTurn(PlayerCharacter player)
     {
       return playerTurns[(int)player] > 0;
