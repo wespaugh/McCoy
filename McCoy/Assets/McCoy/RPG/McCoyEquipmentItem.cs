@@ -6,5 +6,6 @@ namespace Assets.McCoy.RPG
   public class McCoyEquipmentItem
   {
     public string Name;
+    public bool Arms;
   }
 }

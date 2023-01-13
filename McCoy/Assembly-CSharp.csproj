@@ -214,6 +214,7 @@
     <Compile Include="Assets\McCoy\RPG\McCoyEquipmentMenu.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyEquipmentItem.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyEquipmentLoadout.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyItemSlot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

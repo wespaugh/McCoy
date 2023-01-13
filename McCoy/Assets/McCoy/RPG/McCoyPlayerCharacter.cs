@@ -17,7 +17,7 @@ namespace Assets.McCoy.RPG
     public List<McCoySkill> Skills;
 
     private string _skillTreeString;
-    private McCoyEquipmentLoadout equipment;
+    private McCoyEquipmentLoadout equipment = new McCoyEquipmentLoadout();
     public McCoyEquipmentLoadout Equipment
     {
       get { return equipment; }

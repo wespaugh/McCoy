@@ -11,5 +11,11 @@ namespace Assets.McCoy.RPG
     List<McCoyEquipmentItem> equipment = new List<McCoyEquipmentItem>();
     int equippedArmsIndex = -1;
     int equippedAccessoryIndex = -1;
+    public List<McCoyEquipmentItem> Equipment
+    {
+      get => equipment;
+    }
+    public int EquippedArmsIndex => equippedArmsIndex;
+    public int EquippedAccessoryIndex => equippedAccessoryIndex;
   }
 }
