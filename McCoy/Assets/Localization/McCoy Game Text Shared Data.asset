@@ -411,6 +411,18 @@ MonoBehaviour:
     m_Key: com.mccoy.boardgame.availablefunds
     m_Metadata:
       m_Items: []
+  - m_Id: 26006031683211264
+    m_Key: com.mccoy.rpg.equipmentarms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26006117901324288
+    m_Key: com.mccoy.rpg.equipmentaccessory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26006292577308672
+    m_Key: com.mccoy.rpg.equipmentowner
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

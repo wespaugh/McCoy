@@ -33,10 +33,11 @@ namespace Assets.McCoy.Localization
       }
     }
 
-    public void SetText(string key, Action<string> callback = null)
+    public void SetText(string key, Action<string> callback = null, object[] arguments = null)
     {
       this.callback = callback;
       text.StringReference.TableEntryReference = key;
+      text.StringReference.Arguments = arguments;
       text.RefreshString();
     }
     public void SetTextDirectly(string s)

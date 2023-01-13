@@ -1,4 +1,5 @@
-﻿using Assets.McCoy.UI;
+﻿using Assets.McCoy.Localization;
+using Assets.McCoy.UI;
 using System;
 using System.Collections.Generic;
 using UFE3D;
@@ -9,15 +10,19 @@ namespace Assets.McCoy.RPG
 {
   public class McCoyEquipmentMenu : MonoBehaviour, IMcCoyInputManager
   {
+    [SerializeField] 
+    McCoyLocalizedText equipmentLabel = null;
+
     Animator characterAnimator = null;
     private bool inputInitialized;
     private McCoyInputManager input;
-
     public void Initialize(Animator characterAnimator)
     {
       this.characterAnimator = characterAnimator;
       Debug.Log("play rex idle");
       characterAnimator.Play("rex_idle");
+      characterAnimator.GetComponent<SpriteSortingScript>().Mod = new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.PURPLE);
+      equipmentLabel.SetText("com.mccoy.rpg.equipmentowner", arguments: new string[] { "Rex" });
     }
 
     public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)

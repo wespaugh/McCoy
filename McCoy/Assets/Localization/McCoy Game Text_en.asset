@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: f4295bb3e2aa1fa4f852a24d22bbf67a, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 3352274887411761162
   m_TableData:
   - m_Id: 492072370176
     m_Localized: Subway
@@ -475,6 +476,23 @@ MonoBehaviour:
     m_Localized: Available Funds
     m_Metadata:
       m_Items: []
+  - m_Id: 26006031683211264
+    m_Localized: Arms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26006117901324288
+    m_Localized: Accessory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26006292577308672
+    m_Localized: '{0}''s Equipment'
+    m_Metadata:
+      m_Items:
+      - rid: 3352274887411761162
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3352274887411761162
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00d0fed695645c00

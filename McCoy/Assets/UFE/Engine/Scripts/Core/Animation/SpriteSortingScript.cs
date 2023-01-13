@@ -7,16 +7,55 @@ namespace UFE3D
   [RequireComponent(typeof(SpriteRenderer))]
   public class SpriteSortingScript : MonoBehaviour
   {
+    public class SpriteModifyData
+    {
+      public SpriteModifyData(string animSuffix, Color tint)
+      {
+        animationSuffix = animSuffix;
+        this.tint = tint;
+      }
+      string animationSuffix;
+      public string AnimationSuffix
+      {
+        get => animationSuffix;
+      }
+      Color tint;
+      public Color Tint
+      {
+        get => tint;
+      }
+    }
+
+    private class SpriteSortData
+    {
+      public SpriteRenderer sprite;
+      public bool modify;
+      public Animator animator;
+    }
+
     [SerializeField]
     List<SpriteRenderer> backgroundSprites = new List<SpriteRenderer>();
 
     [SerializeField]
     List<SpriteRenderer> foregroundSprites = new List<SpriteRenderer>();
 
-    private Dictionary<string, Animator> animators = new Dictionary<string, Animator>();
+    [SerializeField]
+    List<SpriteRenderer> spritesToModify = new List<SpriteRenderer>();
+
+    private Dictionary<string, SpriteSortData> spriteData = new Dictionary<string, SpriteSortData>();
 
     [SerializeField]
     SpriteRenderer bodySprite = null;
+
+    SpriteModifyData mod = null;
+    public SpriteModifyData Mod
+    {
+      get => mod;
+      set
+      {
+        mod = value;
+      }
+    }
 
     bool cachedFlip = false;
     string cachedCommand = "";
@@ -25,11 +64,20 @@ namespace UFE3D
     {
       foreach(var bgSprite in backgroundSprites)
       {
-        animators[bgSprite.gameObject.name] = bgSprite.GetComponent<Animator>();
+        spriteData[bgSprite.gameObject.name] = new SpriteSortData(){
+          sprite = bgSprite,
+          modify = spritesToModify.Contains(bgSprite),
+          animator = bgSprite.GetComponent<Animator>()
+        };
       }
       foreach (var fgSprite in foregroundSprites)
       {
-        animators[fgSprite.gameObject.name] = fgSprite.GetComponent<Animator>();
+        spriteData[fgSprite.gameObject.name] = new SpriteSortData()
+        {
+          sprite = fgSprite,
+          modify = spritesToModify.Contains(fgSprite),
+          animator = fgSprite.GetComponent<Animator>()
+        };
       }
     }
 
@@ -41,14 +89,21 @@ namespace UFE3D
       foreach (var cmd in commands)
       {
         string[] animatorKeys = cmd.Split(':');
-        bool hide = animatorKeys.Length == 0 || animatorKeys[1] == "";
-        animators[animatorKeys[0]].gameObject.SetActive(!hide);
-        // animators[animatorKeys[0]].Play(bodySprite.flipX ? animatorKeys[1] + "_flip" : animatorKeys[1]);
-        //animators[animatorKeys[0]].SetBool("flip", bodySprite.flipX);
-        //animators[animatorKeys[0]].SetTrigger(animatorKeys[1]);
+        string spriteKey = animatorKeys[0];
+        string animKey = animatorKeys[1];
+        bool hide = animatorKeys.Length == 0 || animKey == "";
+
+        spriteData[spriteKey].animator.gameObject.SetActive(!hide);
+        if (mod != null && spriteData[spriteKey].modify)
+        {
+          spriteData[spriteKey].sprite.color = Mod.Tint;
+          animKey += Mod.AnimationSuffix;
+        }
+        animKey += (bodySprite.flipX ? "_flip" : "");
         if (!hide)
         {
-          animators[animatorKeys[0]].Play(animatorKeys[1] + (bodySprite.flipX ? "_flip" : ""));
+          Debug.Log("playing animation with state " + animKey);
+          spriteData[spriteKey].animator.Play(animKey);
         }
       }
     }

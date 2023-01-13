@@ -24,23 +24,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: powerstation
+    stageName: nightclub
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
-    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+    screenshot: {fileID: 2800000, guid: 6f549e04399d8b34691854153a43b911, type: 3}
+    prefab: {fileID: 7216622014955884370, guid: cce48fa0de8f32047904118cc04242d3,
       type: 3}
-    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
+    music: {fileID: 0}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: -34359738368
+      _serializedValue: 0
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: -42949672960
+      _serializedValue: 0
     tempRightBoundary:
-      _serializedValue: 25769803776
+      _serializedValue: 0
     useTempBoundary: 0
     position:
       x:
@@ -49,8 +49,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/PowerStation/PowerStation
-    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
+    advancedStageData: StageData/Nightclub/Nightclub
+    stageInfo: {fileID: 11400000, guid: 23acd35c736159641840589f316c3e07, type: 2}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -855,7 +855,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -981,10 +981,42 @@ MonoBehaviour:
     inputViewerIcon4: {fileID: 0}
     inputViewerIcon5: {fileID: 0}
     inputViewerIcon6: {fileID: 0}
+  - inputType: 2
+    inputButtonName: P1Button7
+    engineRelatedButton: 10
+    joystickAxisName: 
+    cInputPositiveKeyName: 
+    cInputPositiveDefaultKey: M
+    cInputPositiveAlternativeKey: Joystick1Button7
+    cInputNegativeKeyName: 
+    cInputNegativeDefaultKey: 
+    cInputNegativeAlternativeKey: 
+    inputViewerIcon1: {fileID: 0}
+    inputViewerIcon2: {fileID: 0}
+    inputViewerIcon3: {fileID: 0}
+    inputViewerIcon4: {fileID: 0}
+    inputViewerIcon5: {fileID: 0}
+    inputViewerIcon6: {fileID: 0}
+  - inputType: 2
+    inputButtonName: P1Button8
+    engineRelatedButton: 11
+    joystickAxisName: 
+    cInputPositiveKeyName: 
+    cInputPositiveDefaultKey: N
+    cInputPositiveAlternativeKey: Joystick1Button6
+    cInputNegativeKeyName: 
+    cInputNegativeDefaultKey: 
+    cInputNegativeAlternativeKey: 
+    inputViewerIcon1: {fileID: 0}
+    inputViewerIcon2: {fileID: 0}
+    inputViewerIcon3: {fileID: 0}
+    inputViewerIcon4: {fileID: 0}
+    inputViewerIcon5: {fileID: 0}
+    inputViewerIcon6: {fileID: 0}
   player2_Inputs:
   - inputType: 0
     inputButtonName: P2KeyboardHorizontal
-    engineRelatedButton: 1
+    engineRelatedButton: 0
     joystickAxisName: P2JoystickHorizontal
     cInputPositiveKeyName: P2Right
     cInputPositiveDefaultKey: RightArrow
