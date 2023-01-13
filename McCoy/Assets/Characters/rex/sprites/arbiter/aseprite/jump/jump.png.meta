@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: f00267f9a12f82b489ec632375e370b3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 60
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: frontarm_colossus1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 653
+        width: 202
+        height: 153
+      alignment: 9
+      pivot: {x: 0.27722773, y: 0.71555555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94dc3abc807e0746b774a30883de34b
+      internalID: 1491367813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frontarm_colossus2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 422
+        width: 170
+        height: 229
+      alignment: 9
+      pivot: {x: 0.7082353, y: 0.78131}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89af9131eebf0d649b2fe34437ea6574
+      internalID: 1380556104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frontarm1
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 711
+        width: 206
+        height: 151
+      alignment: 9
+      pivot: {x: 0.29126215, y: 0.7250331}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da72d93c799bce94e9b71cec5fd9d633
+      internalID: -1694592499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frontarm2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 480
+        width: 170
+        height: 229
+      alignment: 9
+      pivot: {x: 0.7082353, y: 0.78131}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c2626ec61b5af345a30ff562eea5127
+      internalID: 113970887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs1
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 864
+        width: 210
+        height: 159
+      alignment: 9
+      pivot: {x: 0.5809524, y: 0.10691824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96da2076597f99546873f81d72e4fb74
+      internalID: 320963881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 808
+        width: 290
+        height: 215
+      alignment: 9
+      pivot: {x: 0.7, y: 0.1627907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572386bd39e63ea47b781dc702e11a16
+      internalID: -834234423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reararm_colossus1
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 509
+        width: 129
+        height: 200
+      alignment: 9
+      pivot: {x: 0.43410853, y: 0.365}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471f04815a748d945bfefc08d634c5ce
+      internalID: 460044661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reararm_colossus2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 265
+        width: 140
+        height: 91
+      alignment: 9
+      pivot: {x: 0.62142855, y: -0.48351648}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a05c0aeffe9b88c4fb62ec59ae4c544b
+      internalID: 259036884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reararm1
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 308
+        width: 117
+        height: 199
+      alignment: 9
+      pivot: {x: 0.47863248, y: 0.36180905}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2277097aa8dc874bb633615d5b4be98
+      internalID: -168134422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reararm2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 321
+        width: 142
+        height: 99
+      alignment: 9
+      pivot: {x: 0.62676054, y: -0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4131b7ec7f4ab42ac1dd2ed535cfc3
+      internalID: -1706276611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso1
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 358
+        width: 147
+        height: 120
+      alignment: 9
+      pivot: {x: 0.50340134, y: 0.033333335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a396a85a663b2944ca4136c4a193ed8d
+      internalID: 616642834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 167
+        width: 114
+        height: 152
+      alignment: 9
+      pivot: {x: 0.25438598, y: -0.0065789474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36da6346d6fe8f4b96f17636bdf4cdb
+      internalID: -673404604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: fcb38025ea4f28947bb9c1d123e463c2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      frontarm_colossus1: 1491367813
+      frontarm2: 113970887
+      reararm1: -168134422
+      torso1: 616642834
+      torso2: -673404604
+      frontarm_colossus2: 1380556104
+      reararm_colossus2: 259036884
+      legs2: -834234423
+      frontarm1: -1694592499
+      reararm_colossus1: 460044661
+      reararm2: -1706276611
+      legs1: 320963881
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

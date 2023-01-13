@@ -19,16 +19,8 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0.16666667
-      value: {fileID: 21300000, guid: 4ed552002f7a05d40b48b1a7e9c54ecb, type: 3}
-    - time: 0.55
-      value: {fileID: 21300000, guid: 2e97052209fe2904bbc777e6e20e538b, type: 3}
-    - time: 0.95
-      value: {fileID: 21300000, guid: 0f895df85a1b8824eb22b14119734252, type: 3}
-    - time: 1.3333334
-      value: {fileID: 21300000, guid: 5fb9dfadedcc2cc49ab5c6a855e602f5, type: 3}
     - time: 1.6666666
-      value: {fileID: 21300000, guid: 5fb9dfadedcc2cc49ab5c6a855e602f5, type: 3}
+      value: {fileID: 21300000, guid: e03f5b9e65e4bf447a2ddee302537218, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,11 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 4ed552002f7a05d40b48b1a7e9c54ecb, type: 3}
-    - {fileID: 21300000, guid: 2e97052209fe2904bbc777e6e20e538b, type: 3}
-    - {fileID: 21300000, guid: 0f895df85a1b8824eb22b14119734252, type: 3}
-    - {fileID: 21300000, guid: 5fb9dfadedcc2cc49ab5c6a855e602f5, type: 3}
-    - {fileID: 21300000, guid: 5fb9dfadedcc2cc49ab5c6a855e602f5, type: 3}
+    - {fileID: 21300000, guid: e03f5b9e65e4bf447a2ddee302537218, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -80,7 +68,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: '-1:,0:,1:,2:,3:,4:'
+    data: -1:,0:legs_jump,1:torso_jump,2:reararm_jump,3:frontarm_jump,4:head_jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
