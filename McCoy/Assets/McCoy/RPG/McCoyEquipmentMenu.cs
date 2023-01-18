@@ -68,6 +68,28 @@ namespace Assets.McCoy.RPG
 
       accessorySlot.Initialize(rexEquipment.EquippedAccessoryIndex >= 0 ? rexEquipment.Equipment[rexEquipment.EquippedAccessoryIndex] : null);
       armsSlot.Initialize(rexEquipment.EquippedArmsIndex >= 0 ? rexEquipment.Equipment[rexEquipment.EquippedArmsIndex] : null);
+      updateSelection(selection, true);
+    }
+
+    private void updateSelection(int newIdx, bool force = false)
+    {
+      if(newIdx == selection && !force)
+      {
+        return;
+      }
+      if(newIdx >= inventorySlots.Count)
+      {
+        Debug.Log("uh oh. " + newIdx);
+        return;
+      }
+      getSlot(selection).SetHighlight(false);
+      selection = newIdx;
+      getSlot(selection).SetHighlight(true);
+    }
+
+    private McCoyItemSlot getSlot(int idx)
+    {
+      return idx == -1 ? armsSlot : (idx == -2 ? accessorySlot : inventorySlots[idx].GetComponent<McCoyItemSlot>());
     }
 
     public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
@@ -87,22 +109,86 @@ namespace Assets.McCoy.RPG
 
     private void navRight()
     {
-      Debug.Log("Nav Right");
+      int newIdx = selection;
+      if (selection == -1) newIdx = -2;
+      else if (selection == -2) newIdx = -1;
+      else
+      {
+        if(newIdx % 6 == 5)
+        {
+          newIdx -= 5;
+        }
+        else
+        {
+          newIdx++;
+        }
+      }
+      updateSelection(newIdx);
     }
 
     private void navLeft()
     {
-      Debug.Log("Nav Left");
+      int newIdx = selection;
+      if (selection == -1) newIdx = -2;
+      else if (selection == -2) newIdx = -1;
+      else
+      {
+        if (newIdx % 6 == 0)
+        {
+          newIdx += 5;
+        }
+        else
+        {
+          newIdx--;
+        }
+      }
+      updateSelection(newIdx);
     }
 
     private void navUp()
     {
-      Debug.Log("Nav Up");
+      int newIdx = selection;
+      if (selection == -1) newIdx = 7;
+      else if (selection == -2) newIdx = 10;
+      else
+      {
+        if (selection < 3)
+        {
+          newIdx = -1;
+        }
+        else if (selection < 6)
+        {
+          newIdx = -2;
+        }
+        else
+        {
+          newIdx = selection - 6;
+        }
+      }
+      updateSelection(newIdx);
     }
 
     private void navDown()
     {
-      Debug.Log("Nav Down");
+      int newIdx = selection;
+      if (selection == -1) newIdx = 1;
+      else if (selection == -2) newIdx = 4;
+      else
+      {
+        if (selection > 8)
+        {
+          newIdx = -2;
+        }
+        else if (selection > 5)
+        {
+          newIdx = -1;
+        }
+        else
+        {
+          newIdx = selection + 6;
+        }
+      }
+      updateSelection(newIdx);
     }
   }
 }
