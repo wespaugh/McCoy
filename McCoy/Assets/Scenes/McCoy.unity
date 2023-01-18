@@ -644,6 +644,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8862596157416072, guid: 9a161e700108f1d42812ab78acc53202, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2167593329371993709, guid: 9a161e700108f1d42812ab78acc53202,
         type: 3}
       propertyPath: m_Size.x
@@ -663,6 +667,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066613881088107291, guid: 9a161e700108f1d42812ab78acc53202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3209425485833433879, guid: 9a161e700108f1d42812ab78acc53202,
         type: 3}
@@ -722,7 +731,7 @@ PrefabInstance:
     - target: {fileID: 3759928821105626172, guid: 9a161e700108f1d42812ab78acc53202,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4008542871262631591, guid: 9a161e700108f1d42812ab78acc53202,
         type: 3}

@@ -18,14 +18,16 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
 	  {
 		  $lastValueLines = ""
 	  }
-	  # if we do get to a flipX, it's time to process all the value lines we've seen since the last curve started
-	  if($line -match ("attribute: m_FlipX"))
+	  [bool] $foundFlipX = $line -match ("attribute: m_FlipX")
+	  [bool] $foundPosX = $line -match ("m_LocalPosition.x")
+	  # if we do get to a flipX or position X, it's time to process all the value lines we've seen since the last curve started
+	  if($foundFlipX -Or $foundPosX)
 	  {
 		  if($doFlip)
 		  {
 			  # grab all our individual lines we've seen
-			  $lvlComps = $lastValueLines.Split("|")
-			  foreach($lastValueLine in $lvlComps)
+			  $lvlComponents = $lastValueLines.Split("|")
+			  foreach($lastValueLine in $lvlComponents)
 			  {
 				  # there's probably a leading "" before the first |, so skip that
 				  if($lastValueLine.Length -eq 0)
@@ -36,14 +38,23 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
 				  $flipXValueLine = $replacementLines[$lastValueLine]
 				  # split the values on this line, the last one will be either 1 or 0 for the flipX state
 				  $flipComponents = $flipXValueLine.Split(" ");
-				  # flip it!
-				  if($flipComponents[-1] -eq "0")
+				  
+				  if($foundFlipX)
 				  {
-					  $flipComponents[-1] = "1"
+					  # flip it!
+					  if($flipComponents[-1] -eq "0")
+					  {
+						  $flipComponents[-1] = "1"
+					  }
+					  else
+					  {
+						  $flipComponents[-1] = "0"
+					  }
 				  }
-				  else
+				  elseif($foundPosX)
 				  {
-					  $flipComponents[-1] = "0"
+					  [double] $foundLocalXPosValue = $flipComponents[-1];
+					  $flipComponents[-1] = -1 * $foundLocalXPosValue
 				  }
 				  # join the line with spaces again
 				  $replacementFlipXLine = $flipComponents -join " "
