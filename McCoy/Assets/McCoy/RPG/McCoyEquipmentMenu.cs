@@ -15,6 +15,9 @@ namespace Assets.McCoy.RPG
     McCoyLocalizedText equipmentLabel = null;
 
     [SerializeField]
+    McCoyLocalizedText selectedItemText = null;
+
+    [SerializeField]
     Transform InventoryRoot = null;
 
     [SerializeField]
@@ -32,19 +35,20 @@ namespace Assets.McCoy.RPG
 
     List<GameObject> inventorySlots = new List<GameObject>();
 
-    // -1 : Arms
-    // -2 : Accessory
+    McCoyEquipmentLoadout playerEquipment = null;
+
+    // -1 : Equipped Arms
+    // -2 : Equipped Accessory
     // 0-11 : An Item
     int selection = 0;
     public void Initialize(Animator characterAnimator)
     {
       this.characterAnimator = characterAnimator;
       characterAnimator.GetComponent<SpriteRenderer>().flipX = true;
-      characterAnimator.Play("axtest_combo_1");// ("rex_idle");
-      characterAnimator.GetComponent<SpriteSortingScript>().Mod = new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.PURPLE);
+      characterAnimator.Play("rex_idle");
       equipmentLabel.SetText("com.mccoy.rpg.equipmentowner", arguments: new string[] { "Rex" });
 
-      var rexEquipment = McCoyGameState.Instance().PlayerEquipment(ProjectConstants.PlayerCharacter.Rex);
+      playerEquipment = McCoyGameState.Instance().PlayerEquipment(ProjectConstants.PlayerCharacter.Rex);
 
       bool create = inventorySlots.Count == 0;
       for(int i = 0; i < 12; ++i)
@@ -60,16 +64,21 @@ namespace Assets.McCoy.RPG
           go = inventorySlots[i];
         }
         McCoyEquipmentItem item = null;
-        if(rexEquipment.Equipment.Count > i)
+        if(playerEquipment.Equipment.Count > i)
         {
-          item = rexEquipment.Equipment[i];
+          item = playerEquipment.Equipment[i];
         }
-        go.GetComponent<McCoyItemSlot>().Initialize(item);
+        go.GetComponent<McCoyItemSlot>().SetItem(item);
       }
-
-      accessorySlot.Initialize(rexEquipment.EquippedAccessoryIndex >= 0 ? rexEquipment.Equipment[rexEquipment.EquippedAccessoryIndex] : null);
-      armsSlot.Initialize(rexEquipment.EquippedArmsIndex >= 0 ? rexEquipment.Equipment[rexEquipment.EquippedArmsIndex] : null);
+      refreshEquipmentSlots();
       updateSelection(selection, true);
+    }
+
+    protected void refreshEquipmentSlots()
+    {
+      accessorySlot.SetItem(playerEquipment.EquippedAccessoryIndex >= 0 ? playerEquipment.Equipment[playerEquipment.EquippedAccessoryIndex] : null);
+      armsSlot.SetItem(playerEquipment.EquippedArmsIndex >= 0 ? playerEquipment.Equipment[playerEquipment.EquippedArmsIndex] : null);
+      characterAnimator.GetComponent<SpriteSortingScript>().Mod = playerEquipment.EquippedArmsIndex >= 0 ? new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.BLUE_STEEL) : null;
     }
 
     private void updateSelection(int newIdx, bool force = false)
@@ -86,6 +95,10 @@ namespace Assets.McCoy.RPG
       getSlot(selection).SetHighlight(false);
       selection = newIdx;
       getSlot(selection).SetHighlight(true);
+      var itemSelected = getSlot(selection).Item;
+
+      selectedItemText.SetTextDirectly(itemSelected?.Name);
+
     }
 
     private McCoyItemSlot getSlot(int idx)
@@ -103,11 +116,36 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Back, navLeft);
         input.RegisterButtonListener(ButtonPress.Up, navUp);
         input.RegisterButtonListener(ButtonPress.Down, navDown);
+        input.RegisterButtonListener(ButtonPress.Button1, selectSlot);
       }
       bool retVal = input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       return retVal;
     }
 
+    protected void selectSlot()
+    {
+      Debug.Log("Select Slot");
+      var slot = getSlot(selection);
+      // arms unequip
+      if(selection == -1)
+      {
+        Debug.Log("unequip arms");
+        playerEquipment.Unequip(true);
+      }
+      // accessory unequip
+      else if(selection == -2)
+      {
+        Debug.Log("unequip accessory");
+        playerEquipment.Unequip(false);
+      }
+      else if(slot.Item != null)
+      {
+        playerEquipment.Equip(selection);
+      }
+      refreshEquipmentSlots();
+    }
+
+    #region Navigation
     private void navRight()
     {
       int newIdx = selection;
@@ -191,5 +229,6 @@ namespace Assets.McCoy.RPG
       }
       updateSelection(newIdx);
     }
+    #endregion
   }
 }

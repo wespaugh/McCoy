@@ -82,6 +82,8 @@ namespace Assets.McCoy.UI
       selectedPlayer =  pc.Player;
       McCoySkillUnlockManager.PlayerSpawned(player1, pc.Skills);
 
+      player1.spriteSortScript.Mod = McCoyGameState.Instance().PlayerEquipment(selectedPlayer).EquippedArmsIndex >= 0 ? new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.BLUE_STEEL) : null;
+
       updateXP(true);
 
       if (!spawnerInitialized)

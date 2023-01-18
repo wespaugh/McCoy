@@ -43,6 +43,7 @@ namespace Assets.McCoy.RPG
       2800, 3800, 5000, 6500, 9001
     };
 
+
     /*
     public object Clone()
     {

@@ -11,12 +11,16 @@ namespace Assets.McCoy.RPG
 
     [SerializeField]
     Image highlightImage = null;
-    public void Initialize(McCoyEquipmentItem item)
+
+    McCoyEquipmentItem itemInSlot = null;
+    public McCoyEquipmentItem Item
     {
-      if(item == null)
-      {
-        itemImage.gameObject.SetActive(false);
-      }
+      get => itemInSlot;
+    }
+    public void SetItem(McCoyEquipmentItem item)
+    {
+      itemImage.gameObject.SetActive(item != null);
+      itemInSlot = item;
     }
     public void SetHighlight(bool on)
     {

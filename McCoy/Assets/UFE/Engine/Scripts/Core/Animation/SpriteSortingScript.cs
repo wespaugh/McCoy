@@ -58,6 +58,7 @@ namespace UFE3D
       set
       {
         mod = value;
+        PlayLimbAnimation(cachedCommand);
       }
     }
 
@@ -117,6 +118,10 @@ namespace UFE3D
         {
           spriteData[spriteKey].sprite.color = Mod.Tint;
           animKey += Mod.AnimationSuffix;
+        }
+        else
+        {
+          spriteData[spriteKey].sprite.color = Color.white;
         }
         animKey += (bodySprite.flipX ? "_flip" : "");
         spriteData[spriteKey].animator.gameObject.SetActive(!hide);

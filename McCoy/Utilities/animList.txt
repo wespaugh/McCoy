@@ -1,4 +1,5 @@
-D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/Limbs/reararm_idle.anim
-D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/Limbs/torso_idle.anim
-D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/Limbs/frontarm_idle.anim
-D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/Limbs/head_idle.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/legs_combo_3.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/torso_combo_3.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/reararm_combo_3.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/frontarm_combo_3.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/head_combo_3.anim
