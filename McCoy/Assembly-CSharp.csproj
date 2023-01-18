@@ -60,6 +60,7 @@
     <Compile Include="Assets\McCoy\UI\McCoyStinger.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOnlineModeAfterBattleScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\StoryModeTextureScreen.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentGenerator.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBattleGUI.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyGenericTextAccessor.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothJoinGameScreen.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\McCoy\UI\McCoyCityScreen.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Nodes\TalentTreeNodeLevel.cs" />
     <Compile Include="Assets\BrawlerRuleBasedAI.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentMenu.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityZonePlacementNode.cs" />
     <Compile Include="Assets\McCoy\BoardGame\SearchableNode.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeCondition.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\Talentus\Example\Scripts\TalentusEngineExtended.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapData.cs" />
     <Compile Include="Assets\LiquidBar\LiquidBar.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyItemSlot.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothGameScreen.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyFiresideScene.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultHostGameScreen.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="Assets\McCoy\BoardGame\McCoyZoneMapMobIndicator.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultPauseScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBuff.cs" />
+    <Compile Include="Assets\McCoy\Util\McCoyAnimationEditor.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoBullet.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultJoinGameScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultConnectionLostScreen.cs" />
@@ -167,6 +171,7 @@
     <Compile Include="Assets\McCoy\UI\MapCityNodePanel.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoySkillTreeMenu.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultLoadingBattleScreen.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentLoadout.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyBrawlerSpawnManager.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoDestroy.cs" />
     <Compile Include="Assets\FX_Ui_ProgressBar\Scripts\changeEffects.cs" />
@@ -184,6 +189,7 @@
     <Compile Include="Assets\McCoy\UI\IMcCoyInputManager.cs" />
     <Compile Include="Assets\McCoy\ProjectConstants.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultBluetoothHostGameScreen.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentItem.cs" />
     <Compile Include="Assets\McCoy\Localization\McCoyLocalizedText.cs" />
     <Compile Include="Assets\McCoy\Brawler\Buffs\McCoyBuffDelegate.cs" />
     <Compile Include="Assets\cMonkeys\cGUI\Plugins\cGUI.cs" />
@@ -211,11 +217,6 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentMenu.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentItem.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentLoadout.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyItemSlot.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyEquipmentGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

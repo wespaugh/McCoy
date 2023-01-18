@@ -191,6 +191,11 @@ public class McCoyAnimationEditor : EditorWindow
   {
     
     int idx = 0;
+    if(!AnimationMode.InAnimationMode())
+    {
+      return;
+    }
+
     AnimationMode.BeginSampling();
     foreach (var go in gameObjects)
     {

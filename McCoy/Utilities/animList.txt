@@ -1,5 +1,5 @@
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/arbiter/legs_combo_3.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/arbiter/torso_combo_3.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/arbiter/reararm_combo_3.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/arbiter/frontarm_combo_3.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/arbiter/head_combo_3.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/legs_combo_1.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/torso_combo_1.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/reararm_combo_1.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/frontarm_combo_1.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/head_combo_1.anim
