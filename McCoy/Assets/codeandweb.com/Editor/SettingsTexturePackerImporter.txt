@@ -1,13 +1,16 @@
 version: 2
 tpsheetFileNames:
+- Assets/Characters/rex/sprites/arbiter/aseprite/combo/combo.tpsheet
 - Assets/Characters/rex/sprites/arbiter/aseprite/jump/jump.tpsheet
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
+- Assets/Characters/rex/sprites/arbiter/aseprite/combo/combo.png
 - Assets/Characters/rex/sprites/arbiter/aseprite/jump/jump.png
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 normalmapFileNames:
+- 
 - 
 - 
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png

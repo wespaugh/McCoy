@@ -124,7 +124,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>rex_arbiter_combo_1.tpsheet</filename>
+                <filename>../aseprite/combo/combo.tpsheet</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -173,210 +173,15 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">rex_arbiter_combo_1_reararmslash3.png</key>
+            <key type="filename">../aseprite/combo/front arm1.png</key>
+            <key type="filename">../aseprite/combo/front arm2.png</key>
+            <key type="filename">../aseprite/combo/front arm3.png</key>
+            <key type="filename">../aseprite/combo/front_arm_colossus1.png</key>
+            <key type="filename">../aseprite/combo/front_arm_colossus2.png</key>
+            <key type="filename">../aseprite/combo/front_arm_colossus3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.454762,0.183594</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_frontarm1.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.207143,0.1875</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_frontarm2.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.202381,0.1875</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_frontarm3.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.188095,0.191406</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_frontarm4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.542857,0.199219</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_head4.png</key>
-            <key type="filename">rex_arbiter_combo_torso1.png</key>
-            <key type="filename">rex_arbiter_combo_torso2.png</key>
-            <key type="filename">rex_arbiter_combo_torso3.png</key>
-            <key type="filename">rex_arbiter_combo_torso4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_legs1.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.333333,0.957031</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_legs2.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.338095,0.960938</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_legs3.png</key>
-            <key type="filename">rex_arbiter_combo_legs4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.330952,0.949219</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_reararm1.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.507143,0.34375</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_reararm2.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.445238,0.234375</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_reararm3.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.478571,0.167969</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_reararm4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.761905,0.308594</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9Paddings</key>
-                <rect>105,64,210,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_divekick_slash_1_legs.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.42619,0.896484</point_f>
+                <point_f>0.25,0.61</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -388,10 +193,11 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_divekick_slash_1_reararm.png</key>
+            <key type="filename">../aseprite/combo/front arm4.png</key>
+            <key type="filename">../aseprite/combo/front_arm_colossus4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.788095,0.617188</point_f>
+                <point_f>0.54,0.61</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -403,10 +209,11 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_divekick_spin.png</key>
+            <key type="filename">../aseprite/combo/front arm5.png</key>
+            <key type="filename">../aseprite/combo/front_arm_colossus5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.285714,0.470703</point_f>
+                <point_f>0.53,0.41</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -418,10 +225,12 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_frontarm.png</key>
+            <key type="filename">../aseprite/combo/legs1.png</key>
+            <key type="filename">../aseprite/combo/legs2.png</key>
+            <key type="filename">../aseprite/combo/legs4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.55,0.410156</point_f>
+                <point_f>0.35,0.98</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -433,10 +242,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_legs.png</key>
+            <key type="filename">../aseprite/combo/legs5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.609524,0.914063</point_f>
+                <point_f>0.588095,0.90625</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -448,8 +257,169 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">rex_arbiter_combo_uppercut_reararm.png</key>
-            <key type="filename">rex_arbiter_combo_uppercut_torso.png</key>
+            <key type="filename">../aseprite/combo/legs6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.27619,0.464844</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/legs7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.44,0.87</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm1.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.48,0.68</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm2.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.46,0.6</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm3.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.47,0.6</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm4.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.8,0.65</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm5.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.74,0.35</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm7.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.81,0.62</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear arm8.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_colossus8.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.78,0.61</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/rear_arm_slash_3.png</key>
+            <key type="filename">../aseprite/combo/rear_arm_slash_colossus3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.59</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9Paddings</key>
+                <rect>105,128,210,256</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../aseprite/combo/torso1.png</key>
+            <key type="filename">../aseprite/combo/torso2.png</key>
+            <key type="filename">../aseprite/combo/torso3.png</key>
+            <key type="filename">../aseprite/combo/torso4.png</key>
+            <key type="filename">../aseprite/combo/torso5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -471,31 +441,43 @@
             <struct type="SpriteSheet">
                 <key>files</key>
                 <array>
-                    <filename>rex_arbiter_combo_frontarm1.png</filename>
-                    <filename>rex_arbiter_combo_frontarm2.png</filename>
-                    <filename>rex_arbiter_combo_frontarm3.png</filename>
-                    <filename>rex_arbiter_combo_frontarm4.png</filename>
-                    <filename>rex_arbiter_combo_head4.png</filename>
-                    <filename>rex_arbiter_combo_legs1.png</filename>
-                    <filename>rex_arbiter_combo_legs2.png</filename>
-                    <filename>rex_arbiter_combo_legs3.png</filename>
-                    <filename>rex_arbiter_combo_legs4.png</filename>
-                    <filename>rex_arbiter_combo_reararm1.png</filename>
-                    <filename>rex_arbiter_combo_reararm2.png</filename>
-                    <filename>rex_arbiter_combo_reararm4.png</filename>
-                    <filename>rex_arbiter_combo_torso1.png</filename>
-                    <filename>rex_arbiter_combo_torso2.png</filename>
-                    <filename>rex_arbiter_combo_torso3.png</filename>
-                    <filename>rex_arbiter_combo_torso4.png</filename>
-                    <filename>rex_arbiter_combo_1_reararmslash3.png</filename>
-                    <filename>rex_arbiter_combo_reararm3.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_divekick_slash_1_legs.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_divekick_slash_1_reararm.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_divekick_spin.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_frontarm.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_legs.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_reararm.png</filename>
-                    <filename>rex_arbiter_combo_uppercut_torso.png</filename>
+                    <filename>../aseprite/combo/front arm1.png</filename>
+                    <filename>../aseprite/combo/front arm2.png</filename>
+                    <filename>../aseprite/combo/front arm3.png</filename>
+                    <filename>../aseprite/combo/front arm4.png</filename>
+                    <filename>../aseprite/combo/front arm5.png</filename>
+                    <filename>../aseprite/combo/front_arm_colossus1.png</filename>
+                    <filename>../aseprite/combo/front_arm_colossus2.png</filename>
+                    <filename>../aseprite/combo/front_arm_colossus3.png</filename>
+                    <filename>../aseprite/combo/front_arm_colossus4.png</filename>
+                    <filename>../aseprite/combo/front_arm_colossus5.png</filename>
+                    <filename>../aseprite/combo/legs1.png</filename>
+                    <filename>../aseprite/combo/legs2.png</filename>
+                    <filename>../aseprite/combo/legs4.png</filename>
+                    <filename>../aseprite/combo/legs5.png</filename>
+                    <filename>../aseprite/combo/legs6.png</filename>
+                    <filename>../aseprite/combo/legs7.png</filename>
+                    <filename>../aseprite/combo/rear arm1.png</filename>
+                    <filename>../aseprite/combo/rear arm2.png</filename>
+                    <filename>../aseprite/combo/rear arm3.png</filename>
+                    <filename>../aseprite/combo/rear arm4.png</filename>
+                    <filename>../aseprite/combo/rear arm5.png</filename>
+                    <filename>../aseprite/combo/rear arm7.png</filename>
+                    <filename>../aseprite/combo/rear arm8.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus1.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus2.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus3.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus4.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus5.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus7.png</filename>
+                    <filename>../aseprite/combo/rear_arm_colossus8.png</filename>
+                    <filename>../aseprite/combo/rear_arm_slash_colossus3.png</filename>
+                    <filename>../aseprite/combo/torso1.png</filename>
+                    <filename>../aseprite/combo/torso2.png</filename>
+                    <filename>../aseprite/combo/torso3.png</filename>
+                    <filename>../aseprite/combo/torso4.png</filename>
+                    <filename>../aseprite/combo/torso5.png</filename>
+                    <filename>../aseprite/combo/rear_arm_slash_3.png</filename>
                 </array>
             </struct>
         </map>

@@ -39,7 +39,8 @@ namespace Assets.McCoy.RPG
     public void Initialize(Animator characterAnimator)
     {
       this.characterAnimator = characterAnimator;
-      characterAnimator.Play("rex_idle");
+      characterAnimator.GetComponent<SpriteRenderer>().flipX = true;
+      characterAnimator.Play("axtest_combo_1");// ("rex_idle");
       characterAnimator.GetComponent<SpriteSortingScript>().Mod = new SpriteSortingScript.SpriteModifyData("_colossus", ProjectConstants.PURPLE);
       equipmentLabel.SetText("com.mccoy.rpg.equipmentowner", arguments: new string[] { "Rex" });
 

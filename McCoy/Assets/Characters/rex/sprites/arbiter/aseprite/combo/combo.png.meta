@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 3402ae72b1b3a564c9294d30f1ca334d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 60
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: front arm1
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1078
+        width: 162
+        height: 172
+      alignment: 9
+      pivot: {x: 0.6481481, y: 0.7132558}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6939b8f4bb4714cb90fc63af80e86f
+      internalID: 333898201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front arm2
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 1264
+        width: 138
+        height: 170
+      alignment: 9
+      pivot: {x: 0.76086956, y: 0.7216471}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1910ba047dac0b343a3349c2918fcc96
+      internalID: -507486156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front arm3
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 743
+        width: 124
+        height: 174
+      alignment: 9
+      pivot: {x: 0.8467742, y: 0.7337931}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd73fa1c2d7f7d4bad11603863a1167
+      internalID: -324543788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front arm4
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1436
+        width: 227
+        height: 131
+      alignment: 9
+      pivot: {x: 0.8493392, y: 0.62351143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1981a6dcb554ef740992859045e825d8
+      internalID: -255053678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front arm5
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 989
+        width: 138
+        height: 151
+      alignment: 9
+      pivot: {x: 0.84492755, y: 0.78860927}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18af91f69aa82754f8521bcc8961fe6a
+      internalID: 402420743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_arm_colossus1
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 920
+        width: 162
+        height: 170
+      alignment: 9
+      pivot: {x: 0.6481481, y: 0.7275294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62114db4eeea51f46b96970cc86931a5
+      internalID: 852107442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_arm_colossus2
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 1092
+        width: 138
+        height: 170
+      alignment: 9
+      pivot: {x: 0.76086956, y: 0.7216471}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51419ac3137b87947b0eaefdc863bbad
+      internalID: -645850201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_arm_colossus3
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 814
+        width: 125
+        height: 173
+      alignment: 9
+      pivot: {x: 0.84, y: 0.7322543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d39b092685dab458d3d19a1322f15c
+      internalID: -514391658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_arm_colossus4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1413
+        width: 219
+        height: 132
+      alignment: 9
+      pivot: {x: 0.8438356, y: 0.6187879}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2da03666e794504cbee402893213bbe
+      internalID: -1526672672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_arm_colossus5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 878
+        width: 138
+        height: 151
+      alignment: 9
+      pivot: {x: 0.84492755, y: 0.78860927}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13617138de59b824bb66c68e323646bc
+      internalID: 730225868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs1
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 1919
+        width: 197
+        height: 128
+      alignment: 9
+      pivot: {x: 0.4467005, y: 0.08}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a57a5ccd2a69243ab268df167f002f
+      internalID: 1886906568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1169
+        width: 207
+        height: 129
+      alignment: 9
+      pivot: {x: 0.42028984, y: 0.07937984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1409fcc2bd96444ea8afcefc2d74ca8
+      internalID: -1753791910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1884
+        width: 287
+        height: 163
+      alignment: 9
+      pivot: {x: 0.31010452, y: 0.06282209}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470a3bad49c13b04cb09df3cbe706d67
+      internalID: -990399113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs5
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 1252
+        width: 194
+        height: 182
+      alignment: 9
+      pivot: {x: 0.44329897, y: 0.15384616}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a056b3fb7d91ff148a1d95f6f034ab83
+      internalID: -1050496086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs6
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1401
+        width: 222
+        height: 203
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6059113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c383829382b3a0042bf7a09c07685ec3
+      internalID: 1765445214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legs7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1300
+        width: 214
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5271028, y: 0.16720721}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a127f2a0304531f4d92d75d5e41bc16c
+      internalID: -64302002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1547
+        width: 236
+        height: 114
+      alignment: 9
+      pivot: {x: 0.08305085, y: 0.50736845}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5def2f8b782d1e34a91a980d76fe8219
+      internalID: -1967812077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm2
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1951
+        width: 252
+        height: 96
+      alignment: 9
+      pivot: {x: 0.1, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c60a8d83e99e064ba2ae65bca8c4332
+      internalID: -553256355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm3
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 1606
+        width: 240
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5516667, y: 0.83317536}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb6c25d01dc1ebe45b11ed291d1676dc
+      internalID: 944340946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm4
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 1744
+        width: 195
+        height: 173
+      alignment: 9
+      pivot: {x: 0.7641026, y: 0.83930635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 822e5ce06973ad2428d4102cba6815bc
+      internalID: -170706145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm5
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 853
+        width: 114
+        height: 223
+      alignment: 9
+      pivot: {x: 0.30526316, y: 0.19641256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cedfece309df274a912f0fe66662bbe
+      internalID: 1616045874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 738
+        width: 125
+        height: 138
+      alignment: 9
+      pivot: {x: 0.3616, y: 0.79391307}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b4067584ed6b34c9f05c06f828f9da
+      internalID: 1673036360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear arm8
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1188
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.6616114, y: 0.88473934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 700caf0d5cab1ba499764dc0a34e4b9c
+      internalID: -972361431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus1
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 1514
+        width: 236
+        height: 114
+      alignment: 9
+      pivot: {x: 0.08305085, y: 0.50736845}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64f4660f0766784ca829a16ebb9d555
+      internalID: 21186689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus2
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1853
+        width: 251
+        height: 96
+      alignment: 9
+      pivot: {x: 0.10039841, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4f12114a5fb5345ae9c270221ad6cc
+      internalID: 1514678926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus3
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1630
+        width: 248
+        height: 221
+      alignment: 9
+      pivot: {x: 0.533871, y: 0.7954751}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1a9b934fcbb2840ab76b5b504812d5
+      internalID: 179737785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus4
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 1569
+        width: 195
+        height: 173
+      alignment: 9
+      pivot: {x: 0.7641026, y: 0.83930635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 439c06b6a11471f46a7145ca68e2df02
+      internalID: 1392674694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus5
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 589
+        width: 114
+        height: 223
+      alignment: 9
+      pivot: {x: 0.30526316, y: 0.19641256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9675f1e15996f46843e32c6a31a0b9
+      internalID: -2071793744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 674
+        width: 125
+        height: 138
+      alignment: 9
+      pivot: {x: 0.3616, y: 0.79391307}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 290ba56f8bbf9d640beca66cb37f12ab
+      internalID: -1032397975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_colossus8
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 1291
+        width: 211
+        height: 221
+      alignment: 9
+      pivot: {x: 0.6616114, y: 0.8447059}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aef9cde7fc9d3c4ca9b10d6398a58c7
+      internalID: -423729518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_slash_colossus3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1663
+        width: 277
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5234657, y: 0.81242007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 021bfa06e73b05a47882038c9abe9efc
+      internalID: 1611021284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 1031
+        width: 174
+        height: 155
+      alignment: 9
+      pivot: {x: 0.7873563, y: 1.0967742}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f901bd6e45ca17a41b609900badc0dcb
+      internalID: 915823753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 991
+        width: 163
+        height: 176
+      alignment: 9
+      pivot: {x: 0.9141104, y: 1.0625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5e6b6de4de3e24e932b7ed0cd39629
+      internalID: 59256757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso3
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 919
+        width: 136
+        height: 157
+      alignment: 9
+      pivot: {x: 1.0735294, y: 1.0063695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6750b0e6798ad841b8c37171da4a07b
+      internalID: -1228769338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso4
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 1142
+        width: 192
+        height: 147
+      alignment: 9
+      pivot: {x: 0.25520834, y: 1.0680273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3191219ccf583a541aac6c68c33bcf93
+      internalID: -608629654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torso5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 814
+        width: 137
+        height: 175
+      alignment: 9
+      pivot: {x: -0.00729927, y: 0.40571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8c3f05f35a0e24c9b075a0c759b326
+      internalID: -385881202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rear_arm_slash_3
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 1819
+        width: 277
+        height: 228
+      alignment: 9
+      pivot: {x: 0.5234657, y: 0.78035086}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e18ac4a7c111bc4f8483e3f7a8b867a
+      internalID: 2056097926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3282fb9269be62c47b2ccc730c251f7e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      front arm5: 402420743
+      rear arm1: -1967812077
+      rear arm2: -553256355
+      torso3: -1228769338
+      rear_arm_colossus7: -1032397975
+      front arm2: -507486156
+      front_arm_colossus4: -1526672672
+      legs6: 1765445214
+      rear arm7: 1673036360
+      rear arm5: 1616045874
+      rear_arm_slash_3: 2056097926
+      torso5: -385881202
+      legs7: -64302002
+      rear arm4: -170706145
+      rear_arm_colossus4: 1392674694
+      torso2: 59256757
+      torso1: 915823753
+      rear_arm_colossus8: -423729518
+      rear_arm_colossus1: 21186689
+      front_arm_colossus1: 852107442
+      front arm3: -324543788
+      front_arm_colossus3: -514391658
+      front_arm_colossus2: -645850201
+      legs4: -990399113
+      front arm1: 333898201
+      front_arm_colossus5: 730225868
+      torso4: -608629654
+      rear_arm_slash_colossus3: 1611021284
+      front arm4: -255053678
+      rear arm3: 944340946
+      rear_arm_colossus5: -2071793744
+      legs2: -1753791910
+      legs5: -1050496086
+      rear arm8: -972361431
+      rear_arm_colossus3: 179737785
+      legs1: 1886906568
+      rear_arm_colossus2: 1514678926
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

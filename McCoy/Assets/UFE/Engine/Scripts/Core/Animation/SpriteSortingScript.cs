@@ -5,6 +5,7 @@ using UnityEngine;
 namespace UFE3D
 {
   [RequireComponent(typeof(SpriteRenderer))]
+//  [ExecuteInEditMode]
   public class SpriteSortingScript : MonoBehaviour
   {
     public class SpriteModifyData
@@ -47,6 +48,9 @@ namespace UFE3D
     [SerializeField]
     SpriteRenderer bodySprite = null;
 
+    [SerializeField] string testAnim = null;
+    string cachedTest = "";
+
     SpriteModifyData mod = null;
     public SpriteModifyData Mod
     {
@@ -81,6 +85,17 @@ namespace UFE3D
       }
     }
 
+    /*
+    private void Update()
+    {
+      if(testAnim != cachedTest)
+      {
+        cachedTest = testAnim;
+        Debug.Log("Playing " + cachedTest);
+        bodySprite.GetComponent<Animator>().Play(cachedTest);
+      }
+    }
+    */
     public void PlayLimbAnimation(string animCmd)
     {
       cachedFlip = bodySprite.flipX;
@@ -90,9 +105,13 @@ namespace UFE3D
       {
         string[] animatorKeys = cmd.Split(':');
         string spriteKey = animatorKeys[0];
-        string animKey = animatorKeys[1];
+        string animKey = animatorKeys.Length > 1 ? animatorKeys[1] : "";
         bool hide = animatorKeys.Length == 0 || animKey == "";
-
+        if(!spriteData.ContainsKey(spriteKey))
+        {
+          Debug.LogWarning("No Sprite named " + spriteKey);
+          continue;
+        }
         spriteData[spriteKey].animator.gameObject.SetActive(!hide);
         if (mod != null && spriteData[spriteKey].modify)
         {
@@ -100,6 +119,7 @@ namespace UFE3D
           animKey += Mod.AnimationSuffix;
         }
         animKey += (bodySprite.flipX ? "_flip" : "");
+        spriteData[spriteKey].animator.gameObject.SetActive(!hide);
         if (!hide)
         {
           spriteData[spriteKey].animator.Play(animKey);
