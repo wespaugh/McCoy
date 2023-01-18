@@ -124,18 +124,15 @@ namespace Assets.McCoy.RPG
 
     protected void selectSlot()
     {
-      Debug.Log("Select Slot");
       var slot = getSlot(selection);
       // arms unequip
       if(selection == -1)
       {
-        Debug.Log("unequip arms");
         playerEquipment.Unequip(true);
       }
       // accessory unequip
       else if(selection == -2)
       {
-        Debug.Log("unequip accessory");
         playerEquipment.Unequip(false);
       }
       else if(slot.Item != null)
