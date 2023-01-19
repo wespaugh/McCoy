@@ -32,7 +32,7 @@ namespace Assets.McCoy
     public static Color PURPLE = new Color(122f / 255f, 66f / 255f, 191f / 255f);
     public static Color DARK_PURPLE = new Color(63f / 255f, 0f / 255f, 140f / 255f);
 
-    public static Color BLUE_STEEL = new Color(150f / 255f, 154f / 255f, 255f / 255f);
+    public static Color BLUE_STEEL = new Color(220f / 255f, 224f / 255f, 255f / 255f);
     public static Color BLUE = new Color(150f / 255f, 154f / 255f, 198f / 255f);
 
     public static Color YELLOW = new Color(228f / 255f, 229f / 255f, 76f/255f);

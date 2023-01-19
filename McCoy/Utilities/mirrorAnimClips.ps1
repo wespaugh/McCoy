@@ -67,35 +67,34 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
 	if($seekingPosition)
 	{
 		# here's a regex for a decimal number
-		$floatRegex = '(\.*(\d)+\.*(\d)*|-\.*(\d)+\.*(\d)*)'
-		$valueRegex = 'value: {x: ' + $floatRegex
-		# if we find value: {x: ANUMBER
-		if($line -match $valueRegex)
-		{
-			# split out the x, y, and z components. we only care about X (0-index)
-		  $x = $line.Split(",")
-		  # remove whitespace
-		  $x[0] = $x[0] -replace "\s",""
-		  #remove anything that isn't a number or a minus sign
-		  $x[0] = $x[0] -replace '\D(?<!-|\.)',""
-		  #grab the number value of what's left, which is our X, and negate it
-		  [double] $dValue = -1 * $x[0];
-		  # negate it and reinsert it into the line
-		  $replacementLines[$lineNumber] = $line -replace $x[0], $dValue
-		  Write-Host $replacementLines[$lineNumber]
-		}
-		# if it wasn't our position values, just paste the line in unaltered
-		else
-		{
-			$replacementLines[$lineNumber] = $line
-		}
+	  $floatRegex = '(\.*(\d)+\.*(\d)*|-\.*(\d)+\.*(\d)*)'
+  	  $valueRegex = 'value: {x: ' + $floatRegex
+	  # if we find value: {x: ANUMBER
+	  if($line -match $valueRegex)
+	  {
+		# split out the x, y, and z components. we only care about X (0-index)
+	    $x = $line.Split(",")
+	    # remove whitespace
+	    $x[0] = $x[0] -replace "\s",""
+	    #remove anything that isn't a number or a minus sign
+	    $x[0] = $x[0] -replace '\D(?<!-|\.)',""
+	    #grab the number value of what's left, which is our X, and negate it
+	    [double] $dValue = -1 * $x[0];
+	    # negate it and reinsert it into the line
+	    $replacementLines[$lineNumber] = $line -replace $x[0], $dValue
+	  }
+	  # if it wasn't our position values, just paste the line in unaltered
+	  else
+	  {
+		$replacementLines[$lineNumber] = $line
+	  }
 	}
 	else
 	{
-		# we're probably just going to add the line unaltered
-		$toAdd = $line
-		# if this line is starts the position curves though, flag it so we start looking for X's to flip
-	  if($line -match "  m_PositionCurves:")
+	  # we're probably just going to add the line unaltered
+	  $toAdd = $line
+      # if this line is starts the position curves though, flag it so we start looking for X's to flip
+	  if($line -match "  m_PositionCurves:" -And $doFlip)
 	  {
 		$seekingPosition = $true
 	  }
@@ -117,6 +116,7 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
 		  $toAdd = $nameComponents -join " "
 	  }
 	  $replacementLines[$lineNumber] = $toAdd
+	  #Write-Host $replacementLines[$lineNumber]
 	}
 	$lineNumber = $lineNumber + 1
   }
@@ -150,15 +150,15 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
   $replacementLines | Out-File $wholePath -Encoding ASCII
 }
 
-# [string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
-[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy2\McCoy\Utilities\animList.txt"
+[string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
+#[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy2\McCoy\Utilities\animList.txt"
 
 foreach($line in $animFileLines)
 {
   #Write-Host "Getting Content of file: " $line
-  read-anim-file $line $true ""
+  #read-anim-file $line $true ""
   read-anim-file $line $false "_colossus"
-  read-anim-file $line $true "_colossus"
+  #read-anim-file $line $true "_colossus"
 }
 <#
 Get-Content -path $nextAnimClip

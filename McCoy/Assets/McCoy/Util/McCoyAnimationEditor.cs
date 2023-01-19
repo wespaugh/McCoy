@@ -26,6 +26,8 @@ public class McCoyAnimationEditor : EditorWindow
   protected bool lockSelection = false;
   protected bool animationMode = false;
   protected string limbAnimationString = "";
+  protected string modSuffix = "";
+  protected bool flip = false;
   protected string powershellRoot = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
   protected string exportScript = "C:\\Users\\wespa\\Documents\\McCoy\\Utilities\\mirrorAnimClips.ps1";
   protected string animListFileName = "Utilities/animList.txt";
@@ -126,6 +128,14 @@ public class McCoyAnimationEditor : EditorWindow
         string[] animatorKeys = cmd.Split(':');
         string spriteKey = animatorKeys[0];
         string animKey = animatorKeys.Length > 1 ? animatorKeys[1] : "";
+        if(!string.IsNullOrEmpty(modSuffix) && (spriteKey == "2" || spriteKey == "3"))
+        {
+          animKey = animKey + "_" + modSuffix;
+        }
+        if(flip)
+        {
+          animKey = animKey + "_flip";
+        }
         bool hide = animatorKeys.Length == 0 || animKey == "";
         gameObjects[spriteKey].SetActive(!hide);
         bool found = false;
@@ -133,6 +143,7 @@ public class McCoyAnimationEditor : EditorWindow
         {
           if (clip.name == animKey)
           {
+            UnityEngine.Debug.Log("Found ANIM Key: " + animKey);
             animationClips[gameObjects[spriteKey]] = clip;
             found = true;
             break;
@@ -144,9 +155,11 @@ public class McCoyAnimationEditor : EditorWindow
         }
       }
     }
+    modSuffix = GUILayout.TextField(modSuffix,  GUILayout.Width(400));
     GUILayout.EndHorizontal();
 
     EditorGUILayout.BeginVertical();
+    flip = GUILayout.Toggle(flip, "Flip");
     if (GUILayout.Button("Create Sprite FlipX's"))
     {
       // string path = EditorUtility.OpenFolderPanel("Export horizontal flips", "", "");
