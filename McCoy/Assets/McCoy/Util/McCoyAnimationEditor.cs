@@ -102,8 +102,10 @@ public class McCoyAnimationEditor : EditorWindow
     processinfo.CreateNoWindow = false;
     string utilPath = Application.dataPath.Substring(0, Application.dataPath.Length-6) + "Utilities/mirrorAnimClips.ps1";
     UnityEngine.Debug.Log(utilPath);
-    processinfo.ArgumentList.Add(utilPath);
-    Process.Start(processinfo);
+    // processinfo.ArgumentList.Add(utilPath);
+    Process p = Process.Start("powershell.exe", "-NoExit -Command " + utilPath);
+    p.WaitForExit();
+    p.Close();
   }
 
   protected void clear()

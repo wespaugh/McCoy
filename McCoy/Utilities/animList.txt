@@ -1,5 +1,1 @@
-/legs_idle.anim
-/torso_idle.anim
-/reararm_idle.anim IsCyber=true
-/frontarm_idle.anim IsCyber=true
-/head_idle.anim
+D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/legs_combo_1.anim

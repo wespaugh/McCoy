@@ -138,7 +138,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.98
+        value: 0.98
         inSlope: 0
         outSlope: Infinity
         tangentMode: 97
