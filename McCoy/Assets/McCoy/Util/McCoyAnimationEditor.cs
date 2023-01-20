@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.IO;
+using UFE3D;
+using System.Text.RegularExpressions;
 
 public class McCoyAnimationEditor : EditorWindow
 {
@@ -21,6 +23,7 @@ public class McCoyAnimationEditor : EditorWindow
 
   protected Dictionary<string, GameObject> gameObjects = new Dictionary<string, GameObject>();
   protected Dictionary<GameObject, AnimationClip> animationClips = new Dictionary<GameObject, AnimationClip>();
+  protected List<GameObject> cyberAnimObjects = new List<GameObject>();
   protected float time = 0.0f;
   protected float animationDuration = 0.0f;
   protected bool lockSelection = false;
@@ -42,20 +45,21 @@ public class McCoyAnimationEditor : EditorWindow
   {
   }
 
-  public void OnSelectionChange()
+  public void CaptureGameObject()
   {
-    if (gameObjects.Count != 0)
-    {
-      return;
-    }
-    clear();
     if(Selection.activeGameObject == null)
     {
       return;
     }
+    clear();
+    SpriteSortingScript sortScript = Selection.activeGameObject.GetComponent<SpriteSortingScript>();
     for(int i = 0; i < Selection.activeGameObject.transform.childCount; ++i)
     {
       var go = Selection.activeGameObject.transform.GetChild(i).gameObject;
+      if(sortScript.SpritesToModify.Contains(go.GetComponent<SpriteRenderer>()))
+      {
+        cyberAnimObjects.Add(go);
+      }
       if(gameObjects.ContainsKey(go.name))
       {
         UnityEngine.Debug.LogWarning("Key Collision: " + go.name);
@@ -68,21 +72,38 @@ public class McCoyAnimationEditor : EditorWindow
   protected void ExportAlts()
   {
     string path = EditorUtility.OpenFolderPanel("Select Animation Container", "", "");
+    if(string.IsNullOrEmpty(path))
+    {
+      return;
+    }
     string args = exportScript + " ";
     
     StreamWriter fileOut = new StreamWriter(animListFileName);
     // fileOut.WriteLine(path);
-    foreach (var a in animationClips.Values)
+    foreach (var kvp in animationClips)
     {
-      fileOut.WriteLine(path +"/"+ a.name + ".anim");
+      string line = path + "/" + kvp.Value.name + ".anim";
+      if(cyberAnimObjects.Contains(kvp.Key))
+      {
+        line += " IsCyber=true";
+      }
+      UnityEngine.Debug.Log("LINE: " + line);
+      fileOut.WriteLine(line);
     }
     fileOut.Flush();
     fileOut.Close();
-  }
 
-  private IEnumerator export(string path, string args)
-  {
-    yield return null;
+    ProcessStartInfo processinfo = new
+    ProcessStartInfo("C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe");
+    processinfo.RedirectStandardOutput = false;
+    processinfo.RedirectStandardError = false;
+    processinfo.RedirectStandardInput = true;
+    processinfo.UseShellExecute = false; //<----Causes program to crash exe when launched, but is required for write console key.
+    processinfo.CreateNoWindow = false;
+    string utilPath = Application.dataPath.Substring(0, Application.dataPath.Length-6) + "Utilities/mirrorAnimClips.ps1";
+    UnityEngine.Debug.Log(utilPath);
+    processinfo.ArgumentList.Add(utilPath);
+    Process.Start(processinfo);
   }
 
   protected void clear()
@@ -92,6 +113,7 @@ public class McCoyAnimationEditor : EditorWindow
     animationDuration = 0f;
     gameObjects.Clear();
     animationClips.Clear();
+    cyberAnimObjects.Clear();
   }
 
   public void OnGUI()
@@ -102,24 +124,36 @@ public class McCoyAnimationEditor : EditorWindow
     GUILayout.BeginHorizontal(EditorStyles.toolbar);
 
     EditorGUI.BeginChangeCheck();
-    GUILayout.Toggle(AnimationMode.InAnimationMode(), "Animate", EditorStyles.toolbarButton);
+    GUILayout.Toggle(AnimationMode.InAnimationMode(), "Animate", EditorStyles.toolbarButton, GUILayout.Width(100));
     if (EditorGUI.EndChangeCheck())
       ToggleAnimationMode();
-
-    GUILayout.FlexibleSpace();
-    if (GUILayout.Button("Clear"))
-    {
-      clear();
-    }
-    if (GUILayout.Button("Add GameObject"))
-    {
-      ++numGameObjects;
-    }//GUILayout.Toggle(lockSelection, "Add Game Object", EditorStyles.toolbarButton);
     GUILayout.EndHorizontal();
 
     GUILayout.BeginHorizontal();
-    limbAnimationString = GUILayout.TextField(string.IsNullOrEmpty(limbAnimationString) ? "limb animation string" : limbAnimationString);
-    if (GUILayout.Button("assign"))
+    //GUILayout.FlexibleSpace();
+    if (GUILayout.Button("Capture Limb Sprites", GUILayout.Width(300)))
+    {
+      CaptureGameObject();
+    }//GUILayout.Toggle(lockSelection, "Add Game Object", EditorStyles.toolbarButton);
+    if (GUILayout.Button("Clear Limb Sprites", GUILayout.Width(300)))
+    {
+      clear();
+    }
+    GUILayout.EndHorizontal();
+
+    GUILayout.BeginHorizontal();
+    GUILayout.Label("Animation", GUILayout.Width(200));
+    limbAnimationString = GUILayout.TextField(limbAnimationString, GUILayout.Width(400));
+    GUILayout.EndHorizontal();
+    GUILayout.BeginHorizontal();
+    GUILayout.Label("Cyber Suffix", GUILayout.Width(200));
+    modSuffix = GUILayout.TextField(modSuffix, GUILayout.Width(400));
+    GUILayout.EndHorizontal();
+    GUILayout.BeginHorizontal();
+    flip = GUILayout.Toggle(flip, "Flip", GUILayout.Width(100));
+    GUILayout.EndHorizontal();
+    GUILayout.BeginHorizontal();
+    if (GUILayout.Button("assign", GUILayout.Width(200)))
     {
       string[] commands = limbAnimationString.Split(',');
       foreach (var cmd in commands)
@@ -143,7 +177,6 @@ public class McCoyAnimationEditor : EditorWindow
         {
           if (clip.name == animKey)
           {
-            UnityEngine.Debug.Log("Found ANIM Key: " + animKey);
             animationClips[gameObjects[spriteKey]] = clip;
             found = true;
             break;
@@ -155,16 +188,9 @@ public class McCoyAnimationEditor : EditorWindow
         }
       }
     }
-    modSuffix = GUILayout.TextField(modSuffix,  GUILayout.Width(400));
     GUILayout.EndHorizontal();
 
     EditorGUILayout.BeginVertical();
-    flip = GUILayout.Toggle(flip, "Flip");
-    if (GUILayout.Button("Create Sprite FlipX's"))
-    {
-      // string path = EditorUtility.OpenFolderPanel("Export horizontal flips", "", "");
-      ExportAlts();
-    }
     for (int i = 0; i < numGameObjects; ++i)
     {
       var keys = gameObjects.Keys.ToList();
@@ -186,9 +212,12 @@ public class McCoyAnimationEditor : EditorWindow
         animationClips[go] = selectedClip;
         if(animationDuration != 0.0f && animationDuration != selectedClip.length)
         {
-          UnityEngine.Debug.LogError("clip " + selectedClip.name + " has a incongruent clip time " + selectedClip.length);
+          UnityEngine.Debug.LogWarning("clip " + selectedClip.name + " has a incongruent clip time " + selectedClip.length);
         }
-        animationDuration = selectedClip.length;
+        if (selectedClip.length > animationDuration)
+        {
+          animationDuration = selectedClip.length;
+        }
       }
       else if(go != null && animationClips.ContainsKey(go))
       {
@@ -198,6 +227,12 @@ public class McCoyAnimationEditor : EditorWindow
     time = EditorGUILayout.Slider(time, 0, animationClips.Count > 0 ? animationClips.First().Value.length : 0);
 
     EditorGUILayout.EndVertical();
+
+    if (GUILayout.Button("Create Sprite FlipX's", GUILayout.Width(200)))
+    {
+      // string path = EditorUtility.OpenFolderPanel("Export horizontal flips", "", "");
+      ExportAlts();
+    }
   }
 
   void Update()

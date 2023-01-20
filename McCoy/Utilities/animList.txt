@@ -1,3 +1,5 @@
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/Limbs/torso_idle_flip.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/Limbs/reararm_idle_flip.anim
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/Limbs/frontarm_idle_flip.anim
+/legs_idle.anim
+/torso_idle.anim
+/reararm_idle.anim IsCyber=true
+/frontarm_idle.anim IsCyber=true
+/head_idle.anim

@@ -44,7 +44,10 @@ namespace UFE3D
     List<SpriteRenderer> spritesToModify = new List<SpriteRenderer>();
 
     private Dictionary<string, SpriteSortData> spriteData = new Dictionary<string, SpriteSortData>();
-
+    public List<SpriteRenderer> SpritesToModify 
+    { 
+      get => spritesToModify; 
+    }
     [SerializeField]
     SpriteRenderer bodySprite = null;
 

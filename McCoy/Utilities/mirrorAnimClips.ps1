@@ -150,15 +150,21 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
   $replacementLines | Out-File $wholePath -Encoding ASCII
 }
 
-[string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
-#[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy2\McCoy\Utilities\animList.txt"
+#[string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
+[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy2\McCoy\Utilities\animList.txt"
 
 foreach($line in $animFileLines)
 {
   #Write-Host "Getting Content of file: " $line
-  #read-anim-file $line $true ""
-  read-anim-file $line $false "_colossus"
-  #read-anim-file $line $true "_colossus"
+  $cyberCheck = " IsCyber=true"
+  $doCyberAlts = $line -match $cyberCheck
+  $justTheFile = $line -replace $cyberCheck, ""
+  read-anim-file $justTheFile $true ""
+  if($doCyberAlts)
+  {
+	  read-anim-file $justTheFile $false "_colossus"
+	  read-anim-file $justTheFile $true "_colossus"
+  }
 }
 <#
 Get-Content -path $nextAnimClip
