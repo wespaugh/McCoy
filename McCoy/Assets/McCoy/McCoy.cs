@@ -56,10 +56,22 @@ namespace Assets.McCoy
       }
     }
 
-    public void QuestReward(int rewardCredits, int rewardTime)
+    public void QuestReward(int rewardCredits, int rewardTime, string rewardItem)
     {
       gameState.ReceiveCredits(rewardCredits);
       gameState.UpdatePlayerTimeRemaining(gameState.SelectedPlayer, -rewardTime);
+      McCoyEquipmentItem rewardEquipment = null;
+      if(!string.IsNullOrEmpty(rewardItem)) 
+      {
+        if (rewardItem == "Random")
+        {
+          rewardEquipment = McCoyEquipmentGenerator.GetRandomItem();
+        }
+      }
+      if (rewardEquipment != null)
+      {
+        gameState.GetPlayerCharacter(gameState.SelectedPlayer).Equipment.AddEquipment(rewardEquipment);
+      }
     }
 
     public bool Loading { get; set; }

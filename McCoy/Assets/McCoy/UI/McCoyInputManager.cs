@@ -24,10 +24,11 @@ namespace Assets.McCoy.UI
         IDictionary<InputReferences, InputEvents> player2CurrentInputs
       )
     {
+      bool lag = false;
       if (currentInputLag > 0f)
       {
         currentInputLag -= Time.deltaTime;
-        return false;
+        lag = true;
       }
       float axisThreshold = .6f;
 
@@ -102,10 +103,13 @@ namespace Assets.McCoy.UI
         if(!alreadyPressed && currentlyPressed)
         {
           retVal = true;
-          listener.Value();
+          if (!lag)
+          {
+            listener.Value();
+          }
         }
       }
-      if(retVal)
+      if(retVal && !lag)
       {
         currentInputLag = inputLag;
       }

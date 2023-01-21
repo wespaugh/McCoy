@@ -10,8 +10,9 @@ namespace Assets.McCoy.RPG
       // Guaranteed to be random
       return new McCoyEquipmentItem()
       {
-        Name = "Colossus_Arms",
-        Type = McCoyEquipmentItem.EquipmentType.Arms
+        Name = "Eschelon 621-X",
+        Type = McCoyEquipmentItem.EquipmentType.Arms,
+        Tint = ProjectConstants.BLUE_STEEL
       };
     }
   }
