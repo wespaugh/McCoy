@@ -15,6 +15,9 @@ public class SwitchToAdventureMode : Command
   [ParameterAlias("RewardTime")]
   public IntegerParameter RewardTimerSeconds;
 
+  [ParameterAlias("RewardItem")]
+  public StringParameter RewardItem;
+
   public override async UniTask ExecuteAsync(AsyncToken asyncToken = default)
   {
     // 1. Disable Naninovel input.
@@ -36,7 +39,7 @@ public class SwitchToAdventureMode : Command
       await stateManager.ResetStateAsync();
     }
 
-    McCoy.GetInstance().QuestReward(RewardCredits.HasValue ? RewardCredits.Value : 0, RewardTimerSeconds.HasValue ? RewardTimerSeconds.Value : 0);
+    McCoy.GetInstance().QuestReward(RewardCredits.HasValue ? RewardCredits.Value : 0, RewardTimerSeconds.HasValue ? RewardTimerSeconds.Value : 0, RewardItem.Value);
 
     // 6. Enable character control.
     McCoy.GetInstance().HideCutsceneAsync();

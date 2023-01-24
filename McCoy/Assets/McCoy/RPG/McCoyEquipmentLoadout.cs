@@ -20,11 +20,7 @@ namespace Assets.McCoy.RPG
 
     public McCoyEquipmentLoadout()
     {
-      Equipment.Add(new McCoyEquipmentItem()
-      {
-        Name = "Eschelon 621-X",
-        Type = McCoyEquipmentItem.EquipmentType.Arms
-      });
+      Equipment.Add(McCoyEquipmentGenerator.GetRandomItem());
     }
 
     public void Equip(int selection)
@@ -48,6 +44,11 @@ namespace Assets.McCoy.RPG
       {
         equippedAccessoryIndex = -1;
       }
+    }
+
+    public void AddEquipment(McCoyEquipmentItem equipmentItem)
+    {
+      Equipment.Add(equipmentItem);
     }
   }
 }
