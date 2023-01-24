@@ -16,7 +16,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
   mageLookup2: []
   mageLookup3: []
-  mageLookup4: []
+  mageLookup4:
+  - {fileID: 11400000, guid: 6b11a63e2db72b1429bdb15ff39de804, type: 2}
   mageLookup5: []
   mageLookup6: []
   minotaurCharacters1:
