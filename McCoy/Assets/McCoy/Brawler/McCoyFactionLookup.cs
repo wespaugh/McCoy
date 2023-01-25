@@ -27,6 +27,9 @@ namespace Assets.McCoy.Brawler
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> mageLookup6 = new List<UFE3D.CharacterInfo>();
+    
+    [SerializeField]
+    public UFE3D.CharacterInfo MageFinalBoss = null;
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> minotaurCharacters1 = new List<UFE3D.CharacterInfo>();
@@ -45,6 +48,9 @@ namespace Assets.McCoy.Brawler
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> minotaurCharacters6 = new List<UFE3D.CharacterInfo>();
+    
+    [SerializeField]
+    public UFE3D.CharacterInfo MinotaurFinalBoss = null;
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> militiaCharacters1 = new List<UFE3D.CharacterInfo>();
@@ -63,6 +69,9 @@ namespace Assets.McCoy.Brawler
 
     [SerializeField]
     public List<UFE3D.CharacterInfo> militiaCharacters6 = new List<UFE3D.CharacterInfo>();
+
+    [SerializeField]
+    public UFE3D.CharacterInfo MilitiaFinalBoss = null;
 
     private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> mageLookup;
     private Dictionary<string, Tuple<int, UFE3D.CharacterInfo>> minotaurLookup;
@@ -91,19 +100,34 @@ namespace Assets.McCoy.Brawler
       faction = Factions.None;
 
       initLookups();
-      if(mageLookup.ContainsKey(enemyName))
+      if (mageLookup.ContainsKey(enemyName))
       {
         charInfo = mageLookup[enemyName].Item2;
         faction = Factions.Mages;
       }
-      else if(minotaurLookup.ContainsKey(enemyName))
+      else if (minotaurLookup.ContainsKey(enemyName))
       {
         charInfo = minotaurLookup[enemyName].Item2;
         faction = Factions.CyberMinotaurs;
       }
-      else if(militiaLookup.ContainsKey(enemyName))
+      else if (militiaLookup.ContainsKey(enemyName))
       {
         charInfo = militiaLookup[enemyName].Item2;
+        faction = Factions.AngelMilitia;
+      }
+      else if (enemyName == MageFinalBoss?.characterName)
+      {
+        charInfo = MageFinalBoss;
+        faction = Factions.Mages;
+      }
+      else if (enemyName == MinotaurFinalBoss?.characterName)
+      {
+        charInfo = MinotaurFinalBoss;
+        faction = Factions.CyberMinotaurs;
+      }
+      else if (enemyName == MilitiaFinalBoss?.characterName)
+      {
+        charInfo = MilitiaFinalBoss;
         faction = Factions.AngelMilitia;
       }
     }
