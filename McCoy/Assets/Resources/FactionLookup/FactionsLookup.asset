@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b11a63e2db72b1429bdb15ff39de804, type: 2}
   mageLookup5: []
   mageLookup6: []
+  MageFinalBoss: {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}
   minotaurCharacters1:
   - {fileID: 11400000, guid: 76fa29d052e047b4aa3c84ac4f0ed6c9, type: 2}
   minotaurCharacters2: []
@@ -27,6 +28,7 @@ MonoBehaviour:
   minotaurCharacters4: []
   minotaurCharacters5: []
   minotaurCharacters6: []
+  MinotaurFinalBoss: {fileID: 0}
   militiaCharacters1:
   - {fileID: 11400000, guid: 8a21b4b68d2e73242a260db1c790f265, type: 2}
   militiaCharacters2: []
@@ -34,3 +36,4 @@ MonoBehaviour:
   militiaCharacters4: []
   militiaCharacters5: []
   militiaCharacters6: []
+  MilitiaFinalBoss: {fileID: 0}
