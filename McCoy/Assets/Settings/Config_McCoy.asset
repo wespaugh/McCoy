@@ -24,23 +24,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: nightclub
+    stageName: powerstation
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: 6f549e04399d8b34691854153a43b911, type: 3}
-    prefab: {fileID: 7216622014955884370, guid: cce48fa0de8f32047904118cc04242d3,
+    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
+    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
       type: 3}
-    music: {fileID: 0}
+    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: 0
+      _serializedValue: -34359738368
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -42949672960
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 25769803776
     useTempBoundary: 0
     position:
       x:
@@ -49,8 +49,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/Nightclub/Nightclub
-    stageInfo: {fileID: 11400000, guid: 23acd35c736159641840589f316c3e07, type: 2}
+    advancedStageData: StageData/PowerStation/PowerStation
+    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -175,11 +175,15 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 0
-    selectableCharactersInStoryMode: 010000000000000002000000030000000400000005000000
-    selectableCharactersInVersusMode: 000000000100000002000000030000000400000005000000
+    selectableCharactersInStoryMode: 01000000000000000200000003000000040000000500000006000000
+    selectableCharactersInVersusMode: 00000000010000000200000003000000040000000500000006000000
     characterStories:
-      _keys: 000000000100000002000000030000000400000005000000
+      _keys: 00000000010000000200000003000000040000000500000006000000
       _values:
+      - opening: {fileID: 0}
+        ending: {fileID: 0}
+        fightsGroups: []
+        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -1032,7 +1036,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow
@@ -1339,6 +1343,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}
   - {fileID: 11400000, guid: 76fa29d052e047b4aa3c84ac4f0ed6c9, type: 2}
   - {fileID: 11400000, guid: 8a21b4b68d2e73242a260db1c790f265, type: 2}
+  - {fileID: 11400000, guid: 6b11a63e2db72b1429bdb15ff39de804, type: 2}
   teamModes:
   - modeName: Tag Battle (DBZF\Marvel) - 2D 3v3 Tag Team
     teams:

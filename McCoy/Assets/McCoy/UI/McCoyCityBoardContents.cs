@@ -504,6 +504,18 @@ namespace Assets.McCoy.UI
       }
     }
 
+    public void FindMechanism()
+    {
+      foreach(var m in MapNodes)
+      {
+        if(m.MechanismFoundHere)
+        {
+          m.Search(100, 100);
+        }
+      }
+      mapNodes.Sort((a, b) => { return b.SearchStatus() - a.SearchStatus(); });
+    }
+
     private void advanceDoomsdayClock()
     {
       foreach(var node in mapNodes)

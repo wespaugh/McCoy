@@ -35,7 +35,7 @@ namespace Assets.McCoy.Brawler
       }
       else
       {
-        Debug.Log("Warning: couldn't clear buffs out of player " + playerId);
+        Debug.LogWarning("Warning: couldn't clear buffs out of player " + playerId);
       }
     }
 

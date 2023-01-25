@@ -27,7 +27,8 @@ MonoBehaviour:
   lifePoints: 350
   maxGaugePoints: 0
   characterPrefabStorage: 0
-  characterPrefab: {fileID: 0}
+  characterPrefab: {fileID: 5113662330713485559, guid: 6ad685d5847d4c3469ea1718103369a3,
+    type: 3}
   prefabResourcePath: 
   alternativeCostumes: []
   initialPosition:
@@ -217,7 +218,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -323,7 +324,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveBack:
         animMap:
@@ -429,7 +430,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveSideways:
         animMap:
@@ -3370,7 +3371,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       airRecovery:
         animMap:
@@ -3686,7 +3687,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitLow:
         animMap:
@@ -4107,7 +4108,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       getHitCrumple:
         animMap:
@@ -5514,7 +5515,7 @@ MonoBehaviour:
       landingDelay: 7
       _groundCollisionMass:
         _serializedValue: 8589934592
-    enabledBasicMovesToggle: 1
+    enabledBasicMovesToggle: 0
     basicMovesToggle: 1
     attackMovesToggle: 1
   aiInstructionsSet:

@@ -50,6 +50,9 @@ namespace Assets.McCoy.UI
     GameObject debugEndWeekButton = null;
 
     [SerializeField]
+    GameObject debugFindMechanismButton = null;
+
+    [SerializeField]
     McCoyMapPanelListSectionHeader sectionHeaderPrefab = null;
 
     [SerializeField]
@@ -106,6 +109,7 @@ namespace Assets.McCoy.UI
     {
       loadingStage = false;
       debugEndWeekButton.SetActive(McCoy.GetInstance().DebugUI);
+      debugFindMechanismButton.SetActive(McCoy.GetInstance().DebugUI);
       if (board == null)
       {
         board = Instantiate(boardContents);
@@ -343,6 +347,13 @@ namespace Assets.McCoy.UI
     {
       endWeek();
       selectedCharacterChanged();
+    }
+
+    public void DebugFindMechanism()
+    {
+      board.FindMechanism();
+      refreshBoardAndPanels();
+      board.UpdateNodes();
     }
 
     private void initSelectedCharacter()
@@ -708,6 +719,9 @@ namespace Assets.McCoy.UI
       }
       board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
+      Debug.Log("!!!!!!!!!!!!!!!!!FINAL BATTLE: " + (node.MechanismFoundHere ? "YAS!" : "NU"));
+      McCoyGameState.Instance().FinalBattle = node.MechanismFoundHere;
+
       MapNode initialLocation = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
       McCoy.GetInstance().gameState.SetPlayerLocation(selectedPlayer, node);
       Board.AnimateMobMove(Factions.Werewolves, initialLocation, node, .5f, LoadStageCallback);

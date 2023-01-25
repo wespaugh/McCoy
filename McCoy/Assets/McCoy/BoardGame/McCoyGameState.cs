@@ -27,6 +27,12 @@ namespace Assets.McCoy.BoardGame
       get => credits;
     }
 
+    public float FinalBossHealth = 100000f;
+    public bool FinalBattle
+    {
+      get;set;
+    }
+
     public static McCoyGameState Instance()
     {
       return McCoy.GetInstance().gameState;

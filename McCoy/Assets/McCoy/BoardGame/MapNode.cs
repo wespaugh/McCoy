@@ -121,19 +121,18 @@ namespace Assets.McCoy.BoardGame
       }
     }
 
-    public bool MechanismFoundHere => SearchPercent >= 100f && HasMechanism;
+    public bool MechanismFoundHere => SEARCH_COMPLETE_THRESHHOLD >= 100f && HasMechanism;
 
     public SearchState SearchStatus()
     {
       return SearchProgress(bonusValue);
     }
 
-    private int roll(int die, int number, bool explode = true)
+    private int roll(int die, int number, bool exploding = true)
     {
       int retVal = 0;
       string sb = "";
 
-      bool exploding = false;
       for(int i = 0; i < number; ++i)
       {
         int nextRoll = Random.Range(1, die+1);

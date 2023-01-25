@@ -66,12 +66,16 @@ namespace Assets.McCoy.BoardGame
       if (currentMenu == FiresideMenus.Equipment)
       {
         retVal |= equipmentMenu.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+        if(retVal)
+        {
+          Debug.Log("equipment menu handled input");
+        }
       }
 
       retVal |= input.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       if(retVal)
       {
-        Debug.Log("stats page handled input");
+        Debug.Log("fireside UI handled input");
       }
       return retVal;
     }

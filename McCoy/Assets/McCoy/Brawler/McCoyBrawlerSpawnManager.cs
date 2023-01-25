@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UFE3D;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Assets.McCoy.ProjectConstants;
 
@@ -33,6 +34,9 @@ namespace Assets.McCoy.Brawler
     // Faction -> deadEnemies
     Dictionary<Factions, int> monstersKilled = new Dictionary<Factions, int>();
 
+    // living bosses
+    List<ControlsScript> livingBosses = new List<ControlsScript>();
+
     List<GameObject> debugGoalposts = new List<GameObject>();
 
     bool debugSpawnsOnly => McCoy.GetInstance().DebugSpawnsOnly;
@@ -55,6 +59,8 @@ namespace Assets.McCoy.Brawler
     bool allPlayersDead = false;
     bool transitioning = false;
     ControlsScript boss = null;
+    // Killing this Ends the Game!
+    ControlsScript finalBoss = null;
     IBossSpawnListener bossSpawnListener = null;
     McCoyFactionLookup factionLookup => McCoyFactionLookup.GetInstance();
 
@@ -71,7 +77,6 @@ namespace Assets.McCoy.Brawler
     List<IMobChangeDelegate> mobChangeListeners = new List<IMobChangeDelegate>();
 
     bool allEnemiesDefeated = false;
-    bool bossRemains = false;
     string bossName;
     bool waitingForQuestUI = false;
     SubstageExitCondition endCondition;
@@ -123,8 +128,8 @@ namespace Assets.McCoy.Brawler
         avgSpawnNumbers[spawnLookup.Key] = mobData.ContainsKey(spawnLookup.Key) ? mobData[spawnLookup.Key].CalculateNumberSimultaneousBrawlerEnemies() : 0;
         Debug.Log($"Going to spawn {spawnNumbers[spawnLookup.Key]} {spawnLookup.Key}s into {UFE.config.selectedStage.stageInfo.substages[UFE.config.currentRound-1].substageName}");
       }
-      
-        
+      livingBosses.Clear();
+
       SetTeam(1, Factions.Werewolves);
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
@@ -139,7 +144,6 @@ namespace Assets.McCoy.Brawler
     {
       updateSpawners();
       updateCombatZones();
-      updateBoss();
       checkGameEnd();
     }
 
@@ -189,12 +193,24 @@ namespace Assets.McCoy.Brawler
     }
     private void checkGameEnd()
     {
+      if(finalBoss != null)
+      {
+        McCoyGameState.Instance().FinalBossHealth = Mathf.Max(0, (float) finalBoss.currentLifePoints);
+      }
       if(McCoy.GetInstance().debugCheatWin)
       {
         cheatWin();
         return;
       }
-      if(bossRemains || inCombatZone)
+      if(inCombatZone)
+      {
+        return;
+      }
+      if(livingBosses.Count > 0)
+      {
+        return;
+      }
+      foreach(var spawn in spawners)
       {
         return;
       }
@@ -212,6 +228,7 @@ namespace Assets.McCoy.Brawler
         }
         else
         {
+          Debug.Log("FIRE WON! " + endCondition);
           fireWon(endCondition);
         }
       }
@@ -237,6 +254,21 @@ namespace Assets.McCoy.Brawler
     public void ActorKilled(ControlsScript monster)
     {
       int XP = McCoyFactionLookup.GetInstance().XPForMonster(monster.myInfo.characterName);
+      Factions team = (Factions)monster.Team;
+      if(team == Factions.Werewolves)
+      {
+        return;
+      }
+
+      if(livingBosses.Contains(monster))
+      {
+        livingBosses.Remove(monster);
+        bossName = monster.myInfo.name;
+        boss = null;
+        bossSpawnListener.BossDied(boss);
+        endCondition = SubstageExitCondition.BossDefeated;
+      }
+
       mobData[(Factions)monster.Team].MonstersKilled(1);
       ++monstersKilled[(Factions)monster.Team];
       foreach(var pc in PlayerCharacters)
@@ -258,18 +290,6 @@ namespace Assets.McCoy.Brawler
       }
       McCoy.GetInstance().debugCheatWin = false;
       fireWon(SubstageExitCondition.Cheat);
-    }
-
-    private void updateBoss()
-    {
-      if(boss && boss.currentLifePoints <= 0)
-      {
-        bossRemains = false;
-        bossName = boss.myInfo.name;
-        boss = null;
-        bossSpawnListener.BossDied(boss);
-        endCondition = SubstageExitCondition.BossDefeated;
-      }
     }
 
     private void updateCombatZones()
@@ -336,8 +356,19 @@ namespace Assets.McCoy.Brawler
           var monsterCScript = createMonster(charInfo, fac, x, ((float) (min + max) / 2.0f));
           if (bossSpawnListener != null && spawner.IsBoss)
           {
+            livingBosses.Add(monsterCScript);
             boss = monsterCScript;
             bossSpawnListener.BossSpawned(monsterCScript);
+            if(boss.myInfo.characterName == "PentaGran")
+            {
+              Debug.Log("!!!!!!!!!!!!!!!!!SUMMON THE PENTAGRAN: ");
+              finalBoss = boss;
+              float serializedHealth = McCoyGameState.Instance().FinalBossHealth;
+              if (serializedHealth > 0)
+              {
+                finalBoss.currentLifePoints = Mathf.Min(serializedHealth, (float) finalBoss.currentLifePoints);
+              }
+            }
           }
           break;
         }
@@ -346,6 +377,7 @@ namespace Assets.McCoy.Brawler
 
     private void stageBegan()
     {
+      Debug.Log("Stage Began!"); // g'morning, wes. pentagran's spawn down below probably isn't called because this is only called on the first stage
       endCondition = SubstageExitCondition.None;
       allEnemiesDefeated = false;
       transitioning = false;
@@ -368,10 +400,6 @@ namespace Assets.McCoy.Brawler
         spawnerList.Remove(spawner);
         if (spawner != null)
         {
-          if (spawner.spawnData.IsBoss)
-          {
-            bossRemains = true;
-          }
           spawner.spawnData.Initialize(spawner.gameObject.transform.localPosition.x);
           spawners.Add(spawner.spawnData);
           Destroy(spawner.gameObject);
@@ -390,6 +418,18 @@ namespace Assets.McCoy.Brawler
         Destroy(combatZone.gameObject);
       }
       Destroy(spawnerRoot);
+
+      if(lastStage && McCoyGameState.Instance().FinalBattle)
+      {
+        Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
+        McCoySpawnData bossSpawn = new McCoySpawnData()
+        {
+          EnemyName = "PentaGran",
+          IsBoss = true,
+        };
+        bossSpawn.Initialize((int)UFE.config.selectedStage.GetLevelExit() - 4);
+        spawners.Add(bossSpawn);
+      }
     }
 
     private void recalcAverageSpawns()
