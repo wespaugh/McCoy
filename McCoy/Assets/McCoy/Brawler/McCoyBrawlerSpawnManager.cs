@@ -36,6 +36,8 @@ namespace Assets.McCoy.Brawler
 
     // living bosses
     List<ControlsScript> livingBosses = new List<ControlsScript>();
+    // spawned monsters (created outside of normal mob presence, don't need to be tracked as such)
+    List<ControlsScript> spawnerMonsters = new List<ControlsScript>();
 
     List<GameObject> debugGoalposts = new List<GameObject>();
 
@@ -268,9 +270,15 @@ namespace Assets.McCoy.Brawler
         bossSpawnListener.BossDied(boss);
         endCondition = SubstageExitCondition.BossDefeated;
       }
-
-      mobData[(Factions)monster.Team].MonstersKilled(1);
-      ++monstersKilled[(Factions)monster.Team];
+      if (spawnerMonsters.Contains(monster))
+      {
+        spawnerMonsters.Remove(monster);
+      }
+      else
+      {
+        mobData[(Factions)monster.Team].MonstersKilled(1);
+        ++monstersKilled[(Factions)monster.Team];
+      }
       foreach(var pc in PlayerCharacters)
       {
         var player = McCoyGameState.GetPlayer(pc);
@@ -359,7 +367,7 @@ namespace Assets.McCoy.Brawler
             livingBosses.Add(monsterCScript);
             boss = monsterCScript;
             bossSpawnListener.BossSpawned(monsterCScript);
-            if(boss.myInfo.characterName == "PentaGran")
+            if(boss.myInfo.characterName == "Penta-Gran")
             {
               Debug.Log("!!!!!!!!!!!!!!!!!SUMMON THE PENTAGRAN: ");
               finalBoss = boss;
@@ -375,6 +383,58 @@ namespace Assets.McCoy.Brawler
       }
     }
 
+    private void preloadFinalBattleIfNeeded()
+    {
+      if (lastStage && McCoyGameState.Instance().FinalBattle)
+      {
+        Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
+        McCoySpawnData bossSpawn = new McCoySpawnData()
+        {
+          EnemyName = "Penta-Gran",
+          IsBoss = true,
+        };
+        bossSpawn.Initialize((int)UFE.config.selectedStage.GetLevelExit() - 4);
+        spawners.Add(bossSpawn);
+      }
+    }
+
+    private void getSpawnersFromScene(GameObject spawnerRoot)
+    {
+      if (spawnerRoot == null)
+      {
+        return;
+      }
+      var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
+      spawnerList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
+
+      while (spawnerList.Count > 0)
+      {
+        var spawner = spawnerList[0];
+        spawnerList.Remove(spawner);
+        if (spawner != null)
+        {
+          spawner.spawnData.Initialize(spawner.gameObject.transform.localPosition.x);
+          spawners.Add(spawner.spawnData);
+          Destroy(spawner.gameObject);
+        }
+      }
+    }
+
+    private void getCombatZonesFromScene(GameObject spawnerRoot)
+    {
+      combatZones = new List<McCoyCombatZoneData>();
+      var combatZoneList = new List<McCoyCombatZoneTrigger>(spawnerRoot.GetComponentsInChildren<McCoyCombatZoneTrigger>());
+      combatZoneList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
+      while (combatZoneList.Count > 0)
+      {
+        var combatZone = combatZoneList[0];
+        combatZoneList.Remove(combatZone);
+        combatZone.ZoneData.Initialize(combatZone.gameObject.transform.localPosition.x);
+        combatZones.Add(combatZone.ZoneData);
+        Destroy(combatZone.gameObject);
+      }
+    }
+
     private void stageBegan()
     {
       Debug.Log("Stage Began!"); // g'morning, wes. pentagran's spawn down below probably isn't called because this is only called on the first stage
@@ -386,49 +446,14 @@ namespace Assets.McCoy.Brawler
       initGoalposts();
       spawners.Clear();
 
+      preloadFinalBattleIfNeeded();
+
       GameObject spawnerRoot = GameObject.FindGameObjectWithTag("Spawner");
-      if(spawnerRoot == null)
+      if (spawnerRoot != null)
       {
-        return;
-      }
-      var spawnerList = new List<McCoySpawnerTrigger>(spawnerRoot.GetComponentsInChildren<McCoySpawnerTrigger>());
-      spawnerList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
-
-      while(spawnerList.Count > 0)
-      {
-        var spawner = spawnerList[0];
-        spawnerList.Remove(spawner);
-        if (spawner != null)
-        {
-          spawner.spawnData.Initialize(spawner.gameObject.transform.localPosition.x);
-          spawners.Add(spawner.spawnData);
-          Destroy(spawner.gameObject);
-        }
-      }
-
-      combatZones = new List<McCoyCombatZoneData>();
-      var combatZoneList = new List<McCoyCombatZoneTrigger>(spawnerRoot.GetComponentsInChildren<McCoyCombatZoneTrigger>());
-      combatZoneList.Sort((a, b) => { return (int)(a.transform.position.x < b.transform.position.x ? -1 : 1); });
-      while(combatZoneList.Count > 0)
-      {
-        var combatZone = combatZoneList[0];
-        combatZoneList.Remove(combatZone);
-        combatZone.ZoneData.Initialize(combatZone.gameObject.transform.localPosition.x);
-        combatZones.Add(combatZone.ZoneData);
-        Destroy(combatZone.gameObject);
-      }
-      Destroy(spawnerRoot);
-
-      if(lastStage && McCoyGameState.Instance().FinalBattle)
-      {
-        Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
-        McCoySpawnData bossSpawn = new McCoySpawnData()
-        {
-          EnemyName = "PentaGran",
-          IsBoss = true,
-        };
-        bossSpawn.Initialize((int)UFE.config.selectedStage.GetLevelExit() - 4);
-        spawners.Add(bossSpawn);
+        getSpawnersFromScene(spawnerRoot);
+        getCombatZonesFromScene(spawnerRoot);
+        Destroy(spawnerRoot);
       }
     }
 
