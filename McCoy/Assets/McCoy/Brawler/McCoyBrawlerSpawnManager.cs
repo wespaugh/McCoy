@@ -726,6 +726,10 @@ namespace Assets.McCoy.Brawler
         --combatZoneEnemiesRemaining;
       }
       ControlsScript newMonster = UFE.CreateRandomMonster(info, posX, posZ);
+      if(McCoy.GetInstance().DebugOneHitKills)
+      {
+        newMonster.currentLifePoints = 1;
+      }
       SetTeam(newMonster, f);
       SetAllies(newMonster, new List<Factions> { f });
       return newMonster;

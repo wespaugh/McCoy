@@ -15,8 +15,9 @@ namespace Assets.McCoy
 {
   public class McCoy : MonoBehaviour
   {
-    public bool DebugUI = true;
+    public bool DebugUI = false;
     public bool DebugSpawnsOnly = false;
+    public bool DebugOneHitKills = false;
     public bool debugCheatWin = false;
     public bool levelAllPlayersEvenly = false;
     public UFEScreen cityScene;

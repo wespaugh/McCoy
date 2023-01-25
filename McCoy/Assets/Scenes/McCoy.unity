@@ -627,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugUI: 1
   DebugSpawnsOnly: 0
+  DebugOneHitKills: 1
   debugCheatWin: 0
   levelAllPlayersEvenly: 0
   cityScene: {fileID: 7717615156766846426, guid: 5f1902f4f1fb8654aa90363b8de84b63,
