@@ -385,7 +385,8 @@ namespace Assets.McCoy.Brawler
 
     private void preloadFinalBattleIfNeeded()
     {
-      if (lastStage && McCoyGameState.Instance().FinalBattle)
+      bool correctStage = UFE.config.currentRound == 1; // lastStage;
+      if (correctStage && McCoyGameState.Instance().FinalBattle)
       {
         Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
         McCoySpawnData bossSpawn = new McCoySpawnData()
