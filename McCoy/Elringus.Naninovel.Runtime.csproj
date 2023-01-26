@@ -173,8 +173,8 @@
     <Compile Include="Assets\Naninovel\Runtime\Input\IInputTrigger.cs" />
     <Compile Include="Assets\Naninovel\Runtime\UI\ScriptNavigator\NavigatorPlayButton.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Actor\TextPrinter\TextPrintersConfiguration.cs" />
-    <Compile Include="Assets\Naninovel\Runtime\Script\Line\CommandScriptLine.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Script\Parameter\NamedBooleanListParameter.cs" />
+    <Compile Include="Assets\Naninovel\Runtime\Script\Line\CommandScriptLine.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Actor\ActorMetadataMap.cs" />
     <Compile Include="Assets\Naninovel\Runtime\UI\TextPrinter\AuthorNamePanel.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Actor\ChoiceHandler\IChoiceHandlerActor.cs" />
@@ -393,8 +393,8 @@
     <Compile Include="Assets\Naninovel\Runtime\Console\ConsoleCommandAttribute.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\Async\UniTask\Internal\UniTaskSynchronizationContext.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Script\Parameter\StringListParameter.cs" />
-    <Compile Include="Assets\Naninovel\Runtime\Engine\IEngineService.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Command\OpenURL.cs" />
+    <Compile Include="Assets\Naninovel\Runtime\Engine\IEngineService.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Engine\Engine.cs" />
     <Compile Include="Assets\Naninovel\Runtime\FX\SunShafts.cs" />
     <Compile Include="Assets\Naninovel\Runtime\UI\Title\ITitleUI.cs" />
@@ -556,8 +556,8 @@
     <Compile Include="Assets\Naninovel\Runtime\Actor\Background\IBackgroundActor.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\Async\UniTask\Public\UniTask.WhenAll.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\ResourceProvider\AddressableResourceProvider.cs" />
-    <Compile Include="Assets\Naninovel\Runtime\Common\Async\UniTask\Public\UniTask.WhenAny.cs" />
     <Compile Include="Assets\Naninovel\Runtime\ScriptPlayer\ScriptPlaylist.cs" />
+    <Compile Include="Assets\Naninovel\Runtime\Common\Async\UniTask\Public\UniTask.WhenAny.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Actor\LayeredActorBehaviour.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\ResourceProvider\VirtualResourceProvider.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Command\Choice\AddChoice.cs" />
@@ -1311,9 +1311,6 @@
     </Reference>
     <Reference Include="Unity.ResourceManager">
       <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>

@@ -117,6 +117,7 @@ namespace UFE3D
           continue;
         }
         spriteData[spriteKey].animator.gameObject.SetActive(!hide);
+        Debug.Log("Hiding " + spriteData[spriteKey].animator.gameObject.name + ". " + hide);
         if (mod != null && spriteData[spriteKey].modify)
         {
           spriteData[spriteKey].sprite.color = Mod.Tint;
@@ -127,7 +128,6 @@ namespace UFE3D
           spriteData[spriteKey].sprite.color = Color.white;
         }
         animKey += (bodySprite.flipX ? "_flip" : "");
-        spriteData[spriteKey].animator.gameObject.SetActive(!hide);
         if (!hide)
         {
           spriteData[spriteKey].animator.Play(animKey);
