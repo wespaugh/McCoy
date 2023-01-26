@@ -385,7 +385,7 @@ namespace Assets.McCoy.Brawler
 
     private void preloadFinalBattleIfNeeded()
     {
-      bool correctStage = UFE.config.currentRound == 1; // lastStage;
+      bool correctStage = UFE.config.currentRound == lastStage;
       if (correctStage && McCoyGameState.Instance().FinalBattle)
       {
         Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
@@ -394,7 +394,7 @@ namespace Assets.McCoy.Brawler
           EnemyName = "Penta-Gran",
           IsBoss = true,
         };
-        bossSpawn.Initialize((int)UFE.config.selectedStage.GetLevelExit() - 4);
+        bossSpawn.Initialize((int)UFE.config.selectedStage.GetLevelExit() - 15);
         spawners.Add(bossSpawn);
       }
     }
@@ -438,7 +438,6 @@ namespace Assets.McCoy.Brawler
 
     private void stageBegan()
     {
-      Debug.Log("Stage Began!"); // g'morning, wes. pentagran's spawn down below probably isn't called because this is only called on the first stage
       endCondition = SubstageExitCondition.None;
       allEnemiesDefeated = false;
       transitioning = false;
