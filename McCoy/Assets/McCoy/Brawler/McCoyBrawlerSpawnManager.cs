@@ -370,7 +370,6 @@ namespace Assets.McCoy.Brawler
             bossSpawnListener.BossSpawned(monsterCScript);
             if(boss.myInfo.characterName == "Penta-Gran")
             {
-              Debug.Log("!!!!!!!!!!!!!!!!!SUMMON THE PENTAGRAN: ");
               finalBoss = boss;
               float serializedHealth = McCoyGameState.Instance().FinalBossHealth;
               if (serializedHealth > 0)
@@ -386,10 +385,9 @@ namespace Assets.McCoy.Brawler
 
     private void preloadFinalBattleIfNeeded()
     {
-      bool correctStage = UFE.config.currentRound == lastStage;
+      bool correctStage = UFE.config.currentRound == 1;// lastStage;
       if (correctStage && McCoyGameState.Instance().FinalBattle)
       {
-        Debug.Log("NOW! THIS IS IT! NOW'S THE TIME TO CHOOSE!");
         McCoySpawnData bossSpawn = new McCoySpawnData()
         {
           EnemyName = "Penta-Gran",

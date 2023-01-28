@@ -115,6 +115,7 @@ namespace Assets.McCoy.BoardGame
       credits = save.credits;
       causesLobbiedFor = save.causesLobbiedFor;
       SelectedPlayer = save.SelectedPlayer;
+      FinalBossHealth = save.FinalBossHealth;
     }
 
     public void Initialize()

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TMPro;
 using UFE3D;
 using UnityEngine;
+using UnityEngine.Localization.Pseudo;
 using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
@@ -70,6 +71,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     AudioClip moveCursorSound = null;
 
+    [SerializeField]
+    GameObject endgameCutscene = null;
+
     McCoyInputManager inputManager;
     bool inputInitialized = false;
 
@@ -103,6 +107,7 @@ namespace Assets.McCoy.UI
     bool mobRouting = false;
     bool weekEnding = false;
     bool mobDying = false;
+    bool gameEnding = false;
     private McCoyMobRoutingUI routeMenu;
 
     private void Awake()
@@ -143,25 +148,31 @@ namespace Assets.McCoy.UI
       {
         inputManager = new McCoyInputManager();
         inputInitialized = true;
-        inputManager.RegisterButtonListener(ButtonPress.Button3, TransitionToFireside);
-        inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
-        inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
-        inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
-        inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
-        inputManager.RegisterButtonListener(ButtonPress.Button2, enterCurrentZone);
-        inputManager.RegisterButtonListener(ButtonPress.Up, NavigateUp);
-        inputManager.RegisterButtonListener(ButtonPress.Down, NavigateDown);
+        if (gameEnding)
+        {
+          inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
+        }
+        else
+        {
+          inputManager.RegisterButtonListener(ButtonPress.Button3, TransitionToFireside);
+          inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
+          inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
+          inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
+          inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
+          inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
+          inputManager.RegisterButtonListener(ButtonPress.Up, NavigateUp);
+          inputManager.RegisterButtonListener(ButtonPress.Down, NavigateDown);
+        }
       }
 
-       if(routeMenu != null && routeMenu.gameObject.activeInHierarchy)
+      if (routeMenu != null && routeMenu.gameObject.activeInHierarchy)
       {
         return routeMenu.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       }
-      else if(fireside.gameObject.activeInHierarchy)
+      else if (fireside.gameObject.activeInHierarchy)
       {
         return fireside.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
       }
-
       bool pushedAButton = inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
 
       if (pushedAButton)
@@ -182,6 +193,10 @@ namespace Assets.McCoy.UI
 
     private void navigateZoneList(int dir)
     {
+      if(gameEnding)
+      {
+        return;
+      }
       int selectionIdx = 0;
       if (selectedZonePanel != null)
       {
@@ -212,6 +227,19 @@ namespace Assets.McCoy.UI
       navigateZoneList(-1);
     }
 
+    private void ConfirmPressed()
+    {
+      if (gameEnding)
+      {
+        UFE.ShowScreen(UFE.GetMainMenuScreen());
+      }
+      else
+      {
+        enterCurrentZone();
+      }
+    }
+
+
     void enterCurrentZone()
     {
       selectedZonePanel?.ZoneClicked();
@@ -230,6 +258,10 @@ namespace Assets.McCoy.UI
 
     private IEnumerator cityBootSequence()
     {
+      if (checkGameWon())
+      {
+        yield break;
+      }
       initPlayerStartLocations();
       initSelectedCharacter();
       initQuests();
@@ -278,6 +310,20 @@ namespace Assets.McCoy.UI
       saveCity();
       board.IntroFinished();
       McCoy.GetInstance().Loading = false;
+    }
+
+    private bool checkGameWon()
+    {
+      if (McCoyGameState.Instance().FinalBattle && McCoyGameState.Instance().FinalBossHealth <= 0f)
+      {
+        gameEnding= true;
+        // trigger input to reinitialize with just the button press that'll take us to the main menu
+        inputInitialized = false;
+        endgameCutscene.SetActive(true);
+        return true;
+      }
+      endgameCutscene.SetActive(false);
+      return false;
     }
 
     private void initFiresideScene()
