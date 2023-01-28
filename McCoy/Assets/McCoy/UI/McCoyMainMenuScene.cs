@@ -106,7 +106,11 @@ namespace Assets.McCoy.UI
       {
         yield return null;
       }
-      McCoy.GetInstance().SetNaniCam(GameObject.Find("NaniCam(Clone)").GetComponent<Camera>());// GameObject.Find("NaniUICamera(Clone)").GetComponent<Camera>());
+      var naniCam = GameObject.Find("NaniCam(Clone)");
+      if (naniCam == null)
+      {
+        McCoy.GetInstance().SetNaniCam(GameObject.Find("NaniCam(Clone)").GetComponent<Camera>());// GameObject.Find("NaniUICamera(Clone)").GetComponent<Camera>());
+      }
       // _ = McCoy.GetInstance().ShowCutsceneAsync("Rex_01_Outro");
     }
 
