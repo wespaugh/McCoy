@@ -77,7 +77,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: -1:,0:legs_combo_1,1:torso_combo_1,2:reararm_combo_1,3:frontarm_combo_1,4:head_combo_1
+    data: Background:,Legs:legs_combo_1,Torso:torso_combo_1,RearArm:reararm_combo_1,FrontArm:frontarm_combo_1,Head:head_combo_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

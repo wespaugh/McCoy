@@ -362,6 +362,7 @@ namespace Assets.McCoy.Brawler
           float x = spawner.xPosition + bossXOffset;
           UFE.config.selectedStage.stageInfo.GetYBounds(UFE.config.currentRound, x, out var min, out var max);
           var monsterCScript = createMonster(charInfo, fac, x, ((float) (min + max) / 2.0f));
+          spawnerMonsters.Add(monsterCScript);
           if (bossSpawnListener != null && spawner.IsBoss)
           {
             livingBosses.Add(monsterCScript);

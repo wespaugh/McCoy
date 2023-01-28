@@ -279,7 +279,6 @@ namespace UFE3D
 
     public void IsCollidingProjectile(ControlsScript opControlsScript)
     {
-      Debug.Log("WE ARE TESTING PROJECTILE COLLISIONS NOW");
       if (opControlsScript.projectiles.Count > 0)
       {
         foreach (ProjectileMoveScript projectile in opControlsScript.projectiles)

@@ -5642,7 +5642,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -10949,7 +10949,7 @@ MonoBehaviour:
       _groundCollisionMass:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 0
-    basicMovesToggle: 0
+    basicMovesToggle: 1
     attackMovesToggle: 1
   - combatStance: 2
     cinematicIntro: {fileID: 0}

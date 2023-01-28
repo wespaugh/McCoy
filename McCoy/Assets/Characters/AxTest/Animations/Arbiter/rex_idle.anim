@@ -166,7 +166,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: -1:,0:legs_idle,1:torso_idle,2:reararm_idle,3:frontarm_idle,4:head_idle
+    data: Background:,Legs:legs_idle,Torso:torso_idle,RearArm:reararm_idle,FrontArm:frontarm_idle,Head:head_idle
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

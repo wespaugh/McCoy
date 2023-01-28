@@ -71,7 +71,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: -1:,0:legs_hurtfall,1:torso_hurtfall,2:reararm_hurtfall,3:frontarm_hurtfall,4:head_hurtfall
+    data: Background:,Legs:legs_hurtfall,Torso:torso_hurtfall,RearArm:reararm_hurtfall,FrontArm:frontarm_hurtfall,Head:head_hurtfall
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

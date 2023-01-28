@@ -71,7 +71,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: -1:,0:legs_takeoff,1:torso_takeoff,2:reararm_takeoff,3:frontarm_takeoff,4:head_takeoff
+    data: Background:,Legs:legs_takeoff,Torso:torso_takeoff,RearArm:reararm_takeoff,FrontArm:frontarm_takeoff,Head:head_takeoff
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

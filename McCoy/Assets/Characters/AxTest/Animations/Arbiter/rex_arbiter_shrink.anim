@@ -83,7 +83,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: PlayLimbAnimation
-    data: '-1:,0:,1:,2:,3:,4:'
+    data: 'Background:,Legs:,Torso:,RearArm:,FrontArm:Head:'
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
