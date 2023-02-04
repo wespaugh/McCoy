@@ -54,7 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="C:\Users\wespa\Documents\McCoy\McCoy\Library\PackageCache\com.unity.ext.nunit@2.0.2\net40\unity-custom\nunit.framework.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\GUIBarOptions.cs" />
@@ -159,8 +158,8 @@
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\AIDistanceBehaviour.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\Enums\ProjectileType.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Global\Enums\ComboDisplayMode.cs" />
-    <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\MoveSortOrder.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\UI\Base\VersusModeAfterBattleScreen.cs" />
+    <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\MoveSortOrder.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Network\Connectors\ConnectionInformation.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Definitions\Move\CharacterAssist.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Core\Network\States\FluxSyncState.cs" />
