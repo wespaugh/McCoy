@@ -54,7 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="D:\Github\McCoy\McCoy\Library\PackageCache\com.unity.ext.nunit@2.0.2\net40\unity-custom\nunit.framework.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Naninovel\Runtime\UI\CGGallery\CGGalleryGridSlot.cs" />
@@ -186,8 +185,8 @@
     <Compile Include="Assets\Naninovel\Runtime\Command\Audio\PlaySfxFast.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\ScriptableUI\ScriptableSlider.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\ResourceProvider\ResourceLoaderExtensions.cs" />
-    <Compile Include="Assets\Naninovel\Runtime\UI\Tips\TipsListItem.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Script\Parser\ScriptLineParser.cs" />
+    <Compile Include="Assets\Naninovel\Runtime\UI\Tips\TipsListItem.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Engine\ServiceInitializationData.cs" />
     <Compile Include="Assets\Naninovel\Runtime\UI\VariableInput\IVariableInputUI.cs" />
     <Compile Include="Assets\Naninovel\Runtime\Common\Audio\AudioController.cs" />

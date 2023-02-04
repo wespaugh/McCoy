@@ -54,7 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="D:\Github\McCoy\McCoy\Library\PackageCache\com.unity.ext.nunit@2.0.2\net40\unity-custom\nunit.framework.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UFE\Engine\Editor\EditorCamera.cs" />
@@ -364,6 +363,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@2.0.2\net40\unity-custom\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -388,6 +390,9 @@
     <Reference Include="Naninovel.Common">
       <HintPath>Assets\Naninovel\Plugins\Naninovel.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
     </Reference>
@@ -399,12 +404,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>Library\PackageCache\com.unity.ext.nunit@2.0.2\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Unity\2021.3.0f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>

@@ -12,7 +12,6 @@ namespace Assets.McCoy.BoardGame
 {
   public class McCoyZoneMapMobIndicator : MonoBehaviour
   {
-    const string factionAnimatorParam = "Faction";
     [SerializeField]
     Animator mageObject = null;
     [SerializeField]
@@ -80,8 +79,8 @@ namespace Assets.McCoy.BoardGame
 
       wolfIndicator.gameObject.SetActive(playerNum > 0);
       wolfIndicator.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-      wolfIndicator.GetComponent<Animator>().SetInteger(factionAnimatorParam, 1);
-      // zoneIcon.sprite = zoneIconTexture;
+      wolfIndicator.GetComponent<Animator>().SetInteger(MOB_ANIMATION_KEY_FACTION, 1);
+
       zoneNameLabel.text = zoneName;
 
       ToggleHover(false);
@@ -94,7 +93,7 @@ namespace Assets.McCoy.BoardGame
       mechanismIndicator.gameObject.SetActive(showMechanism);
       if(showMechanism)
       {
-        mechanismIndicator.SetBool("Boss", true);
+        mechanismIndicator.SetBool(MOB_ANIMATION_KEY_BOSS, true);
       }
 
       switch (playerNum)
@@ -182,19 +181,12 @@ namespace Assets.McCoy.BoardGame
       {
         return y.XP - x.XP;
       });
-
-      float currentY = 0.0f;
-      foreach(var mob in mobs)
-      {
-        Transform building = animatorForFaction(mob.Faction).transform;
-        currentY = updateMobObject(mob, building, currentY);
-      }
     }
 
     private void initMob(Animator anim, McCoyMobData m, int factionIndex, TMP_Text text)
     {
       anim.gameObject.SetActive(m != null);
-      anim.SetInteger(factionAnimatorParam, factionIndex);
+      anim.SetInteger(MOB_ANIMATION_KEY_FACTION, factionIndex);
       if (m != null)
       {
         text.gameObject.SetActive(true);
@@ -210,11 +202,11 @@ namespace Assets.McCoy.BoardGame
     {
       switch (f)
       {
-        case ProjectConstants.Factions.Mages:
+        case Factions.Mages:
           return mageObject;
-        case ProjectConstants.Factions.CyberMinotaurs:
+        case Factions.CyberMinotaurs:
           return minotaurObject;
-        case ProjectConstants.Factions.AngelMilitia:
+        case Factions.AngelMilitia:
           return militiaObject;
         default: 
           return wolfIndicator.GetComponent<Animator>();
@@ -227,7 +219,7 @@ namespace Assets.McCoy.BoardGame
       
       Animator meeple = Instantiate(factionIcon, existingAnimator.transform.parent);
       meeple.transform.localPosition = existingAnimator.transform.localPosition;
-      meeple.SetInteger(factionAnimatorParam, (int)faction);
+      meeple.SetInteger(MOB_ANIMATION_KEY_FACTION, (int)faction);
       meeple.GetComponent<SpriteRenderer>().color = existingAnimator.GetComponent<SpriteRenderer>().color;
 
       if (hideOriginal)
@@ -252,36 +244,6 @@ namespace Assets.McCoy.BoardGame
       meeple.transform.position = endPos;
       Destroy(meeple);
       callback();
-    }
-
-    private float updateMobObject(McCoyMobData mob, Transform building, float currentY)
-    {
-      float strengthFactor = 3f;// + ((float)mob.XP) / 2.0f;
-      float healthFactor = ((float)mob.Health) * .1f;
-      building.localScale = new Vector3(strengthFactor, strengthFactor, strengthFactor);
-      building.localPosition = new Vector3(building.localPosition.x, currentY + (healthFactor/2.0f), building.localPosition.z);
-
-      /*
-      Color c;
-      switch (mob.Faction)
-      {
-        case ProjectConstants.Factions.Mages:
-          c = new Color(227.0f / 255.0f, 99.0f / 255.0f, 151.0f / 255.0f);
-          break;
-        case ProjectConstants.Factions.CyberMinotaurs:
-          c = Color.white;// c = new Color(0.0f, 128.0f / 255.0f, 255.0f / 255.0f);
-          break;
-        case ProjectConstants.Factions.AngelMilitia:
-          c = new Color(0.0f, 255.0f / 255.0f, 128.0f / 255.0f); // c = new Color(130.0f/255.0f, 209.0f/255.0f, 115.0f);
-          break;
-        default:
-          c = Color.white;
-          break;
-      }
-
-      building.GetComponent<SpriteRenderer>().materials[0].color = c;
-      */
-      return currentY;// + (healthFactor * 2.0f);
     }
 
     public void SetSelected(bool select)
@@ -358,12 +320,12 @@ namespace Assets.McCoy.BoardGame
     {
       var factionAnim = animatorForFaction(faction);
       factionAnim.gameObject.SetActive(true);
-      factionAnim.SetTrigger("FIGHT");
+      factionAnim.SetTrigger(MOB_ANIMATION_KEY_FIGHT);
 
       var werewolf = animatorForFaction(Factions.Werewolves);
       if (werewolf.gameObject.activeInHierarchy)
       {
-        werewolf.SetTrigger("FIGHT");
+        werewolf.SetTrigger(MOB_ANIMATION_KEY_FIGHT);
       }
     }
 
@@ -374,20 +336,20 @@ namespace Assets.McCoy.BoardGame
         return;
       }
       QuestIndicator.gameObject.SetActive(true);
-      string animKey = "WorldQuest";
+      string animKey = QUEST_ANIM_KEY_WORLD;
       switch(quest.characterRestriction)
       {
         case PlayerCharacter.Rex:
-          animKey = "RexQuest";
+          animKey = QUEST_ANIM_KEY_REX;
           break;
         case PlayerCharacter.Vicki:
-          animKey = "VickiQuest";
+          animKey = QUEST_ANIM_KEY_VICKI;
           break;
         case PlayerCharacter.Avalon:
-          animKey = "AvalonQuest";
+          animKey = QUEST_ANIM_KEY_AVALON;
           break;
         case PlayerCharacter.Penelope:
-          animKey = "PenelopeQuest";
+          animKey = QUEST_ANIM_KEY_PENELOPE;
           break;
       }
       QuestIndicator.SetTrigger(animKey);

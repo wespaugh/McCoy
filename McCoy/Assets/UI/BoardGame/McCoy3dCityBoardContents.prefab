@@ -388,6 +388,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NodeId: 7561d6c4bbfed7747a0affa4400cd38e
   debugName: 
+--- !u!1 &1111650323043752471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4589921958671343341}
+  m_Layer: 0
+  m_Name: CameraBoundsLowerLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4589921958671343341
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111650323043752471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3434535445070870145}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 7.5, y: 19}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1230224421776523167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,6 +1803,7 @@ GameObject:
   - component: {fileID: 3434535445070870145}
   - component: {fileID: 7263689708247425655}
   - component: {fileID: 2013058099333123462}
+  - component: {fileID: 8750347574399047695}
   m_Layer: 0
   m_Name: McCoy3dCityBoardContents
   m_TagString: Untagged
@@ -1789,6 +1826,8 @@ RectTransform:
   - {fileID: 6106435608410907947}
   - {fileID: 7598361784186837210}
   - {fileID: 588980785900230320}
+  - {fileID: 4589921958671343341}
+  - {fileID: 6639012641286973607}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1810,18 +1849,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraAnchor: {fileID: 198762364196780070}
+  cameraBoundsLowerLeft: {fileID: 4589921958671343341}
+  cameraBoundsUpperRight: {fileID: 6639012641286973607}
+  selectedNodeCameraZoomOffset: {x: 3.5, y: 0, z: 16}
   lineStartWidth: 0.1
   lineEndWidth: 0.05
+  lineSortOrder: 100
   map: {fileID: 211210294395122301}
   mapTexture: {fileID: 21300000, guid: 9842ade6b4726a040a1c4c1dc859bc83, type: 3}
-  OnlyStrongestMobsSearch: 1
+  cameraMoveTime: 0.5
   stingerPrefab: {fileID: 1447433166789044198, guid: e3022a6bb3c378341a4d650f369bfac3,
     type: 3}
   stingerTransformRoot: {fileID: 85393548055553077}
-  mobCombatSound: {fileID: 8300000, guid: 7bc502e2c17c1544e8f54ec46195bd85, type: 3}
+  hidePosition: {x: 0, y: 15, z: 18}
+  lineMaterialShader: Sprites/Default
   NodeParent: {fileID: 3514799695875155434}
   dataFile: NewMoonCity
   Scaler: {fileID: 6106435608410907947}
+  unconnectedLineColor: {r: 0.8901961, g: 0.3882353, b: 0.5921569, a: 128}
+  connectedLineColor: {r: 0.50980395, g: 0.81960785, b: 0.4509804, a: 1}
+  mobMovementLogic: {fileID: 8750347574399047695}
 --- !u!114 &2013058099333123462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1834,6 +1881,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1511ccae7919cfc46b603b9b337fdc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8750347574399047695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930349915925274061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab433ff5c943c0459129f319711bdf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlyStrongestMobsSearch: 0
+  mobCombatSound: {fileID: 8300000, guid: ff75cb50ccaff184eb5303bbba18b20f, type: 3}
+  weekendStartDelay: 1.5
+  delayBetweenCombatAndRouting: 0.5
 --- !u!1 &6219544812935074068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,6 +2292,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NodeId: 4a3482616f144e746ae7a842a43bdeef
   debugName: 
+--- !u!1 &7353656837197967818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6639012641286973607}
+  m_Layer: 0
+  m_Name: CameraBoundsUpperRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6639012641286973607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353656837197967818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3434535445070870145}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 22, y: 19}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7984026337596940462
 GameObject:
   m_ObjectHideFlags: 0

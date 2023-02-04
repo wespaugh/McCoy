@@ -48,13 +48,14 @@ namespace Assets.McCoy.Brawler
     int avgEnemiesOnscreenAtOnce = 0;
     bool inCombatZone = false;
     int combatZoneEnemiesRemaining = 0;
-    float playerStartX = 0;
+
     [SerializeField]
     float playerX = 0.0f;
     [SerializeField]
     float playerY = 0.0f;
     [SerializeField]
     float playerZ = 0.0f;
+
     // float currentPlayerProgress = 0; // measured in number of enemies they should have encountered
     float levelBoundsStart, levelBoundsEnd;
     ControlsScript player;
@@ -136,7 +137,6 @@ namespace Assets.McCoy.Brawler
       SetAllies(1, new List<Factions> { Factions.Werewolves } );
 
       player = UFE.brawlerEntityManager.GetControlsScript(1);
-      playerStartX = ((float)player.worldTransform.position.x);
       this.bossSpawnListener = bossSpawnListener;
       
       UFE.DelaySynchronizedAction(checkSpawns, 3.0f);
@@ -230,7 +230,6 @@ namespace Assets.McCoy.Brawler
         }
         else
         {
-          Debug.Log("FIRE WON! " + endCondition);
           fireWon(endCondition);
         }
       }

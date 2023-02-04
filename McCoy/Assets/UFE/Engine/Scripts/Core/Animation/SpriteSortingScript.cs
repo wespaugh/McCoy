@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace UFE3D
 {
   [RequireComponent(typeof(SpriteRenderer))]
-//  [ExecuteInEditMode]
   public class SpriteSortingScript : MonoBehaviour
   {
     public class SpriteModifyData
@@ -89,17 +87,6 @@ namespace UFE3D
       }
     }
 
-    /*
-    private void Update()
-    {
-      if(testAnim != cachedTest)
-      {
-        cachedTest = testAnim;
-        Debug.Log("Playing " + cachedTest);
-        bodySprite.GetComponent<Animator>().Play(cachedTest);
-      }
-    }
-    */
     public void PlayLimbAnimation(string animCmd)
     {
       cachedFlip = bodySprite.flipX;
@@ -117,7 +104,6 @@ namespace UFE3D
           continue;
         }
         spriteData[spriteKey].animator.gameObject.SetActive(!hide);
-        Debug.Log("Hiding " + spriteData[spriteKey].animator.gameObject.name + ". " + hide);
         if (mod != null && spriteData[spriteKey].modify)
         {
           spriteData[spriteKey].sprite.color = Mod.Tint;

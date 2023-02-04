@@ -2,14 +2,11 @@
 using Assets.McCoy.Brawler;
 using Assets.McCoy.Localization;
 using Assets.McCoy.RPG;
-using com.cygnusprojects.TalentTree;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UFE3D;
 using UnityEngine;
-using UnityEngine.Localization.Pseudo;
-using UnityEngine.UI;
 using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.UI
@@ -18,6 +15,7 @@ namespace Assets.McCoy.UI
   {
     float stingerDuration = 2.0f;
 
+    #region Inspector
     [SerializeField]
     GameObject ZonePanelPrefab = null;
 
@@ -73,6 +71,8 @@ namespace Assets.McCoy.UI
 
     [SerializeField]
     GameObject endgameCutscene = null;
+    #endregion
+
 
     McCoyInputManager inputManager;
     bool inputInitialized = false;
@@ -92,8 +92,6 @@ namespace Assets.McCoy.UI
     {
       get => board;
     }
-    // TODO: Get rid of this, right? Right?
-    public PlayerCharacter Rex { get; private set; }
 
     [SerializeField]
     List<GameObject> bottomUIElements = new List<GameObject>();
@@ -136,6 +134,27 @@ namespace Assets.McCoy.UI
       CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
 
+    private void initializeInput()
+    {
+      inputManager = new McCoyInputManager();
+      inputInitialized = true;
+      if (gameEnding)
+      {
+        inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
+      }
+      else
+      {
+        inputManager.RegisterButtonListener(ButtonPress.Button3, TransitionToFireside);
+        inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
+        inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
+        inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
+        inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
+        inputManager.RegisterButtonListener(ButtonPress.Up, NavigateUp);
+        inputManager.RegisterButtonListener(ButtonPress.Down, NavigateDown);
+      }
+    }
+
     public bool CheckInputs(
       IDictionary<InputReferences, InputEvents> player1PreviousInputs,
       IDictionary<InputReferences, InputEvents> player1CurrentInputs,
@@ -146,23 +165,7 @@ namespace Assets.McCoy.UI
 
        if (!inputInitialized)
       {
-        inputManager = new McCoyInputManager();
-        inputInitialized = true;
-        if (gameEnding)
-        {
-          inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
-        }
-        else
-        {
-          inputManager.RegisterButtonListener(ButtonPress.Button3, TransitionToFireside);
-          inputManager.RegisterButtonListener(ButtonPress.Forward, NextPlayer);
-          inputManager.RegisterButtonListener(ButtonPress.Back, PreviousPlayer);
-          inputManager.RegisterButtonListener(ButtonPress.Button4, ToggleZoom);
-          inputManager.RegisterButtonListener(ButtonPress.Button1, ToggleLines);
-          inputManager.RegisterButtonListener(ButtonPress.Button2, ConfirmPressed);
-          inputManager.RegisterButtonListener(ButtonPress.Up, NavigateUp);
-          inputManager.RegisterButtonListener(ButtonPress.Down, NavigateDown);
-        }
+        initializeInput();
       }
 
       if (routeMenu != null && routeMenu.gameObject.activeInHierarchy)
@@ -182,8 +185,8 @@ namespace Assets.McCoy.UI
             player1CurrentInputs,
             player2PreviousInputs,
             player2CurrentInputs,
-            this.moveCursorSound,
-            this.selectSound,
+            moveCursorSound,
+            selectSound,
             null,
             null
         );
@@ -212,7 +215,7 @@ namespace Assets.McCoy.UI
           selectionIdx = zonePanelList.Count - 1;
         }
       }
-      Debug.Log("navigating to panel");
+
       selectedZonePanel = zonePanelList[selectionIdx].GetComponent<MapCityNodePanel>();
       selectedZonePanel.Select();
     }
@@ -316,9 +319,10 @@ namespace Assets.McCoy.UI
     {
       if (McCoyGameState.Instance().FinalBattle && McCoyGameState.Instance().FinalBossHealth <= 0f)
       {
-        gameEnding= true;
-        // trigger input to reinitialize with just the button press that'll take us to the main menu
-        inputInitialized = false;
+        gameEnding = true;
+
+        // reinitialize input for this specific odd-ball state where the game is over
+        initializeInput();
         endgameCutscene.SetActive(true);
         return true;
       }
@@ -338,25 +342,17 @@ namespace Assets.McCoy.UI
       ShowFireside(false);
     }
 
-    private void ShowFireside(bool cameraSnap=false)
+    private void ShowFireside(bool cameraSnap = false)
     {
-      if(fireside.gameObject.activeInHierarchy || ! board.Hide(cameraSnap))
-      {
-        return;
-      }
+      StartCoroutine(lerpFireside(cameraSnap));
+    }
+    private IEnumerator lerpFireside(bool cameraSnap)
+    {
       fireside.gameObject.SetActive(true);
       uiRoot.gameObject.SetActive(false);
-      Dictionary<string, List<PlayerCharacter>> pcGroups = new Dictionary<string, List<PlayerCharacter>>();
-      foreach(var pc in PlayerCharacters)
-      {
-        string zoneId = McCoy.GetInstance().gameState.PlayerLocation(pc);
-        if(!pcGroups.ContainsKey(zoneId))
-        {
-          pcGroups[zoneId] = new List<PlayerCharacter>();
-        }
-        pcGroups[zoneId].Add(pc);
-      }
-      fireside.UpdateWithPCGroups(this, pcGroups);
+      yield return board.Hide(cameraSnap);
+
+      fireside.Refresh(this);
       fireside.SelectPlayer(selectedPlayer);
     }
 
@@ -372,12 +368,8 @@ namespace Assets.McCoy.UI
 
     private IEnumerator RunStinger(McCoyStinger.StingerTypes type)
     {
-      float stingerTime = Time.time;
       board.showStinger(type);
-      while(Time.time < stingerTime + stingerDuration)
-      {
-        yield return null;
-      }
+      yield return new WaitForSeconds(stingerDuration);
     }
 
     private void initQuests()
@@ -485,35 +477,6 @@ namespace Assets.McCoy.UI
       }
     }
 
-    public void generateInitialBoardState()
-    {
-      foreach (var mapNode in board.MapNodes)
-      {
-        List<Factions> fs = new List<Factions>();
-        do
-        {
-          if (Random.Range(0, 6) <= 1) fs.Add(Factions.AngelMilitia);
-          if (Random.Range(0, 6) <= 1) fs.Add(Factions.CyberMinotaurs);
-          if (Random.Range(0, 6) <= 1) fs.Add(Factions.Mages);
-        } while (fs.Count == 0);
-        List<McCoyMobData> mobData = new List<McCoyMobData>();
-        foreach (var f in fs)
-        {
-          mobData.Add(new McCoyMobData(f));
-        }
-        mapNode.Mobs = mobData;
-        McCoy.GetInstance().gameState.SetMobs(mapNode.NodeID, mobData);
-      }
-      McCoy.GetInstance().gameState.Initialize();
-    }
-
-    private void loadBoardState()
-    {
-      foreach(var m in board.MapNodes)
-      {
-        m.Mobs = McCoy.GetInstance().gameState.GetMobs(m.NodeID);
-      }
-    }
 
     private void initMapPanels()
     {
@@ -537,6 +500,23 @@ namespace Assets.McCoy.UI
       refreshBoardAndPanels();
     }
 
+    private void generateInitialBoardState()
+    {
+      McCoy.GetInstance().gameState.Initialize(board.MapNodes);
+      foreach (var mapNode in board.MapNodes)
+      {
+        mapNode.Mobs = McCoyGameState.Instance().GetMobs(mapNode.NodeID);
+      }
+    }
+
+    private void loadBoardState()
+    {
+      foreach (var m in board.MapNodes)
+      {
+        m.Mobs = McCoy.GetInstance().gameState.GetMobs(m.NodeID);
+      }
+    }
+
     private void initSectionHeaders()
     {
       if(sectionHeaders.Count != 0)
@@ -553,16 +533,11 @@ namespace Assets.McCoy.UI
 
     private void refreshBoardAndPanels()
     {
-      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
-
-      if(antikytheraMechanismLocation == null)
+      if(board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation) == null)
       {
-        MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
-        loc.HasMechanism = true;
-        McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc.NodeID;
-        antikytheraMechanismLocation = board.NodeWithID(loc.NodeID);
+        initializeMechanismLocation();
       }
-
+      MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
       foreach (var assetNode in board.MapNodes)
       {
         assetNode.SetMechanismLocation(antikytheraMechanismLocation);
@@ -570,6 +545,13 @@ namespace Assets.McCoy.UI
 
       board.UpdateNodes();
       selectedCharacterChanged();
+    }
+
+    private void initializeMechanismLocation()
+    {
+      MapNode loc = board.MapNodes[Random.Range(0, board.MapNodes.Count)];
+      loc.HasMechanism = true;
+      McCoy.GetInstance().gameState.AntikytheraMechanismLocation = loc.NodeID;
     }
 
     private void updateWeekText()
@@ -596,7 +578,7 @@ namespace Assets.McCoy.UI
     private void refreshPanels(MapNode playerLoc)
     {
       MapNode antikytheraMechanismLocation = board.NodeWithID(McCoy.GetInstance().gameState.AntikytheraMechanismLocation);
-      bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere; //.SearchStatus() == SearchState.CompletelySearched;
+      bool mechanismFound = antikytheraMechanismLocation == null ? false : antikytheraMechanismLocation.MechanismFoundHere;
 
       int minDistanceToMechanism = -1;
       foreach (var v in playerLoc.GetConnectedNodes())
@@ -607,40 +589,37 @@ namespace Assets.McCoy.UI
         }
       }
 
-      while(zonePanelList.Count > 0)
-      {
-        var toDestroy = zonePanelList[0];
-        zonePanelList.RemoveAt(0);
-        Destroy(toDestroy);
-      }
-      zonePanels.Clear();
+      destroyZonePanels();
 
       foreach (var node in board.MapNodes)
       {
-        if (node.Disabled)
+        if (!node.Disabled)
         {
-          continue;
+          zonePanels[node] = Instantiate(ZonePanelPrefab, cityPanelsRoot);
         }
-        zonePanels[node] = Instantiate(ZonePanelPrefab, cityPanelsRoot);
       }
-
-      List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
-      sortedNodes.Sort((x, y) => sortMapNodes(x, y, playerLoc, mechanismFound, minDistanceToMechanism));
-      
-      List<MapNode> validConnections = new List<MapNode>();
 
       initSectionHeaders();
 
+      List<MapNode> sortedNodes = new List<MapNode>(zonePanels.Keys);
+      sortedNodes.Sort((x, y) => sortMapNodes(x, y, playerLoc, mechanismFound, minDistanceToMechanism));
+
+      List<MapNode> validConnections = new List<MapNode>();
+
       int siblingIndex = 0;
       sectionHeaders[0].transform.SetSiblingIndex(siblingIndex++);
+      // the first few list items are connected nodes. this flag flips when we encounter the first unconnected node
       bool iteratingThroughConnectedNodes = true;
       GameObject firstNode = null;
 
+      // every node on the board needs a list item on the panel
       foreach (MapNode node in sortedNodes)
       {
         bool isConnected = false;
+        // connected nodes need flagged
         foreach (var connection in playerLoc.GetConnectedNodes())
         {
+          // if IDs match, and either the mechanism hasn't been found yet, or this node is on a fastest route to the mechanism, it's a valid connection
           if (connection.NodeID == node.NodeID && (!mechanismFound || node.DistanceToMechanism <= minDistanceToMechanism))
           {
             validConnections.Add(connection as MapNode);
@@ -648,31 +627,50 @@ namespace Assets.McCoy.UI
           }
         }
         // when we get to the first disconnected node, insert the header for disconnected nodes
-        if(iteratingThroughConnectedNodes && !isConnected)
+        if (iteratingThroughConnectedNodes && !isConnected)
         {
           iteratingThroughConnectedNodes = false;
           sectionHeaders[1].transform.SetSiblingIndex(siblingIndex++);
         }
-        var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
-        nodePanel.Initialize(node, this, antikytheraMechanismLocation);
-        zonePanelList.Add(nodePanel.gameObject);
-        nodePanel.SetInteractable(isConnected || McCoy.GetInstance().DebugUI);
-        nodePanel.transform.SetSiblingIndex(siblingIndex++);
+
+        // init the node panel
+        initNodePanel(antikytheraMechanismLocation, siblingIndex, node, isConnected);
+        ++siblingIndex;
+
         // select the first node in the list
-        if(firstNode == null)
+        if (firstNode == null)
         {
           firstNode = zonePanels[node];
         }
       }
 
-      if(selectedZonePanel != null)
+      if (selectedZonePanel != null)
       {
         selectedZonePanel.Deselect();
       }
       var firstPanel = firstNode.GetComponent<MapCityNodePanel>();
-      Debug.Log("initializing default panel");
       selectedZonePanel = firstPanel;
       StartCoroutine(selectZonePanelAfterDelay(playerLoc, validConnections));
+    }
+
+    private void initNodePanel(MapNode antikytheraMechanismLocation, int siblingIndex, MapNode node, bool isConnected)
+    {
+      var nodePanel = zonePanels[node].GetComponent<MapCityNodePanel>();
+      nodePanel.Initialize(node, this, antikytheraMechanismLocation);
+      zonePanelList.Add(nodePanel.gameObject);
+      nodePanel.SetInteractable(isConnected || McCoy.GetInstance().DebugUI);
+      nodePanel.transform.SetSiblingIndex(siblingIndex);
+    }
+
+    private void destroyZonePanels()
+    {
+      while (zonePanelList.Count > 0)
+      {
+        var toDestroy = zonePanelList[0];
+        zonePanelList.RemoveAt(0);
+        Destroy(toDestroy);
+      }
+      zonePanels.Clear();
     }
 
     private IEnumerator selectZonePanelAfterDelay(MapNode playerLoc, List<MapNode> validConnections)
@@ -690,34 +688,11 @@ namespace Assets.McCoy.UI
 
     private void initPlayerStartLocations()
     {
-      if(McCoy.GetInstance().gameState.PlayerLocation(Rex) != null)
+      if (McCoy.GetInstance().gameState.PlayerLocation(PlayerCharacters[0]) != null)
       {
         return;
       }
-      List<MapNode> mapNodes = board.MapNodes;
-      List<int> indices = new List<int>();
-      // add a list of map point indexes to randomly pull from
-      for (int i = 0; i < mapNodes.Count; ++i)
-      {
-        indices.Add(i);
-      }
-      PlayerCharacter[] players = PlayerCharacters;
-      for (int i = 0; i < players.Length; ++i)
-      {
-        while (true)
-        {
-          int index = Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
-          int randomMapPoint = indices[index]; // the randomly picked number
-          MapNode startLoc = mapNodes[randomMapPoint];
-          if(startLoc.Disabled)
-          {
-            continue;
-          }
-          McCoy.GetInstance().gameState.SetPlayerLocation(players[i], mapNodes[randomMapPoint]); // add the map node at the randomly picked number
-          indices.RemoveAt(index); // remove the index so the same map point isn't picked again
-          break;
-        }
-      }
+      McCoyGameState.Instance().InitPlayerStartingLocations(board.MapNodes);
     }
 
     public void NextPlayer()
@@ -725,15 +700,20 @@ namespace Assets.McCoy.UI
       ChangePlayer(1);
     }
 
+    public void PreviousPlayer()
+    {
+      ChangePlayer(-1);
+    }
+
     public void ChangePlayer(int direction, bool updateMap = true)
     {
-      if (selectedPlayer == PlayerCharacter.Penelope && direction == 1)
+      if (selectedPlayer == PlayerCharacters[PlayerCharacters.Length-1] && direction == 1)
       {
-        selectedPlayer = PlayerCharacter.Rex;
+        selectedPlayer = PlayerCharacters[0];
       }
-      else if(selectedPlayer == PlayerCharacter.Rex && direction == -1)
+      else if(selectedPlayer == PlayerCharacters[0] && direction == -1)
       {
-        selectedPlayer = PlayerCharacter.Penelope;
+        selectedPlayer = PlayerCharacters[PlayerCharacters.Length - 1];
       }
       else
       {
@@ -745,11 +725,6 @@ namespace Assets.McCoy.UI
         board.ToggleZoom(true);
         selectedCharacterChanged();
       }
-    }
-
-    public void PreviousPlayer()
-    {
-      ChangePlayer(-1);
     }
 
     public void LoadStage(MapNode node, McCoyStageData stageData)
@@ -765,7 +740,6 @@ namespace Assets.McCoy.UI
       }
       board.SelectMapNode(node, null);
       stageDataToLoad = stageData;
-      Debug.Log("!!!!!!!!!!!!!!!!!FINAL BATTLE: " + (node.MechanismFoundHere ? "YAS!" : "NU"));
       McCoyGameState.Instance().FinalBattle = node.MechanismFoundHere;
 
       MapNode initialLocation = board.NodeWithID(McCoy.GetInstance().gameState.PlayerLocation(selectedPlayer));
@@ -838,11 +812,7 @@ namespace Assets.McCoy.UI
     {
       if(mobDying)
       {
-        float startTime = Time.time;
-        while(Time.time < startTime + 1.0f)
-        {
-          yield return null;
-        }
+        yield return new WaitForSeconds(1.0f);
         mobDying = false;
         refreshBoardAndPanels();
       }

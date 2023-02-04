@@ -50,16 +50,25 @@ namespace Assets.McCoy.RPG
     int selectedCharacter = 0;
     private bool canLobby;
 
-    public void UpdateWithPCGroups(McCoyCityScreen root, Dictionary<string, List<PlayerCharacter>> characterGroups)
+    public void Refresh(McCoyCityScreen root)
     {
       this.city = root;
       if (uiPanel == null)
       {
         uiPanel = Instantiate(FiresideStatsPrefab).GetComponent<McCoyFiresideUI>();
       }
-      // uiPanel.transform.SetParent(root.transform);
 
-      pcGroups = characterGroups;
+      pcGroups = new Dictionary<string, List<PlayerCharacter>>();
+      foreach (var pc in PlayerCharacters)
+      {
+        string zoneId = McCoy.GetInstance().gameState.PlayerLocation(pc);
+        if (!pcGroups.ContainsKey(zoneId))
+        {
+          pcGroups[zoneId] = new List<PlayerCharacter>();
+        }
+        pcGroups[zoneId].Add(pc);
+      }
+
       selectedPCGroupIndex = 0;
 
       var skillString = McCoyGameState.Instance().playerCharacters[PlayerCharacter.Rex].SkillTreeString;
@@ -70,13 +79,11 @@ namespace Assets.McCoy.RPG
       }
       loadSkills(McCoyGameState.GetPlayer(PlayerCharacter.Rex).AvailableSkillPoints, skillString, PlayerCharacter.Rex);
 
-      // ToggleLobbying(false);
       refresh();
     }
 
     public void NextPlayer()
     {
-      Debug.Log("Next Player");
       ++selectedCharacter;
       if(selectedCharacter >= PlayerCharacters.Length)
       {
@@ -179,7 +186,7 @@ namespace Assets.McCoy.RPG
         return true;
       }
 
-      if(uiPanel.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      if(uiPanel != null && uiPanel.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
       {
         return true;
       }

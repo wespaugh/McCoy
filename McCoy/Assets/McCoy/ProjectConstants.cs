@@ -98,6 +98,16 @@ namespace Assets.McCoy
 
     public const string PLAYERCHARACTER_DIRECTORY = "PlayerCharacters";
 
+    public const string MOB_ANIMATION_KEY_FACTION = "Faction";
+    public const string MOB_ANIMATION_KEY_FIGHT = "FIGHT";
+    public const string MOB_ANIMATION_KEY_BOSS = "Boss";
+
+    public const string QUEST_ANIM_KEY_WORLD = "WorldQuest";
+    public const string QUEST_ANIM_KEY_REX = "RexQuest";
+    public const string QUEST_ANIM_KEY_VICKI = "VickiQuest";
+    public const string QUEST_ANIM_KEY_AVALON = "AvalonQuest";
+    public const string QUEST_ANIM_KEY_PENELOPE = "PenelopeQuest";
+
     public const string PLAYER_1_NAME = "Rex";
     public const string PLAYER_2_NAME = "Vicki";
     public const string PLAYER_3_NAME = "Avalon";

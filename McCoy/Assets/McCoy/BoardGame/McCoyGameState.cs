@@ -1,5 +1,4 @@
-﻿using Assets.McCoy.Brawler;
-using Assets.McCoy.RPG;
+﻿using Assets.McCoy.RPG;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,7 +92,6 @@ namespace Assets.McCoy.BoardGame
       }
       BinaryFormatter bf = new BinaryFormatter();
       FileStream file = File.Create(SaveFilename(1));
-      Debug.Log("Saving to " + SaveFilename(1));
       bf.Serialize(file, this);
       file.Close();
     }
@@ -118,18 +116,59 @@ namespace Assets.McCoy.BoardGame
       FinalBossHealth = save.FinalBossHealth;
     }
 
-    public void Initialize()
+    public void Initialize(List<MapNode> mapNodes)
     {
       Initialized = true;
-      for(int i = 0; i < PlayerCharacters.Length; ++i)
+
+      foreach (var mapNode in mapNodes)
+      {
+        List<Factions> fs = new List<Factions>();
+        do
+        {
+          if (UnityEngine.Random.Range(0, 6) <= 1) fs.Add(Factions.AngelMilitia);
+          if (UnityEngine.Random.Range(0, 6) <= 1) fs.Add(Factions.CyberMinotaurs);
+          if (UnityEngine.Random.Range(0, 6) <= 1) fs.Add(Factions.Mages);
+        } while (fs.Count == 0);
+        List<McCoyMobData> mobData = new List<McCoyMobData>();
+        foreach (var f in fs)
+        {
+          mobData.Add(new McCoyMobData(f));
+        }
+        SetMobs(mapNode.NodeID, mobData);
+      }
+
+      for (int i = 0; i < PlayerCharacters.Length; ++i)
       {
         PlayerCharacter pc = PlayerCharacters[i];
-        /*
-        string path = $"{PLAYERCHARACTER_DIRECTORY}/{PlayerName(pc)}";
-        Debug.Log(path);
-        McCoyPlayerCharacter pcData = Resources.Load<McCoyPlayerCharacter>(path);
-        */
-        playerCharacters[pc] = new McCoyPlayerCharacter() { Player = pc };// pcData.Clone() as McCoyPlayerCharacter;
+        playerCharacters[pc] = new McCoyPlayerCharacter() { Player = pc };
+      }
+    }
+
+    public void InitPlayerStartingLocations(List<MapNode> mapNodes)
+    {
+      List<int> indices = new List<int>();
+      // add a list of map point indexes to randomly pull from
+      for (int i = 0; i < mapNodes.Count; ++i)
+      {
+        indices.Add(i);
+      }
+      PlayerCharacter[] players = PlayerCharacters;
+      for (int i = 0; i < players.Length; ++i)
+      {
+        while (indices.Count > 0)
+        {
+          int index = UnityEngine.Random.Range(0, indices.Count); // the index in a list of numbers to randomly pick
+          int randomMapPoint = indices[index]; // the randomly picked number
+          indices.RemoveAt(index); // remove the index so the same map point isn't picked again
+          MapNode startLoc = mapNodes[randomMapPoint];
+          // don't start players on disabled nodes
+          if (startLoc.Disabled)
+          {
+            continue;
+          }
+          McCoy.GetInstance().gameState.SetPlayerLocation(players[i], mapNodes[randomMapPoint]); // add the map node at the randomly picked number
+          break;
+        }
       }
     }
 
@@ -186,12 +225,6 @@ namespace Assets.McCoy.BoardGame
 
     public List<McCoyMobData> GetMobs(string nodeID)
     {
-      if(!mobLocations.ContainsKey(nodeID))
-      {
-        Debug.LogError("unable to locate node with ID " + nodeID);
-        Debug.LogError("there were " + mobLocations.Count + " locations in the dictionary");
-        return new List<McCoyMobData>();
-      }
       return mobLocations[nodeID];
     }
 
@@ -242,7 +275,6 @@ namespace Assets.McCoy.BoardGame
     public void UpdatePlayerTimeRemaining(PlayerCharacter player, float timeElapsed)
     {
       playerTurns[(int)player] = Mathf.Max(playerTurns[(int)player]- timeElapsed,0f);
-      Debug.Log("updated player time remaining. " + player + " now has " + playerTurns[(int)player] + " seconds left");
     }
     public void EndWeek()
     {
