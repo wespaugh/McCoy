@@ -1,1 +1,2 @@
-D:/Github/McCoy2/McCoy/Assets/Characters/rex/Animations/arbiter/legs_combo_1.anim
+C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/homid/homid_reararm_walk.anim IsCyber=true
+C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/homid/homid_frontarm_walk.anim IsCyber=true
