@@ -39,6 +39,7 @@ public class ControlsScript : MonoBehaviour
   public bool inhibitGainWhileDraining;
   public bool isAirRecovering;
   public bool isAssist;
+  public bool isDashing;
   public bool isBlocking;
   public bool isCrouching;
   public bool isDead;

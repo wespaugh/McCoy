@@ -16,7 +16,7 @@ namespace Assets.McCoy.RPG
     [NonSerialized]
     List<MoveInfo> movesToEnable = new List<MoveInfo>();
     [NonSerialized]
-    public List<McCoyBuff> buffsToAdd = new List<McCoyBuff>();
+    public List<BrawlerBuff> buffsToAdd = new List<BrawlerBuff>();
     [NonSerialized]
     List<McCoyMoveSwap> moveSwaps = new List<McCoyMoveSwap>();
 
@@ -42,7 +42,7 @@ namespace Assets.McCoy.RPG
       }
     }
 
-    public List<McCoyBuff> BuffsToAdd
+    public List<BrawlerBuff> BuffsToAdd
     {
       get
       { 

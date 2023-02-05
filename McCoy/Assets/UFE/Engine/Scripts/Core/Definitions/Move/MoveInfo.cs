@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using FPLibrary;
+using Assets.McCoy.Brawler;
 
 namespace UFE3D
 {
@@ -82,6 +83,7 @@ namespace UFE3D
         public InvincibleBodyParts[] invincibleBodyParts = new InvincibleBodyParts[0];
         public StateOverride[] stateOverride = new StateOverride[0];
         public ArmorOptions armorOptions;
+    public BrawlerBuff[] buffs = new BrawlerBuff[0];
         public Projectile[] projectiles = new Projectile[0];
 
         public bool cancelable { get; set; }

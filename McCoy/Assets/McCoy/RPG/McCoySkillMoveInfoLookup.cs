@@ -45,14 +45,14 @@ namespace Assets.McCoy.RPG
   public class McCoyBuffTuple
   {
     public PlayerSkills skill;
-    public List<McCoyBuff> Buffs;
+    public List<BrawlerBuff> Buffs;
   }
 
   public class McCoySkillMoveInfoLookup : MonoBehaviour
   {
     Dictionary<PlayerSkills, List<MoveInfo>> moveLookupDict = null;
     Dictionary<PlayerSkills, List<McCoyMoveSwap>> moveSwapLookupDict = null;
-    Dictionary<PlayerSkills, List<McCoyBuff>> buffLookupDict = null;
+    Dictionary<PlayerSkills, List<BrawlerBuff>> buffLookupDict = null;
 
     [SerializeField]
     List<McCoySkillLookupTuple> moveLookup;
@@ -118,22 +118,22 @@ namespace Assets.McCoy.RPG
       return moveSwapLookupDict[skill];
     }
 
-    public List<McCoyBuff> GetBuffsForSkill(string skillName)
+    public List<BrawlerBuff> GetBuffsForSkill(string skillName)
     {
       PlayerSkills s = SkillForLabel(skillName);
       if(s == PlayerSkills.Invalid)
       {
         // Debug.LogWarning("Invalid skill name " + skillName);
-        return new List<McCoyBuff>();
+        return new List<BrawlerBuff>();
       }
       return GetBuffsForSkill(s);
     }
 
-    public List<McCoyBuff> GetBuffsForSkill(PlayerSkills skill)
+    public List<BrawlerBuff> GetBuffsForSkill(PlayerSkills skill)
     {
       if(buffLookupDict == null)
       {
-        buffLookupDict = new Dictionary<PlayerSkills, List<McCoyBuff>>();
+        buffLookupDict = new Dictionary<PlayerSkills, List<BrawlerBuff>>();
         foreach(var pair in buffLookup)
         {
           buffLookupDict[pair.skill] = pair.Buffs;
@@ -143,7 +143,7 @@ namespace Assets.McCoy.RPG
       if(! buffLookupDict.ContainsKey(skill))
       {
         Debug.LogWarning("Buff Lookup did not contain a skill for " + skill);
-        return new List<McCoyBuff>();
+        return new List<BrawlerBuff>();
       }
 
       return buffLookupDict[skill];

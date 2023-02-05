@@ -8,13 +8,13 @@ namespace Assets.McCoy.Brawler
   public class McCoyCharacterBuffManager : MonoBehaviour
   {
     // id > buffStack
-    Dictionary<int, McCoyBuffStack> characterBuffs = new Dictionary<int, McCoyBuffStack>();
+    Dictionary<int, BrawlerBuffStack> characterBuffs = new Dictionary<int, BrawlerBuffStack>();
 
-    public void AddBuff(McCoyBuff buff, int playerId)
+    public void AddBuff(BrawlerBuff buff, int playerId)
     {
       if (!characterBuffs.ContainsKey(playerId))
       {
-        McCoyBuffStack buffStack = new McCoyBuffStack();
+        BrawlerBuffStack buffStack = new BrawlerBuffStack();
         characterBuffs[playerId] = buffStack;
       }
     }

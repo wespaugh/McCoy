@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static Assets.McCoy.Brawler.McCoyBuff;
 
 namespace Assets.McCoy.Brawler.Buffs
 {
-  public abstract class McCoyBuffDelegate
+  public abstract class BrawlerBuffDelegate
   {
     // -1 is indefinite
     float duration = -1f;
@@ -36,11 +31,13 @@ namespace Assets.McCoy.Brawler.Buffs
       Apply();
     }
 
+    public abstract string EditorHelper();
+
       /// <summary>
       /// Updates whatever needs updating on this buff
       /// </summary>
       /// <returns></returns>
-      public virtual bool Update()
+      public virtual bool Tick(int currentBuffCount)
     {
       if (duration < 0)
       {
@@ -58,7 +55,7 @@ namespace Assets.McCoy.Brawler.Buffs
       bool unapply = duration > 0 && Time.time > AppliedTime + duration;
       if (unapply)
       {
-        Remove();
+        Remove(currentBuffCount);
       }
       return unapply;
     }
@@ -73,7 +70,7 @@ namespace Assets.McCoy.Brawler.Buffs
       AppliedTime = Time.time;
       numTicks = 0;
     }
-    public virtual void Remove()
+    public virtual void Remove(int numAppliedBeforeRemoving)
     {
 
     }
