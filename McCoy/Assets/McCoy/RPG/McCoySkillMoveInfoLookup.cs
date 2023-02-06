@@ -1,7 +1,7 @@
-﻿using Assets.McCoy.Brawler;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UFE3D;
+using UFE3D.Brawler;
 using UnityEngine;
 using static Assets.McCoy.ProjectConstants;
 

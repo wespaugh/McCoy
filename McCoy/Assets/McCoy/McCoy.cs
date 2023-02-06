@@ -3,11 +3,9 @@ using Assets.McCoy.Brawler;
 using Assets.McCoy.RPG;
 using FPLibrary;
 using Naninovel;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UFE3D;
-using UnityEditor;
+using UFE3D.Brawler;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -44,14 +42,14 @@ namespace Assets.McCoy
       }
     }
 
-    McCoyCharacterBuffManager buffManager = null;
-    public McCoyCharacterBuffManager BuffManager
+    BrawlerBuffManager buffManager = null;
+    public BrawlerBuffManager BuffManager
     {
       get
       {
         if(buffManager == null)
         {
-          buffManager = GetComponent<McCoyCharacterBuffManager>();
+          buffManager = GetComponent<BrawlerBuffManager>();
         }
         return buffManager;
       }

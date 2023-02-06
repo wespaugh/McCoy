@@ -6,7 +6,7 @@ namespace Assets.McCoy.Brawler.Buffs
   public abstract class BrawlerBuffDelegate
   {
     // -1 is indefinite
-    float duration = -1f;
+    protected float duration = -1f;
     public float AppliedTime;
 
     // buff will tick this number of times evenly across the duration

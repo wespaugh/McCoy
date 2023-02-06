@@ -70,12 +70,12 @@ public class PhysicsScript : MonoBehaviour
     if (direction == 1)
     {
       controlScript.currentSubState = SubStates.MovingForward;
-      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveForwardSpeed * axisValue;
+      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveForwardSpeed * axisValue * (controlScript.isDashing ? 2f : 1f);
     }
     else
     {
       controlScript.currentSubState = SubStates.MovingBack;
-      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveBackSpeed * axisValue;
+      if (!IsJumping()) activeForces.x = controlScript.myInfo.physics.MoveBackSpeed * axisValue * (controlScript.isDashing ? 2f : 1f);
     }
   }
 

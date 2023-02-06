@@ -6,7 +6,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using FPLibrary;
 using UFE3D;
-using Assets.McCoy.Brawler;
+using UFE3D.Brawler;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class MoveEditorWindow : EditorWindow {
 	public static MoveEditorWindow moveEditorWindow;
@@ -3044,61 +3045,78 @@ public class MoveEditorWindow : EditorWindow {
 				EditorGUILayout.BeginHorizontal();
 				{
 				  moveInfo.buffs[i].castingFrame = EditorGUILayout.IntSlider("Casting Frame:", moveInfo.buffs[i].castingFrame, 0, maxCastingFrame);
+				  
                   if (GUILayout.Button("", "PaneOptions"))
                   {
-                    PaneOptions<BrawlerBuff>(moveInfo.buffs, moveInfo.buffs[i], delegate (BrawlerBuff[] newElement) { moveInfo.buffs = newElement; });
+                    PaneOptions<BrawlerBuff>(moveInfo.buffs, moveInfo.buffs[i], delegate (BrawlerBuff[] newElement) 
+					{ 
+					  moveInfo.buffs = newElement; 
+					});
                   }
                 }
                 EditorGUILayout.EndHorizontal();
+				EditorGUILayout.Space(10);
 				EditorGUILayout.BeginHorizontal();
 				{
+				  EditorGUIUtility.labelWidth = 200;
 				  var buffTypes = Enum.GetValues(typeof(BrawlerBuff.BrawlerBuffs));
-				  GenericMenu buffTypeMenu = new GenericMenu();
-				  buffTypeMenu.AddItem(new GUIContent($"{buffTypes}"), true, (buffType) => 
-				  { 
-					Debug.Log(buffType);
-					moveInfo.buffs[i].Buff = (BrawlerBuff.BrawlerBuffs)buffType;
-				  }, buffTypes);
-				  buffTypeMenu.ShowAsContext();
-
-				  // EditorGUIUtility.ExitGUI();
+				  if (StyledButton("Buff Type: " + moveInfo.buffs[i].Buff))
+				  {
+					GenericMenu buffTypeMenu = new GenericMenu();
+					foreach (var b in buffTypes)
+					{
+					  buffTypeMenu.AddItem(new GUIContent($"{b}"), moveInfo.buffs[i].Buff == (BrawlerBuff.BrawlerBuffs)b, (buffType) =>
+					  {
+						Debug.Log(buffType);
+						moveInfo.buffs[i].Buff = (BrawlerBuff.BrawlerBuffs)buffType;
+					  }, b);
+					}
+					buffTypeMenu.ShowAsContext();
+					EditorGUIUtility.ExitGUI();
+				  }
 				}EditorGUILayout.EndHorizontal();
+
 				if (moveInfo.buffs[i].Buff != BrawlerBuff.BrawlerBuffs.Invalid)
 				{
-				  string[] editorHelper = BrawlerBuff.DelegateForBuff(moveInfo.buffs[i].Buff).EditorHelper().Split(",");
-				  int stringIndex = 0;
-				  int floatIndex = 0;
-				  int intIndex = 0;
-				  int boolIndex = 0;
-				  foreach (var field in editorHelper)
-				  {
-					string[] editorHelperComponents = field.Split("|");
-					if (editorHelperComponents.Length != 2)
+				  EditorGUILayout.Space(10);
+				  string editorHelperText = BrawlerBuff.DelegateForBuff(moveInfo.buffs[i].Buff).EditorHelper();
+                  if (!string.IsNullOrEmpty(editorHelperText))
+                  {
+                    string[] editorHelper = editorHelperText.Split(",");
+				    int stringIndex = 0;
+				    int floatIndex = 0;
+				    int intIndex = 0;
+				    int boolIndex = 0;
+					foreach (var field in editorHelper)
 					{
-					  Debug.LogError("Invalid Buff Helper text for " + moveInfo.buffs[i].Buff + ": " + field);
-					}
-					EditorGUILayout.BeginHorizontal();
-					{
-					  if (editorHelperComponents[1] == "s")
+					  string[] editorHelperComponents = field.Split("|");
+					  if (editorHelperComponents.Length != 2)
 					  {
-						if (moveInfo.buffs[i].stringArgs.Count == stringIndex)
-						{
-						  moveInfo.buffs[i].stringArgs.Add("");
-						}
-						moveInfo.buffs[i].stringArgs[stringIndex] = EditorGUILayout.TextField(editorHelperComponents[0] + ": ", moveInfo.buffs[i].stringArgs[stringIndex]);
-						++stringIndex;
+						Debug.LogError("Invalid Buff Helper text for " + moveInfo.buffs[i].Buff + ": " + field);
 					  }
-					  else if (editorHelperComponents[1] == "i")
+					  EditorGUILayout.BeginHorizontal();
 					  {
-						if (moveInfo.buffs[i].intArgs.Count == intIndex)
+						if (editorHelperComponents[1] == "s")
 						{
-						  moveInfo.buffs[i].intArgs.Add(0);
+						  if (moveInfo.buffs[i].stringArgs.Count == stringIndex)
+						  {
+							moveInfo.buffs[i].stringArgs.Add("");
+						  }
+						  moveInfo.buffs[i].stringArgs[stringIndex] = EditorGUILayout.TextField(editorHelperComponents[0] + ": ", moveInfo.buffs[i].stringArgs[stringIndex]);
+						  ++stringIndex;
 						}
-						moveInfo.buffs[i].intArgs[intIndex] = EditorGUILayout.IntField(editorHelperComponents[0] + ": ", moveInfo.buffs[i].intArgs[intIndex]);
-						++stringIndex;
+						else if (editorHelperComponents[1] == "i")
+						{
+						  if (moveInfo.buffs[i].intArgs.Count == intIndex)
+						  {
+							moveInfo.buffs[i].intArgs.Add(0);
+						  }
+						  moveInfo.buffs[i].intArgs[intIndex] = EditorGUILayout.IntField(editorHelperComponents[0] + ": ", moveInfo.buffs[i].intArgs[intIndex]);
+						  ++stringIndex;
+						}
 					  }
+					  EditorGUILayout.EndHorizontal();
 					}
-					EditorGUILayout.EndHorizontal();
 				  }
 				}
 			  }EditorGUILayout.EndVertical();
@@ -3449,6 +3467,7 @@ public class MoveEditorWindow : EditorWindow {
 							}EditorGUILayout.EndVertical();
 							EditorGUILayout.Space();
 						}
+			EditorGUILayout.Space(20);
 						if (StyledButton("New Projectile"))
 							moveInfo.projectiles = AddElement<Projectile>(moveInfo.projectiles, new Projectile());
 							

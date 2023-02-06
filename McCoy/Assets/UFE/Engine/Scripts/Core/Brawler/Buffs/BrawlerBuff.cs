@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Assets.McCoy.Brawler.Buffs;
-using static Assets.McCoy.Brawler.BrawlerBuff;
 using System;
-using UFE3D;
 
-namespace Assets.McCoy.Brawler
+namespace UFE3D.Brawler
 {
   [CreateAssetMenu(fileName = "Buff", menuName = "UFE/Buff")]
+  [System.Serializable]
   public class BrawlerBuff : ICloneable
   {
     public static BrawlerBuffDelegate DelegateForBuff(BrawlerBuffs buff)
@@ -16,6 +15,8 @@ namespace Assets.McCoy.Brawler
       {
         case BrawlerBuffs.StancePhysicsChange:
           return new BrawlerStancePhysicsChangeBuff();
+        case BrawlerBuffs.Dash:
+          return new BrawlerDashingBuff();
       }
       return null;
     }
@@ -24,16 +25,19 @@ namespace Assets.McCoy.Brawler
     {
       Invalid,
       StancePhysicsChange,
+      Dash,
     };
 
     public BrawlerBuffs Buff;
     public int castingFrame = -1;
+    public bool casted = false;
     public List<string> stringArgs = new List<string>();
     public List<float> floatArgs = new List<float>();
     public List<int> intArgs = new List<int>();
     public List<bool> boolArgs = new List<bool>();
     public bool IsDebuff;
 
+    [NonSerialized]
     private BrawlerBuffDelegate buffDelegate;
 
     public void Init(ControlsScript player)

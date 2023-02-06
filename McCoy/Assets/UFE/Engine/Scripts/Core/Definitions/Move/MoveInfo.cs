@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using FPLibrary;
-using Assets.McCoy.Brawler;
+using UFE3D.Brawler;
 
 namespace UFE3D
 {

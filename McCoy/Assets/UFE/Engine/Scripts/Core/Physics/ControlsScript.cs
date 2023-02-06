@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using FPLibrary;
 using UFE3D;
+using Assets.McCoy.Brawler;
+using UFE3D.Brawler;
 
 public class ControlsScript : MonoBehaviour
 {
@@ -82,6 +84,7 @@ public class ControlsScript : MonoBehaviour
   public Dictionary<ButtonPress, Fix64> inputHeldDown = new Dictionary<ButtonPress, Fix64>();
   public List<ProjectileMoveScript> projectiles = new List<ProjectileMoveScript>();
   public List<ControlsScript> assists = new List<ControlsScript>();
+  public BrawlerBuffStack buffs = new BrawlerBuffStack();
 
   public FPTransform worldTransform;
   public FPTransform localTransform;
@@ -572,6 +575,9 @@ public class ControlsScript : MonoBehaviour
       }
       localTransform.position = new FPVector(0, 0, 0);
     }
+
+    // buffs
+    buffs.Update();
 
     // Force stand state
     if (!myPhysicsScript.freeze
@@ -2074,6 +2080,16 @@ public class ControlsScript : MonoBehaviour
       }
     }
 
+    // buffs
+    foreach(BrawlerBuff buff in move.buffs)
+    {
+      if(!buff.casted && move.currentFrame >= buff.castingFrame)
+      {
+        buff.casted = true;
+        buff.Init(this);
+        buffs.AddBuff(buff);
+      }
+    }
 
     // Check Projectiles
     int projCount = 0;

@@ -1,10 +1,10 @@
 ﻿using Assets.McCoy.Brawler;
 using System.Collections.Generic;
-using static Assets.McCoy.Brawler.BrawlerBuff;
+using UFE3D.Brawler;
 
 public class BrawlerBuffStack
 {
-  Dictionary<BrawlerBuffs, List<BrawlerBuff>> buffStack = new Dictionary<BrawlerBuffs, List<BrawlerBuff>>();
+  Dictionary<BrawlerBuff.BrawlerBuffs, List<BrawlerBuff>> buffStack = new Dictionary<BrawlerBuff.BrawlerBuffs, List<BrawlerBuff>>();
 
   public void AddBuff(BrawlerBuff stackItem)
   {
