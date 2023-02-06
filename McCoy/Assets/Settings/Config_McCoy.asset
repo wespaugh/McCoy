@@ -640,17 +640,18 @@ MonoBehaviour:
   hitOptions:
     resetAnimationOnHit: 1
     weakHit:
-      hitParticle: {fileID: 194664, guid: b71a09eefd747c94787f6bc98149a21d, type: 3}
-      killTime: 0.6
+      hitParticle: {fileID: 3095624480532216549, guid: 12552ecdfba43e241aaebdb112bbfec8,
+        type: 3}
+      killTime: 0.2
       hitSound: {fileID: 8300000, guid: 591a29322671baa479c0ef02c3a59bc8, type: 3}
       spawnPoint: 2
       _freezingTime:
-        _serializedValue: 429496736
+        _serializedValue: 0
       _animationSpeed:
         _serializedValue: 0
       autoHitStop: 1
       _hitStop:
-        _serializedValue: 429496736
+        _serializedValue: 0
       mirrorOn2PSide: 1
       shakeCharacterOnHit: 0
       shakeCameraOnHit: 1
@@ -1036,7 +1037,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P2KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P2JoystickVertical
     cInputPositiveKeyName: P2Up
     cInputPositiveDefaultKey: UpArrow

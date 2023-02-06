@@ -16,6 +16,7 @@ MonoBehaviour:
   debugMode: 1
   debug_ReactionWeight: 1
   advancedOptions:
+    timeBetweenBehaviourChanges: 0
     timeBetweenDecisions: 0.05
     timeBetweenActions: 0.05
     aggressiveness: 0.5

@@ -47,7 +47,7 @@ namespace Assets.McCoy.RPG
     Dictionary<string, List<PlayerCharacter>> pcGroups = null;
     int selectedPCGroupIndex = 0;
 
-    int selectedCharacter = 0;
+    int selectedCharacterIdx = 0;
     private bool canLobby;
 
     public void Refresh(McCoyCityScreen root)
@@ -84,10 +84,10 @@ namespace Assets.McCoy.RPG
 
     public void NextPlayer()
     {
-      ++selectedCharacter;
-      if(selectedCharacter >= PlayerCharacters.Length)
+      ++selectedCharacterIdx;
+      if(selectedCharacterIdx >= PlayerCharacters.Length)
       {
-        selectedCharacter = 0;
+        selectedCharacterIdx = 0;
       }
       city.ChangePlayer(1, false);
       refresh();
@@ -95,10 +95,10 @@ namespace Assets.McCoy.RPG
 
     public void PreviousPlayer()
     {
-      --selectedCharacter;
-      if(selectedCharacter < 0)
+      --selectedCharacterIdx;
+      if(selectedCharacterIdx < 0)
       {
-        selectedCharacter = PlayerCharacters.Length - 1;
+        selectedCharacterIdx = PlayerCharacters.Length - 1;
       }
       city.ChangePlayer(-1, false);
       refresh();
@@ -112,7 +112,7 @@ namespace Assets.McCoy.RPG
         bool foundPC = false;
         foreach(var pc in pcGroup.Value)
         {
-          if(pc == PlayerCharacters[selectedCharacter])
+          if(pc == PlayerCharacters[selectedCharacterIdx])
           {
             foundPC = true;
             break;
@@ -125,12 +125,12 @@ namespace Assets.McCoy.RPG
         ++selectedPCGroupIndex;
       }
 
-      canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacter])).LobbyingAvailable;
-      uiPanel.SetPlayer(PlayerCharacters[selectedCharacter], city.Board, canLobby, selectedCharacterAnimator);
+      canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacterIdx])).LobbyingAvailable;
+      uiPanel.SetPlayer(PlayerCharacters[selectedCharacterIdx], city.Board, canLobby, selectedCharacterAnimator);
 
       foreach (var pc in PlayerCharacters)
       {
-        spriteForPC(pc).transform.localScale = pc == PlayerCharacters[selectedCharacter] ? new Vector3(1.2f,1.2f,1.2f) : Vector3.one;
+        spriteForPC(pc).transform.localScale = pc == PlayerCharacters[selectedCharacterIdx] ? new Vector3(1.2f,1.2f,1.2f) : Vector3.one;
       }
 
       int i = 0;
@@ -221,6 +221,7 @@ namespace Assets.McCoy.RPG
       {
         Destroy(talentDelegate.gameObject);
         talentDelegate = null;
+        uiPanel.gameObject.SetActive(true);
       }
     }
 
@@ -242,7 +243,7 @@ namespace Assets.McCoy.RPG
       {
         return;
       }
-      PlayerCharacter selectedPlayer = PlayerCharacters[selectedCharacter];
+      PlayerCharacter selectedPlayer = PlayerCharacters[selectedCharacterIdx];
       string skillTreeString = "";
       int availableSkillPoints = 0;
       McCoyPlayerCharacter playerData = null;
@@ -250,7 +251,8 @@ namespace Assets.McCoy.RPG
       {
         case PlayerCharacter.Rex:
         default:
-          talentDelegate = Instantiate(RexSkillTree, uiPanel.transform.parent).GetComponent<McCoySkillTreeMenu>();
+          talentDelegate = Instantiate(RexSkillTree, city.transform.parent).GetComponent<McCoySkillTreeMenu>();
+          uiPanel.gameObject.SetActive(false);
           playerData = McCoyGameState.GetPlayer(PlayerCharacter.Rex);
           break;
       }
@@ -275,7 +277,7 @@ namespace Assets.McCoy.RPG
       {
         if(PlayerCharacters[i] == selectedPlayer)
         {
-          this.selectedCharacter = i;
+          this.selectedCharacterIdx = i;
           break;
         }
       }
@@ -289,7 +291,7 @@ namespace Assets.McCoy.RPG
         Destroy(uiPanel.gameObject);
       }
       // force a player / map / ui update for selected player
-      city.ChangePlayer(0);
+      city.ChangePlayer(selectedCharacterIdx);
       city.CloseFireside();
       uiPanel = null;
     }
