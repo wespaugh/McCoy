@@ -339,6 +339,7 @@ namespace Assets.McCoy.UI
 
     private void TransitionToFireside()
     {
+      Debug.Log("show fireside");
       ShowFireside(false);
     }
 

@@ -223,6 +223,7 @@ namespace Assets.McCoy.UI
     {
       if(hidden)
       {
+        Debug.Log("alredy hdidenb, returnging");
         yield break;
       }
       if(zoomed)
@@ -245,12 +246,15 @@ namespace Assets.McCoy.UI
       {
         return false;
       }
+      hidden = false;
+      // lerpBoard()
       centerCameraOnSelectedNode();
       return true;
     }
 
     private IEnumerator lerpBoard(Vector3 target, bool hiding, float travelTime = .6f)
     {
+      Debug.Log("lerp board: " + hiding);
       Vector3 origin = transform.position;
       if (travelTime == 0f)
       {
@@ -271,6 +275,7 @@ namespace Assets.McCoy.UI
           yield return null;
         }
       }
+      Debug.Log("Setting hidden to: " + hiding);
       hidden = hiding;
     }
 

@@ -539,5 +539,6 @@ MonoBehaviour:
     hitAbsorption: 0
     damageAbsorption: 0
     nonAffectedBodyParts: 
+  buffs: []
   projectiles: []
   rotationPreview: {x: 0, y: 90, z: 0}
