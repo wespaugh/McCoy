@@ -150,8 +150,8 @@ function read-anim-file ([string]$file, [bool]$doFlip, [string]$suffix)
   $replacementLines | Out-File $wholePath -Encoding ASCII
 }
 
-[string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
-#[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy2\McCoy\Utilities\animList.txt"
+#[string[]] $animFileLines = Get-Content -Path "C:\Users\wespa\Documents\McCoy\McCoy\Utilities\animList.txt"
+[string[]] $animFileLines = Get-Content -Path "D:\Github\McCoy\McCoy\Utilities\animList.txt"
 
 foreach($line in $animFileLines)
 {

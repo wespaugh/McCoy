@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 2
   player1Character: {fileID: 0}
-  player2Character: {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  player2Character: {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   player1Team:
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
@@ -175,11 +175,15 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 0
-    selectableCharactersInStoryMode: 01000000000000000200000003000000040000000500000006000000
-    selectableCharactersInVersusMode: 00000000010000000200000003000000040000000500000006000000
+    selectableCharactersInStoryMode: 0100000000000000020000000300000004000000050000000600000007000000
+    selectableCharactersInVersusMode: 0000000001000000020000000300000004000000050000000600000007000000
     characterStories:
-      _keys: 00000000010000000200000003000000040000000500000006000000
+      _keys: 0000000001000000020000000300000004000000050000000600000007000000
       _values:
+      - opening: {fileID: 0}
+        ending: {fileID: 0}
+        fightsGroups: []
+        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -1339,6 +1343,7 @@ MonoBehaviour:
     stageInfo: {fileID: 11400000, guid: 23acd35c736159641840589f316c3e07, type: 2}
   characters:
   - {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
+  - {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
   - {fileID: 11400000, guid: c423bac83678ce343b37470e76fc2dfb, type: 2}
   - {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}
