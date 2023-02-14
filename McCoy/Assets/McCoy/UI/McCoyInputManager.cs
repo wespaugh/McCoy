@@ -17,6 +17,7 @@ namespace Assets.McCoy.UI
       listeners[b] = a;
     }
 
+    // returns true if the input manager handled an input
     public bool CheckInputs(
         IDictionary<InputReferences, InputEvents> player1PreviousInputs,
         IDictionary<InputReferences, InputEvents> player1CurrentInputs,

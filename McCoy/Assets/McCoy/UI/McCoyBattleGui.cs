@@ -8,6 +8,9 @@ using UnityEngine.UI;
 using System.Collections;
 using static Assets.McCoy.ProjectConstants;
 using Assets.McCoy.BoardGame;
+using System;
+using System.Collections.Generic;
+using Assets.McCoy.Localization;
 
 namespace Assets.McCoy.UI
 {
@@ -23,6 +26,8 @@ namespace Assets.McCoy.UI
     LiquidBar healthBar = null;
     [SerializeField]
     LiquidBar xpBar = null;
+    [SerializeField]
+    McCoyLocalizedText interactText = null;
 
     [SerializeField] TMP_Text alertText = null;
 
@@ -45,6 +50,52 @@ namespace Assets.McCoy.UI
     [SerializeField] McCoyQuestTextUI questUI = null;
     [SerializeField] TMP_Text playerTimer = null;
     [SerializeField] LiquidBar enemyHPBar = null;
+
+    List<McCoyBrawlerDoor> doors = new List<McCoyBrawlerDoor>();
+
+    McCoyInputManager _inputManager;
+    McCoyInputManager inputManager
+    {
+      get
+      {
+        if (_inputManager == null)
+        {
+          _inputManager = new McCoyInputManager();
+          _inputManager.RegisterButtonListener(ButtonPress.Button2, interactPressed);
+        }
+        return _inputManager;
+      }
+    }
+
+    public override void DoFixedUpdate(
+        IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+        IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player2CurrentInputs
+    )
+    {
+      if (inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      {
+        Debug.Log("check paused");
+        if(!UFE.isPaused())
+        {
+          base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+        }
+      }
+      else
+      {
+        base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      }
+    }
+
+    private void interactPressed()
+    {
+      Debug.Log("interact!");
+      foreach(var door in doors)
+      {
+        door.Interact();
+      }
+    }
 
     McCoyStageData currentStage;
 
@@ -91,6 +142,26 @@ namespace Assets.McCoy.UI
         spawnerInitialized = true;
         initSpawner();
       }
+
+      var dList = GameObject.FindGameObjectsWithTag("Door");
+      bool first = true;
+      // HACK HACK HACK. the first one is going to be destroyed in the process of creating the scene
+      foreach (var d in dList)
+      {
+        if(first)
+        {
+          first = false;
+          continue;
+        }
+        if(!d.activeInHierarchy)
+        {
+          continue;
+        }
+        var door = d.GetComponent<McCoyBrawlerDoor>();
+        door.Initialize(this);
+        doors.Add(door);
+      }
+
       // worldUI.StageBegan();
 
       McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
@@ -150,7 +221,6 @@ namespace Assets.McCoy.UI
 
     public void debugSpawn()
     {
-      Debug.Log("SPAWN");
       float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
       float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
       UFE3D.CharacterInfo m = null;
@@ -162,7 +232,6 @@ namespace Assets.McCoy.UI
           break;
         }
       }
-      Debug.Log("creating random monster! ");
       UFE.CreateRandomMonster(m, x, z, debug: true);
     }
 
@@ -398,6 +467,20 @@ namespace Assets.McCoy.UI
       if (McCoy.GetInstance().gameState.activeQuest != null)
       {
         McCoy.GetInstance().gameState.CompleteQuest();
+      }
+    }
+
+    public void ToggleDoor(bool active, string locKey)
+    {
+      if (active)
+      {
+        interactText.SetTextDirectly(locKey + " (X)");
+        interactText.gameObject.SetActive(true);
+      }
+      else
+      {
+        interactText.SetTextDirectly("");
+        interactText.gameObject.SetActive(false);
       }
     }
   }

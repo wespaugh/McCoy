@@ -100,6 +100,7 @@ namespace Assets.McCoy.RPG
       {
         selectedCharacterIdx = PlayerCharacters.Length - 1;
       }
+      Debug.Log("Fireside selected character is now" + PlayerCharacters[selectedCharacterIdx]);
       city.ChangePlayer(-1, false);
       refresh();
     }
@@ -291,7 +292,7 @@ namespace Assets.McCoy.RPG
         Destroy(uiPanel.gameObject);
       }
       // force a player / map / ui update for selected player
-      city.ChangePlayer(selectedCharacterIdx);
+      city.ChangePlayer(0);
       city.CloseFireside();
       uiPanel = null;
     }

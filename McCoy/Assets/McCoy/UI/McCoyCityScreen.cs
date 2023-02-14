@@ -720,7 +720,7 @@ namespace Assets.McCoy.UI
       {
         selectedPlayer += direction;
       }
-
+      Debug.Log("City: selected player is now " + selectedPlayer);
       if (updateMap)
       {
         board.ToggleZoom(true);

@@ -124,7 +124,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>avalon.tpsheet</filename>
+                <filename>shop.tpsheet</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -173,69 +173,19 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">idle/idle_body1.png</key>
-            <key type="filename">idle/idle_body2.png</key>
+            <key type="filename">../../CraftPix/shop.png</key>
+            <key type="filename">../../CraftPix/shop_windows.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.4375,0.976563</point_f>
+                <point_f>0.4,0.95</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>32,32,64,64</rect>
+                <rect>26,31,52,62</rect>
                 <key>scale9Paddings</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">idle/idle_frontarm1.png</key>
-            <key type="filename">idle/idle_frontarm2.png</key>
-            <key type="filename">idle/idle_reararm1.png</key>
-            <key type="filename">idle/idle_reararm2.png</key>
-            <key type="filename">walk/walk_frontarm1.png</key>
-            <key type="filename">walk/walk_frontarm2.png</key>
-            <key type="filename">walk/walk_frontarm3.png</key>
-            <key type="filename">walk/walk_frontarm4.png</key>
-            <key type="filename">walk/walk_frontarm5.png</key>
-            <key type="filename">walk/walk_frontarm6.png</key>
-            <key type="filename">walk/walk_reararm1.png</key>
-            <key type="filename">walk/walk_reararm2.png</key>
-            <key type="filename">walk/walk_reararm3.png</key>
-            <key type="filename">walk/walk_reararm4.png</key>
-            <key type="filename">walk/walk_reararm5.png</key>
-            <key type="filename">walk/walk_reararm6.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9Paddings</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">walk/walk_body1.png</key>
-            <key type="filename">walk/walk_body2.png</key>
-            <key type="filename">walk/walk_body3.png</key>
-            <key type="filename">walk/walk_body4.png</key>
-            <key type="filename">walk/walk_body5.png</key>
-            <key type="filename">walk/walk_body6.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.45,0.965</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9Paddings</key>
-                <rect>32,32,64,64</rect>
+                <rect>26,31,52,62</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -246,30 +196,8 @@
             <struct type="SpriteSheet">
                 <key>files</key>
                 <array>
-                    <filename>idle/idle_body1.png</filename>
-                    <filename>idle/idle_body2.png</filename>
-                    <filename>idle/idle_frontarm1.png</filename>
-                    <filename>idle/idle_frontarm2.png</filename>
-                    <filename>idle/idle_reararm1.png</filename>
-                    <filename>idle/idle_reararm2.png</filename>
-                    <filename>walk/walk_body1.png</filename>
-                    <filename>walk/walk_body2.png</filename>
-                    <filename>walk/walk_body3.png</filename>
-                    <filename>walk/walk_body4.png</filename>
-                    <filename>walk/walk_body5.png</filename>
-                    <filename>walk/walk_body6.png</filename>
-                    <filename>walk/walk_frontarm1.png</filename>
-                    <filename>walk/walk_frontarm2.png</filename>
-                    <filename>walk/walk_frontarm3.png</filename>
-                    <filename>walk/walk_frontarm4.png</filename>
-                    <filename>walk/walk_frontarm5.png</filename>
-                    <filename>walk/walk_frontarm6.png</filename>
-                    <filename>walk/walk_reararm1.png</filename>
-                    <filename>walk/walk_reararm2.png</filename>
-                    <filename>walk/walk_reararm3.png</filename>
-                    <filename>walk/walk_reararm4.png</filename>
-                    <filename>walk/walk_reararm5.png</filename>
-                    <filename>walk/walk_reararm6.png</filename>
+                    <filename>../../CraftPix/shop.png</filename>
+                    <filename>../../CraftPix/shop_windows.png</filename>
                 </array>
             </struct>
         </map>
