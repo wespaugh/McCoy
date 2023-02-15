@@ -14,12 +14,14 @@ namespace Assets.McCoy.Brawler
     bool IsCouncil = false;
 
     McCoyBattleGui gui = null;
+    McCoyWorldUI worldUi = null;
 
     bool active = false;
 
-    public void Initialize(McCoyBattleGui gui)
+    public void Initialize(McCoyBattleGui gui, McCoyWorldUI worldUI)
     {
       this.gui = gui;
+      worldUi = worldUI;
     }
 
     public void FixedUpdate()
@@ -46,17 +48,11 @@ namespace Assets.McCoy.Brawler
 
     public void Interact()
     {
-      Debug.Log("INTERACT WITH DOOR?");
-      if(UFE.timeScale != 0f)
+      if(!active)
       {
-        Debug.Log("Set Paused");
-        UFE.timeScale = 0;
+        return;
       }
-      else if(UFE.isPaused())
-      {
-        Debug.Log("Unpause");
-        UFE.timeScale = 1;
-      }
+      worldUi.ShowShop();
     }
   }
 }

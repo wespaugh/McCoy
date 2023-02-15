@@ -56,7 +56,7 @@ namespace Assets.McCoy.BoardGame
           zoneUnlock = ProjectConstants.SUBWAY_ID;
           break;
       }
-      if(!string.IsNullOrEmpty(zoneUnlock))
+      if(city != null && !string.IsNullOrEmpty(zoneUnlock))
       {
         city.UnlockZone(zoneUnlock);
       }

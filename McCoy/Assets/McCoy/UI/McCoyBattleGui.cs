@@ -74,9 +74,13 @@ namespace Assets.McCoy.UI
         IDictionary<InputReferences, InputEvents> player2CurrentInputs
     )
     {
-      if (inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+
+      if(worldUI.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
       {
-        Debug.Log("check paused");
+        return;
+      }
+      else if (inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      {
         if(!UFE.isPaused())
         {
           base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
@@ -158,7 +162,7 @@ namespace Assets.McCoy.UI
           continue;
         }
         var door = d.GetComponent<McCoyBrawlerDoor>();
-        door.Initialize(this);
+        door.Initialize(this, worldUI);
         doors.Add(door);
       }
 
@@ -198,13 +202,9 @@ namespace Assets.McCoy.UI
       {
         uiRoot = new GameObject("UI Root");
         uiRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
-        // uiRoot.transform.position = camera2.transform.position;
       }
 
-      /*
-      worldUI = Instantiate(worldSpacePrefab, uiRoot.transform);
-      worldUI.transform.localPosition = new Vector3(-.65f, .26f, -8.75f);// + uiRoot.gameObject.transform.position;
-      */
+      worldUI = GameObject.Find("BattleUI Camera").GetComponent<McCoyWorldUI>();
 
       currentStage = McCoy.GetInstance().currentStage;
     }
