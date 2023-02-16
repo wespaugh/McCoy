@@ -47,9 +47,9 @@ namespace Assets.McCoy.UI
     public void ShowShop()
     {
       currentMenu = Instantiate(shopMenuPrefab, menuAnchor);
-      var lobbyUI = currentMenu.GetComponent<McCoyLobbyingListUI>();
+      var lobbyUI = currentMenu.GetComponent<McCoyShopListUI>();
       lobbyUI.Initialize(null, closeMenu);
-      currentMenuInputManager = currentMenu.GetComponent<McCoyLobbyingListUI>();
+      currentMenuInputManager = currentMenu.GetComponent<McCoyShopListUI>();
 
       UFE.timeScale = 0;
     }

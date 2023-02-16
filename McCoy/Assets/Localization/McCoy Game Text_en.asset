@@ -489,6 +489,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3352274887411761162
+  - m_Id: 38035964685111296
+    m_Localized: Ripper-Dog's Weres
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38047900147568640
+    m_Localized: Available Items
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
