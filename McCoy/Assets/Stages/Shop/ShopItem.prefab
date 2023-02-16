@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: {fileID: 8884943797041670298}
   itemCost: {fileID: 7934013566308823093}
+  img: {fileID: 6557936453041359144}
   highlight: {fileID: 7221420640697106952}
 --- !u!1 &3149316466761665568
 GameObject:

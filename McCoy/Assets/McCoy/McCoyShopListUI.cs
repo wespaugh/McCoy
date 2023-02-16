@@ -150,6 +150,7 @@ namespace Assets.McCoy.BoardGame
     private void buyItem()
     {
       McCoyGameState.Instance().BuyItem(currentSelection.Item);
+      currentSelection.Initialize(null);
       updateFundsText();
     }
 

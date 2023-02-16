@@ -14,6 +14,9 @@ namespace Assets.McCoy.RPG
     McCoyLocalizedText itemCost = null;
 
     [SerializeField]
+    Image img = null;
+
+    [SerializeField]
     GameObject highlight = null;
 
     public McCoyEquipmentItem Item
@@ -26,9 +29,13 @@ namespace Assets.McCoy.RPG
       this.Item = item;
       if(item == null)
       {
+        itemName.SetTextDirectly("");
+        itemCost.SetTextDirectly("");
+        img.gameObject.SetActive(false);
         return;
       }
-      itemName.SetText(item.Name);
+      img.gameObject.SetActive(true);
+      itemName.SetTextDirectly(item.Name);
       itemCost.SetTextDirectly("200");
     }
 
