@@ -17,6 +17,9 @@ namespace Assets.McCoy.UI
     [SerializeField]
     GameObject shopMenuPrefab = null;
 
+    [SerializeField]
+    GameObject lobbyingMenuPrefab = null;
+
     IMcCoyInputManager currentMenuInputManager = null;
     GameObject currentMenu = null;
 
@@ -54,6 +57,16 @@ namespace Assets.McCoy.UI
       UFE.timeScale = 0;
     }
 
+    public void ShowCouncil()
+    {
+      currentMenu = Instantiate(lobbyingMenuPrefab, menuAnchor);
+      var lobbyUI = currentMenu.GetComponent<McCoyLobbyingListUI>();
+      lobbyUI.Initialize(null, closeMenu);
+      currentMenuInputManager = currentMenu.GetComponent<McCoyLobbyingListUI>();
+
+      UFE.timeScale = 0;
+    }
+
     public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
     {
       if(currentMenu == null)
@@ -62,5 +75,6 @@ namespace Assets.McCoy.UI
       }
       return currentMenuInputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
+
   }
 }

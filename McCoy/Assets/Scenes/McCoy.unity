@@ -549,6 +549,8 @@ MonoBehaviour:
   menuAnchor: {fileID: 1082112071}
   shopMenuPrefab: {fileID: 6793296649831243736, guid: 6b3fe5bca80f37043bfb2fc6f68cb223,
     type: 3}
+  lobbyingMenuPrefab: {fileID: 757617942229695374, guid: 38bc1994899e09f40aed0050a354b606,
+    type: 3}
 --- !u!1 &1057609457
 GameObject:
   m_ObjectHideFlags: 0

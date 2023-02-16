@@ -52,7 +52,14 @@ namespace Assets.McCoy.Brawler
       {
         return;
       }
-      worldUi.ShowShop();
+      if (IsShop)
+      {
+        worldUi.ShowShop();
+      }
+      else if(IsCouncil)
+      {
+        worldUi.ShowCouncil();
+      }
     }
   }
 }
