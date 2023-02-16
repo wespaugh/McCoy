@@ -24,6 +24,8 @@ namespace Assets.McCoy.UI
     GameObject currentMenu = null;
 
     McCoyInputManager _inputManager = null;
+    private McCoyBattleGui battleGui;
+
     McCoyInputManager inputManager
     {
       get
@@ -37,6 +39,11 @@ namespace Assets.McCoy.UI
       }
     }
 
+    public void Initialize(McCoyBattleGui mcCoyBattleGui)
+    {
+      this.battleGui = mcCoyBattleGui;
+    }
+
     private void closeMenu()
     {
       if(currentMenu != null)
@@ -44,6 +51,8 @@ namespace Assets.McCoy.UI
         UFE.timeScale = 1;
         Destroy(currentMenu);
         currentMenu = null;
+        currentMenuInputManager = null;
+        battleGui.ToggleCanvasUI(true);
       }
     }
 
@@ -53,7 +62,7 @@ namespace Assets.McCoy.UI
       var lobbyUI = currentMenu.GetComponent<McCoyShopListUI>();
       lobbyUI.Initialize(null, closeMenu);
       currentMenuInputManager = currentMenu.GetComponent<McCoyShopListUI>();
-
+      battleGui.ToggleCanvasUI(false);
       UFE.timeScale = 0;
     }
 
@@ -63,7 +72,7 @@ namespace Assets.McCoy.UI
       var lobbyUI = currentMenu.GetComponent<McCoyLobbyingListUI>();
       lobbyUI.Initialize(null, closeMenu);
       currentMenuInputManager = currentMenu.GetComponent<McCoyLobbyingListUI>();
-
+      battleGui.ToggleCanvasUI(false);
       UFE.timeScale = 0;
     }
 
@@ -75,6 +84,5 @@ namespace Assets.McCoy.UI
       }
       return currentMenuInputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
-
   }
 }

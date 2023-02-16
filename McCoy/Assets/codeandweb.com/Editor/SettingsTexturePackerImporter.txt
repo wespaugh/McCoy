@@ -8,6 +8,7 @@ tpsheetFileNames:
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.tpsheet
 - Assets/Characters/rex/sprites/homid/rex_homid.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+- Assets/Stages/Shop/ripperdog.tpsheet
 - Assets/Stages/Shop/shop.tpsheet
 textureFileNames:
 - Assets/Characters/avalon/avalon.png
@@ -18,6 +19,7 @@ textureFileNames:
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.png
 - Assets/Characters/rex/sprites/homid/rex_homid.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+- Assets/Stages/Shop/ripperdog.png
 - Assets/Stages/Shop/shop.png
 normalmapFileNames:
 - 
@@ -28,5 +30,6 @@ normalmapFileNames:
 - 
 - 
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 enableDebugOutput: 0

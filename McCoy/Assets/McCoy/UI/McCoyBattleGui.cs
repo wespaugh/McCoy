@@ -19,7 +19,10 @@ namespace Assets.McCoy.UI
     [SerializeField]
     public McCoyWorldUI worldSpacePrefab = null;
 
-    GameObject uiRoot = null;
+    GameObject worldUIRoot = null;
+
+    [SerializeField]
+    GameObject canvasUIRoot = null;
 
     McCoyWorldUI worldUI = null;
     [SerializeField]
@@ -196,15 +199,16 @@ namespace Assets.McCoy.UI
       var camera2 = GameObject.Find("BattleUI Camera");
       if(camera2.transform.childCount > 0)
       {
-        uiRoot = camera2.transform.GetChild(0).gameObject;
+        worldUIRoot = camera2.transform.GetChild(0).gameObject;
       }
       else
       {
-        uiRoot = new GameObject("UI Root");
-        uiRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
+        worldUIRoot = new GameObject("UI Root");
+        worldUIRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
       }
 
       worldUI = GameObject.Find("BattleUI Camera").GetComponent<McCoyWorldUI>();
+      worldUI.Initialize(this);
 
       currentStage = McCoy.GetInstance().currentStage;
     }
@@ -245,7 +249,7 @@ namespace Assets.McCoy.UI
 
     private void OnDestroy()
     {
-      Destroy(uiRoot);
+      Destroy(worldUIRoot);
     }
 
     protected override void SetAlertMessage(string msg)
@@ -273,7 +277,7 @@ namespace Assets.McCoy.UI
         if (!questCompleted)
         {
           //worldUI.gameObject.SetActive(true);
-          uiRoot.gameObject.SetActive(true);
+          ToggleWorldUI(true);
         }
         else
         {
@@ -290,9 +294,20 @@ namespace Assets.McCoy.UI
       StartCoroutine(yieldThenPause());
       var _ = McCoy.GetInstance().ShowCutsceneAsync(name);
       //worldUI.gameObject.SetActive(false);
-      uiRoot.gameObject.SetActive(false);
+      ToggleWorldUI(false);
       questCompleted = questComplete;
     }
+
+    private void ToggleWorldUI(bool visible)
+    {
+      worldUIRoot.gameObject.SetActive(visible);
+    }
+
+    public void ToggleCanvasUI(bool visible)
+    {
+      canvasUIRoot.SetActive(visible);
+    }
+
     IEnumerator yieldThenPause()
     {
       float start = Time.time;
