@@ -589,7 +589,6 @@ public class PhysicsScript : MonoBehaviour
         if ((activeForces.y < 0 && !IsGrounded()) || activeForces.y > 0)
         {
           activeForces.y -= appliedGravity * UFE.fixedDeltaTime;
-          Debug.LogWarning("active forces is " + activeForces.y + ", because gravity was " + appliedGravity);
           if (UFE.config.gameplayType == GameplayType._2DFighter)
           {
             worldTransform.Translate(horizontalJumpForce * moveDirection * UFE.fixedDeltaTime, activeForces.y * UFE.fixedDeltaTime, 0);

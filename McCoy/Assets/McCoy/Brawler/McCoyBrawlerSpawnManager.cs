@@ -41,6 +41,10 @@ namespace Assets.McCoy.Brawler
 
     List<GameObject> debugGoalposts = new List<GameObject>();
 
+    [SerializeField]
+    GameObject cryptId = null;
+    List<McCoyCryptId> cryptidDrops = new List<McCoyCryptId>();
+
     bool debugSpawnsOnly => McCoy.GetInstance().DebugSpawnsOnly;
 
     const float bossXOffset = 3.5f;
@@ -119,6 +123,12 @@ namespace Assets.McCoy.Brawler
       this.mobData = mobData;
       // currentPlayerProgress = 0f;
 
+      if(cryptId == null)
+      {
+        cryptId = Resources.Load<GameObject>("Battle/CryptId");
+      }
+      cryptidDrops.Clear();
+
       int currentRound = UFE.config.currentRound;
       int maxRounds = UFE.config.selectedStage.stageInfo.substages.Count;
       float percentage = 1.0f / (1 + maxRounds - currentRound);
@@ -146,7 +156,37 @@ namespace Assets.McCoy.Brawler
     {
       updateSpawners();
       updateCombatZones();
+      updateCryptIds();
       checkGameEnd();
+    }
+
+    private void updateCryptIds()
+    {
+      List<McCoyCryptId> toRemove = null;
+      foreach(var cryptId in cryptidDrops)
+      {
+        if (player.transform.position.x >= cryptId.Position.x - 1.5f &&
+          player.transform.position.x <= cryptId.Position.x + 1.5f &&
+          player.transform.position.y >= cryptId.Position.y - 1.5f && 
+          player.transform.position.y <= cryptId.Position.y + 1.5f
+          )
+        {
+          cryptId.PickUp();
+          if(toRemove == null)
+          {
+            toRemove = new List<McCoyCryptId>();
+          }
+          toRemove.Add(cryptId);
+        }
+      }
+      if(toRemove != null)
+      {
+        foreach(var c in toRemove)
+        {
+          cryptidDrops.Remove(c);
+        }
+      }
+
     }
 
     private void initGoalposts()
@@ -261,6 +301,8 @@ namespace Assets.McCoy.Brawler
         return;
       }
 
+      dropCryptId(new Vector3(monster.transform.position.x, monster.transform.position.z, 0), XP);
+
       if(livingBosses.Contains(monster))
       {
         livingBosses.Remove(monster);
@@ -286,6 +328,13 @@ namespace Assets.McCoy.Brawler
           player.GainXP(XP);
         }
       }
+    }
+
+    private void dropCryptId(Vector3 position, int amount)
+    {
+      var drop = Instantiate(cryptId);
+      drop.transform.position = new Vector3(position.x, position.y, player.transform.position.z);
+      cryptidDrops.Add(new McCoyCryptId().Initialize(position, amount, drop));
     }
 
     private void cheatWin()

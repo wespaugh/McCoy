@@ -17,7 +17,6 @@ namespace Assets.McCoy.Brawler.Buffs
     {
       duration = .2f;
       base.Apply();
-      UnityEngine.Debug.Log("ISDASHING APPLY");
       player.isDashing = true;
     }
 
@@ -36,7 +35,6 @@ namespace Assets.McCoy.Brawler.Buffs
       base.Remove(numAppliedBeforeRemoving);
       if(numAppliedBeforeRemoving == 1)
       {
-        UnityEngine.Debug.Log("remove ISDASHING");
         player.isDashing = false;
       }
     }
