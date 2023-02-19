@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - UI Camera
   - Spawner
+  - Door
   layers:
   - Default
   - TransparentFX

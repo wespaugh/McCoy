@@ -1,2 +1,3 @@
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/homid/homid_reararm_walk.anim IsCyber=true
-C:/Users/wespa/Documents/McCoy/McCoy/Assets/Characters/rex/Animations/homid/homid_frontarm_walk.anim IsCyber=true
+D:/Github/McCoy/McCoy/Assets/Characters/avalon/Animations/Idle/body_idle.anim
+D:/Github/McCoy/McCoy/Assets/Characters/avalon/Animations/Idle/reararm_idle.anim IsCyber=true
+D:/Github/McCoy/McCoy/Assets/Characters/avalon/Animations/Idle/frontarm_idle.anim IsCyber=true

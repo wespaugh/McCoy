@@ -8,6 +8,7 @@ using UFE3D;
 using UFE3D.Brawler;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy
 {
@@ -87,12 +88,23 @@ namespace Assets.McCoy
       return instance;
     }
 
-    public void LoadBrawlerStage(McCoyStageData stageData)
+    public void LoadBrawlerStage(McCoyStageData stageData, PlayerCharacter player)
     {
       currentStage = stageData;
       UFE.config.currentRound = 1;
       var components = stageData.Name.Split('.');
-      UFE.StartBrawlerMode(components[components.Length-1]);
+      int pcIndex;
+      switch(player)
+      {
+        case PlayerCharacter.Rex:
+        case PlayerCharacter.Vicki:
+          pcIndex = 0;
+          break;
+        default:
+          pcIndex = 1;
+          break;
+      }
+      UFE.StartBrawlerMode(components[components.Length-1], pcIndex);
     }
 
     public void LoadScene( McCoyScenes scene, float fadeTime = 2.0f)

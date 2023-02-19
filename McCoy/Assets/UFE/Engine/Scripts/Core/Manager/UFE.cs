@@ -1371,7 +1371,7 @@ public class UFE : MonoBehaviour, UFEInterface
     }
   }
 
-  public static void StartBrawlerMode(string stageName)
+  public static void StartBrawlerMode(string stageName, int pcIndex)
   {
     p1ControlsScript = null;
 
@@ -1379,7 +1379,7 @@ public class UFE : MonoBehaviour, UFEInterface
     UFE.SetCPU(1, false);
     UFE.SetCPU(2, true);
     // Ax Test
-    UFE.SetPlayer(1, characters[0]);
+    UFE.SetPlayer(1, characters[pcIndex]);
     // vincible umm
     UFE.SetPlayer(2, characters[1]);
     UFE.config.selectedStage = null;

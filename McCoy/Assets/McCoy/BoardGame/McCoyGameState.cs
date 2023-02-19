@@ -290,6 +290,11 @@ namespace Assets.McCoy.BoardGame
       return playerTurns[(int)selectedPlayer];
     }
 
+    public void BuyItem(McCoyEquipmentItem item)
+    {
+      playerCharacters[SelectedPlayer].Equipment.AddEquipment(item);
+    }
+
     public void PickUpCredits(int amount)
     {
       credits += amount;

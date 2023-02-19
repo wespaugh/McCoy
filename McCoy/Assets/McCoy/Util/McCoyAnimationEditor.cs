@@ -24,12 +24,15 @@ public class McCoyAnimationEditor : EditorWindow
   protected Dictionary<string, GameObject> gameObjects = new Dictionary<string, GameObject>();
   protected Dictionary<GameObject, AnimationClip> animationClips = new Dictionary<GameObject, AnimationClip>();
   protected List<GameObject> cyberAnimObjects = new List<GameObject>();
+  protected GameObject bodySprite = null;
+  protected AnimationClip bodyAnimationClip = null;
   protected float time = 0.0f;
   protected float animationDuration = 0.0f;
   protected bool lockSelection = false;
   protected bool animationMode = false;
   protected string limbAnimationString = "";
   protected string modSuffix = "";
+  protected string bodyAnimation = "";
   protected bool flip = false;
   protected string powershellRoot = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
   protected string exportScript = "C:\\Users\\wespa\\Documents\\McCoy\\Utilities\\mirrorAnimClips.ps1";
@@ -53,6 +56,7 @@ public class McCoyAnimationEditor : EditorWindow
     }
     clear();
     SpriteSortingScript sortScript = Selection.activeGameObject.GetComponent<SpriteSortingScript>();
+    bodySprite = Selection.activeGameObject;
     for(int i = 0; i < Selection.activeGameObject.transform.childCount; ++i)
     {
       var go = Selection.activeGameObject.transform.GetChild(i).gameObject;
@@ -144,6 +148,10 @@ public class McCoyAnimationEditor : EditorWindow
     GUILayout.EndHorizontal();
 
     GUILayout.BeginHorizontal();
+    GUILayout.Label("Body Animation", GUILayout.Width(200));
+    bodyAnimation = GUILayout.TextField(bodyAnimation, GUILayout.Width(400));
+    GUILayout.EndHorizontal();
+    GUILayout.BeginHorizontal();
     GUILayout.Label("Animation", GUILayout.Width(200));
     limbAnimationString = GUILayout.TextField(limbAnimationString, GUILayout.Width(400));
     GUILayout.EndHorizontal();
@@ -157,6 +165,15 @@ public class McCoyAnimationEditor : EditorWindow
     GUILayout.BeginHorizontal();
     if (GUILayout.Button("assign", GUILayout.Width(200)))
     {
+      foreach (var clip in bodySprite.GetComponent<Animator>().runtimeAnimatorController.animationClips)
+      {
+        if (clip.name == bodyAnimation)
+        {
+          bodyAnimationClip = clip;
+          break;
+        }
+      }
+
       string[] commands = limbAnimationString.Split(',');
       foreach (var cmd in commands)
       {
@@ -247,12 +264,14 @@ public class McCoyAnimationEditor : EditorWindow
     }
 
     AnimationMode.BeginSampling();
+    Animator animator = bodySprite.GetComponent<Animator>();
+    AnimationMode.SampleAnimationClip(bodySprite, bodyAnimationClip, time);
     foreach (var go in gameObjects)
     {
       //if (idx == 3)
       {
         // there is a bug in AnimationMode.SampleAnimationClip which crash unity if there is no valid controller attached
-        Animator animator = go.Value.GetComponent<Animator>();
+        animator = go.Value.GetComponent<Animator>();
         if(!animationClips.ContainsKey(go.Value))
         {
           continue;

@@ -1,15 +1,18 @@
 trackSelection = true
 fetchPreview = true
-wantsMore = false
+defaultFlags = 0
 keepOpen = false
 queryFolder = "Assets"
-onBoardingDoNotAskAgain = false
+onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
 	"last_search.7BEC51F9" = ""
 	"OpenInspectorPreview.7BEC51F9" = "0"
 	"currentGroup.7BEC51F9" = "asset"
+	"last_search.B655092D" = "st:com.mccoy.shop"
+	"OpenInspectorPreview.B655092D" = "0"
+	"currentGroup.B655092D" = "all"
 }
 providers = {
 	adb = {
@@ -52,8 +55,21 @@ providers = {
 		priority = 50
 		defaultAction = null
 	}
+	at = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	st = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+}
+objectSelectors = {
 }
 recentSearches = [
+	"st:com.mccoy.shop.ripperdogsshopname"
 ]
 searchItemFavorites = [
 ]

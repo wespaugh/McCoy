@@ -22,7 +22,7 @@ namespace UFE3D
 
 	public virtual void StartBrawlerStage(string stageName)
     {
-	  UFE.StartBrawlerMode(stageName);
+	  UFE.StartBrawlerMode(stageName, 0);
     }
 
 		public virtual void GoToStoryModeScreen()

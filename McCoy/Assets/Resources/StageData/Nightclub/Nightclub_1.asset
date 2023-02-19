@@ -19,10 +19,10 @@ MonoBehaviour:
   - unitXStart: 0
     upperBound:
       slope: 0
-      yIntercept: 8
+      yIntercept: 6
     lowerBound:
       slope: 0
-      yIntercept: 0
+      yIntercept: 2
   holes: []
   leftBoundary: 0
   rightBoundary: 50

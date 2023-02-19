@@ -8,7 +8,7 @@ namespace Assets.McCoy.Localization
   public class McCoyLocalizedText : MonoBehaviour
   {
     [SerializeField]
-    LocalizeStringEvent optionalText = null;
+    LocalizeStringEvent optionalReference = null;
 
     private LocalizeStringEvent _text;
 
@@ -20,9 +20,9 @@ namespace Assets.McCoy.Localization
       {
         if (_text == null)
         {
-          if (optionalText != null)
+          if (optionalReference != null)
           {
-            _text = optionalText;
+            _text = optionalReference;
           }
           else
           {

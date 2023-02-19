@@ -1,127 +1,88 @@
-﻿using Assets.McCoy.Brawler;
+﻿using Assets.McCoy.BoardGame;
+using Assets.McCoy.Brawler;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UFE3D;
 using UnityEngine;
 
 namespace Assets.McCoy.UI
 {
-  public class McCoyWorldUI : MonoBehaviour, IBossSpawnListener
+  public class McCoyWorldUI : MonoBehaviour, IMcCoyInputManager
   {
     [SerializeField]
-    McCoyProgressBar healthBar;
+    Transform menuAnchor = null;
 
     [SerializeField]
-    McCoyProgressBar bossHud;
+    GameObject shopMenuPrefab = null;
 
     [SerializeField]
-    McCoyProgressBar enemyHud;
+    GameObject lobbyingMenuPrefab = null;
 
-    [SerializeField]
-    GameObject stingerPrefab = null;
+    IMcCoyInputManager currentMenuInputManager = null;
+    GameObject currentMenu = null;
 
-    [SerializeField]
-    Transform stingerTransformRoot = null;
+    McCoyInputManager _inputManager = null;
+    private McCoyBattleGui battleGui;
 
-    [SerializeField]
-    McCoyProgressBar xpBar = null;
-
-    float enemyHPExpiryTime;
-    private Action uiDisappearedCallback;
-    const float enemyHealthDuration = 3.0f;
-
-    bool playerHealthInitialized = false;
-
-    ControlsScript boss = null;
-    float bossStartingLife = -1;
-    private void initializePlayerHealth()
+    McCoyInputManager inputManager
     {
-      playerHealthInitialized = true;
-      healthBar.transform.localPosition = new Vector3(-4.4f, 4f, 0.0f);
-      healthBar.Initialize((int)UFE.GetPlayer1ControlsScript().currentLifePoints, 1000);
-
-      xpBar.Initialize(10, 10);
-      xpBar.SetFill(5f);
-    }
-
-    public void UpdatePlayerHealth(float percent)
-    {
-      if(!playerHealthInitialized)
+      get
       {
-        initializePlayerHealth();
-      }
-
-      healthBar.SetFill(percent * 1000);
-
-      if(boss != null)
-      {
-        bossHud.SetFill((float)boss.currentLifePoints);
+        if(_inputManager == null)
+        {
+          _inputManager = new McCoyInputManager();
+          _inputManager.RegisterButtonListener(UFE3D.ButtonPress.Button3, closeMenu);
+        }
+        return _inputManager;
       }
     }
 
-    public void updateEnemyHealth(ControlsScript enemy, Action uiDisappearedCallback)
+    public void Initialize(McCoyBattleGui mcCoyBattleGui)
     {
-      enemyHud.Initialize(enemy.myInfo.lifePoints, 100);
-      enemyHud.SetFill((float)enemy.currentLifePoints);
-      enemyHPExpiryTime = Time.time + enemyHealthDuration;
-      this.uiDisappearedCallback = uiDisappearedCallback;
+      this.battleGui = mcCoyBattleGui;
+    }
 
-      if (! enemyHud.gameObject.activeInHierarchy)
+    private void closeMenu()
+    {
+      if(currentMenu != null)
       {
-        enemyHud.gameObject.SetActive(true);
-        StartCoroutine(runEnemyHPBar());
+        UFE.timeScale = 1;
+        Destroy(currentMenu);
+        currentMenu = null;
+        currentMenuInputManager = null;
+        battleGui.ToggleCanvasUI(true);
       }
     }
 
-    private IEnumerator runEnemyHPBar()
+    public void ShowShop()
     {
-      while (Time.time < enemyHPExpiryTime)
-      {
-        yield return null;
-      }
-      enemyHud.gameObject.SetActive(false);
-      if(uiDisappearedCallback != null)
-      {
-        uiDisappearedCallback();
-      }
+      currentMenu = Instantiate(shopMenuPrefab, menuAnchor);
+      var lobbyUI = currentMenu.GetComponent<McCoyShopListUI>();
+      lobbyUI.Initialize(null, closeMenu);
+      currentMenuInputManager = currentMenu.GetComponent<McCoyShopListUI>();
+      battleGui.ToggleCanvasUI(false);
+      UFE.timeScale = 0;
     }
 
-    public void BossSpawned(ControlsScript boss)
+    public void ShowCouncil()
     {
-      bossHud.Initialize((int)boss.currentLifePoints, 333);
-      this.boss = boss;
-      bossStartingLife = (float)boss.currentLifePoints;
-      bossHud.gameObject.SetActive(true);
-      bossHud.FadeIn();
+      currentMenu = Instantiate(lobbyingMenuPrefab, menuAnchor);
+      var lobbyUI = currentMenu.GetComponent<McCoyLobbyingListUI>();
+      lobbyUI.Initialize(null, closeMenu);
+      currentMenuInputManager = currentMenu.GetComponent<McCoyLobbyingListUI>();
+      battleGui.ToggleCanvasUI(false);
+      UFE.timeScale = 0;
     }
 
-    public void BossDied(ControlsScript boss)
+    public bool CheckInputs(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
     {
-      this.boss = null;
-      bossHud.FadeOut();
-    }
-
-    public void StageBegan()
-    {
-      var stinger = Instantiate(stingerPrefab, stingerTransformRoot);
-      stinger.GetComponent<McCoyStinger>().RunStinger(McCoyStinger.StingerTypes.RoundStart);
-    }
-    public void StageEnded(McCoyStinger.StingerTypes stingerType)
-    {
-      var stinger = Instantiate(stingerPrefab, stingerTransformRoot);
-      stinger.GetComponent<McCoyStinger>().RunStinger(McCoyStinger.StingerTypes.RoundOver);
-    }
-
-    public void UpdatePlayerXP(int xp, bool initialize, int nextLevel = -1)
-    {
-      if(initialize)
+      if(currentMenu == null)
       {
-        xpBar.Initialize(xp, nextLevel);
+        return false;
       }
-      else
-      {
-        xpBar.SetFill(xp);
-      }
+      return currentMenuInputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
     }
   }
 }

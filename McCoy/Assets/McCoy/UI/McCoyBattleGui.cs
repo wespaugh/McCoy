@@ -8,6 +8,9 @@ using UnityEngine.UI;
 using System.Collections;
 using static Assets.McCoy.ProjectConstants;
 using Assets.McCoy.BoardGame;
+using System;
+using System.Collections.Generic;
+using Assets.McCoy.Localization;
 
 namespace Assets.McCoy.UI
 {
@@ -16,13 +19,18 @@ namespace Assets.McCoy.UI
     [SerializeField]
     public McCoyWorldUI worldSpacePrefab = null;
 
-    GameObject uiRoot = null;
+    GameObject worldUIRoot = null;
+
+    [SerializeField]
+    GameObject canvasUIRoot = null;
 
     McCoyWorldUI worldUI = null;
     [SerializeField]
     LiquidBar healthBar = null;
     [SerializeField]
     LiquidBar xpBar = null;
+    [SerializeField]
+    McCoyLocalizedText interactText = null;
 
     [SerializeField] TMP_Text alertText = null;
 
@@ -45,6 +53,56 @@ namespace Assets.McCoy.UI
     [SerializeField] McCoyQuestTextUI questUI = null;
     [SerializeField] TMP_Text playerTimer = null;
     [SerializeField] LiquidBar enemyHPBar = null;
+
+    List<McCoyBrawlerDoor> doors = new List<McCoyBrawlerDoor>();
+
+    McCoyInputManager _inputManager;
+    McCoyInputManager inputManager
+    {
+      get
+      {
+        if (_inputManager == null)
+        {
+          _inputManager = new McCoyInputManager();
+          _inputManager.RegisterButtonListener(ButtonPress.Button2, interactPressed);
+        }
+        return _inputManager;
+      }
+    }
+
+    public override void DoFixedUpdate(
+        IDictionary<InputReferences, InputEvents> player1PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player1CurrentInputs,
+        IDictionary<InputReferences, InputEvents> player2PreviousInputs,
+        IDictionary<InputReferences, InputEvents> player2CurrentInputs
+    )
+    {
+
+      if(worldUI.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      {
+        return;
+      }
+      else if (inputManager.CheckInputs(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs))
+      {
+        if(!UFE.isPaused())
+        {
+          base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+        }
+      }
+      else
+      {
+        base.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
+      }
+    }
+
+    private void interactPressed()
+    {
+      Debug.Log("interact!");
+      foreach(var door in doors)
+      {
+        door.Interact();
+      }
+    }
 
     McCoyStageData currentStage;
 
@@ -91,6 +149,26 @@ namespace Assets.McCoy.UI
         spawnerInitialized = true;
         initSpawner();
       }
+
+      var dList = GameObject.FindGameObjectsWithTag("Door");
+      bool first = true;
+      // HACK HACK HACK. the first one is going to be destroyed in the process of creating the scene
+      foreach (var d in dList)
+      {
+        if(first)
+        {
+          first = false;
+          continue;
+        }
+        if(!d.activeInHierarchy)
+        {
+          continue;
+        }
+        var door = d.GetComponent<McCoyBrawlerDoor>();
+        door.Initialize(this, worldUI);
+        doors.Add(door);
+      }
+
       // worldUI.StageBegan();
 
       McCoyQuestData activeQuest = McCoy.GetInstance().gameState.activeQuest;
@@ -121,19 +199,16 @@ namespace Assets.McCoy.UI
       var camera2 = GameObject.Find("BattleUI Camera");
       if(camera2.transform.childCount > 0)
       {
-        uiRoot = camera2.transform.GetChild(0).gameObject;
+        worldUIRoot = camera2.transform.GetChild(0).gameObject;
       }
       else
       {
-        uiRoot = new GameObject("UI Root");
-        uiRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
-        // uiRoot.transform.position = camera2.transform.position;
+        worldUIRoot = new GameObject("UI Root");
+        worldUIRoot.transform.localPosition = new Vector3(18.0f, 33.0f, 4.0f);
       }
 
-      /*
-      worldUI = Instantiate(worldSpacePrefab, uiRoot.transform);
-      worldUI.transform.localPosition = new Vector3(-.65f, .26f, -8.75f);// + uiRoot.gameObject.transform.position;
-      */
+      worldUI = GameObject.Find("BattleUI Camera").GetComponent<McCoyWorldUI>();
+      worldUI.Initialize(this);
 
       currentStage = McCoy.GetInstance().currentStage;
     }
@@ -150,7 +225,6 @@ namespace Assets.McCoy.UI
 
     public void debugSpawn()
     {
-      Debug.Log("SPAWN");
       float x = string.IsNullOrEmpty(xInput.text) ? 0.0f : float.Parse(xInput.text);
       float z = string.IsNullOrEmpty(yInput.text) ? 0.0f : float.Parse(yInput.text);
       UFE3D.CharacterInfo m = null;
@@ -162,7 +236,6 @@ namespace Assets.McCoy.UI
           break;
         }
       }
-      Debug.Log("creating random monster! ");
       UFE.CreateRandomMonster(m, x, z, debug: true);
     }
 
@@ -176,7 +249,7 @@ namespace Assets.McCoy.UI
 
     private void OnDestroy()
     {
-      Destroy(uiRoot);
+      Destroy(worldUIRoot);
     }
 
     protected override void SetAlertMessage(string msg)
@@ -204,7 +277,7 @@ namespace Assets.McCoy.UI
         if (!questCompleted)
         {
           //worldUI.gameObject.SetActive(true);
-          uiRoot.gameObject.SetActive(true);
+          ToggleWorldUI(true);
         }
         else
         {
@@ -221,9 +294,20 @@ namespace Assets.McCoy.UI
       StartCoroutine(yieldThenPause());
       var _ = McCoy.GetInstance().ShowCutsceneAsync(name);
       //worldUI.gameObject.SetActive(false);
-      uiRoot.gameObject.SetActive(false);
+      ToggleWorldUI(false);
       questCompleted = questComplete;
     }
+
+    private void ToggleWorldUI(bool visible)
+    {
+      worldUIRoot.gameObject.SetActive(visible);
+    }
+
+    public void ToggleCanvasUI(bool visible)
+    {
+      canvasUIRoot.SetActive(visible);
+    }
+
     IEnumerator yieldThenPause()
     {
       float start = Time.time;
@@ -398,6 +482,20 @@ namespace Assets.McCoy.UI
       if (McCoy.GetInstance().gameState.activeQuest != null)
       {
         McCoy.GetInstance().gameState.CompleteQuest();
+      }
+    }
+
+    public void ToggleDoor(bool active, string locKey)
+    {
+      if (active)
+      {
+        interactText.SetTextDirectly(locKey + " (X)");
+        interactText.gameObject.SetActive(true);
+      }
+      else
+      {
+        interactText.SetTextDirectly("");
+        interactText.gameObject.SetActive(false);
       }
     }
   }

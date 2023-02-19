@@ -720,7 +720,7 @@ namespace Assets.McCoy.UI
       {
         selectedPlayer += direction;
       }
-
+      Debug.Log("City: selected player is now " + selectedPlayer);
       if (updateMap)
       {
         board.ToggleZoom(true);
@@ -753,7 +753,7 @@ namespace Assets.McCoy.UI
       {
         loadingStage = true;
         McCoyGameState.Instance().SelectedPlayer = selectedPlayer;
-        McCoy.GetInstance().LoadBrawlerStage(stageDataToLoad);
+        McCoy.GetInstance().LoadBrawlerStage(stageDataToLoad, selectedPlayer);
       }
     }
 

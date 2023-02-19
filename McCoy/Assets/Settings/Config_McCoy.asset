@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 2
   player1Character: {fileID: 0}
-  player2Character: {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
+  player2Character: {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   player1Team:
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
@@ -24,23 +24,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: powerstation
+    stageName: cityhall
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
-    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
-      type: 3}
-    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
+    screenshot: {fileID: 2800000, guid: 0b5bc95b5c0e0eb448d43fb358704f3f, type: 3}
+    prefab: {fileID: 879742433415519449, guid: dda3816044a462746b2d06a61a34614c, type: 3}
+    music: {fileID: 0}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: -34359738368
+      _serializedValue: 0
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: -42949672960
+      _serializedValue: 0
     tempRightBoundary:
-      _serializedValue: 25769803776
+      _serializedValue: 0
     useTempBoundary: 0
     position:
       x:
@@ -49,8 +48,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/PowerStation/PowerStation
-    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
+    advancedStageData: StageData/CityHall/CityHall
+    stageInfo: {fileID: 0}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -175,11 +174,15 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 0
-    selectableCharactersInStoryMode: 01000000000000000200000003000000040000000500000006000000
-    selectableCharactersInVersusMode: 00000000010000000200000003000000040000000500000006000000
+    selectableCharactersInStoryMode: 0100000000000000020000000300000004000000050000000600000007000000
+    selectableCharactersInVersusMode: 0000000001000000020000000300000004000000050000000600000007000000
     characterStories:
-      _keys: 00000000010000000200000003000000040000000500000006000000
+      _keys: 0000000001000000020000000300000004000000050000000600000007000000
       _values:
+      - opening: {fileID: 0}
+        ending: {fileID: 0}
+        fightsGroups: []
+        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -1337,8 +1340,35 @@ MonoBehaviour:
         _serializedValue: 0
     advancedStageData: StageData/Nightclub/Nightclub
     stageInfo: {fileID: 11400000, guid: 23acd35c736159641840589f316c3e07, type: 2}
+  - stageName: cityhall
+    stageLoadingMethod: 0
+    stagePath: 
+    screenshot: {fileID: 2800000, guid: 0b5bc95b5c0e0eb448d43fb358704f3f, type: 3}
+    prefab: {fileID: 879742433415519449, guid: dda3816044a462746b2d06a61a34614c, type: 3}
+    music: {fileID: 0}
+    _groundFriction:
+      _serializedValue: 429496729600
+    _leftBoundary:
+      _serializedValue: 0
+    _rightBoundary:
+      _serializedValue: 214748364800
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
+    useTempBoundary: 0
+    position:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    advancedStageData: StageData/CityHall/CityHall
+    stageInfo: {fileID: 0}
   characters:
   - {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
+  - {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   - {fileID: 11400000, guid: 7b60b51dd2f3f1142861640afd37fb88, type: 2}
   - {fileID: 11400000, guid: c423bac83678ce343b37470e76fc2dfb, type: 2}
   - {fileID: 11400000, guid: 40668f4c9af65804b88311857d5a5910, type: 2}

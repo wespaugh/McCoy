@@ -1,0 +1,16 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:80212ff3d591684ef1dc3a8fcbe544b4:1d0ed1b3f17b03859160b933083ab83d:8cc2e9ad76a43791cf7e7d8820b355a1$
+#
+:format=40300
+:texture=ripperdog.png
+:size=512x512
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+shop;0;30;512;482; 0.5;0.5; 0;0;0;0; 4;512;0;0;0;0;482;512;482; 2;1;2;3;0;1;3
