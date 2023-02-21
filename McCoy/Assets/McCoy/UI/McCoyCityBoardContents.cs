@@ -91,6 +91,7 @@ namespace Assets.McCoy.UI
     private float cameraStartTime;
     private bool zoomed = false;
     private bool hidden = false;
+    
     List<LineRenderer> inactiveConnectionLines = new List<LineRenderer>();
     bool showUnconnectedLines = false;
     bool runningIntro = true;
@@ -226,17 +227,21 @@ namespace Assets.McCoy.UI
         Debug.Log("alredy hdidenb, returnging");
         yield break;
       }
-      if(zoomed)
-      {
-        ToggleZoom();
-      }
+
+
+      zoomed = false;
+      Camera.main.transform.position = cameraAnchor.transform.position;
+      Camera.main.transform.rotation = cameraAnchor.transform.rotation;
+      cameraOrigin = Camera.main.transform.position;
+      cameraDestination = cameraAnchor.transform.localPosition;
+      LerpCamera(0.5f);
       if(cameraSnap)
       {
-        yield return StartCoroutine(lerpBoard(hidePosition, true, 0f));
+        StartCoroutine(lerpBoard(hidePosition, true, 0.1f));
       }
       else
       {
-        yield return StartCoroutine(lerpBoard(hidePosition, true, cameraMoveTime));
+        StartCoroutine(lerpBoard(hidePosition, true, cameraMoveTime));
       }
     }
 
@@ -247,11 +252,10 @@ namespace Assets.McCoy.UI
         return false;
       }
       hidden = false;
-      // lerpBoard()
+      // StartCoroutine(lerpBoard(Vector3.zero, false));
       centerCameraOnSelectedNode();
       return true;
     }
-
     private IEnumerator lerpBoard(Vector3 target, bool hiding, float travelTime = .6f)
     {
       Debug.Log("lerp board: " + hiding);

@@ -124,7 +124,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>ripperdog.tpsheet</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
