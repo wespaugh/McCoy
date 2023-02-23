@@ -170,8 +170,8 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
         input.RegisterButtonListener(ButtonPress.Button4, toggleLobbying);
         input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
-        input.RegisterButtonListener(ButtonPress.Button7, NextPlayer);
-        input.RegisterButtonListener(ButtonPress.Button8, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button7, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button8, NextPlayer);
         input.RegisterButtonListener(ButtonPress.Button2, ReturnToMap);
       }
       

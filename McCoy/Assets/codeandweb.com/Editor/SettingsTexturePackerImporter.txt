@@ -8,6 +8,7 @@ tpsheetFileNames:
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.tpsheet
 - Assets/Characters/rex/sprites/homid/rex_homid.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+- Assets/Stages/City Hall/council_tps_data.tpsheet
 - Assets/Stages/Shop/ripperdog.tpsheet
 - Assets/Stages/Shop/shop.tpsheet
 - Assets/UI/Battle/crypt_id.tpsheet
@@ -20,6 +21,7 @@ textureFileNames:
 - Assets/Characters/rex/sprites/arbiter/combo_1/rex_arbiter_combo_1.png
 - Assets/Characters/rex/sprites/homid/rex_homid.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+- Assets/Stages/City Hall/council_tps_data.png
 - Assets/Stages/Shop/ripperdog.png
 - Assets/Stages/Shop/shop.png
 - Assets/UI/Battle/crypt_id.png
@@ -32,6 +34,7 @@ normalmapFileNames:
 - 
 - 
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 - 
 - 

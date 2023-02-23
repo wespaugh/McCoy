@@ -1,0 +1,16 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:e1183ba9496b1aab817750f1cd06b521:379ceb9730d550e2cf3563002c4ba177:ab61df8207eba5604b4ecbbd2751832f$
+#
+:format=40300
+:texture=council_tps_data.png
+:size=512x512
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+council;0;30;512;482; 0.5;0.5; 0;0;0;0; 4;512;0;0;0;0;482;512;482; 2;1;2;3;0;1;3
