@@ -108,8 +108,8 @@ TextureImporter:
       name: idle_body1
       rect:
         serializedVersion: 2
-        x: 162
-        y: 385
+        x: 1
+        y: 399
         width: 71
         height: 126
       alignment: 9
@@ -129,8 +129,8 @@ TextureImporter:
       name: idle_body2
       rect:
         serializedVersion: 2
-        x: 85
-        y: 394
+        x: 271
+        y: 539
         width: 75
         height: 117
       alignment: 9
@@ -150,8 +150,8 @@ TextureImporter:
       name: idle_frontarm1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 174
+        x: 1
+        y: 299
         width: 38
         height: 44
       alignment: 9
@@ -171,8 +171,8 @@ TextureImporter:
       name: idle_frontarm2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 165
+        x: 74
+        y: 293
         width: 37
         height: 49
       alignment: 9
@@ -192,8 +192,8 @@ TextureImporter:
       name: idle_reararm1
       rect:
         serializedVersion: 2
-        x: 184
-        y: 183
+        x: 235
+        y: 612
         width: 33
         height: 39
       alignment: 9
@@ -213,8 +213,8 @@ TextureImporter:
       name: idle_reararm2
       rect:
         serializedVersion: 2
-        x: 42
-        y: 2
+        x: 39
+        y: 265
         width: 31
         height: 32
       alignment: 9
@@ -234,8 +234,8 @@ TextureImporter:
       name: walk_body1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 57
+        x: 117
+        y: 288
         width: 37
         height: 115
       alignment: 9
@@ -256,7 +256,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 383
+        y: 527
         width: 82
         height: 128
       alignment: 9
@@ -276,8 +276,8 @@ TextureImporter:
       name: walk_body3
       rect:
         serializedVersion: 2
-        x: 85
-        y: 274
+        x: 134
+        y: 405
         width: 71
         height: 118
       alignment: 9
@@ -297,8 +297,8 @@ TextureImporter:
       name: walk_body4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 24
+        x: 207
+        y: 395
         width: 39
         height: 126
       alignment: 9
@@ -318,8 +318,8 @@ TextureImporter:
       name: walk_body5
       rect:
         serializedVersion: 2
-        x: 1
-        y: 265
+        x: 271
+        y: 421
         width: 71
         height: 116
       alignment: 9
@@ -339,8 +339,8 @@ TextureImporter:
       name: walk_body6
       rect:
         serializedVersion: 2
-        x: 158
-        y: 224
+        x: 441
+        y: 499
         width: 69
         height: 119
       alignment: 9
@@ -360,8 +360,8 @@ TextureImporter:
       name: walk_frontarm1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 152
+        x: 74
+        y: 344
         width: 41
         height: 70
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: walk_frontarm2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 12
+        x: 156
+        y: 360
         width: 37
         height: 43
       alignment: 9
@@ -402,8 +402,8 @@ TextureImporter:
       name: walk_frontarm3
       rect:
         serializedVersion: 2
-        x: 42
-        y: 36
+        x: 344
+        y: 492
         width: 28
         height: 41
       alignment: 9
@@ -423,8 +423,8 @@ TextureImporter:
       name: walk_frontarm4
       rect:
         serializedVersion: 2
-        x: 42
-        y: 79
+        x: 1
+        y: 209
         width: 29
         height: 35
       alignment: 9
@@ -444,8 +444,8 @@ TextureImporter:
       name: walk_frontarm5
       rect:
         serializedVersion: 2
-        x: 158
-        y: 345
+        x: 441
+        y: 620
         width: 70
         height: 38
       alignment: 9
@@ -465,8 +465,8 @@ TextureImporter:
       name: walk_frontarm6
       rect:
         serializedVersion: 2
-        x: 74
-        y: 220
+        x: 1
+        y: 345
         width: 65
         height: 52
       alignment: 9
@@ -486,8 +486,8 @@ TextureImporter:
       name: walk_reararm1
       rect:
         serializedVersion: 2
-        x: 158
-        y: 391
+        x: 360
+        y: 900
         width: 1
         height: 1
       alignment: 9
@@ -507,8 +507,8 @@ TextureImporter:
       name: walk_reararm2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 152
+        x: 238
+        y: 717
         width: 31
         height: 62
       alignment: 9
@@ -528,8 +528,8 @@ TextureImporter:
       name: walk_reararm3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 216
+        x: 210
+        y: 563
         width: 45
         height: 47
       alignment: 9
@@ -549,8 +549,8 @@ TextureImporter:
       name: walk_reararm4
       rect:
         serializedVersion: 2
-        x: 235
-        y: 441
+        x: 256
+        y: 530
         width: 13
         height: 31
       alignment: 9
@@ -570,8 +570,8 @@ TextureImporter:
       name: walk_reararm5
       rect:
         serializedVersion: 2
-        x: 235
-        y: 474
+        x: 210
+        y: 612
         width: 16
         height: 37
       alignment: 9
@@ -591,8 +591,8 @@ TextureImporter:
       name: walk_reararm6
       rect:
         serializedVersion: 2
-        x: 42
-        y: 116
+        x: 39
+        y: 216
         width: 29
         height: 47
       alignment: 9
@@ -608,6 +608,888 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body1
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 525
+        width: 73
+        height: 124
+      alignment: 9
+      pivot: {x: 0.5950685, y: 0.041290324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a08852b3876ba9140ab7c36a7401c594
+      internalID: 251779757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body10
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 651
+        width: 84
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5647619, y: 0.04231405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc60eaa3a0d75284cbf6d85b2731a6f8
+      internalID: -692613747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body11
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 902
+        width: 87
+        height: 121
+      alignment: 9
+      pivot: {x: 0.59126437, y: 0.04231405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d6febad41c4ca6498b1fde257dc5542
+      internalID: -2059613283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body12
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 535
+        width: 81
+        height: 123
+      alignment: 9
+      pivot: {x: 0.49925926, y: 0.041626018}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f424994679da91a449c6aea3e9072e60
+      internalID: 1208621006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 900
+        width: 148
+        height: 123
+      alignment: 9
+      pivot: {x: 0.67189187, y: 0.041626018}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e692e5d62ab35a04fa28a08f26f1ca8b
+      internalID: 50872429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body14
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 897
+        width: 119
+        height: 126
+      alignment: 9
+      pivot: {x: 0.6507563, y: 0.024761904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f84cb679c5d7a774ca2ea08f433ab7a3
+      internalID: 1704055431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 657
+        width: 84
+        height: 118
+      alignment: 9
+      pivot: {x: 0.5290476, y: 0.04338983}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e88ace808388bb49b09566dad71b54b
+      internalID: -1808104747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body3
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 783
+        width: 86
+        height: 117
+      alignment: 9
+      pivot: {x: 0.5167442, y: 0.043760683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3449114a6ddeb254cbd09caae8e0fd3f
+      internalID: 1229973059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 782
+        width: 86
+        height: 119
+      alignment: 9
+      pivot: {x: 0.5167442, y: 0.04302521}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48628d46319fe5041a39a2ad034f05e9
+      internalID: 831277474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body5
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 658
+        width: 84
+        height: 122
+      alignment: 9
+      pivot: {x: 0.5290476, y: 0.041967213}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253baa60a603ed14cafa0aa49353c7af
+      internalID: 440166085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 660
+        width: 85
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5228235, y: 0.04231405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2a28fddd62baef4c85d8fff37df5be2
+      internalID: 1115151755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 903
+        width: 90
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5382222, y: 0.042666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6818192fbaee6f4c8493417ae27cc2d
+      internalID: -283293307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 777
+        width: 96
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5775, y: 0.04231405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b53f2113df7ff48a7f1bbcc82e6139
+      internalID: -90847820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_body9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 774
+        width: 85
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5581176, y: 0.04231405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4914e51dc4a79246a3ed702e4d6969e
+      internalID: -87794997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm1
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 772
+        width: 52
+        height: 54
+      alignment: 9
+      pivot: {x: 1.2884616, y: 0.7037037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119f0815c2ec49341b02fe13e9b91201
+      internalID: -896258430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm10
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 660
+        width: 63
+        height: 60
+      alignment: 9
+      pivot: {x: 1.1428572, y: 0.56666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa2c77ec3b0e5d4289bd052983e6d7c
+      internalID: -2112083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm11
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 523
+        width: 44
+        height: 38
+      alignment: 9
+      pivot: {x: 1.5454545, y: 0.36842105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162f834a3a960294d8e00ee75ac87eb6
+      internalID: -692159590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm12
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 656
+        width: 51
+        height: 61
+      alignment: 9
+      pivot: {x: 1.3921568, y: -0.04918033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139f965862f41f34ca7cd80d56c85130
+      internalID: -1044246414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm13
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 653
+        width: 34
+        height: 62
+      alignment: 9
+      pivot: {x: 1.7941177, y: 0.6935484}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc44ce884c1493a469cfa50bab169319
+      internalID: 1983575295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm14
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 487
+        width: 27
+        height: 46
+      alignment: 9
+      pivot: {x: 2.074074, y: 0.3478261}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e0f29d1807e6c42b9dd35cf7675c39
+      internalID: 927981905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm2
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 839
+        width: 32
+        height: 56
+      alignment: 9
+      pivot: {x: 1.6875, y: 0.53571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7469b9125d3de9d40804b2226fb4a602
+      internalID: 704703624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm3
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 839
+        width: 32
+        height: 56
+      alignment: 9
+      pivot: {x: 1.6875, y: 0.53571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc29f8eb402f08845b6bc2d57b4710a5
+      internalID: -1955914914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 246
+        width: 36
+        height: 51
+      alignment: 9
+      pivot: {x: 1.5277778, y: 0.60784316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76b84cf08bd3d74a98207e24ff70516
+      internalID: 346020961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 246
+        width: 36
+        height: 51
+      alignment: 9
+      pivot: {x: 1.5277778, y: 0.60784316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a8ece6d7959ab4a9dea13183be88d0
+      internalID: 2118466524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm6
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 781
+        width: 32
+        height: 56
+      alignment: 9
+      pivot: {x: 1.6875, y: 0.51785713}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2204c013e0439704d853110ede7e758d
+      internalID: 364374008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 243
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 1.5277778, y: 0.6041667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a96e008ff6667e48a4ca01562c67b45
+      internalID: 246601047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm8
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 846
+        width: 50
+        height: 52
+      alignment: 9
+      pivot: {x: 1.3, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec9d049fa5ac43b4e851196221fc268b
+      internalID: -1404274664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_frontarm9
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 722
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 1.078125, y: 0.45833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eedab0150189e264f9d0fc119aec5591
+      internalID: 1579709620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm1
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 612
+        width: 33
+        height: 39
+      alignment: 9
+      pivot: {x: -0.27272728, y: 0.51282054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ea1f4ea15ebb3458463b51f3ff30e7
+      internalID: 218063375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm10
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 977
+        width: 57
+        height: 46
+      alignment: 9
+      pivot: {x: -0.3508772, y: -0.13043478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c9d489df0caff46a1df662cd77674e
+      internalID: -885507056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm11
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 461
+        width: 44
+        height: 37
+      alignment: 9
+      pivot: {x: -0.45454547, y: -0.13513513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43fdd9a1a92d9540a361cf788a20ed4
+      internalID: -311581453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm12
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 416
+        width: 42
+        height: 43
+      alignment: 9
+      pivot: {x: -0.42857143, y: -0.4883721}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fa84732839b97f4a82a288339e22655
+      internalID: -1552923708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm13
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 719
+        width: 48
+        height: 62
+      alignment: 9
+      pivot: {x: -0.25, y: 0.5322581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba86b497e3fb834d99dacfa52cf0516
+      internalID: -544687331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm14
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 783
+        width: 49
+        height: 61
+      alignment: 9
+      pivot: {x: -0.20408164, y: 0.40983605}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b3e3c222ea978444949427c21c75f09
+      internalID: 356316049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 299
+        width: 31
+        height: 44
+      alignment: 9
+      pivot: {x: -0.6451613, y: 0.18181819}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88cee0246ba7a4b4e8b9952bfcb44820
+      internalID: 1596952167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm3
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 604
+        width: 48
+        height: 50
+      alignment: 9
+      pivot: {x: -0.375, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b11055a2367424049bb4d2438098be8b
+      internalID: 647170105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm4
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 552
+        width: 47
+        height: 50
+      alignment: 9
+      pivot: {x: -0.3617021, y: -0.14}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a0279dd151b1148aa32085a8cc27bf
+      internalID: -869289797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm5
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 926
+        width: 56
+        height: 49
+      alignment: 9
+      pivot: {x: -0.32142857, y: -0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5935a94482f1a764ea4fafa02697cef7
+      internalID: 1295085229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm6
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 878
+        width: 54
+        height: 46
+      alignment: 9
+      pivot: {x: -0.35185185, y: -0.19565217}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 423e39834dcdf7b40bd613696f09eb7a
+      internalID: -1850660090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm7
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 828
+        width: 53
+        height: 48
+      alignment: 9
+      pivot: {x: -0.35849056, y: -0.104166664}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeffd2982beb62b479527337671d94e6
+      internalID: -956273107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm8
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 500
+        width: 47
+        height: 50
+      alignment: 9
+      pivot: {x: -0.3617021, y: -0.14}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e72d1f9570f2d94cb88422a5d1bb39b
+      internalID: 1986786745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avalon_homid_grow_reararm9
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 977
+        width: 57
+        height: 46
+      alignment: 9
+      pivot: {x: -0.3508772, y: -0.13043478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d056a288bb1fa7343ac1cd588d169e4f
+      internalID: -2115725203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -619,30 +1501,72 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle_body1: -772647689
-      walk_reararm2: 1834760227
+      avalon_homid_grow_body7: -283293307
+      avalon_homid_grow_frontarm13: 1983575295
+      avalon_homid_grow_frontarm2: 704703624
       walk_reararm3: -1952435655
-      idle_reararm2: -966108812
-      walk_frontarm1: -602578256
-      walk_body6: -867786782
+      avalon_homid_grow_frontarm12: -1044246414
+      avalon_homid_grow_reararm3: 647170105
+      avalon_homid_grow_reararm7: -956273107
       walk_frontarm3: -855484093
+      walk_frontarm1: -602578256
       walk_reararm4: 1218562904
-      idle_frontarm2: 1065102610
-      idle_reararm1: -61775609
+      avalon_homid_grow_frontarm5: 2118466524
+      avalon_homid_grow_reararm10: -885507056
+      avalon_homid_grow_reararm8: 1986786745
+      avalon_homid_grow_body3: 1229973059
+      avalon_homid_grow_frontarm10: -2112083
       idle_frontarm1: -1291811527
+      avalon_homid_grow_body9: -87794997
+      avalon_homid_grow_reararm12: -1552923708
+      walk_frontarm6: -2018783307
+      avalon_homid_grow_frontarm9: 1579709620
+      avalon_homid_grow_frontarm3: -1955914914
+      avalon_homid_grow_body2: -1808104747
+      avalon_homid_grow_reararm4: -869289797
+      avalon_homid_grow_body5: 440166085
+      avalon_homid_grow_reararm9: -2115725203
+      avalon_homid_grow_reararm1: 218063375
+      walk_reararm1: 1490393457
+      walk_frontarm2: -644482860
+      avalon_homid_grow_reararm13: -544687331
+      avalon_homid_grow_reararm2: 1596952167
+      idle_body1: -772647689
+      avalon_homid_grow_frontarm11: -692159590
+      avalon_homid_grow_frontarm6: 364374008
+      avalon_homid_grow_body6: 1115151755
+      avalon_homid_grow_body8: -90847820
+      avalon_homid_grow_frontarm8: -1404274664
+      avalon_homid_grow_reararm11: -311581453
+      avalon_homid_grow_body12: 1208621006
+      walk_body6: -867786782
+      avalon_homid_grow_reararm6: -1850660090
+      avalon_homid_grow_body13: 50872429
+      walk_reararm2: 1834760227
+      idle_reararm2: -966108812
+      avalon_homid_grow_frontarm14: 927981905
+      idle_frontarm2: 1065102610
+      avalon_homid_grow_body11: -2059613283
+      idle_reararm1: -61775609
+      avalon_homid_grow_body4: 831277474
       idle_body2: -1505648782
       walk_frontarm5: -730519451
       walk_body5: 1299125398
+      avalon_homid_grow_frontarm7: 246601047
       walk_body2: 1373798458
       walk_body1: -1747061942
-      walk_body3: 1489832796
+      avalon_homid_grow_frontarm1: -896258430
       walk_body4: 925417511
+      walk_body3: 1489832796
       walk_reararm6: -1919422775
-      walk_frontarm6: -2018783307
+      avalon_homid_grow_reararm14: 356316049
       walk_frontarm4: -1250069702
+      avalon_homid_grow_body10: -692613747
       walk_reararm5: -271720222
-      walk_reararm1: 1490393457
-      walk_frontarm2: -644482860
+      avalon_homid_grow_body1: 251779757
+      avalon_homid_grow_reararm5: 1295085229
+      avalon_homid_grow_frontarm4: 346020961
+      avalon_homid_grow_body14: 1704055431
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

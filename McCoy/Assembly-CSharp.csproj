@@ -79,6 +79,7 @@
     <Compile Include="Assets\McCoy\BoardGame\SearchableNode.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeCondition.cs" />
     <Compile Include="Assets\Talentus\Core\Data\Connection\TalentTreeConnection.cs" />
+    <Compile Include="Assets\McCoy\RPG\McCoyShopItem.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyCityBoardContents.cs" />
     <Compile Include="Assets\McCoy\BoardGame\MapGraphNodeContainer.cs" />
     <Compile Include="Assets\Talentus\Core\Interfaces\IProperty.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCharacterSelectionScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoySpawnerTrigger.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
+    <Compile Include="Assets\McCoy\Brawler\McCoyCryptId.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyLobbyingCause.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyLobbyingCauseManager.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\CommunityScripts\UFEGradient.cs" />
@@ -200,6 +202,7 @@
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Scripts\cInputGUI.cs" />
     <Compile Include="Assets\McCoy\Brawler\IMobChangeDelegate.cs" />
+    <Compile Include="Assets\McCoy\McCoyShopListUI.cs" />
     <Compile Include="Assets\McCoy\McCoy.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultOptionsScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultVersusModeAfterBattleScreen.cs" />
@@ -216,8 +219,6 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
-    <Compile Include="Assets\McCoy\RPG\McCoyShopItem.cs" />
-    <Compile Include="Assets\McCoy\McCoyShopListUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

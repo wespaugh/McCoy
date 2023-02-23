@@ -132,7 +132,9 @@ public class McCoyAnimationEditor : EditorWindow
     EditorGUI.BeginChangeCheck();
     GUILayout.Toggle(AnimationMode.InAnimationMode(), "Animate", EditorStyles.toolbarButton, GUILayout.Width(100));
     if (EditorGUI.EndChangeCheck())
+    {
       ToggleAnimationMode();
+    }
     GUILayout.EndHorizontal();
 
     GUILayout.BeginHorizontal();
@@ -147,10 +149,12 @@ public class McCoyAnimationEditor : EditorWindow
     }
     GUILayout.EndHorizontal();
 
+    /*
     GUILayout.BeginHorizontal();
     GUILayout.Label("Body Animation", GUILayout.Width(200));
     bodyAnimation = GUILayout.TextField(bodyAnimation, GUILayout.Width(400));
     GUILayout.EndHorizontal();
+    */
     GUILayout.BeginHorizontal();
     GUILayout.Label("Animation", GUILayout.Width(200));
     limbAnimationString = GUILayout.TextField(limbAnimationString, GUILayout.Width(400));
@@ -264,21 +268,21 @@ public class McCoyAnimationEditor : EditorWindow
     }
 
     AnimationMode.BeginSampling();
-    Animator animator = bodySprite.GetComponent<Animator>();
-    AnimationMode.SampleAnimationClip(bodySprite, bodyAnimationClip, time);
+    // Animator animator = bodySprite.GetComponent<Animator>();
+    // AnimationMode.SampleAnimationClip(bodySprite, bodyAnimationClip, time);
     foreach (var go in gameObjects)
     {
       //if (idx == 3)
       {
         // there is a bug in AnimationMode.SampleAnimationClip which crash unity if there is no valid controller attached
-        animator = go.Value.GetComponent<Animator>();
+        // animator = go.Value.GetComponent<Animator>();
         if(!animationClips.ContainsKey(go.Value))
         {
           continue;
         }
         AnimationClip animationClip = animationClips[go.Value];
-        if (animator != null && animator.runtimeAnimatorController == null)
-          return;
+        //if (animator != null && animator.runtimeAnimatorController == null)
+          //return;
 
         if (!EditorApplication.isPlaying && AnimationMode.InAnimationMode())
         {
@@ -293,6 +297,7 @@ public class McCoyAnimationEditor : EditorWindow
 
   void ToggleAnimationMode()
   {
+    UnityEngine.Debug.Log("ToggleAnimationMode");
     if (AnimationMode.InAnimationMode())
       AnimationMode.StopAnimationMode();
     else

@@ -73,7 +73,7 @@ MonoBehaviour:
     requireButtonPress: 1
     onPressExecution: 1
     buttonSequence: 08000000
-    buttonExecution: 05000000
+    buttonExecution: 07000000
     editorToggle: 1
     buttonSequenceToggle: 1
     buttonExecutionToggle: 1
@@ -115,6 +115,7 @@ MonoBehaviour:
     anyAttackType: 1
     anyHitType: 1
     anyHitConfirmType: 1
+  locked: 0
   frameLinks: []
   gauges: []
   sortOrder: []
@@ -248,5 +249,6 @@ MonoBehaviour:
     hitAbsorption: 0
     damageAbsorption: 0
     nonAffectedBodyParts: 
+  buffs: []
   projectiles: []
   rotationPreview: {x: 0, y: 90, z: 0}

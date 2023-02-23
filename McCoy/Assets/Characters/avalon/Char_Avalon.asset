@@ -5477,7 +5477,8 @@ MonoBehaviour:
       crouchEnabled: 0
       blockEnabled: 0
       parryEnabled: 0
-    attackMoves: []
+    attackMoves:
+    - {fileID: 11400000, guid: b9a9ce918b60eb04d8f2d5cc369a9b5f, type: 2}
     physics:
       _moveForwardSpeed:
         _serializedValue: 25769803776
@@ -5512,5 +5513,5 @@ MonoBehaviour:
         _serializedValue: 8589934592
     enabledBasicMovesToggle: 1
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   aiInstructionsSet: []

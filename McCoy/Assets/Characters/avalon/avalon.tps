@@ -173,6 +173,76 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body1.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body10.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body11.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body12.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body13.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body14.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body2.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body3.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body4.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body5.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body6.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body7.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body8.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.49,0.96</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>64,32,128,64</rect>
+                <key>scale9Paddings</key>
+                <rect>64,32,128,64</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm1.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm10.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm11.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm12.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm13.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm14.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm2.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm3.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm4.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm5.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm6.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm7.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm8.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm9.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm1.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm10.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm11.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm12.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm13.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm14.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm2.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm3.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm4.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm5.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm6.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm7.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm8.png</key>
+            <key type="filename">../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>64,32,128,64</rect>
+                <key>scale9Paddings</key>
+                <rect>64,32,128,64</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">idle/idle_body1.png</key>
             <key type="filename">idle/idle_body2.png</key>
             <struct type="IndividualSpriteSettings">
@@ -270,6 +340,48 @@
                     <filename>walk/walk_reararm4.png</filename>
                     <filename>walk/walk_reararm5.png</filename>
                     <filename>walk/walk_reararm6.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body1.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body10.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body11.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body12.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body13.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body14.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body2.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body3.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body4.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body5.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body6.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body7.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body8.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_body9.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm1.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm10.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm11.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm12.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm13.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm14.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm2.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm3.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm4.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm5.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm6.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm7.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm8.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_frontarm9.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm1.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm10.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm11.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm12.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm13.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm14.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm2.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm3.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm4.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm5.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm6.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm7.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm8.png</filename>
+                    <filename>../../../Art Workshop/Avalon/homid_grow/avalon_homid_grow_reararm9.png</filename>
                 </array>
             </struct>
         </map>
