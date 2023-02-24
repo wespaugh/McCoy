@@ -114,9 +114,9 @@ namespace Assets.McCoy.BoardGame
       equipmentMenu.gameObject.SetActive(currentMenu == FiresideMenus.Equipment);
     }
 
-    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby, Animator playerAnimator)
+    public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby, Animator playerAnimator, string animName)
     {
-      equipmentMenu.Initialize(playerAnimator);
+      equipmentMenu.Initialize(playerAnimator, animName);
 
       playerName.SetTextDirectly(PlayerName(pc));
       currentLocation.SetText("com.mccoy.boardgame.currentlocation", (label) =>
