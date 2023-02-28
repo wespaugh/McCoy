@@ -21,7 +21,7 @@ namespace Assets.McCoy.Brawler
       {
         foreach (var atk in moveSet.attackMoves)
         {
-          Debug.Log("unlocking " + atk.moveName + " by default. Look for it to be locked later");
+          // Debug.Log("unlocking " + atk.moveName + " by default. Look for it to be locked later");
           atk.locked = false;
         }
         moveSet.physics._moveForwardSpeedBonus = 0;
@@ -90,9 +90,10 @@ namespace Assets.McCoy.Brawler
         {
           foreach (var buff in skill.BuffsToAdd)
           {
-            Debug.Log("UNLOCKING BUFF: " + buff.Buff);
+            // Debug.Log("UNLOCKING BUFF: " + buff.Buff);
             buff.Init(controls);
-            McCoy.GetInstance().BuffManager.AddBuff(buff, controls.playerNum);
+            controls.buffs.AddBuff(buff);
+            // McCoy.GetInstance().BuffManager.AddBuff(buff, controls.playerNum);
           }
         }
       }

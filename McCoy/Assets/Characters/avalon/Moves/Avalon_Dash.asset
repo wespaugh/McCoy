@@ -252,7 +252,7 @@ MonoBehaviour:
     casted: 0
     stringArgs: []
     floatArgs: []
-    intArgs: 
+    intArgs: 00000000
     boolArgs: 
     IsDebuff: 0
   projectiles: []

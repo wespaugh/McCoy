@@ -46,10 +46,12 @@ namespace UFE3D.Brawler
       buffDelegate.Init(player, stringArgs, floatArgs, intArgs, boolArgs);
     }
 
+    /*
     public void Apply(ControlsScript player)
     {
       buffDelegate.Apply();
     }
+    */
     public bool Tick(int currentBuffCount)
     {
       return buffDelegate.Tick(currentBuffCount);

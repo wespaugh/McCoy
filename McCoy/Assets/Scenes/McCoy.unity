@@ -123,75 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &79722571
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912479210483814307, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8567493637207386643, guid: bc29d27db8409d14d98f14d122d4c305,
-        type: 3}
-      propertyPath: m_Name
-      value: Avalon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bc29d27db8409d14d98f14d122d4c305, type: 3}
 --- !u!1 &139062340
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +728,15 @@ MonoBehaviour:
       ToEnable: {fileID: 11400000, guid: ececfa3a12d46f2409145f9223540b11, type: 2}
   buffLookup:
   - skill: 2
-    Buffs: []
+    Buffs:
+    - Buff: 1
+      castingFrame: 0
+      casted: 0
+      stringArgs: []
+      floatArgs: []
+      intArgs: 0300000005000000
+      boolArgs: 
+      IsDebuff: 0
 --- !u!114 &1944363961
 MonoBehaviour:
   m_ObjectHideFlags: 0

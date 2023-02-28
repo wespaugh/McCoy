@@ -169,15 +169,6 @@ public class McCoyAnimationEditor : EditorWindow
     GUILayout.BeginHorizontal();
     if (GUILayout.Button("assign", GUILayout.Width(200)))
     {
-      foreach (var clip in bodySprite.GetComponent<Animator>().runtimeAnimatorController.animationClips)
-      {
-        if (clip.name == bodyAnimation)
-        {
-          bodyAnimationClip = clip;
-          break;
-        }
-      }
-
       string[] commands = limbAnimationString.Split(',');
       foreach (var cmd in commands)
       {
