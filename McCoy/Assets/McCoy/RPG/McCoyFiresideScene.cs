@@ -33,7 +33,16 @@ namespace Assets.McCoy.RPG
     GameObject LobbyingPrefab = null;
 
     [SerializeField]
-    Animator selectedCharacterAnimator = null;
+    Animator rexCharacterAnimator = null;
+
+    [SerializeField]
+    Animator vickiCharacterAnimator = null;
+
+    [SerializeField]
+    Animator avalonCharacterAnimator = null;
+
+    [SerializeField]
+    Animator penelopeCharacterAnimator = null;
 
     McCoyCityScreen city = null;
     McCoyFiresideUI uiPanel = null;
@@ -127,7 +136,34 @@ namespace Assets.McCoy.RPG
       }
 
       canLobby = city.Board.NodeWithID(McCoyGameState.Instance().PlayerLocation(PlayerCharacters[selectedCharacterIdx])).LobbyingAvailable;
-      uiPanel.SetPlayer(PlayerCharacters[selectedCharacterIdx], city.Board, canLobby, selectedCharacterAnimator);
+      Animator selectedCharacterAnimator = null;
+      string animName = "";
+      rexCharacterAnimator.gameObject.SetActive(false);
+      vickiCharacterAnimator.gameObject.SetActive(false);
+      avalonCharacterAnimator.gameObject.SetActive(false);
+      penelopeCharacterAnimator.gameObject.SetActive(false);
+      
+      switch (PlayerCharacters[selectedCharacterIdx])
+      {
+        case PlayerCharacter.Rex:
+          selectedCharacterAnimator = rexCharacterAnimator;
+          animName = "rex_idle";
+          break;
+        case PlayerCharacter.Vicki:
+          selectedCharacterAnimator = vickiCharacterAnimator;
+          animName = "rex_idle";
+          break;
+        case PlayerCharacter.Avalon:
+          selectedCharacterAnimator = avalonCharacterAnimator;
+          animName = "idle";
+          break;
+        case PlayerCharacter.Penelope:
+          selectedCharacterAnimator = penelopeCharacterAnimator;
+          animName = "rex_idle";
+          break;
+      }
+      selectedCharacterAnimator.gameObject.SetActive(true);
+      uiPanel.SetPlayer(PlayerCharacters[selectedCharacterIdx], city.Board, canLobby, selectedCharacterAnimator, animName);
 
       foreach (var pc in PlayerCharacters)
       {
@@ -170,8 +206,8 @@ namespace Assets.McCoy.RPG
         input.RegisterButtonListener(ButtonPress.Button1, toggleSkills);
         input.RegisterButtonListener(ButtonPress.Button4, toggleLobbying);
         input.RegisterButtonListener(ButtonPress.Button3, closeMenu);
-        input.RegisterButtonListener(ButtonPress.Button7, NextPlayer);
-        input.RegisterButtonListener(ButtonPress.Button8, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button7, PreviousPlayer);
+        input.RegisterButtonListener(ButtonPress.Button8, NextPlayer);
         input.RegisterButtonListener(ButtonPress.Button2, ReturnToMap);
       }
       

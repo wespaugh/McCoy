@@ -100,7 +100,7 @@ namespace UFE3D
         bool hide = animatorKeys.Length == 0 || animKey == "";
         if(!spriteData.ContainsKey(spriteKey))
         {
-          Debug.LogWarning("No Sprite named " + spriteKey);
+          Debug.LogWarning("No Sprite named " + spriteKey + " on sprite " + gameObject.name);
           continue;
         }
         spriteData[spriteKey].animator.gameObject.SetActive(!hide);

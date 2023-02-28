@@ -45,7 +45,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1490393457, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
+      value: {fileID: -605042199, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
+    - time: 0.6666667
+      value: {fileID: 2122665244, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -72,7 +74,8 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 1490393457, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
+    - {fileID: -605042199, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
+    - {fileID: 2122665244, guid: 7a6a2505a4e39834d9f9ffcc1e88d9e4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -181,11 +184,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0
-    functionName: PlayLimbAnimation
-    data: Body:body_idle,RearArm:reararm_idle,FrontArm:frontarm_idle
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

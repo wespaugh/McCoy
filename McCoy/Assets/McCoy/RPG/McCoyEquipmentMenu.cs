@@ -41,11 +41,11 @@ namespace Assets.McCoy.RPG
     // -2 : Equipped Accessory
     // 0-11 : An Item
     int selection = 0;
-    public void Initialize(Animator characterAnimator)
+    public void Initialize(Animator characterAnimator, string animation)
     {
       this.characterAnimator = characterAnimator;
       characterAnimator.GetComponent<SpriteRenderer>().flipX = true;
-      characterAnimator.Play("rex_idle");
+      characterAnimator.Play(animation);
       equipmentLabel.SetText("com.mccoy.rpg.equipmentowner", arguments: new string[] { "Rex" });
 
       playerEquipment = McCoyGameState.Instance().PlayerEquipment(ProjectConstants.PlayerCharacter.Rex);
