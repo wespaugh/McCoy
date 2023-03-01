@@ -2,6 +2,7 @@
 using Assets.McCoy.UI;
 using com.cygnusprojects.TalentTree;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,21 @@ namespace Assets.McCoy.RPG
     [SerializeField]
     Animator penelopeCharacterAnimator = null;
 
+    [SerializeField]
+    Camera camera = null;
+
+    [SerializeField]
+    Transform rexCam = null;
+
+    [SerializeField]
+    Transform vickiCam = null;
+
+    [SerializeField]
+    Transform avalonCam = null;
+
+    [SerializeField]
+    Transform penelopeCam = null;
+
     McCoyCityScreen city = null;
     McCoyFiresideUI uiPanel = null;
 
@@ -59,9 +75,17 @@ namespace Assets.McCoy.RPG
     int selectedCharacterIdx = 0;
     private bool canLobby;
 
+    private Vector3 cameraOrigin;
+    private Quaternion cameraOriginRotation;
+    private Vector3 cameraDestination;
+    private Quaternion cameraDestinationRotation;
+    private float cameraStartTime;
+    private bool lerpingCamera;
+
     public void Refresh(McCoyCityScreen root)
     {
       this.city = root;
+      camera.enabled = true;
       if (uiPanel == null)
       {
         uiPanel = Instantiate(FiresideStatsPrefab).GetComponent<McCoyFiresideUI>();
@@ -142,26 +166,34 @@ namespace Assets.McCoy.RPG
       vickiCharacterAnimator.gameObject.SetActive(false);
       avalonCharacterAnimator.gameObject.SetActive(false);
       penelopeCharacterAnimator.gameObject.SetActive(false);
-      
+
+      Transform cameraAnchor = null;
       switch (PlayerCharacters[selectedCharacterIdx])
       {
         case PlayerCharacter.Rex:
           selectedCharacterAnimator = rexCharacterAnimator;
           animName = "rex_idle";
+          cameraAnchor = rexCam;
           break;
         case PlayerCharacter.Vicki:
           selectedCharacterAnimator = vickiCharacterAnimator;
           animName = "rex_idle";
+          cameraAnchor = vickiCam;
           break;
         case PlayerCharacter.Avalon:
           selectedCharacterAnimator = avalonCharacterAnimator;
           animName = "idle";
+          cameraAnchor = avalonCam;
           break;
         case PlayerCharacter.Penelope:
           selectedCharacterAnimator = penelopeCharacterAnimator;
           animName = "rex_idle";
+          cameraAnchor = penelopeCam;
           break;
       }
+
+      lerpCamera(cameraAnchor.position, cameraAnchor.rotation);
+
       selectedCharacterAnimator.gameObject.SetActive(true);
       uiPanel.SetPlayer(PlayerCharacters[selectedCharacterIdx], city.Board, canLobby, selectedCharacterAnimator, animName);
 
@@ -181,6 +213,37 @@ namespace Assets.McCoy.RPG
         ++i;
       }
     }
+
+    private void lerpCamera(Vector3 position, Quaternion rotation)
+    {
+      cameraOrigin = camera.transform.position;
+      cameraOriginRotation = camera.transform.rotation;
+      cameraDestination = position;
+      cameraDestinationRotation = rotation;
+      cameraStartTime = Time.time;
+      if(! lerpingCamera)
+      {
+        StartCoroutine(LerpCamera(.3f));
+      }
+    }
+
+    private IEnumerator LerpCamera(float travelTime)
+    {
+      lerpingCamera = true;
+      while (camera.transform.position != cameraDestination)
+      {
+        float currentTime = ((Time.time - cameraStartTime) / travelTime);
+        currentTime = 1f - (float)Math.Pow(1f - currentTime, 3f);
+        camera.transform.position = new Vector3(
+          Mathf.Lerp(cameraOrigin.x, cameraDestination.x, currentTime),
+          Mathf.Lerp(cameraOrigin.y, cameraDestination.y, currentTime),
+          Mathf.Lerp(cameraOrigin.z, cameraDestination.z, currentTime));
+        camera.transform.rotation = Quaternion.Lerp(cameraOriginRotation, cameraDestinationRotation, currentTime);
+        yield return null;
+      }
+      lerpingCamera = false;
+    }
+
     private SpriteRenderer spriteForPC(PlayerCharacter pc)
     {
       switch (pc)
@@ -260,6 +323,7 @@ namespace Assets.McCoy.RPG
         talentDelegate = null;
         uiPanel.gameObject.SetActive(true);
       }
+      camera.enabled = false;
     }
 
     private void loadSkills(int availablePoints, string serializedSkills, PlayerCharacter pc)
