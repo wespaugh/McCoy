@@ -1,10 +1,12 @@
 ﻿using Assets.McCoy.Localization;
+using Assets.McCoy.RPG;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Assets.McCoy.ProjectConstants;
 
 namespace Assets.McCoy.BoardGame
 {
@@ -25,6 +27,11 @@ namespace Assets.McCoy.BoardGame
     [SerializeField]
     McCoyLocalizedText lobbyingText;
 
+    [SerializeField]
+    GameObject statsRoot = null;
+    [SerializeField]
+    McCoyEquipmentMenu equipmentMenu = null;
+
     public void refresh(string name, string location, string skillPoints, string timeRemaining, string funds, string controls, bool canLobby)
     {
       playerName.SetTextDirectly(name);
@@ -34,6 +41,12 @@ namespace Assets.McCoy.BoardGame
       this.funds.SetTextDirectly(funds);
       this.controls.SetTextDirectly(controls);
       this.lobbyingText.gameObject.SetActive(canLobby);
+    }
+
+    public void SetMenu(FiresideMenus currentMenu)
+    {
+      statsRoot.SetActive(currentMenu == FiresideMenus.Stats);
+      equipmentMenu.gameObject.SetActive(currentMenu == FiresideMenus.Equipment);
     }
   }
 }

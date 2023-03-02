@@ -12,12 +12,6 @@ namespace Assets.McCoy.BoardGame
 {
   public class McCoyFiresideUI : MonoBehaviour, IMcCoyInputManager
   {
-    enum FiresideMenus
-    {
-      Stats,
-      Equipment,
-      Skills
-    }
 
     [SerializeField]
     McCoyFiresideUIView leftUiAnchor = null;
@@ -97,8 +91,8 @@ namespace Assets.McCoy.BoardGame
 
     private void refreshMenu()
     {
-      statsRoot.SetActive(currentMenu == FiresideMenus.Stats);
-      equipmentMenu.gameObject.SetActive(currentMenu == FiresideMenus.Equipment);
+      leftUiAnchor.SetMenu(currentMenu);
+      rightUiAnchor.SetMenu(currentMenu);
     }
 
     public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby, Animator playerAnimator, string animName)

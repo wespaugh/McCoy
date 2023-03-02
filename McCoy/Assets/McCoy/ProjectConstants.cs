@@ -83,6 +83,12 @@ namespace Assets.McCoy
       }
     }
 
+    public enum FiresideMenus
+    {
+      Stats,
+      Equipment,
+      Skills
+    }
     public static string SaveFilename(int v)
     {
       return Application.persistentDataPath + "/McCoySave.awoo";

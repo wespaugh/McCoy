@@ -100,6 +100,8 @@ MonoBehaviour:
   funds: {fileID: 8492179680760648376}
   controls: {fileID: 783003423777467506}
   lobbyingText: {fileID: 2295635095775003449}
+  statsRoot: {fileID: 6682436017152082259}
+  equipmentMenu: {fileID: 1916219297999049487}
 --- !u!1 &166778040883546289
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftUiAnchor: {fileID: 2988373952968263596}
   rightUiAnchor: {fileID: 7164039293898953865}
-  lobbyingUI: {fileID: 0}
   statsRoot: {fileID: 6682436017152082259}
   equipmentMenu: {fileID: 1916219297999049487}
 --- !u!223 &940415245
@@ -886,6 +887,8 @@ MonoBehaviour:
   funds: {fileID: 769057929287173510}
   controls: {fileID: 4772796254967519576}
   lobbyingText: {fileID: 8607405110908620347}
+  statsRoot: {fileID: 6759114141702141483}
+  equipmentMenu: {fileID: 7067679002375945907}
 --- !u!1 &7280228699409841436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2142,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1617418835961715376}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7067679002375945907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8387753404077499395, guid: e939f824b74aac543b59767283d8489a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1617418835961715376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da37246c770600e46abe429fae9ee3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1809527587095584725
 PrefabInstance:
   m_ObjectHideFlags: 0
