@@ -20,22 +20,9 @@ namespace Assets.McCoy.BoardGame
     }
 
     [SerializeField]
-    McCoyLocalizedText playerName;
+    McCoyFiresideUIView leftUiAnchor = null;
     [SerializeField]
-    McCoyLocalizedText currentLocation;
-    [SerializeField]
-    McCoyLocalizedText skillPoints;
-    [SerializeField]
-    McCoyLocalizedText timeRemaining;
-    [SerializeField]
-    McCoyLocalizedText funds;
-    [SerializeField]
-    McCoyLocalizedText controls;
-    [SerializeField]
-    McCoyLocalizedText lobbyingText;
-
-    [SerializeField]
-    GameObject lobbyingUI = null;
+    McCoyFiresideUIView rightUiAnchor = null;
 
     [SerializeField]
     GameObject statsRoot = null;
@@ -116,54 +103,63 @@ namespace Assets.McCoy.BoardGame
 
     public void SetPlayer(PlayerCharacter pc, McCoyCityBoardContents board, bool canLobby, Animator playerAnimator, string animName)
     {
+      bool left = pc == PlayerCharacter.Avalon || pc == PlayerCharacter.Penelope;
+
+      leftUiAnchor.gameObject.SetActive(left);
+      rightUiAnchor.gameObject.SetActive(!left);
+      McCoyFiresideUIView dataPanel = left ? leftUiAnchor : rightUiAnchor;
+
       equipmentMenu.Initialize(playerAnimator, animName);
 
-      playerName.SetTextDirectly(PlayerName(pc));
-      currentLocation.SetText("com.mccoy.boardgame.currentlocation", (label) =>
+
+      string playerName = PlayerName(pc);
+
+      Localize("com.mccoy.boardgame.currentlocation", (currentLoc) =>
       {
         string locationName = board.NameForNode(McCoyGameState.Instance().PlayerLocation(pc));
         Localize(locationName, (location) =>
         {
-          currentLocation.SetTextDirectly(label + ": " + location);
-        });
-      });
+          string currentLocation = currentLoc + ": " + location;
 
-      skillPoints.SetText("com.mccoy.rpg.skillpoints", (label) =>
-      {
-        skillPoints.SetTextDirectly(label + ": " + McCoyGameState.GetPlayer(pc).AvailableSkillPoints);
-      });
-      timeRemaining.SetText("com.mccoy.boardgame.timeremaining", (label) =>
-      {
-        float time = McCoyGameState.Instance().TurnTimeRemaining(pc);
-        int mins = (int)(time / 60f);
-        float secs = time - (mins*60f);
-        string timeLabel = label + ": " + mins + "m::" + decimal.Round((decimal)secs, 2) + "s";
-        if(time <= 0)
-        {
-          timeLabel = $"<color=\"red\">{timeLabel}</color>";
-        }
-        timeRemaining.SetTextDirectly(timeLabel);
-      });
-
-      funds.SetText("com.mccoy.boardgame.funds", (label) =>
-      {
-        funds.SetTextDirectly(label + ": " + McCoyGameState.Instance().Credits);
-      });
-
-      Localize("com.mccoy.rpg.skills", (skillsLabel) =>
-      {
-        Localize("com.mccoy.boardgame.changeplayer", (changePlayerLabel) =>
-        {
-          Localize("com.mccoy.boardgame.lobbying", (lobbyingLabel) =>
+          Localize("com.mccoy.rpg.skillpoints", (skills) =>
           {
-            Localize("com.mccoy.boardgame.map", (mapLabel) =>
+            string skillPoints = skills + ": " + McCoyGameState.GetPlayer(pc).AvailableSkillPoints;
+
+            Localize("com.mccoy.boardgame.timeremaining", (timeLoc) =>
             {
-              controls.SetTextDirectly($"{mapLabel}:    <sprite name=\"controller_buttons_ps4_1\">    {skillsLabel}:    <sprite name=\"controller_buttons_ps4_0\">    {changePlayerLabel}:    <sprite name=\"controller_buttons_ps4_2\"> /   <sprite name=\"controller_buttons_ps4_3\">");
+              float time = McCoyGameState.Instance().TurnTimeRemaining(pc);
+              int mins = (int)(time / 60f);
+              float secs = time - (mins * 60f);
+              string timeLabel = time + ": " + mins + "m::" + decimal.Round((decimal)secs, 2) + "s";
+              if (time <= 0)
+              {
+                timeLabel = $"<color=\"red\">{timeLabel}</color>";
+              }
+              string timeRemaining = timeLabel;
+
+              Localize("com.mccoy.boardgame.funds", (fundsLabel) =>
+              {
+                string funds = fundsLabel + ": " + McCoyGameState.Instance().Credits;
+
+                Localize("com.mccoy.rpg.skills", (skillsLabel) =>
+                {
+                  Localize("com.mccoy.boardgame.changeplayer", (changePlayerLabel) =>
+                  {
+                    Localize("com.mccoy.boardgame.lobbying", (lobbyingLabel) =>
+                    {
+                      Localize("com.mccoy.boardgame.map", (mapLabel) =>
+                      {
+                        string controlsLabel = $"{mapLabel}:    <sprite name=\"controller_buttons_ps4_1\">    {skillsLabel}:    <sprite name=\"controller_buttons_ps4_0\">    {changePlayerLabel}:    <sprite name=\"controller_buttons_ps4_2\"> /   <sprite name=\"controller_buttons_ps4_3\">";
+                        dataPanel.refresh(playerName, currentLocation, skillPoints, timeRemaining, funds, controlsLabel, canLobby);
+                      });
+                    });
+                  });
+                });
+              });
             });
           });
         });
       });
-      lobbyingText.gameObject.SetActive(canLobby);
     }
   }
 }
