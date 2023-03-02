@@ -1,6 +1,7 @@
 version: 2
 tpsheetFileNames:
 - Assets/Characters/avalon/avalon.tpsheet
+- Assets/Characters/Common/shadow.tpsheet
 - Assets/Characters/magistrate/magistrate.tpsheet
 - Assets/Characters/magistrate/projectile/magistrate_projectile.tpsheet
 - Assets/Characters/rex/sprites/arbiter/aseprite/combo/combo.tpsheet
@@ -14,6 +15,7 @@ tpsheetFileNames:
 - Assets/UI/Battle/crypt_id.tpsheet
 textureFileNames:
 - Assets/Characters/avalon/avalon.png
+- Assets/Characters/Common/shadow.png
 - Assets/Characters/magistrate/magistrate.png
 - Assets/Characters/magistrate/projectile/magistrate_projectile.png
 - Assets/Characters/rex/sprites/arbiter/aseprite/combo/combo.png
@@ -26,6 +28,7 @@ textureFileNames:
 - Assets/Stages/Shop/shop.png
 - Assets/UI/Battle/crypt_id.png
 normalmapFileNames:
+- 
 - 
 - 
 - 

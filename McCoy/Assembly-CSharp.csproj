@@ -220,6 +220,8 @@
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyFiresideUIView.cs" />
+    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadow.cs" />
+    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadowSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />

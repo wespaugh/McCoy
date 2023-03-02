@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 838660376927053957}
   - component: {fileID: 6237809992504614308}
   - component: {fileID: 2054726790664024756}
+  - component: {fileID: 8586470538880355578}
   m_Layer: 0
   m_Name: UMMTest
   m_TagString: Untagged
@@ -120,7 +121,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &6237809992504614308
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,7 +138,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &2054726790664024756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,3 +496,17 @@ MonoBehaviour:
   moveSetScript: {fileID: 0}
   previewAllBoxes: 1
   customHitBoxes: {fileID: 0}
+--- !u!114 &8586470538880355578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138875218885103485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaf5283f63292843b871503e44f3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowPrefab: {fileID: 947858786795254658, guid: 0700a116f13f11c47970dba28c5ebc2f,
+    type: 3}
