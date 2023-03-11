@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1364113900855959919}
   - component: {fileID: 1364113900855959912}
   - component: {fileID: 1364113900855959913}
+  - component: {fileID: 9042705627123357445}
   m_Layer: 0
   m_Name: SarmGoblin
   m_TagString: Untagged
@@ -211,7 +212,7 @@ MonoBehaviour:
   customHitBoxes: {fileID: 0}
 --- !u!95 &1364113900855959913
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -228,4 +229,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &9042705627123357445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364113900855959914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaf5283f63292843b871503e44f3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowPrefab: {fileID: 947858786795254658, guid: 0700a116f13f11c47970dba28c5ebc2f,
+    type: 3}

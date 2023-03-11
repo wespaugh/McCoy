@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7356053441428549560}
   - component: {fileID: 4262465360018758297}
   - component: {fileID: 8157617253975340425}
+  - component: {fileID: 6536644668637721138}
   m_Layer: 0
   m_Name: militia_grunt
   m_TagString: Untagged
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4262465360018758297
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +106,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &8157617253975340425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,3 +464,17 @@ MonoBehaviour:
   moveSetScript: {fileID: 0}
   previewAllBoxes: 1
   customHitBoxes: {fileID: 0}
+--- !u!114 &6536644668637721138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109199104296716352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaf5283f63292843b871503e44f3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowPrefab: {fileID: 947858786795254658, guid: 0700a116f13f11c47970dba28c5ebc2f,
+    type: 3}
