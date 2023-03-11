@@ -240,7 +240,7 @@ public class FluxCapacitor
 			)
 		)
 	  {
-		this.PlayerManager.player1.inputBuffer.RemoveNextInput();
+		p.Value.inputBuffer.RemoveNextInput();
 	  }
 	}
 		/*

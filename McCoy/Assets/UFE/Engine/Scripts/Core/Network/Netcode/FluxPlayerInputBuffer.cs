@@ -521,8 +521,15 @@ namespace UFE3D
 				// Check if we need to make room in the buffer for the new input...
 				while (index >= this._buffer.Count && !this.IsFull())
 				{
-					this._buffer.Add(new FluxPlayerInput());
-				}
+		  // WTP: 3/11/23 add in any filler frames to catch up using the same input. don't add the last one since it will be added in the block after this while
+          FluxPlayerInput newInput = new FluxPlayerInput();
+		  if (_buffer.Count < index)
+		  {
+			newInput.ConfirmedInput = playerInput;
+			newInput.PredictedInput = playerInput;
+		  }
+          this._buffer.Add(newInput);
+        }
 
 				if (index < this._buffer.Count)
 				{
@@ -556,11 +563,18 @@ namespace UFE3D
 			{
 				// Check if we need to make room in the buffer for the new input...
 				while (index >= this._buffer.Count && !this.IsFull())
-				{
-					this._buffer.Add(new FluxPlayerInput());
-				}
+        {
+          // add in any filler frames to catch up using the same input. don't add the last one since it will be added in the block after this while
+          FluxPlayerInput newInput = new FluxPlayerInput();
+          if (_buffer.Count < index)
+          {
+            newInput.PredictedInput = playerInput;
+			newInput.ConfirmedInput = playerInput;
+          }
+          this._buffer.Add(newInput);
+        }
 
-				if (index < this._buffer.Count)
+        if (index < this._buffer.Count)
 				{
 					// And add the new predicted input to the buffer
 					this._buffer[index].PredictedInput = playerInput;

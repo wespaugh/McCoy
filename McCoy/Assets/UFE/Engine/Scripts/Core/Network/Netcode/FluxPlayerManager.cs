@@ -173,7 +173,18 @@ namespace UFE3D
 
 		public long GetNextExpectedFrame()
 		{
-			long p1 = this.GetNextExpectedFrame(1);
+	  long minFrame = -1L;
+      foreach (var actor in actorDictionary)
+	  {
+		long nextFrame = this.GetNextExpectedFrame(actor.Key);
+		if(nextFrame >= 0L)
+		{
+          minFrame = (minFrame < 0) ? nextFrame : Math.Min(minFrame, nextFrame);
+        }
+	  }
+	  return minFrame;
+	  /*
+      long p1 = this.GetNextExpectedFrame(1);
 			long p2 = this.GetNextExpectedFrame(2);
 
 			if (p1 >= 0L && p2 >= 0L)
@@ -184,6 +195,7 @@ namespace UFE3D
 			{
 				return Math.Max(p1, p2);
 			}
+	  */
 		}
 
 		public long GetNextExpectedFrame(int player)
@@ -221,14 +233,19 @@ namespace UFE3D
 
 		public virtual void Initialize(long currentFrame)
 		{
-			this.Initialize(currentFrame, -1);
+			this.Initialize(currentFrame, UFE.config.networkOptions.maxBufferSize);
 		}
 
 	public virtual int AddPlayer(long currentFrame, int id = -1)
     {
+	  Debug.Log("Adding a player on frame " + UFE.currentFrame);
+	  if(id < 0)
+	  {
+		Debug.LogError("FluxPlayerManager about to assign player id based on collection size. Errors likely!");
+	  }
 	  int playerId = id > 0 ? id : actorDictionary.Keys.Count + 1;
-	  actorDictionary.Add(playerId, new FluxPlayer(actorDictionary.Keys.Count));
-	  actorDictionary[playerId].Initialize(currentFrame, -1, playerId);
+	  actorDictionary.Add(playerId, new FluxPlayer(playerId));
+	  actorDictionary[playerId].Initialize(currentFrame, UFE.config.networkOptions.maxBufferSize, playerId);
 	  return playerId;
     }
 
@@ -241,6 +258,10 @@ namespace UFE3D
 		{
 			this.player1.Initialize(currentFrame, maxBufferSize, 1);
 			this.player2.Initialize(currentFrame, maxBufferSize, 2);
+	  foreach(var actor in actorDictionary)
+	  {
+		actor.Value.Initialize(currentFrame, maxBufferSize, actor.Key);
+	  }
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -372,7 +393,7 @@ namespace UFE3D
 		//for (int i = 1; isConfirmed && i <= NumberOfPlayers; ++i)
 			{
 		if (!isConfirmed) break;
-				if (!this.GetPlayer(actor.Key).inputBuffer.TryCheckIfInputIsConfirmed(frame, out isConfirmed) || !isConfirmed)
+				if (!actor.Value.inputBuffer.TryCheckIfInputIsConfirmed(frame, out isConfirmed) || !isConfirmed)
 				{
 					// If there has been an error while processing the request for any character, return false
 					isConfirmed = false;

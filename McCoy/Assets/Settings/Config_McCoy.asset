@@ -24,22 +24,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: cityhall
+    stageName: powerstation
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: 0b5bc95b5c0e0eb448d43fb358704f3f, type: 3}
-    prefab: {fileID: 879742433415519449, guid: dda3816044a462746b2d06a61a34614c, type: 3}
-    music: {fileID: 0}
+    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
+    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+      type: 3}
+    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: 0
+      _serializedValue: -34359738368
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: 0
+      _serializedValue: -42949672960
     tempRightBoundary:
-      _serializedValue: 0
+      _serializedValue: 25769803776
     useTempBoundary: 0
     position:
       x:
@@ -48,8 +49,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/CityHall/CityHall
-    stageInfo: {fileID: 11400000, guid: 2c53dfb00f4f61048a507b56a4e81ed5, type: 2}
+    advancedStageData: StageData/PowerStation/PowerStation
+    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
