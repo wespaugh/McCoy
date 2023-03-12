@@ -117,6 +117,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultCharacterSelectionScreen.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoySpawnerTrigger.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyPlayerCharacter.cs" />
+    <Compile Include="Assets\McCoy\BoardGame\McCoyFiresideUIView.cs" />
     <Compile Include="Assets\McCoy\Brawler\McCoyCryptId.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyLobbyingCause.cs" />
     <Compile Include="Assets\McCoy\BoardGame\McCoyLobbyingCauseManager.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultReplayGUI.cs" />
     <Compile Include="Assets\cMonkeys\cInput\Example\Scripts\cInputDemoTurret.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoySkillTreePageToggle.cs" />
+    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadowSpawner.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\DefaultContinueScreen.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\Network\MapRecorder.cs" />
     <Compile Include="Assets\Talentus\Core\PropertyDefinition.cs" />
@@ -213,15 +215,13 @@
     <Compile Include="Assets\McCoy\RPG\McCoyQuestListData.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyBattleGui.cs" />
     <Compile Include="Assets\McCoy\UI\McCoyMainMenuScene.cs" />
+    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadow.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GUIControlsInterface.cs" />
     <Compile Include="Assets\Talentus\Components\TalentusEngine.cs" />
     <Compile Include="Assets\Talentus\Example\Scripts\TalentExtraScript.cs" />
     <Compile Include="Assets\UFE\Engine\Scripts\UI_Templates\GridStageSelectionScreen.cs" />
     <Compile Include="Assets\Talentus\Core\TalentTreeGraph.cs" />
     <Compile Include="Assets\McCoy\RPG\McCoyTalentusSkill.cs" />
-    <Compile Include="Assets\McCoy\BoardGame\McCoyFiresideUIView.cs" />
-    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadow.cs" />
-    <Compile Include="Assets\McCoy\Brawler\FX\McCoyBrawlerShadowSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UFE\Engine\Plugins\FuzzyAI\Copyright.txt" />
