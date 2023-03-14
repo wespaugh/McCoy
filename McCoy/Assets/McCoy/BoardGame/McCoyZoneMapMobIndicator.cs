@@ -57,6 +57,9 @@ namespace Assets.McCoy.BoardGame
     SpriteRenderer selectionHighlight = null;
 
     [SerializeField]
+    Transform cameraAnchor = null;
+
+    [SerializeField]
     float deselectAlpha = .85f;
 
     [SerializeField]
@@ -73,6 +76,11 @@ namespace Assets.McCoy.BoardGame
     bool pulsing = false;
     float pulseStart = 0f;
     private bool playerColorOverridesMobColor = false;
+
+    public Transform CameraAnchor
+    {
+      get => cameraAnchor;
+    }
 
     public void UpdateWithMobs(List<McCoyMobData> mobs, int playerNum, string zoneName, float searchPercent, bool showMechanism = false)
     {

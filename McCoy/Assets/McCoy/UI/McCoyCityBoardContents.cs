@@ -440,10 +440,7 @@ namespace Assets.McCoy.UI
         Debug.Log($"Clamping {locPosition.z} between: {cameraBoundsLowerLeft.position.z} and {cameraBoundsUpperRight.position.z}");
       }
 
-      cameraDestination = new Vector3(
-        Mathf.Clamp(locPosition.x, cameraBoundsLowerLeft.position.x, cameraBoundsUpperRight.position.x), 
-        (cameraBoundsLowerLeft.position.y + cameraBoundsUpperRight.position.y)/2, // should always be the same value, but maybe tweening could be fun
-        Mathf.Clamp(locPosition.z, cameraBoundsLowerLeft.position.z, cameraBoundsUpperRight.position.z));
+      cameraDestination = selectedPlayerZone.CameraAnchor.transform.position;
 
       cameraOrigin = Camera.main.transform.position;
       cameraStartTime = Time.time;

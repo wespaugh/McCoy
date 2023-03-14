@@ -1844,6 +1844,7 @@ MonoBehaviour:
   mechanismIndicator: {fileID: 7704957106713226712}
   searchProgressBar: {fileID: 3219524796962165683}
   selectionHighlight: {fileID: 0}
+  cameraAnchor: {fileID: 8118987068799071005}
   deselectAlpha: 0.2
   selectAlphaMin: 0.5
   selectAlphaMax: 0.8
