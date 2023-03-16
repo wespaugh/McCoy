@@ -227,7 +227,7 @@ MonoBehaviour:
     connectionIDs:
     - bca2ecf53f57d724abe75d786eea6d75
     - 07d7f6ea6aaedf04b982db947277082b
-    Disabled: 1
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.skybridge
     LobbyingAvailable: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
     connectionIDs:
     - 7561d6c4bbfed7747a0affa4400cd38e
     - 36e23897c1d8e5e459aa1500cefa8d44
-    Disabled: 1
+    Disabled: 0
     Mobs: []
     ZoneName: com.mccoy.cityzone.subway
     LobbyingAvailable: 0
