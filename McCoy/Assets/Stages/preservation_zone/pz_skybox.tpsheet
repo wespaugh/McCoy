@@ -1,0 +1,16 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:93c6e44e5b1d53d8db1452e0d4421b5e:3462a04e3003da5d54a1d9c2f973b5af:d6728a197382b401790c8c0e3a940faf$
+#
+:format=40300
+:texture=pz_skybox.png
+:size=256x256
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+PZ_skybox;1;127;128;128; 0.5;0.5; 0;0;0;0; 4;128;0;0;0;0;128;128;128; 2;1;2;3;0;1;3

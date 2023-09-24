@@ -84,6 +84,10 @@ namespace Assets.McCoy.Brawler.Stages
 
     private void FixedUpdate()
     {
+      if(unitSize == 0)
+      {
+        return;
+      }
       cameraPos = Camera.main.transform.localPosition;
       int i = 0;
       float chunkSize = horizontal ? contents.transform.localScale.x : contents.transform.localScale.y;

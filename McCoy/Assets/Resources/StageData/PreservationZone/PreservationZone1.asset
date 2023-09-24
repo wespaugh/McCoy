@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a98cd6ca1bdee840a9f245fe62ca326, type: 3}
+  m_Name: PreservationZone1
+  m_EditorClassIdentifier: 
+  substageName: Arbotoreum
+  stagePrefab: {fileID: 3725585260404625120, guid: 5389bf233acfe7b48a3fa94cf969b7c6,
+    type: 3}
+  boundaries:
+  - unitXStart: 0
+    upperBound:
+      slope: 0
+      yIntercept: 8
+    lowerBound:
+      slope: 0
+      yIntercept: -5
+  holes: []
+  leftBoundary: 0
+  rightBoundary: 75

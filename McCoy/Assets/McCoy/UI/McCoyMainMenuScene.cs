@@ -1,17 +1,12 @@
 ﻿using Assets.McCoy.Brawler.Stages;
 using Assets.McCoy.RPG;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UFE3D;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Naninovel;
 using System.Collections;
-using TMPro;
 
 namespace Assets.McCoy.UI
 {
@@ -240,7 +235,7 @@ namespace Assets.McCoy.UI
           StartCityScene();
           break;
         case MainMenuChoices.Options:
-          Debug.Log("Options!");
+          UnityEngine.Debug.Log("Options!");
           break;
         case MainMenuChoices.Exit:
           Debug.Log("Exit!");

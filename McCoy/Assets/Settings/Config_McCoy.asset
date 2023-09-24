@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Config_McCoy
   m_EditorClassIdentifier: 
   version: 2
-  player1Character: {fileID: 0}
+  player1Character: {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   player2Character: {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}
   player1Team:
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
@@ -24,23 +24,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   selectedStage:
-    stageName: powerstation
+    stageName: preservationzone
     stageLoadingMethod: 0
     stagePath: 
-    screenshot: {fileID: 2800000, guid: c7823d7021e93e44f8afc96ea80ff3ca, type: 3}
-    prefab: {fileID: 5186961683364105807, guid: ad25bf0b07859224aa91783a94cec2a9,
+    screenshot: {fileID: 2800000, guid: 1b10ea3e719df1144868d48240bafce0, type: 3}
+    prefab: {fileID: 3725585260404625120, guid: 5389bf233acfe7b48a3fa94cf969b7c6,
       type: 3}
-    music: {fileID: 8300000, guid: 232a941fbd27d3b4e90cb34ccf2a21c9, type: 3}
+    music: {fileID: 8300000, guid: e7afe36e7d3ec8e499eb0609fe09c95d, type: 3}
     _groundFriction:
       _serializedValue: 429496729600
     _leftBoundary:
-      _serializedValue: -34359738368
+      _serializedValue: 0
     _rightBoundary:
       _serializedValue: 214748364800
     tempLeftBoundary:
-      _serializedValue: -42949672960
+      _serializedValue: 0
     tempRightBoundary:
-      _serializedValue: 25769803776
+      _serializedValue: 0
     useTempBoundary: 0
     position:
       x:
@@ -49,8 +49,8 @@ MonoBehaviour:
         _serializedValue: 0
       z:
         _serializedValue: 0
-    advancedStageData: StageData/PowerStation/PowerStation
-    stageInfo: {fileID: 11400000, guid: 078798020f08f6f4c858ebb52b828785, type: 2}
+    advancedStageData: StageData/PreservationZone/PreservationZone
+    stageInfo: {fileID: 0}
   gameName: Space Wolves from Outer Space
   gameplayType: 0
   selectedLanguage:
@@ -1367,6 +1367,33 @@ MonoBehaviour:
         _serializedValue: 0
     advancedStageData: StageData/CityHall/CityHall
     stageInfo: {fileID: 11400000, guid: 2c53dfb00f4f61048a507b56a4e81ed5, type: 2}
+  - stageName: preservationzone
+    stageLoadingMethod: 0
+    stagePath: 
+    screenshot: {fileID: 2800000, guid: 1b10ea3e719df1144868d48240bafce0, type: 3}
+    prefab: {fileID: 3725585260404625120, guid: 5389bf233acfe7b48a3fa94cf969b7c6,
+      type: 3}
+    music: {fileID: 8300000, guid: e7afe36e7d3ec8e499eb0609fe09c95d, type: 3}
+    _groundFriction:
+      _serializedValue: 429496729600
+    _leftBoundary:
+      _serializedValue: 0
+    _rightBoundary:
+      _serializedValue: 214748364800
+    tempLeftBoundary:
+      _serializedValue: 0
+    tempRightBoundary:
+      _serializedValue: 0
+    useTempBoundary: 0
+    position:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    advancedStageData: StageData/PreservationZone/PreservationZone
+    stageInfo: {fileID: 0}
   characters:
   - {fileID: 11400000, guid: 93bccc7cca38d1c43af3768709eadf24, type: 2}
   - {fileID: 11400000, guid: 51a0ba8a8bf7b24468087dbaa9ec075c, type: 2}

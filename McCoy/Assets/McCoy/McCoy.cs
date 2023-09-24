@@ -3,6 +3,7 @@ using Assets.McCoy.Brawler;
 using Assets.McCoy.RPG;
 using FPLibrary;
 using Naninovel;
+using System;
 using System.Threading.Tasks;
 using UFE3D;
 using UFE3D.Brawler;
@@ -90,6 +91,7 @@ namespace Assets.McCoy
 
     public void LoadBrawlerStage(McCoyStageData stageData, PlayerCharacter player)
     {
+      McCoyGameState.Instance().SelectedPlayer = player;
       currentStage = stageData;
       UFE.config.currentRound = 1;
       var components = stageData.Name.Split('.');
@@ -162,6 +164,11 @@ namespace Assets.McCoy
     {
       naniCam.gameObject.SetActive(false);
       UFE.FireAlert(ProjectConstants.CUTSCENE_FINISHED, null);
+    }
+
+    internal void LoadBrawlerStage(object stageData, PlayerCharacter selectedCharacter)
+    {
+      throw new NotImplementedException();
     }
   }
 }

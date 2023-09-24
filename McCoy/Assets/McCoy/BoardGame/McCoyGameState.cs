@@ -136,7 +136,6 @@ namespace Assets.McCoy.BoardGame
         }
         SetMobs(mapNode.NodeID, mobData);
       }
-
       for (int i = 0; i < PlayerCharacters.Length; ++i)
       {
         PlayerCharacter pc = PlayerCharacters[i];

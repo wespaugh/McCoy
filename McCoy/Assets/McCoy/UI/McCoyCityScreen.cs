@@ -752,7 +752,6 @@ namespace Assets.McCoy.UI
       if (!loadingStage)
       {
         loadingStage = true;
-        McCoyGameState.Instance().SelectedPlayer = selectedPlayer;
         McCoy.GetInstance().LoadBrawlerStage(stageDataToLoad, selectedPlayer);
       }
     }
